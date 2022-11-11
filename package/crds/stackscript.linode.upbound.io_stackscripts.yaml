@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: resources.null.template.upbound.io
+  name: stackscripts.stackscript.linode.upbound.io
 spec:
-  group: null.template.upbound.io
+  group: stackscript.linode.upbound.io
   names:
     categories:
     - crossplane
     - managed
-    - template
-    kind: Resource
-    listKind: ResourceList
-    plural: resources
-    singular: resource
+    - linode
+    kind: Stackscript
+    listKind: StackscriptList
+    plural: stackscripts
+    singular: stackscript
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,7 +35,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Resource is the Schema for the Resources API. <no value>
+        description: Stackscript is the Schema for the Stackscripts API. Manages a
+          Linode StackScript.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ResourceSpec defines the desired state of Resource
+            description: StackscriptSpec defines the desired state of Stackscript
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,13 +64,78 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  triggers:
-                    additionalProperties:
+                  description:
+                    description: A description for the StackScript. A description
+                      for the StackScript.
+                    type: string
+                  images:
+                    description: An array of Image IDs representing the Images that
+                      this StackScript is compatible for deploying with. any/all indicates
+                      that all available image distributions, including private images,
+                      are accepted. Currently private image IDs are not supported.
+                      An array of Image IDs representing the Images that this StackScript
+                      is compatible for deploying with.
+                    items:
                       type: string
-                    description: A map of arbitrary strings that, when changed, will
-                      force the null resource to be replaced, re-running any associated
-                      provisioners.
-                    type: object
+                    type: array
+                  isPublic:
+                    description: This determines whether other users can use your
+                      StackScript. Once a StackScript is made public, it cannot be
+                      made private. Changing This determines whether other users can
+                      use your StackScript. Once a StackScript is made public, it
+                      cannot be made private.
+                    type: boolean
+                  label:
+                    description: The StackScript's label is for display purposes only.
+                      The StackScript's label is for display purposes only.
+                    type: string
+                  revNote:
+                    description: This field allows you to add notes for the set of
+                      revisions made to this StackScript. This field allows you to
+                      add notes for the set of revisions made to this StackScript.
+                    type: string
+                  script:
+                    description: The script to execute when provisioning a new Linode
+                      with this StackScript. The script to execute when provisioning
+                      a new Linode with this StackScript.
+                    type: string
+                  userDefinedFields:
+                    description: This is a list of fields defined with a special syntax
+                      inside this StackScript that allow for supplying customized
+                      parameters during deployment. This is a list of fields defined
+                      with a special syntax inside this StackScript that allow for
+                      supplying customized parameters during deployment.
+                    items:
+                      properties:
+                        default:
+                          description: The default value. If not specified, this value
+                            will be used.
+                          type: string
+                        example:
+                          description: An example value for the field.
+                          type: string
+                        label:
+                          description: The StackScript's label is for display purposes
+                            only.
+                          type: string
+                        manyOf:
+                          description: A list of acceptable values for the field in
+                            any quantity, combination or order.
+                          type: string
+                        name:
+                          description: The name of the field.
+                          type: string
+                        oneOf:
+                          description: A list of acceptable single values for the
+                            field.
+                          type: string
+                      type: object
+                    type: array
+                required:
+                - description
+                - images
+                - label
+                - script
                 type: object
               providerConfigRef:
                 default:
@@ -243,11 +309,37 @@ spec:
             - forProvider
             type: object
           status:
-            description: ResourceStatus defines the observed state of Resource.
+            description: StackscriptStatus defines the observed state of Stackscript.
             properties:
               atProvider:
                 properties:
+                  created:
+                    description: The date this StackScript was created. The date this
+                      StackScript was created.
+                    type: string
+                  deploymentsActive:
+                    description: Count of currently active, deployed Linodes created
+                      from this StackScript. Count of currently active, deployed Linodes
+                      created from this StackScript.
+                    type: number
+                  deploymentsTotal:
+                    description: The total number of times this StackScript has been
+                      deployed. The total number of times this StackScript has been
+                      deployed.
+                    type: number
                   id:
+                    type: string
+                  updated:
+                    description: The date this StackScript was updated. The date this
+                      StackScript was updated.
+                    type: string
+                  userGravatarId:
+                    description: The Gravatar ID for the User who created the StackScript.
+                      The Gravatar ID for the User who created the StackScript.
+                    type: string
+                  username:
+                    description: The User who created the StackScript. The User who
+                      created the StackScript.
                     type: string
                 type: object
               conditions:

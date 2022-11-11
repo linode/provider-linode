@@ -9,16 +9,16 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
-	resource "github.com/upbound/upjet-provider-template/internal/controller/null/resource"
-	providerconfig "github.com/upbound/upjet-provider-template/internal/controller/providerconfig"
+	providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
+	stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		resource.Setup,
 		providerconfig.Setup,
+		stackscript.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err
