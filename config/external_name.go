@@ -11,6 +11,7 @@ import "github.com/upbound/upjet/pkg/config"
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: 2e21sda
 	"linode_stackscript": config.IdentifierFromProvider,
+	"linode_lke_cluster": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

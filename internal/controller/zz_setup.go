@@ -9,6 +9,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	cluster "github.com/linode/provider-linode/internal/controller/lke_cluster/cluster"
 	providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
 )
@@ -17,6 +18,7 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		cluster.Setup,
 		providerconfig.Setup,
 		stackscript.Setup,
 	} {
