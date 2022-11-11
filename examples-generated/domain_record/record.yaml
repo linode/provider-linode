@@ -1,0 +1,17 @@
+apiVersion: domain_record.linode.upbound.io/v1alpha1
+kind: Record
+metadata:
+  annotations:
+    meta.upbound.io/example-id: domain_record/v1alpha1/record
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    domainId: ${linode_domain.foobar.id}
+    name: www
+    recordType: CNAME
+    target: foobar.example
+
+---
+

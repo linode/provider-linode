@@ -10,6 +10,8 @@ import (
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
+	"github.com/linode/provider-linode/config/domain"
+	"github.com/linode/provider-linode/config/domain_record"
 	"github.com/linode/provider-linode/config/lke_cluster"
 	"github.com/linode/provider-linode/config/stackscript"
 )
@@ -35,6 +37,8 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
+		domain.Configure,
+		domain_record.Configure,
 		stackscript.Configure,
 		lke_cluster.Configure,
 	} {
