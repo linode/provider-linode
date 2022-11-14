@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type DiskObservation struct {
@@ -65,7 +65,7 @@ type DiskParameters struct {
 	// The root user’s password on a newly-created Linode Disk when deploying from an Image.
 	// This sets the root user’s password on a newly-created Linode Disk when deploying from an Image.
 	// +kubebuilder:validation:Optional
-	RootPassSecretRef *_v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
+	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
 	// The size of the Disk in MB.
@@ -75,7 +75,7 @@ type DiskParameters struct {
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given.
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
 	// +kubebuilder:validation:Optional
-	StackscriptDataSecretRefMap map[string]_v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
+	StackscriptDataSecretRefMap map[string]v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
 
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
@@ -85,14 +85,14 @@ type DiskParameters struct {
 
 // DiskSpec defines the desired state of Disk
 type DiskSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      DiskParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     DiskParameters `json:"forProvider"`
 }
 
 // DiskStatus defines the observed state of Disk.
 type DiskStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         DiskObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        DiskObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

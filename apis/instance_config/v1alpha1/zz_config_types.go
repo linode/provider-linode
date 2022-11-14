@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type ConfigObservation struct {
@@ -298,14 +298,14 @@ type SdhParameters struct {
 
 // ConfigSpec defines the desired state of Config
 type ConfigSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      ConfigParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     ConfigParameters `json:"forProvider"`
 }
 
 // ConfigStatus defines the observed state of Config.
 type ConfigStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         ConfigObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        ConfigObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

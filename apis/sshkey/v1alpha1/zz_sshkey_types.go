@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type SshkeyObservation struct {
@@ -37,14 +37,14 @@ type SshkeyParameters struct {
 
 // SshkeySpec defines the desired state of Sshkey
 type SshkeySpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      SshkeyParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     SshkeyParameters `json:"forProvider"`
 }
 
 // SshkeyStatus defines the observed state of Sshkey.
 type SshkeyStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         SshkeyObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        SshkeyObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

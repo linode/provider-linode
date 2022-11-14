@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type IPObservation struct {
@@ -67,14 +67,14 @@ type IPParameters struct {
 
 // IPSpec defines the desired state of IP
 type IPSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      IPParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     IPParameters `json:"forProvider"`
 }
 
 // IPStatus defines the observed state of IP.
 type IPStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         IPObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        IPObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

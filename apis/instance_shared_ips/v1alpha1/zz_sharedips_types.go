@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type SharedIpsObservation struct {
@@ -32,14 +32,14 @@ type SharedIpsParameters struct {
 
 // SharedIpsSpec defines the desired state of SharedIps
 type SharedIpsSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      SharedIpsParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     SharedIpsParameters `json:"forProvider"`
 }
 
 // SharedIpsStatus defines the observed state of SharedIps.
 type SharedIpsStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         SharedIpsObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        SharedIpsObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

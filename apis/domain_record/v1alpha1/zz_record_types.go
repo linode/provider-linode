@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type RecordObservation struct {
@@ -77,14 +77,14 @@ type RecordParameters struct {
 
 // RecordSpec defines the desired state of Record
 type RecordSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      RecordParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     RecordParameters `json:"forProvider"`
 }
 
 // RecordStatus defines the observed state of Record.
 type RecordStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         RecordObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        RecordObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type ConfigObservation struct {
@@ -97,12 +97,12 @@ type ConfigParameters struct {
 	// The certificate this port is serving. This is not returned. If set, this field will come back as <REDACTED>. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
 	// The certificate this port is serving. This is not returned. If set, this field will come back as `<REDACTED>`. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
 	// +kubebuilder:validation:Optional
-	SSLCertSecretRef *_v1.SecretKeySelector `json:"sslCertSecretRef,omitempty" tf:"-"`
+	SSLCertSecretRef *v1.SecretKeySelector `json:"sslCertSecretRef,omitempty" tf:"-"`
 
 	// The private key corresponding to this port's certificate. This is not returned. If set, this field will come back as <REDACTED>. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
 	// The private key corresponding to this port's certificate. This is not returned. If set, this field will come back as `<REDACTED>`. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
 	// +kubebuilder:validation:Optional
-	SSLKeySecretRef *_v1.SecretKeySelector `json:"sslKeySecretRef,omitempty" tf:"-"`
+	SSLKeySecretRef *v1.SecretKeySelector `json:"sslKeySecretRef,omitempty" tf:"-"`
 
 	// Controls how session stickiness is handled on this port. (none, table, http_cookie)
 	// Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
@@ -124,14 +124,14 @@ type NodeStatusParameters struct {
 
 // ConfigSpec defines the desired state of Config
 type ConfigSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      ConfigParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     ConfigParameters `json:"forProvider"`
 }
 
 // ConfigStatus defines the observed state of Config.
 type ConfigStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         ConfigObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        ConfigObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

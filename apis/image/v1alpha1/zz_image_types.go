@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type ImageObservation struct {
@@ -94,14 +94,14 @@ type ImageParameters struct {
 
 // ImageSpec defines the desired state of Image
 type ImageSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      ImageParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     ImageParameters `json:"forProvider"`
 }
 
 // ImageStatus defines the observed state of Image.
 type ImageStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         ImageObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        ImageObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

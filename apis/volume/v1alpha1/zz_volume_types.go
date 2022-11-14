@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type VolumeObservation struct {
@@ -61,14 +61,14 @@ type VolumeParameters struct {
 
 // VolumeSpec defines the desired state of Volume
 type VolumeSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      VolumeParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     VolumeParameters `json:"forProvider"`
 }
 
 // VolumeStatus defines the observed state of Volume.
 type VolumeStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         VolumeObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        VolumeObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type CertObservation struct {
@@ -21,12 +21,12 @@ type CertParameters struct {
 	// The Base64 encoded and PEM formatted SSL certificate.
 	// The Base64 encoded and PEM formatted SSL certificate.
 	// +kubebuilder:validation:Required
-	CertificateSecretRef _v1.SecretKeySelector `json:"certificateSecretRef" tf:"-"`
+	CertificateSecretRef v1.SecretKeySelector `json:"certificateSecretRef" tf:"-"`
 
 	// The private key associated with the TLS/SSL certificate.
 	// The private key associated with the TLS/SSL certificate.
 	// +kubebuilder:validation:Required
-	PrivateKeySecretRef _v1.SecretKeySelector `json:"privateKeySecretRef" tf:"-"`
+	PrivateKeySecretRef v1.SecretKeySelector `json:"privateKeySecretRef" tf:"-"`
 }
 
 type ExpirationObservation struct {
@@ -152,14 +152,14 @@ type StorageBucketParameters struct {
 
 // StorageBucketSpec defines the desired state of StorageBucket
 type StorageBucketSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      StorageBucketParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     StorageBucketParameters `json:"forProvider"`
 }
 
 // StorageBucketStatus defines the observed state of StorageBucket.
 type StorageBucketStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         StorageBucketObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        StorageBucketObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type NodeObservation struct {
@@ -56,14 +56,14 @@ type NodeParameters struct {
 
 // NodeSpec defines the desired state of Node
 type NodeSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      NodeParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     NodeParameters `json:"forProvider"`
 }
 
 // NodeStatus defines the observed state of Node.
 type NodeStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         NodeObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        NodeObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type PostgresqlObservation struct {
@@ -140,14 +140,14 @@ type UpdatesParameters struct {
 
 // PostgresqlSpec defines the desired state of Postgresql
 type PostgresqlSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      PostgresqlParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     PostgresqlParameters `json:"forProvider"`
 }
 
 // PostgresqlStatus defines the observed state of Postgresql.
 type PostgresqlStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         PostgresqlObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        PostgresqlObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

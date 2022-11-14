@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type AlertsObservation struct {
@@ -189,7 +189,7 @@ type DiskParameters struct {
 	// The initial password for the root user account. This value can not be imported.
 	// The password that will be initialially assigned to the 'root' user account.
 	// +kubebuilder:validation:Optional
-	RootPassSecretRef *_v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
+	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
 
 	// The size of the Disk in MB.
 	// The size of the Disk in MB.
@@ -199,7 +199,7 @@ type DiskParameters struct {
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
 	// +kubebuilder:validation:Optional
-	StackscriptDataSecretRefMap map[string]_v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
+	StackscriptDataSecretRefMap map[string]v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
@@ -376,7 +376,7 @@ type InstanceParameters struct {
 	// The initial password for the root user account. This value can not be imported.
 	// The password that will be initialially assigned to the 'root' user account.
 	// +kubebuilder:validation:Optional
-	RootPassSecretRef *_v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
+	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
 
 	// A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.
 	// A set of IPv4 addresses to share with this Linode.
@@ -386,7 +386,7 @@ type InstanceParameters struct {
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
 	// +kubebuilder:validation:Optional
-	StackscriptDataSecretRefMap map[string]_v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
+	StackscriptDataSecretRefMap map[string]v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
@@ -635,14 +635,14 @@ type SpecsParameters struct {
 
 // InstanceSpec defines the desired state of Instance
 type InstanceSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      InstanceParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     InstanceParameters `json:"forProvider"`
 }
 
 // InstanceStatus defines the observed state of Instance.
 type InstanceStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         InstanceObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        InstanceObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

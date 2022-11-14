@@ -143,6 +143,4 @@ require (
 	sigs.k8s.io/yaml v1.3.0 // indirect
 )
 
-replace github.com/upbound/upjet => /Users/srust/ws/github.com/srust/upjet
-
-replace github.com/muvaf/typewriter => /Users/srust/ws/github.com/srust/typewriter
+replace github.com/upbound/upjet => github.com/srust/upjet v0.0.1

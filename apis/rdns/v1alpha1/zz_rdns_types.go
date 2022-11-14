@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type RdnsObservation struct {
@@ -37,14 +37,14 @@ type RdnsParameters struct {
 
 // RdnsSpec defines the desired state of Rdns
 type RdnsSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      RdnsParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     RdnsParameters `json:"forProvider"`
 }
 
 // RdnsStatus defines the observed state of Rdns.
 type RdnsStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         RdnsObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        RdnsObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

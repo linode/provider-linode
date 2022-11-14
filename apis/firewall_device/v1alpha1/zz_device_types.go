@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type DeviceObservation struct {
@@ -46,14 +46,14 @@ type DeviceParameters struct {
 
 // DeviceSpec defines the desired state of Device
 type DeviceSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      DeviceParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     DeviceParameters `json:"forProvider"`
 }
 
 // DeviceStatus defines the observed state of Device.
 type DeviceStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         DeviceObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        DeviceObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

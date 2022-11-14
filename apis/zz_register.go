@@ -10,69 +10,69 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	_v1alpha1 "github.com/linode/provider-linode/apis/database_access_controls/v1alpha1"
-	_v1alpha1database_mongodb "github.com/linode/provider-linode/apis/database_mongodb/v1alpha1"
-	_v1alpha1database_mysql "github.com/linode/provider-linode/apis/database_mysql/v1alpha1"
-	_v1alpha1database_postgresql "github.com/linode/provider-linode/apis/database_postgresql/v1alpha1"
-	_v1alpha1domain "github.com/linode/provider-linode/apis/domain/v1alpha1"
-	_v1alpha1domain_record "github.com/linode/provider-linode/apis/domain_record/v1alpha1"
-	_v1alpha1firewall "github.com/linode/provider-linode/apis/firewall/v1alpha1"
-	_v1alpha1firewall_device "github.com/linode/provider-linode/apis/firewall_device/v1alpha1"
-	_v1alpha1image "github.com/linode/provider-linode/apis/image/v1alpha1"
-	_v1alpha1instance "github.com/linode/provider-linode/apis/instance/v1alpha1"
-	_v1alpha1instance_config "github.com/linode/provider-linode/apis/instance_config/v1alpha1"
-	_v1alpha1instance_disk "github.com/linode/provider-linode/apis/instance_disk/v1alpha1"
-	_v1alpha1instance_ip "github.com/linode/provider-linode/apis/instance_ip/v1alpha1"
-	_v1alpha1instance_shared_ips "github.com/linode/provider-linode/apis/instance_shared_ips/v1alpha1"
-	_v1alpha1lke_cluster "github.com/linode/provider-linode/apis/lke_cluster/v1alpha1"
-	_v1alpha1nodebalancer "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
-	_v1alpha1nodebalancer_config "github.com/linode/provider-linode/apis/nodebalancer_config/v1alpha1"
-	_v1alpha1nodebalancer_node "github.com/linode/provider-linode/apis/nodebalancer_node/v1alpha1"
-	_v1alpha1object_storage_bucket "github.com/linode/provider-linode/apis/object_storage_bucket/v1alpha1"
-	_v1alpha1object_storage_key "github.com/linode/provider-linode/apis/object_storage_key/v1alpha1"
-	_v1alpha1object_storage_object "github.com/linode/provider-linode/apis/object_storage_object/v1alpha1"
-	_v1alpha1rdns "github.com/linode/provider-linode/apis/rdns/v1alpha1"
-	_v1alpha1sshkey "github.com/linode/provider-linode/apis/sshkey/v1alpha1"
-	_v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
-	_v1alpha1token "github.com/linode/provider-linode/apis/token/v1alpha1"
-	_v1alpha1user "github.com/linode/provider-linode/apis/user/v1alpha1"
-	_v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
-	_v1beta1 "github.com/linode/provider-linode/apis/v1beta1"
-	_v1alpha1volume "github.com/linode/provider-linode/apis/volume/v1alpha1"
+	v1alpha1 "github.com/linode/provider-linode/apis/database_access_controls/v1alpha1"
+	v1alpha1database_mongodb "github.com/linode/provider-linode/apis/database_mongodb/v1alpha1"
+	v1alpha1database_mysql "github.com/linode/provider-linode/apis/database_mysql/v1alpha1"
+	v1alpha1database_postgresql "github.com/linode/provider-linode/apis/database_postgresql/v1alpha1"
+	v1alpha1domain "github.com/linode/provider-linode/apis/domain/v1alpha1"
+	v1alpha1domain_record "github.com/linode/provider-linode/apis/domain_record/v1alpha1"
+	v1alpha1firewall "github.com/linode/provider-linode/apis/firewall/v1alpha1"
+	v1alpha1firewall_device "github.com/linode/provider-linode/apis/firewall_device/v1alpha1"
+	v1alpha1image "github.com/linode/provider-linode/apis/image/v1alpha1"
+	v1alpha1instance "github.com/linode/provider-linode/apis/instance/v1alpha1"
+	v1alpha1instance_config "github.com/linode/provider-linode/apis/instance_config/v1alpha1"
+	v1alpha1instance_disk "github.com/linode/provider-linode/apis/instance_disk/v1alpha1"
+	v1alpha1instance_ip "github.com/linode/provider-linode/apis/instance_ip/v1alpha1"
+	v1alpha1instance_shared_ips "github.com/linode/provider-linode/apis/instance_shared_ips/v1alpha1"
+	v1alpha1lke_cluster "github.com/linode/provider-linode/apis/lke_cluster/v1alpha1"
+	v1alpha1nodebalancer "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
+	v1alpha1nodebalancer_config "github.com/linode/provider-linode/apis/nodebalancer_config/v1alpha1"
+	v1alpha1nodebalancer_node "github.com/linode/provider-linode/apis/nodebalancer_node/v1alpha1"
+	v1alpha1object_storage_bucket "github.com/linode/provider-linode/apis/object_storage_bucket/v1alpha1"
+	v1alpha1object_storage_key "github.com/linode/provider-linode/apis/object_storage_key/v1alpha1"
+	v1alpha1object_storage_object "github.com/linode/provider-linode/apis/object_storage_object/v1alpha1"
+	v1alpha1rdns "github.com/linode/provider-linode/apis/rdns/v1alpha1"
+	v1alpha1sshkey "github.com/linode/provider-linode/apis/sshkey/v1alpha1"
+	v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
+	v1alpha1token "github.com/linode/provider-linode/apis/token/v1alpha1"
+	v1alpha1user "github.com/linode/provider-linode/apis/user/v1alpha1"
+	v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
+	v1beta1 "github.com/linode/provider-linode/apis/v1beta1"
+	v1alpha1volume "github.com/linode/provider-linode/apis/volume/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
-		_v1alpha1.SchemeBuilder.AddToScheme,
-		_v1alpha1database_mongodb.SchemeBuilder.AddToScheme,
-		_v1alpha1database_mysql.SchemeBuilder.AddToScheme,
-		_v1alpha1database_postgresql.SchemeBuilder.AddToScheme,
-		_v1alpha1domain.SchemeBuilder.AddToScheme,
-		_v1alpha1domain_record.SchemeBuilder.AddToScheme,
-		_v1alpha1firewall.SchemeBuilder.AddToScheme,
-		_v1alpha1firewall_device.SchemeBuilder.AddToScheme,
-		_v1alpha1image.SchemeBuilder.AddToScheme,
-		_v1alpha1instance.SchemeBuilder.AddToScheme,
-		_v1alpha1instance_config.SchemeBuilder.AddToScheme,
-		_v1alpha1instance_disk.SchemeBuilder.AddToScheme,
-		_v1alpha1instance_ip.SchemeBuilder.AddToScheme,
-		_v1alpha1instance_shared_ips.SchemeBuilder.AddToScheme,
-		_v1alpha1lke_cluster.SchemeBuilder.AddToScheme,
-		_v1alpha1nodebalancer.SchemeBuilder.AddToScheme,
-		_v1alpha1nodebalancer_config.SchemeBuilder.AddToScheme,
-		_v1alpha1nodebalancer_node.SchemeBuilder.AddToScheme,
-		_v1alpha1object_storage_bucket.SchemeBuilder.AddToScheme,
-		_v1alpha1object_storage_key.SchemeBuilder.AddToScheme,
-		_v1alpha1object_storage_object.SchemeBuilder.AddToScheme,
-		_v1alpha1rdns.SchemeBuilder.AddToScheme,
-		_v1alpha1sshkey.SchemeBuilder.AddToScheme,
-		_v1alpha1stackscript.SchemeBuilder.AddToScheme,
-		_v1alpha1token.SchemeBuilder.AddToScheme,
-		_v1alpha1user.SchemeBuilder.AddToScheme,
-		_v1alpha1apis.SchemeBuilder.AddToScheme,
-		_v1beta1.SchemeBuilder.AddToScheme,
-		_v1alpha1volume.SchemeBuilder.AddToScheme,
+		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1database_mongodb.SchemeBuilder.AddToScheme,
+		v1alpha1database_mysql.SchemeBuilder.AddToScheme,
+		v1alpha1database_postgresql.SchemeBuilder.AddToScheme,
+		v1alpha1domain.SchemeBuilder.AddToScheme,
+		v1alpha1domain_record.SchemeBuilder.AddToScheme,
+		v1alpha1firewall.SchemeBuilder.AddToScheme,
+		v1alpha1firewall_device.SchemeBuilder.AddToScheme,
+		v1alpha1image.SchemeBuilder.AddToScheme,
+		v1alpha1instance.SchemeBuilder.AddToScheme,
+		v1alpha1instance_config.SchemeBuilder.AddToScheme,
+		v1alpha1instance_disk.SchemeBuilder.AddToScheme,
+		v1alpha1instance_ip.SchemeBuilder.AddToScheme,
+		v1alpha1instance_shared_ips.SchemeBuilder.AddToScheme,
+		v1alpha1lke_cluster.SchemeBuilder.AddToScheme,
+		v1alpha1nodebalancer.SchemeBuilder.AddToScheme,
+		v1alpha1nodebalancer_config.SchemeBuilder.AddToScheme,
+		v1alpha1nodebalancer_node.SchemeBuilder.AddToScheme,
+		v1alpha1object_storage_bucket.SchemeBuilder.AddToScheme,
+		v1alpha1object_storage_key.SchemeBuilder.AddToScheme,
+		v1alpha1object_storage_object.SchemeBuilder.AddToScheme,
+		v1alpha1rdns.SchemeBuilder.AddToScheme,
+		v1alpha1sshkey.SchemeBuilder.AddToScheme,
+		v1alpha1stackscript.SchemeBuilder.AddToScheme,
+		v1alpha1token.SchemeBuilder.AddToScheme,
+		v1alpha1user.SchemeBuilder.AddToScheme,
+		v1alpha1apis.SchemeBuilder.AddToScheme,
+		v1beta1.SchemeBuilder.AddToScheme,
+		v1alpha1volume.SchemeBuilder.AddToScheme,
 	)
 }
 

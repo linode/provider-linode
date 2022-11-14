@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type StackscriptObservation struct {
@@ -112,14 +112,14 @@ type UserDefinedFieldsParameters struct {
 
 // StackscriptSpec defines the desired state of Stackscript
 type StackscriptSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      StackscriptParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     StackscriptParameters `json:"forProvider"`
 }
 
 // StackscriptStatus defines the observed state of Stackscript.
 type StackscriptStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         StackscriptObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        StackscriptObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

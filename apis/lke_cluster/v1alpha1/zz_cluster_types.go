@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type AutoscalerObservation struct {
@@ -139,14 +139,14 @@ type PoolParameters struct {
 
 // ClusterSpec defines the desired state of Cluster
 type ClusterSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      ClusterParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     ClusterParameters `json:"forProvider"`
 }
 
 // ClusterStatus defines the observed state of Cluster.
 type ClusterStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         ClusterObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        ClusterObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

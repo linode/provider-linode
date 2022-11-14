@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type StorageObjectObservation struct {
@@ -116,14 +116,14 @@ type StorageObjectParameters struct {
 
 // StorageObjectSpec defines the desired state of StorageObject
 type StorageObjectSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      StorageObjectParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     StorageObjectParameters `json:"forProvider"`
 }
 
 // StorageObjectStatus defines the observed state of StorageObject.
 type StorageObjectStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         StorageObjectObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        StorageObjectObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

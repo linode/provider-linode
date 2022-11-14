@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type NodebalancerObservation struct {
@@ -81,14 +81,14 @@ type TransferParameters struct {
 
 // NodebalancerSpec defines the desired state of Nodebalancer
 type NodebalancerSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      NodebalancerParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     NodebalancerParameters `json:"forProvider"`
 }
 
 // NodebalancerStatus defines the observed state of Nodebalancer.
 type NodebalancerStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         NodebalancerObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        NodebalancerObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

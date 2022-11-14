@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type MySQLObservation struct {
@@ -132,14 +132,14 @@ type UpdatesParameters struct {
 
 // MySQLSpec defines the desired state of MySQL
 type MySQLSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      MySQLParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     MySQLParameters `json:"forProvider"`
 }
 
 // MySQLStatus defines the observed state of MySQL.
 type MySQLStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         MySQLObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        MySQLObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

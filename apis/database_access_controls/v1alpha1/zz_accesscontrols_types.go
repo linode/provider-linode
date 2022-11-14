@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type AccessControlsObservation struct {
@@ -37,14 +37,14 @@ type AccessControlsParameters struct {
 
 // AccessControlsSpec defines the desired state of AccessControls
 type AccessControlsSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      AccessControlsParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     AccessControlsParameters `json:"forProvider"`
 }
 
 // AccessControlsStatus defines the observed state of AccessControls.
 type AccessControlsStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         AccessControlsObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        AccessControlsObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

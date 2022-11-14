@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type TokenObservation struct {
@@ -42,14 +42,14 @@ type TokenParameters struct {
 
 // TokenSpec defines the desired state of Token
 type TokenSpec struct {
-	_v1.ResourceSpec `json:",inline"`
-	ForProvider      TokenParameters `json:"forProvider"`
+	v1.ResourceSpec `json:",inline"`
+	ForProvider     TokenParameters `json:"forProvider"`
 }
 
 // TokenStatus defines the observed state of Token.
 type TokenStatus struct {
-	_v1.ResourceStatus `json:",inline"`
-	AtProvider         TokenObservation `json:"atProvider,omitempty"`
+	v1.ResourceStatus `json:",inline"`
+	AtProvider        TokenObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
