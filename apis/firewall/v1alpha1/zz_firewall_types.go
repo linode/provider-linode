@@ -10,7 +10,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+	_v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
 type DevicesObservation struct {
@@ -162,14 +162,14 @@ type OutboundParameters struct {
 
 // FirewallSpec defines the desired state of Firewall
 type FirewallSpec struct {
-	v1.ResourceSpec `json:",inline"`
-	ForProvider     FirewallParameters `json:"forProvider"`
+	_v1.ResourceSpec `json:",inline"`
+	ForProvider      FirewallParameters `json:"forProvider"`
 }
 
 // FirewallStatus defines the observed state of Firewall.
 type FirewallStatus struct {
-	v1.ResourceStatus `json:",inline"`
-	AtProvider        FirewallObservation `json:"atProvider,omitempty"`
+	_v1.ResourceStatus `json:",inline"`
+	AtProvider         FirewallObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

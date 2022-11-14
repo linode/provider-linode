@@ -14,6 +14,8 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"linode_domain_record":   config.IdentifierFromProvider,
 	"linode_firewall":        config.IdentifierFromProvider,
 	"linode_firewall_device": config.IdentifierFromProvider,
+	"linode_image":           config.IdentifierFromProvider,
+	"linode_instance":        config.IdentifierFromProvider,
 	"linode_stackscript":     config.IdentifierFromProvider,
 	"linode_lke_cluster":     config.IdentifierFromProvider,
 }

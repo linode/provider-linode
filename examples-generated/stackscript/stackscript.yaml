@@ -21,3 +21,31 @@ spec:
 
 ---
 
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: stackscript/v1alpha1/stackscript
+  labels:
+    testing.upbound.io/example-name: foo
+  name: foo
+spec:
+  forProvider:
+    authorizedKeys:
+    - '...'
+    image: linode/ubuntu18.04
+    label: foo
+    region: us-east
+    rootPassSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    stackscriptDataSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    stackscriptId: ${linode_stackscript.foo.id}
+    type: g6-nanode-1
+
+---
+

@@ -14,6 +14,8 @@ import (
 	"github.com/linode/provider-linode/config/domain_record"
 	"github.com/linode/provider-linode/config/firewall"
 	"github.com/linode/provider-linode/config/firewall_device"
+	"github.com/linode/provider-linode/config/image"
+	"github.com/linode/provider-linode/config/instance"
 	"github.com/linode/provider-linode/config/lke_cluster"
 	"github.com/linode/provider-linode/config/stackscript"
 )
@@ -43,6 +45,8 @@ func GetProvider() *ujconfig.Provider {
 		domain_record.Configure,
 		firewall.Configure,
 		firewall_device.Configure,
+		image.Configure,
+		instance.Configure,
 		stackscript.Configure,
 		lke_cluster.Configure,
 	} {
