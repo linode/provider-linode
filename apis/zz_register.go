@@ -30,8 +30,11 @@ import (
 	_v1alpha1rdns "github.com/linode/provider-linode/apis/rdns/v1alpha1"
 	_v1alpha1sshkey "github.com/linode/provider-linode/apis/sshkey/v1alpha1"
 	_v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
+	_v1alpha1token "github.com/linode/provider-linode/apis/token/v1alpha1"
+	_v1alpha1user "github.com/linode/provider-linode/apis/user/v1alpha1"
 	_v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
 	_v1beta1 "github.com/linode/provider-linode/apis/v1beta1"
+	_v1alpha1volume "github.com/linode/provider-linode/apis/volume/v1alpha1"
 )
 
 func init() {
@@ -57,8 +60,11 @@ func init() {
 		_v1alpha1rdns.SchemeBuilder.AddToScheme,
 		_v1alpha1sshkey.SchemeBuilder.AddToScheme,
 		_v1alpha1stackscript.SchemeBuilder.AddToScheme,
+		_v1alpha1token.SchemeBuilder.AddToScheme,
+		_v1alpha1user.SchemeBuilder.AddToScheme,
 		_v1alpha1apis.SchemeBuilder.AddToScheme,
 		_v1beta1.SchemeBuilder.AddToScheme,
+		_v1alpha1volume.SchemeBuilder.AddToScheme,
 	)
 }
 

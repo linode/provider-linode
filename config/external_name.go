@@ -9,7 +9,7 @@ import "github.com/upbound/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: 2e21sda
+	// Import requires using a randomly generated ID from provider: 1234567
 	"linode_domain":                config.IdentifierFromProvider,
 	"linode_domain_record":         config.IdentifierFromProvider,
 	"linode_firewall":              config.IdentifierFromProvider,
@@ -30,6 +30,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"linode_rdns":                  config.IdentifierFromProvider,
 	"linode_sshkey":                config.IdentifierFromProvider,
 	"linode_stackscript":           config.IdentifierFromProvider,
+	"linode_token":                 config.IdentifierFromProvider,
+	"linode_user":                  config.IdentifierFromProvider,
+	"linode_volume":                config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

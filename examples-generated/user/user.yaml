@@ -1,0 +1,15 @@
+apiVersion: user.linode.upbound.io/v1alpha1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: user/v1alpha1/user
+  labels:
+    testing.upbound.io/example-name: john
+  name: john
+spec:
+  forProvider:
+    email: john@acme.io
+    username: john123
+
+---
+

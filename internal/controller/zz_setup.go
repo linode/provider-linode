@@ -30,6 +30,9 @@ import (
 	_rdns "github.com/linode/provider-linode/internal/controller/rdns/rdns"
 	_sshkey "github.com/linode/provider-linode/internal/controller/sshkey/sshkey"
 	_stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
+	_token "github.com/linode/provider-linode/internal/controller/token/token"
+	_user "github.com/linode/provider-linode/internal/controller/user/user"
+	_volume "github.com/linode/provider-linode/internal/controller/volume/volume"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -57,6 +60,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		_rdns.Setup,
 		_sshkey.Setup,
 		_stackscript.Setup,
+		_token.Setup,
+		_user.Setup,
+		_volume.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

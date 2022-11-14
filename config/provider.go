@@ -30,6 +30,9 @@ import (
 	"github.com/linode/provider-linode/config/rdns"
 	"github.com/linode/provider-linode/config/sshkey"
 	"github.com/linode/provider-linode/config/stackscript"
+	"github.com/linode/provider-linode/config/token"
+	"github.com/linode/provider-linode/config/user"
+	"github.com/linode/provider-linode/config/volume"
 )
 
 const (
@@ -73,6 +76,9 @@ func GetProvider() *ujconfig.Provider {
 		rdns.Configure,
 		sshkey.Configure,
 		stackscript.Configure,
+		token.Configure,
+		user.Configure,
+		volume.Configure,
 	} {
 		configure(pc)
 	}
