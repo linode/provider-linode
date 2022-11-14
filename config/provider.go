@@ -27,6 +27,8 @@ import (
 	"github.com/linode/provider-linode/config/object_storage_bucket"
 	"github.com/linode/provider-linode/config/object_storage_key"
 	"github.com/linode/provider-linode/config/object_storage_object"
+	"github.com/linode/provider-linode/config/rdns"
+	"github.com/linode/provider-linode/config/sshkey"
 	"github.com/linode/provider-linode/config/stackscript"
 )
 
@@ -68,6 +70,8 @@ func GetProvider() *ujconfig.Provider {
 		object_storage_bucket.Configure,
 		object_storage_key.Configure,
 		object_storage_object.Configure,
+		rdns.Configure,
+		sshkey.Configure,
 		stackscript.Configure,
 	} {
 		configure(pc)

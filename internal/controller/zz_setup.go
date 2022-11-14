@@ -27,6 +27,8 @@ import (
 	_storagekey "github.com/linode/provider-linode/internal/controller/object_storage_key/storagekey"
 	_storageobject "github.com/linode/provider-linode/internal/controller/object_storage_object/storageobject"
 	_providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
+	_rdns "github.com/linode/provider-linode/internal/controller/rdns/rdns"
+	_sshkey "github.com/linode/provider-linode/internal/controller/sshkey/sshkey"
 	_stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
 )
 
@@ -52,6 +54,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		_storagekey.Setup,
 		_storageobject.Setup,
 		_providerconfig.Setup,
+		_rdns.Setup,
+		_sshkey.Setup,
 		_stackscript.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {

@@ -27,6 +27,8 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"linode_object_storage_bucket": config.IdentifierFromProvider,
 	"linode_object_storage_key":    config.IdentifierFromProvider,
 	"linode_object_storage_object": config.IdentifierFromProvider,
+	"linode_rdns":                  config.IdentifierFromProvider,
+	"linode_sshkey":                config.IdentifierFromProvider,
 	"linode_stackscript":           config.IdentifierFromProvider,
 }
 

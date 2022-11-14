@@ -27,6 +27,8 @@ import (
 	_v1alpha1object_storage_bucket "github.com/linode/provider-linode/apis/object_storage_bucket/v1alpha1"
 	_v1alpha1object_storage_key "github.com/linode/provider-linode/apis/object_storage_key/v1alpha1"
 	_v1alpha1object_storage_object "github.com/linode/provider-linode/apis/object_storage_object/v1alpha1"
+	_v1alpha1rdns "github.com/linode/provider-linode/apis/rdns/v1alpha1"
+	_v1alpha1sshkey "github.com/linode/provider-linode/apis/sshkey/v1alpha1"
 	_v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
 	_v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
 	_v1beta1 "github.com/linode/provider-linode/apis/v1beta1"
@@ -52,6 +54,8 @@ func init() {
 		_v1alpha1object_storage_bucket.SchemeBuilder.AddToScheme,
 		_v1alpha1object_storage_key.SchemeBuilder.AddToScheme,
 		_v1alpha1object_storage_object.SchemeBuilder.AddToScheme,
+		_v1alpha1rdns.SchemeBuilder.AddToScheme,
+		_v1alpha1sshkey.SchemeBuilder.AddToScheme,
 		_v1alpha1stackscript.SchemeBuilder.AddToScheme,
 		_v1alpha1apis.SchemeBuilder.AddToScheme,
 		_v1beta1.SchemeBuilder.AddToScheme,
