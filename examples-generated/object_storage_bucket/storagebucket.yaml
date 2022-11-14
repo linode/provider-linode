@@ -1,0 +1,15 @@
+apiVersion: object_storage_bucket.linode.upbound.io/v1alpha1
+kind: StorageBucket
+metadata:
+  annotations:
+    meta.upbound.io/example-id: object_storage_bucket/v1alpha1/storagebucket
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    cluster: ${data.linode_object_storage_cluster.primary.id}
+    label: mybucket
+
+---
+

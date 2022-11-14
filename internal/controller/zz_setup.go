@@ -23,6 +23,9 @@ import (
 	_nodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/nodebalancer"
 	_confignodebalancer_config "github.com/linode/provider-linode/internal/controller/nodebalancer_config/config"
 	_node "github.com/linode/provider-linode/internal/controller/nodebalancer_node/node"
+	_storagebucket "github.com/linode/provider-linode/internal/controller/object_storage_bucket/storagebucket"
+	_storagekey "github.com/linode/provider-linode/internal/controller/object_storage_key/storagekey"
+	_storageobject "github.com/linode/provider-linode/internal/controller/object_storage_object/storageobject"
 	_providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	_stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
 )
@@ -45,6 +48,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		_nodebalancer.Setup,
 		_confignodebalancer_config.Setup,
 		_node.Setup,
+		_storagebucket.Setup,
+		_storagekey.Setup,
+		_storageobject.Setup,
 		_providerconfig.Setup,
 		_stackscript.Setup,
 	} {

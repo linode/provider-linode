@@ -1,0 +1,14 @@
+apiVersion: object_storage_key.linode.upbound.io/v1alpha1
+kind: StorageKey
+metadata:
+  annotations:
+    meta.upbound.io/example-id: object_storage_key/v1alpha1/storagekey
+  labels:
+    testing.upbound.io/example-name: foo
+  name: foo
+spec:
+  forProvider:
+    label: image-access
+
+---
+

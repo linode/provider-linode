@@ -24,6 +24,9 @@ import (
 	"github.com/linode/provider-linode/config/nodebalancer"
 	"github.com/linode/provider-linode/config/nodebalancer_config"
 	"github.com/linode/provider-linode/config/nodebalancer_node"
+	"github.com/linode/provider-linode/config/object_storage_bucket"
+	"github.com/linode/provider-linode/config/object_storage_key"
+	"github.com/linode/provider-linode/config/object_storage_object"
 	"github.com/linode/provider-linode/config/stackscript"
 )
 
@@ -62,6 +65,9 @@ func GetProvider() *ujconfig.Provider {
 		nodebalancer.Configure,
 		nodebalancer_config.Configure,
 		nodebalancer_node.Configure,
+		object_storage_bucket.Configure,
+		object_storage_key.Configure,
+		object_storage_object.Configure,
 		stackscript.Configure,
 	} {
 		configure(pc)

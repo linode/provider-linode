@@ -1,0 +1,19 @@
+apiVersion: object_storage_object.linode.upbound.io/v1alpha1
+kind: StorageObject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: object_storage_object/v1alpha1/storageobject
+  labels:
+    testing.upbound.io/example-name: object
+  name: object
+spec:
+  forProvider:
+    accessKey: ${linode_object_storage_key.my_key.access_key}
+    bucket: my-bucket
+    cluster: us-east-1
+    key: my-object
+    secretKey: ${linode_object_storage_key.my_key.secret_key}
+    source: ${pathexpand("~/files/log.txt")}
+
+---
+
