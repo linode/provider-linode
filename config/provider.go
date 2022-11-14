@@ -12,6 +12,8 @@ import (
 
 	"github.com/linode/provider-linode/config/domain"
 	"github.com/linode/provider-linode/config/domain_record"
+	"github.com/linode/provider-linode/config/firewall"
+	"github.com/linode/provider-linode/config/firewall_device"
 	"github.com/linode/provider-linode/config/lke_cluster"
 	"github.com/linode/provider-linode/config/stackscript"
 )
@@ -39,6 +41,8 @@ func GetProvider() *ujconfig.Provider {
 		// add custom config functions
 		domain.Configure,
 		domain_record.Configure,
+		firewall.Configure,
+		firewall_device.Configure,
 		stackscript.Configure,
 		lke_cluster.Configure,
 	} {

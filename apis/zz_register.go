@@ -12,6 +12,8 @@ import (
 
 	v1alpha1 "github.com/linode/provider-linode/apis/domain/v1alpha1"
 	v1alpha1domain_record "github.com/linode/provider-linode/apis/domain_record/v1alpha1"
+	v1alpha1firewall "github.com/linode/provider-linode/apis/firewall/v1alpha1"
+	v1alpha1firewall_device "github.com/linode/provider-linode/apis/firewall_device/v1alpha1"
 	v1alpha1lke_cluster "github.com/linode/provider-linode/apis/lke_cluster/v1alpha1"
 	v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
 	v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
@@ -23,6 +25,8 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1alpha1domain_record.SchemeBuilder.AddToScheme,
+		v1alpha1firewall.SchemeBuilder.AddToScheme,
+		v1alpha1firewall_device.SchemeBuilder.AddToScheme,
 		v1alpha1lke_cluster.SchemeBuilder.AddToScheme,
 		v1alpha1stackscript.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,

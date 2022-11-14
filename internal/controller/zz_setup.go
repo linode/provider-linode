@@ -11,6 +11,8 @@ import (
 
 	domain "github.com/linode/provider-linode/internal/controller/domain/domain"
 	record "github.com/linode/provider-linode/internal/controller/domain_record/record"
+	firewall "github.com/linode/provider-linode/internal/controller/firewall/firewall"
+	device "github.com/linode/provider-linode/internal/controller/firewall_device/device"
 	cluster "github.com/linode/provider-linode/internal/controller/lke_cluster/cluster"
 	providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
@@ -22,6 +24,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		domain.Setup,
 		record.Setup,
+		firewall.Setup,
+		device.Setup,
 		cluster.Setup,
 		providerconfig.Setup,
 		stackscript.Setup,
