@@ -10,7 +10,11 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	_v1alpha1 "github.com/linode/provider-linode/apis/domain/v1alpha1"
+	_v1alpha1 "github.com/linode/provider-linode/apis/database_access_controls/v1alpha1"
+	_v1alpha1database_mongodb "github.com/linode/provider-linode/apis/database_mongodb/v1alpha1"
+	_v1alpha1database_mysql "github.com/linode/provider-linode/apis/database_mysql/v1alpha1"
+	_v1alpha1database_postgresql "github.com/linode/provider-linode/apis/database_postgresql/v1alpha1"
+	_v1alpha1domain "github.com/linode/provider-linode/apis/domain/v1alpha1"
 	_v1alpha1domain_record "github.com/linode/provider-linode/apis/domain_record/v1alpha1"
 	_v1alpha1firewall "github.com/linode/provider-linode/apis/firewall/v1alpha1"
 	_v1alpha1firewall_device "github.com/linode/provider-linode/apis/firewall_device/v1alpha1"
@@ -41,6 +45,10 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		_v1alpha1.SchemeBuilder.AddToScheme,
+		_v1alpha1database_mongodb.SchemeBuilder.AddToScheme,
+		_v1alpha1database_mysql.SchemeBuilder.AddToScheme,
+		_v1alpha1database_postgresql.SchemeBuilder.AddToScheme,
+		_v1alpha1domain.SchemeBuilder.AddToScheme,
 		_v1alpha1domain_record.SchemeBuilder.AddToScheme,
 		_v1alpha1firewall.SchemeBuilder.AddToScheme,
 		_v1alpha1firewall_device.SchemeBuilder.AddToScheme,

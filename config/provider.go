@@ -10,6 +10,10 @@ import (
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
+	"github.com/linode/provider-linode/config/database_access_controls"
+	"github.com/linode/provider-linode/config/database_mongodb"
+	"github.com/linode/provider-linode/config/database_mysql"
+	"github.com/linode/provider-linode/config/database_postgresql"
 	"github.com/linode/provider-linode/config/domain"
 	"github.com/linode/provider-linode/config/domain_record"
 	"github.com/linode/provider-linode/config/firewall"
@@ -56,6 +60,10 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
+		database_access_controls.Configure,
+		database_mongodb.Configure,
+		database_mysql.Configure,
+		database_postgresql.Configure,
 		domain.Configure,
 		domain_record.Configure,
 		firewall.Configure,
