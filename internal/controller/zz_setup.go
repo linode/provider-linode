@@ -15,7 +15,14 @@ import (
 	_device "github.com/linode/provider-linode/internal/controller/firewall_device/device"
 	_image "github.com/linode/provider-linode/internal/controller/image/image"
 	_instance "github.com/linode/provider-linode/internal/controller/instance/instance"
+	_config "github.com/linode/provider-linode/internal/controller/instance_config/config"
+	_disk "github.com/linode/provider-linode/internal/controller/instance_disk/disk"
+	_ip "github.com/linode/provider-linode/internal/controller/instance_ip/ip"
+	_sharedips "github.com/linode/provider-linode/internal/controller/instance_shared_ips/sharedips"
 	_cluster "github.com/linode/provider-linode/internal/controller/lke_cluster/cluster"
+	_nodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/nodebalancer"
+	_confignodebalancer_config "github.com/linode/provider-linode/internal/controller/nodebalancer_config/config"
+	_node "github.com/linode/provider-linode/internal/controller/nodebalancer_node/node"
 	_providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	_stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
 )
@@ -30,7 +37,14 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		_device.Setup,
 		_image.Setup,
 		_instance.Setup,
+		_config.Setup,
+		_disk.Setup,
+		_ip.Setup,
+		_sharedips.Setup,
 		_cluster.Setup,
+		_nodebalancer.Setup,
+		_confignodebalancer_config.Setup,
+		_node.Setup,
 		_providerconfig.Setup,
 		_stackscript.Setup,
 	} {

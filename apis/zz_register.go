@@ -16,7 +16,14 @@ import (
 	_v1alpha1firewall_device "github.com/linode/provider-linode/apis/firewall_device/v1alpha1"
 	_v1alpha1image "github.com/linode/provider-linode/apis/image/v1alpha1"
 	_v1alpha1instance "github.com/linode/provider-linode/apis/instance/v1alpha1"
+	_v1alpha1instance_config "github.com/linode/provider-linode/apis/instance_config/v1alpha1"
+	_v1alpha1instance_disk "github.com/linode/provider-linode/apis/instance_disk/v1alpha1"
+	_v1alpha1instance_ip "github.com/linode/provider-linode/apis/instance_ip/v1alpha1"
+	_v1alpha1instance_shared_ips "github.com/linode/provider-linode/apis/instance_shared_ips/v1alpha1"
 	_v1alpha1lke_cluster "github.com/linode/provider-linode/apis/lke_cluster/v1alpha1"
+	_v1alpha1nodebalancer "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
+	_v1alpha1nodebalancer_config "github.com/linode/provider-linode/apis/nodebalancer_config/v1alpha1"
+	_v1alpha1nodebalancer_node "github.com/linode/provider-linode/apis/nodebalancer_node/v1alpha1"
 	_v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
 	_v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
 	_v1beta1 "github.com/linode/provider-linode/apis/v1beta1"
@@ -31,7 +38,14 @@ func init() {
 		_v1alpha1firewall_device.SchemeBuilder.AddToScheme,
 		_v1alpha1image.SchemeBuilder.AddToScheme,
 		_v1alpha1instance.SchemeBuilder.AddToScheme,
+		_v1alpha1instance_config.SchemeBuilder.AddToScheme,
+		_v1alpha1instance_disk.SchemeBuilder.AddToScheme,
+		_v1alpha1instance_ip.SchemeBuilder.AddToScheme,
+		_v1alpha1instance_shared_ips.SchemeBuilder.AddToScheme,
 		_v1alpha1lke_cluster.SchemeBuilder.AddToScheme,
+		_v1alpha1nodebalancer.SchemeBuilder.AddToScheme,
+		_v1alpha1nodebalancer_config.SchemeBuilder.AddToScheme,
+		_v1alpha1nodebalancer_node.SchemeBuilder.AddToScheme,
 		_v1alpha1stackscript.SchemeBuilder.AddToScheme,
 		_v1alpha1apis.SchemeBuilder.AddToScheme,
 		_v1beta1.SchemeBuilder.AddToScheme,

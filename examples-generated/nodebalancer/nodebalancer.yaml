@@ -1,0 +1,18 @@
+apiVersion: nodebalancer.linode.upbound.io/v1alpha1
+kind: Nodebalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nodebalancer/v1alpha1/nodebalancer
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    clientConnThrottle: 20
+    label: mynodebalancer
+    region: us-east
+    tags:
+    - foobar
+
+---
+

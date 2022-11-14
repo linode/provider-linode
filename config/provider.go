@@ -16,7 +16,14 @@ import (
 	"github.com/linode/provider-linode/config/firewall_device"
 	"github.com/linode/provider-linode/config/image"
 	"github.com/linode/provider-linode/config/instance"
+	"github.com/linode/provider-linode/config/instance_config"
+	"github.com/linode/provider-linode/config/instance_disk"
+	"github.com/linode/provider-linode/config/instance_ip"
+	"github.com/linode/provider-linode/config/instance_shared_ips"
 	"github.com/linode/provider-linode/config/lke_cluster"
+	"github.com/linode/provider-linode/config/nodebalancer"
+	"github.com/linode/provider-linode/config/nodebalancer_config"
+	"github.com/linode/provider-linode/config/nodebalancer_node"
 	"github.com/linode/provider-linode/config/stackscript"
 )
 
@@ -47,8 +54,15 @@ func GetProvider() *ujconfig.Provider {
 		firewall_device.Configure,
 		image.Configure,
 		instance.Configure,
-		stackscript.Configure,
+		instance_config.Configure,
+		instance_disk.Configure,
+		instance_ip.Configure,
+		instance_shared_ips.Configure,
 		lke_cluster.Configure,
+		nodebalancer.Configure,
+		nodebalancer_config.Configure,
+		nodebalancer_node.Configure,
+		stackscript.Configure,
 	} {
 		configure(pc)
 	}
