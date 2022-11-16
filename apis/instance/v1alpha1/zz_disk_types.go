@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type DiskObservation struct {
+type DiskObservation_2 struct {
 
 	// When this disk was created.
 	// When this disk was created.
@@ -30,7 +30,7 @@ type DiskObservation struct {
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 }
 
-type DiskParameters struct {
+type DiskParameters_2 struct {
 
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
@@ -86,13 +86,13 @@ type DiskParameters struct {
 // DiskSpec defines the desired state of Disk
 type DiskSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     DiskParameters `json:"forProvider"`
+	ForProvider     DiskParameters_2 `json:"forProvider"`
 }
 
 // DiskStatus defines the observed state of Disk.
 type DiskStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        DiskObservation `json:"atProvider,omitempty"`
+	AtProvider        DiskObservation_2 `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

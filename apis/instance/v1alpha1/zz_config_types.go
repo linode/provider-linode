@@ -13,11 +13,102 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ConfigObservation struct {
+type ConfigDevicesObservation struct {
+}
+
+type ConfigDevicesParameters struct {
+
+	// The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sda []DevicesSdaParameters `json:"sda,omitempty" tf:"sda,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdb []DevicesSdbParameters `json:"sdb,omitempty" tf:"sdb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdc []DevicesSdcParameters `json:"sdc,omitempty" tf:"sdc,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdd []DevicesSddParameters `json:"sdd,omitempty" tf:"sdd,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sde []DevicesSdeParameters `json:"sde,omitempty" tf:"sde,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdf []DevicesSdfParameters `json:"sdf,omitempty" tf:"sdf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdg []DevicesSdgParameters `json:"sdg,omitempty" tf:"sdg,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdh []DevicesSdhParameters `json:"sdh,omitempty" tf:"sdh,omitempty"`
+}
+
+type ConfigHelpersObservation struct {
+}
+
+type ConfigHelpersParameters struct {
+
+	// Populates the /dev directory early during boot without udev. (default true)
+	// Populates the /dev directory early during boot without udev.
+	// +kubebuilder:validation:Optional
+	DevtmpfsAutomount *bool `json:"devtmpfsAutomount,omitempty" tf:"devtmpfs_automount,omitempty"`
+
+	// Helps maintain correct inittab/upstart console device. (default true)
+	// Helps maintain correct inittab/upstart console device.
+	// +kubebuilder:validation:Optional
+	Distro *bool `json:"distro,omitempty" tf:"distro,omitempty"`
+
+	// Creates a modules dependency file for the Kernel you run. (default true)
+	// Creates a modules dependency file for the Kernel you run.
+	// +kubebuilder:validation:Optional
+	ModulesDep *bool `json:"modulesDep,omitempty" tf:"modules_dep,omitempty"`
+
+	// Automatically configures static networking. (default true)
+	// Automatically configures static networking.
+	// +kubebuilder:validation:Optional
+	Network *bool `json:"network,omitempty" tf:"network,omitempty"`
+
+	// Disables updatedb cron job to avoid disk thrashing. (default true)
+	// Disables updatedb cron job to avoid disk thrashing.
+	// +kubebuilder:validation:Optional
+	UpdatedbDisabled *bool `json:"updatedbDisabled,omitempty" tf:"updatedb_disabled,omitempty"`
+}
+
+type ConfigInterfaceObservation struct {
+}
+
+type ConfigInterfaceParameters struct {
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+	// +kubebuilder:validation:Optional
+	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
+
+	// The Config’s label for display purposes only.
+	// The name of this interface.
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The type of interface. (public, vlan)
+	// The type of interface.
+	// +kubebuilder:validation:Required
+	Purpose *string `json:"purpose" tf:"purpose,omitempty"`
+}
+
+type ConfigObservation_2 struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type ConfigParameters struct {
+type ConfigParameters_2 struct {
 
 	// If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.
 	// If true, the Linode will be booted to running state. If false, the Linode will be shutdown. If undefined, no action will be taken.
@@ -31,15 +122,15 @@ type ConfigParameters struct {
 
 	// A dictionary of device disks to use as a device map in a Linode’s configuration profile.
 	// +kubebuilder:validation:Optional
-	Devices []DevicesParameters `json:"devices,omitempty" tf:"devices,omitempty"`
+	Devices []ConfigDevicesParameters `json:"devices,omitempty" tf:"devices,omitempty"`
 
 	// Helpers enabled when booting to this Linode Config.
 	// +kubebuilder:validation:Optional
-	Helpers []HelpersParameters `json:"helpers,omitempty" tf:"helpers,omitempty"`
+	Helpers []ConfigHelpersParameters `json:"helpers,omitempty" tf:"helpers,omitempty"`
 
 	// An array of Network Interfaces to add to this Linode’s Configuration Profile.
 	// +kubebuilder:validation:Optional
-	Interface []InterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+	Interface []ConfigInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
 
 	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
 	// A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
@@ -77,101 +168,10 @@ type ConfigParameters struct {
 	VirtMode *string `json:"virtMode,omitempty" tf:"virt_mode,omitempty"`
 }
 
-type DevicesObservation struct {
+type DevicesSdaObservation struct {
 }
 
-type DevicesParameters struct {
-
-	// The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sda []SdaParameters `json:"sda,omitempty" tf:"sda,omitempty"`
-
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sdb []SdbParameters `json:"sdb,omitempty" tf:"sdb,omitempty"`
-
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sdc []SdcParameters `json:"sdc,omitempty" tf:"sdc,omitempty"`
-
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sdd []SddParameters `json:"sdd,omitempty" tf:"sdd,omitempty"`
-
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sde []SdeParameters `json:"sde,omitempty" tf:"sde,omitempty"`
-
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sdf []SdfParameters `json:"sdf,omitempty" tf:"sdf,omitempty"`
-
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sdg []SdgParameters `json:"sdg,omitempty" tf:"sdg,omitempty"`
-
-	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
-	// +kubebuilder:validation:Optional
-	Sdh []SdhParameters `json:"sdh,omitempty" tf:"sdh,omitempty"`
-}
-
-type HelpersObservation struct {
-}
-
-type HelpersParameters struct {
-
-	// Populates the /dev directory early during boot without udev. (default true)
-	// Populates the /dev directory early during boot without udev.
-	// +kubebuilder:validation:Optional
-	DevtmpfsAutomount *bool `json:"devtmpfsAutomount,omitempty" tf:"devtmpfs_automount,omitempty"`
-
-	// Helps maintain correct inittab/upstart console device. (default true)
-	// Helps maintain correct inittab/upstart console device.
-	// +kubebuilder:validation:Optional
-	Distro *bool `json:"distro,omitempty" tf:"distro,omitempty"`
-
-	// Creates a modules dependency file for the Kernel you run. (default true)
-	// Creates a modules dependency file for the Kernel you run.
-	// +kubebuilder:validation:Optional
-	ModulesDep *bool `json:"modulesDep,omitempty" tf:"modules_dep,omitempty"`
-
-	// Automatically configures static networking. (default true)
-	// Automatically configures static networking.
-	// +kubebuilder:validation:Optional
-	Network *bool `json:"network,omitempty" tf:"network,omitempty"`
-
-	// Disables updatedb cron job to avoid disk thrashing. (default true)
-	// Disables updatedb cron job to avoid disk thrashing.
-	// +kubebuilder:validation:Optional
-	UpdatedbDisabled *bool `json:"updatedbDisabled,omitempty" tf:"updatedb_disabled,omitempty"`
-}
-
-type InterfaceObservation struct {
-}
-
-type InterfaceParameters struct {
-
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
-	// +kubebuilder:validation:Optional
-	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
-
-	// The Config’s label for display purposes only.
-	// The name of this interface.
-	// +kubebuilder:validation:Optional
-	Label *string `json:"label,omitempty" tf:"label,omitempty"`
-
-	// The type of interface. (public, vlan)
-	// The type of interface.
-	// +kubebuilder:validation:Required
-	Purpose *string `json:"purpose" tf:"purpose,omitempty"`
-}
-
-type SdaObservation struct {
-}
-
-type SdaParameters struct {
+type DevicesSdaParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -184,10 +184,10 @@ type SdaParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type SdbObservation struct {
+type DevicesSdbObservation struct {
 }
 
-type SdbParameters struct {
+type DevicesSdbParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -200,10 +200,10 @@ type SdbParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type SdcObservation struct {
+type DevicesSdcObservation struct {
 }
 
-type SdcParameters struct {
+type DevicesSdcParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -216,10 +216,10 @@ type SdcParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type SddObservation struct {
+type DevicesSddObservation struct {
 }
 
-type SddParameters struct {
+type DevicesSddParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -232,10 +232,10 @@ type SddParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type SdeObservation struct {
+type DevicesSdeObservation struct {
 }
 
-type SdeParameters struct {
+type DevicesSdeParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -248,10 +248,10 @@ type SdeParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type SdfObservation struct {
+type DevicesSdfObservation struct {
 }
 
-type SdfParameters struct {
+type DevicesSdfParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -264,10 +264,10 @@ type SdfParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type SdgObservation struct {
+type DevicesSdgObservation struct {
 }
 
-type SdgParameters struct {
+type DevicesSdgParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -280,10 +280,10 @@ type SdgParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type SdhObservation struct {
+type DevicesSdhObservation struct {
 }
 
-type SdhParameters struct {
+type DevicesSdhParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
@@ -299,13 +299,13 @@ type SdhParameters struct {
 // ConfigSpec defines the desired state of Config
 type ConfigSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ConfigParameters `json:"forProvider"`
+	ForProvider     ConfigParameters_2 `json:"forProvider"`
 }
 
 // ConfigStatus defines the observed state of Config.
 type ConfigStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ConfigObservation `json:"atProvider,omitempty"`
+	AtProvider        ConfigObservation_2 `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -14,12 +14,17 @@ import (
 	v1alpha1domain "github.com/linode/provider-linode/apis/domain/v1alpha1"
 	v1alpha1firewall "github.com/linode/provider-linode/apis/firewall/v1alpha1"
 	v1alpha1instance "github.com/linode/provider-linode/apis/instance/v1alpha1"
-	v1alpha1linode "github.com/linode/provider-linode/apis/linode/v1alpha1"
 	v1alpha1lke "github.com/linode/provider-linode/apis/lke/v1alpha1"
 	v1alpha1nodebalancer "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
 	v1alpha1object "github.com/linode/provider-linode/apis/object/v1alpha1"
+	v1alpha1rdns "github.com/linode/provider-linode/apis/rdns/v1alpha1"
+	v1alpha1sshkey "github.com/linode/provider-linode/apis/sshkey/v1alpha1"
+	v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
+	v1alpha1token "github.com/linode/provider-linode/apis/token/v1alpha1"
+	v1alpha1user "github.com/linode/provider-linode/apis/user/v1alpha1"
 	v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
 	v1beta1 "github.com/linode/provider-linode/apis/v1beta1"
+	v1alpha1volume "github.com/linode/provider-linode/apis/volume/v1alpha1"
 )
 
 func init() {
@@ -29,12 +34,17 @@ func init() {
 		v1alpha1domain.SchemeBuilder.AddToScheme,
 		v1alpha1firewall.SchemeBuilder.AddToScheme,
 		v1alpha1instance.SchemeBuilder.AddToScheme,
-		v1alpha1linode.SchemeBuilder.AddToScheme,
 		v1alpha1lke.SchemeBuilder.AddToScheme,
 		v1alpha1nodebalancer.SchemeBuilder.AddToScheme,
 		v1alpha1object.SchemeBuilder.AddToScheme,
+		v1alpha1rdns.SchemeBuilder.AddToScheme,
+		v1alpha1sshkey.SchemeBuilder.AddToScheme,
+		v1alpha1stackscript.SchemeBuilder.AddToScheme,
+		v1alpha1token.SchemeBuilder.AddToScheme,
+		v1alpha1user.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1alpha1volume.SchemeBuilder.AddToScheme,
 	)
 }
 

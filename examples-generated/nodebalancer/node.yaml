@@ -17,7 +17,7 @@ spec:
 
 ---
 
-apiVersion: linode.linode.upbound.io/v1alpha1
+apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Instance
 metadata:
   annotations:
@@ -42,7 +42,7 @@ spec:
 
 ---
 
-apiVersion: linode.linode.upbound.io/v1alpha1
+apiVersion: nodebalancer.linode.upbound.io/v1alpha1
 kind: Nodebalancer
 metadata:
   annotations:

@@ -13,7 +13,7 @@ spec:
 
 ---
 
-apiVersion: linode.linode.upbound.io/v1alpha1
+apiVersion: firewall.linode.upbound.io/v1alpha1
 kind: Firewall
 metadata:
   annotations:
@@ -38,7 +38,7 @@ spec:
 
 ---
 
-apiVersion: linode.linode.upbound.io/v1alpha1
+apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Instance
 metadata:
   annotations:
