@@ -13,18 +13,18 @@ import (
 	"github.com/upbound/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Domain
-func (mg *Domain) GetTerraformResourceType() string {
-	return "linode_domain"
+// GetTerraformResourceType returns Terraform resource type for this Record
+func (mg *Record) GetTerraformResourceType() string {
+	return "linode_domain_record"
 }
 
-// GetConnectionDetailsMapping for this Domain
-func (tr *Domain) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Record
+func (tr *Record) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Domain
-func (tr *Domain) GetObservation() (map[string]any, error) {
+// GetObservation of this Record
+func (tr *Record) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -33,8 +33,8 @@ func (tr *Domain) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Domain
-func (tr *Domain) SetObservation(obs map[string]any) error {
+// SetObservation for this Record
+func (tr *Record) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -42,16 +42,16 @@ func (tr *Domain) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Domain
-func (tr *Domain) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Record
+func (tr *Record) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Domain
-func (tr *Domain) GetParameters() (map[string]any, error) {
+// GetParameters of this Record
+func (tr *Record) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (tr *Domain) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Domain
-func (tr *Domain) SetParameters(params map[string]any) error {
+// SetParameters for this Record
+func (tr *Record) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -69,10 +69,10 @@ func (tr *Domain) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Domain using its observed tfState.
+// LateInitialize this Record using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Domain) LateInitialize(attrs []byte) (bool, error) {
-	params := &DomainParameters{}
+func (tr *Record) LateInitialize(attrs []byte) (bool, error) {
+	params := &RecordParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -83,6 +83,6 @@ func (tr *Domain) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Domain) GetTerraformSchemaVersion() int {
+func (tr *Record) GetTerraformSchemaVersion() int {
 	return 0
 }

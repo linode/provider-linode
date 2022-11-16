@@ -1,0 +1,33 @@
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Disk
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/disk
+  labels:
+    testing.upbound.io/example-name: boot
+  name: boot
+spec:
+  forProvider:
+    filesystem: ext4
+    label: boot
+    linodeId: ${linode_instance.my-instance.id}
+    size: 512
+
+---
+
+apiVersion: linode.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/disk
+  labels:
+    testing.upbound.io/example-name: my-instance
+  name: my-instance
+spec:
+  forProvider:
+    label: my-instance
+    region: us-southeast
+    type: g6-standard-1
+
+---
+

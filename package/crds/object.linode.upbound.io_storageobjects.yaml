@@ -1,0 +1,392 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: storageobjects.object.linode.upbound.io
+spec:
+  group: object.linode.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - linode
+    kind: StorageObject
+    listKind: StorageObjectList
+    plural: storageobjects
+    singular: storageobject
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: StorageObject is the Schema for the StorageObjects API. Manages
+          a Linode Object Storage Object.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: StorageObjectSpec defines the desired state of StorageObject
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  accessKey:
+                    description: The access key to authenticate with. The S3 access
+                      key with access to the target bucket.
+                    type: string
+                  acl:
+                    description: The canned ACL to apply. (private, public-read, authenticated-read,
+                      public-read-write, custom) (defaults to private). The ACL config
+                      given to this object.
+                    type: string
+                  bucket:
+                    description: The name of the bucket to put the object in. The
+                      target bucket to put this object in.
+                    type: string
+                  cacheControl:
+                    description: Specifies caching behavior along the request/reply
+                      chain Read w3c cache_control for further details. This cache_control
+                      configuration of this object.
+                    type: string
+                  cluster:
+                    description: The cluster the bucket is in. The target cluster
+                      that the bucket is in.
+                    type: string
+                  content:
+                    description: Literal string value to use as the object content,
+                      which will be uploaded as UTF-8-encoded text. The contents of
+                      the Object to upload.
+                    type: string
+                  contentBase64:
+                    description: Base64-encoded data that will be decoded and uploaded
+                      as raw bytes for the object content. This allows safely uploading
+                      non-UTF8 binary data, but is recommended only for small content
+                      such as the result of the gzipbase64 function with small text
+                      strings. For larger objects, use source to stream the content
+                      from a disk file. The base64 contents of the Object to upload.
+                    type: string
+                  contentDisposition:
+                    description: Specifies presentational information for the object.
+                      Read w3c content_disposition for further information. The content
+                      disposition configuration of this object.
+                    type: string
+                  contentEncoding:
+                    description: Specifies what content encodings have been applied
+                      to the object and thus what decoding mechanisms must be applied
+                      to obtain the media-type referenced by the Content-Type header
+                      field. Read w3c content encoding for further information. The
+                      encoding of the content of this object.
+                    type: string
+                  contentLanguage:
+                    description: The language the content is in e.g. en-US or en-GB.
+                      The language metadata of this object.
+                    type: string
+                  contentType:
+                    description: A standard MIME type describing the format of the
+                      object data, e.g. application/octet-stream. All Valid MIME Types
+                      are valid for this input. The MIME type of the content.
+                    type: string
+                  etag:
+                    description: Used to trigger updates.11.11.11 or earlier). The
+                      specific version of this object.
+                    type: string
+                  forceDestroy:
+                    description: Allow the object to be deleted regardless of any
+                      legal hold or object lock (defaults to false). Whether the object
+                      should bypass deletion restrictions.
+                    type: boolean
+                  key:
+                    description: They name of the object once it is in the bucket.
+                      The name of the uploaded object.
+                    type: string
+                  metadata:
+                    additionalProperties:
+                      type: string
+                    description: A map of keys/values to provision metadata. The metadata
+                      of this object
+                    type: object
+                  secretKey:
+                    description: The secret key to authenitcate with. The S3 secret
+                      key with access to the target bucket.
+                    type: string
+                  source:
+                    description: The path to a file that will be read and uploaded
+                      as raw bytes for the object content. The path must either be
+                      relative to the root module or absolute. The source file to
+                      upload.
+                    type: string
+                  websiteRedirect:
+                    description: Specifies a target URL for website redirect. The
+                      website redirect location of this object.
+                    type: string
+                required:
+                - accessKey
+                - bucket
+                - cluster
+                - key
+                - secretKey
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: StorageObjectStatus defines the observed state of StorageObject.
+            properties:
+              atProvider:
+                properties:
+                  id:
+                    type: string
+                  versionId:
+                    description: A unique version ID value for the object. The version
+                      ID of this object.
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

@@ -1,0 +1,56 @@
+apiVersion: firewall.linode.upbound.io/v1alpha1
+kind: Device
+metadata:
+  annotations:
+    meta.upbound.io/example-id: firewall/v1alpha1/device
+  labels:
+    testing.upbound.io/example-name: my_device
+  name: my-device
+spec:
+  forProvider:
+    entityId: ${linode_instance.my_instance.id}
+    firewallId: ${linode_firewall.my_firewall.id}
+
+---
+
+apiVersion: linode.linode.upbound.io/v1alpha1
+kind: Firewall
+metadata:
+  annotations:
+    meta.upbound.io/example-id: firewall/v1alpha1/device
+  labels:
+    testing.upbound.io/example-name: my_firewall
+  name: my-firewall
+spec:
+  forProvider:
+    inbound:
+    - action: ACCEPT
+      ipv4:
+      - 0.0.0.0/0
+      ipv6:
+      - ::/0
+      label: http
+      ports: "80"
+      protocol: TCP
+    inboundPolicy: DROP
+    label: my_firewall
+    outboundPolicy: ACCEPT
+
+---
+
+apiVersion: linode.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: firewall/v1alpha1/device
+  labels:
+    testing.upbound.io/example-name: my_instance
+  name: my-instance
+spec:
+  forProvider:
+    label: my_instance
+    region: us-southeast
+    type: g6-standard-1
+
+---
+
