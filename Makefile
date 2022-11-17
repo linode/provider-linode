@@ -9,7 +9,7 @@ export TERRAFORM_PROVIDER_SOURCE := linode/linode
 export TERRAFORM_PROVIDER_VERSION := 1.29.4
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-linode
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-linode_v1.29.4
-export TERRAFORM_PROVIDER_REPO := https://github.com/linode/terraform-provider-linode
+export TERRAFORM_PROVIDER_REPO := https://github.com/srust/terraform-provider-linode
 export TERRAFORM_DOCS_PATH := website/docs/r
 
 PLATFORMS ?= linux_amd64 linux_arm64
