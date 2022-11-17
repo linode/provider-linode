@@ -1,0 +1,17 @@
+apiVersion: database.linode.upbound.io/v1alpha1
+kind: Mongodb
+metadata:
+  annotations:
+    meta.upbound.io/example-id: database/v1alpha1/mongodb
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    engineId: mongodb/4.4.10
+    label: mydatabase
+    region: us-southeast
+    type: g6-nanode-1
+
+---
+
