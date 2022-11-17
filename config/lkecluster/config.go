@@ -14,7 +14,6 @@ const (
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("linode_lke_cluster", func(r *config.Resource) {
-		r.ExternalName = config.IdentifierFromProvider
 		r.Sensitive.AdditionalConnectionDetailsFn = DecodeKubeconfig
 		r.UseAsync = true
 	})
@@ -23,7 +22,6 @@ func Configure(p *config.Provider) {
 // DecodeKubeconfig takes "kubeconfig" attribute and decodes it so that it can
 // be used without additional processing.
 func DecodeKubeconfig(attr map[string]interface{}) (map[string][]byte, error) {
-
 	if attr["kubeconfig"] == nil {
 		return nil, nil
 	}

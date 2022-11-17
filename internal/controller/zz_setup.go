@@ -17,6 +17,7 @@ import (
 	record "github.com/linode/provider-linode/internal/controller/domain/record"
 	device "github.com/linode/provider-linode/internal/controller/firewall/device"
 	firewall "github.com/linode/provider-linode/internal/controller/firewall/firewall"
+	image "github.com/linode/provider-linode/internal/controller/image/image"
 	config "github.com/linode/provider-linode/internal/controller/instance/config"
 	disk "github.com/linode/provider-linode/internal/controller/instance/disk"
 	instance "github.com/linode/provider-linode/internal/controller/instance/instance"
@@ -24,7 +25,6 @@ import (
 	sharedips "github.com/linode/provider-linode/internal/controller/instance/sharedips"
 	cluster "github.com/linode/provider-linode/internal/controller/lke/cluster"
 	confignodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/config"
-	image "github.com/linode/provider-linode/internal/controller/nodebalancer/image"
 	node "github.com/linode/provider-linode/internal/controller/nodebalancer/node"
 	nodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/nodebalancer"
 	storagebucket "github.com/linode/provider-linode/internal/controller/object/storagebucket"
@@ -51,6 +51,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		record.Setup,
 		device.Setup,
 		firewall.Setup,
+		image.Setup,
 		config.Setup,
 		disk.Setup,
 		instance.Setup,
@@ -58,7 +59,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		sharedips.Setup,
 		cluster.Setup,
 		confignodebalancer.Setup,
-		image.Setup,
 		node.Setup,
 		nodebalancer.Setup,
 		storagebucket.Setup,

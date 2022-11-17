@@ -18,7 +18,7 @@ import (
 	"github.com/upbound/upjet/pkg/terraform"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1alpha1 "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
+	v1alpha1 "github.com/linode/provider-linode/apis/image/v1alpha1"
 )
 
 // Setup adds a controller that reconciles Image managed resources.

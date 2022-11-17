@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: images.nodebalancer.linode.upbound.io
+  name: images.image.linode.upbound.io
 spec:
-  group: nodebalancer.linode.upbound.io
+  group: image.linode.upbound.io
   names:
     categories:
     - crossplane
