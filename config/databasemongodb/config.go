@@ -6,6 +6,6 @@ import "github.com/upbound/upjet/pkg/config"
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("linode_database_mongodb", func(r *config.Resource) {
 		r.ExternalName = config.IdentifierFromProvider
-
+		r.UseAsync = true
 	})
 }

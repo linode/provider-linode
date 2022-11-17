@@ -9,5 +9,6 @@ func Configure(p *config.Provider) {
 		// We need to override the default group that upjet generated for
 		// this resource, which would be "linode"
 		r.ShortGroup = "nodebalancer"
+		r.UseAsync = true
 	})
 }
