@@ -1,5 +1,13 @@
 # Provider Linode
 
+**###############################################################################################################**
+
+**NOTE: THIS IS A PRE-RELEASE REPO AND SHOULD NOT BE DEPLOYED TO PRODUCTION AT THIS TIME UNTIL OFFICIALLY RELEASED**
+
+**###############################################################################################################**
+
+
+
 `provider-linode` is a [Crossplane](https://crossplane.io/) provider that
 is built using [Upjet](https://github.com/upbound/upjet) code
 generation tools and exposes XRM-conformant managed resources for the
