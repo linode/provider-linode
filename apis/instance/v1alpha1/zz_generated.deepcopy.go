@@ -1152,12 +1152,10 @@ func (in *DiskParameters) DeepCopyInto(out *DiskParameters) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.StackscriptDataSecretRefMap != nil {
-		in, out := &in.StackscriptDataSecretRefMap, &out.StackscriptDataSecretRefMap
-		*out = make(map[string]v1.SecretKeySelector, len(*in))
-		for key, val := range *in {
-			(*out)[key] = val
-		}
+	if in.StackscriptDataSecretRef != nil {
+		in, out := &in.StackscriptDataSecretRef, &out.StackscriptDataSecretRef
+		*out = new(v1.SecretReference)
+		**out = **in
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
@@ -1231,12 +1229,10 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.StackscriptDataSecretRefMap != nil {
-		in, out := &in.StackscriptDataSecretRefMap, &out.StackscriptDataSecretRefMap
-		*out = make(map[string]v1.SecretKeySelector, len(*in))
-		for key, val := range *in {
-			(*out)[key] = val
-		}
+	if in.StackscriptDataSecretRef != nil {
+		in, out := &in.StackscriptDataSecretRef, &out.StackscriptDataSecretRef
+		*out = new(v1.SecretReference)
+		**out = **in
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
@@ -1817,12 +1813,10 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 			}
 		}
 	}
-	if in.StackscriptDataSecretRefMap != nil {
-		in, out := &in.StackscriptDataSecretRefMap, &out.StackscriptDataSecretRefMap
-		*out = make(map[string]v1.SecretKeySelector, len(*in))
-		for key, val := range *in {
-			(*out)[key] = val
-		}
+	if in.StackscriptDataSecretRef != nil {
+		in, out := &in.StackscriptDataSecretRef, &out.StackscriptDataSecretRef
+		*out = new(v1.SecretReference)
+		**out = **in
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID

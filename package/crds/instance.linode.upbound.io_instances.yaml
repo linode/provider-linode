@@ -554,25 +554,7 @@ spec:
                           description: The size of the Disk in MB. The size of the
                             Disk in MB.
                           type: number
-                        stackscriptDataSecretRefMap:
-                          additionalProperties:
-                            description: A SecretKeySelector is a reference to a secret
-                              key in an arbitrary namespace.
-                            properties:
-                              key:
-                                description: The key to select.
-                                type: string
-                              name:
-                                description: Name of the secret.
-                                type: string
-                              namespace:
-                                description: Namespace of the secret.
-                                type: string
-                            required:
-                            - key
-                            - name
-                            - namespace
-                            type: object
+                        stackscriptDataSecretRef:
                           description: An object containing responses to any User
                             Defined Fields present in the StackScript being deployed
                             to this Linode. Only accepted if 'stackscript_id' is given.
@@ -582,6 +564,16 @@ spec:
                             being deployed to this Linode. Only accepted if 'stackscript_id'
                             is given. The required values depend on the StackScript
                             being deployed.
+                          properties:
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - name
+                          - namespace
                           type: object
                         stackscriptId:
                           description: The StackScript to deploy to the newly created
@@ -693,25 +685,7 @@ spec:
                     items:
                       type: string
                     type: array
-                  stackscriptDataSecretRefMap:
-                    additionalProperties:
-                      description: A SecretKeySelector is a reference to a secret
-                        key in an arbitrary namespace.
-                      properties:
-                        key:
-                          description: The key to select.
-                          type: string
-                        name:
-                          description: Name of the secret.
-                          type: string
-                        namespace:
-                          description: Namespace of the secret.
-                          type: string
-                      required:
-                      - key
-                      - name
-                      - namespace
-                      type: object
+                  stackscriptDataSecretRef:
                     description: An object containing responses to any User Defined
                       Fields present in the StackScript being deployed to this Linode.
                       Only accepted if 'stackscript_id' is given. The required values
@@ -720,6 +694,16 @@ spec:
                       User Defined Fields present in the StackScript being deployed
                       to this Linode. Only accepted if 'stackscript_id' is given.
                       The required values depend on the StackScript being deployed.
+                    properties:
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - name
+                    - namespace
                     type: object
                   stackscriptId:
                     description: The StackScript to deploy to the newly created Linode.

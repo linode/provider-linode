@@ -199,7 +199,7 @@ type DiskParameters struct {
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
 	// +kubebuilder:validation:Optional
-	StackscriptDataSecretRefMap map[string]v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
+	StackscriptDataSecretRef *v1.SecretReference `json:"stackscriptDataSecretRef,omitempty" tf:"-"`
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
@@ -386,7 +386,7 @@ type InstanceParameters struct {
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
 	// +kubebuilder:validation:Optional
-	StackscriptDataSecretRefMap map[string]v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
+	StackscriptDataSecretRef *v1.SecretReference `json:"stackscriptDataSecretRef,omitempty" tf:"-"`
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.

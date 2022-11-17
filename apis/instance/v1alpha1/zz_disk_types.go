@@ -75,7 +75,7 @@ type DiskParameters_2 struct {
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given.
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
 	// +kubebuilder:validation:Optional
-	StackscriptDataSecretRefMap map[string]v1.SecretKeySelector `json:"stackscriptDataSecretRefMap,omitempty" tf:"-"`
+	StackscriptDataSecretRef *v1.SecretReference `json:"stackscriptDataSecretRef,omitempty" tf:"-"`
 
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.

@@ -20,7 +20,7 @@ func (mg *Instance) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Instance
 func (tr *Instance) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"disk[*].root_pass": "spec.forProvider.disk[*].rootPassSecretRef", "disk[*].stackscript_data[*]": "spec.forProvider.disk[*].stackscriptData[*]SecretRefMap", "root_pass": "spec.forProvider.rootPassSecretRef", "stackscript_data[*]": "spec.forProvider.stackscriptData[*]SecretRefMap"}
+	return map[string]string{"disk[*].root_pass": "spec.forProvider.disk[*].rootPassSecretRef", "disk[*].stackscript_data": "spec.forProvider.disk[*].stackscriptDataSecretRef", "root_pass": "spec.forProvider.rootPassSecretRef", "stackscript_data": "spec.forProvider.stackscriptDataSecretRef"}
 }
 
 // GetObservation of this Instance
@@ -168,7 +168,7 @@ func (mg *Disk) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Disk
 func (tr *Disk) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"root_pass": "spec.forProvider.rootPassSecretRef", "stackscript_data[*]": "spec.forProvider.stackscriptData[*]SecretRefMap"}
+	return map[string]string{"root_pass": "spec.forProvider.rootPassSecretRef", "stackscript_data": "spec.forProvider.stackscriptDataSecretRef"}
 }
 
 // GetObservation of this Disk
