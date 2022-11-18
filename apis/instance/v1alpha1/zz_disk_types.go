@@ -49,8 +49,17 @@ type DiskParameters_2 struct {
 
 	// An Image ID to deploy the Linode Disk from.
 	// An Image ID to deploy the Linode Disk from.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/image/v1alpha1.Image
 	// +kubebuilder:validation:Optional
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
+
+	// Reference to a Image in image to populate image.
+	// +kubebuilder:validation:Optional
+	ImageRef *v1.Reference `json:"imageRef,omitempty" tf:"-"`
+
+	// Selector for a Image in image to populate image.
+	// +kubebuilder:validation:Optional
+	ImageSelector *v1.Selector `json:"imageSelector,omitempty" tf:"-"`
 
 	// The Disk's label for display purposes only.
 	// The Disk’s label is for display purposes only.

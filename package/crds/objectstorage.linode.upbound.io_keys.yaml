@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: storagekeys.object.linode.upbound.io
+  name: keys.objectstorage.linode.upbound.io
 spec:
-  group: object.linode.upbound.io
+  group: objectstorage.linode.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - linode
-    kind: StorageKey
-    listKind: StorageKeyList
-    plural: storagekeys
-    singular: storagekey
+    kind: Key
+    listKind: KeyList
+    plural: keys
+    singular: key
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: StorageKey is the Schema for the StorageKeys API. Manages a Linode
-          Object Storage Key.
+        description: Key is the Schema for the Keys API. Manages a Linode Object Storage
+          Key.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: StorageKeySpec defines the desired state of StorageKey
+            description: KeySpec defines the desired state of Key
             properties:
               deletionPolicy:
                 default: Delete
@@ -274,7 +274,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: StorageKeyStatus defines the observed state of StorageKey.
+            description: KeyStatus defines the observed state of Key.
             properties:
               atProvider:
                 properties:

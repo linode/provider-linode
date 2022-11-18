@@ -13,18 +13,18 @@ import (
 	"github.com/upbound/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this StorageBucket
-func (mg *StorageBucket) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this Bucket
+func (mg *Bucket) GetTerraformResourceType() string {
 	return "linode_object_storage_bucket"
 }
 
-// GetConnectionDetailsMapping for this StorageBucket
-func (tr *StorageBucket) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Bucket
+func (tr *Bucket) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"cert[*].certificate": "spec.forProvider.cert[*].certificateSecretRef", "cert[*].private_key": "spec.forProvider.cert[*].privateKeySecretRef"}
 }
 
-// GetObservation of this StorageBucket
-func (tr *StorageBucket) GetObservation() (map[string]any, error) {
+// GetObservation of this Bucket
+func (tr *Bucket) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -33,8 +33,8 @@ func (tr *StorageBucket) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this StorageBucket
-func (tr *StorageBucket) SetObservation(obs map[string]any) error {
+// SetObservation for this Bucket
+func (tr *Bucket) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -42,16 +42,16 @@ func (tr *StorageBucket) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this StorageBucket
-func (tr *StorageBucket) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Bucket
+func (tr *Bucket) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this StorageBucket
-func (tr *StorageBucket) GetParameters() (map[string]any, error) {
+// GetParameters of this Bucket
+func (tr *Bucket) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (tr *StorageBucket) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this StorageBucket
-func (tr *StorageBucket) SetParameters(params map[string]any) error {
+// SetParameters for this Bucket
+func (tr *Bucket) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -69,10 +69,10 @@ func (tr *StorageBucket) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this StorageBucket using its observed tfState.
+// LateInitialize this Bucket using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *StorageBucket) LateInitialize(attrs []byte) (bool, error) {
-	params := &StorageBucketParameters{}
+func (tr *Bucket) LateInitialize(attrs []byte) (bool, error) {
+	params := &BucketParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -83,22 +83,22 @@ func (tr *StorageBucket) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *StorageBucket) GetTerraformSchemaVersion() int {
+func (tr *Bucket) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this StorageKey
-func (mg *StorageKey) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this Key
+func (mg *Key) GetTerraformResourceType() string {
 	return "linode_object_storage_key"
 }
 
-// GetConnectionDetailsMapping for this StorageKey
-func (tr *StorageKey) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Key
+func (tr *Key) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"secret_key": "status.atProvider.secretKey"}
 }
 
-// GetObservation of this StorageKey
-func (tr *StorageKey) GetObservation() (map[string]any, error) {
+// GetObservation of this Key
+func (tr *Key) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -107,8 +107,8 @@ func (tr *StorageKey) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this StorageKey
-func (tr *StorageKey) SetObservation(obs map[string]any) error {
+// SetObservation for this Key
+func (tr *Key) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -116,16 +116,16 @@ func (tr *StorageKey) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this StorageKey
-func (tr *StorageKey) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Key
+func (tr *Key) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this StorageKey
-func (tr *StorageKey) GetParameters() (map[string]any, error) {
+// GetParameters of this Key
+func (tr *Key) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -134,8 +134,8 @@ func (tr *StorageKey) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this StorageKey
-func (tr *StorageKey) SetParameters(params map[string]any) error {
+// SetParameters for this Key
+func (tr *Key) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -143,10 +143,10 @@ func (tr *StorageKey) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this StorageKey using its observed tfState.
+// LateInitialize this Key using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *StorageKey) LateInitialize(attrs []byte) (bool, error) {
-	params := &StorageKeyParameters{}
+func (tr *Key) LateInitialize(attrs []byte) (bool, error) {
+	params := &KeyParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -157,22 +157,22 @@ func (tr *StorageKey) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *StorageKey) GetTerraformSchemaVersion() int {
+func (tr *Key) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this StorageObject
-func (mg *StorageObject) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this Object
+func (mg *Object) GetTerraformResourceType() string {
 	return "linode_object_storage_object"
 }
 
-// GetConnectionDetailsMapping for this StorageObject
-func (tr *StorageObject) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Object
+func (tr *Object) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this StorageObject
-func (tr *StorageObject) GetObservation() (map[string]any, error) {
+// GetObservation of this Object
+func (tr *Object) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -181,8 +181,8 @@ func (tr *StorageObject) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this StorageObject
-func (tr *StorageObject) SetObservation(obs map[string]any) error {
+// SetObservation for this Object
+func (tr *Object) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -190,16 +190,16 @@ func (tr *StorageObject) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this StorageObject
-func (tr *StorageObject) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Object
+func (tr *Object) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this StorageObject
-func (tr *StorageObject) GetParameters() (map[string]any, error) {
+// GetParameters of this Object
+func (tr *Object) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -208,8 +208,8 @@ func (tr *StorageObject) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this StorageObject
-func (tr *StorageObject) SetParameters(params map[string]any) error {
+// SetParameters for this Object
+func (tr *Object) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -217,10 +217,10 @@ func (tr *StorageObject) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this StorageObject using its observed tfState.
+// LateInitialize this Object using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *StorageObject) LateInitialize(attrs []byte) (bool, error) {
-	params := &StorageObjectParameters{}
+func (tr *Object) LateInitialize(attrs []byte) (bool, error) {
+	params := &ObjectParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -231,6 +231,6 @@ func (tr *StorageObject) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *StorageObject) GetTerraformSchemaVersion() int {
+func (tr *Object) GetTerraformSchemaVersion() int {
 	return 0
 }

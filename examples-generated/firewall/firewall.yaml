@@ -60,7 +60,9 @@ metadata:
   name: my-instance
 spec:
   forProvider:
-    image: linode/ubuntu18.04
+    imageSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     label: my_instance
     region: us-southeast
     rootPassSecretRef:

@@ -5,18 +5,18 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: storageobjects.object.linode.upbound.io
+  name: objects.objectstorage.linode.upbound.io
 spec:
-  group: object.linode.upbound.io
+  group: objectstorage.linode.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - linode
-    kind: StorageObject
-    listKind: StorageObjectList
-    plural: storageobjects
-    singular: storageobject
+    kind: Object
+    listKind: ObjectList
+    plural: objects
+    singular: object
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: StorageObject is the Schema for the StorageObjects API. Manages
-          a Linode Object Storage Object.
+        description: Object is the Schema for the Objects API. Manages a Linode Object
+          Storage Object.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: StorageObjectSpec defines the desired state of StorageObject
+            description: ObjectSpec defines the desired state of Object
             properties:
               deletionPolicy:
                 default: Delete
@@ -68,6 +68,79 @@ spec:
                     description: The access key to authenticate with. The S3 access
                       key with access to the target bucket.
                     type: string
+                  accessKeyRef:
+                    description: Reference to a Key to populate accessKey.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  accessKeySelector:
+                    description: Selector for a Key to populate accessKey.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   acl:
                     description: The canned ACL to apply. (private, public-read, authenticated-read,
                       public-read-write, custom) (defaults to private). The ACL config
@@ -143,6 +216,79 @@ spec:
                     description: The secret key to authenitcate with. The S3 secret
                       key with access to the target bucket.
                     type: string
+                  secretKeyRef:
+                    description: Reference to a Key to populate secretKey.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  secretKeySelector:
+                    description: Selector for a Key to populate secretKey.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   source:
                     description: The path to a file that will be read and uploaded
                       as raw bytes for the object content. The path must either be
@@ -154,11 +300,9 @@ spec:
                       website redirect location of this object.
                     type: string
                 required:
-                - accessKey
                 - bucket
                 - cluster
                 - key
-                - secretKey
                 type: object
               providerConfigRef:
                 default:
@@ -332,7 +476,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: StorageObjectStatus defines the observed state of StorageObject.
+            description: ObjectStatus defines the observed state of Object.
             properties:
               atProvider:
                 properties:

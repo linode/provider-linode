@@ -1209,6 +1209,16 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ImageRef != nil {
+		in, out := &in.ImageRef, &out.ImageRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ImageSelector != nil {
+		in, out := &in.ImageSelector, &out.ImageSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
 		*out = new(string)
@@ -1471,6 +1481,16 @@ func (in *IPParameters) DeepCopyInto(out *IPParameters) {
 		in, out := &in.Rdns, &out.Rdns
 		*out = new(string)
 		**out = **in
+	}
+	if in.RdnsRef != nil {
+		in, out := &in.RdnsRef, &out.RdnsRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RdnsSelector != nil {
+		in, out := &in.RdnsSelector, &out.RdnsSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -1769,6 +1789,16 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		in, out := &in.Image, &out.Image
 		*out = new(string)
 		**out = **in
+	}
+	if in.ImageRef != nil {
+		in, out := &in.ImageRef, &out.ImageRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ImageSelector != nil {
+		in, out := &in.ImageSelector, &out.ImageSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Interface != nil {
 		in, out := &in.Interface, &out.Interface

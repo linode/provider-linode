@@ -9,5 +9,9 @@ func Configure(p *config.Provider) {
 		// this resource, which would be "linode"
 		r.ShortGroup = "instance"
 		r.UseAsync = true
+
+		r.References["image"] = config.Reference{
+			Type: "github.com/linode/provider-linode/apis/image/v1alpha1.Image",
+		}
 	})
 }

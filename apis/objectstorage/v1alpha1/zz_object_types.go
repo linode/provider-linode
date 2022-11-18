@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type StorageObjectObservation struct {
+type ObjectObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// A unique version ID value for the object.
@@ -21,7 +21,7 @@ type StorageObjectObservation struct {
 	VersionID *string `json:"versionId,omitempty" tf:"version_id,omitempty"`
 }
 
-type StorageObjectParameters struct {
+type ObjectParameters struct {
 
 	// The canned ACL to apply. (private, public-read, authenticated-read, public-read-write, custom) (defaults to private).
 	// The ACL config given to this object.
@@ -30,8 +30,19 @@ type StorageObjectParameters struct {
 
 	// The access key to authenticate with.
 	// The S3 access key with access to the target bucket.
-	// +kubebuilder:validation:Required
-	AccessKey *string `json:"accessKey" tf:"access_key,omitempty"`
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=AccessKeyRef
+	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
+	// +kubebuilder:validation:Optional
+	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
+
+	// Reference to a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeyRef *v1.Reference `json:"accessKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeySelector *v1.Selector `json:"accessKeySelector,omitempty" tf:"-"`
 
 	// The name of the bucket to put the object in.
 	// The target bucket to put this object in.
@@ -100,8 +111,19 @@ type StorageObjectParameters struct {
 
 	// The secret key to authenitcate with.
 	// The S3 secret key with access to the target bucket.
-	// +kubebuilder:validation:Required
-	SecretKey *string `json:"secretKey" tf:"secret_key,omitempty"`
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=SecretKeyRef
+	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
+	// +kubebuilder:validation:Optional
+	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
+
+	// Reference to a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
 
 	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
 	// The source file to upload.
@@ -114,51 +136,51 @@ type StorageObjectParameters struct {
 	WebsiteRedirect *string `json:"websiteRedirect,omitempty" tf:"website_redirect,omitempty"`
 }
 
-// StorageObjectSpec defines the desired state of StorageObject
-type StorageObjectSpec struct {
+// ObjectSpec defines the desired state of Object
+type ObjectSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     StorageObjectParameters `json:"forProvider"`
+	ForProvider     ObjectParameters `json:"forProvider"`
 }
 
-// StorageObjectStatus defines the observed state of StorageObject.
-type StorageObjectStatus struct {
+// ObjectStatus defines the observed state of Object.
+type ObjectStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        StorageObjectObservation `json:"atProvider,omitempty"`
+	AtProvider        ObjectObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// StorageObject is the Schema for the StorageObjects API. Manages a Linode Object Storage Object.
+// Object is the Schema for the Objects API. Manages a Linode Object Storage Object.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type StorageObject struct {
+type Object struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              StorageObjectSpec   `json:"spec"`
-	Status            StorageObjectStatus `json:"status,omitempty"`
+	Spec              ObjectSpec   `json:"spec"`
+	Status            ObjectStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// StorageObjectList contains a list of StorageObjects
-type StorageObjectList struct {
+// ObjectList contains a list of Objects
+type ObjectList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []StorageObject `json:"items"`
+	Items           []Object `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	StorageObject_Kind             = "StorageObject"
-	StorageObject_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: StorageObject_Kind}.String()
-	StorageObject_KindAPIVersion   = StorageObject_Kind + "." + CRDGroupVersion.String()
-	StorageObject_GroupVersionKind = CRDGroupVersion.WithKind(StorageObject_Kind)
+	Object_Kind             = "Object"
+	Object_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Object_Kind}.String()
+	Object_KindAPIVersion   = Object_Kind + "." + CRDGroupVersion.String()
+	Object_GroupVersionKind = CRDGroupVersion.WithKind(Object_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&StorageObject{}, &StorageObjectList{})
+	SchemeBuilder.Register(&Object{}, &ObjectList{})
 }

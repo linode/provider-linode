@@ -34,7 +34,7 @@ type BucketAccessParameters struct {
 	Permissions *string `json:"permissions" tf:"permissions,omitempty"`
 }
 
-type StorageKeyObservation struct {
+type KeyObservation struct {
 
 	// This keypair's access key. This is not secret.
 	// This keypair's access key. This is not secret.
@@ -47,7 +47,7 @@ type StorageKeyObservation struct {
 	Limited *bool `json:"limited,omitempty" tf:"limited,omitempty"`
 }
 
-type StorageKeyParameters struct {
+type KeyParameters struct {
 
 	// Defines this key as a Limited Access Key. Limited Access Keys restrict this Object Storage key’s access to only the bucket(s) declared in this array and define their bucket-level permissions. Not providing this block will not limit this Object Storage Key.
 	// A list of permissions to grant this limited access key.
@@ -60,51 +60,51 @@ type StorageKeyParameters struct {
 	Label *string `json:"label" tf:"label,omitempty"`
 }
 
-// StorageKeySpec defines the desired state of StorageKey
-type StorageKeySpec struct {
+// KeySpec defines the desired state of Key
+type KeySpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     StorageKeyParameters `json:"forProvider"`
+	ForProvider     KeyParameters `json:"forProvider"`
 }
 
-// StorageKeyStatus defines the observed state of StorageKey.
-type StorageKeyStatus struct {
+// KeyStatus defines the observed state of Key.
+type KeyStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        StorageKeyObservation `json:"atProvider,omitempty"`
+	AtProvider        KeyObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// StorageKey is the Schema for the StorageKeys API. Manages a Linode Object Storage Key.
+// Key is the Schema for the Keys API. Manages a Linode Object Storage Key.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type StorageKey struct {
+type Key struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              StorageKeySpec   `json:"spec"`
-	Status            StorageKeyStatus `json:"status,omitempty"`
+	Spec              KeySpec   `json:"spec"`
+	Status            KeyStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// StorageKeyList contains a list of StorageKeys
-type StorageKeyList struct {
+// KeyList contains a list of Keys
+type KeyList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []StorageKey `json:"items"`
+	Items           []Key `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	StorageKey_Kind             = "StorageKey"
-	StorageKey_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: StorageKey_Kind}.String()
-	StorageKey_KindAPIVersion   = StorageKey_Kind + "." + CRDGroupVersion.String()
-	StorageKey_GroupVersionKind = CRDGroupVersion.WithKind(StorageKey_Kind)
+	Key_Kind             = "Key"
+	Key_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Key_Kind}.String()
+	Key_KindAPIVersion   = Key_Kind + "." + CRDGroupVersion.String()
+	Key_GroupVersionKind = CRDGroupVersion.WithKind(Key_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&StorageKey{}, &StorageKeyList{})
+	SchemeBuilder.Register(&Key{}, &KeyList{})
 }

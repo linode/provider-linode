@@ -25,7 +25,9 @@ metadata:
   name: bar-based
 spec:
   forProvider:
-    image: ${linode_image.bar.id}
+    imageSelector:
+      matchLabels:
+        testing.upbound.io/example-name: bar
     region: eu-west
     type: g6-nanode-1
 

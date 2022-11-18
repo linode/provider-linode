@@ -33,7 +33,9 @@ spec:
   forProvider:
     authorizedKeys:
     - '...'
-    image: linode/ubuntu18.04
+    imageSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     label: foo
     region: us-east
     rootPassSecretRef:

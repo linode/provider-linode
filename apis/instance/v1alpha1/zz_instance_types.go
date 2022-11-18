@@ -346,8 +346,17 @@ type InstanceParameters struct {
 
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/image/v1alpha1.Image
 	// +kubebuilder:validation:Optional
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
+
+	// Reference to a Image in image to populate image.
+	// +kubebuilder:validation:Optional
+	ImageRef *v1.Reference `json:"imageRef,omitempty" tf:"-"`
+
+	// Selector for a Image in image to populate image.
+	// +kubebuilder:validation:Optional
+	ImageSelector *v1.Selector `json:"imageSelector,omitempty" tf:"-"`
 
 	// An array of Network Interfaces for this Linode to be created with. If an explicit config or disk is defined, interfaces must be declared in the config block.
 	// +kubebuilder:validation:Optional

@@ -1,8 +1,8 @@
-apiVersion: object.linode.upbound.io/v1alpha1
-kind: StorageKey
+apiVersion: objectstorage.linode.upbound.io/v1alpha1
+kind: Key
 metadata:
   annotations:
-    meta.upbound.io/example-id: object/v1alpha1/storagekey
+    meta.upbound.io/example-id: objectstorage/v1alpha1/key
   labels:
     testing.upbound.io/example-name: foo
   name: foo

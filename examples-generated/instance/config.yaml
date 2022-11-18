@@ -43,7 +43,9 @@ metadata:
   name: boot
 spec:
   forProvider:
-    image: linode/ubuntu20.04
+    imageSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     label: boot
     linodeId: ${linode_instance.my-instance.id}
     rootPassSecretRef:

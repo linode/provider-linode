@@ -61,8 +61,17 @@ type IPParameters struct {
 
 	// The reverse DNS assigned to this address.
 	// The reverse DNS assigned to this address.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/rdns/v1alpha1.Rdns
 	// +kubebuilder:validation:Optional
 	Rdns *string `json:"rdns,omitempty" tf:"rdns,omitempty"`
+
+	// Reference to a Rdns in rdns to populate rdns.
+	// +kubebuilder:validation:Optional
+	RdnsRef *v1.Reference `json:"rdnsRef,omitempty" tf:"-"`
+
+	// Selector for a Rdns in rdns to populate rdns.
+	// +kubebuilder:validation:Optional
+	RdnsSelector *v1.Selector `json:"rdnsSelector,omitempty" tf:"-"`
 }
 
 // IPSpec defines the desired state of IP

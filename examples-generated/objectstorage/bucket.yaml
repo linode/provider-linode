@@ -1,8 +1,8 @@
-apiVersion: object.linode.upbound.io/v1alpha1
-kind: StorageBucket
+apiVersion: objectstorage.linode.upbound.io/v1alpha1
+kind: Bucket
 metadata:
   annotations:
-    meta.upbound.io/example-id: object/v1alpha1/storagebucket
+    meta.upbound.io/example-id: objectstorage/v1alpha1/bucket
   labels:
     testing.upbound.io/example-name: foobar
   name: foobar

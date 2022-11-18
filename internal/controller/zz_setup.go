@@ -27,9 +27,9 @@ import (
 	confignodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/config"
 	node "github.com/linode/provider-linode/internal/controller/nodebalancer/node"
 	nodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/nodebalancer"
-	storagebucket "github.com/linode/provider-linode/internal/controller/object/storagebucket"
-	storagekey "github.com/linode/provider-linode/internal/controller/object/storagekey"
-	storageobject "github.com/linode/provider-linode/internal/controller/object/storageobject"
+	bucket "github.com/linode/provider-linode/internal/controller/objectstorage/bucket"
+	key "github.com/linode/provider-linode/internal/controller/objectstorage/key"
+	object "github.com/linode/provider-linode/internal/controller/objectstorage/object"
 	providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	rdns "github.com/linode/provider-linode/internal/controller/rdns/rdns"
 	sshkey "github.com/linode/provider-linode/internal/controller/sshkey/sshkey"
@@ -61,9 +61,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		confignodebalancer.Setup,
 		node.Setup,
 		nodebalancer.Setup,
-		storagebucket.Setup,
-		storagekey.Setup,
-		storageobject.Setup,
+		bucket.Setup,
+		key.Setup,
+		object.Setup,
 		providerconfig.Setup,
 		rdns.Setup,
 		sshkey.Setup,

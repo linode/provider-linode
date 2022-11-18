@@ -13,6 +13,83 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type BucketObservation struct {
+
+	// The hostname where this bucket can be accessed. This hostname can be accessed through a browser if the bucket is made public.
+	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
+
+	// The unique identifier for the rule.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+}
+
+type BucketParameters struct {
+
+	// The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.
+	// The Access Control Level of the bucket using a canned ACL string.
+	// +kubebuilder:validation:Optional
+	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
+
+	// The access key to authenticate with.
+	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=AccessKeyRef
+	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
+	// +kubebuilder:validation:Optional
+	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
+
+	// Reference to a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeyRef *v1.Reference `json:"accessKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeySelector *v1.Selector `json:"accessKeySelector,omitempty" tf:"-"`
+
+	// The cert used by this Object Storage Bucket.
+	// +kubebuilder:validation:Optional
+	Cert []CertParameters `json:"cert,omitempty" tf:"cert,omitempty"`
+
+	// The cluster of the Linode Object Storage Bucket.
+	// The cluster of the Linode Object Storage Bucket.
+	// +kubebuilder:validation:Required
+	Cluster *string `json:"cluster" tf:"cluster,omitempty"`
+
+	// If true, the bucket will have CORS enabled for all origins.
+	// If true, the bucket will be created with CORS enabled for all origins.
+	// +kubebuilder:validation:Optional
+	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
+
+	// The label of the Linode Object Storage Bucket.
+	// The label of the Linode Object Storage Bucket.
+	// +kubebuilder:validation:Required
+	Label *string `json:"label" tf:"label,omitempty"`
+
+	// Lifecycle rules to be applied to the bucket.
+	// +kubebuilder:validation:Optional
+	LifecycleRule []LifecycleRuleParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
+
+	// The secret key to authenticate with.
+	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=SecretKeyRef
+	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
+	// +kubebuilder:validation:Optional
+	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
+
+	// Reference to a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
+
+	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
+	// Whether to enable versioning.
+	// +kubebuilder:validation:Optional
+	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`
+}
+
 type CertObservation struct {
 }
 
@@ -95,106 +172,51 @@ type NoncurrentVersionExpirationParameters struct {
 	Days *float64 `json:"days" tf:"days,omitempty"`
 }
 
-type StorageBucketObservation struct {
-
-	// The hostname where this bucket can be accessed. This hostname can be accessed through a browser if the bucket is made public.
-	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
-
-	// The unique identifier for the rule.
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type StorageBucketParameters struct {
-
-	// The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.
-	// The Access Control Level of the bucket using a canned ACL string.
-	// +kubebuilder:validation:Optional
-	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
-
-	// The access key to authenticate with.
-	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
-	// +kubebuilder:validation:Optional
-	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
-
-	// The cert used by this Object Storage Bucket.
-	// +kubebuilder:validation:Optional
-	Cert []CertParameters `json:"cert,omitempty" tf:"cert,omitempty"`
-
-	// The cluster of the Linode Object Storage Bucket.
-	// The cluster of the Linode Object Storage Bucket.
-	// +kubebuilder:validation:Required
-	Cluster *string `json:"cluster" tf:"cluster,omitempty"`
-
-	// If true, the bucket will have CORS enabled for all origins.
-	// If true, the bucket will be created with CORS enabled for all origins.
-	// +kubebuilder:validation:Optional
-	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
-
-	// The label of the Linode Object Storage Bucket.
-	// The label of the Linode Object Storage Bucket.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
-
-	// Lifecycle rules to be applied to the bucket.
-	// +kubebuilder:validation:Optional
-	LifecycleRule []LifecycleRuleParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
-
-	// The secret key to authenticate with.
-	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
-	// +kubebuilder:validation:Optional
-	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
-
-	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
-	// Whether to enable versioning.
-	// +kubebuilder:validation:Optional
-	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`
-}
-
-// StorageBucketSpec defines the desired state of StorageBucket
-type StorageBucketSpec struct {
+// BucketSpec defines the desired state of Bucket
+type BucketSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     StorageBucketParameters `json:"forProvider"`
+	ForProvider     BucketParameters `json:"forProvider"`
 }
 
-// StorageBucketStatus defines the observed state of StorageBucket.
-type StorageBucketStatus struct {
+// BucketStatus defines the observed state of Bucket.
+type BucketStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        StorageBucketObservation `json:"atProvider,omitempty"`
+	AtProvider        BucketObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// StorageBucket is the Schema for the StorageBuckets API. Manages a Linode Object Storage Bucket.
+// Bucket is the Schema for the Buckets API. Manages a Linode Object Storage Bucket.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type StorageBucket struct {
+type Bucket struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              StorageBucketSpec   `json:"spec"`
-	Status            StorageBucketStatus `json:"status,omitempty"`
+	Spec              BucketSpec   `json:"spec"`
+	Status            BucketStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// StorageBucketList contains a list of StorageBuckets
-type StorageBucketList struct {
+// BucketList contains a list of Buckets
+type BucketList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []StorageBucket `json:"items"`
+	Items           []Bucket `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	StorageBucket_Kind             = "StorageBucket"
-	StorageBucket_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: StorageBucket_Kind}.String()
-	StorageBucket_KindAPIVersion   = StorageBucket_Kind + "." + CRDGroupVersion.String()
-	StorageBucket_GroupVersionKind = CRDGroupVersion.WithKind(StorageBucket_Kind)
+	Bucket_Kind             = "Bucket"
+	Bucket_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Bucket_Kind}.String()
+	Bucket_KindAPIVersion   = Bucket_Kind + "." + CRDGroupVersion.String()
+	Bucket_GroupVersionKind = CRDGroupVersion.WithKind(Bucket_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&StorageBucket{}, &StorageBucketList{})
+	SchemeBuilder.Register(&Bucket{}, &BucketList{})
 }
