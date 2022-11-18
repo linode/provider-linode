@@ -15,6 +15,7 @@ import (
 	v1alpha1firewall "github.com/linode/provider-linode/apis/firewall/v1alpha1"
 	v1alpha1image "github.com/linode/provider-linode/apis/image/v1alpha1"
 	v1alpha1instance "github.com/linode/provider-linode/apis/instance/v1alpha1"
+	v1alpha1ipv6 "github.com/linode/provider-linode/apis/ipv6/v1alpha1"
 	v1alpha1lke "github.com/linode/provider-linode/apis/lke/v1alpha1"
 	v1alpha1nodebalancer "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
 	v1alpha1objectstorage "github.com/linode/provider-linode/apis/objectstorage/v1alpha1"
@@ -36,6 +37,7 @@ func init() {
 		v1alpha1firewall.SchemeBuilder.AddToScheme,
 		v1alpha1image.SchemeBuilder.AddToScheme,
 		v1alpha1instance.SchemeBuilder.AddToScheme,
+		v1alpha1ipv6.SchemeBuilder.AddToScheme,
 		v1alpha1lke.SchemeBuilder.AddToScheme,
 		v1alpha1nodebalancer.SchemeBuilder.AddToScheme,
 		v1alpha1objectstorage.SchemeBuilder.AddToScheme,

@@ -1,0 +1,34 @@
+apiVersion: ipv6.linode.upbound.io/v1alpha1
+kind: IPv6range
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ipv6/v1alpha1/ipv6range
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    linodeId: ${linode_instance.foobar.id}
+    prefixLength: 64
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: ipv6/v1alpha1/ipv6range
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    imageSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    label: my-linode
+    region: us-southeast
+    type: g6-nanode-1
+
+---
+

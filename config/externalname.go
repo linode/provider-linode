@@ -24,6 +24,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"linode_instance_disk":            config.IdentifierFromProvider,
 	"linode_instance_ip":              config.IdentifierFromProvider,
 	"linode_instance_shared_ips":      config.IdentifierFromProvider,
+	"linode_ipv6_range":               config.IdentifierFromProvider,
 	"linode_lke_cluster":              config.IdentifierFromProvider,
 	"linode_nodebalancer":             config.IdentifierFromProvider,
 	"linode_nodebalancer_config":      config.IdentifierFromProvider,

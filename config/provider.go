@@ -8,6 +8,8 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/linode/provider-linode/config/ipv6range"
+
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
 	"github.com/linode/provider-linode/config/databaseaccesscontrols"
@@ -74,6 +76,7 @@ func GetProvider() *ujconfig.Provider {
 		instancedisk.Configure,
 		instanceip.Configure,
 		instancesharedips.Configure,
+		ipv6range.Configure,
 		lkecluster.Configure,
 		nodebalancer.Configure,
 		nodebalancerconfig.Configure,

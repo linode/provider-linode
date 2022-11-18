@@ -23,6 +23,7 @@ import (
 	instance "github.com/linode/provider-linode/internal/controller/instance/instance"
 	ip "github.com/linode/provider-linode/internal/controller/instance/ip"
 	sharedips "github.com/linode/provider-linode/internal/controller/instance/sharedips"
+	ipv6range "github.com/linode/provider-linode/internal/controller/ipv6/ipv6range"
 	cluster "github.com/linode/provider-linode/internal/controller/lke/cluster"
 	confignodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/config"
 	node "github.com/linode/provider-linode/internal/controller/nodebalancer/node"
@@ -57,6 +58,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		instance.Setup,
 		ip.Setup,
 		sharedips.Setup,
+		ipv6range.Setup,
 		cluster.Setup,
 		confignodebalancer.Setup,
 		node.Setup,
