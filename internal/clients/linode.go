@@ -28,7 +28,8 @@ const (
 )
 
 const (
-	token = "token"
+	keyToken = "token"
+	keyURL   = "url"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -66,9 +67,13 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
-		// Set credentials in Terraform provider configuration.
-		ps.Configuration = map[string]any{
-			token: creds["token"],
+		// set provider configuration
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[keyToken]; ok {
+			ps.Configuration[keyToken] = v
+		}
+		if v, ok := creds[keyURL]; ok {
+			ps.Configuration[keyURL] = v
 		}
 		return ps, nil
 	}
