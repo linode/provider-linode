@@ -10,6 +10,10 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "instance"
 		r.UseAsync = true
 
+		r.LateInitializer = config.LateInitializer{
+			IgnoredFields: []string{"disk", "config"},
+		}
+
 		r.References["image"] = config.Reference{
 			Type: "github.com/linode/provider-linode/apis/image/v1alpha1.Image",
 		}
