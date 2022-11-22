@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - linode
-    kind: IPv6range
-    listKind: IPv6rangeList
+    kind: IPv6Range
+    listKind: IPv6RangeList
     plural: ipv6ranges
     singular: ipv6range
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: IPv6range is the Schema for the IPv6ranges API. Manages a Linode
+        description: IPv6Range is the Schema for the IPv6Ranges API. Manages a Linode
           IPv6 range.
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: IPv6rangeSpec defines the desired state of IPv6range
+            description: IPv6RangeSpec defines the desired state of IPv6Range
             properties:
               deletionPolicy:
                 default: Delete
@@ -252,7 +252,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: IPv6rangeStatus defines the observed state of IPv6range.
+            description: IPv6RangeStatus defines the observed state of IPv6Range.
             properties:
               atProvider:
                 properties:

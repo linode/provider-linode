@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - linode
-    kind: Sshkey
-    listKind: SshkeyList
+    kind: SSHKey
+    listKind: SSHKeyList
     plural: sshkeys
     singular: sshkey
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Sshkey is the Schema for the Sshkeys API. Manages a Linode SSH
+        description: SSHKey is the Schema for the SSHKeys API. Manages a Linode SSH
           Key.
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SshkeySpec defines the desired state of Sshkey
+            description: SSHKeySpec defines the desired state of SSHKey
             properties:
               deletionPolicy:
                 default: Delete
@@ -250,7 +250,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: SshkeyStatus defines the observed state of Sshkey.
+            description: SSHKeyStatus defines the observed state of SSHKey.
             properties:
               atProvider:
                 properties:

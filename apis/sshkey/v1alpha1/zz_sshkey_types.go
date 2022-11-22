@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type SshkeyObservation struct {
+type SSHKeyObservation struct {
 
 	// The date this SSH Key was created.
 	// The date this key was added.
@@ -22,7 +22,7 @@ type SshkeyObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type SshkeyParameters struct {
+type SSHKeyParameters struct {
 
 	// A label for the SSH Key.
 	// The label of the Linode SSH Key.
@@ -35,51 +35,51 @@ type SshkeyParameters struct {
 	SSHKey *string `json:"sshKey" tf:"ssh_key,omitempty"`
 }
 
-// SshkeySpec defines the desired state of Sshkey
-type SshkeySpec struct {
+// SSHKeySpec defines the desired state of SSHKey
+type SSHKeySpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     SshkeyParameters `json:"forProvider"`
+	ForProvider     SSHKeyParameters `json:"forProvider"`
 }
 
-// SshkeyStatus defines the observed state of Sshkey.
-type SshkeyStatus struct {
+// SSHKeyStatus defines the observed state of SSHKey.
+type SSHKeyStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        SshkeyObservation `json:"atProvider,omitempty"`
+	AtProvider        SSHKeyObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Sshkey is the Schema for the Sshkeys API. Manages a Linode SSH Key.
+// SSHKey is the Schema for the SSHKeys API. Manages a Linode SSH Key.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type Sshkey struct {
+type SSHKey struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              SshkeySpec   `json:"spec"`
-	Status            SshkeyStatus `json:"status,omitempty"`
+	Spec              SSHKeySpec   `json:"spec"`
+	Status            SSHKeyStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SshkeyList contains a list of Sshkeys
-type SshkeyList struct {
+// SSHKeyList contains a list of SSHKeys
+type SSHKeyList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Sshkey `json:"items"`
+	Items           []SSHKey `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Sshkey_Kind             = "Sshkey"
-	Sshkey_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Sshkey_Kind}.String()
-	Sshkey_KindAPIVersion   = Sshkey_Kind + "." + CRDGroupVersion.String()
-	Sshkey_GroupVersionKind = CRDGroupVersion.WithKind(Sshkey_Kind)
+	SSHKey_Kind             = "SSHKey"
+	SSHKey_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SSHKey_Kind}.String()
+	SSHKey_KindAPIVersion   = SSHKey_Kind + "." + CRDGroupVersion.String()
+	SSHKey_GroupVersionKind = CRDGroupVersion.WithKind(SSHKey_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Sshkey{}, &SshkeyList{})
+	SchemeBuilder.Register(&SSHKey{}, &SSHKeyList{})
 }

@@ -13,11 +13,11 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type RdnsObservation struct {
+type RDNSObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type RdnsParameters struct {
+type RDNSParameters struct {
 
 	// The Public IPv4 or IPv6 address that will receive the PTR record.  A matching A or AAAA record must exist.
 	// The public Linode IPv4 or IPv6 address to operate on.
@@ -35,51 +35,51 @@ type RdnsParameters struct {
 	WaitForAvailable *bool `json:"waitForAvailable,omitempty" tf:"wait_for_available,omitempty"`
 }
 
-// RdnsSpec defines the desired state of Rdns
-type RdnsSpec struct {
+// RDNSSpec defines the desired state of RDNS
+type RDNSSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     RdnsParameters `json:"forProvider"`
+	ForProvider     RDNSParameters `json:"forProvider"`
 }
 
-// RdnsStatus defines the observed state of Rdns.
-type RdnsStatus struct {
+// RDNSStatus defines the observed state of RDNS.
+type RDNSStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        RdnsObservation `json:"atProvider,omitempty"`
+	AtProvider        RDNSObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Rdns is the Schema for the Rdnss API. Manages the RDNS / PTR record for the IP Address associated with a Linode Instance.
+// RDNS is the Schema for the RDNSs API. Manages the RDNS / PTR record for the IP Address associated with a Linode Instance.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type Rdns struct {
+type RDNS struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              RdnsSpec   `json:"spec"`
-	Status            RdnsStatus `json:"status,omitempty"`
+	Spec              RDNSSpec   `json:"spec"`
+	Status            RDNSStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// RdnsList contains a list of Rdnss
-type RdnsList struct {
+// RDNSList contains a list of RDNSs
+type RDNSList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Rdns `json:"items"`
+	Items           []RDNS `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Rdns_Kind             = "Rdns"
-	Rdns_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Rdns_Kind}.String()
-	Rdns_KindAPIVersion   = Rdns_Kind + "." + CRDGroupVersion.String()
-	Rdns_GroupVersionKind = CRDGroupVersion.WithKind(Rdns_Kind)
+	RDNS_Kind             = "RDNS"
+	RDNS_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: RDNS_Kind}.String()
+	RDNS_KindAPIVersion   = RDNS_Kind + "." + CRDGroupVersion.String()
+	RDNS_GroupVersionKind = CRDGroupVersion.WithKind(RDNS_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Rdns{}, &RdnsList{})
+	SchemeBuilder.Register(&RDNS{}, &RDNSList{})
 }

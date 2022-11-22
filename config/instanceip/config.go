@@ -7,7 +7,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("linode_instance_ip", func(r *config.Resource) {
 
 		r.References["rdns"] = config.Reference{
-			Type: "github.com/linode/provider-linode/apis/rdns/v1alpha1.Rdns",
+			Type: "github.com/linode/provider-linode/apis/rdns/v1alpha1.RDNS",
 		}
 	})
 }

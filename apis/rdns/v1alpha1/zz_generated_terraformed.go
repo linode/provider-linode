@@ -13,18 +13,18 @@ import (
 	"github.com/upbound/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Rdns
-func (mg *Rdns) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this RDNS
+func (mg *RDNS) GetTerraformResourceType() string {
 	return "linode_rdns"
 }
 
-// GetConnectionDetailsMapping for this Rdns
-func (tr *Rdns) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this RDNS
+func (tr *RDNS) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Rdns
-func (tr *Rdns) GetObservation() (map[string]any, error) {
+// GetObservation of this RDNS
+func (tr *RDNS) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -33,8 +33,8 @@ func (tr *Rdns) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Rdns
-func (tr *Rdns) SetObservation(obs map[string]any) error {
+// SetObservation for this RDNS
+func (tr *RDNS) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -42,16 +42,16 @@ func (tr *Rdns) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Rdns
-func (tr *Rdns) GetID() string {
+// GetID returns ID of underlying Terraform resource of this RDNS
+func (tr *RDNS) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Rdns
-func (tr *Rdns) GetParameters() (map[string]any, error) {
+// GetParameters of this RDNS
+func (tr *RDNS) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (tr *Rdns) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Rdns
-func (tr *Rdns) SetParameters(params map[string]any) error {
+// SetParameters for this RDNS
+func (tr *RDNS) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -69,10 +69,10 @@ func (tr *Rdns) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Rdns using its observed tfState.
+// LateInitialize this RDNS using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Rdns) LateInitialize(attrs []byte) (bool, error) {
-	params := &RdnsParameters{}
+func (tr *RDNS) LateInitialize(attrs []byte) (bool, error) {
+	params := &RDNSParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -83,6 +83,6 @@ func (tr *Rdns) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Rdns) GetTerraformSchemaVersion() int {
+func (tr *RDNS) GetTerraformSchemaVersion() int {
 	return 0
 }

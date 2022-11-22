@@ -271,68 +271,68 @@ func (mg *Instance) SetWriteConnectionSecretToReference(r *xpv1.SecretReference)
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this SharedIps.
-func (mg *SharedIps) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this SharedIPs.
+func (mg *SharedIPs) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this SharedIps.
-func (mg *SharedIps) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this SharedIPs.
+func (mg *SharedIPs) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this SharedIps.
-func (mg *SharedIps) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this SharedIPs.
+func (mg *SharedIPs) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this SharedIps.
+GetProviderReference of this SharedIPs.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *SharedIps) GetProviderReference() *xpv1.Reference {
+func (mg *SharedIPs) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this SharedIps.
-func (mg *SharedIps) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this SharedIPs.
+func (mg *SharedIPs) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this SharedIps.
-func (mg *SharedIps) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this SharedIPs.
+func (mg *SharedIPs) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this SharedIps.
-func (mg *SharedIps) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this SharedIPs.
+func (mg *SharedIPs) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this SharedIps.
-func (mg *SharedIps) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this SharedIPs.
+func (mg *SharedIPs) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this SharedIps.
-func (mg *SharedIps) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this SharedIPs.
+func (mg *SharedIPs) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this SharedIps.
+SetProviderReference of this SharedIPs.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *SharedIps) SetProviderReference(r *xpv1.Reference) {
+func (mg *SharedIPs) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this SharedIps.
-func (mg *SharedIps) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this SharedIPs.
+func (mg *SharedIPs) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this SharedIps.
-func (mg *SharedIps) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this SharedIPs.
+func (mg *SharedIPs) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

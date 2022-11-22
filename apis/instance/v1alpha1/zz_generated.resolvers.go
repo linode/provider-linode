@@ -53,8 +53,8 @@ func (mg *IP) ResolveReferences(ctx context.Context, c client.Reader) error {
 		Reference:    mg.Spec.ForProvider.RdnsRef,
 		Selector:     mg.Spec.ForProvider.RdnsSelector,
 		To: reference.To{
-			List:    &v1alpha11.RdnsList{},
-			Managed: &v1alpha11.Rdns{},
+			List:    &v1alpha11.RDNSList{},
+			Managed: &v1alpha11.RDNS{},
 		},
 	})
 	if err != nil {

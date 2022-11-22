@@ -1,5 +1,5 @@
 apiVersion: sshkey.linode.upbound.io/v1alpha1
-kind: Sshkey
+kind: SSHKey
 metadata:
   annotations:
     meta.upbound.io/example-id: sshkey/v1alpha1/sshkey

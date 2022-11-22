@@ -13,11 +13,11 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type SharedIpsObservation struct {
+type SharedIPsObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type SharedIpsParameters struct {
+type SharedIPsParameters struct {
 
 	// The set of IPs to share with the Linode.
 	// A set of IP addresses to share to the Linode
@@ -30,51 +30,51 @@ type SharedIpsParameters struct {
 	LinodeID *float64 `json:"linodeId" tf:"linode_id,omitempty"`
 }
 
-// SharedIpsSpec defines the desired state of SharedIps
-type SharedIpsSpec struct {
+// SharedIPsSpec defines the desired state of SharedIPs
+type SharedIPsSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     SharedIpsParameters `json:"forProvider"`
+	ForProvider     SharedIPsParameters `json:"forProvider"`
 }
 
-// SharedIpsStatus defines the observed state of SharedIps.
-type SharedIpsStatus struct {
+// SharedIPsStatus defines the observed state of SharedIPs.
+type SharedIPsStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        SharedIpsObservation `json:"atProvider,omitempty"`
+	AtProvider        SharedIPsObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SharedIps is the Schema for the SharedIpss API. Manages IP addresses shared to a Linode.
+// SharedIPs is the Schema for the SharedIPss API. Manages IP addresses shared to a Linode.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type SharedIps struct {
+type SharedIPs struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              SharedIpsSpec   `json:"spec"`
-	Status            SharedIpsStatus `json:"status,omitempty"`
+	Spec              SharedIPsSpec   `json:"spec"`
+	Status            SharedIPsStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SharedIpsList contains a list of SharedIpss
-type SharedIpsList struct {
+// SharedIPsList contains a list of SharedIPss
+type SharedIPsList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []SharedIps `json:"items"`
+	Items           []SharedIPs `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	SharedIps_Kind             = "SharedIps"
-	SharedIps_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SharedIps_Kind}.String()
-	SharedIps_KindAPIVersion   = SharedIps_Kind + "." + CRDGroupVersion.String()
-	SharedIps_GroupVersionKind = CRDGroupVersion.WithKind(SharedIps_Kind)
+	SharedIPs_Kind             = "SharedIPs"
+	SharedIPs_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SharedIPs_Kind}.String()
+	SharedIPs_KindAPIVersion   = SharedIPs_Kind + "." + CRDGroupVersion.String()
+	SharedIPs_GroupVersionKind = CRDGroupVersion.WithKind(SharedIPs_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&SharedIps{}, &SharedIpsList{})
+	SchemeBuilder.Register(&SharedIPs{}, &SharedIPsList{})
 }

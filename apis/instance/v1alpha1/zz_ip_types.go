@@ -61,15 +61,15 @@ type IPParameters struct {
 
 	// The reverse DNS assigned to this address.
 	// The reverse DNS assigned to this address.
-	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/rdns/v1alpha1.Rdns
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/rdns/v1alpha1.RDNS
 	// +kubebuilder:validation:Optional
 	Rdns *string `json:"rdns,omitempty" tf:"rdns,omitempty"`
 
-	// Reference to a Rdns in rdns to populate rdns.
+	// Reference to a RDNS in rdns to populate rdns.
 	// +kubebuilder:validation:Optional
 	RdnsRef *v1.Reference `json:"rdnsRef,omitempty" tf:"-"`
 
-	// Selector for a Rdns in rdns to populate rdns.
+	// Selector for a RDNS in rdns to populate rdns.
 	// +kubebuilder:validation:Optional
 	RdnsSelector *v1.Selector `json:"rdnsSelector,omitempty" tf:"-"`
 }

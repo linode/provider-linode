@@ -43,8 +43,8 @@ func (l *InstanceList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this SharedIpsList.
-func (l *SharedIpsList) GetItems() []resource.Managed {
+// GetItems of this SharedIPsList.
+func (l *SharedIPsList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

@@ -13,18 +13,18 @@ import (
 	"github.com/upbound/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Sshkey
-func (mg *Sshkey) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this SSHKey
+func (mg *SSHKey) GetTerraformResourceType() string {
 	return "linode_sshkey"
 }
 
-// GetConnectionDetailsMapping for this Sshkey
-func (tr *Sshkey) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this SSHKey
+func (tr *SSHKey) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Sshkey
-func (tr *Sshkey) GetObservation() (map[string]any, error) {
+// GetObservation of this SSHKey
+func (tr *SSHKey) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -33,8 +33,8 @@ func (tr *Sshkey) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Sshkey
-func (tr *Sshkey) SetObservation(obs map[string]any) error {
+// SetObservation for this SSHKey
+func (tr *SSHKey) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -42,16 +42,16 @@ func (tr *Sshkey) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Sshkey
-func (tr *Sshkey) GetID() string {
+// GetID returns ID of underlying Terraform resource of this SSHKey
+func (tr *SSHKey) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Sshkey
-func (tr *Sshkey) GetParameters() (map[string]any, error) {
+// GetParameters of this SSHKey
+func (tr *SSHKey) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -60,8 +60,8 @@ func (tr *Sshkey) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Sshkey
-func (tr *Sshkey) SetParameters(params map[string]any) error {
+// SetParameters for this SSHKey
+func (tr *SSHKey) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -69,10 +69,10 @@ func (tr *Sshkey) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Sshkey using its observed tfState.
+// LateInitialize this SSHKey using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Sshkey) LateInitialize(attrs []byte) (bool, error) {
-	params := &SshkeyParameters{}
+func (tr *SSHKey) LateInitialize(attrs []byte) (bool, error) {
+	params := &SSHKeyParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -83,6 +83,6 @@ func (tr *Sshkey) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Sshkey) GetTerraformSchemaVersion() int {
+func (tr *SSHKey) GetTerraformSchemaVersion() int {
 	return 0
 }

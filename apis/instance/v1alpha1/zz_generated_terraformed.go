@@ -311,18 +311,18 @@ func (tr *IP) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this SharedIps
-func (mg *SharedIps) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this SharedIPs
+func (mg *SharedIPs) GetTerraformResourceType() string {
 	return "linode_instance_shared_ips"
 }
 
-// GetConnectionDetailsMapping for this SharedIps
-func (tr *SharedIps) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this SharedIPs
+func (tr *SharedIPs) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this SharedIps
-func (tr *SharedIps) GetObservation() (map[string]any, error) {
+// GetObservation of this SharedIPs
+func (tr *SharedIPs) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -331,8 +331,8 @@ func (tr *SharedIps) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this SharedIps
-func (tr *SharedIps) SetObservation(obs map[string]any) error {
+// SetObservation for this SharedIPs
+func (tr *SharedIPs) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -340,16 +340,16 @@ func (tr *SharedIps) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this SharedIps
-func (tr *SharedIps) GetID() string {
+// GetID returns ID of underlying Terraform resource of this SharedIPs
+func (tr *SharedIPs) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this SharedIps
-func (tr *SharedIps) GetParameters() (map[string]any, error) {
+// GetParameters of this SharedIPs
+func (tr *SharedIPs) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -358,8 +358,8 @@ func (tr *SharedIps) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this SharedIps
-func (tr *SharedIps) SetParameters(params map[string]any) error {
+// SetParameters for this SharedIPs
+func (tr *SharedIPs) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -367,10 +367,10 @@ func (tr *SharedIps) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this SharedIps using its observed tfState.
+// LateInitialize this SharedIPs using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *SharedIps) LateInitialize(attrs []byte) (bool, error) {
-	params := &SharedIpsParameters{}
+func (tr *SharedIPs) LateInitialize(attrs []byte) (bool, error) {
+	params := &SharedIPsParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -381,6 +381,6 @@ func (tr *SharedIps) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *SharedIps) GetTerraformSchemaVersion() int {
+func (tr *SharedIPs) GetTerraformSchemaVersion() int {
 	return 0
 }

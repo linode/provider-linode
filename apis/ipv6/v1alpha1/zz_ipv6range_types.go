@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type IPv6rangeObservation struct {
+type IPv6RangeObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Whether this IPv6 range is shared.
@@ -33,7 +33,7 @@ type IPv6rangeObservation struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
-type IPv6rangeParameters struct {
+type IPv6RangeParameters struct {
 
 	// The ID of the Linode to assign this range to. This field may be updated to reassign the IPv6 range.
 	// The ID of the Linode to assign this range to.
@@ -51,51 +51,51 @@ type IPv6rangeParameters struct {
 	RouteTarget *string `json:"routeTarget,omitempty" tf:"route_target,omitempty"`
 }
 
-// IPv6rangeSpec defines the desired state of IPv6range
-type IPv6rangeSpec struct {
+// IPv6RangeSpec defines the desired state of IPv6Range
+type IPv6RangeSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     IPv6rangeParameters `json:"forProvider"`
+	ForProvider     IPv6RangeParameters `json:"forProvider"`
 }
 
-// IPv6rangeStatus defines the observed state of IPv6range.
-type IPv6rangeStatus struct {
+// IPv6RangeStatus defines the observed state of IPv6Range.
+type IPv6RangeStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        IPv6rangeObservation `json:"atProvider,omitempty"`
+	AtProvider        IPv6RangeObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// IPv6range is the Schema for the IPv6ranges API. Manages a Linode IPv6 range.
+// IPv6Range is the Schema for the IPv6Ranges API. Manages a Linode IPv6 range.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type IPv6range struct {
+type IPv6Range struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              IPv6rangeSpec   `json:"spec"`
-	Status            IPv6rangeStatus `json:"status,omitempty"`
+	Spec              IPv6RangeSpec   `json:"spec"`
+	Status            IPv6RangeStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// IPv6rangeList contains a list of IPv6ranges
-type IPv6rangeList struct {
+// IPv6RangeList contains a list of IPv6Ranges
+type IPv6RangeList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []IPv6range `json:"items"`
+	Items           []IPv6Range `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	IPv6range_Kind             = "IPv6range"
-	IPv6range_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: IPv6range_Kind}.String()
-	IPv6range_KindAPIVersion   = IPv6range_Kind + "." + CRDGroupVersion.String()
-	IPv6range_GroupVersionKind = CRDGroupVersion.WithKind(IPv6range_Kind)
+	IPv6Range_Kind             = "IPv6Range"
+	IPv6Range_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: IPv6Range_Kind}.String()
+	IPv6Range_KindAPIVersion   = IPv6Range_Kind + "." + CRDGroupVersion.String()
+	IPv6Range_GroupVersionKind = CRDGroupVersion.WithKind(IPv6Range_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&IPv6range{}, &IPv6rangeList{})
+	SchemeBuilder.Register(&IPv6Range{}, &IPv6RangeList{})
 }

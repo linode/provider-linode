@@ -87,18 +87,18 @@ func (tr *AccessControls) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this Mongodb
-func (mg *Mongodb) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this MongoDB
+func (mg *MongoDB) GetTerraformResourceType() string {
 	return "linode_database_mongodb"
 }
 
-// GetConnectionDetailsMapping for this Mongodb
-func (tr *Mongodb) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this MongoDB
+func (tr *MongoDB) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"ca_cert": "status.atProvider.caCert", "root_password": "status.atProvider.rootPassword", "root_username": "status.atProvider.rootUsername"}
 }
 
-// GetObservation of this Mongodb
-func (tr *Mongodb) GetObservation() (map[string]any, error) {
+// GetObservation of this MongoDB
+func (tr *MongoDB) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -107,8 +107,8 @@ func (tr *Mongodb) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Mongodb
-func (tr *Mongodb) SetObservation(obs map[string]any) error {
+// SetObservation for this MongoDB
+func (tr *MongoDB) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -116,16 +116,16 @@ func (tr *Mongodb) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Mongodb
-func (tr *Mongodb) GetID() string {
+// GetID returns ID of underlying Terraform resource of this MongoDB
+func (tr *MongoDB) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Mongodb
-func (tr *Mongodb) GetParameters() (map[string]any, error) {
+// GetParameters of this MongoDB
+func (tr *MongoDB) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -134,8 +134,8 @@ func (tr *Mongodb) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Mongodb
-func (tr *Mongodb) SetParameters(params map[string]any) error {
+// SetParameters for this MongoDB
+func (tr *MongoDB) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -143,10 +143,10 @@ func (tr *Mongodb) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Mongodb using its observed tfState.
+// LateInitialize this MongoDB using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Mongodb) LateInitialize(attrs []byte) (bool, error) {
-	params := &MongodbParameters{}
+func (tr *MongoDB) LateInitialize(attrs []byte) (bool, error) {
+	params := &MongoDBParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -157,7 +157,7 @@ func (tr *Mongodb) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Mongodb) GetTerraformSchemaVersion() int {
+func (tr *MongoDB) GetTerraformSchemaVersion() int {
 	return 0
 }
 
@@ -235,18 +235,18 @@ func (tr *MySQL) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this Postgresql
-func (mg *Postgresql) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this PostgreSQL
+func (mg *PostgreSQL) GetTerraformResourceType() string {
 	return "linode_database_postgresql"
 }
 
-// GetConnectionDetailsMapping for this Postgresql
-func (tr *Postgresql) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this PostgreSQL
+func (tr *PostgreSQL) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"ca_cert": "status.atProvider.caCert", "root_password": "status.atProvider.rootPassword", "root_username": "status.atProvider.rootUsername"}
 }
 
-// GetObservation of this Postgresql
-func (tr *Postgresql) GetObservation() (map[string]any, error) {
+// GetObservation of this PostgreSQL
+func (tr *PostgreSQL) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -255,8 +255,8 @@ func (tr *Postgresql) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Postgresql
-func (tr *Postgresql) SetObservation(obs map[string]any) error {
+// SetObservation for this PostgreSQL
+func (tr *PostgreSQL) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -264,16 +264,16 @@ func (tr *Postgresql) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Postgresql
-func (tr *Postgresql) GetID() string {
+// GetID returns ID of underlying Terraform resource of this PostgreSQL
+func (tr *PostgreSQL) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Postgresql
-func (tr *Postgresql) GetParameters() (map[string]any, error) {
+// GetParameters of this PostgreSQL
+func (tr *PostgreSQL) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -282,8 +282,8 @@ func (tr *Postgresql) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Postgresql
-func (tr *Postgresql) SetParameters(params map[string]any) error {
+// SetParameters for this PostgreSQL
+func (tr *PostgreSQL) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -291,10 +291,10 @@ func (tr *Postgresql) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// LateInitialize this Postgresql using its observed tfState.
+// LateInitialize this PostgreSQL using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Postgresql) LateInitialize(attrs []byte) (bool, error) {
-	params := &PostgresqlParameters{}
+func (tr *PostgreSQL) LateInitialize(attrs []byte) (bool, error) {
+	params := &PostgreSQLParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -305,6 +305,6 @@ func (tr *Postgresql) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Postgresql) GetTerraformSchemaVersion() int {
+func (tr *PostgreSQL) GetTerraformSchemaVersion() int {
 	return 0
 }

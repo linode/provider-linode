@@ -1,5 +1,5 @@
 apiVersion: database.linode.upbound.io/v1alpha1
-kind: Postgresql
+kind: PostgreSQL
 metadata:
   annotations:
     meta.upbound.io/example-id: database/v1alpha1/postgresql

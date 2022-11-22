@@ -7,68 +7,68 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 
-// GetCondition of this IPv6range.
-func (mg *IPv6range) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this IPv6Range.
+func (mg *IPv6Range) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this IPv6range.
-func (mg *IPv6range) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this IPv6Range.
+func (mg *IPv6Range) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this IPv6range.
-func (mg *IPv6range) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this IPv6Range.
+func (mg *IPv6Range) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this IPv6range.
+GetProviderReference of this IPv6Range.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *IPv6range) GetProviderReference() *xpv1.Reference {
+func (mg *IPv6Range) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this IPv6range.
-func (mg *IPv6range) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this IPv6Range.
+func (mg *IPv6Range) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this IPv6range.
-func (mg *IPv6range) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this IPv6Range.
+func (mg *IPv6Range) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this IPv6range.
-func (mg *IPv6range) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this IPv6Range.
+func (mg *IPv6Range) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this IPv6range.
-func (mg *IPv6range) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this IPv6Range.
+func (mg *IPv6Range) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this IPv6range.
-func (mg *IPv6range) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this IPv6Range.
+func (mg *IPv6Range) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this IPv6range.
+SetProviderReference of this IPv6Range.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *IPv6range) SetProviderReference(r *xpv1.Reference) {
+func (mg *IPv6Range) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this IPv6range.
-func (mg *IPv6range) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this IPv6Range.
+func (mg *IPv6Range) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this IPv6range.
-func (mg *IPv6range) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this IPv6Range.
+func (mg *IPv6Range) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

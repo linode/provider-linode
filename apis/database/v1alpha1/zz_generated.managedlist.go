@@ -16,8 +16,8 @@ func (l *AccessControlsList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this MongodbList.
-func (l *MongodbList) GetItems() []resource.Managed {
+// GetItems of this MongoDBList.
+func (l *MongoDBList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -34,8 +34,8 @@ func (l *MySQLList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this PostgresqlList.
-func (l *PostgresqlList) GetItems() []resource.Managed {
+// GetItems of this PostgreSQLList.
+func (l *PostgreSQLList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

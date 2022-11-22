@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - linode
-    kind: Mongodb
-    listKind: MongodbList
+    kind: MongoDB
+    listKind: MongoDBList
     plural: mongodbs
     singular: mongodb
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Mongodb is the Schema for the Mongodbs API. Manages a Linode
+        description: MongoDB is the Schema for the MongoDBs API. Manages a Linode
           MongoDB Database.
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: MongodbSpec defines the desired state of Mongodb
+            description: MongoDBSpec defines the desired state of MongoDB
             properties:
               deletionPolicy:
                 default: Delete
@@ -332,7 +332,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: MongodbStatus defines the observed state of Mongodb.
+            description: MongoDBStatus defines the observed state of MongoDB.
             properties:
               atProvider:
                 properties:

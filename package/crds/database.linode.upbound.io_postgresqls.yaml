@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - linode
-    kind: Postgresql
-    listKind: PostgresqlList
+    kind: PostgreSQL
+    listKind: PostgreSQLList
     plural: postgresqls
     singular: postgresql
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Postgresql is the Schema for the Postgresqls API. Manages a Linode
+        description: PostgreSQL is the Schema for the PostgreSQLs API. Manages a Linode
           PostgreSQL Database.
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: PostgresqlSpec defines the desired state of Postgresql
+            description: PostgreSQLSpec defines the desired state of PostgreSQL
             properties:
               deletionPolicy:
                 default: Delete
@@ -336,7 +336,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: PostgresqlStatus defines the observed state of Postgresql.
+            description: PostgreSQLStatus defines the observed state of PostgreSQL.
             properties:
               atProvider:
                 properties:

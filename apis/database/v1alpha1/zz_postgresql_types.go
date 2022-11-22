@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type PostgresqlObservation struct {
+type PostgreSQLObservation struct {
 
 	// When this Managed Database was created.
 	// When this Managed Database was created.
@@ -50,7 +50,7 @@ type PostgresqlObservation struct {
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
-type PostgresqlParameters struct {
+type PostgreSQLParameters struct {
 
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
@@ -104,13 +104,13 @@ type PostgresqlParameters struct {
 
 	// Configuration settings for automated patch update maintenance for the Managed Database.
 	// +kubebuilder:validation:Optional
-	Updates []PostgresqlUpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []PostgreSQLUpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
-type PostgresqlUpdatesObservation struct {
+type PostgreSQLUpdatesObservation struct {
 }
 
-type PostgresqlUpdatesParameters struct {
+type PostgreSQLUpdatesParameters struct {
 
 	// The day to perform maintenance. (monday, tuesday, ...)
 	// The day to perform maintenance.
@@ -138,51 +138,51 @@ type PostgresqlUpdatesParameters struct {
 	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
-// PostgresqlSpec defines the desired state of Postgresql
-type PostgresqlSpec struct {
+// PostgreSQLSpec defines the desired state of PostgreSQL
+type PostgreSQLSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     PostgresqlParameters `json:"forProvider"`
+	ForProvider     PostgreSQLParameters `json:"forProvider"`
 }
 
-// PostgresqlStatus defines the observed state of Postgresql.
-type PostgresqlStatus struct {
+// PostgreSQLStatus defines the observed state of PostgreSQL.
+type PostgreSQLStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        PostgresqlObservation `json:"atProvider,omitempty"`
+	AtProvider        PostgreSQLObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Postgresql is the Schema for the Postgresqls API. Manages a Linode PostgreSQL Database.
+// PostgreSQL is the Schema for the PostgreSQLs API. Manages a Linode PostgreSQL Database.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type Postgresql struct {
+type PostgreSQL struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              PostgresqlSpec   `json:"spec"`
-	Status            PostgresqlStatus `json:"status,omitempty"`
+	Spec              PostgreSQLSpec   `json:"spec"`
+	Status            PostgreSQLStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// PostgresqlList contains a list of Postgresqls
-type PostgresqlList struct {
+// PostgreSQLList contains a list of PostgreSQLs
+type PostgreSQLList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Postgresql `json:"items"`
+	Items           []PostgreSQL `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Postgresql_Kind             = "Postgresql"
-	Postgresql_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Postgresql_Kind}.String()
-	Postgresql_KindAPIVersion   = Postgresql_Kind + "." + CRDGroupVersion.String()
-	Postgresql_GroupVersionKind = CRDGroupVersion.WithKind(Postgresql_Kind)
+	PostgreSQL_Kind             = "PostgreSQL"
+	PostgreSQL_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: PostgreSQL_Kind}.String()
+	PostgreSQL_KindAPIVersion   = PostgreSQL_Kind + "." + CRDGroupVersion.String()
+	PostgreSQL_GroupVersionKind = CRDGroupVersion.WithKind(PostgreSQL_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Postgresql{}, &PostgresqlList{})
+	SchemeBuilder.Register(&PostgreSQL{}, &PostgreSQLList{})
 }

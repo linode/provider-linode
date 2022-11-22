@@ -73,69 +73,69 @@ func (mg *AccessControls) SetWriteConnectionSecretToReference(r *xpv1.SecretRefe
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this Mongodb.
-func (mg *Mongodb) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this MongoDB.
+func (mg *MongoDB) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Mongodb.
-func (mg *Mongodb) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this MongoDB.
+func (mg *MongoDB) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this Mongodb.
-func (mg *Mongodb) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this MongoDB.
+func (mg *MongoDB) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this Mongodb.
+GetProviderReference of this MongoDB.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *Mongodb) GetProviderReference() *xpv1.Reference {
+func (mg *MongoDB) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this Mongodb.
-func (mg *Mongodb) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this MongoDB.
+func (mg *MongoDB) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this Mongodb.
-func (mg *Mongodb) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this MongoDB.
+func (mg *MongoDB) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Mongodb.
-func (mg *Mongodb) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this MongoDB.
+func (mg *MongoDB) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Mongodb.
-func (mg *Mongodb) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this MongoDB.
+func (mg *MongoDB) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this Mongodb.
-func (mg *Mongodb) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this MongoDB.
+func (mg *MongoDB) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this Mongodb.
+SetProviderReference of this MongoDB.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *Mongodb) SetProviderReference(r *xpv1.Reference) {
+func (mg *MongoDB) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this Mongodb.
-func (mg *Mongodb) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this MongoDB.
+func (mg *MongoDB) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this Mongodb.
-func (mg *Mongodb) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this MongoDB.
+func (mg *MongoDB) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
@@ -205,68 +205,68 @@ func (mg *MySQL) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this Postgresql.
-func (mg *Postgresql) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this PostgreSQL.
+func (mg *PostgreSQL) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Postgresql.
-func (mg *Postgresql) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this PostgreSQL.
+func (mg *PostgreSQL) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetProviderConfigReference of this Postgresql.
-func (mg *Postgresql) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this PostgreSQL.
+func (mg *PostgreSQL) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
 /*
-GetProviderReference of this Postgresql.
+GetProviderReference of this PostgreSQL.
 Deprecated: Use GetProviderConfigReference.
 */
-func (mg *Postgresql) GetProviderReference() *xpv1.Reference {
+func (mg *PostgreSQL) GetProviderReference() *xpv1.Reference {
 	return mg.Spec.ProviderReference
 }
 
-// GetPublishConnectionDetailsTo of this Postgresql.
-func (mg *Postgresql) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this PostgreSQL.
+func (mg *PostgreSQL) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this Postgresql.
-func (mg *Postgresql) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this PostgreSQL.
+func (mg *PostgreSQL) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Postgresql.
-func (mg *Postgresql) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this PostgreSQL.
+func (mg *PostgreSQL) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Postgresql.
-func (mg *Postgresql) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this PostgreSQL.
+func (mg *PostgreSQL) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetProviderConfigReference of this Postgresql.
-func (mg *Postgresql) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this PostgreSQL.
+func (mg *PostgreSQL) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
 /*
-SetProviderReference of this Postgresql.
+SetProviderReference of this PostgreSQL.
 Deprecated: Use SetProviderConfigReference.
 */
-func (mg *Postgresql) SetProviderReference(r *xpv1.Reference) {
+func (mg *PostgreSQL) SetProviderReference(r *xpv1.Reference) {
 	mg.Spec.ProviderReference = r
 }
 
-// SetPublishConnectionDetailsTo of this Postgresql.
-func (mg *Postgresql) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this PostgreSQL.
+func (mg *PostgreSQL) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this Postgresql.
-func (mg *Postgresql) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this PostgreSQL.
+func (mg *PostgreSQL) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

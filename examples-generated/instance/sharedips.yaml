@@ -1,5 +1,5 @@
 apiVersion: instance.linode.upbound.io/v1alpha1
-kind: SharedIps
+kind: SharedIPs
 metadata:
   annotations:
     meta.upbound.io/example-id: instance/v1alpha1/sharedips

@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type MongodbObservation struct {
+type MongoDBObservation struct {
 
 	// When this Managed Database was created.
 	// When this Managed Database was created.
@@ -59,7 +59,7 @@ type MongodbObservation struct {
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
-type MongodbParameters struct {
+type MongoDBParameters struct {
 
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
@@ -147,51 +147,51 @@ type UpdatesParameters struct {
 	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
-// MongodbSpec defines the desired state of Mongodb
-type MongodbSpec struct {
+// MongoDBSpec defines the desired state of MongoDB
+type MongoDBSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     MongodbParameters `json:"forProvider"`
+	ForProvider     MongoDBParameters `json:"forProvider"`
 }
 
-// MongodbStatus defines the observed state of Mongodb.
-type MongodbStatus struct {
+// MongoDBStatus defines the observed state of MongoDB.
+type MongoDBStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        MongodbObservation `json:"atProvider,omitempty"`
+	AtProvider        MongoDBObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// Mongodb is the Schema for the Mongodbs API. Manages a Linode MongoDB Database.
+// MongoDB is the Schema for the MongoDBs API. Manages a Linode MongoDB Database.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
-type Mongodb struct {
+type MongoDB struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              MongodbSpec   `json:"spec"`
-	Status            MongodbStatus `json:"status,omitempty"`
+	Spec              MongoDBSpec   `json:"spec"`
+	Status            MongoDBStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// MongodbList contains a list of Mongodbs
-type MongodbList struct {
+// MongoDBList contains a list of MongoDBs
+type MongoDBList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Mongodb `json:"items"`
+	Items           []MongoDB `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Mongodb_Kind             = "Mongodb"
-	Mongodb_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Mongodb_Kind}.String()
-	Mongodb_KindAPIVersion   = Mongodb_Kind + "." + CRDGroupVersion.String()
-	Mongodb_GroupVersionKind = CRDGroupVersion.WithKind(Mongodb_Kind)
+	MongoDB_Kind             = "MongoDB"
+	MongoDB_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: MongoDB_Kind}.String()
+	MongoDB_KindAPIVersion   = MongoDB_Kind + "." + CRDGroupVersion.String()
+	MongoDB_GroupVersionKind = CRDGroupVersion.WithKind(MongoDB_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Mongodb{}, &MongodbList{})
+	SchemeBuilder.Register(&MongoDB{}, &MongoDBList{})
 }

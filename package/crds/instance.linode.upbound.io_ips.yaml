@@ -81,7 +81,7 @@ spec:
                       DNS assigned to this address.
                     type: string
                   rdnsRef:
-                    description: Reference to a Rdns in rdns to populate rdns.
+                    description: Reference to a RDNS in rdns to populate rdns.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -115,7 +115,7 @@ spec:
                     - name
                     type: object
                   rdnsSelector:
-                    description: Selector for a Rdns in rdns to populate rdns.
+                    description: Selector for a RDNS in rdns to populate rdns.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the

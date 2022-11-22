@@ -1,5 +1,5 @@
 apiVersion: ipv6.linode.upbound.io/v1alpha1
-kind: IPv6range
+kind: IPv6Range
 metadata:
   annotations:
     meta.upbound.io/example-id: ipv6/v1alpha1/ipv6range

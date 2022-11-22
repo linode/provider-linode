@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - linode
-    kind: SharedIps
-    listKind: SharedIpsList
+    kind: SharedIPs
+    listKind: SharedIPsList
     plural: sharedips
     singular: sharedips
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: SharedIps is the Schema for the SharedIpss API. Manages IP addresses
+        description: SharedIPs is the Schema for the SharedIPss API. Manages IP addresses
           shared to a Linode.
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SharedIpsSpec defines the desired state of SharedIps
+            description: SharedIPsSpec defines the desired state of SharedIPs
             properties:
               deletionPolicy:
                 default: Delete
@@ -250,7 +250,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: SharedIpsStatus defines the observed state of SharedIps.
+            description: SharedIPsStatus defines the observed state of SharedIPs.
             properties:
               atProvider:
                 properties:

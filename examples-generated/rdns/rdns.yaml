@@ -1,5 +1,5 @@
 apiVersion: rdns.linode.upbound.io/v1alpha1
-kind: Rdns
+kind: RDNS
 metadata:
   annotations:
     meta.upbound.io/example-id: rdns/v1alpha1/rdns

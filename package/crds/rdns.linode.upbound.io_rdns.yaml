@@ -13,8 +13,8 @@ spec:
     - crossplane
     - managed
     - linode
-    kind: Rdns
-    listKind: RdnsList
+    kind: RDNS
+    listKind: RDNSList
     plural: rdns
     singular: rdns
   scope: Cluster
@@ -35,7 +35,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Rdns is the Schema for the Rdnss API. Manages the RDNS / PTR
+        description: RDNS is the Schema for the RDNSs API. Manages the RDNS / PTR
           record for the IP Address associated with a Linode Instance.
         properties:
           apiVersion:
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: RdnsSpec defines the desired state of Rdns
+            description: RDNSSpec defines the desired state of RDNS
             properties:
               deletionPolicy:
                 default: Delete
@@ -255,7 +255,7 @@ spec:
             - forProvider
             type: object
           status:
-            description: RdnsStatus defines the observed state of Rdns.
+            description: RDNSStatus defines the observed state of RDNS.
             properties:
               atProvider:
                 properties:
