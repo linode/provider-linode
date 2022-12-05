@@ -12,7 +12,8 @@ export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-linode_v1.29.4
 export TERRAFORM_PROVIDER_REPO := https://github.com/srust/terraform-provider-linode
 export TERRAFORM_DOCS_PATH := website/docs/r
 
-PLATFORMS ?= linux_amd64 linux_arm64
+#PLATFORMS ?= linux_amd64 linux_arm64
+PLATFORMS ?= linux_amd64
 
 # -include will silently skip missing files, which allows us
 # to load those files with a target in the Makefile. If only
