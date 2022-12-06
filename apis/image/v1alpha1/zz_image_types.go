@@ -63,8 +63,17 @@ type ImageParameters struct {
 
 	// The ID of the Linode Disk that this Image will be created from.
 	// The ID of the Linode Disk that this Image will be created from.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk in instance to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk in instance to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The MD5 hash of the file to be uploaded. This is used to trigger file updates.
 	// The MD5 hash of the image file.
@@ -83,8 +92,17 @@ type ImageParameters struct {
 
 	// The ID of the Linode that this Image will be created from.
 	// The ID of the Linode that this Image will be created from.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The region of the image. See all regions here.
 	// The region to upload to.

@@ -10,7 +10,9 @@ spec:
   forProvider:
     addresses:
     - ${linode_instance_ip.primary.address}
-    linodeId: ${linode_instance.secondary.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: secondary
 
 ---
 
@@ -56,7 +58,9 @@ metadata:
   name: primary
 spec:
   forProvider:
-    linodeId: ${linode_instance.primary.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: primary
 
 ---
 

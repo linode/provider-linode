@@ -11,9 +11,7 @@ spec:
     authorizedKeys:
     - ssh-rsa AAAA...Gw== user@example.local
     group: foo
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/ubuntu18.04
     label: simple_instance
     privateIp: true
     region: us-central

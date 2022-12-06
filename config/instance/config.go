@@ -14,8 +14,9 @@ func Configure(p *config.Provider) {
 			IgnoredFields: []string{"disk", "config"},
 		}
 
-		r.References["image"] = config.Reference{
-			Type: "github.com/linode/provider-linode/apis/image/v1alpha1.Image",
+		r.References["stackscript_id"] = config.Reference{
+			Type: "github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript",
 		}
+
 	})
 }

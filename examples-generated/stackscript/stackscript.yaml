@@ -33,9 +33,7 @@ spec:
   forProvider:
     authorizedKeys:
     - '...'
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/ubuntu18.04
     label: foo
     region: us-east
     rootPassSecretRef:
@@ -46,7 +44,9 @@ spec:
       key: example-key
       name: example-secret
       namespace: upbound-system
-    stackscriptId: ${linode_stackscript.foo.id}
+    stackscriptIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foo
     type: g6-nanode-1
 
 ---

@@ -6,8 +6,16 @@ import "github.com/upbound/upjet/pkg/config"
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("linode_instance_disk", func(r *config.Resource) {
 
-		r.References["image"] = config.Reference{
-			Type: "github.com/linode/provider-linode/apis/image/v1alpha1.Image",
+		r.References["linode_id"] = config.Reference{
+			Type: "Instance",
+		}
+
+		r.LateInitializer = config.LateInitializer{
+			IgnoredFields: []string{"disk", "config"},
+		}
+
+		r.References["stackscript_id"] = config.Reference{
+			Type: "github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript",
 		}
 
 	})

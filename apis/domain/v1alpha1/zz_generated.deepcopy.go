@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -310,6 +311,16 @@ func (in *RecordParameters) DeepCopyInto(out *RecordParameters) {
 		in, out := &in.DomainID, &out.DomainID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.DomainIDRef != nil {
+		in, out := &in.DomainIDRef, &out.DomainIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DomainIDSelector != nil {
+		in, out := &in.DomainIDSelector, &out.DomainIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name

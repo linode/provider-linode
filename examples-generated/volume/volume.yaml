@@ -9,7 +9,9 @@ metadata:
 spec:
   forProvider:
     label: foo-volume
-    linodeId: ${linode_instance.foobaz.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foobaz
     region: us-central
 
 ---

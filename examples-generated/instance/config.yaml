@@ -11,9 +11,13 @@ spec:
     booted: true
     devices:
     - sda:
-      - diskId: ${linode_instance_disk.boot.id}
+      - diskIdSelector:
+          matchLabels:
+            testing.upbound.io/example-name: boot
     label: my-config
-    linodeId: ${linode_instance.my-instance.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-instance
 
 ---
 
@@ -43,11 +47,11 @@ metadata:
   name: boot
 spec:
   forProvider:
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/ubuntu20.04
     label: boot
-    linodeId: ${linode_instance.my-instance.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-instance
     rootPassSecretRef:
       key: example-key
       name: example-secret

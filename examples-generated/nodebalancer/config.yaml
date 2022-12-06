@@ -13,7 +13,9 @@ spec:
     checkAttempts: 3
     checkPath: /foo
     checkTimeout: 30
-    nodebalancerId: ${linode_nodebalancer.foobar.id}
+    nodebalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foobar
     port: 8088
     protocol: http
     stickiness: http_cookie

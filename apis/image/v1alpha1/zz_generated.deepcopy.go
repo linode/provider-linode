@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -150,6 +151,16 @@ func (in *ImageParameters) DeepCopyInto(out *ImageParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.FileHash != nil {
 		in, out := &in.FileHash, &out.FileHash
 		*out = new(string)
@@ -169,6 +180,16 @@ func (in *ImageParameters) DeepCopyInto(out *ImageParameters) {
 		in, out := &in.LinodeID, &out.LinodeID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region

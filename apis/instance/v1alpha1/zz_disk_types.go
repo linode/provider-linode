@@ -49,17 +49,8 @@ type DiskParameters_2 struct {
 
 	// An Image ID to deploy the Linode Disk from.
 	// An Image ID to deploy the Linode Disk from.
-	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/image/v1alpha1.Image
 	// +kubebuilder:validation:Optional
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
-
-	// Reference to a Image in image to populate image.
-	// +kubebuilder:validation:Optional
-	ImageRef *v1.Reference `json:"imageRef,omitempty" tf:"-"`
-
-	// Selector for a Image in image to populate image.
-	// +kubebuilder:validation:Optional
-	ImageSelector *v1.Selector `json:"imageSelector,omitempty" tf:"-"`
 
 	// The Disk's label for display purposes only.
 	// The Disk’s label is for display purposes only.
@@ -68,8 +59,17 @@ type DiskParameters_2 struct {
 
 	// The ID of the Linode to create this Disk under.
 	// The ID of the Linode to assign this disk to.
-	// +kubebuilder:validation:Required
-	LinodeID *float64 `json:"linodeId" tf:"linode_id,omitempty"`
+	// +crossplane:generate:reference:type=Instance
+	// +kubebuilder:validation:Optional
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The root user’s password on a newly-created Linode Disk when deploying from an Image.
 	// This sets the root user’s password on a newly-created Linode Disk when deploying from an Image.
@@ -88,8 +88,17 @@ type DiskParameters_2 struct {
 
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript
 	// +kubebuilder:validation:Optional
 	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+
+	// Reference to a Stackscript in stackscript to populate stackscriptId.
+	// +kubebuilder:validation:Optional
+	StackscriptIDRef *v1.Reference `json:"stackscriptIdRef,omitempty" tf:"-"`
+
+	// Selector for a Stackscript in stackscript to populate stackscriptId.
+	// +kubebuilder:validation:Optional
+	StackscriptIDSelector *v1.Selector `json:"stackscriptIdSelector,omitempty" tf:"-"`
 }
 
 // DiskSpec defines the desired state of Disk

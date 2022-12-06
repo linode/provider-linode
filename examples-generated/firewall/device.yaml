@@ -8,8 +8,12 @@ metadata:
   name: my-device
 spec:
   forProvider:
-    entityId: ${linode_instance.my_instance.id}
-    firewallId: ${linode_firewall.my_firewall.id}
+    entityIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my_instance
+    firewallIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my_firewall
 
 ---
 

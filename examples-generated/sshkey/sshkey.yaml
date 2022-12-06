@@ -25,9 +25,7 @@ spec:
   forProvider:
     authorizedKeys:
     - ${linode_sshkey.foo.ssh_key}
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/ubuntu18.04
     label: foo
     region: us-east
     rootPassSecretRef:

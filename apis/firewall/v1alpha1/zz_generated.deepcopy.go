@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -110,6 +111,16 @@ func (in *DeviceParameters) DeepCopyInto(out *DeviceParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.EntityIDRef != nil {
+		in, out := &in.EntityIDRef, &out.EntityIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.EntityIDSelector != nil {
+		in, out := &in.EntityIDSelector, &out.EntityIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.EntityType != nil {
 		in, out := &in.EntityType, &out.EntityType
 		*out = new(string)
@@ -119,6 +130,16 @@ func (in *DeviceParameters) DeepCopyInto(out *DeviceParameters) {
 		in, out := &in.FirewallID, &out.FirewallID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.FirewallIDRef != nil {
+		in, out := &in.FirewallIDRef, &out.FirewallIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.FirewallIDSelector != nil {
+		in, out := &in.FirewallIDSelector, &out.FirewallIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -347,6 +368,18 @@ func (in *FirewallParameters) DeepCopyInto(out *FirewallParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.LinodesRefs != nil {
+		in, out := &in.LinodesRefs, &out.LinodesRefs
+		*out = make([]v1.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.LinodesSelector != nil {
+		in, out := &in.LinodesSelector, &out.LinodesSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Outbound != nil {
 		in, out := &in.Outbound, &out.Outbound
