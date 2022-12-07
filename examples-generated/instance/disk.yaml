@@ -10,7 +10,9 @@ spec:
   forProvider:
     filesystem: ext4
     label: boot
-    linodeId: ${linode_instance.my-instance.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-instance
     size: 512
 
 ---

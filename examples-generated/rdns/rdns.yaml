@@ -23,9 +23,7 @@ metadata:
   name: foo
 spec:
   forProvider:
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/alpine3.9
     region: ca-east
     type: g6-dedicated-2
 

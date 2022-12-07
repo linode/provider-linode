@@ -511,6 +511,16 @@ func (in *ConfigParameters_2) DeepCopyInto(out *ConfigParameters_2) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.MemoryLimit != nil {
 		in, out := &in.MemoryLimit, &out.MemoryLimit
 		*out = new(float64)
@@ -686,6 +696,16 @@ func (in *DevicesSdaParameters) DeepCopyInto(out *DevicesSdaParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(float64)
@@ -725,6 +745,16 @@ func (in *DevicesSdbParameters) DeepCopyInto(out *DevicesSdbParameters) {
 		in, out := &in.DiskID, &out.DiskID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
@@ -766,6 +796,16 @@ func (in *DevicesSdcParameters) DeepCopyInto(out *DevicesSdcParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(float64)
@@ -805,6 +845,16 @@ func (in *DevicesSddParameters) DeepCopyInto(out *DevicesSddParameters) {
 		in, out := &in.DiskID, &out.DiskID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
@@ -846,6 +896,16 @@ func (in *DevicesSdeParameters) DeepCopyInto(out *DevicesSdeParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(float64)
@@ -885,6 +945,16 @@ func (in *DevicesSdfParameters) DeepCopyInto(out *DevicesSdfParameters) {
 		in, out := &in.DiskID, &out.DiskID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
@@ -926,6 +996,16 @@ func (in *DevicesSdgParameters) DeepCopyInto(out *DevicesSdgParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(float64)
@@ -965,6 +1045,16 @@ func (in *DevicesSdhParameters) DeepCopyInto(out *DevicesSdhParameters) {
 		in, out := &in.DiskID, &out.DiskID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
@@ -1209,16 +1299,6 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.ImageRef != nil {
-		in, out := &in.ImageRef, &out.ImageRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.ImageSelector != nil {
-		in, out := &in.ImageSelector, &out.ImageSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
 		*out = new(string)
@@ -1228,6 +1308,16 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 		in, out := &in.LinodeID, &out.LinodeID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.RootPassSecretRef != nil {
 		in, out := &in.RootPassSecretRef, &out.RootPassSecretRef
@@ -1248,6 +1338,16 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 		in, out := &in.StackscriptID, &out.StackscriptID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.StackscriptIDRef != nil {
+		in, out := &in.StackscriptIDRef, &out.StackscriptIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.StackscriptIDSelector != nil {
+		in, out := &in.StackscriptIDSelector, &out.StackscriptIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -1471,6 +1571,16 @@ func (in *IPParameters) DeepCopyInto(out *IPParameters) {
 		in, out := &in.LinodeID, &out.LinodeID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Public != nil {
 		in, out := &in.Public, &out.Public
@@ -1790,16 +1900,6 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.ImageRef != nil {
-		in, out := &in.ImageRef, &out.ImageRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.ImageSelector != nil {
-		in, out := &in.ImageSelector, &out.ImageSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Interface != nil {
 		in, out := &in.Interface, &out.Interface
 		*out = make([]InstanceInterfaceParameters, len(*in))
@@ -1852,6 +1952,16 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		in, out := &in.StackscriptID, &out.StackscriptID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.StackscriptIDRef != nil {
+		in, out := &in.StackscriptIDRef, &out.StackscriptIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.StackscriptIDSelector != nil {
+		in, out := &in.StackscriptIDSelector, &out.StackscriptIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.SwapSize != nil {
 		in, out := &in.SwapSize, &out.SwapSize
@@ -2467,6 +2577,16 @@ func (in *SharedIPsParameters) DeepCopyInto(out *SharedIPsParameters) {
 		in, out := &in.LinodeID, &out.LinodeID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 

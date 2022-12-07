@@ -8,7 +8,9 @@ metadata:
   name: foo
 spec:
   forProvider:
-    linodeId: ${linode_instance.foo.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foo
     public: true
 
 ---
@@ -23,9 +25,7 @@ metadata:
   name: foo
 spec:
   forProvider:
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/alpine3.12
     label: foobar-test
     region: us-east
     type: g6-nanode-1

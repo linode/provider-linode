@@ -8,7 +8,9 @@ metadata:
   name: foobar
 spec:
   forProvider:
-    linodeId: ${linode_instance.foobar.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foobar
     prefixLength: 64
 
 ---
@@ -23,9 +25,7 @@ metadata:
   name: foobar
 spec:
   forProvider:
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/alpine3.14
     label: my-linode
     region: us-southeast
     type: g6-nanode-1

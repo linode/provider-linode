@@ -9,9 +9,13 @@ metadata:
 spec:
   forProvider:
     description: Image taken from foo
-    diskId: ${linode_instance.foo.disk.0.id}
+    diskIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foo
     label: foo-sda-image
-    linodeId: ${linode_instance.foo.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foo
 
 ---
 
@@ -25,9 +29,7 @@ metadata:
   name: bar-based
 spec:
   forProvider:
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: bar
+    image: ${linode_image.bar.id}
     region: eu-west
     type: g6-nanode-1
 

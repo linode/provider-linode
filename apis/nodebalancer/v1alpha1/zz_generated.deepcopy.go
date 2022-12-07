@@ -163,6 +163,16 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.NodebalancerIDRef != nil {
+		in, out := &in.NodebalancerIDRef, &out.NodebalancerIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NodebalancerIDSelector != nil {
+		in, out := &in.NodebalancerIDSelector, &out.NodebalancerIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
 		*out = new(float64)
@@ -336,6 +346,16 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.ConfigIDRef != nil {
+		in, out := &in.ConfigIDRef, &out.ConfigIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ConfigIDSelector != nil {
+		in, out := &in.ConfigIDSelector, &out.ConfigIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
 		*out = new(string)
@@ -350,6 +370,16 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 		in, out := &in.NodebalancerID, &out.NodebalancerID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.NodebalancerIDRef != nil {
+		in, out := &in.NodebalancerIDRef, &out.NodebalancerIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NodebalancerIDSelector != nil {
+		in, out := &in.NodebalancerIDSelector, &out.NodebalancerIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight

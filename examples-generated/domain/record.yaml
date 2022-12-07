@@ -8,7 +8,9 @@ metadata:
   name: foobar
 spec:
   forProvider:
-    domainId: ${linode_domain.foobar.id}
+    domainIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foobar
     name: www
     recordType: CNAME
     target: foobar.example

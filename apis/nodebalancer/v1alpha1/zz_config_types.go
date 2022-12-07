@@ -76,8 +76,17 @@ type ConfigParameters struct {
 
 	// The ID of the NodeBalancer to access.
 	// The ID of the NodeBalancer to access.
-	// +kubebuilder:validation:Required
-	NodebalancerID *float64 `json:"nodebalancerId" tf:"nodebalancer_id,omitempty"`
+	// +crossplane:generate:reference:type=Nodebalancer
+	// +kubebuilder:validation:Optional
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
+
+	// Reference to a Nodebalancer to populate nodebalancerId.
+	// +kubebuilder:validation:Optional
+	NodebalancerIDRef *v1.Reference `json:"nodebalancerIdRef,omitempty" tf:"-"`
+
+	// Selector for a Nodebalancer to populate nodebalancerId.
+	// +kubebuilder:validation:Optional
+	NodebalancerIDSelector *v1.Selector `json:"nodebalancerIdSelector,omitempty" tf:"-"`
 
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443. (Defaults to 80)
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443.

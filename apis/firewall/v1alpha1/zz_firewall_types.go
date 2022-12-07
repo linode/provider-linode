@@ -70,8 +70,17 @@ type FirewallParameters struct {
 
 	// A list of IDs of Linodes this Firewall should govern it's network traffic for.
 	// The IDs of Linodes to apply this firewall to.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+
+	// References to Instance in instance to populate linodes.
+	// +kubebuilder:validation:Optional
+	LinodesRefs []v1.Reference `json:"linodesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Instance in instance to populate linodes.
+	// +kubebuilder:validation:Optional
+	LinodesSelector *v1.Selector `json:"linodesSelector,omitempty" tf:"-"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
 	// +kubebuilder:validation:Optional

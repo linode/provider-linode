@@ -42,9 +42,7 @@ metadata:
   name: my-instance
 spec:
   forProvider:
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/alpine3.14
     label: myinstance
     region: us-southeast
     type: g6-nanode-1

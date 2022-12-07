@@ -30,8 +30,17 @@ type DeviceParameters struct {
 
 	// The unique ID of the entity to attach.
 	// The ID of the entity to create a Firewall device for.
-	// +kubebuilder:validation:Required
-	EntityID *float64 `json:"entityId" tf:"entity_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
+	// +kubebuilder:validation:Optional
+	EntityID *float64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
+
+	// Reference to a Instance in instance to populate entityId.
+	// +kubebuilder:validation:Optional
+	EntityIDRef *v1.Reference `json:"entityIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate entityId.
+	// +kubebuilder:validation:Optional
+	EntityIDSelector *v1.Selector `json:"entityIdSelector,omitempty" tf:"-"`
 
 	// The type of the entity to attach. (default: linode)
 	// The type of the entity to create a Firewall device for.
@@ -40,8 +49,17 @@ type DeviceParameters struct {
 
 	// The unique ID of the target Firewall.
 	// The ID of the Firewall to access.
-	// +kubebuilder:validation:Required
-	FirewallID *float64 `json:"firewallId" tf:"firewall_id,omitempty"`
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/firewall/v1alpha1.Device
+	// +kubebuilder:validation:Optional
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// Reference to a Device in firewall to populate firewallId.
+	// +kubebuilder:validation:Optional
+	FirewallIDRef *v1.Reference `json:"firewallIdRef,omitempty" tf:"-"`
+
+	// Selector for a Device in firewall to populate firewallId.
+	// +kubebuilder:validation:Optional
+	FirewallIDSelector *v1.Selector `json:"firewallIdSelector,omitempty" tf:"-"`
 }
 
 // DeviceSpec defines the desired state of Device

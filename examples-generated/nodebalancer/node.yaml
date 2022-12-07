@@ -9,10 +9,14 @@ metadata:
 spec:
   forProvider:
     address: ${element(linode_instance.web.*.private_ip_address, count.index)}:80
-    configId: ${linode_nodebalancer_config.foofig.id}
+    configIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foofig
     count: "3"
     label: mynodebalancernode
-    nodebalancerId: ${linode_nodebalancer.foobar.id}
+    nodebalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foobar
     weight: 50
 
 ---
@@ -30,9 +34,7 @@ spec:
     authorizedKeys:
     - ssh-rsa AAAA...Gw== user@example.local
     count: "3"
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/ubuntu18.04
     label: web-${count.index + 1}
     privateIp: true
     region: us-east
@@ -75,7 +77,9 @@ spec:
     checkAttempts: 3
     checkPath: /foo
     checkTimeout: 30
-    nodebalancerId: ${linode_nodebalancer.foobar.id}
+    nodebalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foobar
     port: 80
     protocol: http
     stickiness: http_cookie

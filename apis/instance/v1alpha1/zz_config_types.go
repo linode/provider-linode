@@ -144,8 +144,17 @@ type ConfigParameters_2 struct {
 
 	// The ID of the Linode to create this configuration profile under.
 	// The ID of the Linode to create this configuration profile under.
-	// +kubebuilder:validation:Required
-	LinodeID *float64 `json:"linodeId" tf:"linode_id,omitempty"`
+	// +crossplane:generate:reference:type=Instance
+	// +kubebuilder:validation:Optional
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The memory limit of the Config. Defaults to the total ram of the Linode.
 	// The memory limit of the Linode.
@@ -175,8 +184,17 @@ type DevicesSdaParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -191,8 +209,17 @@ type DevicesSdbParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -207,8 +234,17 @@ type DevicesSdcParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -223,8 +259,17 @@ type DevicesSddParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -239,8 +284,17 @@ type DevicesSdeParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -255,8 +309,17 @@ type DevicesSdfParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -271,8 +334,17 @@ type DevicesSdgParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -287,8 +359,17 @@ type DevicesSdhParameters struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
+	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
 	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot

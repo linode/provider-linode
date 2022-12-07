@@ -37,8 +37,17 @@ type IPv6RangeParameters struct {
 
 	// The ID of the Linode to assign this range to. This field may be updated to reassign the IPv6 range.
 	// The ID of the Linode to assign this range to.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.

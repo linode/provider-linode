@@ -27,8 +27,8 @@ spec:
       protocol: TCP
     inboundPolicy: DROP
     label: my_firewall
-    linodes:
-    - ${linode_instance.my_instance.id}
+    linodesRefs:
+    - name: my_instance
     outbound:
     - action: DROP
       ipv4:
@@ -60,9 +60,7 @@ metadata:
   name: my-instance
 spec:
   forProvider:
-    imageSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    image: linode/ubuntu18.04
     label: my_instance
     region: us-southeast
     rootPassSecretRef:

@@ -26,8 +26,17 @@ type SharedIPsParameters struct {
 
 	// The ID of the Linode to share the IPs to.
 	// The ID of the Linode to share these IP addresses with.
-	// +kubebuilder:validation:Required
-	LinodeID *float64 `json:"linodeId" tf:"linode_id,omitempty"`
+	// +crossplane:generate:reference:type=Instance
+	// +kubebuilder:validation:Optional
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 }
 
 // SharedIPsSpec defines the desired state of SharedIPs
