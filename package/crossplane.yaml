@@ -2,3 +2,14 @@ apiVersion: meta.pkg.crossplane.io/v1alpha1
 kind: Provider
 metadata:
   name: provider-linode
+  annotations:
+    meta.crossplane.io/maintainer: github.com/linode/provider-linode
+    meta.crossplane.io/source: github.com/linode/provider-linode
+    meta.crossplane.io/description: |
+      Linode's official Crossplane provider to manage Linode cloud
+      resources in Kubernetes.
+    meta.crossplane.io/readme: |
+      Provider Linode is a Crossplane provider for [Linode](https://linode.com/)
+      developed and supported by Linode.
+      If you encounter an issue please reach out on github at github.com/linode/provider-linode
+    friendly-name.meta.crossplane.io: Provider Linode
