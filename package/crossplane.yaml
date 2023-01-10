@@ -9,10 +9,7 @@ metadata:
       Linode's official Crossplane provider to manage Akamai Linode cloud
       resources in Kubernetes.
     meta.crossplane.io/readme: |
-      [PRE-RELEASE] Provider Linode is a Crossplane provider for [Linode](https://linode.com/)
-      developed and supported by Linode.
-
+      [PRE-RELEASE] Provider Linode is a Crossplane provider for [Linode](https://linode.com/) developed and supported by Linode.
       NOTE: This is a pre-release version and should not be used in a production environment.
-
       If you encounter an issue please reach out on github at [github.com/linode/provider-linode/issues](https://github.com/linode/provider-linode/issues)
     friendly-name.meta.crossplane.io: Provider Linode
