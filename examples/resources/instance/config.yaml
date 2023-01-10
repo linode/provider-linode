@@ -1,0 +1,62 @@
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Config
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/config
+  labels:
+    testing.upbound.io/example-name: my-config
+  name: my-config
+spec:
+  forProvider:
+    booted: true
+    devices:
+    - sda:
+      - diskIdSelector:
+          matchLabels:
+            testing.upbound.io/example-name: boot
+    label: my-config
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-instance
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/config
+  labels:
+    testing.upbound.io/example-name: my-instance
+  name: my-instance
+spec:
+  forProvider:
+    label: my-instance
+    region: us-southeast
+    type: g6-standard-1
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Disk
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/config
+  labels:
+    testing.upbound.io/example-name: boot
+  name: boot
+spec:
+  forProvider:
+    image: linode/ubuntu20.04
+    label: boot
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-instance
+    rootPassSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    size: ${linode_instance.my-instance.specs.0.disk}
+
+---
+

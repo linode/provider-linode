@@ -10,7 +10,6 @@
 - Linode Website: <https://www.linode.com>
 - Documentation: <https://marketplace.upbound.io/providers/linode/provider-linode>
 
-
 ## Abount Crossplane
 
 <img src="https://github.com/crossplane/artwork/blob/420102818bc649730cc97de5b4ed8178e9333eb5/logo/icon.svg" height="200px" width="300px">
@@ -45,52 +44,11 @@ Linode API.
 
 ## Getting Started
 
-Install the provider by using the following command after changing the image tag
-to the [latest release](https://marketplace.upbound.io/providers/linode/provider-linode):
-```
-up ctp provider install linode/provider-linode:v0.1.0
-```
-
-Alternatively, you can use declarative installation:
-```
-cat <<EOF | kubectl apply -f -
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-linode
-spec:
-  package: linode/provider-linode:v0.1.0
-EOF
-```
-
-Notice that in this example Provider resource is referencing ControllerConfig with debug enabled.
-
-You can see the API reference [here](https://doc.crds.dev/github.com/linode/provider-linode).
+Install the provider by following the [getting started guide](docs/install.md)
 
 ## Developing
 
-Run code-generation pipeline:
-```console
-go run cmd/generator/main.go "$PWD"
-```
-
-Run against a Kubernetes cluster:
-
-```console
-make run
-```
-
-Build, push, and install:
-
-```console
-make all
-```
-
-Build binary:
-
-```console
-make build
-```
+Build and develop the provider locally by following the [developer guide](docs/developer.md)
 
 ## Report a Bug
 

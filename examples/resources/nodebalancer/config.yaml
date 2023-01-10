@@ -1,0 +1,40 @@
+apiVersion: nodebalancer.linode.upbound.io/v1alpha1
+kind: Config
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nodebalancer/v1alpha1/config
+  labels:
+    testing.upbound.io/example-name: foofig
+  name: foofig
+spec:
+  forProvider:
+    algorithm: source
+    check: http
+    checkAttempts: 3
+    checkPath: /foo
+    checkTimeout: 30
+    nodebalancerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foobar
+    port: 8088
+    protocol: http
+    stickiness: http_cookie
+
+---
+
+apiVersion: nodebalancer.linode.upbound.io/v1alpha1
+kind: Nodebalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nodebalancer/v1alpha1/config
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    clientConnThrottle: 20
+    label: mynodebalancer
+    region: us-east
+
+---
+
