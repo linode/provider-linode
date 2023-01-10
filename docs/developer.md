@@ -1,7 +1,5 @@
 ## Developing
 
-Build and develop the provider locally by following the [developer guide](docs/developer.md)
-
 Run code-generation pipeline:
 ```console
 go run cmd/generator/main.go "$PWD"
