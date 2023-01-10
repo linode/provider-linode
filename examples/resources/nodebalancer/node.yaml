@@ -59,9 +59,7 @@ spec:
     clientConnThrottle: 20
     label: mynodebalancer
     region: us-east
-
 ---
-
 apiVersion: nodebalancer.linode.upbound.io/v1alpha1
 kind: Config
 metadata:
@@ -83,6 +81,3 @@ spec:
     port: 80
     protocol: http
     stickiness: http_cookie
-
----
-

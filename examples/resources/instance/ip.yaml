@@ -12,9 +12,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: foo
     public: true
-
 ---
-
 apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Instance
 metadata:
@@ -29,6 +27,3 @@ spec:
     label: foobar-test
     region: us-east
     type: g6-nanode-1
-
----
-

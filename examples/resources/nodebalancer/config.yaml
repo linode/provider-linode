@@ -19,9 +19,7 @@ spec:
     port: 8088
     protocol: http
     stickiness: http_cookie
-
 ---
-
 apiVersion: nodebalancer.linode.upbound.io/v1alpha1
 kind: Nodebalancer
 metadata:
@@ -35,6 +33,3 @@ spec:
     clientConnThrottle: 20
     label: mynodebalancer
     region: us-east
-
----
-

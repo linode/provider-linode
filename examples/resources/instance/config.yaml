@@ -34,9 +34,7 @@ spec:
     label: my-instance
     region: us-southeast
     type: g6-standard-1
-
 ---
-
 apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Disk
 metadata:
@@ -57,6 +55,3 @@ spec:
       name: example-secret
       namespace: upbound-system
     size: ${linode_instance.my-instance.specs.0.disk}
-
----
-

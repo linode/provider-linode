@@ -14,9 +14,7 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: my-instance
     size: 512
-
 ---
-
 apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Instance
 metadata:
@@ -30,6 +28,3 @@ spec:
     label: my-instance
     region: us-southeast
     type: g6-standard-1
-
----
-

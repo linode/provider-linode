@@ -13,9 +13,7 @@ spec:
     linodeIdSelector:
       matchLabels:
         testing.upbound.io/example-name: secondary
-
 ---
-
 apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Instance
 metadata:
@@ -29,9 +27,7 @@ spec:
     label: node-primary
     region: eu-central
     type: g6-nanode-1
-
 ---
-
 apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Instance
 metadata:
@@ -45,9 +41,7 @@ spec:
     label: node-secondary
     region: eu-central
     type: g6-nanode-1
-
 ---
-
 apiVersion: instance.linode.upbound.io/v1alpha1
 kind: IP
 metadata:
@@ -61,6 +55,3 @@ spec:
     linodeIdSelector:
       matchLabels:
         testing.upbound.io/example-name: primary
-
----
-
