@@ -12,7 +12,6 @@ spec:
     configIdSelector:
       matchLabels:
         testing.upbound.io/example-name: foofig
-    count: "3"
     label: mynodebalancernode
     nodebalancerIdSelector:
       matchLabels:
@@ -33,9 +32,8 @@ spec:
   forProvider:
     authorizedKeys:
     - ssh-rsa AAAA...Gw== user@example.local
-    count: "3"
     image: linode/ubuntu18.04
-    label: web-${count.index + 1}
+    label: web-1
     privateIp: true
     region: us-east
     rootPassSecretRef:
