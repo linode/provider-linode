@@ -116,6 +116,11 @@ func (in *GlobalGrantsParameters) DeepCopyInto(out *GlobalGrantsParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AddDatabases != nil {
+		in, out := &in.AddDatabases, &out.AddDatabases
+		*out = new(bool)
+		**out = **in
+	}
 	if in.AddDomains != nil {
 		in, out := &in.AddDomains, &out.AddDomains
 		*out = new(bool)

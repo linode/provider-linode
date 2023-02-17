@@ -672,6 +672,13 @@ resources:
               manifest: |-
                 {
                   "booted": true,
+                  "connection": [
+                    {
+                      "host": "${linode_instance.my-instance.ip_address}",
+                      "password": "myc00lpass!",
+                      "user": "root"
+                    }
+                  ],
                   "devices": [
                     {
                       "sda": [
@@ -702,9 +709,19 @@ resources:
                     }
                   ],
                   "label": "my-config",
-                  "linode_id": "${linode_instance.my-instance.id}"
+                  "linode_id": "${linode_instance.my-instance.id}",
+                  "provisioner": {
+                    "remote-exec": [
+                      {
+                        "inline": [
+                          "echo 'Hello World!'"
+                        ]
+                      }
+                    ]
+                  }
                 }
               references:
+                connection.host: linode_instance.my-instance.ip_address
                 devices.sda.disk_id: linode_instance_disk.boot.id
                 devices.sdb.disk_id: linode_instance_disk.swap.id
                 linode_id: linode_instance.my-instance.id
@@ -832,7 +849,7 @@ resources:
               dependencies:
                 linode_instance.foo: |-
                     {
-                      "image": "linode/alpine3.12",
+                      "image": "linode/alpine3.16",
                       "label": "foobar-test",
                       "region": "us-east",
                       "type": "g6-nanode-1"
@@ -1514,6 +1531,7 @@ resources:
                 }
         argumentDocs:
             account-access: '- (optional) The level of access this User has to Account-level actions, like billing information. (read_only, read_write)'
+            add_databases: '- (optional) If true, this User may add Databases.'
             add_domains: '- (optional) If true, this User may add Domains.'
             add_firewalls: '- (optional) If true, this User may add Firewalls.'
             add_images: '- (optional) If true, this User may add Images.'
