@@ -45,6 +45,7 @@ type AlertsParameters struct {
 }
 
 type BackupsObservation struct {
+	Available *bool `json:"available,omitempty" tf:"available,omitempty"`
 
 	// If this Linode has the Backup service enabled.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
@@ -267,6 +268,10 @@ type InstanceObservation struct {
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
 	// +kubebuilder:validation:Optional
 	Disk []DiskObservation `json:"disk,omitempty" tf:"disk,omitempty"`
+
+	// (Computed) The ID of the disk in the Linode API.
+	// The Linode’s host machine, as a UUID.
+	HostUUID *string `json:"hostUuid,omitempty" tf:"host_uuid,omitempty"`
 
 	// (Computed) The ID of the disk in the Linode API.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`

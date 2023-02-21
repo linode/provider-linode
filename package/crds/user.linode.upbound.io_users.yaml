@@ -114,6 +114,10 @@ spec:
                             actions, like billing information. A restricted User will
                             never be able to manage users.
                           type: string
+                        addDatabases:
+                          description: If true, this User may add Databases. If true,
+                            this User may add Databases.
+                          type: boolean
                         addDomains:
                           description: If true, this User may add Domains. If true,
                             this User may add Domains.

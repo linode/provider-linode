@@ -1008,6 +1008,8 @@ spec:
                       about this Linode's backups status.
                     items:
                       properties:
+                        available:
+                          type: boolean
                         enabled:
                           description: If this Linode has the Backup service enabled.
                           type: boolean
@@ -1055,6 +1057,10 @@ spec:
                           type: number
                       type: object
                     type: array
+                  hostUuid:
+                    description: (Computed) The ID of the disk in the Linode API.
+                      The Linode’s host machine, as a UUID.
+                    type: string
                   id:
                     description: (Computed) The ID of the disk in the Linode API.
                     type: string
