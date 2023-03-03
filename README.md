@@ -2,7 +2,7 @@
 
 **###############################################################################################################**
 
-**NOTE: THIS IS A PRE-RELEASE REPO AND SHOULD NOT BE DEPLOYED TO PRODUCTION AT THIS TIME UNTIL OFFICIALLY RELEASED**
+**NOTE: THE LINODE CROSSPLANE PROVIDER IS CURRENTLY CONSIDERED BETA. PLEASE TRY IT AND LET US KNOW HOW IT WORKS FOR YOU!**
 
 **###############################################################################################################**
 
