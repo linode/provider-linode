@@ -35,11 +35,6 @@ type BucketAccessParameters struct {
 }
 
 type KeyObservation struct {
-
-	// This keypair's access key. This is not secret.
-	// This keypair's access key. This is not secret.
-	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
-
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Whether or not this key is a limited access key.
