@@ -278,10 +278,6 @@ spec:
             properties:
               atProvider:
                 properties:
-                  accessKey:
-                    description: This keypair's access key. This is not secret. This
-                      keypair's access key. This is not secret.
-                    type: string
                   id:
                     type: string
                   limited:
