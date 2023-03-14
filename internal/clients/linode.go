@@ -28,8 +28,9 @@ const (
 )
 
 const (
-	keyToken = "token"
-	keyURL   = "url"
+	keyToken   = "token"
+	keyURL     = "api_url"
+	keyVersion = "api_version"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -74,6 +75,9 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 		if v, ok := creds[keyURL]; ok {
 			ps.Configuration[keyURL] = v
+		}
+		if v, ok := creds[keyVersion]; ok {
+			ps.Configuration[keyVersion] = v
 		}
 		return ps, nil
 	}
