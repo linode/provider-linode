@@ -19,6 +19,18 @@ type DeviceObservation struct {
 	// When this Firewall Device was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
+	// The unique ID of the entity to attach.
+	// The ID of the entity to create a Firewall device for.
+	EntityID *float64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
+
+	// The type of the entity to attach. (default: linode)
+	// The type of the entity to create a Firewall device for.
+	EntityType *string `json:"entityType,omitempty" tf:"entity_type,omitempty"`
+
+	// The unique ID of the target Firewall.
+	// The ID of the Firewall to access.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// When the Firewall Device was last updated.

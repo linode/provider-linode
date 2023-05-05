@@ -14,6 +14,18 @@ import (
 )
 
 type BucketAccessObservation struct {
+
+	// The unique label of the bucket to which the key will grant limited access.
+	// The unique label of the bucket to which the key will grant limited access.
+	BucketName *string `json:"bucketName,omitempty" tf:"bucket_name,omitempty"`
+
+	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
+	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
+	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
+
+	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
+	// This Limited Access Key’s permissions for the selected bucket.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type BucketAccessParameters struct {
@@ -35,7 +47,16 @@ type BucketAccessParameters struct {
 }
 
 type KeyObservation struct {
+
+	// Defines this key as a Limited Access Key. Limited Access Keys restrict this Object Storage key’s access to only the bucket(s) declared in this array and define their bucket-level permissions. Not providing this block will not limit this Object Storage Key.
+	// A list of permissions to grant this limited access key.
+	BucketAccess []BucketAccessObservation `json:"bucketAccess,omitempty" tf:"bucket_access,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The label given to this key. For display purposes only.
+	// The label given to this key. For display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// Whether or not this key is a limited access key.
 	// Whether or not this key is a limited access key.
@@ -51,8 +72,8 @@ type KeyParameters struct {
 
 	// The label given to this key. For display purposes only.
 	// The label given to this key. For display purposes only.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 }
 
 // KeySpec defines the desired state of Key
@@ -79,8 +100,9 @@ type KeyStatus struct {
 type Key struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              KeySpec   `json:"spec"`
-	Status            KeyStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	Spec   KeySpec   `json:"spec"`
+	Status KeyStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

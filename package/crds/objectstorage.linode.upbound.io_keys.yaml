@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: keys.objectstorage.linode.upbound.io
 spec:
@@ -55,9 +55,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -99,9 +103,22 @@ spec:
                     description: The label given to this key. For display purposes
                       only. The label given to this key. For display purposes only.
                     type: string
-                required:
-                - label
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -273,12 +290,46 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
           status:
             description: KeyStatus defines the observed state of Key.
             properties:
               atProvider:
                 properties:
+                  bucketAccess:
+                    description: Defines this key as a Limited Access Key. Limited
+                      Access Keys restrict this Object Storage key’s access to only
+                      the bucket(s) declared in this array and define their bucket-level
+                      permissions. Not providing this block will not limit this Object
+                      Storage Key. A list of permissions to grant this limited access
+                      key.
+                    items:
+                      properties:
+                        bucketName:
+                          description: The unique label of the bucket to which the
+                            key will grant limited access. The unique label of the
+                            bucket to which the key will grant limited access.
+                          type: string
+                        cluster:
+                          description: The Object Storage cluster where a bucket to
+                            which the key is granting access is hosted. The Object
+                            Storage cluster where a bucket to which the key is granting
+                            access is hosted.
+                          type: string
+                        permissions:
+                          description: This Limited Access Key’s permissions for the
+                            selected bucket. Changing  (read_write, read_only) This
+                            Limited Access Key’s permissions for the selected bucket.
+                          type: string
+                      type: object
+                    type: array
                   id:
+                    type: string
+                  label:
+                    description: The label given to this key. For display purposes
+                      only. The label given to this key. For display purposes only.
                     type: string
                   limited:
                     description: Whether or not this key is a limited access key.
@@ -326,9 +377,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

@@ -86,10 +86,46 @@ func (in *VolumeObservation) DeepCopyInto(out *VolumeObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Label != nil {
+		in, out := &in.Label, &out.Label
+		*out = new(string)
+		**out = **in
+	}
+	if in.LinodeID != nil {
+		in, out := &in.LinodeID, &out.LinodeID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.Region != nil {
+		in, out := &in.Region, &out.Region
+		*out = new(string)
+		**out = **in
+	}
+	if in.Size != nil {
+		in, out := &in.Size, &out.Size
+		*out = new(float64)
+		**out = **in
+	}
+	if in.SourceVolumeID != nil {
+		in, out := &in.SourceVolumeID, &out.SourceVolumeID
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
 		*out = new(string)
 		**out = **in
+	}
+	if in.Tags != nil {
+		in, out := &in.Tags, &out.Tags
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 }
 

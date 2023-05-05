@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: disks.instance.linode.upbound.io
 spec:
@@ -55,9 +55,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -295,10 +299,22 @@ spec:
                             type: string
                         type: object
                     type: object
-                required:
-                - label
-                - size
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -470,16 +486,65 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
+            - message: size is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.size)
           status:
             description: DiskStatus defines the observed state of Disk.
             properties:
               atProvider:
                 properties:
+                  authorizedKeys:
+                    description: A list of public SSH keys that will be automatically
+                      appended to the root user’s ~/.ssh/authorized_keys file when
+                      deploying from an Image. A list of public SSH keys that will
+                      be automatically appended to the root user’s ~/.ssh/authorized_keys
+                      file when deploying from an Image.
+                    items:
+                      type: string
+                    type: array
+                  authorizedUsers:
+                    description: A list of usernames. If the usernames have associated
+                      SSH keys, the keys will be appended to the A list of usernames.
+                      If the usernames have associated SSH keys, the keys will be
+                      appended to the root users ~/.ssh/authorized_keys file automatically
+                      when deploying from an Image.
+                    items:
+                      type: string
+                    type: array
                   created:
                     description: When this disk was created. When this disk was created.
                     type: string
+                  filesystem:
+                    description: The filesystem of this disk. (raw, swap, ext3, ext4,
+                      initrd) The filesystem of this disk.
+                    type: string
                   id:
                     type: string
+                  image:
+                    description: An Image ID to deploy the Linode Disk from. An Image
+                      ID to deploy the Linode Disk from.
+                    type: string
+                  label:
+                    description: The Disk's label for display purposes only. The Disk’s
+                      label is for display purposes only.
+                    type: string
+                  linodeId:
+                    description: The ID of the Linode to create this Disk under. The
+                      ID of the Linode to assign this disk to.
+                    type: number
+                  size:
+                    description: 'The size of the Disk in MB. NOTE: Resizing a disk
+                      will trigger a Linode reboot. The size of the Disk in MB.'
+                    type: number
+                  stackscriptId:
+                    description: A StackScript ID that will cause the referenced StackScript
+                      to be run during deployment of this Disk. A StackScript ID that
+                      will cause the referenced StackScript to be run during deployment
+                      of this Linode.
+                    type: number
                   status:
                     description: A brief description of this Disk's current state.
                       A brief description of this Disk's current state.
@@ -530,9 +595,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

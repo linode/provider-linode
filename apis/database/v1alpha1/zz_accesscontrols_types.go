@@ -14,6 +14,19 @@ import (
 )
 
 type AccessControlsObservation struct {
+
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
+
+	// The unique ID of the target database.
+	// The ID of the database to manage the allow list for.
+	DatabaseID *float64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
+
+	// The unique type of the target database. (mysql, mongodb, postgresql)
+	// The type of the  database to manage the allow list for.
+	DatabaseType *string `json:"databaseType,omitempty" tf:"database_type,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
@@ -21,18 +34,18 @@ type AccessControlsParameters struct {
 
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
-	// +kubebuilder:validation:Required
-	AllowList []*string `json:"allowList" tf:"allow_list,omitempty"`
+	// +kubebuilder:validation:Optional
+	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
 
 	// The unique ID of the target database.
 	// The ID of the database to manage the allow list for.
-	// +kubebuilder:validation:Required
-	DatabaseID *float64 `json:"databaseId" tf:"database_id,omitempty"`
+	// +kubebuilder:validation:Optional
+	DatabaseID *float64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
 
 	// The unique type of the target database. (mysql, mongodb, postgresql)
 	// The type of the  database to manage the allow list for.
-	// +kubebuilder:validation:Required
-	DatabaseType *string `json:"databaseType" tf:"database_type,omitempty"`
+	// +kubebuilder:validation:Optional
+	DatabaseType *string `json:"databaseType,omitempty" tf:"database_type,omitempty"`
 }
 
 // AccessControlsSpec defines the desired state of AccessControls
@@ -59,8 +72,11 @@ type AccessControlsStatus struct {
 type AccessControls struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              AccessControlsSpec   `json:"spec"`
-	Status            AccessControlsStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.allowList)",message="allowList is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.databaseId)",message="databaseId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.databaseType)",message="databaseType is a required parameter"
+	Spec   AccessControlsSpec   `json:"spec"`
+	Status AccessControlsStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

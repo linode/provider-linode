@@ -14,6 +14,14 @@ import (
 )
 
 type DomainGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type DomainGrantParameters struct {
@@ -30,6 +38,14 @@ type DomainGrantParameters struct {
 }
 
 type FirewallGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type FirewallGrantParameters struct {
@@ -46,6 +62,52 @@ type FirewallGrantParameters struct {
 }
 
 type GlobalGrantsObservation struct {
+
+	// The level of access this User has to Account-level actions, like billing information. A restricted User will never be able to manage users.
+	AccountAccess *string `json:"accountAccess,omitempty" tf:"account_access,omitempty"`
+
+	// If true, this User may add Databases.
+	// If true, this User may add Databases.
+	AddDatabases *bool `json:"addDatabases,omitempty" tf:"add_databases,omitempty"`
+
+	// If true, this User may add Domains.
+	// If true, this User may add Domains.
+	AddDomains *bool `json:"addDomains,omitempty" tf:"add_domains,omitempty"`
+
+	// If true, this User may add Firewalls.
+	// If true, this User may add Firewalls.
+	AddFirewalls *bool `json:"addFirewalls,omitempty" tf:"add_firewalls,omitempty"`
+
+	// If true, this User may add Images.
+	// If true, this User may add Images.
+	AddImages *bool `json:"addImages,omitempty" tf:"add_images,omitempty"`
+
+	// If true, this User may create Linodes.
+	// If true, this User may create Linodes.
+	AddLinodes *bool `json:"addLinodes,omitempty" tf:"add_linodes,omitempty"`
+
+	// If true, this User may create Longview clients and view the current plan.
+	// If true, this User may create Longview clients and view the current plan.
+	AddLongview *bool `json:"addLongview,omitempty" tf:"add_longview,omitempty"`
+
+	// If true, this User may add NodeBalancers.
+	// If true, this User may add NodeBalancers.
+	AddNodebalancers *bool `json:"addNodebalancers,omitempty" tf:"add_nodebalancers,omitempty"`
+
+	// If true, this User may add StackScripts.
+	// If true, this User may add StackScripts.
+	AddStackscripts *bool `json:"addStackscripts,omitempty" tf:"add_stackscripts,omitempty"`
+
+	// If true, this User may add Volumes.
+	AddVolumes *bool `json:"addVolumes,omitempty" tf:"add_volumes,omitempty"`
+
+	// If true, this User may cancel the entire Account.
+	// If true, this User may cancel the entire Account.
+	CancelAccount *bool `json:"cancelAccount,omitempty" tf:"cancel_account,omitempty"`
+
+	// If true, this User may manage the Account’s Longview subscription.
+	// If true, this User may manage the Account’s Longview subscription.
+	LongviewSubscription *bool `json:"longviewSubscription,omitempty" tf:"longview_subscription,omitempty"`
 }
 
 type GlobalGrantsParameters struct {
@@ -110,6 +172,14 @@ type GlobalGrantsParameters struct {
 }
 
 type ImageGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type ImageGrantParameters struct {
@@ -126,6 +196,14 @@ type ImageGrantParameters struct {
 }
 
 type LinodeGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type LinodeGrantParameters struct {
@@ -142,6 +220,14 @@ type LinodeGrantParameters struct {
 }
 
 type LongviewGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type LongviewGrantParameters struct {
@@ -158,6 +244,14 @@ type LongviewGrantParameters struct {
 }
 
 type NodebalancerGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type NodebalancerGrantParameters struct {
@@ -174,6 +268,14 @@ type NodebalancerGrantParameters struct {
 }
 
 type StackscriptGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type StackscriptGrantParameters struct {
@@ -191,16 +293,63 @@ type StackscriptGrantParameters struct {
 
 type UserObservation struct {
 
+	// The domains the user has permissions access to.
+	// A set containing all of the user's active grants.
+	DomainGrant []DomainGrantObservation `json:"domainGrant,omitempty" tf:"domain_grant,omitempty"`
+
+	// The email address of the user.
+	// The email of the user.
+	Email *string `json:"email,omitempty" tf:"email,omitempty"`
+
+	// The firewalls the user has permissions access to.
+	// A set containing all of the user's active grants.
+	FirewallGrant []FirewallGrantObservation `json:"firewallGrant,omitempty" tf:"firewall_grant,omitempty"`
+
+	// A structure containing the Account-level grants a User has.
+	GlobalGrants []GlobalGrantsObservation `json:"globalGrants,omitempty" tf:"global_grants,omitempty"`
+
 	// The ID of the entity this grant applies to.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The images the user has permissions access to.
+	// A set containing all of the user's active grants.
+	ImageGrant []ImageGrantObservation `json:"imageGrant,omitempty" tf:"image_grant,omitempty"`
+
+	// The Linodes the user has permissions access to.
+	// A set containing all of the user's active grants.
+	LinodeGrant []LinodeGrantObservation `json:"linodeGrant,omitempty" tf:"linode_grant,omitempty"`
+
+	// The longview the user has permissions access to.
+	// A set containing all of the user's active grants.
+	LongviewGrant []LongviewGrantObservation `json:"longviewGrant,omitempty" tf:"longview_grant,omitempty"`
+
+	// The NodeBalancers the user has permissions access to.
+	// A set containing all of the user's active grants.
+	NodebalancerGrant []NodebalancerGrantObservation `json:"nodebalancerGrant,omitempty" tf:"nodebalancer_grant,omitempty"`
+
+	// If true, this user will only have explicit permissions granted.
+	// If true, the user must be explicitly granted access to platform actions and entities.
+	Restricted *bool `json:"restricted,omitempty" tf:"restricted,omitempty"`
 
 	// A list of the User's SSH keys.
 	// SSH keys to add to the user profile.
 	SSHKeys []*string `json:"sshKeys,omitempty" tf:"ssh_keys,omitempty"`
 
+	// The StackScripts the user has permissions access to.
+	// A set containing all of the user's active grants.
+	StackscriptGrant []StackscriptGrantObservation `json:"stackscriptGrant,omitempty" tf:"stackscript_grant,omitempty"`
+
 	// Whether the user has two-factor-authentication enabled.
 	// If the User has Two Factor Authentication (TFA) enabled.
 	TfaEnabled *bool `json:"tfaEnabled,omitempty" tf:"tfa_enabled,omitempty"`
+
+	// The username of the user.
+	// The username of the user.
+	Username *string `json:"username,omitempty" tf:"username,omitempty"`
+
+	// The volumes the user has permissions access to.
+	// A set containing all of the user's active grants.
+	VolumeGrant []VolumeGrantObservation `json:"volumeGrant,omitempty" tf:"volume_grant,omitempty"`
 }
 
 type UserParameters struct {
@@ -212,8 +361,8 @@ type UserParameters struct {
 
 	// The email address of the user.
 	// The email of the user.
-	// +kubebuilder:validation:Required
-	Email *string `json:"email" tf:"email,omitempty"`
+	// +kubebuilder:validation:Optional
+	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
 	// The firewalls the user has permissions access to.
 	// A set containing all of the user's active grants.
@@ -256,8 +405,8 @@ type UserParameters struct {
 
 	// The username of the user.
 	// The username of the user.
-	// +kubebuilder:validation:Required
-	Username *string `json:"username" tf:"username,omitempty"`
+	// +kubebuilder:validation:Optional
+	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 
 	// The volumes the user has permissions access to.
 	// A set containing all of the user's active grants.
@@ -266,6 +415,14 @@ type UserParameters struct {
 }
 
 type VolumeGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
 type VolumeGrantParameters struct {
@@ -305,8 +462,10 @@ type UserStatus struct {
 type User struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              UserSpec   `json:"spec"`
-	Status            UserStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.email)",message="email is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.username)",message="username is a required parameter"
+	Spec   UserSpec   `json:"spec"`
+	Status UserStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

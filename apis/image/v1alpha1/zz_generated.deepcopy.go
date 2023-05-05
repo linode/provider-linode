@@ -91,8 +91,28 @@ func (in *ImageObservation) DeepCopyInto(out *ImageObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Expiry != nil {
 		in, out := &in.Expiry, &out.Expiry
+		*out = new(string)
+		**out = **in
+	}
+	if in.FileHash != nil {
+		in, out := &in.FileHash, &out.FileHash
+		*out = new(string)
+		**out = **in
+	}
+	if in.FilePath != nil {
+		in, out := &in.FilePath, &out.FilePath
 		*out = new(string)
 		**out = **in
 	}
@@ -104,6 +124,21 @@ func (in *ImageObservation) DeepCopyInto(out *ImageObservation) {
 	if in.IsPublic != nil {
 		in, out := &in.IsPublic, &out.IsPublic
 		*out = new(bool)
+		**out = **in
+	}
+	if in.Label != nil {
+		in, out := &in.Label, &out.Label
+		*out = new(string)
+		**out = **in
+	}
+	if in.LinodeID != nil {
+		in, out := &in.LinodeID, &out.LinodeID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.Region != nil {
+		in, out := &in.Region, &out.Region
+		*out = new(string)
 		**out = **in
 	}
 	if in.Size != nil {

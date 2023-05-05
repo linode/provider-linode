@@ -14,19 +14,44 @@ import (
 )
 
 type NodeObservation struct {
+
+	// The private IP Address where this backend can be reached. This must be a private IP address.
+	// The private IP Address and port (IP:PORT) where this backend can be reached. This must be a private IP address.
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
+
+	// The ID of the NodeBalancerConfig to access.
+	// The ID of the NodeBalancerConfig to access.
+	ConfigID *float64 `json:"configId,omitempty" tf:"config_id,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The label of the Linode NodeBalancer Node. This is for display purposes only.
+	// The label for this node. This is for display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The mode this NodeBalancer should use when sending traffic to this backend. If set to accept this backend is accepting traffic. If set to reject this backend will not receive traffic. If set to drain this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. (accept, reject, drain, backup)
+	// The mode this NodeBalancer should use when sending traffic to this backend. If set to `accept` this backend is accepting traffic. If set to `reject` this backend will not receive traffic. If set to `drain` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. If set to `backup` this backend will only accept traffic if all other nodes are down.
+	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+
+	// The ID of the NodeBalancer to access.
+	// The ID of the NodeBalancer to access.
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
 
 	// The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).
 	// The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN)
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
+	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)
+	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type NodeParameters struct {
 
 	// The private IP Address where this backend can be reached. This must be a private IP address.
 	// The private IP Address and port (IP:PORT) where this backend can be reached. This must be a private IP address.
-	// +kubebuilder:validation:Required
-	Address *string `json:"address" tf:"address,omitempty"`
+	// +kubebuilder:validation:Optional
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
 	// The ID of the NodeBalancerConfig to access.
 	// The ID of the NodeBalancerConfig to access.
@@ -44,8 +69,8 @@ type NodeParameters struct {
 
 	// The label of the Linode NodeBalancer Node. This is for display purposes only.
 	// The label for this node. This is for display purposes only.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The mode this NodeBalancer should use when sending traffic to this backend. If set to accept this backend is accepting traffic. If set to reject this backend will not receive traffic. If set to drain this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. (accept, reject, drain, backup)
 	// The mode this NodeBalancer should use when sending traffic to this backend. If set to `accept` this backend is accepting traffic. If set to `reject` this backend will not receive traffic. If set to `drain` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. If set to `backup` this backend will only accept traffic if all other nodes are down.
@@ -96,8 +121,10 @@ type NodeStatus struct {
 type Node struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              NodeSpec   `json:"spec"`
-	Status            NodeStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.address)",message="address is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	Spec   NodeSpec   `json:"spec"`
+	Status NodeStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

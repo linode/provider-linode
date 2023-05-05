@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: ips.instance.linode.upbound.io
 spec:
@@ -54,9 +54,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -227,6 +231,21 @@ spec:
                         type: object
                     type: object
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -406,16 +425,33 @@ spec:
                   address:
                     description: The resulting IPv4 address. The resulting IPv4 address.
                     type: string
+                  applyImmediately:
+                    description: If true, the instance will be rebooted to update
+                      network interfaces. If true, the instance will be rebooted to
+                      update network interfaces.
+                    type: boolean
                   gateway:
                     description: The default gateway for this address The default
                       gateway for this address
                     type: string
                   id:
                     type: string
+                  linodeId:
+                    description: The ID of the Linode to allocate an IPv4 address
+                      for. The ID of the Linode to allocate an IPv4 address for.
+                    type: number
                   prefix:
                     description: The number of bits set in the subnet mask. The number
                       of bits set in the subnet mask.
                     type: number
+                  public:
+                    description: Whether the IPv4 address is public or private. Defaults
+                      to true. Whether the IPv4 address is public or private.
+                    type: boolean
+                  rdns:
+                    description: The reverse DNS assigned to this address. The reverse
+                      DNS assigned to this address.
+                    type: string
                   region:
                     description: The region this IP resides in. The region this IP
                       resides in.
@@ -471,9 +507,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

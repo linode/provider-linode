@@ -80,8 +80,23 @@ func (in *TokenObservation) DeepCopyInto(out *TokenObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Expiry != nil {
+		in, out := &in.Expiry, &out.Expiry
+		*out = new(string)
+		**out = **in
+	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Label != nil {
+		in, out := &in.Label, &out.Label
+		*out = new(string)
+		**out = **in
+	}
+	if in.Scopes != nil {
+		in, out := &in.Scopes, &out.Scopes
 		*out = new(string)
 		**out = **in
 	}

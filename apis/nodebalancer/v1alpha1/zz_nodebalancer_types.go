@@ -15,6 +15,10 @@ import (
 
 type NodebalancerObservation struct {
 
+	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
+	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
+	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+
 	// When this NodeBalancer was created
 	// When this NodeBalancer was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
@@ -32,6 +36,18 @@ type NodebalancerObservation struct {
 	// The Public IPv6 Address of this NodeBalancer
 	// The Public IPv6 Address of this NodeBalancer
 	IPv6 *string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
+	// The label of the Linode NodeBalancer
+	// The label of the Linode NodeBalancer.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The region where this NodeBalancer will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here.  Changing .
+	// The region where this NodeBalancer will be deployed.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// Information about the amount of transfer this NodeBalancer has had so far this month.
 	Transfer []TransferObservation `json:"transfer,omitempty" tf:"transfer,omitempty"`
@@ -55,8 +71,8 @@ type NodebalancerParameters struct {
 
 	// The region where this NodeBalancer will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here.  Changing .
 	// The region where this NodeBalancer will be deployed.
-	// +kubebuilder:validation:Required
-	Region *string `json:"region" tf:"region,omitempty"`
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
@@ -103,8 +119,9 @@ type NodebalancerStatus struct {
 type Nodebalancer struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              NodebalancerSpec   `json:"spec"`
-	Status            NodebalancerStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)",message="region is a required parameter"
+	Spec   NodebalancerSpec   `json:"spec"`
+	Status NodebalancerStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

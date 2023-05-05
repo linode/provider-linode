@@ -20,19 +20,27 @@ type SSHKeyObservation struct {
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// A label for the SSH Key.
+	// The label of the Linode SSH Key.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy.
+	// The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy.
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 }
 
 type SSHKeyParameters struct {
 
 	// A label for the SSH Key.
 	// The label of the Linode SSH Key.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy.
 	// The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy.
-	// +kubebuilder:validation:Required
-	SSHKey *string `json:"sshKey" tf:"ssh_key,omitempty"`
+	// +kubebuilder:validation:Optional
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 }
 
 // SSHKeySpec defines the desired state of SSHKey
@@ -59,8 +67,10 @@ type SSHKeyStatus struct {
 type SSHKey struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              SSHKeySpec   `json:"spec"`
-	Status            SSHKeyStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.sshKey)",message="sshKey is a required parameter"
+	Spec   SSHKeySpec   `json:"spec"`
+	Status SSHKeyStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: users.user.linode.upbound.io
 spec:
@@ -54,9 +54,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -283,10 +287,22 @@ spec:
                       - permissions
                       type: object
                     type: array
-                required:
-                - email
-                - username
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -458,24 +474,225 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: email is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.email)
+            - message: username is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.username)
           status:
             description: UserStatus defines the observed state of User.
             properties:
               atProvider:
                 properties:
+                  domainGrant:
+                    description: The domains the user has permissions access to. A
+                      set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  email:
+                    description: The email address of the user. The email of the user.
+                    type: string
+                  firewallGrant:
+                    description: The firewalls the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  globalGrants:
+                    description: A structure containing the Account-level grants a
+                      User has.
+                    items:
+                      properties:
+                        accountAccess:
+                          description: The level of access this User has to Account-level
+                            actions, like billing information. A restricted User will
+                            never be able to manage users.
+                          type: string
+                        addDatabases:
+                          description: If true, this User may add Databases. If true,
+                            this User may add Databases.
+                          type: boolean
+                        addDomains:
+                          description: If true, this User may add Domains. If true,
+                            this User may add Domains.
+                          type: boolean
+                        addFirewalls:
+                          description: If true, this User may add Firewalls. If true,
+                            this User may add Firewalls.
+                          type: boolean
+                        addImages:
+                          description: If true, this User may add Images. If true,
+                            this User may add Images.
+                          type: boolean
+                        addLinodes:
+                          description: If true, this User may create Linodes. If true,
+                            this User may create Linodes.
+                          type: boolean
+                        addLongview:
+                          description: If true, this User may create Longview clients
+                            and view the current plan. If true, this User may create
+                            Longview clients and view the current plan.
+                          type: boolean
+                        addNodebalancers:
+                          description: If true, this User may add NodeBalancers. If
+                            true, this User may add NodeBalancers.
+                          type: boolean
+                        addStackscripts:
+                          description: If true, this User may add StackScripts. If
+                            true, this User may add StackScripts.
+                          type: boolean
+                        addVolumes:
+                          description: If true, this User may add Volumes.
+                          type: boolean
+                        cancelAccount:
+                          description: If true, this User may cancel the entire Account.
+                            If true, this User may cancel the entire Account.
+                          type: boolean
+                        longviewSubscription:
+                          description: If true, this User may manage the Account’s
+                            Longview subscription. If true, this User may manage the
+                            Account’s Longview subscription.
+                          type: boolean
+                      type: object
+                    type: array
                   id:
                     description: The ID of the entity this grant applies to.
                     type: string
+                  imageGrant:
+                    description: The images the user has permissions access to. A
+                      set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  linodeGrant:
+                    description: The Linodes the user has permissions access to. A
+                      set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  longviewGrant:
+                    description: The longview the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  nodebalancerGrant:
+                    description: The NodeBalancers the user has permissions access
+                      to. A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  restricted:
+                    description: If true, this user will only have explicit permissions
+                      granted. If true, the user must be explicitly granted access
+                      to platform actions and entities.
+                    type: boolean
                   sshKeys:
                     description: A list of the User's SSH keys. SSH keys to add to
                       the user profile.
                     items:
                       type: string
                     type: array
+                  stackscriptGrant:
+                    description: The StackScripts the user has permissions access
+                      to. A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
                   tfaEnabled:
                     description: Whether the user has two-factor-authentication enabled.
                       If the User has Two Factor Authentication (TFA) enabled.
                     type: boolean
+                  username:
+                    description: The username of the user. The username of the user.
+                    type: string
+                  volumeGrant:
+                    description: The volumes the user has permissions access to. A
+                      set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: The level of access this User has to this entity.
+                            (read_only, read_write) The level of access this User
+                            has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.
@@ -518,9 +735,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

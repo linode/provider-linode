@@ -14,6 +14,14 @@ import (
 )
 
 type AutoscalerObservation struct {
+
+	// The maximum number of nodes to autoscale to.
+	// The maximum number of nodes to autoscale to.
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
+
+	// The minimum number of nodes to autoscale to.
+	// The minimum number of nodes to autoscale to.
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 }
 
 type AutoscalerParameters struct {
@@ -35,6 +43,9 @@ type ClusterObservation struct {
 	// The API endpoints for the cluster.
 	APIEndpoints []*string `json:"apiEndpoints,omitempty" tf:"api_endpoints,omitempty"`
 
+	// Defines settings for the Kubernetes Control Plane.
+	ControlPlane []ControlPlaneObservation `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
+
 	// The Kubernetes Dashboard access URL for this cluster.
 	// The dashboard URL of the cluster.
 	DashboardURL *string `json:"dashboardUrl,omitempty" tf:"dashboard_url,omitempty"`
@@ -42,14 +53,29 @@ type ClusterObservation struct {
 	// The ID of the cluster.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.
+	// The desired Kubernetes version for this Kubernetes cluster in the format of <major>.<minor>. The latest supported patch version will be deployed.
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// This Kubernetes cluster's unique label.
+	// The unique label for the cluster.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
 	// Additional nested attributes:
 	// A node pool in the cluster.
-	// +kubebuilder:validation:Required
 	Pool []PoolObservation `json:"pool,omitempty" tf:"pool,omitempty"`
+
+	// This Kubernetes cluster's location.
+	// This cluster's location.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The status of the cluster.
 	// The status of the cluster.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type ClusterParameters struct {
@@ -60,23 +86,23 @@ type ClusterParameters struct {
 
 	// The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.
 	// The desired Kubernetes version for this Kubernetes cluster in the format of <major>.<minor>. The latest supported patch version will be deployed.
-	// +kubebuilder:validation:Required
-	K8SVersion *string `json:"k8sVersion" tf:"k8s_version,omitempty"`
+	// +kubebuilder:validation:Optional
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
 
 	// This Kubernetes cluster's unique label.
 	// The unique label for the cluster.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// Additional nested attributes:
 	// A node pool in the cluster.
-	// +kubebuilder:validation:Required
-	Pool []PoolParameters `json:"pool" tf:"pool,omitempty"`
+	// +kubebuilder:validation:Optional
+	Pool []PoolParameters `json:"pool,omitempty" tf:"pool,omitempty"`
 
 	// This Kubernetes cluster's location.
 	// This cluster's location.
-	// +kubebuilder:validation:Required
-	Region *string `json:"region" tf:"region,omitempty"`
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
@@ -85,6 +111,10 @@ type ClusterParameters struct {
 }
 
 type ControlPlaneObservation struct {
+
+	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
+	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.
+	HighAvailability *bool `json:"highAvailability,omitempty" tf:"high_availability,omitempty"`
 }
 
 type ControlPlaneParameters struct {
@@ -112,12 +142,23 @@ type NodesParameters struct {
 
 type PoolObservation struct {
 
+	// When specified, the number of nodes autoscales within the defined minimum and maximum values.
+	Autoscaler []AutoscalerObservation `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
+
+	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool.
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
+
 	// The ID of the cluster.
 	// The ID of the Node Pool.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The nodes in the node pool.
 	Nodes []NodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
+
+	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
+	// A Linode Type for all of the nodes in the Node Pool.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type PoolParameters struct {
@@ -161,8 +202,12 @@ type ClusterStatus struct {
 type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ClusterSpec   `json:"spec"`
-	Status            ClusterStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.k8sVersion)",message="k8sVersion is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.pool)",message="pool is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)",message="region is a required parameter"
+	Spec   ClusterSpec   `json:"spec"`
+	Status ClusterStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

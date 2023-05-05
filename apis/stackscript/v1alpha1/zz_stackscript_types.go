@@ -27,11 +27,39 @@ type StackscriptObservation struct {
 	// The total number of times this StackScript has been deployed.
 	DeploymentsTotal *float64 `json:"deploymentsTotal,omitempty" tf:"deployments_total,omitempty"`
 
+	// A description for the StackScript.
+	// A description for the StackScript.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
+	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
+	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
+
+	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private. Changing
+	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private.
+	IsPublic *bool `json:"isPublic,omitempty" tf:"is_public,omitempty"`
+
+	// The StackScript's label is for display purposes only.
+	// The StackScript's label is for display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// This field allows you to add notes for the set of revisions made to this StackScript.
+	// This field allows you to add notes for the set of revisions made to this StackScript.
+	RevNote *string `json:"revNote,omitempty" tf:"rev_note,omitempty"`
+
+	// The script to execute when provisioning a new Linode with this StackScript.
+	// The script to execute when provisioning a new Linode with this StackScript.
+	Script *string `json:"script,omitempty" tf:"script,omitempty"`
 
 	// The date this StackScript was updated.
 	// The date this StackScript was updated.
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
+
+	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
+	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
+	UserDefinedFields []UserDefinedFieldsObservation `json:"userDefinedFields,omitempty" tf:"user_defined_fields,omitempty"`
 
 	// The Gravatar ID for the User who created the StackScript.
 	// The Gravatar ID for the User who created the StackScript.
@@ -46,13 +74,13 @@ type StackscriptParameters struct {
 
 	// A description for the StackScript.
 	// A description for the StackScript.
-	// +kubebuilder:validation:Required
-	Description *string `json:"description" tf:"description,omitempty"`
+	// +kubebuilder:validation:Optional
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
-	// +kubebuilder:validation:Required
-	Images []*string `json:"images" tf:"images,omitempty"`
+	// +kubebuilder:validation:Optional
+	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
 
 	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private. Changing
 	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private.
@@ -61,8 +89,8 @@ type StackscriptParameters struct {
 
 	// The StackScript's label is for display purposes only.
 	// The StackScript's label is for display purposes only.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// This field allows you to add notes for the set of revisions made to this StackScript.
 	// This field allows you to add notes for the set of revisions made to this StackScript.
@@ -71,8 +99,8 @@ type StackscriptParameters struct {
 
 	// The script to execute when provisioning a new Linode with this StackScript.
 	// The script to execute when provisioning a new Linode with this StackScript.
-	// +kubebuilder:validation:Required
-	Script *string `json:"script" tf:"script,omitempty"`
+	// +kubebuilder:validation:Optional
+	Script *string `json:"script,omitempty" tf:"script,omitempty"`
 
 	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
 	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
@@ -81,6 +109,24 @@ type StackscriptParameters struct {
 }
 
 type UserDefinedFieldsObservation struct {
+
+	// The default value. If not specified, this value will be used.
+	Default *string `json:"default,omitempty" tf:"default,omitempty"`
+
+	// An example value for the field.
+	Example *string `json:"example,omitempty" tf:"example,omitempty"`
+
+	// The StackScript's label is for display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A list of acceptable values for the field in any quantity, combination or order.
+	ManyOf *string `json:"manyOf,omitempty" tf:"many_of,omitempty"`
+
+	// The name of the field.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// A list of acceptable single values for the field.
+	OneOf *string `json:"oneOf,omitempty" tf:"one_of,omitempty"`
 }
 
 type UserDefinedFieldsParameters struct {
@@ -134,8 +180,12 @@ type StackscriptStatus struct {
 type Stackscript struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              StackscriptSpec   `json:"spec"`
-	Status            StackscriptStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.description)",message="description is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.images)",message="images is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.script)",message="script is a required parameter"
+	Spec   StackscriptSpec   `json:"spec"`
+	Status StackscriptStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
