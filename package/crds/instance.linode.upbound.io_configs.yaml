@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: configs.instance.linode.upbound.io
 spec:
@@ -55,9 +55,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -1000,9 +1004,22 @@ spec:
                     description: Controls the virtualization mode. (paravirt, fullvirt)
                       Controls the virtualization mode.
                     type: string
-                required:
-                - label
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -1174,12 +1191,252 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
           status:
             description: ConfigStatus defines the observed state of Config.
             properties:
               atProvider:
                 properties:
+                  booted:
+                    description: If true, the Linode will be booted into this config.
+                      If another config is booted, the Linode will be rebooted into
+                      this config. If false, the Linode will be shutdown only if it
+                      is currently booted into this config. If undefined, the config
+                      will alter the boot status of the Linode. If true, the Linode
+                      will be booted to running state. If false, the Linode will be
+                      shutdown. If undefined, no action will be taken.
+                    type: boolean
+                  comments:
+                    description: Optional field for arbitrary User comments on this
+                      Config. Optional field for arbitrary User comments on this Config.
+                    type: string
+                  devices:
+                    description: A dictionary of device disks to use as a device map
+                      in a Linode’s configuration profile.
+                    items:
+                      properties:
+                        sda:
+                          description: The SDA-SDH slots, represent the Linux block
+                            device nodes for the first 8 disks attached to the Linode.  Each
+                            device must be suplied sequentially.  The device can be
+                            either a Disk or a Volume identified by disk_id or volume_id.
+                            Only one disk identifier is permitted per slot. Devices
+                            mapped from sde through sdh are unavailable in "fullvirt"
+                            virt_mode. Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                        sdb:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                        sdc:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                        sdd:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                        sde:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                        sdf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                        sdg:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                        sdh:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk
+                                  slot
+                                type: number
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  helpers:
+                    description: Helpers enabled when booting to this Linode Config.
+                    items:
+                      properties:
+                        devtmpfsAutomount:
+                          description: Populates the /dev directory early during boot
+                            without udev. (default true) Populates the /dev directory
+                            early during boot without udev.
+                          type: boolean
+                        distro:
+                          description: Helps maintain correct inittab/upstart console
+                            device. (default true) Helps maintain correct inittab/upstart
+                            console device.
+                          type: boolean
+                        modulesDep:
+                          description: Creates a modules dependency file for the Kernel
+                            you run. (default true) Creates a modules dependency file
+                            for the Kernel you run.
+                          type: boolean
+                        network:
+                          description: Automatically configures static networking.
+                            (default true) Automatically configures static networking.
+                          type: boolean
+                        updatedbDisabled:
+                          description: Disables updatedb cron job to avoid disk thrashing.
+                            (default true) Disables updatedb cron job to avoid disk
+                            thrashing.
+                          type: boolean
+                      type: object
+                    type: array
                   id:
+                    type: string
+                  interface:
+                    description: An array of Network Interfaces to add to this Linode’s
+                      Configuration Profile.
+                    items:
+                      properties:
+                        ipamAddress:
+                          description: This Network Interface’s private IP address
+                            in Classless Inter-Domain Routing (CIDR) notation. (e.g.
+                            10.0.0.1/24) This Network Interface’s private IP address
+                            in Classless Inter-Domain Routing (CIDR) notation.
+                          type: string
+                        label:
+                          description: The Config’s label for display purposes only.
+                            The name of this interface.
+                          type: string
+                        purpose:
+                          description: The type of interface. (public, vlan) The type
+                            of interface.
+                          type: string
+                      type: object
+                    type: array
+                  kernel:
+                    description: A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+                      A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
+                    type: string
+                  label:
+                    description: The Config’s label for display purposes only. The
+                      Config’s label for display purposes only.
+                    type: string
+                  linodeId:
+                    description: The ID of the Linode to create this configuration
+                      profile under. The ID of the Linode to create this configuration
+                      profile under.
+                    type: number
+                  memoryLimit:
+                    description: The memory limit of the Config. Defaults to the total
+                      ram of the Linode. The memory limit of the Linode.
+                    type: number
+                  rootDevice:
+                    description: The root device to boot. (default /dev/sda) The root
+                      device to boot. If no value or an invalid value is provided,
+                      root device will default to /dev/sda. If the device specified
+                      at the root device location is not mounted, the Linode will
+                      not boot until a device is mounted.
+                    type: string
+                  runLevel:
+                    description: Defines the state of your Linode after booting. (default,
+                      single, binbash) Defines the state of your Linode after booting.
+                    type: string
+                  virtMode:
+                    description: Controls the virtualization mode. (paravirt, fullvirt)
+                      Controls the virtualization mode.
                     type: string
                 type: object
               conditions:
@@ -1223,9 +1480,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

@@ -14,20 +14,33 @@ import (
 )
 
 type RDNSObservation struct {
+
+	// The Public IPv4 or IPv6 address that will receive the PTR record.  A matching A or AAAA record must exist.
+	// The public Linode IPv4 or IPv6 address to operate on.
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The name of the RDNS address.
+	// The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.
+	Rdns *string `json:"rdns,omitempty" tf:"rdns,omitempty"`
+
+	// If true, the RDNS assignment will be retried within the operation timeout period.
+	// If true, the RDNS assignment will be retried within the operation timeout period.
+	WaitForAvailable *bool `json:"waitForAvailable,omitempty" tf:"wait_for_available,omitempty"`
 }
 
 type RDNSParameters struct {
 
 	// The Public IPv4 or IPv6 address that will receive the PTR record.  A matching A or AAAA record must exist.
 	// The public Linode IPv4 or IPv6 address to operate on.
-	// +kubebuilder:validation:Required
-	Address *string `json:"address" tf:"address,omitempty"`
+	// +kubebuilder:validation:Optional
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
 	// The name of the RDNS address.
 	// The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.
-	// +kubebuilder:validation:Required
-	Rdns *string `json:"rdns" tf:"rdns,omitempty"`
+	// +kubebuilder:validation:Optional
+	Rdns *string `json:"rdns,omitempty" tf:"rdns,omitempty"`
 
 	// If true, the RDNS assignment will be retried within the operation timeout period.
 	// If true, the RDNS assignment will be retried within the operation timeout period.
@@ -59,8 +72,10 @@ type RDNSStatus struct {
 type RDNS struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              RDNSSpec   `json:"spec"`
-	Status            RDNSStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.address)",message="address is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.rdns)",message="rdns is a required parameter"
+	Spec   RDNSSpec   `json:"spec"`
+	Status RDNSStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -20,9 +20,17 @@ type IPv6RangeObservation struct {
 	// Whether this IPv6 range is shared.
 	IsBGP *bool `json:"isBgp,omitempty" tf:"is_bgp,omitempty"`
 
+	// The ID of the Linode to assign this range to. This field may be updated to reassign the IPv6 range.
+	// The ID of the Linode to assign this range to.
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
 	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
 	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+
+	// The prefix length of the IPv6 range.
+	// The prefix length of the IPv6 range.
+	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// The IPv6 range of addresses in this pool.
 	// The IPv6 range of addresses in this pool.
@@ -31,6 +39,10 @@ type IPv6RangeObservation struct {
 	// The region for this range of IPv6 addresses.
 	// The region for this range of IPv6 addresses.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The IPv6 SLAAC address to assign this range to.
+	// The IPv6 SLAAC address to assign this range to.
+	RouteTarget *string `json:"routeTarget,omitempty" tf:"route_target,omitempty"`
 }
 
 type IPv6RangeParameters struct {
@@ -51,8 +63,8 @@ type IPv6RangeParameters struct {
 
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.
-	// +kubebuilder:validation:Required
-	PrefixLength *float64 `json:"prefixLength" tf:"prefix_length,omitempty"`
+	// +kubebuilder:validation:Optional
+	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// The IPv6 SLAAC address to assign this range to.
 	// The IPv6 SLAAC address to assign this range to.
@@ -84,8 +96,9 @@ type IPv6RangeStatus struct {
 type IPv6Range struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              IPv6RangeSpec   `json:"spec"`
-	Status            IPv6RangeStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.prefixLength)",message="prefixLength is a required parameter"
+	Spec   IPv6RangeSpec   `json:"spec"`
+	Status IPv6RangeStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

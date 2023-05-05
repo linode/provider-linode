@@ -15,11 +15,43 @@ import (
 
 type DiskObservation_2 struct {
 
+	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
+
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
+	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
+
 	// When this disk was created.
 	// When this disk was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
+	// The filesystem of this disk. (raw, swap, ext3, ext4, initrd)
+	// The filesystem of this disk.
+	Filesystem *string `json:"filesystem,omitempty" tf:"filesystem,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// An Image ID to deploy the Linode Disk from.
+	// An Image ID to deploy the Linode Disk from.
+	Image *string `json:"image,omitempty" tf:"image,omitempty"`
+
+	// The Disk's label for display purposes only.
+	// The Disk’s label is for display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The ID of the Linode to create this Disk under.
+	// The ID of the Linode to assign this disk to.
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
+	// The size of the Disk in MB.
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+
+	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
+	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
+	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
 
 	// A brief description of this Disk's current state.
 	// A brief description of this Disk's current state.
@@ -54,8 +86,8 @@ type DiskParameters_2 struct {
 
 	// The Disk's label for display purposes only.
 	// The Disk’s label is for display purposes only.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of the Linode to create this Disk under.
 	// The ID of the Linode to assign this disk to.
@@ -78,8 +110,8 @@ type DiskParameters_2 struct {
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
 	// The size of the Disk in MB.
-	// +kubebuilder:validation:Required
-	Size *float64 `json:"size" tf:"size,omitempty"`
+	// +kubebuilder:validation:Optional
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given.
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
@@ -125,8 +157,10 @@ type DiskStatus struct {
 type Disk struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              DiskSpec   `json:"spec"`
-	Status            DiskStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.size)",message="size is a required parameter"
+	Spec   DiskSpec   `json:"spec"`
+	Status DiskStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

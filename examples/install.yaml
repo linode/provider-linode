@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-linode
 spec:
-  package: linode/provider-linode:v0.0.7
+  package: linode/provider-linode:v0.0.8

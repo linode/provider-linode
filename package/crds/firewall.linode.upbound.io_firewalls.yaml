@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: firewalls.firewall.linode.upbound.io
 spec:
@@ -55,9 +55,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -273,11 +277,22 @@ spec:
                     items:
                       type: string
                     type: array
-                required:
-                - inboundPolicy
-                - label
-                - outboundPolicy
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -449,6 +464,13 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: inboundPolicy is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.inboundPolicy)
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
+            - message: outboundPolicy is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.outboundPolicy)
           status:
             description: FirewallStatus defines the observed state of Firewall.
             properties:
@@ -477,12 +499,136 @@ spec:
                           type: string
                       type: object
                     type: array
+                  disabled:
+                    description: If true, the Firewall's rules are not enforced (defaults
+                      to false). If true, the Firewall is inactive.
+                    type: boolean
                   id:
                     description: The ID of the Firewall.
+                    type: string
+                  inbound:
+                    description: A firewall rule that specifies what inbound network
+                      traffic is allowed.
+                    items:
+                      properties:
+                        action:
+                          description: Controls whether traffic is accepted or dropped
+                            by this rule (ACCEPT, DROP). Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule. Controls whether traffic
+                            is accepted or dropped by this rule. Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule.
+                          type: string
+                        ipv4:
+                          description: A list of IPv4 addresses or networks. Must
+                            be in IP/mask format. A list of IP addresses, CIDR blocks,
+                            or 0.0.0.0/0 (to allow all) this rule applies to.
+                          items:
+                            type: string
+                          type: array
+                        ipv6:
+                          description: A list of IPv6 addresses or networks. Must
+                            be in IP/mask format. A list of IPv6 addresses or networks
+                            this rule applies to.
+                          items:
+                            type: string
+                          type: array
+                        label:
+                          description: This Firewall's unique label. Used to identify
+                            this rule. For display purposes only.
+                          type: string
+                        ports:
+                          description: A string representation of ports and/or port
+                            ranges (i.e. "443" or "80-90, 91"). A string representation
+                            of ports and/or port ranges (i.e. "443" or "80-90, 91").
+                          type: string
+                        protocol:
+                          description: The network protocol this rule controls. (TCP,
+                            UDP, ICMP) The network protocol this rule controls.
+                          type: string
+                      type: object
+                    type: array
+                  inboundPolicy:
+                    description: The default behavior for inbound traffic. This setting
+                      can be overridden by updating the inbound.action property of
+                      the Firewall Rule. (ACCEPT, DROP) The default behavior for inbound
+                      traffic. This setting can be overridden by updating the inbound.action
+                      property for an individual Firewall Rule.
+                    type: string
+                  label:
+                    description: This Firewall's unique label. The label for the Firewall.
+                      For display purposes only. If no label is provided, a default
+                      will be assigned.
+                    type: string
+                  linodes:
+                    description: A list of IDs of Linodes this Firewall should govern
+                      it's network traffic for. The IDs of Linodes to apply this firewall
+                      to.
+                    items:
+                      type: number
+                    type: array
+                  outbound:
+                    description: A firewall rule that specifies what outbound network
+                      traffic is allowed.
+                    items:
+                      properties:
+                        action:
+                          description: Controls whether traffic is accepted or dropped
+                            by this rule (ACCEPT, DROP). Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule. Controls whether traffic
+                            is accepted or dropped by this rule. Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule.
+                          type: string
+                        ipv4:
+                          description: A list of IPv4 addresses or networks. Must
+                            be in IP/mask format. A list of IP addresses, CIDR blocks,
+                            or 0.0.0.0/0 (to allow all) this rule applies to.
+                          items:
+                            type: string
+                          type: array
+                        ipv6:
+                          description: A list of IPv6 addresses or networks. Must
+                            be in IP/mask format. A list of IPv6 addresses or networks
+                            this rule applies to.
+                          items:
+                            type: string
+                          type: array
+                        label:
+                          description: This Firewall's unique label. Used to identify
+                            this rule. For display purposes only.
+                          type: string
+                        ports:
+                          description: A string representation of ports and/or port
+                            ranges (i.e. "443" or "80-90, 91"). A string representation
+                            of ports and/or port ranges (i.e. "443" or "80-90, 91").
+                          type: string
+                        protocol:
+                          description: The network protocol this rule controls. (TCP,
+                            UDP, ICMP) The network protocol this rule controls.
+                          type: string
+                      type: object
+                    type: array
+                  outboundPolicy:
+                    description: The default behavior for outbound traffic. This setting
+                      can be overridden by updating the outbound.action property for
+                      an individual Firewall Rule. (ACCEPT, DROP) The default behavior
+                      for outbound traffic. This setting can be overridden by updating
+                      the outbound.action property for an individual Firewall Rule.
                     type: string
                   status:
                     description: The status of the Firewall. The status of the firewall.
                     type: string
+                  tags:
+                    description: A list of tags applied to the Kubernetes cluster.
+                      Tags are for organizational purposes only. An array of tags
+                      applied to this object. Tags are for organizational purposes
+                      only.
+                    items:
+                      type: string
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.
@@ -525,9 +671,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

@@ -27,9 +27,25 @@ type ImageObservation struct {
 	// Whether or not this Image is deprecated. Will only be True for deprecated public Images.
 	Deprecated *bool `json:"deprecated,omitempty" tf:"deprecated,omitempty"`
 
+	// A detailed description of this Image.
+	// A detailed description of this Image.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The ID of the Linode Disk that this Image will be created from.
+	// The ID of the Linode Disk that this Image will be created from.
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
 	// Only Images created automatically (from a deleted Linode; type=automatic) will expire.
 	// Only Images created automatically (from a deleted Linode; type=automatic) will expire.
 	Expiry *string `json:"expiry,omitempty" tf:"expiry,omitempty"`
+
+	// The MD5 hash of the file to be uploaded. This is used to trigger file updates.
+	// The MD5 hash of the image file.
+	FileHash *string `json:"fileHash,omitempty" tf:"file_hash,omitempty"`
+
+	// The path of the image file to be uploaded.
+	// The name of the file to upload to this image.
+	FilePath *string `json:"filePath,omitempty" tf:"file_path,omitempty"`
 
 	// The unique ID of this Image.  The ID of private images begin with private/ followed by the numeric identifier of the private image, for example private/12345.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -37,6 +53,18 @@ type ImageObservation struct {
 	// True if the Image is public.
 	// True if the Image is public.
 	IsPublic *bool `json:"isPublic,omitempty" tf:"is_public,omitempty"`
+
+	// A short description of the Image. Labels cannot contain special characters.
+	// A short description of the Image. Labels cannot contain special characters.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The ID of the Linode that this Image will be created from.
+	// The ID of the Linode that this Image will be created from.
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// The region of the image. See all regions here.
+	// The region to upload to.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The minimum size this Image needs to deploy. Size is in MB.
 	// The minimum size this Image needs to deploy. Size is in MB.
@@ -87,8 +115,8 @@ type ImageParameters struct {
 
 	// A short description of the Image. Labels cannot contain special characters.
 	// A short description of the Image. Labels cannot contain special characters.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of the Linode that this Image will be created from.
 	// The ID of the Linode that this Image will be created from.
@@ -134,8 +162,9 @@ type ImageStatus struct {
 type Image struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ImageSpec   `json:"spec"`
-	Status            ImageStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	Spec   ImageSpec   `json:"spec"`
+	Status ImageStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -17,6 +17,11 @@ func (mg *AccessControls) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
+// GetManagementPolicy of this AccessControls.
+func (mg *AccessControls) GetManagementPolicy() xpv1.ManagementPolicy {
+	return mg.Spec.ManagementPolicy
+}
+
 // GetProviderConfigReference of this AccessControls.
 func (mg *AccessControls) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
@@ -48,6 +53,11 @@ func (mg *AccessControls) SetConditions(c ...xpv1.Condition) {
 // SetDeletionPolicy of this AccessControls.
 func (mg *AccessControls) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicy of this AccessControls.
+func (mg *AccessControls) SetManagementPolicy(r xpv1.ManagementPolicy) {
+	mg.Spec.ManagementPolicy = r
 }
 
 // SetProviderConfigReference of this AccessControls.
@@ -83,6 +93,11 @@ func (mg *MongoDB) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
+// GetManagementPolicy of this MongoDB.
+func (mg *MongoDB) GetManagementPolicy() xpv1.ManagementPolicy {
+	return mg.Spec.ManagementPolicy
+}
+
 // GetProviderConfigReference of this MongoDB.
 func (mg *MongoDB) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
@@ -114,6 +129,11 @@ func (mg *MongoDB) SetConditions(c ...xpv1.Condition) {
 // SetDeletionPolicy of this MongoDB.
 func (mg *MongoDB) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicy of this MongoDB.
+func (mg *MongoDB) SetManagementPolicy(r xpv1.ManagementPolicy) {
+	mg.Spec.ManagementPolicy = r
 }
 
 // SetProviderConfigReference of this MongoDB.
@@ -149,6 +169,11 @@ func (mg *MySQL) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
+// GetManagementPolicy of this MySQL.
+func (mg *MySQL) GetManagementPolicy() xpv1.ManagementPolicy {
+	return mg.Spec.ManagementPolicy
+}
+
 // GetProviderConfigReference of this MySQL.
 func (mg *MySQL) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
@@ -180,6 +205,11 @@ func (mg *MySQL) SetConditions(c ...xpv1.Condition) {
 // SetDeletionPolicy of this MySQL.
 func (mg *MySQL) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicy of this MySQL.
+func (mg *MySQL) SetManagementPolicy(r xpv1.ManagementPolicy) {
+	mg.Spec.ManagementPolicy = r
 }
 
 // SetProviderConfigReference of this MySQL.
@@ -215,6 +245,11 @@ func (mg *PostgreSQL) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
+// GetManagementPolicy of this PostgreSQL.
+func (mg *PostgreSQL) GetManagementPolicy() xpv1.ManagementPolicy {
+	return mg.Spec.ManagementPolicy
+}
+
 // GetProviderConfigReference of this PostgreSQL.
 func (mg *PostgreSQL) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
@@ -246,6 +281,11 @@ func (mg *PostgreSQL) SetConditions(c ...xpv1.Condition) {
 // SetDeletionPolicy of this PostgreSQL.
 func (mg *PostgreSQL) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicy of this PostgreSQL.
+func (mg *PostgreSQL) SetManagementPolicy(r xpv1.ManagementPolicy) {
+	mg.Spec.ManagementPolicy = r
 }
 
 // SetProviderConfigReference of this PostgreSQL.

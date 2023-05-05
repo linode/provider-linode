@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: clusters.lke.linode.upbound.io
 spec:
@@ -55,9 +55,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -136,12 +140,22 @@ spec:
                     items:
                       type: string
                     type: array
-                required:
-                - k8sVersion
-                - label
-                - pool
-                - region
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -313,6 +327,15 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: k8sVersion is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.k8sVersion)
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
+            - message: pool is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.pool)
+            - message: region is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)
           status:
             description: ClusterStatus defines the observed state of Cluster.
             properties:
@@ -324,6 +347,18 @@ spec:
                     items:
                       type: string
                     type: array
+                  controlPlane:
+                    description: Defines settings for the Kubernetes Control Plane.
+                    items:
+                      properties:
+                        highAvailability:
+                          description: Defines whether High Availability is enabled
+                            for the cluster Control Plane. This is an irreversible
+                            change. Defines whether High Availability is enabled for
+                            the Control Plane Components of the cluster.
+                          type: boolean
+                      type: object
+                    type: array
                   dashboardUrl:
                     description: The Kubernetes Dashboard access URL for this cluster.
                       The dashboard URL of the cluster.
@@ -331,11 +366,41 @@ spec:
                   id:
                     description: The ID of the cluster.
                     type: string
+                  k8sVersion:
+                    description: The desired Kubernetes version for this Kubernetes
+                      cluster in the format of major.minor (e.g. 1.21), and the latest
+                      supported patch version will be deployed. The desired Kubernetes
+                      version for this Kubernetes cluster in the format of <major>.<minor>.
+                      The latest supported patch version will be deployed.
+                    type: string
+                  label:
+                    description: This Kubernetes cluster's unique label. The unique
+                      label for the cluster.
+                    type: string
                   pool:
                     description: 'Additional nested attributes: A node pool in the
                       cluster.'
                     items:
                       properties:
+                        autoscaler:
+                          description: When specified, the number of nodes autoscales
+                            within the defined minimum and maximum values.
+                          items:
+                            properties:
+                              max:
+                                description: The maximum number of nodes to autoscale
+                                  to. The maximum number of nodes to autoscale to.
+                                type: number
+                              min:
+                                description: The minimum number of nodes to autoscale
+                                  to. The minimum number of nodes to autoscale to.
+                                type: number
+                            type: object
+                          type: array
+                        count:
+                          description: The number of nodes in the Node Pool. The number
+                            of nodes in the Node Pool.
+                          type: number
                         id:
                           description: The ID of the cluster. The ID of the Node Pool.
                           type: number
@@ -354,11 +419,28 @@ spec:
                                 type: string
                             type: object
                           type: array
+                        type:
+                          description: A Linode Type for all of the nodes in the Node
+                            Pool. See all node types here. A Linode Type for all of
+                            the nodes in the Node Pool.
+                          type: string
                       type: object
                     type: array
+                  region:
+                    description: This Kubernetes cluster's location. This cluster's
+                      location.
+                    type: string
                   status:
                     description: The status of the cluster. The status of the cluster.
                     type: string
+                  tags:
+                    description: An array of tags applied to the Kubernetes cluster.
+                      Tags are for organizational purposes only. An array of tags
+                      applied to this object. Tags are for organizational purposes
+                      only.
+                    items:
+                      type: string
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.
@@ -401,9 +483,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

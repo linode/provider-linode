@@ -14,15 +14,24 @@ import (
 )
 
 type SharedIPsObservation struct {
+
+	// The set of IPs to share with the Linode.
+	// A set of IP addresses to share to the Linode
+	Addresses []*string `json:"addresses,omitempty" tf:"addresses,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The ID of the Linode to share the IPs to.
+	// The ID of the Linode to share these IP addresses with.
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 }
 
 type SharedIPsParameters struct {
 
 	// The set of IPs to share with the Linode.
 	// A set of IP addresses to share to the Linode
-	// +kubebuilder:validation:Required
-	Addresses []*string `json:"addresses" tf:"addresses,omitempty"`
+	// +kubebuilder:validation:Optional
+	Addresses []*string `json:"addresses,omitempty" tf:"addresses,omitempty"`
 
 	// The ID of the Linode to share the IPs to.
 	// The ID of the Linode to share these IP addresses with.
@@ -63,8 +72,9 @@ type SharedIPsStatus struct {
 type SharedIPs struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              SharedIPsSpec   `json:"spec"`
-	Status            SharedIPsStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.addresses)",message="addresses is a required parameter"
+	Spec   SharedIPsSpec   `json:"spec"`
+	Status SharedIPsStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

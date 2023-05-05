@@ -1,5 +1,24 @@
 name: linode/linode
 resources:
+    linode_account_settings:
+        subCategory: ""
+        description: Manages the settings of a Linode account.
+        name: linode_account_settings
+        title: linode_account_settings
+        examples:
+            - name: myaccount
+              manifest: |-
+                {
+                  "backups_enabled": "true",
+                  "longview_subscription": "longview-40"
+                }
+        argumentDocs:
+            backups_enabled: '- (Optional) The account-wide backups default. If true, all Linodes created will automatically be enrolled in the Backups service. If false, Linodes will not be enrolled by default, but may still be enrolled on creation or later.'
+            longview_subscription: '- (Optional) The Longview Pro tier you are currently subscribed to. The value must be a Longview Subscription ID or null for Longview Free.'
+            managed: '- Enables monitoring for connectivity, response, and total request time.'
+            network_helper: '- (Optional) Enables network helper across all users by default for new Linodes and Linode Configs.'
+            object_storage: '- A string describing the status of this account’s Object Storage service enrollment.'
+        importStatements: []
     linode_database_access_controls:
         subCategory: ""
         description: Manages the access controls for a Linode Database.

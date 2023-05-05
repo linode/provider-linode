@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: stackscripts.stackscript.linode.upbound.io
 spec:
@@ -55,9 +55,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -131,12 +135,22 @@ spec:
                           type: string
                       type: object
                     type: array
-                required:
-                - description
-                - images
-                - label
-                - script
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -308,6 +322,15 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: description is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.description)
+            - message: images is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.images)
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
+            - message: script is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.script)
           status:
             description: StackscriptStatus defines the observed state of Stackscript.
             properties:
@@ -327,12 +350,79 @@ spec:
                       deployed. The total number of times this StackScript has been
                       deployed.
                     type: number
+                  description:
+                    description: A description for the StackScript. A description
+                      for the StackScript.
+                    type: string
                   id:
+                    type: string
+                  images:
+                    description: An array of Image IDs representing the Images that
+                      this StackScript is compatible for deploying with. any/all indicates
+                      that all available image distributions, including private images,
+                      are accepted. Currently private image IDs are not supported.
+                      An array of Image IDs representing the Images that this StackScript
+                      is compatible for deploying with.
+                    items:
+                      type: string
+                    type: array
+                  isPublic:
+                    description: This determines whether other users can use your
+                      StackScript. Once a StackScript is made public, it cannot be
+                      made private. Changing This determines whether other users can
+                      use your StackScript. Once a StackScript is made public, it
+                      cannot be made private.
+                    type: boolean
+                  label:
+                    description: The StackScript's label is for display purposes only.
+                      The StackScript's label is for display purposes only.
+                    type: string
+                  revNote:
+                    description: This field allows you to add notes for the set of
+                      revisions made to this StackScript. This field allows you to
+                      add notes for the set of revisions made to this StackScript.
+                    type: string
+                  script:
+                    description: The script to execute when provisioning a new Linode
+                      with this StackScript. The script to execute when provisioning
+                      a new Linode with this StackScript.
                     type: string
                   updated:
                     description: The date this StackScript was updated. The date this
                       StackScript was updated.
                     type: string
+                  userDefinedFields:
+                    description: This is a list of fields defined with a special syntax
+                      inside this StackScript that allow for supplying customized
+                      parameters during deployment. This is a list of fields defined
+                      with a special syntax inside this StackScript that allow for
+                      supplying customized parameters during deployment.
+                    items:
+                      properties:
+                        default:
+                          description: The default value. If not specified, this value
+                            will be used.
+                          type: string
+                        example:
+                          description: An example value for the field.
+                          type: string
+                        label:
+                          description: The StackScript's label is for display purposes
+                            only.
+                          type: string
+                        manyOf:
+                          description: A list of acceptable values for the field in
+                            any quantity, combination or order.
+                          type: string
+                        name:
+                          description: The name of the field.
+                          type: string
+                        oneOf:
+                          description: A list of acceptable single values for the
+                            field.
+                          type: string
+                      type: object
+                    type: array
                   userGravatarId:
                     description: The Gravatar ID for the User who created the StackScript.
                       The Gravatar ID for the User who created the StackScript.
@@ -383,9 +473,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

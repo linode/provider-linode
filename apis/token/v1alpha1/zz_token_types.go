@@ -19,13 +19,25 @@ type TokenObservation struct {
 	// The date and time this token was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
+	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked.
+	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. Format: 2006-01-02T15:04:05Z07:00
+	Expiry *string `json:"expiry,omitempty" tf:"expiry,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// A label for the Token.
+	// The label of the Linode Token.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. All scopes can be viewed in the Linode API documentation.
+	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
+	Scopes *string `json:"scopes,omitempty" tf:"scopes,omitempty"`
 }
 
 type TokenParameters struct {
 
 	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked.
-	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked.
+	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. Format: 2006-01-02T15:04:05Z07:00
 	// +kubebuilder:validation:Optional
 	Expiry *string `json:"expiry,omitempty" tf:"expiry,omitempty"`
 
@@ -35,9 +47,9 @@ type TokenParameters struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. All scopes can be viewed in the Linode API documentation.
-	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure.
-	// +kubebuilder:validation:Required
-	Scopes *string `json:"scopes" tf:"scopes,omitempty"`
+	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
+	// +kubebuilder:validation:Optional
+	Scopes *string `json:"scopes,omitempty" tf:"scopes,omitempty"`
 }
 
 // TokenSpec defines the desired state of Token
@@ -64,8 +76,9 @@ type TokenStatus struct {
 type Token struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              TokenSpec   `json:"spec"`
-	Status            TokenStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.scopes)",message="scopes is a required parameter"
+	Spec   TokenSpec   `json:"spec"`
+	Status TokenStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -19,15 +19,31 @@ type IPObservation struct {
 	// The resulting IPv4 address.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// If true, the instance will be rebooted to update network interfaces.
+	// If true, the instance will be rebooted to update network interfaces.
+	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
+
 	// The default gateway for this address
 	// The default gateway for this address
 	Gateway *string `json:"gateway,omitempty" tf:"gateway,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The ID of the Linode to allocate an IPv4 address for.
+	// The ID of the Linode to allocate an IPv4 address for.
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
 	// The number of bits set in the subnet mask.
 	// The number of bits set in the subnet mask.
 	Prefix *float64 `json:"prefix,omitempty" tf:"prefix,omitempty"`
+
+	// Whether the IPv4 address is public or private. Defaults to true.
+	// Whether the IPv4 address is public or private.
+	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
+
+	// The reverse DNS assigned to this address.
+	// The reverse DNS assigned to this address.
+	Rdns *string `json:"rdns,omitempty" tf:"rdns,omitempty"`
 
 	// The region this IP resides in.
 	// The region this IP resides in.

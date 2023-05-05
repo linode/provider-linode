@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: volumes.volume.linode.upbound.io
 spec:
@@ -54,9 +54,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -165,9 +169,22 @@ spec:
                     items:
                       type: string
                     type: array
-                required:
-                - label
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -339,6 +356,9 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
           status:
             description: VolumeStatus defines the observed state of Volume.
             properties:
@@ -353,11 +373,40 @@ spec:
                     type: string
                   id:
                     type: string
+                  label:
+                    description: The label of the Linode Volume The label of the Linode
+                      Volume.
+                    type: string
+                  linodeId:
+                    description: The ID of a Linode Instance where the Volume should
+                      be attached. The Linode ID where the Volume should be attached.
+                    type: number
+                  region:
+                    description: The region where this volume will be deployed.  Examples
+                      are "us-east", "us-west", "ap-south", etc. See all regions here.
+                      This field is optional for cloned volumes. Changing . The region
+                      where this volume will be deployed.
+                    type: string
+                  size:
+                    description: Size of the Volume in GB. Size of the Volume in GB
+                    type: number
+                  sourceVolumeId:
+                    description: 'The ID of a Linode Volume to clone. NOTE: Cloned
+                      volumes must be in the same region as the source volume. The
+                      ID of a volume to clone.'
+                    type: number
                   status:
                     description: The status of the Linode Volume. (creating, active,
                       resizing, contact_support) The status of the volume, indicating
                       the current readiness state.
                     type: string
+                  tags:
+                    description: A list of tags applied to this object. Tags are for
+                      organizational purposes only. An array of tags applied to this
+                      object. Tags are for organizational purposes only.
+                    items:
+                      type: string
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.
@@ -400,9 +449,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

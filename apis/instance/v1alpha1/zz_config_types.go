@@ -14,6 +14,31 @@ import (
 )
 
 type ConfigDevicesObservation struct {
+
+	// The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sda []DevicesSdaObservation `json:"sda,omitempty" tf:"sda,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdb []DevicesSdbObservation `json:"sdb,omitempty" tf:"sdb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdc []DevicesSdcObservation `json:"sdc,omitempty" tf:"sdc,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdd []DevicesSddObservation `json:"sdd,omitempty" tf:"sdd,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sde []DevicesSdeObservation `json:"sde,omitempty" tf:"sde,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdf []DevicesSdfObservation `json:"sdf,omitempty" tf:"sdf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdg []DevicesSdgObservation `json:"sdg,omitempty" tf:"sdg,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdh []DevicesSdhObservation `json:"sdh,omitempty" tf:"sdh,omitempty"`
 }
 
 type ConfigDevicesParameters struct {
@@ -53,6 +78,26 @@ type ConfigDevicesParameters struct {
 }
 
 type ConfigHelpersObservation struct {
+
+	// Populates the /dev directory early during boot without udev. (default true)
+	// Populates the /dev directory early during boot without udev.
+	DevtmpfsAutomount *bool `json:"devtmpfsAutomount,omitempty" tf:"devtmpfs_automount,omitempty"`
+
+	// Helps maintain correct inittab/upstart console device. (default true)
+	// Helps maintain correct inittab/upstart console device.
+	Distro *bool `json:"distro,omitempty" tf:"distro,omitempty"`
+
+	// Creates a modules dependency file for the Kernel you run. (default true)
+	// Creates a modules dependency file for the Kernel you run.
+	ModulesDep *bool `json:"modulesDep,omitempty" tf:"modules_dep,omitempty"`
+
+	// Automatically configures static networking. (default true)
+	// Automatically configures static networking.
+	Network *bool `json:"network,omitempty" tf:"network,omitempty"`
+
+	// Disables updatedb cron job to avoid disk thrashing. (default true)
+	// Disables updatedb cron job to avoid disk thrashing.
+	UpdatedbDisabled *bool `json:"updatedbDisabled,omitempty" tf:"updatedb_disabled,omitempty"`
 }
 
 type ConfigHelpersParameters struct {
@@ -84,6 +129,18 @@ type ConfigHelpersParameters struct {
 }
 
 type ConfigInterfaceObservation struct {
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
+
+	// The Config’s label for display purposes only.
+	// The name of this interface.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The type of interface. (public, vlan)
+	// The type of interface.
+	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
 }
 
 type ConfigInterfaceParameters struct {
@@ -105,7 +162,53 @@ type ConfigInterfaceParameters struct {
 }
 
 type ConfigObservation_2 struct {
+
+	// If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.
+	// If true, the Linode will be booted to running state. If false, the Linode will be shutdown. If undefined, no action will be taken.
+	Booted *bool `json:"booted,omitempty" tf:"booted,omitempty"`
+
+	// Optional field for arbitrary User comments on this Config.
+	// Optional field for arbitrary User comments on this Config.
+	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
+
+	// A dictionary of device disks to use as a device map in a Linode’s configuration profile.
+	Devices []ConfigDevicesObservation `json:"devices,omitempty" tf:"devices,omitempty"`
+
+	// Helpers enabled when booting to this Linode Config.
+	Helpers []ConfigHelpersObservation `json:"helpers,omitempty" tf:"helpers,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// An array of Network Interfaces to add to this Linode’s Configuration Profile.
+	Interface []ConfigInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
+
+	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+	// A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
+	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
+
+	// The Config’s label for display purposes only.
+	// The Config’s label for display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The ID of the Linode to create this configuration profile under.
+	// The ID of the Linode to create this configuration profile under.
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// The memory limit of the Config. Defaults to the total ram of the Linode.
+	// The memory limit of the Linode.
+	MemoryLimit *float64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
+
+	// The root device to boot. (default /dev/sda)
+	// The root device to boot. If no value or an invalid value is provided, root device will default to /dev/sda. If the device specified at the root device location is not mounted, the Linode will not boot until a device is mounted.
+	RootDevice *string `json:"rootDevice,omitempty" tf:"root_device,omitempty"`
+
+	// Defines the state of your Linode after booting. (default, single, binbash)
+	// Defines the state of your Linode after booting.
+	RunLevel *string `json:"runLevel,omitempty" tf:"run_level,omitempty"`
+
+	// Controls the virtualization mode. (paravirt, fullvirt)
+	// Controls the virtualization mode.
+	VirtMode *string `json:"virtMode,omitempty" tf:"virt_mode,omitempty"`
 }
 
 type ConfigParameters_2 struct {
@@ -139,8 +242,8 @@ type ConfigParameters_2 struct {
 
 	// The Config’s label for display purposes only.
 	// The Config’s label for display purposes only.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of the Linode to create this configuration profile under.
 	// The ID of the Linode to create this configuration profile under.
@@ -178,6 +281,14 @@ type ConfigParameters_2 struct {
 }
 
 type DevicesSdaObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdaParameters struct {
@@ -203,6 +314,14 @@ type DevicesSdaParameters struct {
 }
 
 type DevicesSdbObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdbParameters struct {
@@ -228,6 +347,14 @@ type DevicesSdbParameters struct {
 }
 
 type DevicesSdcObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdcParameters struct {
@@ -253,6 +380,14 @@ type DevicesSdcParameters struct {
 }
 
 type DevicesSddObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSddParameters struct {
@@ -278,6 +413,14 @@ type DevicesSddParameters struct {
 }
 
 type DevicesSdeObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdeParameters struct {
@@ -303,6 +446,14 @@ type DevicesSdeParameters struct {
 }
 
 type DevicesSdfObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdfParameters struct {
@@ -328,6 +479,14 @@ type DevicesSdfParameters struct {
 }
 
 type DevicesSdgObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdgParameters struct {
@@ -353,6 +512,14 @@ type DevicesSdgParameters struct {
 }
 
 type DevicesSdhObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdhParameters struct {
@@ -401,8 +568,9 @@ type ConfigStatus struct {
 type Config struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              ConfigSpec   `json:"spec"`
-	Status            ConfigStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	Spec   ConfigSpec   `json:"spec"`
+	Status ConfigStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

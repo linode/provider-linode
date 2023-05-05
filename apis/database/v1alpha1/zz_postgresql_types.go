@@ -15,13 +15,29 @@ import (
 
 type PostgreSQLObservation struct {
 
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
+
+	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
+	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
+	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+
 	// When this Managed Database was created.
 	// When this Managed Database was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
+	// Whether the Managed Databases is encrypted. (default false)
+	// Whether the Managed Databases is encrypted.
+	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
+
 	// The Managed Database engine. (e.g. postgresql)
 	// The Managed Database engine.
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
+
+	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
+	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
+	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// The primary host for the Managed Database.
 	// The primary host for the Managed Database.
@@ -34,16 +50,43 @@ type PostgreSQLObservation struct {
 	// The ID of the Managed Database.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// A unique, user-defined string referring to the Managed Database.
+	// A unique, user-defined string referring to the Managed Database.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
 	// The access port for this Managed Database.
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+
+	// The region to use for the Managed Database.
+	// The region to use for the Managed Database.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The synchronization level of the replicating server. (on, local, remote_write, remote_apply, off; default off)
+	// The synchronization level of the replicating server.Must be `local` or `off` for the `asynch` replication type. Must be `on`, `remote_write`, or `remote_apply` for the `semi_synch` replication type.
+	ReplicationCommitType *string `json:"replicationCommitType,omitempty" tf:"replication_commit_type,omitempty"`
+
+	// The replication method used for the Managed Database. (none, asynch, semi_synch; default none)
+	// The replication method used for the Managed Database. Must be `none` for a single node cluster. Must be `asynch` or `semi_synch` for a high availability cluster.
+	ReplicationType *string `json:"replicationType,omitempty" tf:"replication_type,omitempty"`
+
+	// Whether to require SSL credentials to establish a connection to the Managed Database. (default false)
+	// Whether to require SSL credentials to establish a connection to the Managed Database.
+	SSLConnection *bool `json:"sslConnection,omitempty" tf:"ssl_connection,omitempty"`
 
 	// The operating status of the Managed Database.
 	// The operating status of the Managed Database.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// The Linode Instance type used for the nodes of the  Managed Database instance.
+	// The Linode Instance type used by the Managed Database for its nodes.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
 	// When this Managed Database was last updated.
 	// When this Managed Database was last updated.
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
+
+	// Configuration settings for automated patch update maintenance for the Managed Database.
+	Updates []PostgreSQLUpdatesObservation `json:"updates,omitempty" tf:"updates,omitempty"`
 
 	// The Managed Database engine version. (e.g. 13.2)
 	// The Managed Database engine version.
@@ -69,18 +112,18 @@ type PostgreSQLParameters struct {
 
 	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
 	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
-	// +kubebuilder:validation:Required
-	EngineID *string `json:"engineId" tf:"engine_id,omitempty"`
+	// +kubebuilder:validation:Optional
+	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// A unique, user-defined string referring to the Managed Database.
 	// A unique, user-defined string referring to the Managed Database.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The region to use for the Managed Database.
 	// The region to use for the Managed Database.
-	// +kubebuilder:validation:Required
-	Region *string `json:"region" tf:"region,omitempty"`
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The synchronization level of the replicating server. (on, local, remote_write, remote_apply, off; default off)
 	// The synchronization level of the replicating server.Must be `local` or `off` for the `asynch` replication type. Must be `on`, `remote_write`, or `remote_apply` for the `semi_synch` replication type.
@@ -99,8 +142,8 @@ type PostgreSQLParameters struct {
 
 	// The Linode Instance type used for the nodes of the  Managed Database instance.
 	// The Linode Instance type used by the Managed Database for its nodes.
-	// +kubebuilder:validation:Required
-	Type *string `json:"type" tf:"type,omitempty"`
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Configuration settings for automated patch update maintenance for the Managed Database.
 	// +kubebuilder:validation:Optional
@@ -108,6 +151,26 @@ type PostgreSQLParameters struct {
 }
 
 type PostgreSQLUpdatesObservation struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	// The day to perform maintenance.
+	DayOfWeek *string `json:"dayOfWeek,omitempty" tf:"day_of_week,omitempty"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	// The maximum maintenance window time in hours.
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
+
+	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
+	// Whether maintenance occurs on a weekly or monthly basis.
+	Frequency *string `json:"frequency,omitempty" tf:"frequency,omitempty"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	// The hour to begin maintenance based in UTC time.
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+
+	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
+	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
+	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
 type PostgreSQLUpdatesParameters struct {
@@ -162,8 +225,12 @@ type PostgreSQLStatus struct {
 type PostgreSQL struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              PostgreSQLSpec   `json:"spec"`
-	Status            PostgreSQLStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.engineId)",message="engineId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)",message="region is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
+	Spec   PostgreSQLSpec   `json:"spec"`
+	Status PostgreSQLStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

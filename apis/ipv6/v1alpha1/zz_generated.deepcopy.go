@@ -86,6 +86,11 @@ func (in *IPv6RangeObservation) DeepCopyInto(out *IPv6RangeObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.LinodeID != nil {
+		in, out := &in.LinodeID, &out.LinodeID
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Linodes != nil {
 		in, out := &in.Linodes, &out.Linodes
 		*out = make([]*float64, len(*in))
@@ -97,6 +102,11 @@ func (in *IPv6RangeObservation) DeepCopyInto(out *IPv6RangeObservation) {
 			}
 		}
 	}
+	if in.PrefixLength != nil {
+		in, out := &in.PrefixLength, &out.PrefixLength
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Range != nil {
 		in, out := &in.Range, &out.Range
 		*out = new(string)
@@ -104,6 +114,11 @@ func (in *IPv6RangeObservation) DeepCopyInto(out *IPv6RangeObservation) {
 	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
+		*out = new(string)
+		**out = **in
+	}
+	if in.RouteTarget != nil {
+		in, out := &in.RouteTarget, &out.RouteTarget
 		*out = new(string)
 		**out = **in
 	}

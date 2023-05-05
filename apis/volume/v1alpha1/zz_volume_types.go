@@ -21,17 +21,41 @@ type VolumeObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The label of the Linode Volume
+	// The label of the Linode Volume.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The ID of a Linode Instance where the Volume should be attached.
+	// The Linode ID where the Volume should be attached.
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// The region where this volume will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here. This field is optional for cloned volumes. Changing .
+	// The region where this volume will be deployed.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// Size of the Volume in GB.
+	// Size of the Volume in GB
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+
+	// The ID of a Linode Volume to clone. NOTE: Cloned volumes must be in the same region as the source volume.
+	// The ID of a volume to clone.
+	SourceVolumeID *float64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
+
 	// The status of the Linode Volume. (creating, active, resizing, contact_support)
 	// The status of the volume, indicating the current readiness state.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type VolumeParameters struct {
 
 	// The label of the Linode Volume
 	// The label of the Linode Volume.
-	// +kubebuilder:validation:Required
-	Label *string `json:"label" tf:"label,omitempty"`
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of a Linode Instance where the Volume should be attached.
 	// The Linode ID where the Volume should be attached.
@@ -92,8 +116,9 @@ type VolumeStatus struct {
 type Volume struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              VolumeSpec   `json:"spec"`
-	Status            VolumeStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	Spec   VolumeSpec   `json:"spec"`
+	Status VolumeStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

@@ -14,7 +14,47 @@ import (
 )
 
 type DomainObservation struct {
+
+	// The list of IPs that may perform a zone transfer for this Domain. This is potentially dangerous, and should be set to an empty list unless you intend to use it.
+	AxfrIps []*string `json:"axfrIps,omitempty" tf:"axfr_ips,omitempty"`
+
+	// A description for this Domain. This is for display purposes only.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The domain this Domain represents. These must be unique in our system; you cannot have two Domains representing the same domain.
+	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
+
+	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
+
+	// The group this Domain belongs to. This is for display purposes only.
+	Group *string `json:"group,omitempty" tf:"group,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The IP addresses representing the master DNS for this Domain.
+	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
+
+	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	RefreshSec *float64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
+
+	// The interval, in seconds, at which a failed refresh should be retried. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	RetrySec *float64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
+
+	// Start of Authority email address. This is required for master Domains.
+	SoaEmail *string `json:"soaEmail,omitempty" tf:"soa_email,omitempty"`
+
+	// Used to control whether this Domain is currently being rendered.
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type DomainParameters struct {
@@ -28,8 +68,8 @@ type DomainParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// The domain this Domain represents. These must be unique in our system; you cannot have two Domains representing the same domain.
-	// +kubebuilder:validation:Required
-	Domain *string `json:"domain" tf:"domain,omitempty"`
+	// +kubebuilder:validation:Optional
+	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
 	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// +kubebuilder:validation:Optional
@@ -68,8 +108,8 @@ type DomainParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
-	// +kubebuilder:validation:Required
-	Type *string `json:"type" tf:"type,omitempty"`
+	// +kubebuilder:validation:Optional
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 // DomainSpec defines the desired state of Domain
@@ -96,8 +136,10 @@ type DomainStatus struct {
 type Domain struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              DomainSpec   `json:"spec"`
-	Status            DomainStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.domain)",message="domain is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
+	Spec   DomainSpec   `json:"spec"`
+	Status DomainStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

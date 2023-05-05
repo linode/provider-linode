@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.8.0
+    controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
   name: buckets.objectstorage.linode.upbound.io
 spec:
@@ -55,9 +55,13 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: DeletionPolicy specifies what will happen to the underlying
+                description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource.
+                  or "Orphan" the external resource. This field is planned to be deprecated
+                  in favor of the ManagementPolicy field in a future release. Currently,
+                  both could be set independently and non-default values would be
+                  honored if the feature flag is enabled. See the design doc for more
+                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
                 enum:
                 - Orphan
                 - Delete
@@ -359,10 +363,22 @@ spec:
                       however, suspend versioning on that bucket. (Requires access_key
                       and secret_key) Whether to enable versioning.
                     type: boolean
-                required:
-                - cluster
-                - label
                 type: object
+              managementPolicy:
+                default: FullControl
+                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
+                  It is not honored unless the relevant Crossplane feature flag is
+                  enabled, and may be changed or removed without notice. ManagementPolicy
+                  specifies the level of control Crossplane has over the managed external
+                  resource. This field is planned to replace the DeletionPolicy field
+                  in a future release. Currently, both could be set independently
+                  and non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                enum:
+                - FullControl
+                - ObserveOnly
+                - OrphanOnDelete
+                type: string
               providerConfigRef:
                 default:
                   name: default
@@ -534,11 +550,81 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: cluster is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.cluster)
+            - message: label is a required parameter
+              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
           status:
             description: BucketStatus defines the observed state of Bucket.
             properties:
               atProvider:
                 properties:
+                  accessKey:
+                    description: The access key to authenticate with. The S3 access
+                      key to use for this resource. (Required for lifecycle_rule and
+                      versioning)
+                    type: string
+                  acl:
+                    description: The Access Control Level of the bucket using a canned
+                      ACL string. See all ACL strings in the Linode API v4 documentation.
+                      The Access Control Level of the bucket using a canned ACL string.
+                    type: string
+                  cert:
+                    description: The cert used by this Object Storage Bucket.
+                    items:
+                      properties:
+                        certificateSecretRef:
+                          description: The Base64 encoded and PEM formatted SSL certificate.
+                            The Base64 encoded and PEM formatted SSL certificate.
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
+                        privateKeySecretRef:
+                          description: The private key associated with the TLS/SSL
+                            certificate. The private key associated with the TLS/SSL
+                            certificate.
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
+                      required:
+                      - certificateSecretRef
+                      - privateKeySecretRef
+                      type: object
+                    type: array
+                  cluster:
+                    description: The cluster of the Linode Object Storage Bucket.
+                      The cluster of the Linode Object Storage Bucket.
+                    type: string
+                  corsEnabled:
+                    description: If true, the bucket will have CORS enabled for all
+                      origins. If true, the bucket will be created with CORS enabled
+                      for all origins.
+                    type: boolean
                   hostname:
                     description: The hostname where this bucket can be accessed. This
                       hostname can be accessed through a browser if the bucket is
@@ -547,6 +633,86 @@ spec:
                   id:
                     description: The unique identifier for the rule.
                     type: string
+                  label:
+                    description: The label of the Linode Object Storage Bucket. The
+                      label of the Linode Object Storage Bucket.
+                    type: string
+                  lifecycleRule:
+                    description: Lifecycle rules to be applied to the bucket.
+                    items:
+                      properties:
+                        abortIncompleteMultipartUploadDays:
+                          description: Specifies the number of days after initiating
+                            a multipart upload when the multipart upload must be completed.
+                            Specifies the number of days after initiating a multipart
+                            upload when the multipart upload must be completed.
+                          type: number
+                        enabled:
+                          description: Specifies whether the lifecycle rule is active.
+                            Specifies whether the lifecycle rule is active.
+                          type: boolean
+                        expiration:
+                          description: Specifies a period in the object's expire.
+                          items:
+                            properties:
+                              date:
+                                description: Specifies the date after which you want
+                                  the corresponding action to take effect. Specifies
+                                  the date after which you want the corresponding
+                                  action to take effect.
+                                type: string
+                              days:
+                                description: Specifies the number of days after object
+                                  creation when the specific rule action takes effect.
+                                  Specifies the number of days after object creation
+                                  when the specific rule action takes effect.
+                                type: number
+                              expiredObjectDeleteMarker:
+                                description: On a versioned bucket (versioning-enabled
+                                  or versioning-suspended bucket), you can add this
+                                  element in the lifecycle configuration to direct
+                                  Linode Object Storage to delete expired object delete
+                                  markers. This cannot be specified with Days or Date
+                                  in a Lifecycle Expiration Policy. Directs Linode
+                                  Object Storage to remove expired deleted markers.
+                                type: boolean
+                            type: object
+                          type: array
+                        id:
+                          description: The unique identifier for the rule. The unique
+                            identifier for the rule.
+                          type: string
+                        noncurrentVersionExpiration:
+                          description: Specifies when non-current object versions
+                            expire.
+                          items:
+                            properties:
+                              days:
+                                description: Specifies the number of days after object
+                                  creation when the specific rule action takes effect.
+                                  Specifies the number of days non-current object
+                                  versions expire.
+                                type: number
+                            type: object
+                          type: array
+                        prefix:
+                          description: The object key prefix identifying one or more
+                            objects to which the rule applies. The object key prefix
+                            identifying one or more objects to which the rule applies.
+                          type: string
+                      type: object
+                    type: array
+                  secretKey:
+                    description: The secret key to authenticate with. The S3 secret
+                      key to use for this resource. (Required for lifecycle_rule and
+                      versioning)
+                    type: string
+                  versioning:
+                    description: Whether to enable versioning. Once you version-enable
+                      a bucket, it can never return to an unversioned state. You can,
+                      however, suspend versioning on that bucket. (Requires access_key
+                      and secret_key) Whether to enable versioning.
+                    type: boolean
                 type: object
               conditions:
                 description: Conditions of the resource.
@@ -589,9 +755,3 @@ spec:
     storage: true
     subresources:
       status: {}
-status:
-  acceptedNames:
-    kind: ""
-    plural: ""
-  conditions: []
-  storedVersions: []

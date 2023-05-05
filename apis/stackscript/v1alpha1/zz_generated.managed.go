@@ -17,6 +17,11 @@ func (mg *Stackscript) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
+// GetManagementPolicy of this Stackscript.
+func (mg *Stackscript) GetManagementPolicy() xpv1.ManagementPolicy {
+	return mg.Spec.ManagementPolicy
+}
+
 // GetProviderConfigReference of this Stackscript.
 func (mg *Stackscript) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
@@ -48,6 +53,11 @@ func (mg *Stackscript) SetConditions(c ...xpv1.Condition) {
 // SetDeletionPolicy of this Stackscript.
 func (mg *Stackscript) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicy of this Stackscript.
+func (mg *Stackscript) SetManagementPolicy(r xpv1.ManagementPolicy) {
+	mg.Spec.ManagementPolicy = r
 }
 
 // SetProviderConfigReference of this Stackscript.
