@@ -11,6 +11,8 @@ on:
     workflows: ["Tag"]
     types:
       - completed
+  release:
+    types: [created]
   pull_request: {}
   workflow_dispatch: {}
 
