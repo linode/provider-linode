@@ -7,6 +7,10 @@ on:
       - release-*
     tags:
       - v*
+  workflow_run:
+    workflows: ["Tag"]
+    types:
+      - completed
   pull_request: {}
   workflow_dispatch: {}
 
