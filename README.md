@@ -1,3 +1,5 @@
+[![CI](https://github.com/linode/provider-linode/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/linode/provider-linode/actions/workflows/ci.yml)
+
 # Provider Linode
 
 **###############################################################################################################**
