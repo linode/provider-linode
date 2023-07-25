@@ -67,6 +67,9 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  cloudInit:
+                    description: Whether this image supports cloud-init.
+                    type: boolean
                   description:
                     description: A detailed description of this Image. A detailed
                       description of this Image.
@@ -438,6 +441,14 @@ spec:
             properties:
               atProvider:
                 properties:
+                  capabilities:
+                    description: The capabilities of this Image.
+                    items:
+                      type: string
+                    type: array
+                  cloudInit:
+                    description: Whether this image supports cloud-init.
+                    type: boolean
                   created:
                     description: When this Image was created. When this Image was
                       created.

@@ -73,8 +73,8 @@ spec:
                       for the StackScript.
                     type: string
                   images:
-                    description: An array of Image IDs representing the Images that
-                      this StackScript is compatible for deploying with. any/all indicates
+                    description: A set of Image IDs representing the Images that this
+                      StackScript is compatible for deploying with. any/all indicates
                       that all available image distributions, including private images,
                       are accepted. Currently private image IDs are not supported.
                       An array of Image IDs representing the Images that this StackScript
@@ -103,38 +103,6 @@ spec:
                       with this StackScript. The script to execute when provisioning
                       a new Linode with this StackScript.
                     type: string
-                  userDefinedFields:
-                    description: This is a list of fields defined with a special syntax
-                      inside this StackScript that allow for supplying customized
-                      parameters during deployment. This is a list of fields defined
-                      with a special syntax inside this StackScript that allow for
-                      supplying customized parameters during deployment.
-                    items:
-                      properties:
-                        default:
-                          description: The default value. If not specified, this value
-                            will be used.
-                          type: string
-                        example:
-                          description: An example value for the field.
-                          type: string
-                        label:
-                          description: The StackScript's label is for display purposes
-                            only.
-                          type: string
-                        manyOf:
-                          description: A list of acceptable values for the field in
-                            any quantity, combination or order.
-                          type: string
-                        name:
-                          description: The name of the field.
-                          type: string
-                        oneOf:
-                          description: A list of acceptable single values for the
-                            field.
-                          type: string
-                      type: object
-                    type: array
                 type: object
               managementPolicy:
                 default: FullControl
@@ -357,8 +325,8 @@ spec:
                   id:
                     type: string
                   images:
-                    description: An array of Image IDs representing the Images that
-                      this StackScript is compatible for deploying with. any/all indicates
+                    description: A set of Image IDs representing the Images that this
+                      StackScript is compatible for deploying with. any/all indicates
                       that all available image distributions, including private images,
                       are accepted. Currently private image IDs are not supported.
                       An array of Image IDs representing the Images that this StackScript

@@ -20,7 +20,7 @@ type IPObservation struct {
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
 	// If true, the instance will be rebooted to update network interfaces.
-	// If true, the instance will be rebooted to update network interfaces.
+	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
 	// The default gateway for this address
@@ -61,7 +61,7 @@ type IPObservation struct {
 type IPParameters struct {
 
 	// If true, the instance will be rebooted to update network interfaces.
-	// If true, the instance will be rebooted to update network interfaces.
+	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	// +kubebuilder:validation:Optional
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 

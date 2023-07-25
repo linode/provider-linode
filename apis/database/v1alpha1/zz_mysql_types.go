@@ -35,8 +35,8 @@ type MySQLObservation struct {
 	// The Managed Database engine.
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// The primary host for the Managed Database.
@@ -79,7 +79,7 @@ type MySQLObservation struct {
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 
 	// Configuration settings for automated patch update maintenance for the Managed Database.
-	Updates []MySQLUpdatesObservation `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []UpdatesObservation `json:"updates,omitempty" tf:"updates,omitempty"`
 
 	// The Managed Database engine version. (e.g. v8.0.26)
 	// The Managed Database engine version.
@@ -103,8 +103,8 @@ type MySQLParameters struct {
 	// +kubebuilder:validation:Optional
 	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
 
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
 	// +kubebuilder:validation:Optional
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
@@ -135,10 +135,10 @@ type MySQLParameters struct {
 
 	// Configuration settings for automated patch update maintenance for the Managed Database.
 	// +kubebuilder:validation:Optional
-	Updates []MySQLUpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []UpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
-type MySQLUpdatesObservation struct {
+type UpdatesObservation struct {
 
 	// The day to perform maintenance. (monday, tuesday, ...)
 	// The day to perform maintenance.
@@ -161,7 +161,7 @@ type MySQLUpdatesObservation struct {
 	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
-type MySQLUpdatesParameters struct {
+type UpdatesParameters struct {
 
 	// The day to perform maintenance. (monday, tuesday, ...)
 	// The day to perform maintenance.

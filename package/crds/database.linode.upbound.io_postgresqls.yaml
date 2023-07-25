@@ -90,7 +90,7 @@ spec:
                   engineId:
                     description: The Managed Database engine in engine/version format.
                       (e.g. postgresql/13.2) The Managed Database engine in engine/version
-                      format. (e.g. mongodb/4.4.10)
+                      format. (e.g. mysql/8.0.30)
                     type: string
                   label:
                     description: A unique, user-defined string referring to the Managed
@@ -393,7 +393,7 @@ spec:
                   engineId:
                     description: The Managed Database engine in engine/version format.
                       (e.g. postgresql/13.2) The Managed Database engine in engine/version
-                      format. (e.g. mongodb/4.4.10)
+                      format. (e.g. mysql/8.0.30)
                     type: string
                   hostPrimary:
                     description: The primary host for the Managed Database. The primary
