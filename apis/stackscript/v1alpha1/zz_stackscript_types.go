@@ -33,7 +33,7 @@ type StackscriptObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
+	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
 	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
 
@@ -77,7 +77,7 @@ type StackscriptParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
+	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
 	// +kubebuilder:validation:Optional
 	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
@@ -101,11 +101,6 @@ type StackscriptParameters struct {
 	// The script to execute when provisioning a new Linode with this StackScript.
 	// +kubebuilder:validation:Optional
 	Script *string `json:"script,omitempty" tf:"script,omitempty"`
-
-	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
-	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
-	// +kubebuilder:validation:Optional
-	UserDefinedFields []UserDefinedFieldsParameters `json:"userDefinedFields,omitempty" tf:"user_defined_fields,omitempty"`
 }
 
 type UserDefinedFieldsObservation struct {
@@ -130,30 +125,6 @@ type UserDefinedFieldsObservation struct {
 }
 
 type UserDefinedFieldsParameters struct {
-
-	// The default value. If not specified, this value will be used.
-	// +kubebuilder:validation:Optional
-	Default *string `json:"default,omitempty" tf:"default"`
-
-	// An example value for the field.
-	// +kubebuilder:validation:Optional
-	Example *string `json:"example,omitempty" tf:"example"`
-
-	// The StackScript's label is for display purposes only.
-	// +kubebuilder:validation:Optional
-	Label *string `json:"label,omitempty" tf:"label"`
-
-	// A list of acceptable values for the field in any quantity, combination or order.
-	// +kubebuilder:validation:Optional
-	ManyOf *string `json:"manyOf,omitempty" tf:"many_of"`
-
-	// The name of the field.
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name"`
-
-	// A list of acceptable single values for the field.
-	// +kubebuilder:validation:Optional
-	OneOf *string `json:"oneOf,omitempty" tf:"one_of"`
 }
 
 // StackscriptSpec defines the desired state of Stackscript

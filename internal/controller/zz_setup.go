@@ -10,7 +10,6 @@ import (
 	"github.com/upbound/upjet/pkg/controller"
 
 	accesscontrols "github.com/linode/provider-linode/internal/controller/database/accesscontrols"
-	mongodb "github.com/linode/provider-linode/internal/controller/database/mongodb"
 	mysql "github.com/linode/provider-linode/internal/controller/database/mysql"
 	postgresql "github.com/linode/provider-linode/internal/controller/database/postgresql"
 	domain "github.com/linode/provider-linode/internal/controller/domain/domain"
@@ -45,7 +44,6 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		accesscontrols.Setup,
-		mongodb.Setup,
 		mysql.Setup,
 		postgresql.Setup,
 		domain.Setup,

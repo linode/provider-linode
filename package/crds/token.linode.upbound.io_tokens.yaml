@@ -76,7 +76,7 @@ spec:
                       Tokens cannot be renewed, so after this time the token will
                       be completely unusable and a new token will need to be generated.
                       Tokens may be created with ''null'' as their expiry and will
-                      never expire unless revoked. Format: 2006-01-02T15:04:05Z07:00'
+                      never expire unless revoked. Format: 2006-01-02T15:04:05Z'
                     type: string
                   label:
                     description: A label for the Token. The label of the Linode Token.
@@ -303,7 +303,7 @@ spec:
                       Tokens cannot be renewed, so after this time the token will
                       be completely unusable and a new token will need to be generated.
                       Tokens may be created with ''null'' as their expiry and will
-                      never expire unless revoked. Format: 2006-01-02T15:04:05Z07:00'
+                      never expire unless revoked. Format: 2006-01-02T15:04:05Z'
                     type: string
                   id:
                     type: string

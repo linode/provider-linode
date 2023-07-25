@@ -447,6 +447,9 @@ type InstanceObservation struct {
 	// The display group of the Linode instance.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// Whether or not this Instance was created with user-data.
+	HasUserData *bool `json:"hasUserData,omitempty" tf:"has_user_data,omitempty"`
+
 	// (Computed) The ID of the disk in the Linode API.
 	// The Linode’s host machine, as a UUID.
 	HostUUID *string `json:"hostUuid,omitempty" tf:"host_uuid,omitempty"`
@@ -476,6 +479,9 @@ type InstanceObservation struct {
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// Various fields related to the Linode Metadata service.
+	Metadata []MetadataObservation `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
@@ -588,6 +594,10 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Various fields related to the Linode Metadata service.
+	// +kubebuilder:validation:Optional
+	Metadata []MetadataParameters `json:"metadata,omitempty" tf:"metadata,omitempty"`
+
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
 	// +kubebuilder:validation:Optional
@@ -684,6 +694,19 @@ type InterfaceParameters struct {
 	// The purpose of this interface.
 	// +kubebuilder:validation:Optional
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+}
+
+type MetadataObservation struct {
+
+	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
+	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
+}
+
+type MetadataParameters struct {
+
+	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
+	// +kubebuilder:validation:Optional
+	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
 }
 
 type ScheduleObservation struct {

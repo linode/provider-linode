@@ -20,7 +20,7 @@ type TokenObservation struct {
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
 	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked.
-	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. Format: 2006-01-02T15:04:05Z07:00
+	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. Format: 2006-01-02T15:04:05Z
 	Expiry *string `json:"expiry,omitempty" tf:"expiry,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -37,7 +37,7 @@ type TokenObservation struct {
 type TokenParameters struct {
 
 	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked.
-	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. Format: 2006-01-02T15:04:05Z07:00
+	// When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked. Format: 2006-01-02T15:04:05Z
 	// +kubebuilder:validation:Optional
 	Expiry *string `json:"expiry,omitempty" tf:"expiry,omitempty"`
 
