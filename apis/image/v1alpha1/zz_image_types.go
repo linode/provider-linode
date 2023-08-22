@@ -15,12 +15,6 @@ import (
 
 type ImageObservation struct {
 
-	// The capabilities of this Image.
-	Capabilities []*string `json:"capabilities,omitempty" tf:"capabilities,omitempty"`
-
-	// Whether this image supports cloud-init.
-	CloudInit *bool `json:"cloudInit,omitempty" tf:"cloud_init,omitempty"`
-
 	// When this Image was created.
 	// When this Image was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
@@ -89,10 +83,6 @@ type ImageObservation struct {
 }
 
 type ImageParameters struct {
-
-	// Whether this image supports cloud-init.
-	// +kubebuilder:validation:Optional
-	CloudInit *bool `json:"cloudInit,omitempty" tf:"cloud_init,omitempty"`
 
 	// A detailed description of this Image.
 	// A detailed description of this Image.

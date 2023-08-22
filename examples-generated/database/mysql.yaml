@@ -8,7 +8,7 @@ metadata:
   name: foobar
 spec:
   forProvider:
-    engineId: mysql/8.0.30
+    engineId: mysql/8.0.26
     label: mydatabase
     region: us-southeast
     type: g6-nanode-1

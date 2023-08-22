@@ -637,18 +637,6 @@ spec:
                       The Linode's label is for display purposes only. If no label
                       is provided for a Linode, a default will be assigned
                     type: string
-                  metadata:
-                    description: Various fields related to the Linode Metadata service.
-                    items:
-                      properties:
-                        userData:
-                          description: The base64-encoded user-defined data exposed
-                            to this instance through the Linode Metadata service.
-                            Refer to the base64encode(...) function for information
-                            on encoding content for this field.
-                          type: string
-                      type: object
-                    type: array
                   privateIp:
                     description: If true, the created Linode will have private networking
                       enabled, allowing use of the 192.168.128.0/17 network within
@@ -1563,9 +1551,6 @@ spec:
                     description: The display group of the Linode instance. The display
                       group of the Linode instance.
                     type: string
-                  hasUserData:
-                    description: Whether or not this Instance was created with user-data.
-                    type: boolean
                   hostUuid:
                     description: (Computed) The ID of the disk in the Linode API.
                       The Linode’s host machine, as a UUID.
@@ -1638,18 +1623,6 @@ spec:
                       The Linode's label is for display purposes only. If no label
                       is provided for a Linode, a default will be assigned
                     type: string
-                  metadata:
-                    description: Various fields related to the Linode Metadata service.
-                    items:
-                      properties:
-                        userData:
-                          description: The base64-encoded user-defined data exposed
-                            to this instance through the Linode Metadata service.
-                            Refer to the base64encode(...) function for information
-                            on encoding content for this field.
-                          type: string
-                      type: object
-                    type: array
                   privateIp:
                     description: If true, the created Linode will have private networking
                       enabled, allowing use of the 192.168.128.0/17 network within

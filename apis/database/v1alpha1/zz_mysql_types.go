@@ -35,8 +35,8 @@ type MySQLObservation struct {
 	// The Managed Database engine.
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// The primary host for the Managed Database.
@@ -103,8 +103,8 @@ type MySQLParameters struct {
 	// +kubebuilder:validation:Optional
 	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
 
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)
 	// +kubebuilder:validation:Optional
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
