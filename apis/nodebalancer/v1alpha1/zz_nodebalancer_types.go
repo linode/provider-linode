@@ -27,7 +27,6 @@ type NodebalancerObservation struct {
 	// This NodeBalancer's hostname, ending with .nodebalancer.linode.com
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
 
-	// This NodeBalancer's ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The Public IPv4 Address of this NodeBalancer

@@ -67,6 +67,7 @@ type GlobalGrantsObservation struct {
 	AccountAccess *string `json:"accountAccess,omitempty" tf:"account_access,omitempty"`
 
 	// If true, this User may add Databases.
+	// If true, this User may add Databases.
 	AddDatabases *bool `json:"addDatabases,omitempty" tf:"add_databases,omitempty"`
 
 	// If true, this User may add Domains.
@@ -115,6 +116,7 @@ type GlobalGrantsParameters struct {
 	// +kubebuilder:validation:Optional
 	AccountAccess *string `json:"accountAccess,omitempty" tf:"account_access,omitempty"`
 
+	// If true, this User may add Databases.
 	// If true, this User may add Databases.
 	// +kubebuilder:validation:Optional
 	AddDatabases *bool `json:"addDatabases,omitempty" tf:"add_databases,omitempty"`

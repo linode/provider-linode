@@ -73,8 +73,8 @@ spec:
                       for the StackScript.
                     type: string
                   images:
-                    description: An array of Image IDs representing the Images that
-                      this StackScript is compatible for deploying with. any/all indicates
+                    description: A set of Image IDs representing the Images that this
+                      StackScript is compatible for deploying with. any/all indicates
                       that all available image distributions, including private images,
                       are accepted. Currently private image IDs are not supported.
                       An array of Image IDs representing the Images that this StackScript
@@ -325,8 +325,8 @@ spec:
                   id:
                     type: string
                   images:
-                    description: An array of Image IDs representing the Images that
-                      this StackScript is compatible for deploying with. any/all indicates
+                    description: A set of Image IDs representing the Images that this
+                      StackScript is compatible for deploying with. any/all indicates
                       that all available image distributions, including private images,
                       are accepted. Currently private image IDs are not supported.
                       An array of Image IDs representing the Images that this StackScript

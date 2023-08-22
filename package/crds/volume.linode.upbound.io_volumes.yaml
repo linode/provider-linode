@@ -372,7 +372,6 @@ spec:
                       + Volume label.
                     type: string
                   id:
-                    description: This volume's ID
                     type: string
                   label:
                     description: The label of the Linode Volume The label of the Linode

@@ -298,7 +298,6 @@ spec:
                       This NodeBalancer's hostname, ending with .nodebalancer.linode.com
                     type: string
                   id:
-                    description: This NodeBalancer's ID
                     type: string
                   ipv4:
                     description: The Public IPv4 Address of this NodeBalancer The

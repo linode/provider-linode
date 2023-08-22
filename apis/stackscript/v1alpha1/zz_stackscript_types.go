@@ -33,7 +33,7 @@ type StackscriptObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
+	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
 	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
 
@@ -77,7 +77,7 @@ type StackscriptParameters struct {
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
+	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
 	// +kubebuilder:validation:Optional
 	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
