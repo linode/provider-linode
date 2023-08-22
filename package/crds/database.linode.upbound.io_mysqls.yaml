@@ -89,8 +89,8 @@ spec:
                     type: boolean
                   engineId:
                     description: The Managed Database engine in engine/version format.
-                      (e.g. mysql/8.0.30) The Managed Database engine in engine/version
-                      format. (e.g. mysql/8.0.30)
+                      (e.g. mysql/8.0.26) The Managed Database engine in engine/version
+                      format. (e.g. mysql/8.0.26)
                     type: string
                   label:
                     description: A unique, user-defined string referring to the Managed
@@ -383,8 +383,8 @@ spec:
                     type: string
                   engineId:
                     description: The Managed Database engine in engine/version format.
-                      (e.g. mysql/8.0.30) The Managed Database engine in engine/version
-                      format. (e.g. mysql/8.0.30)
+                      (e.g. mysql/8.0.26) The Managed Database engine in engine/version
+                      format. (e.g. mysql/8.0.26)
                     type: string
                   hostPrimary:
                     description: The primary host for the Managed Database. The primary

@@ -9,7 +9,6 @@ func Configure(p *config.Provider) {
 		// this resource, which would be "linode"
 		r.ShortGroup = "instance"
 		r.UseAsync = true
-
 		r.LateInitializer = config.LateInitializer{
 			IgnoredFields: []string{"disk", "config"},
 		}
