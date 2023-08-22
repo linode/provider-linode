@@ -70,8 +70,7 @@ spec:
                   applyImmediately:
                     description: If true, the instance will be rebooted to update
                       network interfaces. If true, the instance will be rebooted to
-                      update network interfaces. This functionality is not affected
-                      by the `skip_implicit_reboots` provider argument.
+                      update network interfaces.
                     type: boolean
                   linodeId:
                     description: The ID of the Linode to allocate an IPv4 address
@@ -429,8 +428,7 @@ spec:
                   applyImmediately:
                     description: If true, the instance will be rebooted to update
                       network interfaces. If true, the instance will be rebooted to
-                      update network interfaces. This functionality is not affected
-                      by the `skip_implicit_reboots` provider argument.
+                      update network interfaces.
                     type: boolean
                   gateway:
                     description: The default gateway for this address The default

@@ -25,7 +25,7 @@ metadata:
   name: foo
 spec:
   forProvider:
-    image: linode/alpine3.16
+    image: linode/alpine3.12
     label: foobar-test
     region: us-east
     type: g6-nanode-1

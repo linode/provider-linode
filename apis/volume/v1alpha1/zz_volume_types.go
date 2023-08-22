@@ -19,6 +19,7 @@ type VolumeObservation struct {
 	// The full filesystem path for the Volume based on the Volume's label. Path is /dev/disk/by-id/scsi-0Linode_Volume_ + Volume label.
 	FilesystemPath *string `json:"filesystemPath,omitempty" tf:"filesystem_path,omitempty"`
 
+	// This volume's ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The label of the Linode Volume

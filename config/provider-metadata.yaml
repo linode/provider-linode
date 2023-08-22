@@ -1,24 +1,5 @@
 name: linode/linode
 resources:
-    linode_account_settings:
-        subCategory: ""
-        description: Manages the settings of a Linode account.
-        name: linode_account_settings
-        title: linode_account_settings
-        examples:
-            - name: myaccount
-              manifest: |-
-                {
-                  "backups_enabled": "true",
-                  "longview_subscription": "longview-40"
-                }
-        argumentDocs:
-            backups_enabled: '- (Optional) The account-wide backups default. If true, all Linodes created will automatically be enrolled in the Backups service. If false, Linodes will not be enrolled by default, but may still be enrolled on creation or later.'
-            longview_subscription: '- (Optional) The Longview Pro tier you are currently subscribed to. The value must be a Longview Subscription ID or null for Longview Free.'
-            managed: '- Enables monitoring for connectivity, response, and total request time.'
-            network_helper: '- (Optional) Enables network helper across all users by default for new Linodes and Linode Configs.'
-            object_storage: '- A string describing the status of this account’s Object Storage service enrollment.'
-        importStatements: []
     linode_database_access_controls:
         subCategory: ""
         description: Manages the access controls for a Linode Database.
@@ -39,7 +20,7 @@ resources:
               dependencies:
                 linode_database_mysql.my-db: |-
                     {
-                      "engine_id": "mysql/8.0.30",
+                      "engine_id": "mysql/8.0.26",
                       "label": "mydatabase",
                       "region": "us-southeast",
                       "type": "g6-nanode-1"
@@ -56,6 +37,76 @@ resources:
             database_id: '- (Required) The unique ID of the target database.'
             database_type: '- (Required) The unique type of the target database. (mysql, mongodb, postgresql)'
         importStatements: []
+    linode_database_mongodb:
+        subCategory: ""
+        description: Manages a Linode MongoDB Database.
+        name: linode_database_mongodb
+        title: linode_database_mongodb
+        examples:
+            - name: foobar
+              manifest: |-
+                {
+                  "engine_id": "mongodb/4.4.10",
+                  "label": "mydatabase",
+                  "region": "us-southeast",
+                  "type": "g6-nanode-1"
+                }
+            - name: foobar
+              manifest: |-
+                {
+                  "allow_list": [
+                    "0.0.0.0/0"
+                  ],
+                  "cluster_size": 3,
+                  "compression_type": "zlib",
+                  "encrypted": true,
+                  "engine_id": "mongodb/4.4.10",
+                  "label": "mydatabase",
+                  "region": "us-southeast",
+                  "ssl_connection": true,
+                  "storage_engine": "wiredtiger",
+                  "type": "g6-nanode-1",
+                  "updates": [
+                    {
+                      "day_of_week": "saturday",
+                      "duration": 1,
+                      "frequency": "monthly",
+                      "hour_of_day": 22,
+                      "week_of_month": 2
+                    }
+                  ]
+                }
+        argumentDocs:
+            allow_list: '- (Optional) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.'
+            ca_cert: '- The base64-encoded SSL CA certificate for the Managed Database instance.'
+            cluster_size: '- (Optional) The number of Linode Instance nodes deployed to the Managed Database. (default 1)'
+            compression_type: '- (Optional) The type of data compression for this Database. (none, snappy, zlib; default none)'
+            created: '- When this Managed Database was created.'
+            encrypted: '- (Optional) Whether the Managed Databases is encrypted. (default false)'
+            engine: '- The Managed Database engine. (e.g. mongodb)'
+            engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mongo/4.4.10)'
+            host_primary: '- The primary host for the Managed Database.'
+            host_secondary: '- The secondary/private network host for the Managed Database.'
+            id: '- The ID of the Managed Database.'
+            label: '- (Required) A unique, user-defined string referring to the Managed Database.'
+            peers: '- A set of peer addresses for this Database.'
+            port: '- The access port for this Managed Database.'
+            region: '- (Required) The region to use for the Managed Database.'
+            replica_set: '- Label for configuring a MongoDB replica set. Choose the same label on multiple Databases to include them in the same replica set.'
+            root_password: '- The randomly-generated root password for the Managed Database instance.'
+            root_username: '- The root username for the Managed Database instance.'
+            ssl_connection: '- (Optional) Whether to require SSL credentials to establish a connection to the Managed Database. (default false)'
+            status: '- The operating status of the Managed Database.'
+            storage_engine: '- (Optional) The type of storage engine for this Database. (mmapv1, wiredtiger; default wiredtiger)'
+            type: '- (Required) The Linode Instance type used for the nodes of the  Managed Database instance.'
+            updated: '- When this Managed Database was last updated.'
+            updates.day_of_week: '- (Required) The day to perform maintenance. (monday, tuesday, ...)'
+            updates.duration: '- (Required) The maximum maintenance window time in hours. (1..3)'
+            updates.frequency: '- (Required) Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)'
+            updates.hour_of_day: '- (Required) The hour to begin maintenance based in UTC time. (0..23)'
+            updates.week_of_month: '- (Optional) The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)'
+            version: '- The Managed Database engine version. (e.g. v8.0.26)'
+        importStatements: []
     linode_database_mysql:
         subCategory: ""
         description: Manages a Linode MySQL Database.
@@ -65,7 +116,7 @@ resources:
             - name: foobar
               manifest: |-
                 {
-                  "engine_id": "mysql/8.0.30",
+                  "engine_id": "mysql/8.0.26",
                   "label": "mydatabase",
                   "region": "us-southeast",
                   "type": "g6-nanode-1"
@@ -78,7 +129,7 @@ resources:
                   ],
                   "cluster_size": 3,
                   "encrypted": true,
-                  "engine_id": "mysql/8.0.30",
+                  "engine_id": "mysql/8.0.26",
                   "label": "mydatabase",
                   "region": "us-southeast",
                   "replication_type": "asynch",
@@ -102,7 +153,7 @@ resources:
             created: '- When this Managed Database was created.'
             encrypted: '- (Optional) Whether the Managed Databases is encrypted. (default false)'
             engine: '- The Managed Database engine. (e.g. mysql)'
-            engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)'
+            engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)'
             host_primary: '- The primary host for the Managed Database.'
             host_secondary: '- The secondary/private network host for the Managed Database.'
             id: '- The ID of the Managed Database.'
@@ -621,13 +672,6 @@ resources:
               manifest: |-
                 {
                   "booted": true,
-                  "connection": [
-                    {
-                      "host": "${linode_instance.my-instance.ip_address}",
-                      "password": "myc00lpass!",
-                      "user": "root"
-                    }
-                  ],
                   "devices": [
                     {
                       "sda": [
@@ -658,19 +702,9 @@ resources:
                     }
                   ],
                   "label": "my-config",
-                  "linode_id": "${linode_instance.my-instance.id}",
-                  "provisioner": {
-                    "remote-exec": [
-                      {
-                        "inline": [
-                          "echo 'Hello World!'"
-                        ]
-                      }
-                    ]
-                  }
+                  "linode_id": "${linode_instance.my-instance.id}"
                 }
               references:
-                connection.host: linode_instance.my-instance.ip_address
                 devices.sda.disk_id: linode_instance_disk.boot.id
                 devices.sdb.disk_id: linode_instance_disk.swap.id
                 linode_id: linode_instance.my-instance.id
@@ -798,7 +832,7 @@ resources:
               dependencies:
                 linode_instance.foo: |-
                     {
-                      "image": "linode/alpine3.16",
+                      "image": "linode/alpine3.12",
                       "label": "foobar-test",
                       "region": "us-east",
                       "type": "g6-nanode-1"
@@ -1034,6 +1068,7 @@ resources:
             client_conn_throttle: '- (Optional) Throttle connections per second (0-20). Set to 0 (default) to disable throttling.'
             created: '- When this NodeBalancer was created'
             hostname: '- This NodeBalancer''s hostname, ending with .nodebalancer.linode.com'
+            id: '- This NodeBalancer''s ID'
             in: '- The total transfer, in MB, used by this NodeBalancer for the current month'
             ipv4: '- The Public IPv4 Address of this NodeBalancer'
             ipv6: '- The Public IPv6 Address of this NodeBalancer'
@@ -1403,7 +1438,7 @@ resources:
             deployments_total: '- The total number of times this StackScript has been deployed.'
             description: '- (Required) A description for the StackScript.'
             example: '- An example value for the field.'
-            images: '- (Required) A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.'
+            images: '- (Required) An array of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.'
             is_public: '- (Optional) This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private. Changing'
             label: '- (Required) The StackScript''s label is for display purposes only.'
             many_of: '- A list of acceptable values for the field in any quantity, combination or order.'
@@ -1480,7 +1515,6 @@ resources:
                 }
         argumentDocs:
             account-access: '- (optional) The level of access this User has to Account-level actions, like billing information. (read_only, read_write)'
-            add_databases: '- (optional) If true, this User may add Databases.'
             add_domains: '- (optional) If true, this User may add Domains.'
             add_firewalls: '- (optional) If true, this User may add Firewalls.'
             add_images: '- (optional) If true, this User may add Images.'
@@ -1540,6 +1574,7 @@ resources:
                 }
         argumentDocs:
             filesystem_path: '- The full filesystem path for the Volume based on the Volume''s label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label'
+            id: '- This volume''s ID'
             label: '- (Required) The label of the Linode Volume'
             linode_id: '- (Optional) The ID of a Linode Instance where the Volume should be attached.'
             region: '- (Required) The region where this volume will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here. This field is optional for cloned volumes. Changing .'
