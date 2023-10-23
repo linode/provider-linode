@@ -363,7 +363,7 @@ spec:
                   linodes:
                     description: A list of Linodes targeted by this IPv6 range. Includes
                       Linodes with IP sharing. A list of Linodes targeted by this
-                      IPv6 range. Includes Linodes with IP sharing.
+                      IPv6 range.Includes Linodes with IP sharing.
                     items:
                       type: number
                     type: array

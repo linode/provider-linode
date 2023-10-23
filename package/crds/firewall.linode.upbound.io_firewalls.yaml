@@ -88,15 +88,15 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask format. A list of IP addresses, CIDR blocks,
-                            or 0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
                         ipv6:
                           description: A list of IPv6 addresses or networks. Must
-                            be in IP/mask format. A list of IPv6 addresses or networks
-                            this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IPv6 addresses
+                            or networks this rule applies to.
                           items:
                             type: string
                           type: array
@@ -133,7 +133,7 @@ spec:
                     type: string
                   linodes:
                     description: A list of IDs of Linodes this Firewall should govern
-                      it's network traffic for. The IDs of Linodes to apply this firewall
+                      network traffic for. The IDs of Linodes to apply this firewall
                       to.
                     items:
                       type: number
@@ -215,6 +215,13 @@ spec:
                             type: string
                         type: object
                     type: object
+                  nodebalancers:
+                    description: A list of IDs of NodeBalancers this Firewall should
+                      govern network traffic for. The IDs of NodeBalancers to apply
+                      this firewall to.
+                    items:
+                      type: number
+                    type: array
                   outbound:
                     description: A firewall rule that specifies what outbound network
                       traffic is allowed.
@@ -231,15 +238,15 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask format. A list of IP addresses, CIDR blocks,
-                            or 0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
                         ipv6:
                           description: A list of IPv6 addresses or networks. Must
-                            be in IP/mask format. A list of IPv6 addresses or networks
-                            this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IPv6 addresses
+                            or networks this rule applies to.
                           items:
                             type: string
                           type: array
@@ -476,6 +483,9 @@ spec:
             properties:
               atProvider:
                 properties:
+                  created:
+                    description: When this firewall was created
+                    type: string
                   devices:
                     description: The devices associated with this firewall.
                     items:
@@ -522,15 +532,15 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask format. A list of IP addresses, CIDR blocks,
-                            or 0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
                         ipv6:
                           description: A list of IPv6 addresses or networks. Must
-                            be in IP/mask format. A list of IPv6 addresses or networks
-                            this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IPv6 addresses
+                            or networks this rule applies to.
                           items:
                             type: string
                           type: array
@@ -563,8 +573,15 @@ spec:
                     type: string
                   linodes:
                     description: A list of IDs of Linodes this Firewall should govern
-                      it's network traffic for. The IDs of Linodes to apply this firewall
+                      network traffic for. The IDs of Linodes to apply this firewall
                       to.
+                    items:
+                      type: number
+                    type: array
+                  nodebalancers:
+                    description: A list of IDs of NodeBalancers this Firewall should
+                      govern network traffic for. The IDs of NodeBalancers to apply
+                      this firewall to.
                     items:
                       type: number
                     type: array
@@ -584,15 +601,15 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask format. A list of IP addresses, CIDR blocks,
-                            or 0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
                         ipv6:
                           description: A list of IPv6 addresses or networks. Must
-                            be in IP/mask format. A list of IPv6 addresses or networks
-                            this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IPv6 addresses
+                            or networks this rule applies to.
                           items:
                             type: string
                           type: array
@@ -629,6 +646,9 @@ spec:
                     items:
                       type: string
                     type: array
+                  updated:
+                    description: When this firewall was last updated
+                    type: string
                 type: object
               conditions:
                 description: Conditions of the resource.

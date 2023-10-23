@@ -25,7 +25,7 @@ type IPv6RangeObservation struct {
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
-	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
+	// A list of Linodes targeted by this IPv6 range.Includes Linodes with IP sharing.
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// The prefix length of the IPv6 range.
