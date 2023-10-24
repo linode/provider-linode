@@ -81,9 +81,29 @@ spec:
                     description: Optional field for arbitrary User comments on this
                       Config. Optional field for arbitrary User comments on this Config.
                     type: string
+                  device:
+                    description: Blocks for device disks in a Linode's configuration
+                      profile.
+                    items:
+                      properties:
+                        deviceName:
+                          description: The Disk ID to map to this disk slot
+                          type: string
+                        diskId:
+                          description: The Disk ID to map to this device slot The
+                            Disk ID to map to this disk slot
+                          type: number
+                        volumeId:
+                          description: The Volume ID to map to this device slot. The
+                            Block Storage volume ID to map to this disk slot
+                          type: number
+                      required:
+                      - deviceName
+                      type: object
+                    type: array
                   devices:
                     description: A dictionary of device disks to use as a device map
-                      in a Linode’s configuration profile.
+                      in a Linode's configuration profile.
                     items:
                       properties:
                         sda:
@@ -877,7 +897,7 @@ spec:
                       type: object
                     type: array
                   interface:
-                    description: An array of Network Interfaces to add to this Linode’s
+                    description: An array of Network Interfaces to add to this Linode's
                       Configuration Profile.
                     items:
                       properties:
@@ -905,7 +925,7 @@ spec:
                     type: string
                   label:
                     description: The Config’s label for display purposes only. The
-                      Config’s label for display purposes only.
+                      Config's label for display purposes only.
                     type: string
                   linodeId:
                     description: The ID of the Linode to create this configuration
@@ -1212,9 +1232,27 @@ spec:
                     description: Optional field for arbitrary User comments on this
                       Config. Optional field for arbitrary User comments on this Config.
                     type: string
+                  device:
+                    description: Blocks for device disks in a Linode's configuration
+                      profile.
+                    items:
+                      properties:
+                        deviceName:
+                          description: The Disk ID to map to this disk slot
+                          type: string
+                        diskId:
+                          description: The Disk ID to map to this device slot The
+                            Disk ID to map to this disk slot
+                          type: number
+                        volumeId:
+                          description: The Volume ID to map to this device slot. The
+                            Block Storage volume ID to map to this disk slot
+                          type: number
+                      type: object
+                    type: array
                   devices:
                     description: A dictionary of device disks to use as a device map
-                      in a Linode’s configuration profile.
+                      in a Linode's configuration profile.
                     items:
                       properties:
                         sda:
@@ -1386,7 +1424,7 @@ spec:
                   id:
                     type: string
                   interface:
-                    description: An array of Network Interfaces to add to this Linode’s
+                    description: An array of Network Interfaces to add to this Linode's
                       Configuration Profile.
                     items:
                       properties:
@@ -1412,7 +1450,7 @@ spec:
                     type: string
                   label:
                     description: The Config’s label for display purposes only. The
-                      Config’s label for display purposes only.
+                      Config's label for display purposes only.
                     type: string
                   linodeId:
                     description: The ID of the Linode to create this configuration

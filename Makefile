@@ -6,11 +6,11 @@ PROJECT_REPO := github.com/linode/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.3.3
 export TERRAFORM_PROVIDER_SOURCE := linode/linode
-export TERRAFORM_PROVIDER_VERSION := 2.5.1
+export TERRAFORM_PROVIDER_VERSION := 2.9.3
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-linode
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-linode_v$(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_PROVIDER_REPO := https://github.com/linode/terraform-provider-linode
-export TERRAFORM_DOCS_PATH := website/docs/r
+export TERRAFORM_DOCS_PATH := docs/resources
 
 #PLATFORMS ?= linux_amd64 linux_arm64
 PLATFORMS ?= linux_amd64

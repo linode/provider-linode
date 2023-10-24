@@ -39,7 +39,7 @@ resources:
               dependencies:
                 linode_database_mysql.my-db: |-
                     {
-                      "engine_id": "mysql/8.0.26",
+                      "engine_id": "mysql/8.0.30",
                       "label": "mydatabase",
                       "region": "us-southeast",
                       "type": "g6-nanode-1"
@@ -65,7 +65,7 @@ resources:
             - name: foobar
               manifest: |-
                 {
-                  "engine_id": "mysql/8.0.26",
+                  "engine_id": "mysql/8.0.30",
                   "label": "mydatabase",
                   "region": "us-southeast",
                   "type": "g6-nanode-1"
@@ -78,7 +78,7 @@ resources:
                   ],
                   "cluster_size": 3,
                   "encrypted": true,
-                  "engine_id": "mysql/8.0.26",
+                  "engine_id": "mysql/8.0.30",
                   "label": "mydatabase",
                   "region": "us-southeast",
                   "replication_type": "asynch",
@@ -102,7 +102,7 @@ resources:
             created: '- When this Managed Database was created.'
             encrypted: '- (Optional) Whether the Managed Databases is encrypted. (default false)'
             engine: '- The Managed Database engine. (e.g. mysql)'
-            engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mysql/8.0.26)'
+            engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)'
             host_primary: '- The primary host for the Managed Database.'
             host_secondary: '- The secondary/private network host for the Managed Database.'
             id: '- The ID of the Managed Database.'
@@ -314,10 +314,11 @@ resources:
             entity_id: '- The ID of the underlying entity this device references (i.e. the Linode''s ID).'
             id: '- The ID of the Firewall.'
             inbound_policy: '- (Required) The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (ACCEPT, DROP)'
-            ipv4: '- (Optional) A list of IPv4 addresses or networks. Must be in IP/mask format.'
-            ipv6: '- (Optional) A list of IPv6 addresses or networks. Must be in IP/mask format.'
+            ipv4: '- (Optional) A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.'
+            ipv6: '- (Optional) A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.'
             label: '- (Required) This Firewall''s unique label.'
-            linodes: '- (Optional) A list of IDs of Linodes this Firewall should govern it''s network traffic for.'
+            linodes: '- (Optional) A list of IDs of Linodes this Firewall should govern network traffic for.'
+            nodebalancers: '- (Optional) A list of IDs of NodeBalancers this Firewall should govern network traffic for.'
             outbound_policy: '- (Required) The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule. (ACCEPT, DROP)'
             ports: '- (Optional) A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").'
             protocol: '- (Required) The network protocol this rule controls. (TCP, UDP, ICMP)'
@@ -401,7 +402,9 @@ resources:
                     }
                 linode_instance.foo: |-
                     {
+                      "image": "linode/ubuntu22.04",
                       "region": "us-central",
+                      "root_pass": "insecure-p4ssw0rd!!",
                       "type": "g6-nanode-1"
                     }
             - name: foobar

@@ -45,7 +45,12 @@ metadata:
   name: foo
 spec:
   forProvider:
+    image: linode/ubuntu22.04
     region: us-central
+    rootPassSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
     type: g6-nanode-1
 
 ---

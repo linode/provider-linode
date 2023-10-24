@@ -644,6 +644,11 @@ func (in *NodebalancerObservation) DeepCopyInto(out *NodebalancerObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.FirewallID != nil {
+		in, out := &in.FirewallID, &out.FirewallID
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Hostname != nil {
 		in, out := &in.Hostname, &out.Hostname
 		*out = new(string)
@@ -714,6 +719,11 @@ func (in *NodebalancerParameters) DeepCopyInto(out *NodebalancerParameters) {
 	*out = *in
 	if in.ClientConnThrottle != nil {
 		in, out := &in.ClientConnThrottle, &out.ClientConnThrottle
+		*out = new(float64)
+		**out = **in
+	}
+	if in.FirewallID != nil {
+		in, out := &in.FirewallID, &out.FirewallID
 		*out = new(float64)
 		**out = **in
 	}

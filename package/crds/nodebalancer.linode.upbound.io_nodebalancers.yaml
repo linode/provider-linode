@@ -73,6 +73,9 @@ spec:
                       (default) to disable throttling. Throttle connections per second
                       (0-20). Set to 0 (zero) to disable throttling.
                     type: number
+                  firewallId:
+                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    type: number
                   label:
                     description: The label of the Linode NodeBalancer The label of
                       the Linode NodeBalancer.
@@ -276,9 +279,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: region is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)
           status:
             description: NodebalancerStatus defines the observed state of Nodebalancer.
             properties:
@@ -293,6 +293,9 @@ spec:
                     description: When this NodeBalancer was created When this NodeBalancer
                       was created.
                     type: string
+                  firewallId:
+                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    type: number
                   hostname:
                     description: This NodeBalancer's hostname, ending with .nodebalancer.linode.com
                       This NodeBalancer's hostname, ending with .nodebalancer.linode.com

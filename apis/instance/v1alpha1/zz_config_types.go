@@ -171,7 +171,10 @@ type ConfigObservation_2 struct {
 	// Optional field for arbitrary User comments on this Config.
 	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
 
-	// A dictionary of device disks to use as a device map in a Linode’s configuration profile.
+	// Blocks for device disks in a Linode's configuration profile.
+	Device []DeviceObservation `json:"device,omitempty" tf:"device,omitempty"`
+
+	// A dictionary of device disks to use as a device map in a Linode's configuration profile.
 	Devices []ConfigDevicesObservation `json:"devices,omitempty" tf:"devices,omitempty"`
 
 	// Helpers enabled when booting to this Linode Config.
@@ -179,7 +182,7 @@ type ConfigObservation_2 struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// An array of Network Interfaces to add to this Linode’s Configuration Profile.
+	// An array of Network Interfaces to add to this Linode's Configuration Profile.
 	Interface []ConfigInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
 
 	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
@@ -187,7 +190,7 @@ type ConfigObservation_2 struct {
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The Config’s label for display purposes only.
+	// The Config's label for display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of the Linode to create this configuration profile under.
@@ -223,7 +226,11 @@ type ConfigParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
 
-	// A dictionary of device disks to use as a device map in a Linode’s configuration profile.
+	// Blocks for device disks in a Linode's configuration profile.
+	// +kubebuilder:validation:Optional
+	Device []DeviceParameters `json:"device,omitempty" tf:"device,omitempty"`
+
+	// A dictionary of device disks to use as a device map in a Linode's configuration profile.
 	// +kubebuilder:validation:Optional
 	Devices []ConfigDevicesParameters `json:"devices,omitempty" tf:"devices,omitempty"`
 
@@ -231,7 +238,7 @@ type ConfigParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	Helpers []ConfigHelpersParameters `json:"helpers,omitempty" tf:"helpers,omitempty"`
 
-	// An array of Network Interfaces to add to this Linode’s Configuration Profile.
+	// An array of Network Interfaces to add to this Linode's Configuration Profile.
 	// +kubebuilder:validation:Optional
 	Interface []ConfigInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
 
@@ -241,7 +248,7 @@ type ConfigParameters_2 struct {
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The Config’s label for display purposes only.
+	// The Config's label for display purposes only.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
@@ -278,6 +285,37 @@ type ConfigParameters_2 struct {
 	// Controls the virtualization mode.
 	// +kubebuilder:validation:Optional
 	VirtMode *string `json:"virtMode,omitempty" tf:"virt_mode,omitempty"`
+}
+
+type DeviceObservation struct {
+
+	// The Disk ID to map to this disk slot
+	DeviceName *string `json:"deviceName,omitempty" tf:"device_name,omitempty"`
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DeviceParameters struct {
+
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Required
+	DeviceName *string `json:"deviceName" tf:"device_name,omitempty"`
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdaObservation struct {
