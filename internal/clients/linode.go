@@ -9,11 +9,13 @@ import (
 	"encoding/json"
 
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/upbound/upjet/pkg/terraform"
+	"github.com/crossplane/upjet/pkg/terraform"
+	tfsdk "github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
 	"github.com/linode/provider-linode/apis/v1beta1"
 )
@@ -33,9 +35,18 @@ const (
 	keyVersion = "api_version"
 )
 
+type SetupConfig struct {
+	NativeProviderPath    *string
+	NativeProviderSource  *string
+	NativeProviderVersion *string
+	TerraformVersion      *string
+	DefaultScheduler      terraform.ProviderScheduler
+	TerraformProvider     *schema.Provider
+}
+
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
 // returns Terraform provider setup configuration
-func TerraformSetupBuilder(version, providerSource, providerVersion string, scheduler terraform.ProviderScheduler) terraform.SetupFn {
+func TerraformSetupBuilder(version, providerSource, providerVersion string, tfProvider *schema.Provider, scheduler terraform.ProviderScheduler) terraform.SetupFn {
 	return func(ctx context.Context, client client.Client, mg resource.Managed) (terraform.Setup, error) {
 		ps := terraform.Setup{
 			Version: version,
@@ -80,6 +91,23 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string, sche
 		if v, ok := creds[keyVersion]; ok {
 			ps.Configuration[keyVersion] = v
 		}
-		return ps, nil
+		return ps, errors.Wrap(configureNoForkLinodelient(ctx, &ps, *tfProvider), "failed to configure the no-fork GCP client")
 	}
+}
+
+func configureNoForkLinodelient(ctx context.Context, ps *terraform.Setup, p schema.Provider) error {
+	// Please be aware that this implementation relies on the schema.Provider
+	// parameter `p` being a non-pointer. This is because normally
+	// the Terraform plugin SDK normally configures the provider
+	// only once and using a pointer argument here will cause
+	// race conditions between resources referring to different
+	// ProviderConfigs.
+	diag := p.Configure(context.WithoutCancel(ctx), &tfsdk.ResourceConfig{
+		Config: ps.Configuration,
+	})
+	if diag != nil && diag.HasError() {
+		return errors.Errorf("failed to configure the provider: %v", diag)
+	}
+	ps.Meta = p.Meta()
+	return nil
 }

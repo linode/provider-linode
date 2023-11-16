@@ -21,7 +21,7 @@ func (mg *Image) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.DiskID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.DiskID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.DiskIDRef,
 		Selector:     mg.Spec.ForProvider.DiskIDSelector,
@@ -33,11 +33,11 @@ func (mg *Image) ResolveReferences(ctx context.Context, c client.Reader) error {
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.DiskID")
 	}
-	mg.Spec.ForProvider.DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.DiskIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.LinodeID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.LinodeID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.LinodeIDRef,
 		Selector:     mg.Spec.ForProvider.LinodeIDSelector,
@@ -49,7 +49,7 @@ func (mg *Image) ResolveReferences(ctx context.Context, c client.Reader) error {
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.LinodeID")
 	}
-	mg.Spec.ForProvider.LinodeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LinodeID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.LinodeIDRef = rsp.ResolvedReference
 
 	return nil

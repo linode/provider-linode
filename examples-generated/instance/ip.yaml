@@ -29,6 +29,3 @@ spec:
     label: foobar-test
     region: us-east
     type: g6-nanode-1
-
----
-

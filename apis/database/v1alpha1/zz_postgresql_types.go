@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,6 +17,52 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type PostgreSQLInitParameters struct {
+
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
+
+	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
+	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
+	ClusterSize *int64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+
+	// Whether the Managed Databases is encrypted. (default false)
+	// Whether the Managed Databases is encrypted.
+	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
+
+	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
+	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
+	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
+
+	// A unique, user-defined string referring to the Managed Database.
+	// A unique, user-defined string referring to the Managed Database.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The region to use for the Managed Database.
+	// The region to use for the Managed Database.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The synchronization level of the replicating server. (on, local, remote_write, remote_apply, off; default off)
+	// The synchronization level of the replicating server.Must be `local` or `off` for the `asynch` replication type. Must be `on`, `remote_write`, or `remote_apply` for the `semi_synch` replication type.
+	ReplicationCommitType *string `json:"replicationCommitType,omitempty" tf:"replication_commit_type,omitempty"`
+
+	// The replication method used for the Managed Database. (none, asynch, semi_synch; default none)
+	// The replication method used for the Managed Database. Must be `none` for a single node cluster. Must be `asynch` or `semi_synch` for a high availability cluster.
+	ReplicationType *string `json:"replicationType,omitempty" tf:"replication_type,omitempty"`
+
+	// Whether to require SSL credentials to establish a connection to the Managed Database. (default false)
+	// Whether to require SSL credentials to establish a connection to the Managed Database.
+	SSLConnection *bool `json:"sslConnection,omitempty" tf:"ssl_connection,omitempty"`
+
+	// The Linode Instance type used for the nodes of the  Managed Database instance.
+	// The Linode Instance type used by the Managed Database for its nodes.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// Configuration settings for automated patch update maintenance for the Managed Database.
+	Updates []PostgreSQLUpdatesInitParameters `json:"updates,omitempty" tf:"updates,omitempty"`
+}
+
 type PostgreSQLObservation struct {
 
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
@@ -21,7 +71,7 @@ type PostgreSQLObservation struct {
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
 	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
-	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+	ClusterSize *int64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
 
 	// When this Managed Database was created.
 	// When this Managed Database was created.
@@ -36,7 +86,7 @@ type PostgreSQLObservation struct {
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// The primary host for the Managed Database.
@@ -55,7 +105,7 @@ type PostgreSQLObservation struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The access port for this Managed Database.
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The region to use for the Managed Database.
 	// The region to use for the Managed Database.
@@ -103,7 +153,7 @@ type PostgreSQLParameters struct {
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
 	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
 	// +kubebuilder:validation:Optional
-	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+	ClusterSize *int64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
 
 	// Whether the Managed Databases is encrypted. (default false)
 	// Whether the Managed Databases is encrypted.
@@ -111,7 +161,7 @@ type PostgreSQLParameters struct {
 	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
-	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
 	// +kubebuilder:validation:Optional
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
@@ -150,6 +200,29 @@ type PostgreSQLParameters struct {
 	Updates []PostgreSQLUpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
+type PostgreSQLUpdatesInitParameters struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	// The day to perform maintenance.
+	DayOfWeek *string `json:"dayOfWeek,omitempty" tf:"day_of_week,omitempty"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	// The maximum maintenance window time in hours.
+	Duration *int64 `json:"duration,omitempty" tf:"duration,omitempty"`
+
+	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
+	// Whether maintenance occurs on a weekly or monthly basis.
+	Frequency *string `json:"frequency,omitempty" tf:"frequency,omitempty"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	// The hour to begin maintenance based in UTC time.
+	HourOfDay *int64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+
+	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
+	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
+	WeekOfMonth *int64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
+}
+
 type PostgreSQLUpdatesObservation struct {
 
 	// The day to perform maintenance. (monday, tuesday, ...)
@@ -158,7 +231,7 @@ type PostgreSQLUpdatesObservation struct {
 
 	// The maximum maintenance window time in hours. (1..3)
 	// The maximum maintenance window time in hours.
-	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
+	Duration *int64 `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
 	// Whether maintenance occurs on a weekly or monthly basis.
@@ -166,45 +239,56 @@ type PostgreSQLUpdatesObservation struct {
 
 	// The hour to begin maintenance based in UTC time. (0..23)
 	// The hour to begin maintenance based in UTC time.
-	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+	HourOfDay *int64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
 
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
-	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
+	WeekOfMonth *int64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
 type PostgreSQLUpdatesParameters struct {
 
 	// The day to perform maintenance. (monday, tuesday, ...)
 	// The day to perform maintenance.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	DayOfWeek *string `json:"dayOfWeek" tf:"day_of_week,omitempty"`
 
 	// The maximum maintenance window time in hours. (1..3)
 	// The maximum maintenance window time in hours.
-	// +kubebuilder:validation:Required
-	Duration *float64 `json:"duration" tf:"duration,omitempty"`
+	// +kubebuilder:validation:Optional
+	Duration *int64 `json:"duration" tf:"duration,omitempty"`
 
 	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
 	// Whether maintenance occurs on a weekly or monthly basis.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Frequency *string `json:"frequency" tf:"frequency,omitempty"`
 
 	// The hour to begin maintenance based in UTC time. (0..23)
 	// The hour to begin maintenance based in UTC time.
-	// +kubebuilder:validation:Required
-	HourOfDay *float64 `json:"hourOfDay" tf:"hour_of_day,omitempty"`
+	// +kubebuilder:validation:Optional
+	HourOfDay *int64 `json:"hourOfDay" tf:"hour_of_day,omitempty"`
 
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
 	// +kubebuilder:validation:Optional
-	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
+	WeekOfMonth *int64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
 // PostgreSQLSpec defines the desired state of PostgreSQL
 type PostgreSQLSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     PostgreSQLParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider PostgreSQLInitParameters `json:"initProvider,omitempty"`
 }
 
 // PostgreSQLStatus defines the observed state of PostgreSQL.
@@ -225,10 +309,10 @@ type PostgreSQLStatus struct {
 type PostgreSQL struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.engineId)",message="engineId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)",message="region is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.engineId) || (has(self.initProvider) && has(self.initProvider.engineId))",message="spec.forProvider.engineId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.type) || (has(self.initProvider) && has(self.initProvider.type))",message="spec.forProvider.type is a required parameter"
 	Spec   PostgreSQLSpec   `json:"spec"`
 	Status PostgreSQLStatus `json:"status,omitempty"`
 }

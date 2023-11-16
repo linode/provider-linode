@@ -29,6 +29,3 @@ spec:
     label: my-linode
     region: us-southeast
     type: g6-nanode-1
-
----
-

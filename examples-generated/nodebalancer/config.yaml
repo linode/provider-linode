@@ -35,6 +35,3 @@ spec:
     clientConnThrottle: 20
     label: mynodebalancer
     region: us-east
-
----
-

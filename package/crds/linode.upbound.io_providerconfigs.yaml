@@ -3,16 +3,15 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.11.3
-  creationTimestamp: null
+    controller-gen.kubebuilder.io/version: v0.13.0
   name: providerconfigs.linode.upbound.io
 spec:
   group: linode.upbound.io
   names:
     categories:
     - crossplane
-    - provider
-    - template
+    - providerconfig
+    - linode
     kind: ProviderConfig
     listKind: ProviderConfigList
     plural: providerconfigs
@@ -30,7 +29,7 @@ spec:
     name: v1beta1
     schema:
       openAPIV3Schema:
-        description: A ProviderConfig configures a Template provider.
+        description: A ProviderConfig configures a Linode provider.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -139,6 +138,9 @@ spec:
                   - type
                   type: object
                 type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
               users:
                 description: Users of this provider configuration.
                 format: int64

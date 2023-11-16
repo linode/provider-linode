@@ -18,6 +18,3 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: my_key
     source: ${pathexpand("~/files/log.txt")}
-
----
-

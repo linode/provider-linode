@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,6 +17,17 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type IPInitParameters struct {
+
+	// If true, the instance will be rebooted to update network interfaces.
+	// If true, the instance will be rebooted to update network interfaces.
+	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
+
+	// Whether the IPv4 address is public or private. Defaults to true.
+	// Whether the IPv4 address is public or private.
+	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
+}
+
 type IPObservation struct {
 
 	// The resulting IPv4 address.
@@ -20,7 +35,7 @@ type IPObservation struct {
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
 	// If true, the instance will be rebooted to update network interfaces.
-	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
+	// If true, the instance will be rebooted to update network interfaces.
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
 	// The default gateway for this address
@@ -31,11 +46,11 @@ type IPObservation struct {
 
 	// The ID of the Linode to allocate an IPv4 address for.
 	// The ID of the Linode to allocate an IPv4 address for.
-	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The number of bits set in the subnet mask.
 	// The number of bits set in the subnet mask.
-	Prefix *float64 `json:"prefix,omitempty" tf:"prefix,omitempty"`
+	Prefix *int64 `json:"prefix,omitempty" tf:"prefix,omitempty"`
 
 	// Whether the IPv4 address is public or private. Defaults to true.
 	// Whether the IPv4 address is public or private.
@@ -61,7 +76,7 @@ type IPObservation struct {
 type IPParameters struct {
 
 	// If true, the instance will be rebooted to update network interfaces.
-	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
+	// If true, the instance will be rebooted to update network interfaces.
 	// +kubebuilder:validation:Optional
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
@@ -69,7 +84,7 @@ type IPParameters struct {
 	// The ID of the Linode to allocate an IPv4 address for.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance to populate linodeId.
 	// +kubebuilder:validation:Optional
@@ -103,6 +118,17 @@ type IPParameters struct {
 type IPSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     IPParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider IPInitParameters `json:"initProvider,omitempty"`
 }
 
 // IPStatus defines the observed state of IP.

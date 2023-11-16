@@ -61,6 +61,3 @@ spec:
     linodeIdSelector:
       matchLabels:
         testing.upbound.io/example-name: primary
-
----
-

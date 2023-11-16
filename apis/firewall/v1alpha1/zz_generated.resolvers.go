@@ -21,7 +21,7 @@ func (mg *Device) ResolveReferences(ctx context.Context, c client.Reader) error 
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.EntityID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.EntityID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.EntityIDRef,
 		Selector:     mg.Spec.ForProvider.EntityIDSelector,
@@ -33,11 +33,11 @@ func (mg *Device) ResolveReferences(ctx context.Context, c client.Reader) error 
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.EntityID")
 	}
-	mg.Spec.ForProvider.EntityID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.EntityID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.EntityIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.FirewallID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.FirewallID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.FirewallIDRef,
 		Selector:     mg.Spec.ForProvider.FirewallIDSelector,
@@ -49,7 +49,7 @@ func (mg *Device) ResolveReferences(ctx context.Context, c client.Reader) error 
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.FirewallID")
 	}
-	mg.Spec.ForProvider.FirewallID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.FirewallID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.FirewallIDRef = rsp.ResolvedReference
 
 	return nil
@@ -63,7 +63,7 @@ func (mg *Firewall) ResolveReferences(ctx context.Context, c client.Reader) erro
 	var err error
 
 	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
-		CurrentValues: reference.FromFloatPtrValues(mg.Spec.ForProvider.Linodes),
+		CurrentValues: reference.FromIntPtrValues(mg.Spec.ForProvider.Linodes),
 		Extract:       reference.ExternalName(),
 		References:    mg.Spec.ForProvider.LinodesRefs,
 		Selector:      mg.Spec.ForProvider.LinodesSelector,
@@ -75,7 +75,7 @@ func (mg *Firewall) ResolveReferences(ctx context.Context, c client.Reader) erro
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.Linodes")
 	}
-	mg.Spec.ForProvider.Linodes = reference.ToFloatPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.Linodes = reference.ToIntPtrValues(mrsp.ResolvedValues)
 	mg.Spec.ForProvider.LinodesRefs = mrsp.ResolvedReferences
 
 	return nil

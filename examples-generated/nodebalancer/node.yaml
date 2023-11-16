@@ -83,6 +83,3 @@ spec:
     port: 80
     protocol: http
     stickiness: http_cookie
-
----
-

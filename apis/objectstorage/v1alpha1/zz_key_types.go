@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,6 +17,21 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type BucketAccessInitParameters struct {
+
+	// The unique label of the bucket to which the key will grant limited access.
+	// The unique label of the bucket to which the key will grant limited access.
+	BucketName *string `json:"bucketName,omitempty" tf:"bucket_name,omitempty"`
+
+	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
+	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
+	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
+
+	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
+	// This Limited Access Key’s permissions for the selected bucket.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
+}
+
 type BucketAccessObservation struct {
 
 	// The unique label of the bucket to which the key will grant limited access.
@@ -24,7 +43,7 @@ type BucketAccessObservation struct {
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
-	// This Limited Access Key's permissions for the selected bucket.
+	// This Limited Access Key’s permissions for the selected bucket.
 	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
@@ -32,18 +51,29 @@ type BucketAccessParameters struct {
 
 	// The unique label of the bucket to which the key will grant limited access.
 	// The unique label of the bucket to which the key will grant limited access.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	BucketName *string `json:"bucketName" tf:"bucket_name,omitempty"`
 
 	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
 	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Cluster *string `json:"cluster" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
-	// This Limited Access Key's permissions for the selected bucket.
-	// +kubebuilder:validation:Required
+	// This Limited Access Key’s permissions for the selected bucket.
+	// +kubebuilder:validation:Optional
 	Permissions *string `json:"permissions" tf:"permissions,omitempty"`
+}
+
+type KeyInitParameters struct {
+
+	// Defines this key as a Limited Access Key. Limited Access Keys restrict this Object Storage key’s access to only the bucket(s) declared in this array and define their bucket-level permissions. Not providing this block will not limit this Object Storage Key.
+	// A list of permissions to grant this limited access key.
+	BucketAccess []BucketAccessInitParameters `json:"bucketAccess,omitempty" tf:"bucket_access,omitempty"`
+
+	// The label given to this key. For display purposes only.
+	// The label given to this key. For display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 }
 
 type KeyObservation struct {
@@ -80,6 +110,17 @@ type KeyParameters struct {
 type KeySpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     KeyParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider KeyInitParameters `json:"initProvider,omitempty"`
 }
 
 // KeyStatus defines the observed state of Key.
@@ -100,7 +141,7 @@ type KeyStatus struct {
 type Key struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
 	Spec   KeySpec   `json:"spec"`
 	Status KeyStatus `json:"status,omitempty"`
 }

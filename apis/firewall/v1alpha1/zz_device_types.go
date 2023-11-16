@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,6 +17,13 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type DeviceInitParameters struct {
+
+	// The type of the entity to attach. (default: linode)
+	// The type of the entity to create a Firewall device for.
+	EntityType *string `json:"entityType,omitempty" tf:"entity_type,omitempty"`
+}
+
 type DeviceObservation struct {
 
 	// When the Firewall Device was last created.
@@ -21,7 +32,7 @@ type DeviceObservation struct {
 
 	// The unique ID of the entity to attach.
 	// The ID of the entity to create a Firewall device for.
-	EntityID *float64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
+	EntityID *int64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
 
 	// The type of the entity to attach. (default: linode)
 	// The type of the entity to create a Firewall device for.
@@ -29,7 +40,7 @@ type DeviceObservation struct {
 
 	// The unique ID of the target Firewall.
 	// The ID of the Firewall to access.
-	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+	FirewallID *int64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -44,7 +55,7 @@ type DeviceParameters struct {
 	// The ID of the entity to create a Firewall device for.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
-	EntityID *float64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
+	EntityID *int64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
 
 	// Reference to a Instance in instance to populate entityId.
 	// +kubebuilder:validation:Optional
@@ -63,7 +74,7 @@ type DeviceParameters struct {
 	// The ID of the Firewall to access.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/firewall/v1alpha1.Device
 	// +kubebuilder:validation:Optional
-	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+	FirewallID *int64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
 	// Reference to a Device in firewall to populate firewallId.
 	// +kubebuilder:validation:Optional
@@ -78,6 +89,17 @@ type DeviceParameters struct {
 type DeviceSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     DeviceParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider DeviceInitParameters `json:"initProvider,omitempty"`
 }
 
 // DeviceStatus defines the observed state of Device.

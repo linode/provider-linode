@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,6 +17,17 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type IPv6RangeInitParameters struct {
+
+	// The prefix length of the IPv6 range.
+	// The prefix length of the IPv6 range.
+	PrefixLength *int64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
+
+	// The IPv6 SLAAC address to assign this range to.
+	// The IPv6 SLAAC address to assign this range to.
+	RouteTarget *string `json:"routeTarget,omitempty" tf:"route_target,omitempty"`
+}
+
 type IPv6RangeObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -22,15 +37,15 @@ type IPv6RangeObservation struct {
 
 	// The ID of the Linode to assign this range to. This field may be updated to reassign the IPv6 range.
 	// The ID of the Linode to assign this range to.
-	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
-	// A list of Linodes targeted by this IPv6 range.Includes Linodes with IP sharing.
-	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
+	Linodes []*int64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.
-	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
+	PrefixLength *int64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// The IPv6 range of addresses in this pool.
 	// The IPv6 range of addresses in this pool.
@@ -51,7 +66,7 @@ type IPv6RangeParameters struct {
 	// The ID of the Linode to assign this range to.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance in instance to populate linodeId.
 	// +kubebuilder:validation:Optional
@@ -64,7 +79,7 @@ type IPv6RangeParameters struct {
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.
 	// +kubebuilder:validation:Optional
-	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
+	PrefixLength *int64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// The IPv6 SLAAC address to assign this range to.
 	// The IPv6 SLAAC address to assign this range to.
@@ -76,6 +91,17 @@ type IPv6RangeParameters struct {
 type IPv6RangeSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     IPv6RangeParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider IPv6RangeInitParameters `json:"initProvider,omitempty"`
 }
 
 // IPv6RangeStatus defines the observed state of IPv6Range.
@@ -96,7 +122,7 @@ type IPv6RangeStatus struct {
 type IPv6Range struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.prefixLength)",message="prefixLength is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.prefixLength) || (has(self.initProvider) && has(self.initProvider.prefixLength))",message="spec.forProvider.prefixLength is a required parameter"
 	Spec   IPv6RangeSpec   `json:"spec"`
 	Status IPv6RangeStatus `json:"status,omitempty"`
 }

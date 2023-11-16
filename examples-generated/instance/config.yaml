@@ -57,6 +57,3 @@ spec:
       name: example-secret
       namespace: upbound-system
     size: ${linode_instance.my-instance.specs.0.disk}
-
----
-

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,6 +17,37 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type StackscriptInitParameters struct {
+
+	// A description for the StackScript.
+	// A description for the StackScript.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
+	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
+	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
+
+	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private. Changing
+	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private.
+	IsPublic *bool `json:"isPublic,omitempty" tf:"is_public,omitempty"`
+
+	// The StackScript's label is for display purposes only.
+	// The StackScript's label is for display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// This field allows you to add notes for the set of revisions made to this StackScript.
+	// This field allows you to add notes for the set of revisions made to this StackScript.
+	RevNote *string `json:"revNote,omitempty" tf:"rev_note,omitempty"`
+
+	// The script to execute when provisioning a new Linode with this StackScript.
+	// The script to execute when provisioning a new Linode with this StackScript.
+	Script *string `json:"script,omitempty" tf:"script,omitempty"`
+
+	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
+	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
+	UserDefinedFields []UserDefinedFieldsInitParameters `json:"userDefinedFields,omitempty" tf:"user_defined_fields,omitempty"`
+}
+
 type StackscriptObservation struct {
 
 	// The date this StackScript was created.
@@ -21,11 +56,11 @@ type StackscriptObservation struct {
 
 	// Count of currently active, deployed Linodes created from this StackScript.
 	// Count of currently active, deployed Linodes created from this StackScript.
-	DeploymentsActive *float64 `json:"deploymentsActive,omitempty" tf:"deployments_active,omitempty"`
+	DeploymentsActive *int64 `json:"deploymentsActive,omitempty" tf:"deployments_active,omitempty"`
 
 	// The total number of times this StackScript has been deployed.
 	// The total number of times this StackScript has been deployed.
-	DeploymentsTotal *float64 `json:"deploymentsTotal,omitempty" tf:"deployments_total,omitempty"`
+	DeploymentsTotal *int64 `json:"deploymentsTotal,omitempty" tf:"deployments_total,omitempty"`
 
 	// A description for the StackScript.
 	// A description for the StackScript.
@@ -101,25 +136,39 @@ type StackscriptParameters struct {
 	// The script to execute when provisioning a new Linode with this StackScript.
 	// +kubebuilder:validation:Optional
 	Script *string `json:"script,omitempty" tf:"script,omitempty"`
+
+	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
+	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
+	// +kubebuilder:validation:Optional
+	UserDefinedFields []UserDefinedFieldsParameters `json:"userDefinedFields,omitempty" tf:"user_defined_fields,omitempty"`
+}
+
+type UserDefinedFieldsInitParameters struct {
 }
 
 type UserDefinedFieldsObservation struct {
 
 	// The default value. If not specified, this value will be used.
+	// The default value. If not specified, this value will be used.
 	Default *string `json:"default,omitempty" tf:"default,omitempty"`
 
+	// An example value for the field.
 	// An example value for the field.
 	Example *string `json:"example,omitempty" tf:"example,omitempty"`
 
 	// The StackScript's label is for display purposes only.
+	// A human-readable label for the field that will serve as the input prompt for entering the value during deployment.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// A list of acceptable values for the field in any quantity, combination or order.
 	// A list of acceptable values for the field in any quantity, combination or order.
 	ManyOf *string `json:"manyOf,omitempty" tf:"many_of,omitempty"`
 
 	// The name of the field.
+	// The name of the field.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// A list of acceptable single values for the field.
 	// A list of acceptable single values for the field.
 	OneOf *string `json:"oneOf,omitempty" tf:"one_of,omitempty"`
 }
@@ -131,6 +180,17 @@ type UserDefinedFieldsParameters struct {
 type StackscriptSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     StackscriptParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider StackscriptInitParameters `json:"initProvider,omitempty"`
 }
 
 // StackscriptStatus defines the observed state of Stackscript.
@@ -151,10 +211,10 @@ type StackscriptStatus struct {
 type Stackscript struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.description)",message="description is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.images)",message="images is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.script)",message="script is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.description) || (has(self.initProvider) && has(self.initProvider.description))",message="spec.forProvider.description is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.images) || (has(self.initProvider) && has(self.initProvider.images))",message="spec.forProvider.images is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.script) || (has(self.initProvider) && has(self.initProvider.script))",message="spec.forProvider.script is a required parameter"
 	Spec   StackscriptSpec   `json:"spec"`
 	Status StackscriptStatus `json:"status,omitempty"`
 }

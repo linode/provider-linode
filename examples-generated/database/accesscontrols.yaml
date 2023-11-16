@@ -46,6 +46,3 @@ spec:
     label: myinstance
     region: us-southeast
     type: g6-nanode-1
-
----
-

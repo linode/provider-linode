@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -12,6 +16,35 @@ import (
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
+
+type BucketInitParameters struct {
+
+	// The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.
+	// The Access Control Level of the bucket using a canned ACL string.
+	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
+
+	// The cert used by this Object Storage Bucket.
+	Cert []CertInitParameters `json:"cert,omitempty" tf:"cert,omitempty"`
+
+	// The cluster of the Linode Object Storage Bucket.
+	// The cluster of the Linode Object Storage Bucket.
+	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
+
+	// If true, the bucket will have CORS enabled for all origins.
+	// If true, the bucket will be created with CORS enabled for all origins.
+	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
+
+	// The label of the Linode Object Storage Bucket.
+	// The label of the Linode Object Storage Bucket.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// Lifecycle rules to be applied to the bucket.
+	LifecycleRule []LifecycleRuleInitParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
+
+	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
+	// Whether to enable versioning.
+	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`
+}
 
 type BucketObservation struct {
 
@@ -124,6 +157,9 @@ type BucketParameters struct {
 	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`
 }
 
+type CertInitParameters struct {
+}
+
 type CertObservation struct {
 }
 
@@ -140,6 +176,21 @@ type CertParameters struct {
 	PrivateKeySecretRef v1.SecretKeySelector `json:"privateKeySecretRef" tf:"-"`
 }
 
+type ExpirationInitParameters struct {
+
+	// Specifies the date after which you want the corresponding action to take effect.
+	// Specifies the date after which you want the corresponding action to take effect.
+	Date *string `json:"date,omitempty" tf:"date,omitempty"`
+
+	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days after object creation when the specific rule action takes effect.
+	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
+
+	// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
+	// Directs Linode Object Storage to remove expired deleted markers.
+	ExpiredObjectDeleteMarker *bool `json:"expiredObjectDeleteMarker,omitempty" tf:"expired_object_delete_marker,omitempty"`
+}
+
 type ExpirationObservation struct {
 
 	// Specifies the date after which you want the corresponding action to take effect.
@@ -148,7 +199,7 @@ type ExpirationObservation struct {
 
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
 
 	// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
 	// Directs Linode Object Storage to remove expired deleted markers.
@@ -165,7 +216,7 @@ type ExpirationParameters struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// +kubebuilder:validation:Optional
-	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
 
 	// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
 	// Directs Linode Object Storage to remove expired deleted markers.
@@ -173,11 +224,36 @@ type ExpirationParameters struct {
 	ExpiredObjectDeleteMarker *bool `json:"expiredObjectDeleteMarker,omitempty" tf:"expired_object_delete_marker,omitempty"`
 }
 
+type LifecycleRuleInitParameters struct {
+
+	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+	AbortIncompleteMultipartUploadDays *int64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
+
+	// Specifies whether the lifecycle rule is active.
+	// Specifies whether the lifecycle rule is active.
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// Specifies a period in the object's expire.
+	Expiration []ExpirationInitParameters `json:"expiration,omitempty" tf:"expiration,omitempty"`
+
+	// The unique identifier for the rule.
+	// The unique identifier for the rule.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Specifies when non-current object versions expire.
+	NoncurrentVersionExpiration []NoncurrentVersionExpirationInitParameters `json:"noncurrentVersionExpiration,omitempty" tf:"noncurrent_version_expiration,omitempty"`
+
+	// The object key prefix identifying one or more objects to which the rule applies.
+	// The object key prefix identifying one or more objects to which the rule applies.
+	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
+}
+
 type LifecycleRuleObservation struct {
 
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
-	AbortIncompleteMultipartUploadDays *float64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
+	AbortIncompleteMultipartUploadDays *int64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
 
 	// Specifies whether the lifecycle rule is active.
 	// Specifies whether the lifecycle rule is active.
@@ -203,11 +279,11 @@ type LifecycleRuleParameters struct {
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	// +kubebuilder:validation:Optional
-	AbortIncompleteMultipartUploadDays *float64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
+	AbortIncompleteMultipartUploadDays *int64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
 
 	// Specifies whether the lifecycle rule is active.
 	// Specifies whether the lifecycle rule is active.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled" tf:"enabled,omitempty"`
 
 	// Specifies a period in the object's expire.
@@ -229,25 +305,43 @@ type LifecycleRuleParameters struct {
 	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 }
 
+type NoncurrentVersionExpirationInitParameters struct {
+
+	// Specifies the number of days after object creation when the specific rule action takes effect.
+	// Specifies the number of days non-current object versions expire.
+	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
+}
+
 type NoncurrentVersionExpirationObservation struct {
 
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days non-current object versions expire.
-	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
 }
 
 type NoncurrentVersionExpirationParameters struct {
 
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days non-current object versions expire.
-	// +kubebuilder:validation:Required
-	Days *float64 `json:"days" tf:"days,omitempty"`
+	// +kubebuilder:validation:Optional
+	Days *int64 `json:"days" tf:"days,omitempty"`
 }
 
 // BucketSpec defines the desired state of Bucket
 type BucketSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     BucketParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider BucketInitParameters `json:"initProvider,omitempty"`
 }
 
 // BucketStatus defines the observed state of Bucket.
@@ -268,8 +362,8 @@ type BucketStatus struct {
 type Bucket struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.cluster)",message="cluster is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cluster) || (has(self.initProvider) && has(self.initProvider.cluster))",message="spec.forProvider.cluster is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
 	Spec   BucketSpec   `json:"spec"`
 	Status BucketStatus `json:"status,omitempty"`
 }

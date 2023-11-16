@@ -3,8 +3,8 @@ package lkecluster
 import (
 	"encoding/base64"
 
+	"github.com/crossplane/upjet/pkg/config"
 	"github.com/pkg/errors"
-	"github.com/upbound/upjet/pkg/config"
 )
 
 const (

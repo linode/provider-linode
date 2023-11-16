@@ -26,6 +26,3 @@ spec:
     image: linode/alpine3.9
     region: ca-east
     type: g6-dedicated-2
-
----
-

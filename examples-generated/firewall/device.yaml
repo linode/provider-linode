@@ -55,6 +55,3 @@ spec:
     label: my_instance
     region: us-southeast
     type: g6-standard-1
-
----
-

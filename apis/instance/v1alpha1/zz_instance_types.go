@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,27 +17,50 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type AlertsInitParameters struct {
+
+	// The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.
+	// The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.
+	CPU *int64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	// The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.
+	// The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.
+	Io *int64 `json:"io,omitempty" tf:"io,omitempty"`
+
+	// The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
+	// The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
+	NetworkIn *int64 `json:"networkIn,omitempty" tf:"network_in,omitempty"`
+
+	// The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
+	// The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
+	NetworkOut *int64 `json:"networkOut,omitempty" tf:"network_out,omitempty"`
+
+	// The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.
+	// The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.
+	TransferQuota *int64 `json:"transferQuota,omitempty" tf:"transfer_quota,omitempty"`
+}
+
 type AlertsObservation struct {
 
 	// The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.
 	// The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.
-	CPU *float64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
+	CPU *int64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
 
 	// The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.
 	// The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.
-	Io *float64 `json:"io,omitempty" tf:"io,omitempty"`
+	Io *int64 `json:"io,omitempty" tf:"io,omitempty"`
 
 	// The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
 	// The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
-	NetworkIn *float64 `json:"networkIn,omitempty" tf:"network_in,omitempty"`
+	NetworkIn *int64 `json:"networkIn,omitempty" tf:"network_in,omitempty"`
 
 	// The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
 	// The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
-	NetworkOut *float64 `json:"networkOut,omitempty" tf:"network_out,omitempty"`
+	NetworkOut *int64 `json:"networkOut,omitempty" tf:"network_out,omitempty"`
 
 	// The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.
 	// The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.
-	TransferQuota *float64 `json:"transferQuota,omitempty" tf:"transfer_quota,omitempty"`
+	TransferQuota *int64 `json:"transferQuota,omitempty" tf:"transfer_quota,omitempty"`
 }
 
 type AlertsParameters struct {
@@ -41,32 +68,38 @@ type AlertsParameters struct {
 	// The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.
 	// The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.
 	// +kubebuilder:validation:Optional
-	CPU *float64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
+	CPU *int64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
 
 	// The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.
 	// The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.
 	// +kubebuilder:validation:Optional
-	Io *float64 `json:"io,omitempty" tf:"io,omitempty"`
+	Io *int64 `json:"io,omitempty" tf:"io,omitempty"`
 
 	// The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
 	// The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
 	// +kubebuilder:validation:Optional
-	NetworkIn *float64 `json:"networkIn,omitempty" tf:"network_in,omitempty"`
+	NetworkIn *int64 `json:"networkIn,omitempty" tf:"network_in,omitempty"`
 
 	// The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
 	// The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.
 	// +kubebuilder:validation:Optional
-	NetworkOut *float64 `json:"networkOut,omitempty" tf:"network_out,omitempty"`
+	NetworkOut *int64 `json:"networkOut,omitempty" tf:"network_out,omitempty"`
 
 	// The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.
 	// The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.
 	// +kubebuilder:validation:Optional
-	TransferQuota *float64 `json:"transferQuota,omitempty" tf:"transfer_quota,omitempty"`
+	TransferQuota *int64 `json:"transferQuota,omitempty" tf:"transfer_quota,omitempty"`
+}
+
+type BackupsInitParameters struct {
 }
 
 type BackupsObservation struct {
+
+	// Whether this Backup is available for restoration.
 	Available *bool `json:"available,omitempty" tf:"available,omitempty"`
 
+	// If this Linode has the Backup service enabled.
 	// If this Linode has the Backup service enabled.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
@@ -74,6 +107,48 @@ type BackupsObservation struct {
 }
 
 type BackupsParameters struct {
+}
+
+type ConfigInitParameters struct {
+
+	// - Arbitrary user comments about this config.
+	// Optional field for arbitrary User comments on this Config.
+	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
+
+	// A list of disk or volume attachments for this config.  If the boot_config_label omits a devices block, the Linode will not be booted.
+	// Device sda-sdh can be either a Disk or Volume identified by disk_label or volume_id. Only one type per slot allowed.
+	Devices []DevicesInitParameters `json:"devices,omitempty" tf:"devices,omitempty"`
+
+	// (Options) Helpers enabled when booting to this Linode Config.
+	// Helpers enabled when booting to this Linode Config.
+	Helpers []HelpersInitParameters `json:"helpers,omitempty" tf:"helpers,omitempty"`
+
+	// An array of Network Interfaces for this Linode’s Configuration Profile.
+	Interface []InterfaceInitParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+
+	// - A Kernel ID to boot a Linode with. Default is based on image choice. Examples are linode/latest-64bit, linode/grub2, linode/direct-disk, etc. See all kernels here. Note that this is a paginated API endpoint (docs).
+	// A Kernel ID to boot a Linode with. Default is based on image choice. (examples: linode/latest-64bit, linode/grub2, linode/direct-disk)
+	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
+
+	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
+	// The Config's label for display purposes.  Also used by `boot_config_label`.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// - Defaults to the total RAM of the Linode
+	// Defaults to the total RAM of the Linode
+	MemoryLimit *int64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
+
+	// - The root device to boot. The corresponding disk must be attached to a device slot.  Example: "/dev/sda"
+	// The root device to boot. The corresponding disk must be attached.
+	RootDevice *string `json:"rootDevice,omitempty" tf:"root_device,omitempty"`
+
+	// - Defines the state of your Linode after booting. Defaults to "default".
+	// Defines the state of your Linode after booting. Defaults to default.
+	RunLevel *string `json:"runLevel,omitempty" tf:"run_level,omitempty"`
+
+	// - Controls the virtualization mode. Defaults to "paravirt".
+	// Controls the virtualization mode. Defaults to paravirt.
+	VirtMode *string `json:"virtMode,omitempty" tf:"virt_mode,omitempty"`
 }
 
 type ConfigObservation struct {
@@ -103,7 +178,7 @@ type ConfigObservation struct {
 
 	// - Defaults to the total RAM of the Linode
 	// Defaults to the total RAM of the Linode
-	MemoryLimit *float64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
+	MemoryLimit *int64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
 
 	// - The root device to boot. The corresponding disk must be attached to a device slot.  Example: "/dev/sda"
 	// The root device to boot. The corresponding disk must be attached.
@@ -146,13 +221,13 @@ type ConfigParameters struct {
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
 	// The Config's label for display purposes.  Also used by `boot_config_label`.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
 	// - Defaults to the total RAM of the Linode
 	// Defaults to the total RAM of the Linode
 	// +kubebuilder:validation:Optional
-	MemoryLimit *float64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
+	MemoryLimit *int64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
 
 	// - The root device to boot. The corresponding disk must be attached to a device slot.  Example: "/dev/sda"
 	// The root device to boot. The corresponding disk must be attached.
@@ -168,6 +243,34 @@ type ConfigParameters struct {
 	// Controls the virtualization mode. Defaults to paravirt.
 	// +kubebuilder:validation:Optional
 	VirtMode *string `json:"virtMode,omitempty" tf:"virt_mode,omitempty"`
+}
+
+type DevicesInitParameters struct {
+
+	// The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_label or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sda []SdaInitParameters `json:"sda,omitempty" tf:"sda,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdb []SdbInitParameters `json:"sdb,omitempty" tf:"sdb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdc []SdcInitParameters `json:"sdc,omitempty" tf:"sdc,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdd []SddInitParameters `json:"sdd,omitempty" tf:"sdd,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sde []SdeInitParameters `json:"sde,omitempty" tf:"sde,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdf []SdfInitParameters `json:"sdf,omitempty" tf:"sdf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdg []SdgInitParameters `json:"sdg,omitempty" tf:"sdg,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdh []SdhInitParameters `json:"sdh,omitempty" tf:"sdh,omitempty"`
 }
 
 type DevicesObservation struct {
@@ -234,6 +337,39 @@ type DevicesParameters struct {
 	Sdh []SdhParameters `json:"sdh,omitempty" tf:"sdh,omitempty"`
 }
 
+type DiskInitParameters struct {
+
+	// A list of SSH public keys to deploy for the root user on the newly created Linode. This value can not be imported. Changing
+	// A list of SSH public keys to deploy for the root user on the newly created Linode. Only accepted if 'image' is provided.
+	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
+
+	// A list of Linode usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file automatically. This value can not be imported. Changing
+	// A list of Linode usernames. If the usernames have associated SSH keys, the keys will be appended to the `root` user's `~/.ssh/authorized_keys` file automatically. Only accepted if 'image' is provided.
+	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
+
+	// The Disk filesystem can be one of: raw, swap, ext3, ext4, initrd (max 32mb)
+	Filesystem *string `json:"filesystem,omitempty" tf:"filesystem,omitempty"`
+
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/.
+	Image *string `json:"image,omitempty" tf:"image,omitempty"`
+
+	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// If true, this Disk is read-only.
+	// If true, this Disk is read-only.
+	ReadOnly *bool `json:"readOnly,omitempty" tf:"read_only,omitempty"`
+
+	// The size of the Disk in MB.
+	// The size of the Disk in MB.
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+
+	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
+	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
+	StackscriptID *int64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+}
+
 type DiskObservation struct {
 
 	// A list of SSH public keys to deploy for the root user on the newly created Linode. This value can not be imported. Changing
@@ -249,7 +385,7 @@ type DiskObservation struct {
 
 	// (Computed) The ID of the disk in the Linode API.
 	// The ID of the Disk (for use in Linode Image resources and Linode Instance Config Devices)
-	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/.
@@ -264,11 +400,11 @@ type DiskObservation struct {
 
 	// The size of the Disk in MB.
 	// The size of the Disk in MB.
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
-	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+	StackscriptID *int64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
 }
 
 type DiskParameters struct {
@@ -293,7 +429,7 @@ type DiskParameters struct {
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
 	// If true, this Disk is read-only.
@@ -308,8 +444,8 @@ type DiskParameters struct {
 
 	// The size of the Disk in MB.
 	// The size of the Disk in MB.
-	// +kubebuilder:validation:Required
-	Size *float64 `json:"size" tf:"size,omitempty"`
+	// +kubebuilder:validation:Optional
+	Size *int64 `json:"size" tf:"size,omitempty"`
 
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
@@ -319,7 +455,29 @@ type DiskParameters struct {
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
 	// +kubebuilder:validation:Optional
-	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+	StackscriptID *int64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+}
+
+type HelpersInitParameters struct {
+
+	// Populates the /dev directory early during boot without udev. Defaults to false.
+	DevtmpfsAutomount *bool `json:"devtmpfsAutomount,omitempty" tf:"devtmpfs_automount,omitempty"`
+
+	// Controls the behavior of the Linode Config's Distribution Helper setting.
+	// Controls the behavior of the Linode Config's Distribution Helper setting.
+	Distro *bool `json:"distro,omitempty" tf:"distro,omitempty"`
+
+	// Creates a modules dependency file for the Kernel you run.
+	// Creates a modules dependency file for the Kernel you run.
+	ModulesDep *bool `json:"modulesDep,omitempty" tf:"modules_dep,omitempty"`
+
+	// Controls the behavior of the Linode Config's Network Helper setting, used to automatically configure additional IP addresses assigned to this instance.
+	// Controls the behavior of the Linode Config's Network Helper setting, used to automatically configure additional IP addresses assigned to this instance.
+	Network *bool `json:"network,omitempty" tf:"network,omitempty"`
+
+	// Disables updatedb cron job to avoid disk thrashing.
+	// Disables updatedb cron job to avoid disk thrashing.
+	UpdatedbDisabled *bool `json:"updatedbDisabled,omitempty" tf:"updatedb_disabled,omitempty"`
 }
 
 type HelpersObservation struct {
@@ -371,6 +529,104 @@ type HelpersParameters struct {
 	UpdatedbDisabled *bool `json:"updatedbDisabled,omitempty" tf:"updatedb_disabled,omitempty"`
 }
 
+type InstanceInitParameters struct {
+
+	// Configuration options for alert triggers on this Linode.
+	Alerts []AlertsInitParameters `json:"alerts,omitempty" tf:"alerts,omitempty"`
+
+	// A list of SSH public keys to deploy for the root user on the newly created Linode. This value can not be imported. Changing
+	// A list of SSH public keys to deploy for the root user on the newly created Linode. Only accepted if 'image' is provided.
+	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
+
+	// A list of Linode usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file automatically. This value can not be imported. Changing
+	// A list of Linode usernames. If the usernames have associated SSH keys, the keys will be appended to the `root` user's `~/.ssh/authorized_keys` file automatically. Only accepted if 'image' is provided.
+	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
+
+	// A Backup ID from another Linode's available backups. Your User must have read_write access to that Linode, the Backup must have a status of successful, and the Linode must be deployed to the same region as the Backup. See /linode/instances/{linodeId}/backups for a Linode's available backups. This field and the image field are mutually exclusive. This value can not be imported. Changing
+	// A Backup ID from another Linode's available backups. Your User must have read_write access to that Linode, the Backup must have a status of successful, and the Linode must be deployed to the same region as the Backup. See /linode/instances/{linodeId}/backups for a Linode's available backups. This field and the image field are mutually exclusive.
+	BackupID *int64 `json:"backupId,omitempty" tf:"backup_id,omitempty"`
+
+	// If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service. This will incur an additional charge. The cost for the Backup service is dependent on the Type of Linode deployed.
+	// If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service. This will incur an additional charge. The cost for the Backup service is dependent on the Type of Linode deployed.
+	BackupsEnabled *bool `json:"backupsEnabled,omitempty" tf:"backups_enabled,omitempty"`
+
+	// The Label of the Instance Config that should be used to boot the Linode instance.  If there is only one config, the label of that config will be used as the boot_config_label. This value can not be imported.
+	// The Label of the Instance Config that should be used to boot the Linode instance.
+	BootConfigLabel *string `json:"bootConfigLabel,omitempty" tf:"boot_config_label,omitempty"`
+
+	// If true, then the instance is kept or converted into in a running state. If false, the instance will be shutdown. If unspecified, the Linode's power status will not be managed by the Provider.
+	Booted *bool `json:"booted,omitempty" tf:"booted,omitempty"`
+
+	// block
+	// Configuration profiles define the VM settings and boot behavior of the Linode Instance.
+	Config []ConfigInitParameters `json:"config,omitempty" tf:"config,omitempty"`
+
+	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
+	Disk []DiskInitParameters `json:"disk,omitempty" tf:"disk,omitempty"`
+
+	// The display group of the Linode instance.
+	// The display group of the Linode instance.
+	Group *string `json:"group,omitempty" tf:"group,omitempty"`
+
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use.
+	Image *string `json:"image,omitempty" tf:"image,omitempty"`
+
+	// An array of Network Interfaces for this Linode to be created with. If an explicit config or disk is defined, interfaces must be declared in the config block.
+	Interface []InstanceInterfaceInitParameters `json:"interface,omitempty" tf:"interface,omitempty"`
+
+	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
+	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
+	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
+	PrivateIP *bool `json:"privateIp,omitempty" tf:"private_ip,omitempty"`
+
+	// This is the location where the Linode is deployed. Examples are "us-east", "us-west", "ap-south", etc. See all regions here. Changing .
+	// This is the location where the Linode was deployed. This cannot be changed without opening a support ticket.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined. This is an irreversible action as Linode disks cannot be automatically downsized.
+	// If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined. This is an irreversible action as Linode disks cannot be automatically downsized.
+	ResizeDisk *bool `json:"resizeDisk,omitempty" tf:"resize_disk,omitempty"`
+
+	// A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.
+	// A set of IPv4 addresses to share with this Linode.
+	SharedIPv4 []*string `json:"sharedIpv4,omitempty" tf:"shared_ipv4,omitempty"`
+
+	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
+	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
+	SwapSize *int64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
+
+	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2", "g6-highmem-16", "g6-dedicated-16", etc. See all types here.
+	// The type of instance to be deployed, determining the price and size.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.
+	// The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.
+	WatchdogEnabled *bool `json:"watchdogEnabled,omitempty" tf:"watchdog_enabled,omitempty"`
+}
+
+type InstanceInterfaceInitParameters struct {
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+	// The IPAM Address of this interface.
+	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
+
+	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
+	// The unique label of this interface.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The type of interface. (public, vlan)
+	// The purpose of this interface.
+	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+}
+
 type InstanceInterfaceObservation struct {
 
 	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
@@ -419,7 +675,7 @@ type InstanceObservation struct {
 
 	// A Backup ID from another Linode's available backups. Your User must have read_write access to that Linode, the Backup must have a status of successful, and the Linode must be deployed to the same region as the Backup. See /linode/instances/{linodeId}/backups for a Linode's available backups. This field and the image field are mutually exclusive. This value can not be imported. Changing
 	// A Backup ID from another Linode's available backups. Your User must have read_write access to that Linode, the Backup must have a status of successful, and the Linode must be deployed to the same region as the Backup. See /linode/instances/{linodeId}/backups for a Linode's available backups. This field and the image field are mutually exclusive.
-	BackupID *float64 `json:"backupId,omitempty" tf:"backup_id,omitempty"`
+	BackupID *int64 `json:"backupId,omitempty" tf:"backup_id,omitempty"`
 
 	// Information about this Linode's backups status.
 	// Information about this Linode's backups status.
@@ -446,9 +702,6 @@ type InstanceObservation struct {
 	// The display group of the Linode instance.
 	// The display group of the Linode instance.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
-
-	// Whether or not this Instance was created with user-data.
-	HasUserData *bool `json:"hasUserData,omitempty" tf:"has_user_data,omitempty"`
 
 	// (Computed) The ID of the disk in the Linode API.
 	// The Linode’s host machine, as a UUID.
@@ -480,9 +733,6 @@ type InstanceObservation struct {
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// Various fields related to the Linode Metadata service.
-	Metadata []MetadataObservation `json:"metadata,omitempty" tf:"metadata,omitempty"`
-
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
 	PrivateIP *bool `json:"privateIp,omitempty" tf:"private_ip,omitempty"`
@@ -508,7 +758,7 @@ type InstanceObservation struct {
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
-	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+	StackscriptID *int64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
 
 	// The status of the instance, indicating the current readiness state. (running, offline, ...)
 	// The status of the instance, indicating the current readiness state.
@@ -516,7 +766,7 @@ type InstanceObservation struct {
 
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
-	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
+	SwapSize *int64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
@@ -550,7 +800,7 @@ type InstanceParameters struct {
 	// A Backup ID from another Linode's available backups. Your User must have read_write access to that Linode, the Backup must have a status of successful, and the Linode must be deployed to the same region as the Backup. See /linode/instances/{linodeId}/backups for a Linode's available backups. This field and the image field are mutually exclusive. This value can not be imported. Changing
 	// A Backup ID from another Linode's available backups. Your User must have read_write access to that Linode, the Backup must have a status of successful, and the Linode must be deployed to the same region as the Backup. See /linode/instances/{linodeId}/backups for a Linode's available backups. This field and the image field are mutually exclusive.
 	// +kubebuilder:validation:Optional
-	BackupID *float64 `json:"backupId,omitempty" tf:"backup_id,omitempty"`
+	BackupID *int64 `json:"backupId,omitempty" tf:"backup_id,omitempty"`
 
 	// If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service. This will incur an additional charge. The cost for the Backup service is dependent on the Type of Linode deployed.
 	// If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service. This will incur an additional charge. The cost for the Backup service is dependent on the Type of Linode deployed.
@@ -594,10 +844,6 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// Various fields related to the Linode Metadata service.
-	// +kubebuilder:validation:Optional
-	Metadata []MetadataParameters `json:"metadata,omitempty" tf:"metadata,omitempty"`
-
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
 	// +kubebuilder:validation:Optional
@@ -632,7 +878,7 @@ type InstanceParameters struct {
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript
 	// +kubebuilder:validation:Optional
-	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+	StackscriptID *int64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
 
 	// Reference to a Stackscript in stackscript to populate stackscriptId.
 	// +kubebuilder:validation:Optional
@@ -645,7 +891,7 @@ type InstanceParameters struct {
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	// +kubebuilder:validation:Optional
-	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
+	SwapSize *int64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
@@ -661,6 +907,21 @@ type InstanceParameters struct {
 	// The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.
 	// +kubebuilder:validation:Optional
 	WatchdogEnabled *bool `json:"watchdogEnabled,omitempty" tf:"watchdog_enabled,omitempty"`
+}
+
+type InterfaceInitParameters struct {
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+	// The IPAM Address of this interface.
+	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
+
+	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
+	// The unique label of this interface.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The type of interface. (public, vlan)
+	// The purpose of this interface.
+	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
 }
 
 type InterfaceObservation struct {
@@ -696,24 +957,16 @@ type InterfaceParameters struct {
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
 }
 
-type MetadataObservation struct {
-
-	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
-	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
-}
-
-type MetadataParameters struct {
-
-	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
-	// +kubebuilder:validation:Optional
-	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
+type ScheduleInitParameters struct {
 }
 
 type ScheduleObservation struct {
 
 	// The day of the week that your Linode's weekly Backup is taken. If not set manually, a day will be chosen for you. Backups are taken every day, but backups taken on this day are preferred when selecting backups to retain for a longer period.  If not set manually, then when backups are initially enabled, this may come back as "Scheduling" until the day is automatically selected.
+	// The day ('Sunday'-'Saturday') of the week that your Linode's weekly Backup is taken. If not set manually, a day will be chosen for you. Backups are taken every day, but backups taken on this day are preferred when selecting backups to retain for a longer period.  If not set manually, then when backups are initially enabled, this may come back as 'Scheduling' until the day is automatically selected.
 	Day *string `json:"day,omitempty" tf:"day,omitempty"`
 
+	// The window ('W0'-'W22') in which your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur. For example, 'W10' indicates that your backups should be taken between 10:00 and 12:00. If you do not choose a backup window, one will be selected for you automatically.  If not set manually, when backups are initially enabled this may come back as Scheduling until the window is automatically selected.
 	// The window ('W0'-'W22') in which your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur. For example, 'W10' indicates that your backups should be taken between 10:00 and 12:00. If you do not choose a backup window, one will be selected for you automatically.  If not set manually, when backups are initially enabled this may come back as Scheduling until the window is automatically selected.
 	Window *string `json:"window,omitempty" tf:"window,omitempty"`
 }
@@ -721,11 +974,11 @@ type ScheduleObservation struct {
 type ScheduleParameters struct {
 }
 
-type SdaObservation struct {
+type SdaInitParameters struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -733,7 +986,22 @@ type SdaObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SdaObservation struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdaParameters struct {
@@ -741,7 +1009,7 @@ type SdaParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -751,14 +1019,29 @@ type SdaParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SdbInitParameters struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdbObservation struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -766,7 +1049,7 @@ type SdbObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdbParameters struct {
@@ -774,7 +1057,7 @@ type SdbParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -784,14 +1067,29 @@ type SdbParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SdcInitParameters struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdcObservation struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -799,7 +1097,7 @@ type SdcObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdcParameters struct {
@@ -807,7 +1105,7 @@ type SdcParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -817,14 +1115,29 @@ type SdcParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SddInitParameters struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SddObservation struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -832,7 +1145,7 @@ type SddObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SddParameters struct {
@@ -840,7 +1153,7 @@ type SddParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -850,14 +1163,29 @@ type SddParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SdeInitParameters struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdeObservation struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -865,7 +1193,7 @@ type SdeObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdeParameters struct {
@@ -873,7 +1201,7 @@ type SdeParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -883,14 +1211,29 @@ type SdeParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SdfInitParameters struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdfObservation struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -898,7 +1241,7 @@ type SdfObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdfParameters struct {
@@ -906,7 +1249,7 @@ type SdfParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -916,14 +1259,29 @@ type SdfParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SdgInitParameters struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdgObservation struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -931,7 +1289,7 @@ type SdgObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdgParameters struct {
@@ -939,7 +1297,7 @@ type SdgParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -949,14 +1307,29 @@ type SdgParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SdhInitParameters struct {
+
+	// (Computed) The Disk ID of the associated disk_label, if used.
+	// The Disk ID to map to this disk slot
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The label of the disk to map to this device slot.
+	// The `label` of the `disk` to map to this `device` slot.
+	DiskLabel *string `json:"diskLabel,omitempty" tf:"disk_label,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdhObservation struct {
 
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -964,7 +1337,7 @@ type SdhObservation struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type SdhParameters struct {
@@ -972,7 +1345,7 @@ type SdhParameters struct {
 	// (Computed) The Disk ID of the associated disk_label, if used.
 	// The Disk ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The label of the disk to map to this device slot.
 	// The `label` of the `disk` to map to this `device` slot.
@@ -982,22 +1355,29 @@ type SdhParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type SpecsInitParameters struct {
 }
 
 type SpecsObservation struct {
 
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
-	Disk *float64 `json:"disk,omitempty" tf:"disk,omitempty"`
+	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image without specifying disks.
+	Disk *int64 `json:"disk,omitempty" tf:"disk,omitempty"`
 
 	// The amount of RAM, in MB, this Linode has access to. Typically a Linode will choose to boot with all of its available RAM, but this can be configured in a Config profile.
-	Memory *float64 `json:"memory,omitempty" tf:"memory,omitempty"`
+	// The amount of RAM, in MB, this Linode has access to. Typically a Linode will choose to boot with all of its available RAM, but this can be configured in a Config profile.
+	Memory *int64 `json:"memory,omitempty" tf:"memory,omitempty"`
 
 	// The amount of network transfer this Linode is allotted each month.
-	Transfer *float64 `json:"transfer,omitempty" tf:"transfer,omitempty"`
+	// The amount of network transfer this Linode is allotted each month.
+	Transfer *int64 `json:"transfer,omitempty" tf:"transfer,omitempty"`
 
 	// The number of vcpus this Linode has access to. Typically a Linode will choose to boot with all of its available vcpus, but this can be configured in a Config Profile.
-	Vcpus *float64 `json:"vcpus,omitempty" tf:"vcpus,omitempty"`
+	// The number of vcpus this Linode has access to. Typically a Linode will choose to boot with all of its available vcpus, but this can be configured in a Config Profile.
+	Vcpus *int64 `json:"vcpus,omitempty" tf:"vcpus,omitempty"`
 }
 
 type SpecsParameters struct {
@@ -1007,6 +1387,17 @@ type SpecsParameters struct {
 type InstanceSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     InstanceParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider InstanceInitParameters `json:"initProvider,omitempty"`
 }
 
 // InstanceStatus defines the observed state of Instance.
@@ -1027,7 +1418,7 @@ type InstanceStatus struct {
 type Instance struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)",message="region is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	Spec   InstanceSpec   `json:"spec"`
 	Status InstanceStatus `json:"status,omitempty"`
 }

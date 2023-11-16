@@ -20,7 +20,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.NodebalancerID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.NodebalancerID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.NodebalancerIDRef,
 		Selector:     mg.Spec.ForProvider.NodebalancerIDSelector,
@@ -32,7 +32,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.NodebalancerID")
 	}
-	mg.Spec.ForProvider.NodebalancerID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.NodebalancerID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.NodebalancerIDRef = rsp.ResolvedReference
 
 	return nil
@@ -46,7 +46,7 @@ func (mg *Node) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.ConfigID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.ConfigID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.ConfigIDRef,
 		Selector:     mg.Spec.ForProvider.ConfigIDSelector,
@@ -58,11 +58,11 @@ func (mg *Node) ResolveReferences(ctx context.Context, c client.Reader) error {
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.ConfigID")
 	}
-	mg.Spec.ForProvider.ConfigID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ConfigID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ConfigIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.NodebalancerID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.NodebalancerID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.NodebalancerIDRef,
 		Selector:     mg.Spec.ForProvider.NodebalancerIDSelector,
@@ -74,7 +74,7 @@ func (mg *Node) ResolveReferences(ctx context.Context, c client.Reader) error {
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.NodebalancerID")
 	}
-	mg.Spec.ForProvider.NodebalancerID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.NodebalancerID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.NodebalancerIDRef = rsp.ResolvedReference
 
 	return nil

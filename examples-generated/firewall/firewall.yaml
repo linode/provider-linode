@@ -69,6 +69,3 @@ spec:
       namespace: upbound-system
     swapSize: 256
     type: g6-standard-1
-
----
-

@@ -30,6 +30,3 @@ spec:
           echo -e "[DEFAULT]\n token = ${linode_token.foo.token}\n region=${self.region}\n type=${self.type}" > ~/.linode-cli
           pip install linode-cli
           linode-cli linodes list --format "ipv6,label" --text --no-headers >> /etc/hosts
-
----
-

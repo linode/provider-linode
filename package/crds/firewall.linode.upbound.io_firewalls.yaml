@@ -3,8 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.11.3
-  creationTimestamp: null
+    controller-gen.kubebuilder.io/version: v0.13.0
   name: firewalls.firewall.linode.upbound.io
 spec:
   group: firewall.linode.upbound.io
@@ -58,7 +57,7 @@ spec:
                 description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
                   or "Orphan" the external resource. This field is planned to be deprecated
-                  in favor of the ManagementPolicy field in a future release. Currently,
+                  in favor of the ManagementPolicies field in a future release. Currently,
                   both could be set independently and non-default values would be
                   honored if the feature flag is enabled. See the design doc for more
                   information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
@@ -88,8 +87,9 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of CIDR blocks or
-                            0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
+                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
+                            to.
                           items:
                             type: string
                           type: array
@@ -113,10 +113,6 @@ spec:
                           description: The network protocol this rule controls. (TCP,
                             UDP, ICMP) The network protocol this rule controls.
                           type: string
-                      required:
-                      - action
-                      - label
-                      - protocol
                       type: object
                     type: array
                   inboundPolicy:
@@ -136,7 +132,8 @@ spec:
                       network traffic for. The IDs of Linodes to apply this firewall
                       to.
                     items:
-                      type: number
+                      format: int64
+                      type: integer
                     type: array
                   linodesRefs:
                     description: References to Instance in instance to populate linodes.
@@ -215,13 +212,6 @@ spec:
                             type: string
                         type: object
                     type: object
-                  nodebalancers:
-                    description: A list of IDs of NodeBalancers this Firewall should
-                      govern network traffic for. The IDs of NodeBalancers to apply
-                      this firewall to.
-                    items:
-                      type: number
-                    type: array
                   outbound:
                     description: A firewall rule that specifies what outbound network
                       traffic is allowed.
@@ -238,8 +228,9 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of CIDR blocks or
-                            0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
+                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
+                            to.
                           items:
                             type: string
                           type: array
@@ -263,10 +254,6 @@ spec:
                           description: The network protocol this rule controls. (TCP,
                             UDP, ICMP) The network protocol this rule controls.
                           type: string
-                      required:
-                      - action
-                      - label
-                      - protocol
                       type: object
                     type: array
                   outboundPolicy:
@@ -285,63 +272,169 @@ spec:
                       type: string
                     type: array
                 type: object
-              managementPolicy:
-                default: FullControl
-                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
-                  It is not honored unless the relevant Crossplane feature flag is
-                  enabled, and may be changed or removed without notice. ManagementPolicy
-                  specifies the level of control Crossplane has over the managed external
-                  resource. This field is planned to replace the DeletionPolicy field
-                  in a future release. Currently, both could be set independently
-                  and non-default values would be honored if the feature flag is enabled.
-                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
-                enum:
-                - FullControl
-                - ObserveOnly
-                - OrphanOnDelete
-                type: string
+              initProvider:
+                description: THIS IS A BETA FIELD. It will be honored unless the Management
+                  Policies feature flag is disabled. InitProvider holds the same fields
+                  as ForProvider, with the exception of Identifier and other resource
+                  reference fields. The fields that are in InitProvider are merged
+                  into ForProvider when the resource is created. The same fields are
+                  also added to the terraform ignore_changes hook, to avoid updating
+                  them after creation. This is useful for fields that are required
+                  on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them,
+                  like an autoscaler.
+                properties:
+                  disabled:
+                    description: If true, the Firewall's rules are not enforced (defaults
+                      to false). If true, the Firewall is inactive.
+                    type: boolean
+                  inbound:
+                    description: A firewall rule that specifies what inbound network
+                      traffic is allowed.
+                    items:
+                      properties:
+                        action:
+                          description: Controls whether traffic is accepted or dropped
+                            by this rule (ACCEPT, DROP). Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule. Controls whether traffic
+                            is accepted or dropped by this rule. Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule.
+                          type: string
+                        ipv4:
+                          description: A list of IPv4 addresses or networks. Must
+                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
+                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
+                            to.
+                          items:
+                            type: string
+                          type: array
+                        ipv6:
+                          description: A list of IPv6 addresses or networks. Must
+                            be in IP/mask (CIDR) format. A list of IPv6 addresses
+                            or networks this rule applies to.
+                          items:
+                            type: string
+                          type: array
+                        label:
+                          description: This Firewall's unique label. Used to identify
+                            this rule. For display purposes only.
+                          type: string
+                        ports:
+                          description: A string representation of ports and/or port
+                            ranges (i.e. "443" or "80-90, 91"). A string representation
+                            of ports and/or port ranges (i.e. "443" or "80-90, 91").
+                          type: string
+                        protocol:
+                          description: The network protocol this rule controls. (TCP,
+                            UDP, ICMP) The network protocol this rule controls.
+                          type: string
+                      type: object
+                    type: array
+                  inboundPolicy:
+                    description: The default behavior for inbound traffic. This setting
+                      can be overridden by updating the inbound.action property of
+                      the Firewall Rule. (ACCEPT, DROP) The default behavior for inbound
+                      traffic. This setting can be overridden by updating the inbound.action
+                      property for an individual Firewall Rule.
+                    type: string
+                  label:
+                    description: This Firewall's unique label. The label for the Firewall.
+                      For display purposes only. If no label is provided, a default
+                      will be assigned.
+                    type: string
+                  outbound:
+                    description: A firewall rule that specifies what outbound network
+                      traffic is allowed.
+                    items:
+                      properties:
+                        action:
+                          description: Controls whether traffic is accepted or dropped
+                            by this rule (ACCEPT, DROP). Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule. Controls whether traffic
+                            is accepted or dropped by this rule. Overrides the Firewall’s
+                            inbound_policy if this is an inbound rule, or the outbound_policy
+                            if this is an outbound rule.
+                          type: string
+                        ipv4:
+                          description: A list of IPv4 addresses or networks. Must
+                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
+                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
+                            to.
+                          items:
+                            type: string
+                          type: array
+                        ipv6:
+                          description: A list of IPv6 addresses or networks. Must
+                            be in IP/mask (CIDR) format. A list of IPv6 addresses
+                            or networks this rule applies to.
+                          items:
+                            type: string
+                          type: array
+                        label:
+                          description: This Firewall's unique label. Used to identify
+                            this rule. For display purposes only.
+                          type: string
+                        ports:
+                          description: A string representation of ports and/or port
+                            ranges (i.e. "443" or "80-90, 91"). A string representation
+                            of ports and/or port ranges (i.e. "443" or "80-90, 91").
+                          type: string
+                        protocol:
+                          description: The network protocol this rule controls. (TCP,
+                            UDP, ICMP) The network protocol this rule controls.
+                          type: string
+                      type: object
+                    type: array
+                  outboundPolicy:
+                    description: The default behavior for outbound traffic. This setting
+                      can be overridden by updating the outbound.action property for
+                      an individual Firewall Rule. (ACCEPT, DROP) The default behavior
+                      for outbound traffic. This setting can be overridden by updating
+                      the outbound.action property for an individual Firewall Rule.
+                    type: string
+                  tags:
+                    description: A list of tags applied to the Kubernetes cluster.
+                      Tags are for organizational purposes only. An array of tags
+                      applied to this object. Tags are for organizational purposes
+                      only.
+                    items:
+                      type: string
+                    type: array
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: 'THIS IS A BETA FIELD. It is on by default but can be
+                  opted out through a Crossplane feature flag. ManagementPolicies
+                  specify the array of actions Crossplane is allowed to take on the
+                  managed and external resources. This field is planned to replace
+                  the DeletionPolicy field in a future release. Currently, both could
+                  be set independently and non-default values would be honored if
+                  the feature flag is enabled. If both are custom, the DeletionPolicy
+                  field will be ignored. See the design doc for more information:
+                  https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md'
+                items:
+                  description: A ManagementAction represents an action that the Crossplane
+                    controllers can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
               providerConfigRef:
                 default:
                   name: default
                 description: ProviderConfigReference specifies how the provider that
                   will be used to create, observe, update, and delete this managed
                   resource should be configured.
-                properties:
-                  name:
-                    description: Name of the referenced object.
-                    type: string
-                  policy:
-                    description: Policies for referencing.
-                    properties:
-                      resolution:
-                        default: Required
-                        description: Resolution specifies whether resolution of this
-                          reference is required. The default is 'Required', which
-                          means the reconcile will fail if the reference cannot be
-                          resolved. 'Optional' means this reference will be a no-op
-                          if it cannot be resolved.
-                        enum:
-                        - Required
-                        - Optional
-                        type: string
-                      resolve:
-                        description: Resolve specifies when this reference should
-                          be resolved. The default is 'IfNotPresent', which will attempt
-                          to resolve the reference only when the corresponding field
-                          is not present. Use 'Always' to resolve the reference on
-                          every reconcile.
-                        enum:
-                        - Always
-                        - IfNotPresent
-                        type: string
-                    type: object
-                required:
-                - name
-                type: object
-              providerRef:
-                description: 'ProviderReference specifies the provider that will be
-                  used to create, observe, update, and delete this managed resource.
-                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
                 properties:
                   name:
                     description: Name of the referenced object.
@@ -472,40 +565,50 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: inboundPolicy is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.inboundPolicy)
-            - message: label is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
-            - message: outboundPolicy is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.outboundPolicy)
+            - message: spec.forProvider.inboundPolicy is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.inboundPolicy)
+                || (has(self.initProvider) && has(self.initProvider.inboundPolicy))'
+            - message: spec.forProvider.label is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
+                || (has(self.initProvider) && has(self.initProvider.label))'
+            - message: spec.forProvider.outboundPolicy is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.outboundPolicy)
+                || (has(self.initProvider) && has(self.initProvider.outboundPolicy))'
           status:
             description: FirewallStatus defines the observed state of Firewall.
             properties:
               atProvider:
                 properties:
-                  created:
-                    description: When this firewall was created
-                    type: string
                   devices:
                     description: The devices associated with this firewall.
                     items:
                       properties:
                         entityId:
                           description: The ID of the underlying entity this device
-                            references (i.e. the Linode's ID).
-                          type: number
+                            references (i.e. the Linode's ID). The ID of the underlying
+                            entity for the firewall device (e.g. the Linode's ID).
+                          format: int64
+                          type: integer
                         id:
-                          description: The ID of the Firewall.
-                          type: number
+                          description: The ID of the Firewall. The ID of the firewall
+                            device.
+                          format: int64
+                          type: integer
                         label:
-                          description: This Firewall's unique label.
+                          description: This Firewall's unique label. The label of
+                            the underlying entity for the firewall device.
                           type: string
                         type:
-                          description: The type of Firewall Device.
+                          description: The type of Firewall Device. The type of firewall
+                            device.
                           type: string
                         url:
                           description: The URL of the underlying entity this device
-                            references.
+                            references. The URL of the underlying entity for the firewall
+                            device.
                           type: string
                       type: object
                     type: array
@@ -532,8 +635,9 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of CIDR blocks or
-                            0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
+                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
+                            to.
                           items:
                             type: string
                           type: array
@@ -576,14 +680,8 @@ spec:
                       network traffic for. The IDs of Linodes to apply this firewall
                       to.
                     items:
-                      type: number
-                    type: array
-                  nodebalancers:
-                    description: A list of IDs of NodeBalancers this Firewall should
-                      govern network traffic for. The IDs of NodeBalancers to apply
-                      this firewall to.
-                    items:
-                      type: number
+                      format: int64
+                      type: integer
                     type: array
                   outbound:
                     description: A firewall rule that specifies what outbound network
@@ -601,8 +699,9 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of CIDR blocks or
-                            0.0.0.0/0 (to allow all) this rule applies to.
+                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
+                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
+                            to.
                           items:
                             type: string
                           type: array
@@ -646,9 +745,6 @@ spec:
                     items:
                       type: string
                     type: array
-                  updated:
-                    description: When this firewall was last updated
-                    type: string
                 type: object
               conditions:
                 description: Conditions of the resource.
@@ -683,6 +779,9 @@ spec:
                   - type
                   type: object
                 type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
             type: object
         required:
         - spec

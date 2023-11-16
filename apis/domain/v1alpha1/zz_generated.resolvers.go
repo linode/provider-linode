@@ -20,7 +20,7 @@ func (mg *Record) ResolveReferences(ctx context.Context, c client.Reader) error 
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.DomainID),
+		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.DomainID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.DomainIDRef,
 		Selector:     mg.Spec.ForProvider.DomainIDSelector,
@@ -32,7 +32,7 @@ func (mg *Record) ResolveReferences(ctx context.Context, c client.Reader) error 
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.DomainID")
 	}
-	mg.Spec.ForProvider.DomainID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.DomainID = reference.ToIntPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.DomainIDRef = rsp.ResolvedReference
 
 	return nil

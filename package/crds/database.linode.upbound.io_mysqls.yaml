@@ -3,8 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.11.3
-  creationTimestamp: null
+    controller-gen.kubebuilder.io/version: v0.13.0
   name: mysqls.database.linode.upbound.io
 spec:
   group: database.linode.upbound.io
@@ -58,7 +57,7 @@ spec:
                 description: 'DeletionPolicy specifies what will happen to the underlying
                   external when this managed resource is deleted - either "Delete"
                   or "Orphan" the external resource. This field is planned to be deprecated
-                  in favor of the ManagementPolicy field in a future release. Currently,
+                  in favor of the ManagementPolicies field in a future release. Currently,
                   both could be set independently and non-default values would be
                   honored if the feature flag is enabled. See the design doc for more
                   information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
@@ -82,7 +81,8 @@ spec:
                     description: The number of Linode Instance nodes deployed to the
                       Managed Database. (default 1) The number of Linode Instance
                       nodes deployed to the Managed Database. Defaults to 1.
-                    type: number
+                    format: int64
+                    type: integer
                   encrypted:
                     description: Whether the Managed Databases is encrypted. (default
                       false) Whether the Managed Databases is encrypted.
@@ -90,7 +90,7 @@ spec:
                   engineId:
                     description: The Managed Database engine in engine/version format.
                       (e.g. mysql/8.0.30) The Managed Database engine in engine/version
-                      format. (e.g. mysql/8.0.30)
+                      format. (e.g. mysql/8.0.26)
                     type: string
                   label:
                     description: A unique, user-defined string referring to the Managed
@@ -129,7 +129,8 @@ spec:
                         duration:
                           description: The maximum maintenance window time in hours.
                             (1..3) The maximum maintenance window time in hours.
-                          type: number
+                          format: int64
+                          type: integer
                         frequency:
                           description: Whether maintenance occurs on a weekly or monthly
                             basis. (weekly, monthly) Whether maintenance occurs on
@@ -139,78 +140,146 @@ spec:
                           description: The hour to begin maintenance based in UTC
                             time. (0..23) The hour to begin maintenance based in UTC
                             time.
-                          type: number
+                          format: int64
+                          type: integer
                         weekOfMonth:
                           description: The week of the month to perform monthly frequency
                             updates. Required for monthly frequency updates. (1..4)
                             The week of the month to perform monthly frequency updates.
                             Required for monthly frequency updates.
-                          type: number
-                      required:
-                      - dayOfWeek
-                      - duration
-                      - frequency
-                      - hourOfDay
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                 type: object
-              managementPolicy:
-                default: FullControl
-                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
-                  It is not honored unless the relevant Crossplane feature flag is
-                  enabled, and may be changed or removed without notice. ManagementPolicy
-                  specifies the level of control Crossplane has over the managed external
-                  resource. This field is planned to replace the DeletionPolicy field
-                  in a future release. Currently, both could be set independently
-                  and non-default values would be honored if the feature flag is enabled.
-                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
-                enum:
-                - FullControl
-                - ObserveOnly
-                - OrphanOnDelete
-                type: string
+              initProvider:
+                description: THIS IS A BETA FIELD. It will be honored unless the Management
+                  Policies feature flag is disabled. InitProvider holds the same fields
+                  as ForProvider, with the exception of Identifier and other resource
+                  reference fields. The fields that are in InitProvider are merged
+                  into ForProvider when the resource is created. The same fields are
+                  also added to the terraform ignore_changes hook, to avoid updating
+                  them after creation. This is useful for fields that are required
+                  on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them,
+                  like an autoscaler.
+                properties:
+                  allowList:
+                    description: A list of IP addresses that can access the Managed
+                      Database. Each item can be a single IP address or a range in
+                      CIDR format. Use linode_database_access_controls to manage your
+                      allow list separately. A list of IP addresses that can access
+                      the Managed Database. Each item can be a single IP address or
+                      a range in CIDR format.
+                    items:
+                      type: string
+                    type: array
+                  clusterSize:
+                    description: The number of Linode Instance nodes deployed to the
+                      Managed Database. (default 1) The number of Linode Instance
+                      nodes deployed to the Managed Database. Defaults to 1.
+                    format: int64
+                    type: integer
+                  encrypted:
+                    description: Whether the Managed Databases is encrypted. (default
+                      false) Whether the Managed Databases is encrypted.
+                    type: boolean
+                  engineId:
+                    description: The Managed Database engine in engine/version format.
+                      (e.g. mysql/8.0.30) The Managed Database engine in engine/version
+                      format. (e.g. mysql/8.0.26)
+                    type: string
+                  label:
+                    description: A unique, user-defined string referring to the Managed
+                      Database. A unique, user-defined string referring to the Managed
+                      Database.
+                    type: string
+                  region:
+                    description: The region to use for the Managed Database. The region
+                      to use for the Managed Database.
+                    type: string
+                  replicationType:
+                    description: The replication method used for the Managed Database.
+                      (none, asynch, semi_synch; default none) The replication method
+                      used for the Managed Database.
+                    type: string
+                  sslConnection:
+                    description: Whether to require SSL credentials to establish a
+                      connection to the Managed Database. (default false) Whether
+                      to require SSL credentials to establish a connection to the
+                      Managed Database.
+                    type: boolean
+                  type:
+                    description: The Linode Instance type used for the nodes of the  Managed
+                      Database instance. The Linode Instance type used by the Managed
+                      Database for its nodes.
+                    type: string
+                  updates:
+                    description: Configuration settings for automated patch update
+                      maintenance for the Managed Database.
+                    items:
+                      properties:
+                        dayOfWeek:
+                          description: The day to perform maintenance. (monday, tuesday,
+                            ...) The day to perform maintenance.
+                          type: string
+                        duration:
+                          description: The maximum maintenance window time in hours.
+                            (1..3) The maximum maintenance window time in hours.
+                          format: int64
+                          type: integer
+                        frequency:
+                          description: Whether maintenance occurs on a weekly or monthly
+                            basis. (weekly, monthly) Whether maintenance occurs on
+                            a weekly or monthly basis.
+                          type: string
+                        hourOfDay:
+                          description: The hour to begin maintenance based in UTC
+                            time. (0..23) The hour to begin maintenance based in UTC
+                            time.
+                          format: int64
+                          type: integer
+                        weekOfMonth:
+                          description: The week of the month to perform monthly frequency
+                            updates. Required for monthly frequency updates. (1..4)
+                            The week of the month to perform monthly frequency updates.
+                            Required for monthly frequency updates.
+                          format: int64
+                          type: integer
+                      type: object
+                    type: array
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: 'THIS IS A BETA FIELD. It is on by default but can be
+                  opted out through a Crossplane feature flag. ManagementPolicies
+                  specify the array of actions Crossplane is allowed to take on the
+                  managed and external resources. This field is planned to replace
+                  the DeletionPolicy field in a future release. Currently, both could
+                  be set independently and non-default values would be honored if
+                  the feature flag is enabled. If both are custom, the DeletionPolicy
+                  field will be ignored. See the design doc for more information:
+                  https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md'
+                items:
+                  description: A ManagementAction represents an action that the Crossplane
+                    controllers can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
               providerConfigRef:
                 default:
                   name: default
                 description: ProviderConfigReference specifies how the provider that
                   will be used to create, observe, update, and delete this managed
                   resource should be configured.
-                properties:
-                  name:
-                    description: Name of the referenced object.
-                    type: string
-                  policy:
-                    description: Policies for referencing.
-                    properties:
-                      resolution:
-                        default: Required
-                        description: Resolution specifies whether resolution of this
-                          reference is required. The default is 'Required', which
-                          means the reconcile will fail if the reference cannot be
-                          resolved. 'Optional' means this reference will be a no-op
-                          if it cannot be resolved.
-                        enum:
-                        - Required
-                        - Optional
-                        type: string
-                      resolve:
-                        description: Resolve specifies when this reference should
-                          be resolved. The default is 'IfNotPresent', which will attempt
-                          to resolve the reference only when the corresponding field
-                          is not present. Use 'Always' to resolve the reference on
-                          every reconcile.
-                        enum:
-                        - Always
-                        - IfNotPresent
-                        type: string
-                    type: object
-                required:
-                - name
-                type: object
-              providerRef:
-                description: 'ProviderReference specifies the provider that will be
-                  used to create, observe, update, and delete this managed resource.
-                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
                 properties:
                   name:
                     description: Name of the referenced object.
@@ -341,14 +410,22 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: engineId is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.engineId)
-            - message: label is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
-            - message: region is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)
-            - message: type is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)
+            - message: spec.forProvider.engineId is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.engineId)
+                || (has(self.initProvider) && has(self.initProvider.engineId))'
+            - message: spec.forProvider.label is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
+                || (has(self.initProvider) && has(self.initProvider.label))'
+            - message: spec.forProvider.region is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
+                || (has(self.initProvider) && has(self.initProvider.region))'
+            - message: spec.forProvider.type is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.type)
+                || (has(self.initProvider) && has(self.initProvider.type))'
           status:
             description: MySQLStatus defines the observed state of MySQL.
             properties:
@@ -368,7 +445,8 @@ spec:
                     description: The number of Linode Instance nodes deployed to the
                       Managed Database. (default 1) The number of Linode Instance
                       nodes deployed to the Managed Database. Defaults to 1.
-                    type: number
+                    format: int64
+                    type: integer
                   created:
                     description: When this Managed Database was created. When this
                       Managed Database was created.
@@ -384,7 +462,7 @@ spec:
                   engineId:
                     description: The Managed Database engine in engine/version format.
                       (e.g. mysql/8.0.30) The Managed Database engine in engine/version
-                      format. (e.g. mysql/8.0.30)
+                      format. (e.g. mysql/8.0.26)
                     type: string
                   hostPrimary:
                     description: The primary host for the Managed Database. The primary
@@ -442,7 +520,8 @@ spec:
                         duration:
                           description: The maximum maintenance window time in hours.
                             (1..3) The maximum maintenance window time in hours.
-                          type: number
+                          format: int64
+                          type: integer
                         frequency:
                           description: Whether maintenance occurs on a weekly or monthly
                             basis. (weekly, monthly) Whether maintenance occurs on
@@ -452,13 +531,15 @@ spec:
                           description: The hour to begin maintenance based in UTC
                             time. (0..23) The hour to begin maintenance based in UTC
                             time.
-                          type: number
+                          format: int64
+                          type: integer
                         weekOfMonth:
                           description: The week of the month to perform monthly frequency
                             updates. Required for monthly frequency updates. (1..4)
                             The week of the month to perform monthly frequency updates.
                             Required for monthly frequency updates.
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   version:
@@ -499,6 +580,9 @@ spec:
                   - type
                   type: object
                 type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
             type: object
         required:
         - spec
