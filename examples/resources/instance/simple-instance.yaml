@@ -1,0 +1,17 @@
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  name: test-instance
+spec:
+  forProvider:
+    image: linode/ubuntu22.04
+    label: provider-linode-test
+    authorizedKeys:
+      - ssh-rsa foobar.....AAAAA
+    privateIp: true
+    region: us-sea
+    tags:
+      - rke2
+    type: g6-standard-2
+  providerConfigRef:
+    name: default

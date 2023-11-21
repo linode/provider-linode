@@ -84,7 +84,7 @@ XPKG_REG_ORGS ?= xpkg.upbound.io/linode
 # NOTE(hasheddan): skip promoting on xpkg.upbound.io as channel tags are
 # inferred.
 XPKG_REG_ORGS_NO_PROMOTE ?= xpkg.upbound.io/linode
-
+XPKGS = $(PROJECT_NAME)
 export XPKG_REG_ORGS := $(XPKG_REG_ORGS)
 export XPKG_REG_ORGS_NO_PROMOTE := $(XPKG_REG_ORGS_NO_PROMOTE)
 
