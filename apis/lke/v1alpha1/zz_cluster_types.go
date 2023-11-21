@@ -21,22 +21,22 @@ type AutoscalerInitParameters struct {
 
 	// The maximum number of nodes to autoscale to.
 	// The maximum number of nodes to autoscale to.
-	Max *int64 `json:"max,omitempty" tf:"max,omitempty"`
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
 
 	// The minimum number of nodes to autoscale to.
 	// The minimum number of nodes to autoscale to.
-	Min *int64 `json:"min,omitempty" tf:"min,omitempty"`
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 }
 
 type AutoscalerObservation struct {
 
 	// The maximum number of nodes to autoscale to.
 	// The maximum number of nodes to autoscale to.
-	Max *int64 `json:"max,omitempty" tf:"max,omitempty"`
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
 
 	// The minimum number of nodes to autoscale to.
 	// The minimum number of nodes to autoscale to.
-	Min *int64 `json:"min,omitempty" tf:"min,omitempty"`
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 }
 
 type AutoscalerParameters struct {
@@ -44,12 +44,12 @@ type AutoscalerParameters struct {
 	// The maximum number of nodes to autoscale to.
 	// The maximum number of nodes to autoscale to.
 	// +kubebuilder:validation:Optional
-	Max *int64 `json:"max" tf:"max,omitempty"`
+	Max *float64 `json:"max" tf:"max,omitempty"`
 
 	// The minimum number of nodes to autoscale to.
 	// The minimum number of nodes to autoscale to.
 	// +kubebuilder:validation:Optional
-	Min *int64 `json:"min" tf:"min,omitempty"`
+	Min *float64 `json:"min" tf:"min,omitempty"`
 }
 
 type ClusterInitParameters struct {
@@ -179,15 +179,12 @@ type NodesInitParameters struct {
 type NodesObservation struct {
 
 	// The ID of the cluster.
-	// The ID of the node.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The ID of the underlying Linode instance.
-	// The ID of the underlying Linode instance.
-	InstanceID *int64 `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
+	InstanceID *float64 `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
 	// The status of the cluster.
-	// The status of the node.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
@@ -201,7 +198,7 @@ type PoolInitParameters struct {
 
 	// The number of nodes in the Node Pool.
 	// The number of nodes in the Node Pool.
-	Count *int64 `json:"count,omitempty" tf:"count,omitempty"`
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
@@ -215,11 +212,11 @@ type PoolObservation struct {
 
 	// The number of nodes in the Node Pool.
 	// The number of nodes in the Node Pool.
-	Count *int64 `json:"count,omitempty" tf:"count,omitempty"`
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
 	// The ID of the cluster.
 	// The ID of the Node Pool.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The nodes in the node pool.
 	Nodes []NodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
@@ -238,7 +235,7 @@ type PoolParameters struct {
 	// The number of nodes in the Node Pool.
 	// The number of nodes in the Node Pool.
 	// +kubebuilder:validation:Optional
-	Count *int64 `json:"count" tf:"count,omitempty"`
+	Count *float64 `json:"count" tf:"count,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.

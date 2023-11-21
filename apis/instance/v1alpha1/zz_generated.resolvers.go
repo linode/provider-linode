@@ -24,7 +24,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sda); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskIDSelector,
@@ -36,7 +36,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sda[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
@@ -44,7 +44,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sdb); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskIDSelector,
@@ -56,7 +56,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sdb[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
@@ -64,7 +64,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sdc); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskIDSelector,
@@ -76,7 +76,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sdc[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
@@ -84,7 +84,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sdd); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskIDSelector,
@@ -96,7 +96,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sdd[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
@@ -104,7 +104,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sde); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskIDSelector,
@@ -116,7 +116,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sde[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
@@ -124,7 +124,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sdf); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskIDSelector,
@@ -136,7 +136,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sdf[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
@@ -144,7 +144,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sdg); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskIDSelector,
@@ -156,7 +156,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sdg[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
@@ -164,7 +164,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Devices); i3++ {
 		for i4 := 0; i4 < len(mg.Spec.ForProvider.Devices[i3].Sdh); i4++ {
 			rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-				CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskID),
+				CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskID),
 				Extract:      reference.ExternalName(),
 				Reference:    mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskIDRef,
 				Selector:     mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskIDSelector,
@@ -176,13 +176,13 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 			if err != nil {
 				return errors.Wrap(err, "mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskID")
 			}
-			mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskID = reference.ToIntPtrValue(rsp.ResolvedValue)
+			mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 			mg.Spec.ForProvider.Devices[i3].Sdh[i4].DiskIDRef = rsp.ResolvedReference
 
 		}
 	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.LinodeID),
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.LinodeID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.LinodeIDRef,
 		Selector:     mg.Spec.ForProvider.LinodeIDSelector,
@@ -194,7 +194,7 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.LinodeID")
 	}
-	mg.Spec.ForProvider.LinodeID = reference.ToIntPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LinodeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.LinodeIDRef = rsp.ResolvedReference
 
 	return nil
@@ -208,7 +208,7 @@ func (mg *Disk) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.LinodeID),
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.LinodeID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.LinodeIDRef,
 		Selector:     mg.Spec.ForProvider.LinodeIDSelector,
@@ -220,11 +220,11 @@ func (mg *Disk) ResolveReferences(ctx context.Context, c client.Reader) error {
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.LinodeID")
 	}
-	mg.Spec.ForProvider.LinodeID = reference.ToIntPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LinodeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.LinodeIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.StackscriptID),
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.StackscriptID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.StackscriptIDRef,
 		Selector:     mg.Spec.ForProvider.StackscriptIDSelector,
@@ -236,7 +236,7 @@ func (mg *Disk) ResolveReferences(ctx context.Context, c client.Reader) error {
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.StackscriptID")
 	}
-	mg.Spec.ForProvider.StackscriptID = reference.ToIntPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.StackscriptID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.StackscriptIDRef = rsp.ResolvedReference
 
 	return nil
@@ -250,7 +250,7 @@ func (mg *IP) ResolveReferences(ctx context.Context, c client.Reader) error {
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.LinodeID),
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.LinodeID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.LinodeIDRef,
 		Selector:     mg.Spec.ForProvider.LinodeIDSelector,
@@ -262,7 +262,7 @@ func (mg *IP) ResolveReferences(ctx context.Context, c client.Reader) error {
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.LinodeID")
 	}
-	mg.Spec.ForProvider.LinodeID = reference.ToIntPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LinodeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.LinodeIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
@@ -292,7 +292,7 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.StackscriptID),
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.StackscriptID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.StackscriptIDRef,
 		Selector:     mg.Spec.ForProvider.StackscriptIDSelector,
@@ -304,7 +304,7 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.StackscriptID")
 	}
-	mg.Spec.ForProvider.StackscriptID = reference.ToIntPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.StackscriptID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.StackscriptIDRef = rsp.ResolvedReference
 
 	return nil
@@ -318,7 +318,7 @@ func (mg *SharedIPs) ResolveReferences(ctx context.Context, c client.Reader) err
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.LinodeID),
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.LinodeID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.LinodeIDRef,
 		Selector:     mg.Spec.ForProvider.LinodeIDSelector,
@@ -330,7 +330,7 @@ func (mg *SharedIPs) ResolveReferences(ctx context.Context, c client.Reader) err
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.LinodeID")
 	}
-	mg.Spec.ForProvider.LinodeID = reference.ToIntPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LinodeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.LinodeIDRef = rsp.ResolvedReference
 
 	return nil

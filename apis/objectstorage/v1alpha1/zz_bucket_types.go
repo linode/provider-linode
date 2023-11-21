@@ -184,7 +184,7 @@ type ExpirationInitParameters struct {
 
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
 
 	// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
 	// Directs Linode Object Storage to remove expired deleted markers.
@@ -199,7 +199,7 @@ type ExpirationObservation struct {
 
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days after object creation when the specific rule action takes effect.
-	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
 
 	// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
 	// Directs Linode Object Storage to remove expired deleted markers.
@@ -216,7 +216,7 @@ type ExpirationParameters struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// +kubebuilder:validation:Optional
-	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
 
 	// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
 	// Directs Linode Object Storage to remove expired deleted markers.
@@ -228,7 +228,7 @@ type LifecycleRuleInitParameters struct {
 
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
-	AbortIncompleteMultipartUploadDays *int64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
+	AbortIncompleteMultipartUploadDays *float64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
 
 	// Specifies whether the lifecycle rule is active.
 	// Specifies whether the lifecycle rule is active.
@@ -253,7 +253,7 @@ type LifecycleRuleObservation struct {
 
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
-	AbortIncompleteMultipartUploadDays *int64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
+	AbortIncompleteMultipartUploadDays *float64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
 
 	// Specifies whether the lifecycle rule is active.
 	// Specifies whether the lifecycle rule is active.
@@ -279,7 +279,7 @@ type LifecycleRuleParameters struct {
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
 	// +kubebuilder:validation:Optional
-	AbortIncompleteMultipartUploadDays *int64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
+	AbortIncompleteMultipartUploadDays *float64 `json:"abortIncompleteMultipartUploadDays,omitempty" tf:"abort_incomplete_multipart_upload_days,omitempty"`
 
 	// Specifies whether the lifecycle rule is active.
 	// Specifies whether the lifecycle rule is active.
@@ -309,14 +309,14 @@ type NoncurrentVersionExpirationInitParameters struct {
 
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days non-current object versions expire.
-	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
 }
 
 type NoncurrentVersionExpirationObservation struct {
 
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days non-current object versions expire.
-	Days *int64 `json:"days,omitempty" tf:"days,omitempty"`
+	Days *float64 `json:"days,omitempty" tf:"days,omitempty"`
 }
 
 type NoncurrentVersionExpirationParameters struct {
@@ -324,7 +324,7 @@ type NoncurrentVersionExpirationParameters struct {
 	// Specifies the number of days after object creation when the specific rule action takes effect.
 	// Specifies the number of days non-current object versions expire.
 	// +kubebuilder:validation:Optional
-	Days *int64 `json:"days" tf:"days,omitempty"`
+	Days *float64 `json:"days" tf:"days,omitempty"`
 }
 
 // BucketSpec defines the desired state of Bucket

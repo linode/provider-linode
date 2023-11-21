@@ -19,6 +19,9 @@ import (
 
 type ImageInitParameters struct {
 
+	// Whether this image supports cloud-init.
+	CloudInit *bool `json:"cloudInit,omitempty" tf:"cloud_init,omitempty"`
+
 	// A detailed description of this Image.
 	// A detailed description of this Image.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -42,6 +45,12 @@ type ImageInitParameters struct {
 
 type ImageObservation struct {
 
+	// The capabilities of this Image.
+	Capabilities []*string `json:"capabilities,omitempty" tf:"capabilities,omitempty"`
+
+	// Whether this image supports cloud-init.
+	CloudInit *bool `json:"cloudInit,omitempty" tf:"cloud_init,omitempty"`
+
 	// When this Image was created.
 	// When this Image was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
@@ -60,7 +69,7 @@ type ImageObservation struct {
 
 	// The ID of the Linode Disk that this Image will be created from.
 	// The ID of the Linode Disk that this Image will be created from.
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Only Images created automatically (from a deleted Linode; type=automatic) will expire.
 	// Only Images created automatically (from a deleted Linode; type=automatic) will expire.
@@ -87,7 +96,7 @@ type ImageObservation struct {
 
 	// The ID of the Linode that this Image will be created from.
 	// The ID of the Linode that this Image will be created from.
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The region of the image. See all regions here.
 	// The region to upload to.
@@ -95,7 +104,7 @@ type ImageObservation struct {
 
 	// The minimum size this Image needs to deploy. Size is in MB.
 	// The minimum size this Image needs to deploy. Size is in MB.
-	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The current status of this Image.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
@@ -111,6 +120,10 @@ type ImageObservation struct {
 
 type ImageParameters struct {
 
+	// Whether this image supports cloud-init.
+	// +kubebuilder:validation:Optional
+	CloudInit *bool `json:"cloudInit,omitempty" tf:"cloud_init,omitempty"`
+
 	// A detailed description of this Image.
 	// A detailed description of this Image.
 	// +kubebuilder:validation:Optional
@@ -120,7 +133,7 @@ type ImageParameters struct {
 	// The ID of the Linode Disk that this Image will be created from.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk in instance to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -149,7 +162,7 @@ type ImageParameters struct {
 	// The ID of the Linode that this Image will be created from.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance in instance to populate linodeId.
 	// +kubebuilder:validation:Optional

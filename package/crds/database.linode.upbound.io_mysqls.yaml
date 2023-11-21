@@ -81,8 +81,7 @@ spec:
                     description: The number of Linode Instance nodes deployed to the
                       Managed Database. (default 1) The number of Linode Instance
                       nodes deployed to the Managed Database. Defaults to 1.
-                    format: int64
-                    type: integer
+                    type: number
                   encrypted:
                     description: Whether the Managed Databases is encrypted. (default
                       false) Whether the Managed Databases is encrypted.
@@ -90,7 +89,7 @@ spec:
                   engineId:
                     description: The Managed Database engine in engine/version format.
                       (e.g. mysql/8.0.30) The Managed Database engine in engine/version
-                      format. (e.g. mysql/8.0.26)
+                      format. (e.g. mysql/8.0.30)
                     type: string
                   label:
                     description: A unique, user-defined string referring to the Managed
@@ -129,8 +128,7 @@ spec:
                         duration:
                           description: The maximum maintenance window time in hours.
                             (1..3) The maximum maintenance window time in hours.
-                          format: int64
-                          type: integer
+                          type: number
                         frequency:
                           description: Whether maintenance occurs on a weekly or monthly
                             basis. (weekly, monthly) Whether maintenance occurs on
@@ -140,15 +138,13 @@ spec:
                           description: The hour to begin maintenance based in UTC
                             time. (0..23) The hour to begin maintenance based in UTC
                             time.
-                          format: int64
-                          type: integer
+                          type: number
                         weekOfMonth:
                           description: The week of the month to perform monthly frequency
                             updates. Required for monthly frequency updates. (1..4)
                             The week of the month to perform monthly frequency updates.
                             Required for monthly frequency updates.
-                          format: int64
-                          type: integer
+                          type: number
                       type: object
                     type: array
                 type: object
@@ -178,8 +174,7 @@ spec:
                     description: The number of Linode Instance nodes deployed to the
                       Managed Database. (default 1) The number of Linode Instance
                       nodes deployed to the Managed Database. Defaults to 1.
-                    format: int64
-                    type: integer
+                    type: number
                   encrypted:
                     description: Whether the Managed Databases is encrypted. (default
                       false) Whether the Managed Databases is encrypted.
@@ -187,7 +182,7 @@ spec:
                   engineId:
                     description: The Managed Database engine in engine/version format.
                       (e.g. mysql/8.0.30) The Managed Database engine in engine/version
-                      format. (e.g. mysql/8.0.26)
+                      format. (e.g. mysql/8.0.30)
                     type: string
                   label:
                     description: A unique, user-defined string referring to the Managed
@@ -226,8 +221,7 @@ spec:
                         duration:
                           description: The maximum maintenance window time in hours.
                             (1..3) The maximum maintenance window time in hours.
-                          format: int64
-                          type: integer
+                          type: number
                         frequency:
                           description: Whether maintenance occurs on a weekly or monthly
                             basis. (weekly, monthly) Whether maintenance occurs on
@@ -237,15 +231,13 @@ spec:
                           description: The hour to begin maintenance based in UTC
                             time. (0..23) The hour to begin maintenance based in UTC
                             time.
-                          format: int64
-                          type: integer
+                          type: number
                         weekOfMonth:
                           description: The week of the month to perform monthly frequency
                             updates. Required for monthly frequency updates. (1..4)
                             The week of the month to perform monthly frequency updates.
                             Required for monthly frequency updates.
-                          format: int64
-                          type: integer
+                          type: number
                       type: object
                     type: array
                 type: object
@@ -445,8 +437,7 @@ spec:
                     description: The number of Linode Instance nodes deployed to the
                       Managed Database. (default 1) The number of Linode Instance
                       nodes deployed to the Managed Database. Defaults to 1.
-                    format: int64
-                    type: integer
+                    type: number
                   created:
                     description: When this Managed Database was created. When this
                       Managed Database was created.
@@ -462,7 +453,7 @@ spec:
                   engineId:
                     description: The Managed Database engine in engine/version format.
                       (e.g. mysql/8.0.30) The Managed Database engine in engine/version
-                      format. (e.g. mysql/8.0.26)
+                      format. (e.g. mysql/8.0.30)
                     type: string
                   hostPrimary:
                     description: The primary host for the Managed Database. The primary
@@ -520,8 +511,7 @@ spec:
                         duration:
                           description: The maximum maintenance window time in hours.
                             (1..3) The maximum maintenance window time in hours.
-                          format: int64
-                          type: integer
+                          type: number
                         frequency:
                           description: Whether maintenance occurs on a weekly or monthly
                             basis. (weekly, monthly) Whether maintenance occurs on
@@ -531,15 +521,13 @@ spec:
                           description: The hour to begin maintenance based in UTC
                             time. (0..23) The hour to begin maintenance based in UTC
                             time.
-                          format: int64
-                          type: integer
+                          type: number
                         weekOfMonth:
                           description: The week of the month to perform monthly frequency
                             updates. Required for monthly frequency updates. (1..4)
                             The week of the month to perform monthly frequency updates.
                             Required for monthly frequency updates.
-                          format: int64
-                          type: integer
+                          type: number
                       type: object
                     type: array
                   version:

@@ -28,7 +28,7 @@ type BucketAccessInitParameters struct {
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
-	// This Limited Access Key’s permissions for the selected bucket.
+	// This Limited Access Key's permissions for the selected bucket.
 	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
@@ -43,7 +43,7 @@ type BucketAccessObservation struct {
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
-	// This Limited Access Key’s permissions for the selected bucket.
+	// This Limited Access Key's permissions for the selected bucket.
 	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
 
@@ -60,7 +60,7 @@ type BucketAccessParameters struct {
 	Cluster *string `json:"cluster" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
-	// This Limited Access Key’s permissions for the selected bucket.
+	// This Limited Access Key's permissions for the selected bucket.
 	// +kubebuilder:validation:Optional
 	Permissions *string `json:"permissions" tf:"permissions,omitempty"`
 }

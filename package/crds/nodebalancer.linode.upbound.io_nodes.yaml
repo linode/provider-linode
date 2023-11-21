@@ -76,8 +76,7 @@ spec:
                   configId:
                     description: The ID of the NodeBalancerConfig to access. The ID
                       of the NodeBalancerConfig to access.
-                    format: int64
-                    type: integer
+                    type: number
                   configIdRef:
                     description: Reference to a Config to populate configId.
                     properties:
@@ -173,8 +172,7 @@ spec:
                   nodebalancerId:
                     description: The ID of the NodeBalancer to access. The ID of the
                       NodeBalancer to access.
-                    format: int64
-                    type: integer
+                    type: number
                   nodebalancerIdRef:
                     description: Reference to a Nodebalancer to populate nodebalancerId.
                     properties:
@@ -254,8 +252,7 @@ spec:
                       will receive more traffic. (1-255). Used when picking a backend
                       to serve a request and is not pinned to a single backend yet.
                       Nodes with a higher weight will receive more traffic. (1-255)
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               initProvider:
                 description: THIS IS A BETA FIELD. It will be honored unless the Management
@@ -300,8 +297,7 @@ spec:
                       will receive more traffic. (1-255). Used when picking a backend
                       to serve a request and is not pinned to a single backend yet.
                       Nodes with a higher weight will receive more traffic. (1-255)
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -486,8 +482,7 @@ spec:
                   configId:
                     description: The ID of the NodeBalancerConfig to access. The ID
                       of the NodeBalancerConfig to access.
-                    format: int64
-                    type: integer
+                    type: number
                   id:
                     type: string
                   label:
@@ -512,8 +507,7 @@ spec:
                   nodebalancerId:
                     description: The ID of the NodeBalancer to access. The ID of the
                       NodeBalancer to access.
-                    format: int64
-                    type: integer
+                    type: number
                   status:
                     description: The current status of this node, based on the configured
                       checks of its NodeBalancer Config. (unknown, UP, DOWN). The
@@ -526,8 +520,7 @@ spec:
                       will receive more traffic. (1-255). Used when picking a backend
                       to serve a request and is not pinned to a single backend yet.
                       Nodes with a higher weight will receive more traffic. (1-255)
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

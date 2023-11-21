@@ -42,10 +42,6 @@ type StackscriptInitParameters struct {
 	// The script to execute when provisioning a new Linode with this StackScript.
 	// The script to execute when provisioning a new Linode with this StackScript.
 	Script *string `json:"script,omitempty" tf:"script,omitempty"`
-
-	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
-	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
-	UserDefinedFields []UserDefinedFieldsInitParameters `json:"userDefinedFields,omitempty" tf:"user_defined_fields,omitempty"`
 }
 
 type StackscriptObservation struct {
@@ -56,11 +52,11 @@ type StackscriptObservation struct {
 
 	// Count of currently active, deployed Linodes created from this StackScript.
 	// Count of currently active, deployed Linodes created from this StackScript.
-	DeploymentsActive *int64 `json:"deploymentsActive,omitempty" tf:"deployments_active,omitempty"`
+	DeploymentsActive *float64 `json:"deploymentsActive,omitempty" tf:"deployments_active,omitempty"`
 
 	// The total number of times this StackScript has been deployed.
 	// The total number of times this StackScript has been deployed.
-	DeploymentsTotal *int64 `json:"deploymentsTotal,omitempty" tf:"deployments_total,omitempty"`
+	DeploymentsTotal *float64 `json:"deploymentsTotal,omitempty" tf:"deployments_total,omitempty"`
 
 	// A description for the StackScript.
 	// A description for the StackScript.
@@ -136,11 +132,6 @@ type StackscriptParameters struct {
 	// The script to execute when provisioning a new Linode with this StackScript.
 	// +kubebuilder:validation:Optional
 	Script *string `json:"script,omitempty" tf:"script,omitempty"`
-
-	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
-	// This is a list of fields defined with a special syntax inside this StackScript that allow for supplying customized parameters during deployment.
-	// +kubebuilder:validation:Optional
-	UserDefinedFields []UserDefinedFieldsParameters `json:"userDefinedFields,omitempty" tf:"user_defined_fields,omitempty"`
 }
 
 type UserDefinedFieldsInitParameters struct {
@@ -149,26 +140,20 @@ type UserDefinedFieldsInitParameters struct {
 type UserDefinedFieldsObservation struct {
 
 	// The default value. If not specified, this value will be used.
-	// The default value. If not specified, this value will be used.
 	Default *string `json:"default,omitempty" tf:"default,omitempty"`
 
-	// An example value for the field.
 	// An example value for the field.
 	Example *string `json:"example,omitempty" tf:"example,omitempty"`
 
 	// The StackScript's label is for display purposes only.
-	// A human-readable label for the field that will serve as the input prompt for entering the value during deployment.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// A list of acceptable values for the field in any quantity, combination or order.
 	// A list of acceptable values for the field in any quantity, combination or order.
 	ManyOf *string `json:"manyOf,omitempty" tf:"many_of,omitempty"`
 
 	// The name of the field.
-	// The name of the field.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// A list of acceptable single values for the field.
 	// A list of acceptable single values for the field.
 	OneOf *string `json:"oneOf,omitempty" tf:"one_of,omitempty"`
 }

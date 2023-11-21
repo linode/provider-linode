@@ -70,8 +70,7 @@ spec:
                   domainId:
                     description: The ID of the Domain to access.  Changing . The ID
                       of the Domain to access.
-                    format: int64
-                    type: integer
+                    type: number
                   domainIdRef:
                     description: Reference to a Domain to populate domainId.
                     properties:
@@ -158,14 +157,12 @@ spec:
                   port:
                     description: The port this Record points to. The port this Record
                       points to.
-                    format: int64
-                    type: integer
+                    type: number
                   priority:
                     description: The priority of the target host. Lower values are
                       preferred. The priority of the target host. Lower values are
                       preferred.
-                    format: int64
-                    type: integer
+                    type: number
                   protocol:
                     description: The protocol this Record's service communicates with.
                       Only valid for SRV records. The protocol this Record's service
@@ -209,14 +206,12 @@ spec:
                       Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600,
                       86400, 172800, 345600, 604800, 1209600, and 2419200 - any other
                       value will be rounded to the nearest valid value.'
-                    format: int64
-                    type: integer
+                    type: number
                   weight:
                     description: The relative weight of this Record. Higher values
                       are preferred. The relative weight of this Record. Higher values
                       are preferred.
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               initProvider:
                 description: THIS IS A BETA FIELD. It will be honored unless the Management
@@ -243,14 +238,12 @@ spec:
                   port:
                     description: The port this Record points to. The port this Record
                       points to.
-                    format: int64
-                    type: integer
+                    type: number
                   priority:
                     description: The priority of the target host. Lower values are
                       preferred. The priority of the target host. Lower values are
                       preferred.
-                    format: int64
-                    type: integer
+                    type: number
                   protocol:
                     description: The protocol this Record's service communicates with.
                       Only valid for SRV records. The protocol this Record's service
@@ -294,14 +287,12 @@ spec:
                       Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600,
                       86400, 172800, 345600, 604800, 1209600, and 2419200 - any other
                       value will be rounded to the nearest valid value.'
-                    format: int64
-                    type: integer
+                    type: number
                   weight:
                     description: The relative weight of this Record. Higher values
                       are preferred. The relative weight of this Record. Higher values
                       are preferred.
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -480,8 +471,7 @@ spec:
                   domainId:
                     description: The ID of the Domain to access.  Changing . The ID
                       of the Domain to access.
-                    format: int64
-                    type: integer
+                    type: number
                   id:
                     type: string
                   name:
@@ -497,14 +487,12 @@ spec:
                   port:
                     description: The port this Record points to. The port this Record
                       points to.
-                    format: int64
-                    type: integer
+                    type: number
                   priority:
                     description: The priority of the target host. Lower values are
                       preferred. The priority of the target host. Lower values are
                       preferred.
-                    format: int64
-                    type: integer
+                    type: number
                   protocol:
                     description: The protocol this Record's service communicates with.
                       Only valid for SRV records. The protocol this Record's service
@@ -548,14 +536,12 @@ spec:
                       Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600,
                       86400, 172800, 345600, 604800, 1209600, and 2419200 - any other
                       value will be rounded to the nearest valid value.'
-                    format: int64
-                    type: integer
+                    type: number
                   weight:
                     description: The relative weight of this Record. Higher values
                       are preferred. The relative weight of this Record. Higher values
                       are preferred.
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

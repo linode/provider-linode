@@ -33,7 +33,7 @@ type NodeInitParameters struct {
 
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)
-	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type NodeObservation struct {
@@ -44,7 +44,7 @@ type NodeObservation struct {
 
 	// The ID of the NodeBalancerConfig to access.
 	// The ID of the NodeBalancerConfig to access.
-	ConfigID *int64 `json:"configId,omitempty" tf:"config_id,omitempty"`
+	ConfigID *float64 `json:"configId,omitempty" tf:"config_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -58,7 +58,7 @@ type NodeObservation struct {
 
 	// The ID of the NodeBalancer to access.
 	// The ID of the NodeBalancer to access.
-	NodebalancerID *int64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
 
 	// The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).
 	// The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN)
@@ -66,7 +66,7 @@ type NodeObservation struct {
 
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)
-	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type NodeParameters struct {
@@ -80,7 +80,7 @@ type NodeParameters struct {
 	// The ID of the NodeBalancerConfig to access.
 	// +crossplane:generate:reference:type=Config
 	// +kubebuilder:validation:Optional
-	ConfigID *int64 `json:"configId,omitempty" tf:"config_id,omitempty"`
+	ConfigID *float64 `json:"configId,omitempty" tf:"config_id,omitempty"`
 
 	// Reference to a Config to populate configId.
 	// +kubebuilder:validation:Optional
@@ -104,7 +104,7 @@ type NodeParameters struct {
 	// The ID of the NodeBalancer to access.
 	// +crossplane:generate:reference:type=Nodebalancer
 	// +kubebuilder:validation:Optional
-	NodebalancerID *int64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
 
 	// Reference to a Nodebalancer to populate nodebalancerId.
 	// +kubebuilder:validation:Optional
@@ -117,7 +117,7 @@ type NodeParameters struct {
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)
 	// +kubebuilder:validation:Optional
-	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 // NodeSpec defines the desired state of Node

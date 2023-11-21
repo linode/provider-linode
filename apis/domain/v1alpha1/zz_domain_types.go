@@ -29,7 +29,7 @@ type DomainInitParameters struct {
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
 	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	ExpireSec *int64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
+	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
 
 	// The group this Domain belongs to. This is for display purposes only.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
@@ -38,10 +38,10 @@ type DomainInitParameters struct {
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	RefreshSec *int64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
+	RefreshSec *float64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
 
 	// The interval, in seconds, at which a failed refresh should be retried. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	RetrySec *int64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
+	RetrySec *float64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
 
 	// Start of Authority email address. This is required for master Domains.
 	SoaEmail *string `json:"soaEmail,omitempty" tf:"soa_email,omitempty"`
@@ -50,7 +50,7 @@ type DomainInitParameters struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	TTLSec *int64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -71,7 +71,7 @@ type DomainObservation struct {
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
 	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	ExpireSec *int64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
+	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
 
 	// The group this Domain belongs to. This is for display purposes only.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
@@ -82,10 +82,10 @@ type DomainObservation struct {
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	RefreshSec *int64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
+	RefreshSec *float64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
 
 	// The interval, in seconds, at which a failed refresh should be retried. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	RetrySec *int64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
+	RetrySec *float64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
 
 	// Start of Authority email address. This is required for master Domains.
 	SoaEmail *string `json:"soaEmail,omitempty" tf:"soa_email,omitempty"`
@@ -94,7 +94,7 @@ type DomainObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	TTLSec *int64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -119,7 +119,7 @@ type DomainParameters struct {
 
 	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// +kubebuilder:validation:Optional
-	ExpireSec *int64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
+	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
 
 	// The group this Domain belongs to. This is for display purposes only.
 	// +kubebuilder:validation:Optional
@@ -131,11 +131,11 @@ type DomainParameters struct {
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// +kubebuilder:validation:Optional
-	RefreshSec *int64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
+	RefreshSec *float64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
 
 	// The interval, in seconds, at which a failed refresh should be retried. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// +kubebuilder:validation:Optional
-	RetrySec *int64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
+	RetrySec *float64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
 
 	// Start of Authority email address. This is required for master Domains.
 	// +kubebuilder:validation:Optional
@@ -147,7 +147,7 @@ type DomainParameters struct {
 
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// +kubebuilder:validation:Optional
-	TTLSec *int64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional

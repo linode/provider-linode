@@ -74,8 +74,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -94,8 +93,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -168,8 +166,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -185,8 +182,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -202,8 +198,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -219,8 +214,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -241,8 +235,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -261,8 +254,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -291,8 +283,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -311,8 +302,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -385,8 +375,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -402,8 +391,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -419,8 +407,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -436,8 +423,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -458,8 +444,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -478,8 +463,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -670,8 +654,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -690,8 +673,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -767,8 +749,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -784,8 +765,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -801,8 +781,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -818,8 +797,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -846,8 +824,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User
@@ -870,8 +847,7 @@ spec:
                         id:
                           description: The ID of the entity this grant applies to.
                             The ID of the entity this grant applies to.
-                          format: int64
-                          type: integer
+                          type: number
                         permissions:
                           description: The level of access this User has to this entity.
                             (read_only, read_write) The level of access this User

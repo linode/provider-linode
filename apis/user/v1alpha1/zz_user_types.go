@@ -21,7 +21,7 @@ type DomainGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -32,7 +32,7 @@ type DomainGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -44,7 +44,7 @@ type DomainGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -56,7 +56,7 @@ type FirewallGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -67,7 +67,7 @@ type FirewallGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -79,7 +79,7 @@ type FirewallGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -250,7 +250,7 @@ type ImageGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -261,7 +261,7 @@ type ImageGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -273,7 +273,7 @@ type ImageGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -285,7 +285,7 @@ type LinodeGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -296,7 +296,7 @@ type LinodeGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -308,7 +308,7 @@ type LinodeGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -320,7 +320,7 @@ type LongviewGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -331,7 +331,7 @@ type LongviewGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -343,7 +343,7 @@ type LongviewGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -355,7 +355,7 @@ type NodebalancerGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -366,7 +366,7 @@ type NodebalancerGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -378,7 +378,7 @@ type NodebalancerGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -390,7 +390,7 @@ type StackscriptGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -401,7 +401,7 @@ type StackscriptGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -413,7 +413,7 @@ type StackscriptGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -598,7 +598,7 @@ type VolumeGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -609,7 +609,7 @@ type VolumeGrantObservation struct {
 
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.
@@ -621,7 +621,7 @@ type VolumeGrantParameters struct {
 	// The ID of the entity this grant applies to.
 	// The ID of the entity this grant applies to.
 	// +kubebuilder:validation:Optional
-	ID *int64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id" tf:"id,omitempty"`
 
 	// The level of access this User has to this entity. (read_only, read_write)
 	// The level of access this User has to this entity. If null, this User has no access.

@@ -25,7 +25,7 @@ type AccessControlsInitParameters struct {
 
 	// The unique ID of the target database.
 	// The ID of the database to manage the allow list for.
-	DatabaseID *int64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
+	DatabaseID *float64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
 
 	// The unique type of the target database. (mysql, mongodb, postgresql)
 	// The type of the  database to manage the allow list for.
@@ -40,7 +40,7 @@ type AccessControlsObservation struct {
 
 	// The unique ID of the target database.
 	// The ID of the database to manage the allow list for.
-	DatabaseID *int64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
+	DatabaseID *float64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
 
 	// The unique type of the target database. (mysql, mongodb, postgresql)
 	// The type of the  database to manage the allow list for.
@@ -59,7 +59,7 @@ type AccessControlsParameters struct {
 	// The unique ID of the target database.
 	// The ID of the database to manage the allow list for.
 	// +kubebuilder:validation:Optional
-	DatabaseID *int64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
+	DatabaseID *float64 `json:"databaseId,omitempty" tf:"database_id,omitempty"`
 
 	// The unique type of the target database. (mysql, mongodb, postgresql)
 	// The type of the  database to manage the allow list for.

@@ -91,8 +91,7 @@ spec:
                     description: How many times to attempt a check before considering
                       a backend to be down. (1-30) How many times to attempt a check
                       before considering a backend to be down. (1-30)
-                    format: int64
-                    type: integer
+                    type: number
                   checkBody:
                     description: This value must be present in the response body of
                       the check in order for it to pass. If this value is not present
@@ -103,8 +102,7 @@ spec:
                     description: How often, in seconds, to check that backends are
                       up and serving requests. How often, in seconds, to check that
                       backends are up and serving requests.
-                    format: int64
-                    type: integer
+                    type: number
                   checkPassive:
                     description: If true, any response from this backend with a 5xx
                       status code will be enough for it to be considered unhealthy
@@ -122,8 +120,7 @@ spec:
                     description: How long, in seconds, to wait for a check attempt
                       before considering it failed. (1-30) How long, in seconds, to
                       wait for a check attempt before considering it failed. (1-30)
-                    format: int64
-                    type: integer
+                    type: number
                   cipherSuite:
                     description: What ciphers to use for SSL connections served by
                       this NodeBalancer. legacy is considered insecure and should
@@ -134,8 +131,7 @@ spec:
                   nodebalancerId:
                     description: The ID of the NodeBalancer to access. The ID of the
                       NodeBalancer to access.
-                    format: int64
-                    type: integer
+                    type: number
                   nodebalancerIdRef:
                     description: Reference to a Nodebalancer to populate nodebalancerId.
                     properties:
@@ -224,8 +220,7 @@ spec:
                       NodeBalancer however is useful to you. For example, while port
                       443 is generally used for HTTPS, you do not need SSL configured
                       to have a NodeBalancer listening on port 443.
-                    format: int64
-                    type: integer
+                    type: number
                   protocol:
                     description: The protocol this port is configured to serve. If
                       this is set to https you must include an ssl_cert and an ssl_key.
@@ -327,8 +322,7 @@ spec:
                     description: How many times to attempt a check before considering
                       a backend to be down. (1-30) How many times to attempt a check
                       before considering a backend to be down. (1-30)
-                    format: int64
-                    type: integer
+                    type: number
                   checkBody:
                     description: This value must be present in the response body of
                       the check in order for it to pass. If this value is not present
@@ -339,8 +333,7 @@ spec:
                     description: How often, in seconds, to check that backends are
                       up and serving requests. How often, in seconds, to check that
                       backends are up and serving requests.
-                    format: int64
-                    type: integer
+                    type: number
                   checkPassive:
                     description: If true, any response from this backend with a 5xx
                       status code will be enough for it to be considered unhealthy
@@ -358,8 +351,7 @@ spec:
                     description: How long, in seconds, to wait for a check attempt
                       before considering it failed. (1-30) How long, in seconds, to
                       wait for a check attempt before considering it failed. (1-30)
-                    format: int64
-                    type: integer
+                    type: number
                   cipherSuite:
                     description: What ciphers to use for SSL connections served by
                       this NodeBalancer. legacy is considered insecure and should
@@ -382,8 +374,7 @@ spec:
                       NodeBalancer however is useful to you. For example, while port
                       443 is generally used for HTTPS, you do not need SSL configured
                       to have a NodeBalancer listening on port 443.
-                    format: int64
-                    type: integer
+                    type: number
                   protocol:
                     description: The protocol this port is configured to serve. If
                       this is set to https you must include an ssl_cert and an ssl_key.
@@ -593,8 +584,7 @@ spec:
                     description: How many times to attempt a check before considering
                       a backend to be down. (1-30) How many times to attempt a check
                       before considering a backend to be down. (1-30)
-                    format: int64
-                    type: integer
+                    type: number
                   checkBody:
                     description: This value must be present in the response body of
                       the check in order for it to pass. If this value is not present
@@ -605,8 +595,7 @@ spec:
                     description: How often, in seconds, to check that backends are
                       up and serving requests. How often, in seconds, to check that
                       backends are up and serving requests.
-                    format: int64
-                    type: integer
+                    type: number
                   checkPassive:
                     description: If true, any response from this backend with a 5xx
                       status code will be enough for it to be considered unhealthy
@@ -624,8 +613,7 @@ spec:
                     description: How long, in seconds, to wait for a check attempt
                       before considering it failed. (1-30) How long, in seconds, to
                       wait for a check attempt before considering it failed. (1-30)
-                    format: int64
-                    type: integer
+                    type: number
                   cipherSuite:
                     description: What ciphers to use for SSL connections served by
                       this NodeBalancer. legacy is considered insecure and should
@@ -644,25 +632,18 @@ spec:
                         down:
                           description: The number of backends considered to be 'DOWN'
                             and unhealthy. These are not in rotation, and not serving
-                            requests. The number of backends considered to be 'DOWN'
-                            and unhealthy. These are not in rotation, and not serving
                             requests.
-                          format: int64
-                          type: integer
+                          type: number
                         up:
                           description: The number of backends considered to be 'UP'
-                            and healthy, and that are serving requests. The number
-                            of backends considered to be 'UP' and healthy, and that
-                            are serving requests.
-                          format: int64
-                          type: integer
+                            and healthy, and that are serving requests.
+                          type: number
                       type: object
                     type: array
                   nodebalancerId:
                     description: The ID of the NodeBalancer to access. The ID of the
                       NodeBalancer to access.
-                    format: int64
-                    type: integer
+                    type: number
                   port:
                     description: The TCP port this Config is for. These values must
                       be unique across configs on a single NodeBalancer (you can't
@@ -678,8 +659,7 @@ spec:
                       NodeBalancer however is useful to you. For example, while port
                       443 is generally used for HTTPS, you do not need SSL configured
                       to have a NodeBalancer listening on port 443.
-                    format: int64
-                    type: integer
+                    type: number
                   protocol:
                     description: The protocol this port is configured to serve. If
                       this is set to https you must include an ssl_cert and an ssl_key.

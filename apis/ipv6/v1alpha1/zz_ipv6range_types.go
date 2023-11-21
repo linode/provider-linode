@@ -21,7 +21,7 @@ type IPv6RangeInitParameters struct {
 
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.
-	PrefixLength *int64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
+	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// The IPv6 SLAAC address to assign this range to.
 	// The IPv6 SLAAC address to assign this range to.
@@ -37,15 +37,15 @@ type IPv6RangeObservation struct {
 
 	// The ID of the Linode to assign this range to. This field may be updated to reassign the IPv6 range.
 	// The ID of the Linode to assign this range to.
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
-	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
-	Linodes []*int64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+	// A list of Linodes targeted by this IPv6 range.Includes Linodes with IP sharing.
+	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.
-	PrefixLength *int64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
+	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// The IPv6 range of addresses in this pool.
 	// The IPv6 range of addresses in this pool.
@@ -66,7 +66,7 @@ type IPv6RangeParameters struct {
 	// The ID of the Linode to assign this range to.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance in instance to populate linodeId.
 	// +kubebuilder:validation:Optional
@@ -79,7 +79,7 @@ type IPv6RangeParameters struct {
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.
 	// +kubebuilder:validation:Optional
-	PrefixLength *int64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
+	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
 
 	// The IPv6 SLAAC address to assign this range to.
 	// The IPv6 SLAAC address to assign this range to.

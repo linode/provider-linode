@@ -17,12 +17,12 @@ func (in *AutoscalerInitParameters) DeepCopyInto(out *AutoscalerInitParameters) 
 	*out = *in
 	if in.Max != nil {
 		in, out := &in.Max, &out.Max
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Min != nil {
 		in, out := &in.Min, &out.Min
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -42,12 +42,12 @@ func (in *AutoscalerObservation) DeepCopyInto(out *AutoscalerObservation) {
 	*out = *in
 	if in.Max != nil {
 		in, out := &in.Max, &out.Max
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Min != nil {
 		in, out := &in.Min, &out.Min
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -67,12 +67,12 @@ func (in *AutoscalerParameters) DeepCopyInto(out *AutoscalerParameters) {
 	*out = *in
 	if in.Max != nil {
 		in, out := &in.Max, &out.Max
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Min != nil {
 		in, out := &in.Min, &out.Min
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -457,7 +457,7 @@ func (in *NodesObservation) DeepCopyInto(out *NodesObservation) {
 	}
 	if in.InstanceID != nil {
 		in, out := &in.InstanceID, &out.InstanceID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -504,7 +504,7 @@ func (in *PoolInitParameters) DeepCopyInto(out *PoolInitParameters) {
 	}
 	if in.Count != nil {
 		in, out := &in.Count, &out.Count
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Type != nil {
@@ -536,12 +536,12 @@ func (in *PoolObservation) DeepCopyInto(out *PoolObservation) {
 	}
 	if in.Count != nil {
 		in, out := &in.Count, &out.Count
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Nodes != nil {
@@ -580,7 +580,7 @@ func (in *PoolParameters) DeepCopyInto(out *PoolParameters) {
 	}
 	if in.Count != nil {
 		in, out := &in.Count, &out.Count
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Type != nil {

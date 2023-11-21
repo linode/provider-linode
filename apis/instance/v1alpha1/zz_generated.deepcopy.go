@@ -18,27 +18,27 @@ func (in *AlertsInitParameters) DeepCopyInto(out *AlertsInitParameters) {
 	*out = *in
 	if in.CPU != nil {
 		in, out := &in.CPU, &out.CPU
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Io != nil {
 		in, out := &in.Io, &out.Io
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NetworkIn != nil {
 		in, out := &in.NetworkIn, &out.NetworkIn
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NetworkOut != nil {
 		in, out := &in.NetworkOut, &out.NetworkOut
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.TransferQuota != nil {
 		in, out := &in.TransferQuota, &out.TransferQuota
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -58,27 +58,27 @@ func (in *AlertsObservation) DeepCopyInto(out *AlertsObservation) {
 	*out = *in
 	if in.CPU != nil {
 		in, out := &in.CPU, &out.CPU
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Io != nil {
 		in, out := &in.Io, &out.Io
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NetworkIn != nil {
 		in, out := &in.NetworkIn, &out.NetworkIn
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NetworkOut != nil {
 		in, out := &in.NetworkOut, &out.NetworkOut
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.TransferQuota != nil {
 		in, out := &in.TransferQuota, &out.TransferQuota
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -98,27 +98,27 @@ func (in *AlertsParameters) DeepCopyInto(out *AlertsParameters) {
 	*out = *in
 	if in.CPU != nil {
 		in, out := &in.CPU, &out.CPU
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Io != nil {
 		in, out := &in.Io, &out.Io
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NetworkIn != nil {
 		in, out := &in.NetworkIn, &out.NetworkIn
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NetworkOut != nil {
 		in, out := &in.NetworkOut, &out.NetworkOut
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.TransferQuota != nil {
 		in, out := &in.TransferQuota, &out.TransferQuota
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -596,7 +596,7 @@ func (in *ConfigInitParameters) DeepCopyInto(out *ConfigInitParameters) {
 	}
 	if in.MemoryLimit != nil {
 		in, out := &in.MemoryLimit, &out.MemoryLimit
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RootDevice != nil {
@@ -639,6 +639,13 @@ func (in *ConfigInitParameters_2) DeepCopyInto(out *ConfigInitParameters_2) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Device != nil {
+		in, out := &in.Device, &out.Device
+		*out = make([]DeviceInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Devices != nil {
 		in, out := &in.Devices, &out.Devices
 		*out = make([]ConfigDevicesInitParameters, len(*in))
@@ -672,7 +679,7 @@ func (in *ConfigInitParameters_2) DeepCopyInto(out *ConfigInitParameters_2) {
 	}
 	if in.MemoryLimit != nil {
 		in, out := &in.MemoryLimit, &out.MemoryLimit
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RootDevice != nil {
@@ -865,7 +872,7 @@ func (in *ConfigObservation) DeepCopyInto(out *ConfigObservation) {
 	}
 	if in.MemoryLimit != nil {
 		in, out := &in.MemoryLimit, &out.MemoryLimit
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RootDevice != nil {
@@ -908,6 +915,13 @@ func (in *ConfigObservation_2) DeepCopyInto(out *ConfigObservation_2) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Device != nil {
+		in, out := &in.Device, &out.Device
+		*out = make([]DeviceObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Devices != nil {
 		in, out := &in.Devices, &out.Devices
 		*out = make([]ConfigDevicesObservation, len(*in))
@@ -946,12 +960,12 @@ func (in *ConfigObservation_2) DeepCopyInto(out *ConfigObservation_2) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.MemoryLimit != nil {
 		in, out := &in.MemoryLimit, &out.MemoryLimit
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RootDevice != nil {
@@ -1022,7 +1036,7 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 	}
 	if in.MemoryLimit != nil {
 		in, out := &in.MemoryLimit, &out.MemoryLimit
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RootDevice != nil {
@@ -1065,6 +1079,13 @@ func (in *ConfigParameters_2) DeepCopyInto(out *ConfigParameters_2) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Device != nil {
+		in, out := &in.Device, &out.Device
+		*out = make([]DeviceParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Devices != nil {
 		in, out := &in.Devices, &out.Devices
 		*out = make([]ConfigDevicesParameters, len(*in))
@@ -1098,7 +1119,7 @@ func (in *ConfigParameters_2) DeepCopyInto(out *ConfigParameters_2) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.LinodeIDRef != nil {
@@ -1113,7 +1134,7 @@ func (in *ConfigParameters_2) DeepCopyInto(out *ConfigParameters_2) {
 	}
 	if in.MemoryLimit != nil {
 		in, out := &in.MemoryLimit, &out.MemoryLimit
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RootDevice != nil {
@@ -1174,6 +1195,96 @@ func (in *ConfigStatus) DeepCopy() *ConfigStatus {
 		return nil
 	}
 	out := new(ConfigStatus)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DeviceInitParameters) DeepCopyInto(out *DeviceInitParameters) {
+	*out = *in
+	if in.DeviceName != nil {
+		in, out := &in.DeviceName, &out.DeviceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DeviceInitParameters.
+func (in *DeviceInitParameters) DeepCopy() *DeviceInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DeviceInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DeviceObservation) DeepCopyInto(out *DeviceObservation) {
+	*out = *in
+	if in.DeviceName != nil {
+		in, out := &in.DeviceName, &out.DeviceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DeviceObservation.
+func (in *DeviceObservation) DeepCopy() *DeviceObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DeviceObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DeviceParameters) DeepCopyInto(out *DeviceParameters) {
+	*out = *in
+	if in.DeviceName != nil {
+		in, out := &in.DeviceName, &out.DeviceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DeviceParameters.
+func (in *DeviceParameters) DeepCopy() *DeviceParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DeviceParameters)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -1396,7 +1507,7 @@ func (in *DevicesSdaInitParameters) DeepCopyInto(out *DevicesSdaInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1416,12 +1527,12 @@ func (in *DevicesSdaObservation) DeepCopyInto(out *DevicesSdaObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1441,7 +1552,7 @@ func (in *DevicesSdaParameters) DeepCopyInto(out *DevicesSdaParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -1456,7 +1567,7 @@ func (in *DevicesSdaParameters) DeepCopyInto(out *DevicesSdaParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1476,7 +1587,7 @@ func (in *DevicesSdbInitParameters) DeepCopyInto(out *DevicesSdbInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1496,12 +1607,12 @@ func (in *DevicesSdbObservation) DeepCopyInto(out *DevicesSdbObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1521,7 +1632,7 @@ func (in *DevicesSdbParameters) DeepCopyInto(out *DevicesSdbParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -1536,7 +1647,7 @@ func (in *DevicesSdbParameters) DeepCopyInto(out *DevicesSdbParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1556,7 +1667,7 @@ func (in *DevicesSdcInitParameters) DeepCopyInto(out *DevicesSdcInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1576,12 +1687,12 @@ func (in *DevicesSdcObservation) DeepCopyInto(out *DevicesSdcObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1601,7 +1712,7 @@ func (in *DevicesSdcParameters) DeepCopyInto(out *DevicesSdcParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -1616,7 +1727,7 @@ func (in *DevicesSdcParameters) DeepCopyInto(out *DevicesSdcParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1636,7 +1747,7 @@ func (in *DevicesSddInitParameters) DeepCopyInto(out *DevicesSddInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1656,12 +1767,12 @@ func (in *DevicesSddObservation) DeepCopyInto(out *DevicesSddObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1681,7 +1792,7 @@ func (in *DevicesSddParameters) DeepCopyInto(out *DevicesSddParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -1696,7 +1807,7 @@ func (in *DevicesSddParameters) DeepCopyInto(out *DevicesSddParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1716,7 +1827,7 @@ func (in *DevicesSdeInitParameters) DeepCopyInto(out *DevicesSdeInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1736,12 +1847,12 @@ func (in *DevicesSdeObservation) DeepCopyInto(out *DevicesSdeObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1761,7 +1872,7 @@ func (in *DevicesSdeParameters) DeepCopyInto(out *DevicesSdeParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -1776,7 +1887,7 @@ func (in *DevicesSdeParameters) DeepCopyInto(out *DevicesSdeParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1796,7 +1907,7 @@ func (in *DevicesSdfInitParameters) DeepCopyInto(out *DevicesSdfInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1816,12 +1927,12 @@ func (in *DevicesSdfObservation) DeepCopyInto(out *DevicesSdfObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1841,7 +1952,7 @@ func (in *DevicesSdfParameters) DeepCopyInto(out *DevicesSdfParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -1856,7 +1967,7 @@ func (in *DevicesSdfParameters) DeepCopyInto(out *DevicesSdfParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1876,7 +1987,7 @@ func (in *DevicesSdgInitParameters) DeepCopyInto(out *DevicesSdgInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1896,12 +2007,12 @@ func (in *DevicesSdgObservation) DeepCopyInto(out *DevicesSdgObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1921,7 +2032,7 @@ func (in *DevicesSdgParameters) DeepCopyInto(out *DevicesSdgParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -1936,7 +2047,7 @@ func (in *DevicesSdgParameters) DeepCopyInto(out *DevicesSdgParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1956,7 +2067,7 @@ func (in *DevicesSdhInitParameters) DeepCopyInto(out *DevicesSdhInitParameters) 
 	*out = *in
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1976,12 +2087,12 @@ func (in *DevicesSdhObservation) DeepCopyInto(out *DevicesSdhObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -2001,7 +2112,7 @@ func (in *DevicesSdhParameters) DeepCopyInto(out *DevicesSdhParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskIDRef != nil {
@@ -2016,7 +2127,7 @@ func (in *DevicesSdhParameters) DeepCopyInto(out *DevicesSdhParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -2105,12 +2216,12 @@ func (in *DiskInitParameters) DeepCopyInto(out *DiskInitParameters) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -2167,7 +2278,7 @@ func (in *DiskInitParameters_2) DeepCopyInto(out *DiskInitParameters_2) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -2246,7 +2357,7 @@ func (in *DiskObservation) DeepCopyInto(out *DiskObservation) {
 	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Image != nil {
@@ -2266,12 +2377,12 @@ func (in *DiskObservation) DeepCopyInto(out *DiskObservation) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -2338,17 +2449,17 @@ func (in *DiskObservation_2) DeepCopyInto(out *DiskObservation_2) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -2425,7 +2536,7 @@ func (in *DiskParameters) DeepCopyInto(out *DiskParameters) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StackscriptDataSecretRef != nil {
@@ -2435,7 +2546,7 @@ func (in *DiskParameters) DeepCopyInto(out *DiskParameters) {
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -2492,7 +2603,7 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.LinodeIDRef != nil {
@@ -2512,7 +2623,7 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StackscriptDataSecretRef != nil {
@@ -2522,7 +2633,7 @@ func (in *DiskParameters_2) DeepCopyInto(out *DiskParameters_2) {
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StackscriptIDRef != nil {
@@ -2811,12 +2922,12 @@ func (in *IPObservation) DeepCopyInto(out *IPObservation) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Prefix != nil {
 		in, out := &in.Prefix, &out.Prefix
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Public != nil {
@@ -2866,7 +2977,7 @@ func (in *IPParameters) DeepCopyInto(out *IPParameters) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.LinodeIDRef != nil {
@@ -3007,7 +3118,7 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 	}
 	if in.BackupID != nil {
 		in, out := &in.BackupID, &out.BackupID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.BackupsEnabled != nil {
@@ -3061,6 +3172,13 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Metadata != nil {
+		in, out := &in.Metadata, &out.Metadata
+		*out = make([]MetadataInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.PrivateIP != nil {
 		in, out := &in.PrivateIP, &out.PrivateIP
 		*out = new(bool)
@@ -3089,7 +3207,7 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 	}
 	if in.SwapSize != nil {
 		in, out := &in.SwapSize, &out.SwapSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {
@@ -3281,7 +3399,7 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	}
 	if in.BackupID != nil {
 		in, out := &in.BackupID, &out.BackupID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Backups != nil {
@@ -3323,6 +3441,11 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	if in.Group != nil {
 		in, out := &in.Group, &out.Group
 		*out = new(string)
+		**out = **in
+	}
+	if in.HasUserData != nil {
+		in, out := &in.HasUserData, &out.HasUserData
+		*out = new(bool)
 		**out = **in
 	}
 	if in.HostUUID != nil {
@@ -3373,6 +3496,13 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Metadata != nil {
+		in, out := &in.Metadata, &out.Metadata
+		*out = make([]MetadataObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.PrivateIP != nil {
 		in, out := &in.PrivateIP, &out.PrivateIP
 		*out = new(bool)
@@ -3413,7 +3543,7 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -3423,7 +3553,7 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	}
 	if in.SwapSize != nil {
 		in, out := &in.SwapSize, &out.SwapSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {
@@ -3493,7 +3623,7 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 	}
 	if in.BackupID != nil {
 		in, out := &in.BackupID, &out.BackupID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.BackupsEnabled != nil {
@@ -3547,6 +3677,13 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Metadata != nil {
+		in, out := &in.Metadata, &out.Metadata
+		*out = make([]MetadataParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.PrivateIP != nil {
 		in, out := &in.PrivateIP, &out.PrivateIP
 		*out = new(bool)
@@ -3585,7 +3722,7 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.StackscriptIDRef != nil {
@@ -3600,7 +3737,7 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 	}
 	if in.SwapSize != nil {
 		in, out := &in.SwapSize, &out.SwapSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {
@@ -3762,6 +3899,66 @@ func (in *InterfaceParameters) DeepCopy() *InterfaceParameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *MetadataInitParameters) DeepCopyInto(out *MetadataInitParameters) {
+	*out = *in
+	if in.UserData != nil {
+		in, out := &in.UserData, &out.UserData
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new MetadataInitParameters.
+func (in *MetadataInitParameters) DeepCopy() *MetadataInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(MetadataInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *MetadataObservation) DeepCopyInto(out *MetadataObservation) {
+	*out = *in
+	if in.UserData != nil {
+		in, out := &in.UserData, &out.UserData
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new MetadataObservation.
+func (in *MetadataObservation) DeepCopy() *MetadataObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(MetadataObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *MetadataParameters) DeepCopyInto(out *MetadataParameters) {
+	*out = *in
+	if in.UserData != nil {
+		in, out := &in.UserData, &out.UserData
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new MetadataParameters.
+func (in *MetadataParameters) DeepCopy() *MetadataParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(MetadataParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *ScheduleInitParameters) DeepCopyInto(out *ScheduleInitParameters) {
 	*out = *in
 }
@@ -3821,7 +4018,7 @@ func (in *SdaInitParameters) DeepCopyInto(out *SdaInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -3831,7 +4028,7 @@ func (in *SdaInitParameters) DeepCopyInto(out *SdaInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -3851,7 +4048,7 @@ func (in *SdaObservation) DeepCopyInto(out *SdaObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -3861,7 +4058,7 @@ func (in *SdaObservation) DeepCopyInto(out *SdaObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -3881,7 +4078,7 @@ func (in *SdaParameters) DeepCopyInto(out *SdaParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -3891,7 +4088,7 @@ func (in *SdaParameters) DeepCopyInto(out *SdaParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -3911,7 +4108,7 @@ func (in *SdbInitParameters) DeepCopyInto(out *SdbInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -3921,7 +4118,7 @@ func (in *SdbInitParameters) DeepCopyInto(out *SdbInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -3941,7 +4138,7 @@ func (in *SdbObservation) DeepCopyInto(out *SdbObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -3951,7 +4148,7 @@ func (in *SdbObservation) DeepCopyInto(out *SdbObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -3971,7 +4168,7 @@ func (in *SdbParameters) DeepCopyInto(out *SdbParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -3981,7 +4178,7 @@ func (in *SdbParameters) DeepCopyInto(out *SdbParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4001,7 +4198,7 @@ func (in *SdcInitParameters) DeepCopyInto(out *SdcInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4011,7 +4208,7 @@ func (in *SdcInitParameters) DeepCopyInto(out *SdcInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4031,7 +4228,7 @@ func (in *SdcObservation) DeepCopyInto(out *SdcObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4041,7 +4238,7 @@ func (in *SdcObservation) DeepCopyInto(out *SdcObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4061,7 +4258,7 @@ func (in *SdcParameters) DeepCopyInto(out *SdcParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4071,7 +4268,7 @@ func (in *SdcParameters) DeepCopyInto(out *SdcParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4091,7 +4288,7 @@ func (in *SddInitParameters) DeepCopyInto(out *SddInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4101,7 +4298,7 @@ func (in *SddInitParameters) DeepCopyInto(out *SddInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4121,7 +4318,7 @@ func (in *SddObservation) DeepCopyInto(out *SddObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4131,7 +4328,7 @@ func (in *SddObservation) DeepCopyInto(out *SddObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4151,7 +4348,7 @@ func (in *SddParameters) DeepCopyInto(out *SddParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4161,7 +4358,7 @@ func (in *SddParameters) DeepCopyInto(out *SddParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4181,7 +4378,7 @@ func (in *SdeInitParameters) DeepCopyInto(out *SdeInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4191,7 +4388,7 @@ func (in *SdeInitParameters) DeepCopyInto(out *SdeInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4211,7 +4408,7 @@ func (in *SdeObservation) DeepCopyInto(out *SdeObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4221,7 +4418,7 @@ func (in *SdeObservation) DeepCopyInto(out *SdeObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4241,7 +4438,7 @@ func (in *SdeParameters) DeepCopyInto(out *SdeParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4251,7 +4448,7 @@ func (in *SdeParameters) DeepCopyInto(out *SdeParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4271,7 +4468,7 @@ func (in *SdfInitParameters) DeepCopyInto(out *SdfInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4281,7 +4478,7 @@ func (in *SdfInitParameters) DeepCopyInto(out *SdfInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4301,7 +4498,7 @@ func (in *SdfObservation) DeepCopyInto(out *SdfObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4311,7 +4508,7 @@ func (in *SdfObservation) DeepCopyInto(out *SdfObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4331,7 +4528,7 @@ func (in *SdfParameters) DeepCopyInto(out *SdfParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4341,7 +4538,7 @@ func (in *SdfParameters) DeepCopyInto(out *SdfParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4361,7 +4558,7 @@ func (in *SdgInitParameters) DeepCopyInto(out *SdgInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4371,7 +4568,7 @@ func (in *SdgInitParameters) DeepCopyInto(out *SdgInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4391,7 +4588,7 @@ func (in *SdgObservation) DeepCopyInto(out *SdgObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4401,7 +4598,7 @@ func (in *SdgObservation) DeepCopyInto(out *SdgObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4421,7 +4618,7 @@ func (in *SdgParameters) DeepCopyInto(out *SdgParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4431,7 +4628,7 @@ func (in *SdgParameters) DeepCopyInto(out *SdgParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4451,7 +4648,7 @@ func (in *SdhInitParameters) DeepCopyInto(out *SdhInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4461,7 +4658,7 @@ func (in *SdhInitParameters) DeepCopyInto(out *SdhInitParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4481,7 +4678,7 @@ func (in *SdhObservation) DeepCopyInto(out *SdhObservation) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4491,7 +4688,7 @@ func (in *SdhObservation) DeepCopyInto(out *SdhObservation) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4511,7 +4708,7 @@ func (in *SdhParameters) DeepCopyInto(out *SdhParameters) {
 	*out = *in
 	if in.DiskID != nil {
 		in, out := &in.DiskID, &out.DiskID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DiskLabel != nil {
@@ -4521,7 +4718,7 @@ func (in *SdhParameters) DeepCopyInto(out *SdhParameters) {
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4642,7 +4839,7 @@ func (in *SharedIPsObservation) DeepCopyInto(out *SharedIPsObservation) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -4673,7 +4870,7 @@ func (in *SharedIPsParameters) DeepCopyInto(out *SharedIPsParameters) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.LinodeIDRef != nil {
@@ -4753,22 +4950,22 @@ func (in *SpecsObservation) DeepCopyInto(out *SpecsObservation) {
 	*out = *in
 	if in.Disk != nil {
 		in, out := &in.Disk, &out.Disk
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Memory != nil {
 		in, out := &in.Memory, &out.Memory
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Transfer != nil {
 		in, out := &in.Transfer, &out.Transfer
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Vcpus != nil {
 		in, out := &in.Vcpus, &out.Vcpus
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }

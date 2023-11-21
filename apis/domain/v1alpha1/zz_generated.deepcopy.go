@@ -66,7 +66,7 @@ func (in *DomainInitParameters) DeepCopyInto(out *DomainInitParameters) {
 	}
 	if in.ExpireSec != nil {
 		in, out := &in.ExpireSec, &out.ExpireSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Group != nil {
@@ -87,12 +87,12 @@ func (in *DomainInitParameters) DeepCopyInto(out *DomainInitParameters) {
 	}
 	if in.RefreshSec != nil {
 		in, out := &in.RefreshSec, &out.RefreshSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RetrySec != nil {
 		in, out := &in.RetrySec, &out.RetrySec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.SoaEmail != nil {
@@ -107,7 +107,7 @@ func (in *DomainInitParameters) DeepCopyInto(out *DomainInitParameters) {
 	}
 	if in.TTLSec != nil {
 		in, out := &in.TTLSec, &out.TTLSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {
@@ -196,7 +196,7 @@ func (in *DomainObservation) DeepCopyInto(out *DomainObservation) {
 	}
 	if in.ExpireSec != nil {
 		in, out := &in.ExpireSec, &out.ExpireSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Group != nil {
@@ -222,12 +222,12 @@ func (in *DomainObservation) DeepCopyInto(out *DomainObservation) {
 	}
 	if in.RefreshSec != nil {
 		in, out := &in.RefreshSec, &out.RefreshSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RetrySec != nil {
 		in, out := &in.RetrySec, &out.RetrySec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.SoaEmail != nil {
@@ -242,7 +242,7 @@ func (in *DomainObservation) DeepCopyInto(out *DomainObservation) {
 	}
 	if in.TTLSec != nil {
 		in, out := &in.TTLSec, &out.TTLSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {
@@ -299,7 +299,7 @@ func (in *DomainParameters) DeepCopyInto(out *DomainParameters) {
 	}
 	if in.ExpireSec != nil {
 		in, out := &in.ExpireSec, &out.ExpireSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Group != nil {
@@ -320,12 +320,12 @@ func (in *DomainParameters) DeepCopyInto(out *DomainParameters) {
 	}
 	if in.RefreshSec != nil {
 		in, out := &in.RefreshSec, &out.RefreshSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RetrySec != nil {
 		in, out := &in.RetrySec, &out.RetrySec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.SoaEmail != nil {
@@ -340,7 +340,7 @@ func (in *DomainParameters) DeepCopyInto(out *DomainParameters) {
 	}
 	if in.TTLSec != nil {
 		in, out := &in.TTLSec, &out.TTLSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {
@@ -443,12 +443,12 @@ func (in *RecordInitParameters) DeepCopyInto(out *RecordInitParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Priority != nil {
 		in, out := &in.Priority, &out.Priority
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Protocol != nil {
@@ -468,7 +468,7 @@ func (in *RecordInitParameters) DeepCopyInto(out *RecordInitParameters) {
 	}
 	if in.TTLSec != nil {
 		in, out := &in.TTLSec, &out.TTLSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tag != nil {
@@ -483,7 +483,7 @@ func (in *RecordInitParameters) DeepCopyInto(out *RecordInitParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -535,7 +535,7 @@ func (in *RecordObservation) DeepCopyInto(out *RecordObservation) {
 	*out = *in
 	if in.DomainID != nil {
 		in, out := &in.DomainID, &out.DomainID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -550,12 +550,12 @@ func (in *RecordObservation) DeepCopyInto(out *RecordObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Priority != nil {
 		in, out := &in.Priority, &out.Priority
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Protocol != nil {
@@ -575,7 +575,7 @@ func (in *RecordObservation) DeepCopyInto(out *RecordObservation) {
 	}
 	if in.TTLSec != nil {
 		in, out := &in.TTLSec, &out.TTLSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tag != nil {
@@ -590,7 +590,7 @@ func (in *RecordObservation) DeepCopyInto(out *RecordObservation) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -610,7 +610,7 @@ func (in *RecordParameters) DeepCopyInto(out *RecordParameters) {
 	*out = *in
 	if in.DomainID != nil {
 		in, out := &in.DomainID, &out.DomainID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DomainIDRef != nil {
@@ -630,12 +630,12 @@ func (in *RecordParameters) DeepCopyInto(out *RecordParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Priority != nil {
 		in, out := &in.Priority, &out.Priority
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Protocol != nil {
@@ -655,7 +655,7 @@ func (in *RecordParameters) DeepCopyInto(out *RecordParameters) {
 	}
 	if in.TTLSec != nil {
 		in, out := &in.TTLSec, &out.TTLSec
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tag != nil {
@@ -670,7 +670,7 @@ func (in *RecordParameters) DeepCopyInto(out *RecordParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }

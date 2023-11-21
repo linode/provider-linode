@@ -29,11 +29,11 @@ type VolumeInitParameters struct {
 
 	// Size of the Volume in GB.
 	// Size of the Volume in GB
-	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The ID of a Linode Volume to clone. NOTE: Cloned volumes must be in the same region as the source volume.
 	// The ID of a volume to clone.
-	SourceVolumeID *int64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
+	SourceVolumeID *float64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
@@ -54,7 +54,7 @@ type VolumeObservation struct {
 
 	// The ID of a Linode Instance where the Volume should be attached.
 	// The Linode ID where the Volume should be attached.
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The region where this volume will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here. This field is optional for cloned volumes. Changing .
 	// The region where this volume will be deployed.
@@ -62,11 +62,11 @@ type VolumeObservation struct {
 
 	// Size of the Volume in GB.
 	// Size of the Volume in GB
-	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The ID of a Linode Volume to clone. NOTE: Cloned volumes must be in the same region as the source volume.
 	// The ID of a volume to clone.
-	SourceVolumeID *int64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
+	SourceVolumeID *float64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
 
 	// The status of the Linode Volume. (creating, active, resizing, contact_support)
 	// The status of the volume, indicating the current readiness state.
@@ -88,7 +88,7 @@ type VolumeParameters struct {
 	// The Linode ID where the Volume should be attached.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance in instance to populate linodeId.
 	// +kubebuilder:validation:Optional
@@ -106,12 +106,12 @@ type VolumeParameters struct {
 	// Size of the Volume in GB.
 	// Size of the Volume in GB
 	// +kubebuilder:validation:Optional
-	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// The ID of a Linode Volume to clone. NOTE: Cloned volumes must be in the same region as the source volume.
 	// The ID of a volume to clone.
 	// +kubebuilder:validation:Optional
-	SourceVolumeID *int64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
+	SourceVolumeID *float64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.

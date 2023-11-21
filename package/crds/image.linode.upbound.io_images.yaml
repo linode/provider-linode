@@ -66,6 +66,9 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  cloudInit:
+                    description: Whether this image supports cloud-init.
+                    type: boolean
                   description:
                     description: A detailed description of this Image. A detailed
                       description of this Image.
@@ -74,8 +77,7 @@ spec:
                     description: The ID of the Linode Disk that this Image will be
                       created from. The ID of the Linode Disk that this Image will
                       be created from.
-                    format: int64
-                    type: integer
+                    type: number
                   diskIdRef:
                     description: Reference to a Disk in instance to populate diskId.
                     properties:
@@ -165,8 +167,7 @@ spec:
                   linodeId:
                     description: The ID of the Linode that this Image will be created
                       from. The ID of the Linode that this Image will be created from.
-                    format: int64
-                    type: integer
+                    type: number
                   linodeIdRef:
                     description: Reference to a Instance in instance to populate linodeId.
                     properties:
@@ -257,6 +258,9 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
+                  cloudInit:
+                    description: Whether this image supports cloud-init.
+                    type: boolean
                   description:
                     description: A detailed description of this Image. A detailed
                       description of this Image.
@@ -449,6 +453,14 @@ spec:
             properties:
               atProvider:
                 properties:
+                  capabilities:
+                    description: The capabilities of this Image.
+                    items:
+                      type: string
+                    type: array
+                  cloudInit:
+                    description: Whether this image supports cloud-init.
+                    type: boolean
                   created:
                     description: When this Image was created. When this Image was
                       created.
@@ -470,8 +482,7 @@ spec:
                     description: The ID of the Linode Disk that this Image will be
                       created from. The ID of the Linode Disk that this Image will
                       be created from.
-                    format: int64
-                    type: integer
+                    type: number
                   expiry:
                     description: Only Images created automatically (from a deleted
                       Linode; type=automatic) will expire. Only Images created automatically
@@ -502,8 +513,7 @@ spec:
                   linodeId:
                     description: The ID of the Linode that this Image will be created
                       from. The ID of the Linode that this Image will be created from.
-                    format: int64
-                    type: integer
+                    type: number
                   region:
                     description: The region of the image. See all regions here. The
                       region to upload to.
@@ -512,8 +522,7 @@ spec:
                     description: The minimum size this Image needs to deploy. Size
                       is in MB. The minimum size this Image needs to deploy. Size
                       is in MB.
-                    format: int64
-                    type: integer
+                    type: number
                   status:
                     description: The current status of this Image.
                     type: string

@@ -21,7 +21,10 @@ type NodebalancerInitParameters struct {
 
 	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
-	ClientConnThrottle *int64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+
+	// ID for the firewall you'd like to use with this NodeBalancer.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
 	// The label of the Linode NodeBalancer
 	// The label of the Linode NodeBalancer.
@@ -40,11 +43,14 @@ type NodebalancerObservation struct {
 
 	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
-	ClientConnThrottle *int64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
 
 	// When this NodeBalancer was created
 	// When this NodeBalancer was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
+
+	// ID for the firewall you'd like to use with this NodeBalancer.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
 	// This NodeBalancer's hostname, ending with .nodebalancer.linode.com
 	// This NodeBalancer's hostname, ending with .nodebalancer.linode.com
@@ -85,7 +91,11 @@ type NodebalancerParameters struct {
 	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
 	// +kubebuilder:validation:Optional
-	ClientConnThrottle *int64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+
+	// ID for the firewall you'd like to use with this NodeBalancer.
+	// +kubebuilder:validation:Optional
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
 	// The label of the Linode NodeBalancer
 	// The label of the Linode NodeBalancer.
@@ -109,15 +119,12 @@ type TransferInitParameters struct {
 type TransferObservation struct {
 
 	// The total transfer, in MB, used by this NodeBalancer for the current month
-	// The total transfer, in MB, used by this NodeBalancer this month
 	In *float64 `json:"in,omitempty" tf:"in,omitempty"`
 
 	// The total inbound transfer, in MB, used for this NodeBalancer for the current month
-	// The total inbound transfer, in MB, used for this NodeBalancer this month
 	Out *float64 `json:"out,omitempty" tf:"out,omitempty"`
 
 	// The total outbound transfer, in MB, used for this NodeBalancer for the current month
-	// The total outbound transfer, in MB, used for this NodeBalancer this month
 	Total *float64 `json:"total,omitempty" tf:"total,omitempty"`
 }
 
@@ -159,9 +166,8 @@ type NodebalancerStatus struct {
 type Nodebalancer struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
-	Spec   NodebalancerSpec   `json:"spec"`
-	Status NodebalancerStatus `json:"status,omitempty"`
+	Spec              NodebalancerSpec   `json:"spec"`
+	Status            NodebalancerStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

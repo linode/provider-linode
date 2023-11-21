@@ -55,12 +55,12 @@ func (in *VolumeInitParameters) DeepCopyInto(out *VolumeInitParameters) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.SourceVolumeID != nil {
 		in, out := &in.SourceVolumeID, &out.SourceVolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {
@@ -138,7 +138,7 @@ func (in *VolumeObservation) DeepCopyInto(out *VolumeObservation) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Region != nil {
@@ -148,12 +148,12 @@ func (in *VolumeObservation) DeepCopyInto(out *VolumeObservation) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.SourceVolumeID != nil {
 		in, out := &in.SourceVolumeID, &out.SourceVolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -194,7 +194,7 @@ func (in *VolumeParameters) DeepCopyInto(out *VolumeParameters) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.LinodeIDRef != nil {
@@ -214,12 +214,12 @@ func (in *VolumeParameters) DeepCopyInto(out *VolumeParameters) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.SourceVolumeID != nil {
 		in, out := &in.SourceVolumeID, &out.SourceVolumeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Tags != nil {

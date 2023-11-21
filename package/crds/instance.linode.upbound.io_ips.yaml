@@ -69,13 +69,13 @@ spec:
                   applyImmediately:
                     description: If true, the instance will be rebooted to update
                       network interfaces. If true, the instance will be rebooted to
-                      update network interfaces.
+                      update network interfaces. This functionality is not affected
+                      by the `skip_implicit_reboots` provider argument.
                     type: boolean
                   linodeId:
                     description: The ID of the Linode to allocate an IPv4 address
                       for. The ID of the Linode to allocate an IPv4 address for.
-                    format: int64
-                    type: integer
+                    type: number
                   linodeIdRef:
                     description: Reference to a Instance to populate linodeId.
                     properties:
@@ -246,7 +246,8 @@ spec:
                   applyImmediately:
                     description: If true, the instance will be rebooted to update
                       network interfaces. If true, the instance will be rebooted to
-                      update network interfaces.
+                      update network interfaces. This functionality is not affected
+                      by the `skip_implicit_reboots` provider argument.
                     type: boolean
                   public:
                     description: Whether the IPv4 address is public or private. Defaults
@@ -424,7 +425,8 @@ spec:
                   applyImmediately:
                     description: If true, the instance will be rebooted to update
                       network interfaces. If true, the instance will be rebooted to
-                      update network interfaces.
+                      update network interfaces. This functionality is not affected
+                      by the `skip_implicit_reboots` provider argument.
                     type: boolean
                   gateway:
                     description: The default gateway for this address The default
@@ -435,13 +437,11 @@ spec:
                   linodeId:
                     description: The ID of the Linode to allocate an IPv4 address
                       for. The ID of the Linode to allocate an IPv4 address for.
-                    format: int64
-                    type: integer
+                    type: number
                   prefix:
                     description: The number of bits set in the subnet mask. The number
                       of bits set in the subnet mask.
-                    format: int64
-                    type: integer
+                    type: number
                   public:
                     description: Whether the IPv4 address is public or private. Defaults
                       to true. Whether the IPv4 address is public or private.

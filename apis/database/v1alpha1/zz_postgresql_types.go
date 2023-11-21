@@ -25,14 +25,14 @@ type PostgreSQLInitParameters struct {
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
 	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
-	ClusterSize *int64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
 
 	// Whether the Managed Databases is encrypted. (default false)
 	// Whether the Managed Databases is encrypted.
 	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
-	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// A unique, user-defined string referring to the Managed Database.
@@ -71,7 +71,7 @@ type PostgreSQLObservation struct {
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
 	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
-	ClusterSize *int64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
 
 	// When this Managed Database was created.
 	// When this Managed Database was created.
@@ -86,7 +86,7 @@ type PostgreSQLObservation struct {
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
-	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// The primary host for the Managed Database.
@@ -105,7 +105,7 @@ type PostgreSQLObservation struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The access port for this Managed Database.
-	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The region to use for the Managed Database.
 	// The region to use for the Managed Database.
@@ -153,7 +153,7 @@ type PostgreSQLParameters struct {
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
 	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
 	// +kubebuilder:validation:Optional
-	ClusterSize *int64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
 
 	// Whether the Managed Databases is encrypted. (default false)
 	// Whether the Managed Databases is encrypted.
@@ -161,7 +161,7 @@ type PostgreSQLParameters struct {
 	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. postgresql/13.2)
-	// The Managed Database engine in engine/version format. (e.g. mongodb/4.4.10)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
 	// +kubebuilder:validation:Optional
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
@@ -208,7 +208,7 @@ type PostgreSQLUpdatesInitParameters struct {
 
 	// The maximum maintenance window time in hours. (1..3)
 	// The maximum maintenance window time in hours.
-	Duration *int64 `json:"duration,omitempty" tf:"duration,omitempty"`
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
 	// Whether maintenance occurs on a weekly or monthly basis.
@@ -216,11 +216,11 @@ type PostgreSQLUpdatesInitParameters struct {
 
 	// The hour to begin maintenance based in UTC time. (0..23)
 	// The hour to begin maintenance based in UTC time.
-	HourOfDay *int64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
 
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
-	WeekOfMonth *int64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
+	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
 type PostgreSQLUpdatesObservation struct {
@@ -231,7 +231,7 @@ type PostgreSQLUpdatesObservation struct {
 
 	// The maximum maintenance window time in hours. (1..3)
 	// The maximum maintenance window time in hours.
-	Duration *int64 `json:"duration,omitempty" tf:"duration,omitempty"`
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
 	// Whether maintenance occurs on a weekly or monthly basis.
@@ -239,11 +239,11 @@ type PostgreSQLUpdatesObservation struct {
 
 	// The hour to begin maintenance based in UTC time. (0..23)
 	// The hour to begin maintenance based in UTC time.
-	HourOfDay *int64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
 
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
-	WeekOfMonth *int64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
+	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
 type PostgreSQLUpdatesParameters struct {
@@ -256,7 +256,7 @@ type PostgreSQLUpdatesParameters struct {
 	// The maximum maintenance window time in hours. (1..3)
 	// The maximum maintenance window time in hours.
 	// +kubebuilder:validation:Optional
-	Duration *int64 `json:"duration" tf:"duration,omitempty"`
+	Duration *float64 `json:"duration" tf:"duration,omitempty"`
 
 	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
 	// Whether maintenance occurs on a weekly or monthly basis.
@@ -266,12 +266,12 @@ type PostgreSQLUpdatesParameters struct {
 	// The hour to begin maintenance based in UTC time. (0..23)
 	// The hour to begin maintenance based in UTC time.
 	// +kubebuilder:validation:Optional
-	HourOfDay *int64 `json:"hourOfDay" tf:"hour_of_day,omitempty"`
+	HourOfDay *float64 `json:"hourOfDay" tf:"hour_of_day,omitempty"`
 
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
 	// +kubebuilder:validation:Optional
-	WeekOfMonth *int64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
+	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
 }
 
 // PostgreSQLSpec defines the desired state of PostgreSQL

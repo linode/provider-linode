@@ -71,8 +71,7 @@ spec:
                     description: The ID of the Linode to assign this range to. This
                       field may be updated to reassign the IPv6 range. The ID of the
                       Linode to assign this range to.
-                    format: int64
-                    type: integer
+                    type: number
                   linodeIdRef:
                     description: Reference to a Instance in instance to populate linodeId.
                     properties:
@@ -149,8 +148,7 @@ spec:
                   prefixLength:
                     description: The prefix length of the IPv6 range. The prefix length
                       of the IPv6 range.
-                    format: int64
-                    type: integer
+                    type: number
                   routeTarget:
                     description: The IPv6 SLAAC address to assign this range to. The
                       IPv6 SLAAC address to assign this range to.
@@ -171,8 +169,7 @@ spec:
                   prefixLength:
                     description: The prefix length of the IPv6 range. The prefix length
                       of the IPv6 range.
-                    format: int64
-                    type: integer
+                    type: number
                   routeTarget:
                     description: The IPv6 SLAAC address to assign this range to. The
                       IPv6 SLAAC address to assign this range to.
@@ -358,21 +355,18 @@ spec:
                     description: The ID of the Linode to assign this range to. This
                       field may be updated to reassign the IPv6 range. The ID of the
                       Linode to assign this range to.
-                    format: int64
-                    type: integer
+                    type: number
                   linodes:
                     description: A list of Linodes targeted by this IPv6 range. Includes
                       Linodes with IP sharing. A list of Linodes targeted by this
-                      IPv6 range. Includes Linodes with IP sharing.
+                      IPv6 range.Includes Linodes with IP sharing.
                     items:
-                      format: int64
-                      type: integer
+                      type: number
                     type: array
                   prefixLength:
                     description: The prefix length of the IPv6 range. The prefix length
                       of the IPv6 range.
-                    format: int64
-                    type: integer
+                    type: number
                   range:
                     description: The IPv6 range of addresses in this pool. The IPv6
                       range of addresses in this pool.

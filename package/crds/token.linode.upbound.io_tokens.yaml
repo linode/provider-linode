@@ -67,15 +67,15 @@ spec:
               forProvider:
                 properties:
                   expiry:
-                    description: When this token will expire. Personal Access Tokens
+                    description: 'When this token will expire. Personal Access Tokens
                       cannot be renewed, so after this time the token will be completely
                       unusable and a new token will need to be generated. Tokens may
-                      be created with 'null' as their expiry and will never expire
+                      be created with ''null'' as their expiry and will never expire
                       unless revoked. When this token will expire. Personal Access
                       Tokens cannot be renewed, so after this time the token will
                       be completely unusable and a new token will need to be generated.
-                      Tokens may be created with 'null' as their expiry and will never
-                      expire unless revoked.
+                      Tokens may be created with ''null'' as their expiry and will
+                      never expire unless revoked. Format: 2006-01-02T15:04:05Z'
                     type: string
                   label:
                     description: A label for the Token. The label of the Linode Token.
@@ -90,6 +90,9 @@ spec:
                       of the Account the token can be used to access. Many command-line
                       tools, such as the Linode CLI, require tokens with access to
                       *. Tokens with more restrictive scopes are generally more secure.
+                      Multiple scopes are separated by a space character (e.g., "databases:read_only
+                      events:read_only"). You can find the list of available scopes
+                      on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
                     type: string
                 type: object
               initProvider:
@@ -105,15 +108,15 @@ spec:
                   like an autoscaler.
                 properties:
                   expiry:
-                    description: When this token will expire. Personal Access Tokens
+                    description: 'When this token will expire. Personal Access Tokens
                       cannot be renewed, so after this time the token will be completely
                       unusable and a new token will need to be generated. Tokens may
-                      be created with 'null' as their expiry and will never expire
+                      be created with ''null'' as their expiry and will never expire
                       unless revoked. When this token will expire. Personal Access
                       Tokens cannot be renewed, so after this time the token will
                       be completely unusable and a new token will need to be generated.
-                      Tokens may be created with 'null' as their expiry and will never
-                      expire unless revoked.
+                      Tokens may be created with ''null'' as their expiry and will
+                      never expire unless revoked. Format: 2006-01-02T15:04:05Z'
                     type: string
                   label:
                     description: A label for the Token. The label of the Linode Token.
@@ -128,6 +131,9 @@ spec:
                       of the Account the token can be used to access. Many command-line
                       tools, such as the Linode CLI, require tokens with access to
                       *. Tokens with more restrictive scopes are generally more secure.
+                      Multiple scopes are separated by a space character (e.g., "databases:read_only
+                      events:read_only"). You can find the list of available scopes
+                      on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
                     type: string
                 type: object
               managementPolicies:
@@ -305,15 +311,15 @@ spec:
                       this token was created.
                     type: string
                   expiry:
-                    description: When this token will expire. Personal Access Tokens
+                    description: 'When this token will expire. Personal Access Tokens
                       cannot be renewed, so after this time the token will be completely
                       unusable and a new token will need to be generated. Tokens may
-                      be created with 'null' as their expiry and will never expire
+                      be created with ''null'' as their expiry and will never expire
                       unless revoked. When this token will expire. Personal Access
                       Tokens cannot be renewed, so after this time the token will
                       be completely unusable and a new token will need to be generated.
-                      Tokens may be created with 'null' as their expiry and will never
-                      expire unless revoked.
+                      Tokens may be created with ''null'' as their expiry and will
+                      never expire unless revoked. Format: 2006-01-02T15:04:05Z'
                     type: string
                   id:
                     type: string
@@ -330,6 +336,9 @@ spec:
                       of the Account the token can be used to access. Many command-line
                       tools, such as the Linode CLI, require tokens with access to
                       *. Tokens with more restrictive scopes are generally more secure.
+                      Multiple scopes are separated by a space character (e.g., "databases:read_only
+                      events:read_only"). You can find the list of available scopes
+                      on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
                     type: string
                 type: object
               conditions:

@@ -100,8 +100,7 @@ spec:
                   linodeId:
                     description: The ID of the Linode to create this Disk under. The
                       ID of the Linode to assign this disk to.
-                    format: int64
-                    type: integer
+                    type: number
                   linodeIdRef:
                     description: Reference to a Instance to populate linodeId.
                     properties:
@@ -198,8 +197,7 @@ spec:
                   size:
                     description: 'The size of the Disk in MB. NOTE: Resizing a disk
                       will trigger a Linode reboot. The size of the Disk in MB.'
-                    format: int64
-                    type: integer
+                    type: number
                   stackscriptDataSecretRef:
                     description: An object containing responses to any User Defined
                       Fields present in the StackScript being deployed to this Disk.
@@ -224,8 +222,7 @@ spec:
                       to be run during deployment of this Disk. A StackScript ID that
                       will cause the referenced StackScript to be run during deployment
                       of this Linode.
-                    format: int64
-                    type: integer
+                    type: number
                   stackscriptIdRef:
                     description: Reference to a Stackscript in stackscript to populate
                       stackscriptId.
@@ -347,8 +344,7 @@ spec:
                   size:
                     description: 'The size of the Disk in MB. NOTE: Resizing a disk
                       will trigger a Linode reboot. The size of the Disk in MB.'
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -562,20 +558,17 @@ spec:
                   linodeId:
                     description: The ID of the Linode to create this Disk under. The
                       ID of the Linode to assign this disk to.
-                    format: int64
-                    type: integer
+                    type: number
                   size:
                     description: 'The size of the Disk in MB. NOTE: Resizing a disk
                       will trigger a Linode reboot. The size of the Disk in MB.'
-                    format: int64
-                    type: integer
+                    type: number
                   stackscriptId:
                     description: A StackScript ID that will cause the referenced StackScript
                       to be run during deployment of this Disk. A StackScript ID that
                       will cause the referenced StackScript to be run during deployment
                       of this Linode.
-                    format: int64
-                    type: integer
+                    type: number
                   status:
                     description: A brief description of this Disk's current state.
                       A brief description of this Disk's current state.

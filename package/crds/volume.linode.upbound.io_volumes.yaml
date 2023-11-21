@@ -73,8 +73,7 @@ spec:
                   linodeId:
                     description: The ID of a Linode Instance where the Volume should
                       be attached. The Linode ID where the Volume should be attached.
-                    format: int64
-                    type: integer
+                    type: number
                   linodeIdRef:
                     description: Reference to a Instance in instance to populate linodeId.
                     properties:
@@ -156,14 +155,12 @@ spec:
                     type: string
                   size:
                     description: Size of the Volume in GB. Size of the Volume in GB
-                    format: int64
-                    type: integer
+                    type: number
                   sourceVolumeId:
                     description: 'The ID of a Linode Volume to clone. NOTE: Cloned
                       volumes must be in the same region as the source volume. The
                       ID of a volume to clone.'
-                    format: int64
-                    type: integer
+                    type: number
                   tags:
                     description: A list of tags applied to this object. Tags are for
                       organizational purposes only. An array of tags applied to this
@@ -196,14 +193,12 @@ spec:
                     type: string
                   size:
                     description: Size of the Volume in GB. Size of the Volume in GB
-                    format: int64
-                    type: integer
+                    type: number
                   sourceVolumeId:
                     description: 'The ID of a Linode Volume to clone. NOTE: Cloned
                       volumes must be in the same region as the source volume. The
                       ID of a volume to clone.'
-                    format: int64
-                    type: integer
+                    type: number
                   tags:
                     description: A list of tags applied to this object. Tags are for
                       organizational purposes only. An array of tags applied to this
@@ -398,8 +393,7 @@ spec:
                   linodeId:
                     description: The ID of a Linode Instance where the Volume should
                       be attached. The Linode ID where the Volume should be attached.
-                    format: int64
-                    type: integer
+                    type: number
                   region:
                     description: The region where this volume will be deployed.  Examples
                       are "us-east", "us-west", "ap-south", etc. See all regions here.
@@ -408,14 +402,12 @@ spec:
                     type: string
                   size:
                     description: Size of the Volume in GB. Size of the Volume in GB
-                    format: int64
-                    type: integer
+                    type: number
                   sourceVolumeId:
                     description: 'The ID of a Linode Volume to clone. NOTE: Cloned
                       volumes must be in the same region as the source volume. The
                       ID of a volume to clone.'
-                    format: int64
-                    type: integer
+                    type: number
                   status:
                     description: The status of the Linode Volume. (creating, active,
                       resizing, contact_support) The status of the volume, indicating

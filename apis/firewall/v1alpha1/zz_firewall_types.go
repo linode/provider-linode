@@ -23,23 +23,18 @@ type DevicesInitParameters struct {
 type DevicesObservation struct {
 
 	// The ID of the underlying entity this device references (i.e. the Linode's ID).
-	// The ID of the underlying entity for the firewall device (e.g. the Linode's ID).
-	EntityID *int64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
+	EntityID *float64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
 
 	// The ID of the Firewall.
-	// The ID of the firewall device.
-	ID *int64 `json:"id,omitempty" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// This Firewall's unique label.
-	// The label of the underlying entity for the firewall device.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The type of Firewall Device.
-	// The type of firewall device.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// The URL of the underlying entity this device references.
-	// The URL of the underlying entity for the firewall device.
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 }
 
@@ -63,6 +58,10 @@ type FirewallInitParameters struct {
 	// The label for the Firewall. For display purposes only. If no label is provided, a default will be assigned.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
+	// The IDs of NodeBalancers to apply this firewall to.
+	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
+
 	// A firewall rule that specifies what outbound network traffic is allowed.
 	Outbound []OutboundInitParameters `json:"outbound,omitempty" tf:"outbound,omitempty"`
 
@@ -76,6 +75,9 @@ type FirewallInitParameters struct {
 }
 
 type FirewallObservation struct {
+
+	// When this firewall was created
+	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
 	// The devices associated with this firewall.
 	Devices []DevicesObservation `json:"devices,omitempty" tf:"devices,omitempty"`
@@ -100,7 +102,11 @@ type FirewallObservation struct {
 
 	// A list of IDs of Linodes this Firewall should govern network traffic for.
 	// The IDs of Linodes to apply this firewall to.
-	Linodes []*int64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+
+	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
+	// The IDs of NodeBalancers to apply this firewall to.
+	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
 	Outbound []OutboundObservation `json:"outbound,omitempty" tf:"outbound,omitempty"`
@@ -116,6 +122,9 @@ type FirewallObservation struct {
 	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// When this firewall was last updated
+	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 }
 
 type FirewallParameters struct {
@@ -143,7 +152,7 @@ type FirewallParameters struct {
 	// The IDs of Linodes to apply this firewall to.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
-	Linodes []*int64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// References to Instance in instance to populate linodes.
 	// +kubebuilder:validation:Optional
@@ -152,6 +161,11 @@ type FirewallParameters struct {
 	// Selector for a list of Instance in instance to populate linodes.
 	// +kubebuilder:validation:Optional
 	LinodesSelector *v1.Selector `json:"linodesSelector,omitempty" tf:"-"`
+
+	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
+	// The IDs of NodeBalancers to apply this firewall to.
+	// +kubebuilder:validation:Optional
+	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
 	// +kubebuilder:validation:Optional
@@ -175,7 +189,7 @@ type InboundInitParameters struct {
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
-	// A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.
@@ -202,7 +216,7 @@ type InboundObservation struct {
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
-	// A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.
@@ -230,7 +244,7 @@ type InboundParameters struct {
 	Action *string `json:"action" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
-	// A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
 	// +kubebuilder:validation:Optional
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
@@ -262,7 +276,7 @@ type OutboundInitParameters struct {
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
-	// A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.
@@ -289,7 +303,7 @@ type OutboundObservation struct {
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
-	// A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.
@@ -317,7 +331,7 @@ type OutboundParameters struct {
 	Action *string `json:"action" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
-	// A list of IP addresses, CIDR blocks, or 0.0.0.0/0 (to allow all) this rule applies to.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
 	// +kubebuilder:validation:Optional
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 

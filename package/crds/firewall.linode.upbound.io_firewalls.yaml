@@ -87,9 +87,8 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
-                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
-                            to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
@@ -132,8 +131,7 @@ spec:
                       network traffic for. The IDs of Linodes to apply this firewall
                       to.
                     items:
-                      format: int64
-                      type: integer
+                      type: number
                     type: array
                   linodesRefs:
                     description: References to Instance in instance to populate linodes.
@@ -212,6 +210,13 @@ spec:
                             type: string
                         type: object
                     type: object
+                  nodebalancers:
+                    description: A list of IDs of NodeBalancers this Firewall should
+                      govern network traffic for. The IDs of NodeBalancers to apply
+                      this firewall to.
+                    items:
+                      type: number
+                    type: array
                   outbound:
                     description: A firewall rule that specifies what outbound network
                       traffic is allowed.
@@ -228,9 +233,8 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
-                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
-                            to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
@@ -304,9 +308,8 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
-                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
-                            to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
@@ -344,6 +347,13 @@ spec:
                       For display purposes only. If no label is provided, a default
                       will be assigned.
                     type: string
+                  nodebalancers:
+                    description: A list of IDs of NodeBalancers this Firewall should
+                      govern network traffic for. The IDs of NodeBalancers to apply
+                      this firewall to.
+                    items:
+                      type: number
+                    type: array
                   outbound:
                     description: A firewall rule that specifies what outbound network
                       traffic is allowed.
@@ -360,9 +370,8 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
-                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
-                            to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
@@ -582,33 +591,29 @@ spec:
             properties:
               atProvider:
                 properties:
+                  created:
+                    description: When this firewall was created
+                    type: string
                   devices:
                     description: The devices associated with this firewall.
                     items:
                       properties:
                         entityId:
                           description: The ID of the underlying entity this device
-                            references (i.e. the Linode's ID). The ID of the underlying
-                            entity for the firewall device (e.g. the Linode's ID).
-                          format: int64
-                          type: integer
+                            references (i.e. the Linode's ID).
+                          type: number
                         id:
-                          description: The ID of the Firewall. The ID of the firewall
-                            device.
-                          format: int64
-                          type: integer
+                          description: The ID of the Firewall.
+                          type: number
                         label:
-                          description: This Firewall's unique label. The label of
-                            the underlying entity for the firewall device.
+                          description: This Firewall's unique label.
                           type: string
                         type:
-                          description: The type of Firewall Device. The type of firewall
-                            device.
+                          description: The type of Firewall Device.
                           type: string
                         url:
                           description: The URL of the underlying entity this device
-                            references. The URL of the underlying entity for the firewall
-                            device.
+                            references.
                           type: string
                       type: object
                     type: array
@@ -635,9 +640,8 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
-                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
-                            to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
@@ -680,8 +684,14 @@ spec:
                       network traffic for. The IDs of Linodes to apply this firewall
                       to.
                     items:
-                      format: int64
-                      type: integer
+                      type: number
+                    type: array
+                  nodebalancers:
+                    description: A list of IDs of NodeBalancers this Firewall should
+                      govern network traffic for. The IDs of NodeBalancers to apply
+                      this firewall to.
+                    items:
+                      type: number
                     type: array
                   outbound:
                     description: A firewall rule that specifies what outbound network
@@ -699,9 +709,8 @@ spec:
                           type: string
                         ipv4:
                           description: A list of IPv4 addresses or networks. Must
-                            be in IP/mask (CIDR) format. A list of IP addresses, CIDR
-                            blocks, or 0.0.0.0/0 (to allow all) this rule applies
-                            to.
+                            be in IP/mask (CIDR) format. A list of CIDR blocks or
+                            0.0.0.0/0 (to allow all) this rule applies to.
                           items:
                             type: string
                           type: array
@@ -745,6 +754,9 @@ spec:
                     items:
                       type: string
                     type: array
+                  updated:
+                    description: When this firewall was last updated
+                    type: string
                 type: object
               conditions:
                 description: Conditions of the resource.

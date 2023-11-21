@@ -90,7 +90,7 @@ spec:
                         permissions:
                           description: This Limited Access Key’s permissions for the
                             selected bucket. Changing  (read_write, read_only) This
-                            Limited Access Key’s permissions for the selected bucket.
+                            Limited Access Key's permissions for the selected bucket.
                           type: string
                       type: object
                     type: array
@@ -134,7 +134,7 @@ spec:
                         permissions:
                           description: This Limited Access Key’s permissions for the
                             selected bucket. Changing  (read_write, read_only) This
-                            Limited Access Key’s permissions for the selected bucket.
+                            Limited Access Key's permissions for the selected bucket.
                           type: string
                       type: object
                     type: array
@@ -336,7 +336,7 @@ spec:
                         permissions:
                           description: This Limited Access Key’s permissions for the
                             selected bucket. Changing  (read_write, read_only) This
-                            Limited Access Key’s permissions for the selected bucket.
+                            Limited Access Key's permissions for the selected bucket.
                           type: string
                       type: object
                     type: array

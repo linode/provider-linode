@@ -9,9 +9,11 @@ import (
 	"context"
 	_ "embed"
 
+	tfjson "github.com/hashicorp/terraform-json"
 	"github.com/pkg/errors"
 
 	"github.com/crossplane/upjet/pkg/config"
+	conversiontfjson "github.com/crossplane/upjet/pkg/types/conversion/tfjson"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/linode/terraform-provider-linode/linode"
 
@@ -61,13 +63,34 @@ func externalNameConfig() config.ResourceOption {
 	}
 }
 
+func getProviderSchema(s string) (*schema.Provider, error) {
+	ps := tfjson.ProviderSchemas{}
+	if err := ps.UnmarshalJSON([]byte(s)); err != nil {
+		panic(err)
+	}
+	if len(ps.Schemas) != 1 {
+		return nil, errors.Errorf("there should exactly be 1 provider schema but there are %d", len(ps.Schemas))
+	}
+	var rs map[string]*tfjson.Schema
+	for _, v := range ps.Schemas {
+		rs = v.ResourceSchemas
+		break
+	}
+	return &schema.Provider{
+		ResourcesMap: conversiontfjson.GetV2ResourceMap(rs),
+	}, nil
+}
+
 // GetProvider returns provider configuration
 func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, error) {
 	var p *schema.Provider
 	var err error
 
-	p = linode.Provider()
-
+	if generationProvider {
+		p, err = getProviderSchema(providerSchema)
+	} else {
+		p = linode.Provider()
+	}
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get the Terraform provider schema with generation mode set to %t", generationProvider)
 	}

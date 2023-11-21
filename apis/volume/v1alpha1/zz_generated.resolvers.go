@@ -21,7 +21,7 @@ func (mg *Volume) ResolveReferences(ctx context.Context, c client.Reader) error 
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromIntPtrValue(mg.Spec.ForProvider.LinodeID),
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.LinodeID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.LinodeIDRef,
 		Selector:     mg.Spec.ForProvider.LinodeIDSelector,
@@ -33,7 +33,7 @@ func (mg *Volume) ResolveReferences(ctx context.Context, c client.Reader) error 
 	if err != nil {
 		return errors.Wrap(err, "mg.Spec.ForProvider.LinodeID")
 	}
-	mg.Spec.ForProvider.LinodeID = reference.ToIntPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.LinodeID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.LinodeIDRef = rsp.ResolvedReference
 
 	return nil

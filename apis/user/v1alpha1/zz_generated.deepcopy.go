@@ -17,7 +17,7 @@ func (in *DomainGrantInitParameters) DeepCopyInto(out *DomainGrantInitParameters
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -42,7 +42,7 @@ func (in *DomainGrantObservation) DeepCopyInto(out *DomainGrantObservation) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -67,7 +67,7 @@ func (in *DomainGrantParameters) DeepCopyInto(out *DomainGrantParameters) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -92,7 +92,7 @@ func (in *FirewallGrantInitParameters) DeepCopyInto(out *FirewallGrantInitParame
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -117,7 +117,7 @@ func (in *FirewallGrantObservation) DeepCopyInto(out *FirewallGrantObservation) 
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -142,7 +142,7 @@ func (in *FirewallGrantParameters) DeepCopyInto(out *FirewallGrantParameters) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -392,7 +392,7 @@ func (in *ImageGrantInitParameters) DeepCopyInto(out *ImageGrantInitParameters) 
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -417,7 +417,7 @@ func (in *ImageGrantObservation) DeepCopyInto(out *ImageGrantObservation) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -442,7 +442,7 @@ func (in *ImageGrantParameters) DeepCopyInto(out *ImageGrantParameters) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -467,7 +467,7 @@ func (in *LinodeGrantInitParameters) DeepCopyInto(out *LinodeGrantInitParameters
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -492,7 +492,7 @@ func (in *LinodeGrantObservation) DeepCopyInto(out *LinodeGrantObservation) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -517,7 +517,7 @@ func (in *LinodeGrantParameters) DeepCopyInto(out *LinodeGrantParameters) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -542,7 +542,7 @@ func (in *LongviewGrantInitParameters) DeepCopyInto(out *LongviewGrantInitParame
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -567,7 +567,7 @@ func (in *LongviewGrantObservation) DeepCopyInto(out *LongviewGrantObservation) 
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -592,7 +592,7 @@ func (in *LongviewGrantParameters) DeepCopyInto(out *LongviewGrantParameters) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -617,7 +617,7 @@ func (in *NodebalancerGrantInitParameters) DeepCopyInto(out *NodebalancerGrantIn
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -642,7 +642,7 @@ func (in *NodebalancerGrantObservation) DeepCopyInto(out *NodebalancerGrantObser
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -667,7 +667,7 @@ func (in *NodebalancerGrantParameters) DeepCopyInto(out *NodebalancerGrantParame
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -692,7 +692,7 @@ func (in *StackscriptGrantInitParameters) DeepCopyInto(out *StackscriptGrantInit
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -717,7 +717,7 @@ func (in *StackscriptGrantObservation) DeepCopyInto(out *StackscriptGrantObserva
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -742,7 +742,7 @@ func (in *StackscriptGrantParameters) DeepCopyInto(out *StackscriptGrantParamete
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -1161,7 +1161,7 @@ func (in *VolumeGrantInitParameters) DeepCopyInto(out *VolumeGrantInitParameters
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -1186,7 +1186,7 @@ func (in *VolumeGrantObservation) DeepCopyInto(out *VolumeGrantObservation) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {
@@ -1211,7 +1211,7 @@ func (in *VolumeGrantParameters) DeepCopyInto(out *VolumeGrantParameters) {
 	*out = *in
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Permissions != nil {

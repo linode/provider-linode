@@ -193,13 +193,16 @@ type ConfigInitParameters_2 struct {
 	// Optional field for arbitrary User comments on this Config.
 	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
 
-	// A dictionary of device disks to use as a device map in a Linode’s configuration profile.
+	// Blocks for device disks in a Linode's configuration profile.
+	Device []DeviceInitParameters `json:"device,omitempty" tf:"device,omitempty"`
+
+	// A dictionary of device disks to use as a device map in a Linode's configuration profile.
 	Devices []ConfigDevicesInitParameters `json:"devices,omitempty" tf:"devices,omitempty"`
 
 	// Helpers enabled when booting to this Linode Config.
 	Helpers []ConfigHelpersInitParameters `json:"helpers,omitempty" tf:"helpers,omitempty"`
 
-	// An array of Network Interfaces to add to this Linode’s Configuration Profile.
+	// An array of Network Interfaces to add to this Linode's Configuration Profile.
 	Interface []ConfigInterfaceInitParameters `json:"interface,omitempty" tf:"interface,omitempty"`
 
 	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
@@ -207,12 +210,12 @@ type ConfigInitParameters_2 struct {
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The Config’s label for display purposes only.
+	// The Config's label for display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The memory limit of the Config. Defaults to the total ram of the Linode.
 	// The memory limit of the Linode.
-	MemoryLimit *int64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
+	MemoryLimit *float64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
 
 	// The root device to boot. (default /dev/sda)
 	// The root device to boot. If no value or an invalid value is provided, root device will default to /dev/sda. If the device specified at the root device location is not mounted, the Linode will not boot until a device is mounted.
@@ -285,7 +288,10 @@ type ConfigObservation_2 struct {
 	// Optional field for arbitrary User comments on this Config.
 	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
 
-	// A dictionary of device disks to use as a device map in a Linode’s configuration profile.
+	// Blocks for device disks in a Linode's configuration profile.
+	Device []DeviceObservation `json:"device,omitempty" tf:"device,omitempty"`
+
+	// A dictionary of device disks to use as a device map in a Linode's configuration profile.
 	Devices []ConfigDevicesObservation `json:"devices,omitempty" tf:"devices,omitempty"`
 
 	// Helpers enabled when booting to this Linode Config.
@@ -293,7 +299,7 @@ type ConfigObservation_2 struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// An array of Network Interfaces to add to this Linode’s Configuration Profile.
+	// An array of Network Interfaces to add to this Linode's Configuration Profile.
 	Interface []ConfigInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
 
 	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
@@ -301,16 +307,16 @@ type ConfigObservation_2 struct {
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The Config’s label for display purposes only.
+	// The Config's label for display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of the Linode to create this configuration profile under.
 	// The ID of the Linode to create this configuration profile under.
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The memory limit of the Config. Defaults to the total ram of the Linode.
 	// The memory limit of the Linode.
-	MemoryLimit *int64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
+	MemoryLimit *float64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
 
 	// The root device to boot. (default /dev/sda)
 	// The root device to boot. If no value or an invalid value is provided, root device will default to /dev/sda. If the device specified at the root device location is not mounted, the Linode will not boot until a device is mounted.
@@ -337,7 +343,11 @@ type ConfigParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	Comments *string `json:"comments,omitempty" tf:"comments,omitempty"`
 
-	// A dictionary of device disks to use as a device map in a Linode’s configuration profile.
+	// Blocks for device disks in a Linode's configuration profile.
+	// +kubebuilder:validation:Optional
+	Device []DeviceParameters `json:"device,omitempty" tf:"device,omitempty"`
+
+	// A dictionary of device disks to use as a device map in a Linode's configuration profile.
 	// +kubebuilder:validation:Optional
 	Devices []ConfigDevicesParameters `json:"devices,omitempty" tf:"devices,omitempty"`
 
@@ -345,7 +355,7 @@ type ConfigParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	Helpers []ConfigHelpersParameters `json:"helpers,omitempty" tf:"helpers,omitempty"`
 
-	// An array of Network Interfaces to add to this Linode’s Configuration Profile.
+	// An array of Network Interfaces to add to this Linode's Configuration Profile.
 	// +kubebuilder:validation:Optional
 	Interface []ConfigInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
 
@@ -355,7 +365,7 @@ type ConfigParameters_2 struct {
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The Config’s label for display purposes only.
+	// The Config's label for display purposes only.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
@@ -363,7 +373,7 @@ type ConfigParameters_2 struct {
 	// The ID of the Linode to create this configuration profile under.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance to populate linodeId.
 	// +kubebuilder:validation:Optional
@@ -376,7 +386,7 @@ type ConfigParameters_2 struct {
 	// The memory limit of the Config. Defaults to the total ram of the Linode.
 	// The memory limit of the Linode.
 	// +kubebuilder:validation:Optional
-	MemoryLimit *int64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
+	MemoryLimit *float64 `json:"memoryLimit,omitempty" tf:"memory_limit,omitempty"`
 
 	// The root device to boot. (default /dev/sda)
 	// The root device to boot. If no value or an invalid value is provided, root device will default to /dev/sda. If the device specified at the root device location is not mounted, the Linode will not boot until a device is mounted.
@@ -394,22 +404,67 @@ type ConfigParameters_2 struct {
 	VirtMode *string `json:"virtMode,omitempty" tf:"virt_mode,omitempty"`
 }
 
+type DeviceInitParameters struct {
+
+	// The Disk ID to map to this disk slot
+	DeviceName *string `json:"deviceName,omitempty" tf:"device_name,omitempty"`
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DeviceObservation struct {
+
+	// The Disk ID to map to this disk slot
+	DeviceName *string `json:"deviceName,omitempty" tf:"device_name,omitempty"`
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DeviceParameters struct {
+
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DeviceName *string `json:"deviceName" tf:"device_name,omitempty"`
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
 type DevicesSdaInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdaObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdaParameters struct {
@@ -418,7 +473,7 @@ type DevicesSdaParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -431,25 +486,25 @@ type DevicesSdaParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdbInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdbObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdbParameters struct {
@@ -458,7 +513,7 @@ type DevicesSdbParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -471,25 +526,25 @@ type DevicesSdbParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdcInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdcObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdcParameters struct {
@@ -498,7 +553,7 @@ type DevicesSdcParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -511,25 +566,25 @@ type DevicesSdcParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSddInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSddObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSddParameters struct {
@@ -538,7 +593,7 @@ type DevicesSddParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -551,25 +606,25 @@ type DevicesSddParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdeInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdeObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdeParameters struct {
@@ -578,7 +633,7 @@ type DevicesSdeParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -591,25 +646,25 @@ type DevicesSdeParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdfInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdfObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdfParameters struct {
@@ -618,7 +673,7 @@ type DevicesSdfParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -631,25 +686,25 @@ type DevicesSdfParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdgInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdgObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdgParameters struct {
@@ -658,7 +713,7 @@ type DevicesSdgParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -671,25 +726,25 @@ type DevicesSdgParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdhInitParameters struct {
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdhObservation struct {
 
 	// The Disk ID to map to this device slot
 	// The Disk ID to map to this disk slot
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type DevicesSdhParameters struct {
@@ -698,7 +753,7 @@ type DevicesSdhParameters struct {
 	// The Disk ID to map to this disk slot
 	// +crossplane:generate:reference:type=Disk
 	// +kubebuilder:validation:Optional
-	DiskID *int64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// Reference to a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
@@ -711,7 +766,7 @@ type DevicesSdhParameters struct {
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
-	VolumeID *int64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 // ConfigSpec defines the desired state of Config

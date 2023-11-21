@@ -34,7 +34,7 @@ type SharedIPsObservation struct {
 
 	// The ID of the Linode to share the IPs to.
 	// The ID of the Linode to share these IP addresses with.
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 }
 
 type SharedIPsParameters struct {
@@ -48,7 +48,7 @@ type SharedIPsParameters struct {
 	// The ID of the Linode to share these IP addresses with.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance to populate linodeId.
 	// +kubebuilder:validation:Optional

@@ -460,7 +460,7 @@ func (in *ExpirationInitParameters) DeepCopyInto(out *ExpirationInitParameters) 
 	}
 	if in.Days != nil {
 		in, out := &in.Days, &out.Days
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ExpiredObjectDeleteMarker != nil {
@@ -490,7 +490,7 @@ func (in *ExpirationObservation) DeepCopyInto(out *ExpirationObservation) {
 	}
 	if in.Days != nil {
 		in, out := &in.Days, &out.Days
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ExpiredObjectDeleteMarker != nil {
@@ -520,7 +520,7 @@ func (in *ExpirationParameters) DeepCopyInto(out *ExpirationParameters) {
 	}
 	if in.Days != nil {
 		in, out := &in.Days, &out.Days
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ExpiredObjectDeleteMarker != nil {
@@ -730,7 +730,7 @@ func (in *LifecycleRuleInitParameters) DeepCopyInto(out *LifecycleRuleInitParame
 	*out = *in
 	if in.AbortIncompleteMultipartUploadDays != nil {
 		in, out := &in.AbortIncompleteMultipartUploadDays, &out.AbortIncompleteMultipartUploadDays
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Enabled != nil {
@@ -779,7 +779,7 @@ func (in *LifecycleRuleObservation) DeepCopyInto(out *LifecycleRuleObservation) 
 	*out = *in
 	if in.AbortIncompleteMultipartUploadDays != nil {
 		in, out := &in.AbortIncompleteMultipartUploadDays, &out.AbortIncompleteMultipartUploadDays
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Enabled != nil {
@@ -828,7 +828,7 @@ func (in *LifecycleRuleParameters) DeepCopyInto(out *LifecycleRuleParameters) {
 	*out = *in
 	if in.AbortIncompleteMultipartUploadDays != nil {
 		in, out := &in.AbortIncompleteMultipartUploadDays, &out.AbortIncompleteMultipartUploadDays
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Enabled != nil {
@@ -877,7 +877,7 @@ func (in *NoncurrentVersionExpirationInitParameters) DeepCopyInto(out *Noncurren
 	*out = *in
 	if in.Days != nil {
 		in, out := &in.Days, &out.Days
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -897,7 +897,7 @@ func (in *NoncurrentVersionExpirationObservation) DeepCopyInto(out *NoncurrentVe
 	*out = *in
 	if in.Days != nil {
 		in, out := &in.Days, &out.Days
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -917,7 +917,7 @@ func (in *NoncurrentVersionExpirationParameters) DeepCopyInto(out *NoncurrentVer
 	*out = *in
 	if in.Days != nil {
 		in, out := &in.Days, &out.Days
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }

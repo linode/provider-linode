@@ -79,8 +79,7 @@ spec:
                   databaseId:
                     description: The unique ID of the target database. The ID of the
                       database to manage the allow list for.
-                    format: int64
-                    type: integer
+                    type: number
                   databaseType:
                     description: The unique type of the target database. (mysql, mongodb,
                       postgresql) The type of the  database to manage the allow list
@@ -111,8 +110,7 @@ spec:
                   databaseId:
                     description: The unique ID of the target database. The ID of the
                       database to manage the allow list for.
-                    format: int64
-                    type: integer
+                    type: number
                   databaseType:
                     description: The unique type of the target database. (mysql, mongodb,
                       postgresql) The type of the  database to manage the allow list
@@ -309,8 +307,7 @@ spec:
                   databaseId:
                     description: The unique ID of the target database. The ID of the
                       database to manage the allow list for.
-                    format: int64
-                    type: integer
+                    type: number
                   databaseType:
                     description: The unique type of the target database. (mysql, mongodb,
                       postgresql) The type of the  database to manage the allow list

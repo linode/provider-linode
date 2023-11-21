@@ -103,20 +103,17 @@ spec:
                               max:
                                 description: The maximum number of nodes to autoscale
                                   to. The maximum number of nodes to autoscale to.
-                                format: int64
-                                type: integer
+                                type: number
                               min:
                                 description: The minimum number of nodes to autoscale
                                   to. The minimum number of nodes to autoscale to.
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         count:
                           description: The number of nodes in the Node Pool. The number
                             of nodes in the Node Pool.
-                          format: int64
-                          type: integer
+                          type: number
                         type:
                           description: A Linode Type for all of the nodes in the Node
                             Pool. See all node types here. A Linode Type for all of
@@ -185,20 +182,17 @@ spec:
                               max:
                                 description: The maximum number of nodes to autoscale
                                   to. The maximum number of nodes to autoscale to.
-                                format: int64
-                                type: integer
+                                type: number
                               min:
                                 description: The minimum number of nodes to autoscale
                                   to. The minimum number of nodes to autoscale to.
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         count:
                           description: The number of nodes in the Node Pool. The number
                             of nodes in the Node Pool.
-                          format: int64
-                          type: integer
+                          type: number
                         type:
                           description: A Linode Type for all of the nodes in the Node
                             Pool. See all node types here. A Linode Type for all of
@@ -450,40 +444,32 @@ spec:
                               max:
                                 description: The maximum number of nodes to autoscale
                                   to. The maximum number of nodes to autoscale to.
-                                format: int64
-                                type: integer
+                                type: number
                               min:
                                 description: The minimum number of nodes to autoscale
                                   to. The minimum number of nodes to autoscale to.
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         count:
                           description: The number of nodes in the Node Pool. The number
                             of nodes in the Node Pool.
-                          format: int64
-                          type: integer
+                          type: number
                         id:
                           description: The ID of the cluster. The ID of the Node Pool.
-                          format: int64
-                          type: integer
+                          type: number
                         nodes:
                           description: The nodes in the node pool.
                           items:
                             properties:
                               id:
-                                description: The ID of the cluster. The ID of the
-                                  node.
+                                description: The ID of the cluster.
                                 type: string
                               instanceId:
                                 description: The ID of the underlying Linode instance.
-                                  The ID of the underlying Linode instance.
-                                format: int64
-                                type: integer
+                                type: number
                               status:
-                                description: The status of the cluster. The status
-                                  of the node.
+                                description: The status of the cluster.
                                 type: string
                             type: object
                           type: array

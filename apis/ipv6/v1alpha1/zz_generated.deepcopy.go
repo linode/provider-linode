@@ -45,7 +45,7 @@ func (in *IPv6RangeInitParameters) DeepCopyInto(out *IPv6RangeInitParameters) {
 	*out = *in
 	if in.PrefixLength != nil {
 		in, out := &in.PrefixLength, &out.PrefixLength
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RouteTarget != nil {
@@ -112,23 +112,23 @@ func (in *IPv6RangeObservation) DeepCopyInto(out *IPv6RangeObservation) {
 	}
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Linodes != nil {
 		in, out := &in.Linodes, &out.Linodes
-		*out = make([]*int64, len(*in))
+		*out = make([]*float64, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = new(int64)
+				*out = new(float64)
 				**out = **in
 			}
 		}
 	}
 	if in.PrefixLength != nil {
 		in, out := &in.PrefixLength, &out.PrefixLength
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Range != nil {
@@ -163,7 +163,7 @@ func (in *IPv6RangeParameters) DeepCopyInto(out *IPv6RangeParameters) {
 	*out = *in
 	if in.LinodeID != nil {
 		in, out := &in.LinodeID, &out.LinodeID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.LinodeIDRef != nil {
@@ -178,7 +178,7 @@ func (in *IPv6RangeParameters) DeepCopyInto(out *IPv6RangeParameters) {
 	}
 	if in.PrefixLength != nil {
 		in, out := &in.PrefixLength, &out.PrefixLength
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.RouteTarget != nil {

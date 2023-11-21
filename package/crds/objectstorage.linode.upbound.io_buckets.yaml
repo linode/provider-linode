@@ -218,8 +218,7 @@ spec:
                             a multipart upload when the multipart upload must be completed.
                             Specifies the number of days after initiating a multipart
                             upload when the multipart upload must be completed.
-                          format: int64
-                          type: integer
+                          type: number
                         enabled:
                           description: Specifies whether the lifecycle rule is active.
                             Specifies whether the lifecycle rule is active.
@@ -239,8 +238,7 @@ spec:
                                   creation when the specific rule action takes effect.
                                   Specifies the number of days after object creation
                                   when the specific rule action takes effect.
-                                format: int64
-                                type: integer
+                                type: number
                               expiredObjectDeleteMarker:
                                 description: On a versioned bucket (versioning-enabled
                                   or versioning-suspended bucket), you can add this
@@ -266,8 +264,7 @@ spec:
                                   creation when the specific rule action takes effect.
                                   Specifies the number of days non-current object
                                   versions expire.
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         prefix:
@@ -406,8 +403,7 @@ spec:
                             a multipart upload when the multipart upload must be completed.
                             Specifies the number of days after initiating a multipart
                             upload when the multipart upload must be completed.
-                          format: int64
-                          type: integer
+                          type: number
                         enabled:
                           description: Specifies whether the lifecycle rule is active.
                             Specifies whether the lifecycle rule is active.
@@ -427,8 +423,7 @@ spec:
                                   creation when the specific rule action takes effect.
                                   Specifies the number of days after object creation
                                   when the specific rule action takes effect.
-                                format: int64
-                                type: integer
+                                type: number
                               expiredObjectDeleteMarker:
                                 description: On a versioned bucket (versioning-enabled
                                   or versioning-suspended bucket), you can add this
@@ -454,8 +449,7 @@ spec:
                                   creation when the specific rule action takes effect.
                                   Specifies the number of days non-current object
                                   versions expire.
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         prefix:
@@ -732,8 +726,7 @@ spec:
                             a multipart upload when the multipart upload must be completed.
                             Specifies the number of days after initiating a multipart
                             upload when the multipart upload must be completed.
-                          format: int64
-                          type: integer
+                          type: number
                         enabled:
                           description: Specifies whether the lifecycle rule is active.
                             Specifies whether the lifecycle rule is active.
@@ -753,8 +746,7 @@ spec:
                                   creation when the specific rule action takes effect.
                                   Specifies the number of days after object creation
                                   when the specific rule action takes effect.
-                                format: int64
-                                type: integer
+                                type: number
                               expiredObjectDeleteMarker:
                                 description: On a versioned bucket (versioning-enabled
                                   or versioning-suspended bucket), you can add this
@@ -780,8 +772,7 @@ spec:
                                   creation when the specific rule action takes effect.
                                   Specifies the number of days non-current object
                                   versions expire.
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         prefix:

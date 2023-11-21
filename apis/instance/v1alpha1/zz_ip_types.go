@@ -20,7 +20,7 @@ import (
 type IPInitParameters struct {
 
 	// If true, the instance will be rebooted to update network interfaces.
-	// If true, the instance will be rebooted to update network interfaces.
+	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
 	// Whether the IPv4 address is public or private. Defaults to true.
@@ -35,7 +35,7 @@ type IPObservation struct {
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
 	// If true, the instance will be rebooted to update network interfaces.
-	// If true, the instance will be rebooted to update network interfaces.
+	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
 	// The default gateway for this address
@@ -46,11 +46,11 @@ type IPObservation struct {
 
 	// The ID of the Linode to allocate an IPv4 address for.
 	// The ID of the Linode to allocate an IPv4 address for.
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The number of bits set in the subnet mask.
 	// The number of bits set in the subnet mask.
-	Prefix *int64 `json:"prefix,omitempty" tf:"prefix,omitempty"`
+	Prefix *float64 `json:"prefix,omitempty" tf:"prefix,omitempty"`
 
 	// Whether the IPv4 address is public or private. Defaults to true.
 	// Whether the IPv4 address is public or private.
@@ -76,7 +76,7 @@ type IPObservation struct {
 type IPParameters struct {
 
 	// If true, the instance will be rebooted to update network interfaces.
-	// If true, the instance will be rebooted to update network interfaces.
+	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	// +kubebuilder:validation:Optional
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
@@ -84,7 +84,7 @@ type IPParameters struct {
 	// The ID of the Linode to allocate an IPv4 address for.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance to populate linodeId.
 	// +kubebuilder:validation:Optional

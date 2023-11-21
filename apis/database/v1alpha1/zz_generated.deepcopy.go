@@ -55,7 +55,7 @@ func (in *AccessControlsInitParameters) DeepCopyInto(out *AccessControlsInitPara
 	}
 	if in.DatabaseID != nil {
 		in, out := &in.DatabaseID, &out.DatabaseID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DatabaseType != nil {
@@ -123,7 +123,7 @@ func (in *AccessControlsObservation) DeepCopyInto(out *AccessControlsObservation
 	}
 	if in.DatabaseID != nil {
 		in, out := &in.DatabaseID, &out.DatabaseID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DatabaseType != nil {
@@ -164,7 +164,7 @@ func (in *AccessControlsParameters) DeepCopyInto(out *AccessControlsParameters) 
 	}
 	if in.DatabaseID != nil {
 		in, out := &in.DatabaseID, &out.DatabaseID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DatabaseType != nil {
@@ -262,7 +262,7 @@ func (in *MySQLInitParameters) DeepCopyInto(out *MySQLInitParameters) {
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Encrypted != nil {
@@ -367,7 +367,7 @@ func (in *MySQLObservation) DeepCopyInto(out *MySQLObservation) {
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Created != nil {
@@ -480,7 +480,7 @@ func (in *MySQLParameters) DeepCopyInto(out *MySQLParameters) {
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Encrypted != nil {
@@ -615,7 +615,7 @@ func (in *PostgreSQLInitParameters) DeepCopyInto(out *PostgreSQLInitParameters) 
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Encrypted != nil {
@@ -725,7 +725,7 @@ func (in *PostgreSQLObservation) DeepCopyInto(out *PostgreSQLObservation) {
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Created != nil {
@@ -770,7 +770,7 @@ func (in *PostgreSQLObservation) DeepCopyInto(out *PostgreSQLObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Region != nil {
@@ -848,7 +848,7 @@ func (in *PostgreSQLParameters) DeepCopyInto(out *PostgreSQLParameters) {
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Encrypted != nil {
@@ -955,7 +955,7 @@ func (in *PostgreSQLUpdatesInitParameters) DeepCopyInto(out *PostgreSQLUpdatesIn
 	}
 	if in.Duration != nil {
 		in, out := &in.Duration, &out.Duration
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Frequency != nil {
@@ -965,12 +965,12 @@ func (in *PostgreSQLUpdatesInitParameters) DeepCopyInto(out *PostgreSQLUpdatesIn
 	}
 	if in.HourOfDay != nil {
 		in, out := &in.HourOfDay, &out.HourOfDay
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.WeekOfMonth != nil {
 		in, out := &in.WeekOfMonth, &out.WeekOfMonth
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -995,7 +995,7 @@ func (in *PostgreSQLUpdatesObservation) DeepCopyInto(out *PostgreSQLUpdatesObser
 	}
 	if in.Duration != nil {
 		in, out := &in.Duration, &out.Duration
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Frequency != nil {
@@ -1005,12 +1005,12 @@ func (in *PostgreSQLUpdatesObservation) DeepCopyInto(out *PostgreSQLUpdatesObser
 	}
 	if in.HourOfDay != nil {
 		in, out := &in.HourOfDay, &out.HourOfDay
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.WeekOfMonth != nil {
 		in, out := &in.WeekOfMonth, &out.WeekOfMonth
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1035,7 +1035,7 @@ func (in *PostgreSQLUpdatesParameters) DeepCopyInto(out *PostgreSQLUpdatesParame
 	}
 	if in.Duration != nil {
 		in, out := &in.Duration, &out.Duration
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Frequency != nil {
@@ -1045,12 +1045,12 @@ func (in *PostgreSQLUpdatesParameters) DeepCopyInto(out *PostgreSQLUpdatesParame
 	}
 	if in.HourOfDay != nil {
 		in, out := &in.HourOfDay, &out.HourOfDay
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.WeekOfMonth != nil {
 		in, out := &in.WeekOfMonth, &out.WeekOfMonth
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1075,7 +1075,7 @@ func (in *UpdatesInitParameters) DeepCopyInto(out *UpdatesInitParameters) {
 	}
 	if in.Duration != nil {
 		in, out := &in.Duration, &out.Duration
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Frequency != nil {
@@ -1085,12 +1085,12 @@ func (in *UpdatesInitParameters) DeepCopyInto(out *UpdatesInitParameters) {
 	}
 	if in.HourOfDay != nil {
 		in, out := &in.HourOfDay, &out.HourOfDay
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.WeekOfMonth != nil {
 		in, out := &in.WeekOfMonth, &out.WeekOfMonth
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1115,7 +1115,7 @@ func (in *UpdatesObservation) DeepCopyInto(out *UpdatesObservation) {
 	}
 	if in.Duration != nil {
 		in, out := &in.Duration, &out.Duration
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Frequency != nil {
@@ -1125,12 +1125,12 @@ func (in *UpdatesObservation) DeepCopyInto(out *UpdatesObservation) {
 	}
 	if in.HourOfDay != nil {
 		in, out := &in.HourOfDay, &out.HourOfDay
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.WeekOfMonth != nil {
 		in, out := &in.WeekOfMonth, &out.WeekOfMonth
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -1155,7 +1155,7 @@ func (in *UpdatesParameters) DeepCopyInto(out *UpdatesParameters) {
 	}
 	if in.Duration != nil {
 		in, out := &in.Duration, &out.Duration
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Frequency != nil {
@@ -1165,12 +1165,12 @@ func (in *UpdatesParameters) DeepCopyInto(out *UpdatesParameters) {
 	}
 	if in.HourOfDay != nil {
 		in, out := &in.HourOfDay, &out.HourOfDay
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.WeekOfMonth != nil {
 		in, out := &in.WeekOfMonth, &out.WeekOfMonth
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }

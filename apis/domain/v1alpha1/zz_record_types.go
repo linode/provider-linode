@@ -25,11 +25,11 @@ type RecordInitParameters struct {
 
 	// The port this Record points to.
 	// The port this Record points to.
-	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The priority of the target host. Lower values are preferred.
 	// The priority of the target host. Lower values are preferred.
-	Priority *int64 `json:"priority,omitempty" tf:"priority,omitempty"`
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
 
 	// The protocol this Record's service communicates with. Only valid for SRV records.
 	// The protocol this Record's service communicates with. Only valid for SRV records.
@@ -45,7 +45,7 @@ type RecordInitParameters struct {
 
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	TTLSec *int64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// The tag portion of a CAA record. It is invalid to set this on other record types.
 	// The tag portion of a CAA record. It is invalid to set this on other record types.
@@ -57,14 +57,14 @@ type RecordInitParameters struct {
 
 	// The relative weight of this Record. Higher values are preferred.
 	// The relative weight of this Record. Higher values are preferred.
-	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type RecordObservation struct {
 
 	// The ID of the Domain to access.  Changing .
 	// The ID of the Domain to access.
-	DomainID *int64 `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+	DomainID *float64 `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -74,11 +74,11 @@ type RecordObservation struct {
 
 	// The port this Record points to.
 	// The port this Record points to.
-	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The priority of the target host. Lower values are preferred.
 	// The priority of the target host. Lower values are preferred.
-	Priority *int64 `json:"priority,omitempty" tf:"priority,omitempty"`
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
 
 	// The protocol this Record's service communicates with. Only valid for SRV records.
 	// The protocol this Record's service communicates with. Only valid for SRV records.
@@ -94,7 +94,7 @@ type RecordObservation struct {
 
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
-	TTLSec *int64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// The tag portion of a CAA record. It is invalid to set this on other record types.
 	// The tag portion of a CAA record. It is invalid to set this on other record types.
@@ -106,7 +106,7 @@ type RecordObservation struct {
 
 	// The relative weight of this Record. Higher values are preferred.
 	// The relative weight of this Record. Higher values are preferred.
-	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type RecordParameters struct {
@@ -115,7 +115,7 @@ type RecordParameters struct {
 	// The ID of the Domain to access.
 	// +crossplane:generate:reference:type=Domain
 	// +kubebuilder:validation:Optional
-	DomainID *int64 `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+	DomainID *float64 `json:"domainId,omitempty" tf:"domain_id,omitempty"`
 
 	// Reference to a Domain to populate domainId.
 	// +kubebuilder:validation:Optional
@@ -133,12 +133,12 @@ type RecordParameters struct {
 	// The port this Record points to.
 	// The port this Record points to.
 	// +kubebuilder:validation:Optional
-	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The priority of the target host. Lower values are preferred.
 	// The priority of the target host. Lower values are preferred.
 	// +kubebuilder:validation:Optional
-	Priority *int64 `json:"priority,omitempty" tf:"priority,omitempty"`
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
 
 	// The protocol this Record's service communicates with. Only valid for SRV records.
 	// The protocol this Record's service communicates with. Only valid for SRV records.
@@ -158,7 +158,7 @@ type RecordParameters struct {
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// +kubebuilder:validation:Optional
-	TTLSec *int64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// The tag portion of a CAA record. It is invalid to set this on other record types.
 	// The tag portion of a CAA record. It is invalid to set this on other record types.
@@ -173,7 +173,7 @@ type RecordParameters struct {
 	// The relative weight of this Record. Higher values are preferred.
 	// The relative weight of this Record. Higher values are preferred.
 	// +kubebuilder:validation:Optional
-	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 // RecordSpec defines the desired state of Record

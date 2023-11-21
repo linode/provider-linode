@@ -76,8 +76,7 @@ spec:
                   linodeId:
                     description: The ID of the Linode to share the IPs to. The ID
                       of the Linode to share these IP addresses with.
-                    format: int64
-                    type: integer
+                    type: number
                   linodeIdRef:
                     description: Reference to a Instance to populate linodeId.
                     properties:
@@ -352,8 +351,7 @@ spec:
                   linodeId:
                     description: The ID of the Linode to share the IPs to. The ID
                       of the Linode to share these IP addresses with.
-                    format: int64
-                    type: integer
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

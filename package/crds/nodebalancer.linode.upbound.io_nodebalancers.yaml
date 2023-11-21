@@ -71,8 +71,10 @@ spec:
                     description: Throttle connections per second (0-20). Set to 0
                       (default) to disable throttling. Throttle connections per second
                       (0-20). Set to 0 (zero) to disable throttling.
-                    format: int64
-                    type: integer
+                    type: number
+                  firewallId:
+                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    type: number
                   label:
                     description: The label of the Linode NodeBalancer The label of
                       the Linode NodeBalancer.
@@ -106,8 +108,10 @@ spec:
                     description: Throttle connections per second (0-20). Set to 0
                       (default) to disable throttling. Throttle connections per second
                       (0-20). Set to 0 (zero) to disable throttling.
-                    format: int64
-                    type: integer
+                    type: number
+                  firewallId:
+                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    type: number
                   label:
                     description: The label of the Linode NodeBalancer The label of
                       the Linode NodeBalancer.
@@ -285,11 +289,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: spec.forProvider.region is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
-                || (has(self.initProvider) && has(self.initProvider.region))'
           status:
             description: NodebalancerStatus defines the observed state of Nodebalancer.
             properties:
@@ -299,12 +298,14 @@ spec:
                     description: Throttle connections per second (0-20). Set to 0
                       (default) to disable throttling. Throttle connections per second
                       (0-20). Set to 0 (zero) to disable throttling.
-                    format: int64
-                    type: integer
+                    type: number
                   created:
                     description: When this NodeBalancer was created When this NodeBalancer
                       was created.
                     type: string
+                  firewallId:
+                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    type: number
                   hostname:
                     description: This NodeBalancer's hostname, ending with .nodebalancer.linode.com
                       This NodeBalancer's hostname, ending with .nodebalancer.linode.com
@@ -342,18 +343,15 @@ spec:
                       properties:
                         in:
                           description: The total transfer, in MB, used by this NodeBalancer
-                            for the current month The total transfer, in MB, used
-                            by this NodeBalancer this month
+                            for the current month
                           type: number
                         out:
                           description: The total inbound transfer, in MB, used for
-                            this NodeBalancer for the current month The total inbound
-                            transfer, in MB, used for this NodeBalancer this month
+                            this NodeBalancer for the current month
                           type: number
                         total:
                           description: The total outbound transfer, in MB, used for
-                            this NodeBalancer for the current month The total outbound
-                            transfer, in MB, used for this NodeBalancer this month
+                            this NodeBalancer for the current month
                           type: number
                       type: object
                     type: array

@@ -80,9 +80,27 @@ spec:
                     description: Optional field for arbitrary User comments on this
                       Config. Optional field for arbitrary User comments on this Config.
                     type: string
+                  device:
+                    description: Blocks for device disks in a Linode's configuration
+                      profile.
+                    items:
+                      properties:
+                        deviceName:
+                          description: The Disk ID to map to this disk slot
+                          type: string
+                        diskId:
+                          description: The Disk ID to map to this device slot The
+                            Disk ID to map to this disk slot
+                          type: number
+                        volumeId:
+                          description: The Volume ID to map to this device slot. The
+                            Block Storage volume ID to map to this disk slot
+                          type: number
+                      type: object
+                    type: array
                   devices:
                     description: A dictionary of device disks to use as a device map
-                      in a Linode’s configuration profile.
+                      in a Linode's configuration profile.
                     items:
                       properties:
                         sda:
@@ -99,8 +117,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -183,8 +200,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdb:
@@ -195,8 +211,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -279,8 +294,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdc:
@@ -291,8 +305,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -375,8 +388,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdd:
@@ -387,8 +399,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -471,8 +482,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sde:
@@ -483,8 +493,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -567,8 +576,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdf:
@@ -579,8 +587,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -663,8 +670,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdg:
@@ -675,8 +681,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -759,8 +764,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdh:
@@ -771,8 +775,7 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               diskIdRef:
                                 description: Reference to a Disk to populate diskId.
                                 properties:
@@ -855,8 +858,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                       type: object
@@ -892,7 +894,7 @@ spec:
                       type: object
                     type: array
                   interface:
-                    description: An array of Network Interfaces to add to this Linode’s
+                    description: An array of Network Interfaces to add to this Linode's
                       Configuration Profile.
                     items:
                       properties:
@@ -918,14 +920,13 @@ spec:
                     type: string
                   label:
                     description: The Config’s label for display purposes only. The
-                      Config’s label for display purposes only.
+                      Config's label for display purposes only.
                     type: string
                   linodeId:
                     description: The ID of the Linode to create this configuration
                       profile under. The ID of the Linode to create this configuration
                       profile under.
-                    format: int64
-                    type: integer
+                    type: number
                   linodeIdRef:
                     description: Reference to a Instance to populate linodeId.
                     properties:
@@ -1002,8 +1003,7 @@ spec:
                   memoryLimit:
                     description: The memory limit of the Config. Defaults to the total
                       ram of the Linode. The memory limit of the Linode.
-                    format: int64
-                    type: integer
+                    type: number
                   rootDevice:
                     description: The root device to boot. (default /dev/sda) The root
                       device to boot. If no value or an invalid value is provided,
@@ -1045,9 +1045,27 @@ spec:
                     description: Optional field for arbitrary User comments on this
                       Config. Optional field for arbitrary User comments on this Config.
                     type: string
+                  device:
+                    description: Blocks for device disks in a Linode's configuration
+                      profile.
+                    items:
+                      properties:
+                        deviceName:
+                          description: The Disk ID to map to this disk slot
+                          type: string
+                        diskId:
+                          description: The Disk ID to map to this device slot The
+                            Disk ID to map to this disk slot
+                          type: number
+                        volumeId:
+                          description: The Volume ID to map to this device slot. The
+                            Block Storage volume ID to map to this disk slot
+                          type: number
+                      type: object
+                    type: array
                   devices:
                     description: A dictionary of device disks to use as a device map
-                      in a Linode’s configuration profile.
+                      in a Linode's configuration profile.
                     items:
                       properties:
                         sda:
@@ -1065,8 +1083,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdb:
@@ -1078,8 +1095,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdc:
@@ -1091,8 +1107,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdd:
@@ -1104,8 +1119,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sde:
@@ -1117,8 +1131,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdf:
@@ -1130,8 +1143,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdg:
@@ -1143,8 +1155,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdh:
@@ -1156,8 +1167,7 @@ spec:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                       type: object
@@ -1193,7 +1203,7 @@ spec:
                       type: object
                     type: array
                   interface:
-                    description: An array of Network Interfaces to add to this Linode’s
+                    description: An array of Network Interfaces to add to this Linode's
                       Configuration Profile.
                     items:
                       properties:
@@ -1219,13 +1229,12 @@ spec:
                     type: string
                   label:
                     description: The Config’s label for display purposes only. The
-                      Config’s label for display purposes only.
+                      Config's label for display purposes only.
                     type: string
                   memoryLimit:
                     description: The memory limit of the Config. Defaults to the total
                       ram of the Linode. The memory limit of the Linode.
-                    format: int64
-                    type: integer
+                    type: number
                   rootDevice:
                     description: The root device to boot. (default /dev/sda) The root
                       device to boot. If no value or an invalid value is provided,
@@ -1425,9 +1434,27 @@ spec:
                     description: Optional field for arbitrary User comments on this
                       Config. Optional field for arbitrary User comments on this Config.
                     type: string
+                  device:
+                    description: Blocks for device disks in a Linode's configuration
+                      profile.
+                    items:
+                      properties:
+                        deviceName:
+                          description: The Disk ID to map to this disk slot
+                          type: string
+                        diskId:
+                          description: The Disk ID to map to this device slot The
+                            Disk ID to map to this disk slot
+                          type: number
+                        volumeId:
+                          description: The Volume ID to map to this device slot. The
+                            Block Storage volume ID to map to this disk slot
+                          type: number
+                      type: object
+                    type: array
                   devices:
                     description: A dictionary of device disks to use as a device map
-                      in a Linode’s configuration profile.
+                      in a Linode's configuration profile.
                     items:
                       properties:
                         sda:
@@ -1444,14 +1471,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdb:
@@ -1462,14 +1487,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdc:
@@ -1480,14 +1503,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdd:
@@ -1498,14 +1519,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sde:
@@ -1516,14 +1535,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdf:
@@ -1534,14 +1551,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdg:
@@ -1552,14 +1567,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                         sdh:
@@ -1570,14 +1583,12 @@ spec:
                               diskId:
                                 description: The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
-                                format: int64
-                                type: integer
+                                type: number
                               volumeId:
                                 description: The Volume ID to map to this device slot.
                                   The Block Storage volume ID to map to this disk
                                   slot
-                                format: int64
-                                type: integer
+                                type: number
                             type: object
                           type: array
                       type: object
@@ -1615,7 +1626,7 @@ spec:
                   id:
                     type: string
                   interface:
-                    description: An array of Network Interfaces to add to this Linode’s
+                    description: An array of Network Interfaces to add to this Linode's
                       Configuration Profile.
                     items:
                       properties:
@@ -1641,19 +1652,17 @@ spec:
                     type: string
                   label:
                     description: The Config’s label for display purposes only. The
-                      Config’s label for display purposes only.
+                      Config's label for display purposes only.
                     type: string
                   linodeId:
                     description: The ID of the Linode to create this configuration
                       profile under. The ID of the Linode to create this configuration
                       profile under.
-                    format: int64
-                    type: integer
+                    type: number
                   memoryLimit:
                     description: The memory limit of the Config. Defaults to the total
                       ram of the Linode. The memory limit of the Linode.
-                    format: int64
-                    type: integer
+                    type: number
                   rootDevice:
                     description: The root device to boot. (default /dev/sda) The root
                       device to boot. If no value or an invalid value is provided,

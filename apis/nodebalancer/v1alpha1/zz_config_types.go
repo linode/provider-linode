@@ -29,14 +29,14 @@ type ConfigInitParameters struct {
 
 	// How many times to attempt a check before considering a backend to be down. (1-30)
 	// How many times to attempt a check before considering a backend to be down. (1-30)
-	CheckAttempts *int64 `json:"checkAttempts,omitempty" tf:"check_attempts,omitempty"`
+	CheckAttempts *float64 `json:"checkAttempts,omitempty" tf:"check_attempts,omitempty"`
 
 	// This value must be present in the response body of the check in order for it to pass. If this value is not present in the response body of a check request, the backend is considered to be down
 	CheckBody *string `json:"checkBody,omitempty" tf:"check_body,omitempty"`
 
 	// How often, in seconds, to check that backends are up and serving requests.
 	// How often, in seconds, to check that backends are up and serving requests.
-	CheckInterval *int64 `json:"checkInterval,omitempty" tf:"check_interval,omitempty"`
+	CheckInterval *float64 `json:"checkInterval,omitempty" tf:"check_interval,omitempty"`
 
 	// If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.
 	// If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.
@@ -48,7 +48,7 @@ type ConfigInitParameters struct {
 
 	// How long, in seconds, to wait for a check attempt before considering it failed. (1-30)
 	// How long, in seconds, to wait for a check attempt before considering it failed. (1-30)
-	CheckTimeout *int64 `json:"checkTimeout,omitempty" tf:"check_timeout,omitempty"`
+	CheckTimeout *float64 `json:"checkTimeout,omitempty" tf:"check_timeout,omitempty"`
 
 	// What ciphers to use for SSL connections served by this NodeBalancer. legacy is considered insecure and should only be used if necessary.
 	// What ciphers to use for SSL connections served by this NodeBalancer. `legacy` is considered insecure and should only be used if necessary.
@@ -56,7 +56,7 @@ type ConfigInitParameters struct {
 
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443. (Defaults to 80)
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443.
-	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (http, https, tcp) (Defaults to http)
 	// The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key.
@@ -83,14 +83,14 @@ type ConfigObservation struct {
 
 	// How many times to attempt a check before considering a backend to be down. (1-30)
 	// How many times to attempt a check before considering a backend to be down. (1-30)
-	CheckAttempts *int64 `json:"checkAttempts,omitempty" tf:"check_attempts,omitempty"`
+	CheckAttempts *float64 `json:"checkAttempts,omitempty" tf:"check_attempts,omitempty"`
 
 	// This value must be present in the response body of the check in order for it to pass. If this value is not present in the response body of a check request, the backend is considered to be down
 	CheckBody *string `json:"checkBody,omitempty" tf:"check_body,omitempty"`
 
 	// How often, in seconds, to check that backends are up and serving requests.
 	// How often, in seconds, to check that backends are up and serving requests.
-	CheckInterval *int64 `json:"checkInterval,omitempty" tf:"check_interval,omitempty"`
+	CheckInterval *float64 `json:"checkInterval,omitempty" tf:"check_interval,omitempty"`
 
 	// If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.
 	// If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.
@@ -102,7 +102,7 @@ type ConfigObservation struct {
 
 	// How long, in seconds, to wait for a check attempt before considering it failed. (1-30)
 	// How long, in seconds, to wait for a check attempt before considering it failed. (1-30)
-	CheckTimeout *int64 `json:"checkTimeout,omitempty" tf:"check_timeout,omitempty"`
+	CheckTimeout *float64 `json:"checkTimeout,omitempty" tf:"check_timeout,omitempty"`
 
 	// What ciphers to use for SSL connections served by this NodeBalancer. legacy is considered insecure and should only be used if necessary.
 	// What ciphers to use for SSL connections served by this NodeBalancer. `legacy` is considered insecure and should only be used if necessary.
@@ -115,11 +115,11 @@ type ConfigObservation struct {
 
 	// The ID of the NodeBalancer to access.
 	// The ID of the NodeBalancer to access.
-	NodebalancerID *int64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
 
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443. (Defaults to 80)
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443.
-	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (http, https, tcp) (Defaults to http)
 	// The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key.
@@ -157,7 +157,7 @@ type ConfigParameters struct {
 	// How many times to attempt a check before considering a backend to be down. (1-30)
 	// How many times to attempt a check before considering a backend to be down. (1-30)
 	// +kubebuilder:validation:Optional
-	CheckAttempts *int64 `json:"checkAttempts,omitempty" tf:"check_attempts,omitempty"`
+	CheckAttempts *float64 `json:"checkAttempts,omitempty" tf:"check_attempts,omitempty"`
 
 	// This value must be present in the response body of the check in order for it to pass. If this value is not present in the response body of a check request, the backend is considered to be down
 	// +kubebuilder:validation:Optional
@@ -166,7 +166,7 @@ type ConfigParameters struct {
 	// How often, in seconds, to check that backends are up and serving requests.
 	// How often, in seconds, to check that backends are up and serving requests.
 	// +kubebuilder:validation:Optional
-	CheckInterval *int64 `json:"checkInterval,omitempty" tf:"check_interval,omitempty"`
+	CheckInterval *float64 `json:"checkInterval,omitempty" tf:"check_interval,omitempty"`
 
 	// If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.
 	// If true, any response from this backend with a 5xx status code will be enough for it to be considered unhealthy and taken out of rotation.
@@ -181,7 +181,7 @@ type ConfigParameters struct {
 	// How long, in seconds, to wait for a check attempt before considering it failed. (1-30)
 	// How long, in seconds, to wait for a check attempt before considering it failed. (1-30)
 	// +kubebuilder:validation:Optional
-	CheckTimeout *int64 `json:"checkTimeout,omitempty" tf:"check_timeout,omitempty"`
+	CheckTimeout *float64 `json:"checkTimeout,omitempty" tf:"check_timeout,omitempty"`
 
 	// What ciphers to use for SSL connections served by this NodeBalancer. legacy is considered insecure and should only be used if necessary.
 	// What ciphers to use for SSL connections served by this NodeBalancer. `legacy` is considered insecure and should only be used if necessary.
@@ -192,7 +192,7 @@ type ConfigParameters struct {
 	// The ID of the NodeBalancer to access.
 	// +crossplane:generate:reference:type=Nodebalancer
 	// +kubebuilder:validation:Optional
-	NodebalancerID *int64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
 
 	// Reference to a Nodebalancer to populate nodebalancerId.
 	// +kubebuilder:validation:Optional
@@ -205,7 +205,7 @@ type ConfigParameters struct {
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443. (Defaults to 80)
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443.
 	// +kubebuilder:validation:Optional
-	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key. (http, https, tcp) (Defaults to http)
 	// The protocol this port is configured to serve. If this is set to https you must include an ssl_cert and an ssl_key.
@@ -239,12 +239,10 @@ type NodeStatusInitParameters struct {
 type NodeStatusObservation struct {
 
 	// The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests.
-	// The number of backends considered to be 'DOWN' and unhealthy. These are not in rotation, and not serving requests.
-	Down *int64 `json:"down,omitempty" tf:"down,omitempty"`
+	Down *float64 `json:"down,omitempty" tf:"down,omitempty"`
 
 	// The number of backends considered to be 'UP' and healthy, and that are serving requests.
-	// The number of backends considered to be 'UP' and healthy, and that are serving requests.
-	Up *int64 `json:"up,omitempty" tf:"up,omitempty"`
+	Up *float64 `json:"up,omitempty" tf:"up,omitempty"`
 }
 
 type NodeStatusParameters struct {

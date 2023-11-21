@@ -55,7 +55,7 @@ func (in *ConfigInitParameters) DeepCopyInto(out *ConfigInitParameters) {
 	}
 	if in.CheckAttempts != nil {
 		in, out := &in.CheckAttempts, &out.CheckAttempts
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CheckBody != nil {
@@ -65,7 +65,7 @@ func (in *ConfigInitParameters) DeepCopyInto(out *ConfigInitParameters) {
 	}
 	if in.CheckInterval != nil {
 		in, out := &in.CheckInterval, &out.CheckInterval
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CheckPassive != nil {
@@ -80,7 +80,7 @@ func (in *ConfigInitParameters) DeepCopyInto(out *ConfigInitParameters) {
 	}
 	if in.CheckTimeout != nil {
 		in, out := &in.CheckTimeout, &out.CheckTimeout
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CipherSuite != nil {
@@ -90,7 +90,7 @@ func (in *ConfigInitParameters) DeepCopyInto(out *ConfigInitParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Protocol != nil {
@@ -167,7 +167,7 @@ func (in *ConfigObservation) DeepCopyInto(out *ConfigObservation) {
 	}
 	if in.CheckAttempts != nil {
 		in, out := &in.CheckAttempts, &out.CheckAttempts
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CheckBody != nil {
@@ -177,7 +177,7 @@ func (in *ConfigObservation) DeepCopyInto(out *ConfigObservation) {
 	}
 	if in.CheckInterval != nil {
 		in, out := &in.CheckInterval, &out.CheckInterval
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CheckPassive != nil {
@@ -192,7 +192,7 @@ func (in *ConfigObservation) DeepCopyInto(out *ConfigObservation) {
 	}
 	if in.CheckTimeout != nil {
 		in, out := &in.CheckTimeout, &out.CheckTimeout
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CipherSuite != nil {
@@ -214,12 +214,12 @@ func (in *ConfigObservation) DeepCopyInto(out *ConfigObservation) {
 	}
 	if in.NodebalancerID != nil {
 		in, out := &in.NodebalancerID, &out.NodebalancerID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Protocol != nil {
@@ -274,7 +274,7 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 	}
 	if in.CheckAttempts != nil {
 		in, out := &in.CheckAttempts, &out.CheckAttempts
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CheckBody != nil {
@@ -284,7 +284,7 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 	}
 	if in.CheckInterval != nil {
 		in, out := &in.CheckInterval, &out.CheckInterval
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CheckPassive != nil {
@@ -299,7 +299,7 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 	}
 	if in.CheckTimeout != nil {
 		in, out := &in.CheckTimeout, &out.CheckTimeout
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.CipherSuite != nil {
@@ -309,7 +309,7 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 	}
 	if in.NodebalancerID != nil {
 		in, out := &in.NodebalancerID, &out.NodebalancerID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NodebalancerIDRef != nil {
@@ -324,7 +324,7 @@ func (in *ConfigParameters) DeepCopyInto(out *ConfigParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Protocol != nil {
@@ -446,7 +446,7 @@ func (in *NodeInitParameters) DeepCopyInto(out *NodeInitParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -503,7 +503,7 @@ func (in *NodeObservation) DeepCopyInto(out *NodeObservation) {
 	}
 	if in.ConfigID != nil {
 		in, out := &in.ConfigID, &out.ConfigID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -523,7 +523,7 @@ func (in *NodeObservation) DeepCopyInto(out *NodeObservation) {
 	}
 	if in.NodebalancerID != nil {
 		in, out := &in.NodebalancerID, &out.NodebalancerID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -533,7 +533,7 @@ func (in *NodeObservation) DeepCopyInto(out *NodeObservation) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -558,7 +558,7 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 	}
 	if in.ConfigID != nil {
 		in, out := &in.ConfigID, &out.ConfigID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.ConfigIDRef != nil {
@@ -583,7 +583,7 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 	}
 	if in.NodebalancerID != nil {
 		in, out := &in.NodebalancerID, &out.NodebalancerID
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NodebalancerIDRef != nil {
@@ -598,7 +598,7 @@ func (in *NodeParameters) DeepCopyInto(out *NodeParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -668,12 +668,12 @@ func (in *NodeStatusObservation) DeepCopyInto(out *NodeStatusObservation) {
 	*out = *in
 	if in.Down != nil {
 		in, out := &in.Down, &out.Down
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Up != nil {
 		in, out := &in.Up, &out.Up
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 }
@@ -735,7 +735,12 @@ func (in *NodebalancerInitParameters) DeepCopyInto(out *NodebalancerInitParamete
 	*out = *in
 	if in.ClientConnThrottle != nil {
 		in, out := &in.ClientConnThrottle, &out.ClientConnThrottle
-		*out = new(int64)
+		*out = new(float64)
+		**out = **in
+	}
+	if in.FirewallID != nil {
+		in, out := &in.FirewallID, &out.FirewallID
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Label != nil {
@@ -808,12 +813,17 @@ func (in *NodebalancerObservation) DeepCopyInto(out *NodebalancerObservation) {
 	*out = *in
 	if in.ClientConnThrottle != nil {
 		in, out := &in.ClientConnThrottle, &out.ClientConnThrottle
-		*out = new(int64)
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Created != nil {
 		in, out := &in.Created, &out.Created
 		*out = new(string)
+		**out = **in
+	}
+	if in.FirewallID != nil {
+		in, out := &in.FirewallID, &out.FirewallID
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Hostname != nil {
@@ -886,7 +896,12 @@ func (in *NodebalancerParameters) DeepCopyInto(out *NodebalancerParameters) {
 	*out = *in
 	if in.ClientConnThrottle != nil {
 		in, out := &in.ClientConnThrottle, &out.ClientConnThrottle
-		*out = new(int64)
+		*out = new(float64)
+		**out = **in
+	}
+	if in.FirewallID != nil {
+		in, out := &in.FirewallID, &out.FirewallID
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Label != nil {

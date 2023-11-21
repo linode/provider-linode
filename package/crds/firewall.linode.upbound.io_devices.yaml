@@ -70,8 +70,7 @@ spec:
                   entityId:
                     description: The unique ID of the entity to attach. The ID of
                       the entity to create a Firewall device for.
-                    format: int64
-                    type: integer
+                    type: number
                   entityIdRef:
                     description: Reference to a Instance in instance to populate entityId.
                     properties:
@@ -152,8 +151,7 @@ spec:
                   firewallId:
                     description: The unique ID of the target Firewall. The ID of the
                       Firewall to access.
-                    format: int64
-                    type: integer
+                    type: number
                   firewallIdRef:
                     description: Reference to a Device in firewall to populate firewallId.
                     properties:
@@ -417,8 +415,7 @@ spec:
                   entityId:
                     description: The unique ID of the entity to attach. The ID of
                       the entity to create a Firewall device for.
-                    format: int64
-                    type: integer
+                    type: number
                   entityType:
                     description: 'The type of the entity to attach. (default: linode)
                       The type of the entity to create a Firewall device for.'
@@ -426,8 +423,7 @@ spec:
                   firewallId:
                     description: The unique ID of the target Firewall. The ID of the
                       Firewall to access.
-                    format: int64
-                    type: integer
+                    type: number
                   id:
                     type: string
                   updated:

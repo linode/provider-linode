@@ -41,7 +41,7 @@ type DiskInitParameters_2 struct {
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
 	// The size of the Disk in MB.
-	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 type DiskObservation_2 struct {
@@ -74,15 +74,15 @@ type DiskObservation_2 struct {
 
 	// The ID of the Linode to create this Disk under.
 	// The ID of the Linode to assign this disk to.
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
 	// The size of the Disk in MB.
-	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
-	StackscriptID *int64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
 
 	// A brief description of this Disk's current state.
 	// A brief description of this Disk's current state.
@@ -124,7 +124,7 @@ type DiskParameters_2 struct {
 	// The ID of the Linode to assign this disk to.
 	// +crossplane:generate:reference:type=Instance
 	// +kubebuilder:validation:Optional
-	LinodeID *int64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// Reference to a Instance to populate linodeId.
 	// +kubebuilder:validation:Optional
@@ -142,7 +142,7 @@ type DiskParameters_2 struct {
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
 	// The size of the Disk in MB.
 	// +kubebuilder:validation:Optional
-	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given.
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
@@ -153,7 +153,7 @@ type DiskParameters_2 struct {
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript
 	// +kubebuilder:validation:Optional
-	StackscriptID *int64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
 
 	// Reference to a Stackscript in stackscript to populate stackscriptId.
 	// +kubebuilder:validation:Optional
