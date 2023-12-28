@@ -15,7 +15,7 @@ import (
 	"github.com/crossplane/upjet/pkg/config"
 	conversiontfjson "github.com/crossplane/upjet/pkg/types/conversion/tfjson"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/linode/terraform-provider-linode/linode"
+	"github.com/linode/terraform-provider-linode/v2/linode"
 
 	"github.com/linode/provider-linode/config/databaseaccesscontrols"
 	"github.com/linode/provider-linode/config/databasemysql"
