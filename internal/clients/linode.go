@@ -18,6 +18,8 @@ import (
 	tfsdk "github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
 	"github.com/linode/provider-linode/apis/v1beta1"
+	"github.com/linode/terraform-provider-linode/v2/linode"
+	"github.com/linode/terraform-provider-linode/v2/version"
 )
 
 const (
@@ -91,11 +93,11 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string, tfPr
 		if v, ok := creds[keyVersion]; ok {
 			ps.Configuration[keyVersion] = v
 		}
-		return ps, errors.Wrap(configureNoForkLinodelient(ctx, &ps, *tfProvider), "failed to configure the no-fork GCP client")
+		return ps, errors.Wrap(configureNoForkLinodeclient(ctx, &ps, *tfProvider), "failed to configure the no-fork linode client")
 	}
 }
 
-func configureNoForkLinodelient(ctx context.Context, ps *terraform.Setup, p schema.Provider) error {
+func configureNoForkLinodeclient(ctx context.Context, ps *terraform.Setup, p schema.Provider) error {
 	// Please be aware that this implementation relies on the schema.Provider
 	// parameter `p` being a non-pointer. This is because normally
 	// the Terraform plugin SDK normally configures the provider
@@ -109,5 +111,7 @@ func configureNoForkLinodelient(ctx context.Context, ps *terraform.Setup, p sche
 		return errors.Errorf("failed to configure the provider: %v", diag)
 	}
 	ps.Meta = p.Meta()
+	fwProvider := linode.CreateFrameworkProvider(version.ProviderVersion)
+	ps.FrameworkProvider = fwProvider
 	return nil
 }

@@ -9,13 +9,13 @@ import (
 	"context"
 	_ "embed"
 
-	tfjson "github.com/hashicorp/terraform-json"
-	"github.com/pkg/errors"
-
 	"github.com/crossplane/upjet/pkg/config"
 	conversiontfjson "github.com/crossplane/upjet/pkg/types/conversion/tfjson"
+	tfjson "github.com/hashicorp/terraform-json"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/linode/terraform-provider-linode/v2/linode"
+	"github.com/linode/terraform-provider-linode/v2/version"
+	"github.com/pkg/errors"
 
 	"github.com/linode/provider-linode/config/databaseaccesscontrols"
 	"github.com/linode/provider-linode/config/databasemysql"
@@ -95,6 +95,8 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		return nil, errors.Wrapf(err, "cannot get the Terraform provider schema with generation mode set to %t", generationProvider)
 	}
 
+	fwProvider := linode.CreateFrameworkProvider(version.ProviderVersion)
+
 	pc := config.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		config.WithDefaultResourceOptions(
 			externalNameConfig(),
@@ -102,7 +104,9 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		),
 		config.WithIncludeList(resourceList(cliReconciledExternalNameConfigs)),
 		config.WithNoForkIncludeList(resourceList(noForkExternalNameConfigs)),
+		config.WithTerraformPluginFrameworkIncludeList(resourceList(terraformPluginFrameworkExternalNameConfigs)),
 		config.WithTerraformProvider(p),
+		config.WithTerraformPluginFrameworkProvider(fwProvider),
 	)
 
 	for _, configure := range []func(provider *config.Provider){
