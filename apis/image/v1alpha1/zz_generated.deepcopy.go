@@ -53,6 +53,21 @@ func (in *ImageInitParameters) DeepCopyInto(out *ImageInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskIDRef != nil {
+		in, out := &in.DiskIDRef, &out.DiskIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DiskIDSelector != nil {
+		in, out := &in.DiskIDSelector, &out.DiskIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.FileHash != nil {
 		in, out := &in.FileHash, &out.FileHash
 		*out = new(string)
@@ -67,6 +82,21 @@ func (in *ImageInitParameters) DeepCopyInto(out *ImageInitParameters) {
 		in, out := &in.Label, &out.Label
 		*out = new(string)
 		**out = **in
+	}
+	if in.LinodeID != nil {
+		in, out := &in.LinodeID, &out.LinodeID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region

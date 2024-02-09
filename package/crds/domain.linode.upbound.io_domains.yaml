@@ -73,6 +73,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   description:
                     description: A description for this Domain. This is for display
                       purposes only.
@@ -99,6 +100,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   refreshSec:
                     description: The amount of time in seconds before this Domain
                       should be refreshed. Valid values are 0, 30, 120, 300, 3600,
@@ -127,6 +129,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   ttlSec:
                     description: '''Time to Live'' - the amount of time in seconds
                       that this Domain''s records may be cached by resolvers or other
@@ -160,6 +163,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   description:
                     description: A description for this Domain. This is for display
                       purposes only.
@@ -186,6 +190,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   refreshSec:
                     description: The amount of time in seconds before this Domain
                       should be refreshed. Valid values are 0, 30, 120, 300, 3600,
@@ -214,6 +219,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   ttlSec:
                     description: '''Time to Live'' - the amount of time in seconds
                       that this Domain''s records may be cached by resolvers or other
@@ -409,6 +415,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   description:
                     description: A description for this Domain. This is for display
                       purposes only.
@@ -437,6 +444,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   refreshSec:
                     description: The amount of time in seconds before this Domain
                       should be refreshed. Valid values are 0, 30, 120, 300, 3600,
@@ -465,6 +473,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   ttlSec:
                     description: '''Time to Live'' - the amount of time in seconds
                       that this Domain''s records may be cached by resolvers or other

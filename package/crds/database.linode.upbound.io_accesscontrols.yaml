@@ -76,6 +76,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   databaseId:
                     description: The unique ID of the target database. The ID of the
                       database to manage the allow list for.
@@ -107,6 +108,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   databaseId:
                     description: The unique ID of the target database. The ID of the
                       database to manage the allow list for.
@@ -304,6 +306,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   databaseId:
                     description: The unique ID of the target database. The ID of the
                       database to manage the allow list for.

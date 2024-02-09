@@ -21,6 +21,7 @@ type PostgreSQLInitParameters struct {
 
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	// +listType=set
 	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
@@ -67,6 +68,7 @@ type PostgreSQLObservation struct {
 
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	// +listType=set
 	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
@@ -148,6 +150,7 @@ type PostgreSQLParameters struct {
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
@@ -298,13 +301,14 @@ type PostgreSQLStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // PostgreSQL is the Schema for the PostgreSQLs API. Manages a Linode PostgreSQL Database.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type PostgreSQL struct {
 	metav1.TypeMeta   `json:",inline"`

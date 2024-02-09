@@ -75,6 +75,7 @@ type ClusterInitParameters struct {
 
 	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -116,6 +117,7 @@ type ClusterObservation struct {
 
 	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -148,6 +150,7 @@ type ClusterParameters struct {
 	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -267,13 +270,14 @@ type ClusterStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Cluster is the Schema for the Clusters API. Manages a Linode instance.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`

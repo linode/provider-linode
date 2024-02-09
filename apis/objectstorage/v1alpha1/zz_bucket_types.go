@@ -23,6 +23,21 @@ type BucketInitParameters struct {
 	// The Access Control Level of the bucket using a canned ACL string.
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
+	// The access key to authenticate with.
+	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=AccessKeyRef
+	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
+	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
+
+	// Reference to a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeyRef *v1.Reference `json:"accessKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeySelector *v1.Selector `json:"accessKeySelector,omitempty" tf:"-"`
+
 	// The cert used by this Object Storage Bucket.
 	Cert []CertInitParameters `json:"cert,omitempty" tf:"cert,omitempty"`
 
@@ -40,6 +55,21 @@ type BucketInitParameters struct {
 
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleInitParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
+
+	// The secret key to authenticate with.
+	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=SecretKeyRef
+	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
+	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
+
+	// Reference to a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
 
 	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
 	// Whether to enable versioning.
@@ -351,13 +381,14 @@ type BucketStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Bucket is the Schema for the Buckets API. Manages a Linode Object Storage Bucket.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Bucket struct {
 	metav1.TypeMeta   `json:",inline"`

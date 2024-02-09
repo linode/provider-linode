@@ -15,9 +15,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
 	"github.com/crossplane/upjet/pkg/terraform"
-	tfsdk "github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
+	terraformsdk "github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
 	"github.com/linode/provider-linode/apis/v1beta1"
+
 	"github.com/linode/terraform-provider-linode/v2/linode"
 	"github.com/linode/terraform-provider-linode/v2/version"
 )
@@ -93,6 +94,7 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string, tfPr
 		if v, ok := creds[keyVersion]; ok {
 			ps.Configuration[keyVersion] = v
 		}
+
 		return ps, errors.Wrap(configureNoForkLinodeclient(ctx, &ps, *tfProvider), "failed to configure the no-fork linode client")
 	}
 }
@@ -104,14 +106,16 @@ func configureNoForkLinodeclient(ctx context.Context, ps *terraform.Setup, p sch
 	// only once and using a pointer argument here will cause
 	// race conditions between resources referring to different
 	// ProviderConfigs.
-	diag := p.Configure(context.WithoutCancel(ctx), &tfsdk.ResourceConfig{
+	diag := p.Configure(context.WithoutCancel(ctx), &terraformsdk.ResourceConfig{
 		Config: ps.Configuration,
 	})
 	if diag != nil && diag.HasError() {
 		return errors.Errorf("failed to configure the provider: %v", diag)
 	}
+
 	ps.Meta = p.Meta()
-	fwProvider := linode.CreateFrameworkProvider(version.ProviderVersion)
+
+	fwProvider := linode.CreateFrameworkProviderWithMeta(version.ProviderVersion, p.Meta())
 	ps.FrameworkProvider = fwProvider
 	return nil
 }

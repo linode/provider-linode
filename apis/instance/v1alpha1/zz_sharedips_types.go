@@ -21,13 +21,28 @@ type SharedIPsInitParameters struct {
 
 	// The set of IPs to share with the Linode.
 	// A set of IP addresses to share to the Linode
+	// +listType=set
 	Addresses []*string `json:"addresses,omitempty" tf:"addresses,omitempty"`
+
+	// The ID of the Linode to share the IPs to.
+	// The ID of the Linode to share these IP addresses with.
+	// +crossplane:generate:reference:type=Instance
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 }
 
 type SharedIPsObservation struct {
 
 	// The set of IPs to share with the Linode.
 	// A set of IP addresses to share to the Linode
+	// +listType=set
 	Addresses []*string `json:"addresses,omitempty" tf:"addresses,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -42,6 +57,7 @@ type SharedIPsParameters struct {
 	// The set of IPs to share with the Linode.
 	// A set of IP addresses to share to the Linode
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Addresses []*string `json:"addresses,omitempty" tf:"addresses,omitempty"`
 
 	// The ID of the Linode to share the IPs to.
@@ -83,13 +99,14 @@ type SharedIPsStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // SharedIPs is the Schema for the SharedIPss API. Manages IP addresses shared to a Linode.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode},path=sharedips
 type SharedIPs struct {
 	metav1.TypeMeta   `json:",inline"`

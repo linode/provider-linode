@@ -695,6 +695,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   stackscriptDataSecretRef:
                     description: An object containing responses to any User Defined
                       Fields present in the StackScript being deployed to this Linode.
@@ -814,6 +815,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   type:
                     description: The Linode type defines the pricing, CPU, disk, and
                       RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2",
@@ -1416,6 +1418,90 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
+                  stackscriptId:
+                    description: The StackScript to deploy to the newly created Linode.
+                      If provided, 'image' must also be provided, and must be an Image
+                      that is compatible with this StackScript. This value can not
+                      be imported. Changing The StackScript to deploy to the newly
+                      created Linode. If provided, 'image' must also be provided,
+                      and must be an Image that is compatible with this StackScript.
+                    type: number
+                  stackscriptIdRef:
+                    description: Reference to a Stackscript in stackscript to populate
+                      stackscriptId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  stackscriptIdSelector:
+                    description: Selector for a Stackscript in stackscript to populate
+                      stackscriptId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   swapSize:
                     description: When deploying from an Image, this field is optional
                       with a Linode API default of 512mb, otherwise it is ignored.
@@ -1432,6 +1518,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   type:
                     description: The Linode type defines the pricing, CPU, disk, and
                       RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2",
@@ -2213,6 +2300,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   ipv6:
                     description: This Linode's IPv6 SLAAC addresses. This address
                       is specific to a Linode, and may not be shared.  The prefix
@@ -2278,6 +2366,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   specs:
                     description: Information about the resources available to this
                       Linode.
@@ -2338,6 +2427,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   type:
                     description: The Linode type defines the pricing, CPU, disk, and
                       RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2",

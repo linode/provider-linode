@@ -26,6 +26,19 @@ type ImageInitParameters struct {
 	// A detailed description of this Image.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The ID of the Linode Disk that this Image will be created from.
+	// The ID of the Linode Disk that this Image will be created from.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Disk
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// Reference to a Disk in instance to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDRef *v1.Reference `json:"diskIdRef,omitempty" tf:"-"`
+
+	// Selector for a Disk in instance to populate diskId.
+	// +kubebuilder:validation:Optional
+	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
+
 	// The MD5 hash of the file to be uploaded. This is used to trigger file updates.
 	// The MD5 hash of the image file.
 	FileHash *string `json:"fileHash,omitempty" tf:"file_hash,omitempty"`
@@ -37,6 +50,19 @@ type ImageInitParameters struct {
 	// A short description of the Image. Labels cannot contain special characters.
 	// A short description of the Image. Labels cannot contain special characters.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The ID of the Linode that this Image will be created from.
+	// The ID of the Linode that this Image will be created from.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The region of the image. See all regions here.
 	// The region to upload to.
@@ -202,13 +228,14 @@ type ImageStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Image is the Schema for the Images API. Manages a Linode Image.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Image struct {
 	metav1.TypeMeta   `json:",inline"`

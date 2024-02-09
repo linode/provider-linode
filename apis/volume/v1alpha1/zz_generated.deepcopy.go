@@ -48,6 +48,21 @@ func (in *VolumeInitParameters) DeepCopyInto(out *VolumeInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.LinodeID != nil {
+		in, out := &in.LinodeID, &out.LinodeID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)

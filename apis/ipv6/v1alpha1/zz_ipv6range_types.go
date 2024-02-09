@@ -19,6 +19,19 @@ import (
 
 type IPv6RangeInitParameters struct {
 
+	// The ID of the Linode to assign this range to. This field may be updated to reassign the IPv6 range.
+	// The ID of the Linode to assign this range to.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
+
 	// The prefix length of the IPv6 range.
 	// The prefix length of the IPv6 range.
 	PrefixLength *float64 `json:"prefixLength,omitempty" tf:"prefix_length,omitempty"`
@@ -41,6 +54,7 @@ type IPv6RangeObservation struct {
 
 	// A list of Linodes targeted by this IPv6 range. Includes Linodes with IP sharing.
 	// A list of Linodes targeted by this IPv6 range.Includes Linodes with IP sharing.
+	// +listType=set
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// The prefix length of the IPv6 range.
@@ -111,13 +125,14 @@ type IPv6RangeStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // IPv6Range is the Schema for the IPv6Ranges API. Manages a Linode IPv6 range.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type IPv6Range struct {
 	metav1.TypeMeta   `json:",inline"`

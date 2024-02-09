@@ -35,6 +35,22 @@ func (mg *Config) ResolveReferences(ctx context.Context, c client.Reader) error 
 	mg.Spec.ForProvider.NodebalancerID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.NodebalancerIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.NodebalancerID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.NodebalancerIDRef,
+		Selector:     mg.Spec.InitProvider.NodebalancerIDSelector,
+		To: reference.To{
+			List:    &NodebalancerList{},
+			Managed: &Nodebalancer{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.NodebalancerID")
+	}
+	mg.Spec.InitProvider.NodebalancerID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.NodebalancerIDRef = rsp.ResolvedReference
+
 	return nil
 }
 
@@ -76,6 +92,38 @@ func (mg *Node) ResolveReferences(ctx context.Context, c client.Reader) error {
 	}
 	mg.Spec.ForProvider.NodebalancerID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.NodebalancerIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.ConfigID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.ConfigIDRef,
+		Selector:     mg.Spec.InitProvider.ConfigIDSelector,
+		To: reference.To{
+			List:    &ConfigList{},
+			Managed: &Config{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.ConfigID")
+	}
+	mg.Spec.InitProvider.ConfigID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.ConfigIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.NodebalancerID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.NodebalancerIDRef,
+		Selector:     mg.Spec.InitProvider.NodebalancerIDSelector,
+		To: reference.To{
+			List:    &NodebalancerList{},
+			Managed: &Nodebalancer{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.NodebalancerID")
+	}
+	mg.Spec.InitProvider.NodebalancerID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.NodebalancerIDRef = rsp.ResolvedReference
 
 	return nil
 }

@@ -52,6 +52,38 @@ func (mg *Device) ResolveReferences(ctx context.Context, c client.Reader) error 
 	mg.Spec.ForProvider.FirewallID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.FirewallIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.EntityID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.EntityIDRef,
+		Selector:     mg.Spec.InitProvider.EntityIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.InstanceList{},
+			Managed: &v1alpha1.Instance{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.EntityID")
+	}
+	mg.Spec.InitProvider.EntityID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.EntityIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.FirewallID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.FirewallIDRef,
+		Selector:     mg.Spec.InitProvider.FirewallIDSelector,
+		To: reference.To{
+			List:    &DeviceList{},
+			Managed: &Device{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.FirewallID")
+	}
+	mg.Spec.InitProvider.FirewallID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.FirewallIDRef = rsp.ResolvedReference
+
 	return nil
 }
 
@@ -77,6 +109,22 @@ func (mg *Firewall) ResolveReferences(ctx context.Context, c client.Reader) erro
 	}
 	mg.Spec.ForProvider.Linodes = reference.ToFloatPtrValues(mrsp.ResolvedValues)
 	mg.Spec.ForProvider.LinodesRefs = mrsp.ResolvedReferences
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromFloatPtrValues(mg.Spec.InitProvider.Linodes),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.InitProvider.LinodesRefs,
+		Selector:      mg.Spec.InitProvider.LinodesSelector,
+		To: reference.To{
+			List:    &v1alpha1.InstanceList{},
+			Managed: &v1alpha1.Instance{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.Linodes")
+	}
+	mg.Spec.InitProvider.Linodes = reference.ToFloatPtrValues(mrsp.ResolvedValues)
+	mg.Spec.InitProvider.LinodesRefs = mrsp.ResolvedReferences
 
 	return nil
 }

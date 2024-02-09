@@ -19,9 +19,35 @@ import (
 
 type DeviceInitParameters struct {
 
+	// The unique ID of the entity to attach.
+	// The ID of the entity to create a Firewall device for.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
+	EntityID *float64 `json:"entityId,omitempty" tf:"entity_id,omitempty"`
+
+	// Reference to a Instance in instance to populate entityId.
+	// +kubebuilder:validation:Optional
+	EntityIDRef *v1.Reference `json:"entityIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate entityId.
+	// +kubebuilder:validation:Optional
+	EntityIDSelector *v1.Selector `json:"entityIdSelector,omitempty" tf:"-"`
+
 	// The type of the entity to attach. (default: linode)
 	// The type of the entity to create a Firewall device for.
 	EntityType *string `json:"entityType,omitempty" tf:"entity_type,omitempty"`
+
+	// The unique ID of the target Firewall.
+	// The ID of the Firewall to access.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/firewall/v1alpha1.Device
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// Reference to a Device in firewall to populate firewallId.
+	// +kubebuilder:validation:Optional
+	FirewallIDRef *v1.Reference `json:"firewallIdRef,omitempty" tf:"-"`
+
+	// Selector for a Device in firewall to populate firewallId.
+	// +kubebuilder:validation:Optional
+	FirewallIDSelector *v1.Selector `json:"firewallIdSelector,omitempty" tf:"-"`
 }
 
 type DeviceObservation struct {
@@ -109,13 +135,14 @@ type DeviceStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Device is the Schema for the Devices API. Manages a Linode Firewall Device.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Device struct {
 	metav1.TypeMeta   `json:",inline"`

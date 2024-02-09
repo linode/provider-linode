@@ -23,6 +23,19 @@ type VolumeInitParameters struct {
 	// The label of the Linode Volume.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// The ID of a Linode Instance where the Volume should be attached.
+	// The Linode ID where the Volume should be attached.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
+
 	// The region where this volume will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here. This field is optional for cloned volumes. Changing .
 	// The region where this volume will be deployed.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -37,6 +50,7 @@ type VolumeInitParameters struct {
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -74,6 +88,7 @@ type VolumeObservation struct {
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -116,6 +131,7 @@ type VolumeParameters struct {
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -143,13 +159,14 @@ type VolumeStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Volume is the Schema for the Volumes API. Manages a Linode Volume.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Volume struct {
 	metav1.TypeMeta   `json:",inline"`

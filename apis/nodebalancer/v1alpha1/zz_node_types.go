@@ -23,6 +23,19 @@ type NodeInitParameters struct {
 	// The private IP Address and port (IP:PORT) where this backend can be reached. This must be a private IP address.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// The ID of the NodeBalancerConfig to access.
+	// The ID of the NodeBalancerConfig to access.
+	// +crossplane:generate:reference:type=Config
+	ConfigID *float64 `json:"configId,omitempty" tf:"config_id,omitempty"`
+
+	// Reference to a Config to populate configId.
+	// +kubebuilder:validation:Optional
+	ConfigIDRef *v1.Reference `json:"configIdRef,omitempty" tf:"-"`
+
+	// Selector for a Config to populate configId.
+	// +kubebuilder:validation:Optional
+	ConfigIDSelector *v1.Selector `json:"configIdSelector,omitempty" tf:"-"`
+
 	// The label of the Linode NodeBalancer Node. This is for display purposes only.
 	// The label for this node. This is for display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
@@ -30,6 +43,19 @@ type NodeInitParameters struct {
 	// The mode this NodeBalancer should use when sending traffic to this backend. If set to accept this backend is accepting traffic. If set to reject this backend will not receive traffic. If set to drain this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. (accept, reject, drain, backup)
 	// The mode this NodeBalancer should use when sending traffic to this backend. If set to `accept` this backend is accepting traffic. If set to `reject` this backend will not receive traffic. If set to `drain` this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. If set to `backup` this backend will only accept traffic if all other nodes are down.
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+
+	// The ID of the NodeBalancer to access.
+	// The ID of the NodeBalancer to access.
+	// +crossplane:generate:reference:type=Nodebalancer
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
+
+	// Reference to a Nodebalancer to populate nodebalancerId.
+	// +kubebuilder:validation:Optional
+	NodebalancerIDRef *v1.Reference `json:"nodebalancerIdRef,omitempty" tf:"-"`
+
+	// Selector for a Nodebalancer to populate nodebalancerId.
+	// +kubebuilder:validation:Optional
+	NodebalancerIDSelector *v1.Selector `json:"nodebalancerIdSelector,omitempty" tf:"-"`
 
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)
@@ -144,13 +170,14 @@ type NodeStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Node is the Schema for the Nodes API. Manages a Linode NodeBalancer Node.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Node struct {
 	metav1.TypeMeta   `json:",inline"`

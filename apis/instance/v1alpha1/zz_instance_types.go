@@ -593,7 +593,21 @@ type InstanceInitParameters struct {
 
 	// A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.
 	// A set of IPv4 addresses to share with this Linode.
+	// +listType=set
 	SharedIPv4 []*string `json:"sharedIpv4,omitempty" tf:"shared_ipv4,omitempty"`
+
+	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
+	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript
+	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+
+	// Reference to a Stackscript in stackscript to populate stackscriptId.
+	// +kubebuilder:validation:Optional
+	StackscriptIDRef *v1.Reference `json:"stackscriptIdRef,omitempty" tf:"-"`
+
+	// Selector for a Stackscript in stackscript to populate stackscriptId.
+	// +kubebuilder:validation:Optional
+	StackscriptIDSelector *v1.Selector `json:"stackscriptIdSelector,omitempty" tf:"-"`
 
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
@@ -601,6 +615,7 @@ type InstanceInitParameters struct {
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2", "g6-highmem-16", "g6-dedicated-16", etc. See all types here.
@@ -719,6 +734,7 @@ type InstanceObservation struct {
 
 	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
 	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// +listType=set
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// This Linode's IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/64) is included in this attribute.
@@ -757,6 +773,7 @@ type InstanceObservation struct {
 
 	// A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.
 	// A set of IPv4 addresses to share with this Linode.
+	// +listType=set
 	SharedIPv4 []*string `json:"sharedIpv4,omitempty" tf:"shared_ipv4,omitempty"`
 
 	// Information about the resources available to this Linode.
@@ -776,6 +793,7 @@ type InstanceObservation struct {
 
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2", "g6-highmem-16", "g6-dedicated-16", etc. See all types here.
@@ -877,6 +895,7 @@ type InstanceParameters struct {
 	// A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.
 	// A set of IPv4 addresses to share with this Linode.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	SharedIPv4 []*string `json:"sharedIpv4,omitempty" tf:"shared_ipv4,omitempty"`
 
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing
@@ -906,6 +925,7 @@ type InstanceParameters struct {
 	// A list of tags applied to this object. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2", "g6-highmem-16", "g6-dedicated-16", etc. See all types here.
@@ -1430,13 +1450,14 @@ type InstanceStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Instance is the Schema for the Instances API. Manages a Linode instance.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Instance struct {
 	metav1.TypeMeta   `json:",inline"`

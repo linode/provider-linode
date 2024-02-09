@@ -23,6 +23,21 @@ type ObjectInitParameters struct {
 	// The ACL config given to this object.
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
+	// The access key to authenticate with.
+	// The S3 access key with access to the target bucket.
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=AccessKeyRef
+	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
+	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
+
+	// Reference to a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeyRef *v1.Reference `json:"accessKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeySelector *v1.Selector `json:"accessKeySelector,omitempty" tf:"-"`
+
 	// The name of the bucket to put the object in.
 	// The target bucket to put this object in.
 	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
@@ -73,7 +88,23 @@ type ObjectInitParameters struct {
 
 	// A map of keys/values to provision metadata.
 	// The metadata of this object
+	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
+
+	// The secret key to authenitcate with.
+	// The S3 secret key with access to the target bucket.
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=SecretKeyRef
+	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
+	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
+
+	// Reference to a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
 
 	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
 	// The source file to upload.
@@ -146,6 +177,7 @@ type ObjectObservation struct {
 
 	// A map of keys/values to provision metadata.
 	// The metadata of this object
+	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
 	// The secret key to authenitcate with.
@@ -251,6 +283,7 @@ type ObjectParameters struct {
 	// A map of keys/values to provision metadata.
 	// The metadata of this object
 	// +kubebuilder:validation:Optional
+	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
 	// The secret key to authenitcate with.
@@ -304,13 +337,14 @@ type ObjectStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Object is the Schema for the Objects API. Manages a Linode Object Storage Object.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Object struct {
 	metav1.TypeMeta   `json:",inline"`

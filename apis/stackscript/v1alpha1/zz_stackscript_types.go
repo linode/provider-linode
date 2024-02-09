@@ -25,6 +25,7 @@ type StackscriptInitParameters struct {
 
 	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
+	// +listType=set
 	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
 
 	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private. Changing
@@ -66,6 +67,7 @@ type StackscriptObservation struct {
 
 	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
+	// +listType=set
 	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
 
 	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private. Changing
@@ -111,6 +113,7 @@ type StackscriptParameters struct {
 	// A set of Image IDs representing the Images that this StackScript is compatible for deploying with. any/all indicates that all available image distributions, including private images, are accepted. Currently private image IDs are not supported.
 	// An array of Image IDs representing the Images that this StackScript is compatible for deploying with.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Images []*string `json:"images,omitempty" tf:"images,omitempty"`
 
 	// This determines whether other users can use your StackScript. Once a StackScript is made public, it cannot be made private. Changing
@@ -185,13 +188,14 @@ type StackscriptStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Stackscript is the Schema for the Stackscripts API. Manages a Linode StackScript.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Stackscript struct {
 	metav1.TypeMeta   `json:",inline"`

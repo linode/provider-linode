@@ -20,6 +20,7 @@ import (
 type DomainInitParameters struct {
 
 	// The list of IPs that may perform a zone transfer for this Domain. This is potentially dangerous, and should be set to an empty list unless you intend to use it.
+	// +listType=set
 	AxfrIps []*string `json:"axfrIps,omitempty" tf:"axfr_ips,omitempty"`
 
 	// A description for this Domain. This is for display purposes only.
@@ -35,6 +36,7 @@ type DomainInitParameters struct {
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
 	// The IP addresses representing the master DNS for this Domain.
+	// +listType=set
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
@@ -53,6 +55,7 @@ type DomainInitParameters struct {
 	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
@@ -62,6 +65,7 @@ type DomainInitParameters struct {
 type DomainObservation struct {
 
 	// The list of IPs that may perform a zone transfer for this Domain. This is potentially dangerous, and should be set to an empty list unless you intend to use it.
+	// +listType=set
 	AxfrIps []*string `json:"axfrIps,omitempty" tf:"axfr_ips,omitempty"`
 
 	// A description for this Domain. This is for display purposes only.
@@ -79,6 +83,7 @@ type DomainObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The IP addresses representing the master DNS for this Domain.
+	// +listType=set
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
@@ -97,6 +102,7 @@ type DomainObservation struct {
 	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
@@ -107,6 +113,7 @@ type DomainParameters struct {
 
 	// The list of IPs that may perform a zone transfer for this Domain. This is potentially dangerous, and should be set to an empty list unless you intend to use it.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AxfrIps []*string `json:"axfrIps,omitempty" tf:"axfr_ips,omitempty"`
 
 	// A description for this Domain. This is for display purposes only.
@@ -127,6 +134,7 @@ type DomainParameters struct {
 
 	// The IP addresses representing the master DNS for this Domain.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
@@ -151,6 +159,7 @@ type DomainParameters struct {
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
@@ -182,13 +191,14 @@ type DomainStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Domain is the Schema for the Domains API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Domain struct {
 	metav1.TypeMeta   `json:",inline"`

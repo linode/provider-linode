@@ -138,6 +138,21 @@ func (in *BucketInitParameters) DeepCopyInto(out *BucketInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AccessKey != nil {
+		in, out := &in.AccessKey, &out.AccessKey
+		*out = new(string)
+		**out = **in
+	}
+	if in.AccessKeyRef != nil {
+		in, out := &in.AccessKeyRef, &out.AccessKeyRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.AccessKeySelector != nil {
+		in, out := &in.AccessKeySelector, &out.AccessKeySelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Cert != nil {
 		in, out := &in.Cert, &out.Cert
 		*out = make([]CertInitParameters, len(*in))
@@ -164,6 +179,21 @@ func (in *BucketInitParameters) DeepCopyInto(out *BucketInitParameters) {
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.SecretKey != nil {
+		in, out := &in.SecretKey, &out.SecretKey
+		*out = new(string)
+		**out = **in
+	}
+	if in.SecretKeyRef != nil {
+		in, out := &in.SecretKeyRef, &out.SecretKeyRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecretKeySelector != nil {
+		in, out := &in.SecretKeySelector, &out.SecretKeySelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Versioning != nil {
 		in, out := &in.Versioning, &out.Versioning
@@ -967,6 +997,21 @@ func (in *ObjectInitParameters) DeepCopyInto(out *ObjectInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.AccessKey != nil {
+		in, out := &in.AccessKey, &out.AccessKey
+		*out = new(string)
+		**out = **in
+	}
+	if in.AccessKeyRef != nil {
+		in, out := &in.AccessKeyRef, &out.AccessKeyRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.AccessKeySelector != nil {
+		in, out := &in.AccessKeySelector, &out.AccessKeySelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Bucket != nil {
 		in, out := &in.Bucket, &out.Bucket
 		*out = new(string)
@@ -1042,6 +1087,21 @@ func (in *ObjectInitParameters) DeepCopyInto(out *ObjectInitParameters) {
 			}
 			(*out)[key] = outVal
 		}
+	}
+	if in.SecretKey != nil {
+		in, out := &in.SecretKey, &out.SecretKey
+		*out = new(string)
+		**out = **in
+	}
+	if in.SecretKeyRef != nil {
+		in, out := &in.SecretKeyRef, &out.SecretKeyRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecretKeySelector != nil {
+		in, out := &in.SecretKeySelector, &out.SecretKeySelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Source != nil {
 		in, out := &in.Source, &out.Source

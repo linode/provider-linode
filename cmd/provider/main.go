@@ -101,7 +101,7 @@ func main() {
 	}
 
 	ctx := context.Background()
-	provider, err := config.GetProvider(ctx, true)
+	provider, err := config.GetProvider(ctx, false)
 	kingpin.FatalIfError(err, "Cannot initialize the provider configuration")
 	setupConfig.TerraformProvider = provider.TerraformProvider
 	o := tjcontroller.Options{

@@ -54,6 +54,19 @@ type ConfigInitParameters struct {
 	// What ciphers to use for SSL connections served by this NodeBalancer. `legacy` is considered insecure and should only be used if necessary.
 	CipherSuite *string `json:"cipherSuite,omitempty" tf:"cipher_suite,omitempty"`
 
+	// The ID of the NodeBalancer to access.
+	// The ID of the NodeBalancer to access.
+	// +crossplane:generate:reference:type=Nodebalancer
+	NodebalancerID *float64 `json:"nodebalancerId,omitempty" tf:"nodebalancer_id,omitempty"`
+
+	// Reference to a Nodebalancer to populate nodebalancerId.
+	// +kubebuilder:validation:Optional
+	NodebalancerIDRef *v1.Reference `json:"nodebalancerIdRef,omitempty" tf:"-"`
+
+	// Selector for a Nodebalancer to populate nodebalancerId.
+	// +kubebuilder:validation:Optional
+	NodebalancerIDSelector *v1.Selector `json:"nodebalancerIdSelector,omitempty" tf:"-"`
+
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443. (Defaults to 80)
 	// The TCP port this Config is for. These values must be unique across configs on a single NodeBalancer (you can't have two configs for port 80, for example). While some ports imply some protocols, no enforcement is done and you may configure your NodeBalancer however is useful to you. For example, while port 443 is generally used for HTTPS, you do not need SSL configured to have a NodeBalancer listening on port 443.
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
@@ -272,13 +285,14 @@ type ConfigStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Config is the Schema for the Configs API. Manages a Linode NodeBalancer Config.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Config struct {
 	metav1.TypeMeta   `json:",inline"`

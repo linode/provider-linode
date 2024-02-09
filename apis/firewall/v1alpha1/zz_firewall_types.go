@@ -58,8 +58,23 @@ type FirewallInitParameters struct {
 	// The label for the Firewall. For display purposes only. If no label is provided, a default will be assigned.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// A list of IDs of Linodes this Firewall should govern network traffic for.
+	// The IDs of Linodes to apply this firewall to.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
+	// +listType=set
+	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+
+	// References to Instance in instance to populate linodes.
+	// +kubebuilder:validation:Optional
+	LinodesRefs []v1.Reference `json:"linodesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Instance in instance to populate linodes.
+	// +kubebuilder:validation:Optional
+	LinodesSelector *v1.Selector `json:"linodesSelector,omitempty" tf:"-"`
+
 	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
 	// The IDs of NodeBalancers to apply this firewall to.
+	// +listType=set
 	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
@@ -71,6 +86,7 @@ type FirewallInitParameters struct {
 
 	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -102,10 +118,12 @@ type FirewallObservation struct {
 
 	// A list of IDs of Linodes this Firewall should govern network traffic for.
 	// The IDs of Linodes to apply this firewall to.
+	// +listType=set
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
 	// The IDs of NodeBalancers to apply this firewall to.
+	// +listType=set
 	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
@@ -121,6 +139,7 @@ type FirewallObservation struct {
 
 	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// When this firewall was last updated
@@ -152,6 +171,7 @@ type FirewallParameters struct {
 	// The IDs of Linodes to apply this firewall to.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// References to Instance in instance to populate linodes.
@@ -165,6 +185,7 @@ type FirewallParameters struct {
 	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
 	// The IDs of NodeBalancers to apply this firewall to.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
@@ -179,6 +200,7 @@ type FirewallParameters struct {
 	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -380,13 +402,14 @@ type FirewallStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Firewall is the Schema for the Firewalls API. Manages a Linode Firewall.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Firewall struct {
 	metav1.TypeMeta   `json:",inline"`

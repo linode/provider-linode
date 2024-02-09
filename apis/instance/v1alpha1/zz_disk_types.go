@@ -21,10 +21,12 @@ type DiskInitParameters_2 struct {
 
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
+	// +listType=set
 	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
 
 	// The filesystem of this disk. (raw, swap, ext3, ext4, initrd)
@@ -39,19 +41,47 @@ type DiskInitParameters_2 struct {
 	// The Disk’s label is for display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// The ID of the Linode to create this Disk under.
+	// The ID of the Linode to assign this disk to.
+	// +crossplane:generate:reference:type=Instance
+	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
+
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
 	// The size of the Disk in MB.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+
+	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
+	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript
+	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
+
+	// Reference to a Stackscript in stackscript to populate stackscriptId.
+	// +kubebuilder:validation:Optional
+	StackscriptIDRef *v1.Reference `json:"stackscriptIdRef,omitempty" tf:"-"`
+
+	// Selector for a Stackscript in stackscript to populate stackscriptId.
+	// +kubebuilder:validation:Optional
+	StackscriptIDSelector *v1.Selector `json:"stackscriptIdSelector,omitempty" tf:"-"`
 }
 
 type DiskObservation_2 struct {
 
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
+	// +listType=set
 	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
 
 	// When this disk was created.
@@ -98,11 +128,13 @@ type DiskParameters_2 struct {
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
 
 	// The filesystem of this disk. (raw, swap, ext3, ext4, initrd)
@@ -188,13 +220,14 @@ type DiskStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Disk is the Schema for the Disks API. Manages a Linode Instance Disk.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Disk struct {
 	metav1.TypeMeta   `json:",inline"`

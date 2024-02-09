@@ -81,6 +81,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   isPublic:
                     description: This determines whether other users can use your
                       StackScript. Once a StackScript is made public, it cannot be
@@ -129,6 +130,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   isPublic:
                     description: This determines whether other users can use your
                       StackScript. Once a StackScript is made public, it cannot be
@@ -363,6 +365,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   isPublic:
                     description: This determines whether other users can use your
                       StackScript. Once a StackScript is made public, it cannot be

@@ -24,13 +24,13 @@ var terraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"linode_vpc":                config.IdentifierFromProvider,
 	"linode_instance_ip":        config.IdentifierFromProvider,
 	"linode_firewall_device":    config.IdentifierFromProvider,
-	// "linode_volume":             config.IdentifierFromProvider,
+	"linode_volume":             config.IdentifierFromProvider,
 }
 
-// noForkExternalNameConfigs contains all external name configurations
+// terraformPluginSDKIncludeList contains all external name configurations
 // belonging to Terraform Plugin SDKv2 resources to be reconciled
 // under the no-fork architecture for this provider.
-var noForkExternalNameConfigs = map[string]config.ExternalName{
+var terraformPluginSDKIncludeList = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: 1234567
 	"linode_database_access_controls": config.IdentifierFromProvider,
 	"linode_database_mysql":           config.IdentifierFromProvider,
@@ -42,11 +42,10 @@ var noForkExternalNameConfigs = map[string]config.ExternalName{
 	"linode_instance":                 config.IdentifierFromProvider,
 	"linode_instance_config":          config.IdentifierFromProvider,
 	"linode_instance_disk":            config.IdentifierFromProvider,
-	"linode_instance_ip":              config.IdentifierFromProvider,
 	"linode_instance_shared_ips":      config.IdentifierFromProvider,
 	"linode_lke_cluster":              config.IdentifierFromProvider,
-	"linode_nodebalancer_config":      config.IdentifierFromProvider,
 	"linode_nodebalancer_node":        config.IdentifierFromProvider,
+	"linode_nodebalancer_config":      config.IdentifierFromProvider,
 	"linode_object_storage_bucket":    config.IdentifierFromProvider,
 	"linode_object_storage_object":    config.IdentifierFromProvider,
 	"linode_user":                     config.IdentifierFromProvider,
@@ -80,7 +79,7 @@ func resourceConfigurator() config.ResourceOption {
 		// Plugin SDKv2, which takes precedence over CLI architecture.
 		e, configured := terraformPluginFrameworkExternalNameConfigs[r.Name]
 		if !configured {
-			e, configured = noForkExternalNameConfigs[r.Name]
+			e, configured = terraformPluginSDKIncludeList[r.Name]
 			if !configured {
 				e, configured = cliReconciledExternalNameConfigs[r.Name]
 			}
