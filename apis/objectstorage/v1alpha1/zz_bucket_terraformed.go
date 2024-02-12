@@ -25,7 +25,7 @@ func (mg *Bucket) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Bucket
 func (tr *Bucket) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"cert[*].certificate": "spec.forProvider.cert[*].certificateSecretRef", "cert[*].private_key": "spec.forProvider.cert[*].privateKeySecretRef"}
+	return nil
 }
 
 // GetObservation of this Bucket

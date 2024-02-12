@@ -87,7 +87,7 @@ type BucketObservation struct {
 	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
 
 	// The cert used by this Object Storage Bucket.
-	Cert []CertParameters `json:"cert,omitempty" tf:"cert,omitempty"`
+	Cert []CertObservation `json:"cert,omitempty" tf:"cert,omitempty"`
 
 	// The cluster of the Linode Object Storage Bucket.
 	// The cluster of the Linode Object Storage Bucket.
@@ -188,22 +188,38 @@ type BucketParameters struct {
 }
 
 type CertInitParameters struct {
+
+	// The Base64 encoded and PEM formatted SSL certificate.
+	// The Base64 encoded and PEM formatted SSL certificate.
+	Certificate *string `json:"certificate,omitempty" tf:"certificate,omitempty"`
+
+	// The private key associated with the TLS/SSL certificate.
+	// The private key associated with the TLS/SSL certificate.
+	PrivateKey *string `json:"privateKey,omitempty" tf:"private_key,omitempty"`
 }
 
 type CertObservation struct {
+
+	// The Base64 encoded and PEM formatted SSL certificate.
+	// The Base64 encoded and PEM formatted SSL certificate.
+	Certificate *string `json:"certificate,omitempty" tf:"certificate,omitempty"`
+
+	// The private key associated with the TLS/SSL certificate.
+	// The private key associated with the TLS/SSL certificate.
+	PrivateKey *string `json:"privateKey,omitempty" tf:"private_key,omitempty"`
 }
 
 type CertParameters struct {
 
 	// The Base64 encoded and PEM formatted SSL certificate.
 	// The Base64 encoded and PEM formatted SSL certificate.
-	// +kubebuilder:validation:Required
-	CertificateSecretRef v1.SecretKeySelector `json:"certificateSecretRef" tf:"-"`
+	// +kubebuilder:validation:Optional
+	Certificate *string `json:"certificate" tf:"certificate,omitempty"`
 
 	// The private key associated with the TLS/SSL certificate.
 	// The private key associated with the TLS/SSL certificate.
-	// +kubebuilder:validation:Required
-	PrivateKeySecretRef v1.SecretKeySelector `json:"privateKeySecretRef" tf:"-"`
+	// +kubebuilder:validation:Optional
+	PrivateKey *string `json:"privateKey" tf:"private_key,omitempty"`
 }
 
 type ExpirationInitParameters struct {

@@ -154,4 +154,4 @@ require (
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
 
-replace github.com/linode/terraform-provider-linode/v2 v2.14.0 => github.com/tchinmai7/terraform-provider-linode/v2 v2.0.0-20240209230743-2ac41241b647
+replace github.com/linode/terraform-provider-linode/v2 v2.14.0 => github.com/tchinmai7/terraform-provider-linode/v2 v2.0.0-20240212213046-468f25b69508

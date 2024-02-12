@@ -1,7 +1,7 @@
 apiVersion: instance.linode.upbound.io/v1alpha1
 kind: Instance
 metadata:
-  name: test-instance
+  name: uptest-instance
 spec:
   forProvider:
     image: linode/ubuntu22.04

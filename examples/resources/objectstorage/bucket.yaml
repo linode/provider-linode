@@ -5,7 +5,6 @@ metadata:
 spec:
   deletionPolicy: Orphan
   forProvider:
-    corsEnabled: true
     label: test-bucket
     cluster: us-sea-1
   providerConfigRef:
