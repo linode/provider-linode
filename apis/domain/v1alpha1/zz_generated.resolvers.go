@@ -35,5 +35,21 @@ func (mg *Record) ResolveReferences(ctx context.Context, c client.Reader) error 
 	mg.Spec.ForProvider.DomainID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.DomainIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.DomainID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.DomainIDRef,
+		Selector:     mg.Spec.InitProvider.DomainIDSelector,
+		To: reference.To{
+			List:    &DomainList{},
+			Managed: &Domain{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.DomainID")
+	}
+	mg.Spec.InitProvider.DomainID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.DomainIDRef = rsp.ResolvedReference
+
 	return nil
 }

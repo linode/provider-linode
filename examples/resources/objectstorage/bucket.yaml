@@ -1,0 +1,11 @@
+apiVersion: objectstorage.linode.upbound.io/v1alpha1
+kind: Bucket
+metadata:
+  name: test-bucket
+spec:
+  deletionPolicy: Orphan
+  forProvider:
+    label: test-bucket
+    cluster: us-sea-1
+  providerConfigRef:
+    name: default

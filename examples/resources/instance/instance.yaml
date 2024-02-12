@@ -14,11 +14,7 @@ spec:
     image: linode/ubuntu18.04
     label: simple_instance
     privateIp: true
-    region: us-central
-    rootPassSecretRef:
-      key: example-key
-      name: example-secret
-      namespace: upbound-system
+    region: us-sea
     swapSize: 256
     tags:
     - foo

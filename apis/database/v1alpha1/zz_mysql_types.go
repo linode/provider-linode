@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,10 +17,54 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type MySQLInitParameters struct {
+
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
+	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	// +listType=set
+	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
+
+	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
+	// The number of Linode Instance nodes deployed to the Managed Database. Defaults to 1.
+	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+
+	// Whether the Managed Databases is encrypted. (default false)
+	// Whether the Managed Databases is encrypted.
+	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
+
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	// The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)
+	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
+
+	// A unique, user-defined string referring to the Managed Database.
+	// A unique, user-defined string referring to the Managed Database.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The region to use for the Managed Database.
+	// The region to use for the Managed Database.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The replication method used for the Managed Database. (none, asynch, semi_synch; default none)
+	// The replication method used for the Managed Database.
+	ReplicationType *string `json:"replicationType,omitempty" tf:"replication_type,omitempty"`
+
+	// Whether to require SSL credentials to establish a connection to the Managed Database. (default false)
+	// Whether to require SSL credentials to establish a connection to the Managed Database.
+	SSLConnection *bool `json:"sslConnection,omitempty" tf:"ssl_connection,omitempty"`
+
+	// The Linode Instance type used for the nodes of the  Managed Database instance.
+	// The Linode Instance type used by the Managed Database for its nodes.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// Configuration settings for automated patch update maintenance for the Managed Database.
+	Updates []UpdatesInitParameters `json:"updates,omitempty" tf:"updates,omitempty"`
+}
+
 type MySQLObservation struct {
 
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+	// +listType=set
 	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
@@ -91,6 +139,7 @@ type MySQLParameters struct {
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
 	// A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AllowList []*string `json:"allowList,omitempty" tf:"allow_list,omitempty"`
 
 	// The number of Linode Instance nodes deployed to the Managed Database. (default 1)
@@ -138,6 +187,29 @@ type MySQLParameters struct {
 	Updates []UpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
+type UpdatesInitParameters struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	// The day to perform maintenance.
+	DayOfWeek *string `json:"dayOfWeek,omitempty" tf:"day_of_week,omitempty"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	// The maximum maintenance window time in hours.
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
+
+	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
+	// Whether maintenance occurs on a weekly or monthly basis.
+	Frequency *string `json:"frequency,omitempty" tf:"frequency,omitempty"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	// The hour to begin maintenance based in UTC time.
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+
+	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
+	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates.
+	WeekOfMonth *float64 `json:"weekOfMonth,omitempty" tf:"week_of_month,omitempty"`
+}
+
 type UpdatesObservation struct {
 
 	// The day to perform maintenance. (monday, tuesday, ...)
@@ -165,22 +237,22 @@ type UpdatesParameters struct {
 
 	// The day to perform maintenance. (monday, tuesday, ...)
 	// The day to perform maintenance.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	DayOfWeek *string `json:"dayOfWeek" tf:"day_of_week,omitempty"`
 
 	// The maximum maintenance window time in hours. (1..3)
 	// The maximum maintenance window time in hours.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Duration *float64 `json:"duration" tf:"duration,omitempty"`
 
 	// Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)
 	// Whether maintenance occurs on a weekly or monthly basis.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Frequency *string `json:"frequency" tf:"frequency,omitempty"`
 
 	// The hour to begin maintenance based in UTC time. (0..23)
 	// The hour to begin maintenance based in UTC time.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	HourOfDay *float64 `json:"hourOfDay" tf:"hour_of_day,omitempty"`
 
 	// The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)
@@ -193,6 +265,17 @@ type UpdatesParameters struct {
 type MySQLSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     MySQLParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider MySQLInitParameters `json:"initProvider,omitempty"`
 }
 
 // MySQLStatus defines the observed state of MySQL.
@@ -202,21 +285,22 @@ type MySQLStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // MySQL is the Schema for the MySQLs API. Manages a Linode MySQL Database.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type MySQL struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.engineId)",message="engineId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)",message="region is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.engineId) || (has(self.initProvider) && has(self.initProvider.engineId))",message="spec.forProvider.engineId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.type) || (has(self.initProvider) && has(self.initProvider.type))",message="spec.forProvider.type is a required parameter"
 	Spec   MySQLSpec   `json:"spec"`
 	Status MySQLStatus `json:"status,omitempty"`
 }

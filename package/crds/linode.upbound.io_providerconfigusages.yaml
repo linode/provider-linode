@@ -3,16 +3,15 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.11.3
-  creationTimestamp: null
+    controller-gen.kubebuilder.io/version: v0.13.0
   name: providerconfigusages.linode.upbound.io
 spec:
   group: linode.upbound.io
   names:
     categories:
     - crossplane
-    - provider
-    - template
+    - providerconfig
+    - linode
     kind: ProviderConfigUsage
     listKind: ProviderConfigUsageList
     plural: providerconfigusages

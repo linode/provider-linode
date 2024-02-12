@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -12,6 +16,9 @@ import (
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
+
+type DevicesInitParameters struct {
+}
 
 type DevicesObservation struct {
 
@@ -32,6 +39,55 @@ type DevicesObservation struct {
 }
 
 type DevicesParameters struct {
+}
+
+type FirewallInitParameters struct {
+
+	// If true, the Firewall's rules are not enforced (defaults to false).
+	// If true, the Firewall is inactive.
+	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
+
+	// A firewall rule that specifies what inbound network traffic is allowed.
+	Inbound []InboundInitParameters `json:"inbound,omitempty" tf:"inbound,omitempty"`
+
+	// The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (ACCEPT, DROP)
+	// The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property for an individual Firewall Rule.
+	InboundPolicy *string `json:"inboundPolicy,omitempty" tf:"inbound_policy,omitempty"`
+
+	// This Firewall's unique label.
+	// The label for the Firewall. For display purposes only. If no label is provided, a default will be assigned.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A list of IDs of Linodes this Firewall should govern network traffic for.
+	// The IDs of Linodes to apply this firewall to.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
+	// +listType=set
+	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
+
+	// References to Instance in instance to populate linodes.
+	// +kubebuilder:validation:Optional
+	LinodesRefs []v1.Reference `json:"linodesRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Instance in instance to populate linodes.
+	// +kubebuilder:validation:Optional
+	LinodesSelector *v1.Selector `json:"linodesSelector,omitempty" tf:"-"`
+
+	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
+	// The IDs of NodeBalancers to apply this firewall to.
+	// +listType=set
+	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
+
+	// A firewall rule that specifies what outbound network traffic is allowed.
+	Outbound []OutboundInitParameters `json:"outbound,omitempty" tf:"outbound,omitempty"`
+
+	// The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule. (ACCEPT, DROP)
+	// The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule.
+	OutboundPolicy *string `json:"outboundPolicy,omitempty" tf:"outbound_policy,omitempty"`
+
+	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type FirewallObservation struct {
@@ -62,10 +118,12 @@ type FirewallObservation struct {
 
 	// A list of IDs of Linodes this Firewall should govern network traffic for.
 	// The IDs of Linodes to apply this firewall to.
+	// +listType=set
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
 	// The IDs of NodeBalancers to apply this firewall to.
+	// +listType=set
 	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
@@ -81,6 +139,7 @@ type FirewallObservation struct {
 
 	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// When this firewall was last updated
@@ -112,6 +171,7 @@ type FirewallParameters struct {
 	// The IDs of Linodes to apply this firewall to.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Linodes []*float64 `json:"linodes,omitempty" tf:"linodes,omitempty"`
 
 	// References to Instance in instance to populate linodes.
@@ -125,6 +185,7 @@ type FirewallParameters struct {
 	// A list of IDs of NodeBalancers this Firewall should govern network traffic for.
 	// The IDs of NodeBalancers to apply this firewall to.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Nodebalancers []*float64 `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// A firewall rule that specifies what outbound network traffic is allowed.
@@ -139,7 +200,35 @@ type FirewallParameters struct {
 	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+}
+
+type InboundInitParameters struct {
+
+	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.
+	// A list of IPv6 addresses or networks this rule applies to.
+	IPv6 []*string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
+	// This Firewall's unique label.
+	// Used to identify this rule. For display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
+	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
+	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
+
+	// The network protocol this rule controls. (TCP, UDP, ICMP)
+	// The network protocol this rule controls.
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 }
 
 type InboundObservation struct {
@@ -173,7 +262,7 @@ type InboundParameters struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Action *string `json:"action" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
@@ -188,7 +277,7 @@ type InboundParameters struct {
 
 	// This Firewall's unique label.
 	// Used to identify this rule. For display purposes only.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
 	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
@@ -198,8 +287,35 @@ type InboundParameters struct {
 
 	// The network protocol this rule controls. (TCP, UDP, ICMP)
 	// The network protocol this rule controls.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
+}
+
+type OutboundInitParameters struct {
+
+	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
+	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.
+	// A list of IPv6 addresses or networks this rule applies to.
+	IPv6 []*string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
+	// This Firewall's unique label.
+	// Used to identify this rule. For display purposes only.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
+	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
+	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
+
+	// The network protocol this rule controls. (TCP, UDP, ICMP)
+	// The network protocol this rule controls.
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 }
 
 type OutboundObservation struct {
@@ -233,7 +349,7 @@ type OutboundParameters struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Action *string `json:"action" tf:"action,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
@@ -248,7 +364,7 @@ type OutboundParameters struct {
 
 	// This Firewall's unique label.
 	// Used to identify this rule. For display purposes only.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
 	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
@@ -258,7 +374,7 @@ type OutboundParameters struct {
 
 	// The network protocol this rule controls. (TCP, UDP, ICMP)
 	// The network protocol this rule controls.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
 }
 
@@ -266,6 +382,17 @@ type OutboundParameters struct {
 type FirewallSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     FirewallParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider FirewallInitParameters `json:"initProvider,omitempty"`
 }
 
 // FirewallStatus defines the observed state of Firewall.
@@ -275,20 +402,21 @@ type FirewallStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Firewall is the Schema for the Firewalls API. Manages a Linode Firewall.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Firewall struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.inboundPolicy)",message="inboundPolicy is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.outboundPolicy)",message="outboundPolicy is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.inboundPolicy) || (has(self.initProvider) && has(self.initProvider.inboundPolicy))",message="spec.forProvider.inboundPolicy is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.outboundPolicy) || (has(self.initProvider) && has(self.initProvider.outboundPolicy))",message="spec.forProvider.outboundPolicy is a required parameter"
 	Spec   FirewallSpec   `json:"spec"`
 	Status FirewallStatus `json:"status,omitempty"`
 }

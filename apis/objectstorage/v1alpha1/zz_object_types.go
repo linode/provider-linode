@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -12,6 +16,104 @@ import (
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
+
+type ObjectInitParameters struct {
+
+	// The canned ACL to apply. (private, public-read, authenticated-read, public-read-write, custom) (defaults to private).
+	// The ACL config given to this object.
+	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
+
+	// The access key to authenticate with.
+	// The S3 access key with access to the target bucket.
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=AccessKeyRef
+	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
+	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
+
+	// Reference to a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeyRef *v1.Reference `json:"accessKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate accessKey.
+	// +kubebuilder:validation:Optional
+	AccessKeySelector *v1.Selector `json:"accessKeySelector,omitempty" tf:"-"`
+
+	// The name of the bucket to put the object in.
+	// The target bucket to put this object in.
+	Bucket *string `json:"bucket,omitempty" tf:"bucket,omitempty"`
+
+	// Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.
+	// This cache_control configuration of this object.
+	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
+
+	// The cluster the bucket is in.
+	// The target cluster that the bucket is in.
+	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
+
+	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+	// The contents of the Object to upload.
+	Content *string `json:"content,omitempty" tf:"content,omitempty"`
+
+	// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the gzipbase64 function with small text strings. For larger objects, use source to stream the content from a disk file.
+	// The base64 contents of the Object to upload.
+	ContentBase64 *string `json:"contentBase64,omitempty" tf:"content_base64,omitempty"`
+
+	// Specifies presentational information for the object. Read w3c content_disposition for further information.
+	// The content disposition configuration of this object.
+	ContentDisposition *string `json:"contentDisposition,omitempty" tf:"content_disposition,omitempty"`
+
+	// Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read w3c content encoding for further information.
+	// The encoding of the content of this object.
+	ContentEncoding *string `json:"contentEncoding,omitempty" tf:"content_encoding,omitempty"`
+
+	// The language the content is in e.g. en-US or en-GB.
+	// The language metadata of this object.
+	ContentLanguage *string `json:"contentLanguage,omitempty" tf:"content_language,omitempty"`
+
+	// A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.
+	// The MIME type of the content.
+	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
+
+	// Used to trigger updates.11.11.11 or earlier).
+	// The specific version of this object.
+	Etag *string `json:"etag,omitempty" tf:"etag,omitempty"`
+
+	// Allow the object to be deleted regardless of any legal hold or object lock (defaults to false).
+	// Whether the object should bypass deletion restrictions.
+	ForceDestroy *bool `json:"forceDestroy,omitempty" tf:"force_destroy,omitempty"`
+
+	// They name of the object once it is in the bucket.
+	// The name of the uploaded object.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// A map of keys/values to provision metadata.
+	// The metadata of this object
+	// +mapType=granular
+	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
+
+	// The secret key to authenitcate with.
+	// The S3 secret key with access to the target bucket.
+	// +crossplane:generate:reference:type=Key
+	// +crossplane:generate:reference:refFieldName=SecretKeyRef
+	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
+	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
+
+	// Reference to a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
+
+	// Selector for a Key to populate secretKey.
+	// +kubebuilder:validation:Optional
+	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
+
+	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
+	// The source file to upload.
+	Source *string `json:"source,omitempty" tf:"source,omitempty"`
+
+	// Specifies a target URL for website redirect.
+	// The website redirect location of this object.
+	WebsiteRedirect *string `json:"websiteRedirect,omitempty" tf:"website_redirect,omitempty"`
+}
 
 type ObjectObservation struct {
 
@@ -75,6 +177,7 @@ type ObjectObservation struct {
 
 	// A map of keys/values to provision metadata.
 	// The metadata of this object
+	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
 	// The secret key to authenitcate with.
@@ -180,6 +283,7 @@ type ObjectParameters struct {
 	// A map of keys/values to provision metadata.
 	// The metadata of this object
 	// +kubebuilder:validation:Optional
+	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
 	// The secret key to authenitcate with.
@@ -213,6 +317,17 @@ type ObjectParameters struct {
 type ObjectSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     ObjectParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider ObjectInitParameters `json:"initProvider,omitempty"`
 }
 
 // ObjectStatus defines the observed state of Object.
@@ -222,20 +337,21 @@ type ObjectStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Object is the Schema for the Objects API. Manages a Linode Object Storage Object.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Object struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.bucket)",message="bucket is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.cluster)",message="cluster is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.key)",message="key is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.bucket) || (has(self.initProvider) && has(self.initProvider.bucket))",message="spec.forProvider.bucket is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cluster) || (has(self.initProvider) && has(self.initProvider.cluster))",message="spec.forProvider.cluster is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.key) || (has(self.initProvider) && has(self.initProvider.key))",message="spec.forProvider.key is a required parameter"
 	Spec   ObjectSpec   `json:"spec"`
 	Status ObjectStatus `json:"status,omitempty"`
 }

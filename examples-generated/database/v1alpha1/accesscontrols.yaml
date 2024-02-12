@@ -1,0 +1,48 @@
+apiVersion: database.linode.upbound.io/v1alpha1
+kind: AccessControls
+metadata:
+  annotations:
+    meta.upbound.io/example-id: database/v1alpha1/accesscontrols
+  labels:
+    testing.upbound.io/example-name: my-access
+  name: my-access
+spec:
+  forProvider:
+    allowList:
+    - ${linode_instance.my-instance.ip_address}
+    databaseId: ${linode_database_mysql.my-db.id}
+    databaseType: mysql
+
+---
+
+apiVersion: database.linode.upbound.io/v1alpha1
+kind: MySQL
+metadata:
+  annotations:
+    meta.upbound.io/example-id: database/v1alpha1/accesscontrols
+  labels:
+    testing.upbound.io/example-name: my-db
+  name: my-db
+spec:
+  forProvider:
+    engineId: mysql/8.0.30
+    label: mydatabase
+    region: us-southeast
+    type: g6-nanode-1
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: database/v1alpha1/accesscontrols
+  labels:
+    testing.upbound.io/example-name: my-instance
+  name: my-instance
+spec:
+  forProvider:
+    image: linode/alpine3.14
+    label: myinstance
+    region: us-southeast
+    type: g6-nanode-1

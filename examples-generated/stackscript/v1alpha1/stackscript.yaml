@@ -1,0 +1,50 @@
+apiVersion: stackscript.linode.upbound.io/v1alpha1
+kind: Stackscript
+metadata:
+  annotations:
+    meta.upbound.io/example-id: stackscript/v1alpha1/stackscript
+  labels:
+    testing.upbound.io/example-name: foo
+  name: foo
+spec:
+  forProvider:
+    description: Installs a Package
+    images:
+    - linode/ubuntu18.04
+    - linode/ubuntu16.04lts
+    label: foo
+    revNote: initial version
+    script: |
+      #!/bin/bash
+      # <UDF name="package" label="System Package to Install" example="nginx" default="">
+      apt-get -q update && apt-get -q -y install $PACKAGE
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: stackscript/v1alpha1/stackscript
+  labels:
+    testing.upbound.io/example-name: foo
+  name: foo
+spec:
+  forProvider:
+    authorizedKeys:
+    - '...'
+    image: linode/ubuntu18.04
+    label: foo
+    region: us-east
+    rootPassSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    stackscriptDataSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    stackscriptIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: foo
+    type: g6-nanode-1

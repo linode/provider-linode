@@ -1,0 +1,63 @@
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: SharedIPs
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/sharedips
+  labels:
+    testing.upbound.io/example-name: share-primary
+  name: share-primary
+spec:
+  forProvider:
+    addresses:
+    - ${linode_instance_ip.primary.address}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: secondary
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/sharedips
+  labels:
+    testing.upbound.io/example-name: primary
+  name: primary
+spec:
+  forProvider:
+    label: node-primary
+    region: eu-central
+    type: g6-nanode-1
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/sharedips
+  labels:
+    testing.upbound.io/example-name: secondary
+  name: secondary
+spec:
+  forProvider:
+    label: node-secondary
+    region: eu-central
+    type: g6-nanode-1
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: IP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: instance/v1alpha1/sharedips
+  labels:
+    testing.upbound.io/example-name: primary
+  name: primary
+spec:
+  forProvider:
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: primary

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -13,9 +17,55 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type DomainInitParameters struct {
+
+	// The list of IPs that may perform a zone transfer for this Domain. This is potentially dangerous, and should be set to an empty list unless you intend to use it.
+	// +listType=set
+	AxfrIps []*string `json:"axfrIps,omitempty" tf:"axfr_ips,omitempty"`
+
+	// A description for this Domain. This is for display purposes only.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The domain this Domain represents. These must be unique in our system; you cannot have two Domains representing the same domain.
+	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
+
+	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
+
+	// The group this Domain belongs to. This is for display purposes only.
+	Group *string `json:"group,omitempty" tf:"group,omitempty"`
+
+	// The IP addresses representing the master DNS for this Domain.
+	// +listType=set
+	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
+
+	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	RefreshSec *float64 `json:"refreshSec,omitempty" tf:"refresh_sec,omitempty"`
+
+	// The interval, in seconds, at which a failed refresh should be retried. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	RetrySec *float64 `json:"retrySec,omitempty" tf:"retry_sec,omitempty"`
+
+	// Start of Authority email address. This is required for master Domains.
+	SoaEmail *string `json:"soaEmail,omitempty" tf:"soa_email,omitempty"`
+
+	// Used to control whether this Domain is currently being rendered.
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// 'Time to Live' - the amount of time in seconds that this Domain's records may be cached by resolvers or other domain servers. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
+	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
+
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
 type DomainObservation struct {
 
 	// The list of IPs that may perform a zone transfer for this Domain. This is potentially dangerous, and should be set to an empty list unless you intend to use it.
+	// +listType=set
 	AxfrIps []*string `json:"axfrIps,omitempty" tf:"axfr_ips,omitempty"`
 
 	// A description for this Domain. This is for display purposes only.
@@ -33,6 +83,7 @@ type DomainObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The IP addresses representing the master DNS for this Domain.
+	// +listType=set
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
@@ -51,6 +102,7 @@ type DomainObservation struct {
 	TTLSec *float64 `json:"ttlSec,omitempty" tf:"ttl_sec,omitempty"`
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
@@ -61,6 +113,7 @@ type DomainParameters struct {
 
 	// The list of IPs that may perform a zone transfer for this Domain. This is potentially dangerous, and should be set to an empty list unless you intend to use it.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AxfrIps []*string `json:"axfrIps,omitempty" tf:"axfr_ips,omitempty"`
 
 	// A description for this Domain. This is for display purposes only.
@@ -81,6 +134,7 @@ type DomainParameters struct {
 
 	// The IP addresses representing the master DNS for this Domain.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
 
 	// The amount of time in seconds before this Domain should be refreshed. Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
@@ -105,6 +159,7 @@ type DomainParameters struct {
 
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).
@@ -116,6 +171,17 @@ type DomainParameters struct {
 type DomainSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     DomainParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider DomainInitParameters `json:"initProvider,omitempty"`
 }
 
 // DomainStatus defines the observed state of Domain.
@@ -125,19 +191,20 @@ type DomainStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Domain is the Schema for the Domains API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Domain struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.domain)",message="domain is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.type)",message="type is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.domain) || (has(self.initProvider) && has(self.initProvider.domain))",message="spec.forProvider.domain is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.type) || (has(self.initProvider) && has(self.initProvider.type))",message="spec.forProvider.type is a required parameter"
 	Spec   DomainSpec   `json:"spec"`
 	Status DomainStatus `json:"status,omitempty"`
 }
