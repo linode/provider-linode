@@ -1,0 +1,13 @@
+apiVersion: vpc.linode.upbound.io/v1alpha1
+kind: Subnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpc/v1alpha1/subnet
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    ipv4: 10.0.0.0/24
+    label: test-subnet
+    vpcId: 123

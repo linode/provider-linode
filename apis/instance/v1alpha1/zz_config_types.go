@@ -205,7 +205,7 @@ type ConfigInitParameters_2 struct {
 	// An array of Network Interfaces to add to this Linode's Configuration Profile.
 	Interface []ConfigInterfaceInitParameters `json:"interface,omitempty" tf:"interface,omitempty"`
 
-	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+	// A Kernel ID to boot a Linode with. Default is linode/latest-64bit. Examples are linode/latest-64bit, linode/grub2, linode/direct-disk, etc. See all kernels here. Note that this is a paginated API endpoint (docs).
 	// A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
 
@@ -243,52 +243,146 @@ type ConfigInitParameters_2 struct {
 	VirtMode *string `json:"virtMode,omitempty" tf:"virt_mode,omitempty"`
 }
 
+type ConfigInterfaceIPv4InitParameters struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
+type ConfigInterfaceIPv4Observation struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
+type ConfigInterfaceIPv4Parameters struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	// +kubebuilder:validation:Optional
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	// +kubebuilder:validation:Optional
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
 type ConfigInterfaceInitParameters struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	IPv4 []ConfigInterfaceIPv4InitParameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The name of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
 	// The type of interface.
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type ConfigInterfaceObservation struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+	// Whether this interface is currently booted and active.
+	Active *bool `json:"active,omitempty" tf:"active,omitempty"`
+
+	// The ID of the interface.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	IPv4 []ConfigInterfaceIPv4Observation `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The name of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
 	// The type of interface.
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// The ID of VPC which this interface is attached to.
+	// The ID of VPC of the subnet which the VPC interface is connected to.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type ConfigInterfaceParameters struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	// +kubebuilder:validation:Optional
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	// +kubebuilder:validation:Optional
+	IPv4 []ConfigInterfaceIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	// +kubebuilder:validation:Optional
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Config’s label for display purposes only.
-	// The name of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
+	// +kubebuilder:validation:Optional
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
 	// The type of interface.
 	// +kubebuilder:validation:Optional
 	Purpose *string `json:"purpose" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	// +kubebuilder:validation:Optional
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type ConfigObservation_2 struct {
@@ -315,7 +409,7 @@ type ConfigObservation_2 struct {
 	// An array of Network Interfaces to add to this Linode's Configuration Profile.
 	Interface []ConfigInterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
 
-	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+	// A Kernel ID to boot a Linode with. Default is linode/latest-64bit. Examples are linode/latest-64bit, linode/grub2, linode/direct-disk, etc. See all kernels here. Note that this is a paginated API endpoint (docs).
 	// A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`
 
@@ -372,7 +466,7 @@ type ConfigParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	Interface []ConfigInterfaceParameters `json:"interface,omitempty" tf:"interface,omitempty"`
 
-	// A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+	// A Kernel ID to boot a Linode with. Default is linode/latest-64bit. Examples are linode/latest-64bit, linode/grub2, linode/direct-disk, etc. See all kernels here. Note that this is a paginated API endpoint (docs).
 	// A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
 	// +kubebuilder:validation:Optional
 	Kernel *string `json:"kernel,omitempty" tf:"kernel,omitempty"`

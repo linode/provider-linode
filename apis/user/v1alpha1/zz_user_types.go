@@ -89,6 +89,7 @@ type FirewallGrantParameters struct {
 
 type GlobalGrantsInitParameters struct {
 
+	// The level of access this User has to Account-level actions, like billing information. (read_only, read_write)
 	// The level of access this User has to Account-level actions, like billing information. A restricted User will never be able to manage users.
 	AccountAccess *string `json:"accountAccess,omitempty" tf:"account_access,omitempty"`
 
@@ -138,6 +139,7 @@ type GlobalGrantsInitParameters struct {
 
 type GlobalGrantsObservation struct {
 
+	// The level of access this User has to Account-level actions, like billing information. (read_only, read_write)
 	// The level of access this User has to Account-level actions, like billing information. A restricted User will never be able to manage users.
 	AccountAccess *string `json:"accountAccess,omitempty" tf:"account_access,omitempty"`
 
@@ -187,6 +189,7 @@ type GlobalGrantsObservation struct {
 
 type GlobalGrantsParameters struct {
 
+	// The level of access this User has to Account-level actions, like billing information. (read_only, read_write)
 	// The level of access this User has to Account-level actions, like billing information. A restricted User will never be able to manage users.
 	// +kubebuilder:validation:Optional
 	AccountAccess *string `json:"accountAccess,omitempty" tf:"account_access,omitempty"`

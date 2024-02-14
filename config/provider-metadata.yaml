@@ -46,7 +46,7 @@ resources:
                     }
                 linode_instance.my-instance: |-
                     {
-                      "image": "linode/alpine3.14",
+                      "image": "linode/alpine3.19",
                       "label": "myinstance",
                       "region": "us-southeast",
                       "type": "g6-nanode-1"
@@ -301,7 +301,7 @@ resources:
               dependencies:
                 linode_instance.my_instance: |-
                     {
-                      "image": "linode/ubuntu18.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "my_instance",
                       "region": "us-southeast",
                       "root_pass": "bogusPassword$",
@@ -447,12 +447,11 @@ resources:
                   "authorized_keys": [
                     "ssh-rsa AAAA...Gw== user@example.local"
                   ],
-                  "group": "foo",
-                  "image": "linode/ubuntu18.04",
+                  "image": "linode/ubuntu22.04",
                   "label": "simple_instance",
                   "private_ip": true,
                   "region": "us-central",
-                  "root_pass": "terr4form-test",
+                  "root_pass": "this-is-not-a-safe-password",
                   "swap_size": 256,
                   "tags": [
                     "foo"
@@ -462,7 +461,37 @@ resources:
             - name: web
               manifest: |-
                 {
-                  "group": "foo",
+                  "authorized_keys": [
+                    "ssh-rsa AAAA...Gw== user@example.local"
+                  ],
+                  "image": "linode/ubuntu22.04",
+                  "interface": [
+                    {
+                      "purpose": "public"
+                    },
+                    {
+                      "ipv4": [
+                        {
+                          "vpc": "10.0.4.250"
+                        }
+                      ],
+                      "purpose": "vpc",
+                      "subnet_id": 123
+                    }
+                  ],
+                  "label": "simple_instance",
+                  "private_ip": true,
+                  "region": "us-central",
+                  "root_pass": "this-is-not-a-safe-password",
+                  "swap_size": 256,
+                  "tags": [
+                    "foo"
+                  ],
+                  "type": "g6-standard-1"
+                }
+            - name: web
+              manifest: |-
+                {
                   "label": "complex_instance",
                   "private_ip": true,
                   "region": "us-central",
@@ -475,18 +504,14 @@ resources:
                 linode_instance_config.boot_config: |-
                     {
                       "booted": true,
-                      "devices": [
+                      "device": [
                         {
-                          "sda": [
-                            {
-                              "disk_id": "${linode_instance_disk.boot_disk.id}"
-                            }
-                          ],
-                          "sdb": [
-                            {
-                              "volume_id": "${linode_volume.web_volume.id}"
-                            }
-                          ]
+                          "device_name": "sda",
+                          "disk_id": "${linode_instance_disk.boot_disk.id}"
+                        },
+                        {
+                          "device_name": "sdb",
+                          "volume_id": "${linode_volume.web_volume.id}"
                         }
                       ],
                       "kernel": "linode/latest-64bit",
@@ -502,7 +527,7 @@ resources:
                       "authorized_users": [
                         "${data.linode_profile.me.username}"
                       ],
-                      "image": "linode/ubuntu18.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "boot",
                       "linode_id": "${linode_instance.web.id}",
                       "root_pass": "terr4form-test",
@@ -540,24 +565,32 @@ resources:
             distro: '- (Optional) Controls the behavior of the Linode Config''s Distribution Helper setting.'
             enabled: '- If this Linode has the Backup service enabled.'
             filesystem: '- (Optional) The Disk filesystem can be one of: "raw", "swap", "ext3", "ext4", or "initrd" which has a max size of 32mb and can be used in the config initrd (not currently supported in this Terraform Provider).'
-            group: '- (Optional) The display group of the Linode instance.'
+            firewall_id: '- (Optional) The ID of the Firewall to attach to the instance upon creation. Changing'
+            group: '- (Optional, Deprecated) A deprecated property denoting a group label for this Linode. We recommend using the tags attribute instead.'
+            has_user_data: '- Whether this Instance was created with user-data.'
             helpers: '- (Options) Helpers enabled when booting to this Linode Config.'
             id: '- (Computed) The ID of the disk in the Linode API.'
-            image: '- (Optional) An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing'
+            image: '- (Optional) An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing'
             ip_address: '- A string containing the Linode''s public IP address.'
-            ipam_address: '- (Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.'
+            ip_ranges: '- IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.'
+            ipam_address: '- (Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.'
             ipv4: '- This Linode''s IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.'
+            ipv4.nat_1_1: '- (Optional) The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.'
+            ipv4.vpc: '- (Optional) The IP from the VPC subnet to use for this interface. A random address will be assigned if this is not specified in a VPC interface.'
             ipv6: '- This Linode''s IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/64) is included in this attribute.'
             label: '- (Optional) The Linode''s label is for display purposes only. If no label is provided for a Linode, a default will be assigned.'
+            metadata.0.user_data: '- (Optional) The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.'
+            migration_type: '- (Optional) The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)'
             modules_dep: '- (Optional) Creates a modules dependency file for the Kernel you run.'
             network: '- (Optional) Controls the behavior of the Linode Config''s Network Helper setting, used to automatically configure additional IP addresses assigned to this instance.'
+            primary: '- (Optional) Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.'
             private_ip: '- (Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode''s region. It can be enabled on an existing Linode but it can''t be disabled.'
             private_ip_address: '- This Linode''s Private IPv4 Address, if enabled.  The regional private IP address range, 192.168.128.0/17, is shared by all Linode Instances in a region.'
-            purpose: '- (Required) The type of interface. (public, vlan)'
+            purpose: '- (Required) The type of interface. (public, vlan, vpc)'
             read_only: '- (Optional) If true, this Disk is read-only.'
             region: '- (Required) This is the location where the Linode is deployed. Examples are "us-east", "us-west", "ap-south", etc. See all regions here. Changing .'
             resize_disk: '- (Optional) If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined. This is an irreversible action as Linode disks cannot be automatically downsized.'
-            root_pass: '- (Optional) The initial password for the root user account. This value can not be imported. Changing  If omitted, a random password will be generated but will not be stored in Terraform state.'
+            root_pass: '- (Required with image) The initial password for the root user account. This value can not be imported. Changing  If omitted, a random password will be generated but will not be stored in Terraform state.'
             sda.disk_id: '- (Computed) The Disk ID of the associated disk_label, if used.'
             sda.disk_label: '- (Optional) The label of the disk to map to this device slot.'
             sda.volume_id: '- (Optional) The Volume ID to map to this device slot.'
@@ -567,16 +600,19 @@ resources:
             specs.0.memory: '- The amount of RAM, in MB, this Linode has access to. Typically a Linode will choose to boot with all of its available RAM, but this can be configured in a Config profile.'
             specs.0.transfer: '- The amount of network transfer this Linode is allotted each month.'
             specs.0.vcpus: '- The number of vcpus this Linode has access to. Typically a Linode will choose to boot with all of its available vcpus, but this can be configured in a Config Profile.'
-            stackscript_data: '- (Optional) An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if ''stackscript_id'' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing'
-            stackscript_id: '- (Optional) The StackScript to deploy to the newly created Linode. If provided, ''image'' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing'
+            stackscript_data: '- (Optional with image) An object containing responses to any User Defined Fields present in the StackScript being deployed to this Linode. Only accepted if ''stackscript_id'' is given. The required values depend on the StackScript being deployed.  This value can not be imported. Changing'
+            stackscript_id: '- (Optional with image) The StackScript to deploy to the newly created Linode. If provided, ''image'' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing'
             status: '- The status of the instance, indicating the current readiness state. (running, offline, ...)'
-            swap_size: '- (Optional) When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.'
+            subnet_id: '- (Optional) The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.'
+            swap_size: '- (Optional with image) When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.'
             tags: '- (Optional) A list of tags applied to this object. Tags are for organizational purposes only.'
             timeouts.create: '- (Defaults to 10 mins) Used when launching the instance (until it reaches the initial running state)'
             timeouts.delete: '- (Defaults to 10 mins) Used when terminating the instance'
-            timeouts.update: '- (Defaults to 20 mins) Used when stopping and starting the instance when necessary during update - e.g. when changing instance type'
+            timeouts.update: '- (Defaults to 1 hour) Used when stopping and starting the instance when necessary during update - e.g. when changing instance type'
             type: '- (Required) The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2", "g6-highmem-16", "g6-dedicated-16", etc. See all types here.'
             updatedb_disabled: '- (Optional) Disables updatedb cron job to avoid disk thrashing.'
+            vpc: purpose.
+            vpc_id: '- The ID of VPC which this interface is attached to.'
             watchdog_enabled: '- (Optional) The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.'
             window: '- The window (''W0''-''W22'') in which your backups will be taken, in UTC. A backups window is a two-hour span of time in which the backup may occur. For example, ''W10'' indicates that your backups should be taken between 10:00 and 12:00. If you do not choose a backup window, one will be selected for you automatically.  If not set manually, when backups are initially enabled this may come back as Scheduling until the window is automatically selected.'
         importStatements: []
@@ -590,20 +626,17 @@ resources:
               manifest: |-
                 {
                   "booted": true,
-                  "devices": [
+                  "device": [
                     {
-                      "sda": [
-                        {
-                          "disk_id": "${linode_instance_disk.boot.id}"
-                        }
-                      ]
+                      "device_name": "sda",
+                      "disk_id": "${linode_instance_disk.boot.id}"
                     }
                   ],
                   "label": "my-config",
                   "linode_id": "${linode_instance.my-instance.id}"
                 }
               references:
-                devices.sda.disk_id: linode_instance_disk.boot.id
+                device.disk_id: linode_instance_disk.boot.id
                 linode_id: linode_instance.my-instance.id
               dependencies:
                 linode_instance.my-instance: |-
@@ -614,7 +647,7 @@ resources:
                     }
                 linode_instance_disk.boot: |-
                     {
-                      "image": "linode/ubuntu20.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "boot",
                       "linode_id": "${linode_instance.my-instance.id}",
                       "root_pass": "myc00lpass!",
@@ -627,22 +660,18 @@ resources:
                   "connection": [
                     {
                       "host": "${linode_instance.my-instance.ip_address}",
-                      "password": "myc00lpass!",
+                      "password": "myc00lpass!ciuw23asxbviwuc",
                       "user": "root"
                     }
                   ],
-                  "devices": [
+                  "device": [
                     {
-                      "sda": [
-                        {
-                          "disk_id": "${linode_instance_disk.boot.id}"
-                        }
-                      ],
-                      "sdb": [
-                        {
-                          "disk_id": "${linode_instance_disk.swap.id}"
-                        }
-                      ]
+                      "device_name": "sda",
+                      "disk_id": "${linode_instance_disk.boot.id}"
+                    },
+                    {
+                      "device_name": "sdb",
+                      "disk_id": "${linode_instance_disk.swap.id}"
                     }
                   ],
                   "helpers": [
@@ -658,6 +687,15 @@ resources:
                       "ipam_address": "10.0.0.2/24",
                       "label": "my-vlan",
                       "purpose": "vlan"
+                    },
+                    {
+                      "ipv4": [
+                        {
+                          "vpc": "10.0.4.250"
+                        }
+                      ],
+                      "purpose": "vpc",
+                      "subnet_id": "${linode_vpc_subnet.foobar.id}"
                     }
                   ],
                   "label": "my-config",
@@ -674,22 +712,22 @@ resources:
                 }
               references:
                 connection.host: linode_instance.my-instance.ip_address
-                devices.sda.disk_id: linode_instance_disk.boot.id
-                devices.sdb.disk_id: linode_instance_disk.swap.id
+                device.disk_id: linode_instance_disk.swap.id
+                interface.subnet_id: linode_vpc_subnet.foobar.id
                 linode_id: linode_instance.my-instance.id
               dependencies:
                 linode_instance.my-instance: |-
                     {
                       "label": "my-instance",
-                      "region": "us-southeast",
+                      "region": "us-mia",
                       "type": "g6-standard-1"
                     }
                 linode_instance_disk.boot: |-
                     {
-                      "image": "linode/ubuntu20.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "boot",
                       "linode_id": "${linode_instance.my-instance.id}",
-                      "root_pass": "myc00lpass!",
+                      "root_pass": "myc00lpass!ciuw23asxbviwuc",
                       "size": "${linode_instance.my-instance.specs.0.disk - 512}"
                     }
                 linode_instance_disk.swap: |-
@@ -699,26 +737,45 @@ resources:
                       "linode_id": "${linode_instance.my-instance.id}",
                       "size": 512
                     }
+                linode_vpc.foobar: |-
+                    {
+                      "description": "test description",
+                      "label": "my-vpc",
+                      "region": "us-mia"
+                    }
+                linode_vpc_subnet.foobar: |-
+                    {
+                      "ipv4": "10.0.4.0/24",
+                      "label": "my-subnet",
+                      "vpc_id": "${linode_vpc.foobar.id}"
+                    }
         argumentDocs:
             booted: '- (Optional) If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.'
             comments: '- (Optional) Optional field for arbitrary User comments on this Config.'
             devtmpfs_automount: '- (Optional) Populates the /dev directory early during boot without udev. (default true)'
             distro: '- (Optional) Helps maintain correct inittab/upstart console device. (default true)'
-            ipam_address: '- (Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)'
-            kernel: '- (Optional) A Kernel ID to boot a Linode with. (default linode/latest-64bit)'
+            ip_ranges: '- (Optional) IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.'
+            ipam_address: '- (Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.'
+            ipv4.nat_1_1: '- (Optional) The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.'
+            ipv4.vpc: '- (Optional) The IP from the VPC subnet to use for this interface. A random address will be assigned if this is not specified in a VPC interface.'
+            kernel: '- (Optional) A Kernel ID to boot a Linode with. Default is linode/latest-64bit. Examples are linode/latest-64bit, linode/grub2, linode/direct-disk, etc. See all kernels here. Note that this is a paginated API endpoint (docs).'
             label: '- (Required) The Config’s label for display purposes only.'
             linode_id: '- (Required) The ID of the Linode to create this configuration profile under.'
             memory_limit: '- (Optional) The memory limit of the Config. Defaults to the total ram of the Linode.'
             modules_dep: '- (Optional) Creates a modules dependency file for the Kernel you run. (default true)'
             network: '- (Optional) Automatically configures static networking. (default true)'
-            purpose: '- (Required) The type of interface. (public, vlan)'
+            primary: '- (Optional) Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.'
+            purpose: '- (Required) The type of interface. (public, vlan, vpc)'
             root_device: '- (Optional) The root device to boot. (default /dev/sda)'
             run_level: '- (Optional) Defines the state of your Linode after booting. (default, single, binbash)'
             sda: '... sdh - (Optional) The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.'
             sda.disk_id: '- (Optional) The Disk ID to map to this device slot'
             sda.volume_id: '- (Optional) The Volume ID to map to this device slot.'
+            subnet_id: '- (Optional) The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.'
             updatedb_disabled: '- (Optional) Disables updatedb cron job to avoid disk thrashing. (default true)'
             virt_mode: '- (Optional) Controls the virtualization mode. (paravirt, fullvirt)'
+            vpc: purpose.
+            vpc_id: '- The ID of VPC which this interface is attached to.'
         importStatements: []
     linode_instance_disk:
         subCategory: ""
@@ -749,7 +806,7 @@ resources:
                   "authorized_keys": [
                     "ssh-rsa AAAA...Gw== user@example.local"
                   ],
-                  "image": "linode/ubuntu20.04",
+                  "image": "linode/ubuntu22.04",
                   "label": "boot",
                   "linode_id": "${linode_instance.my-instance.id}",
                   "root_pass": "myc00lpass!",
@@ -770,17 +827,17 @@ resources:
                       "type": "g6-standard-1"
                     }
         argumentDocs:
-            authorized_keys: '- (Optional) A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.'
-            authorized_users: '- (Optional) A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the'
+            authorized_keys: '- (Optional) A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)'
+            authorized_users: '- (Optional) A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user''s ~/.ssh/authorized_keys file. (Requires image)'
             created: '- When this disk was created.'
             filesystem: '- (Optional) The filesystem of this disk. (raw, swap, ext3, ext4, initrd)'
             image: '- (Optional) An Image ID to deploy the Linode Disk from.'
             label: '- (Required) The Disk''s label for display purposes only.'
             linode_id: '- (Required) The ID of the Linode to create this Disk under.'
-            root_pass: '- (Optional) The root user’s password on a newly-created Linode Disk when deploying from an Image.'
+            root_pass: '- (Optional) The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)'
             size: '- (Required) The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.'
-            stackscript_data: '- (Optional) An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given.'
-            stackscript_id: '- (Optional) A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.'
+            stackscript_data: '- (Optional) An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given. (Requires image)'
+            stackscript_id: '- (Optional) A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)'
             status: '- A brief description of this Disk''s current state.'
             updated: '- When this disk was last updated.'
         importStatements: []
@@ -801,7 +858,7 @@ resources:
               dependencies:
                 linode_instance.foo: |-
                     {
-                      "image": "linode/alpine3.16",
+                      "image": "linode/alpine3.19",
                       "label": "foobar-test",
                       "region": "us-east",
                       "type": "g6-nanode-1"
@@ -934,7 +991,7 @@ resources:
               dependencies:
                 linode_instance.foobar: |-
                     {
-                      "image": "linode/alpine3.14",
+                      "image": "linode/alpine3.19",
                       "label": "my-linode",
                       "region": "us-southeast",
                       "type": "g6-nanode-1"
@@ -957,7 +1014,7 @@ resources:
             - name: my-cluster
               manifest: |-
                 {
-                  "k8s_version": "1.21",
+                  "k8s_version": "1.28",
                   "label": "my-cluster",
                   "pool": [
                     {
@@ -973,15 +1030,8 @@ resources:
             - name: my-cluster
               manifest: |-
                 {
-                  "k8s_version": "1.21",
+                  "k8s_version": "1.28",
                   "label": "my-cluster",
-                  "lifecycle": [
-                    {
-                      "ignore_changes": [
-                        "${pool.0.count}"
-                      ]
-                    }
-                  ],
                   "pool": [
                     {
                       "autoscaler": [
@@ -990,13 +1040,36 @@ resources:
                           "min": 3
                         }
                       ],
-                      "count": 3,
                       "type": "g6-standard-2"
                     }
                   ],
                   "region": "us-central",
                   "tags": [
                     "prod"
+                  ]
+                }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "pool": [
+                    {
+                      "count": 2,
+                      "type": "g6-standard-1"
+                    },
+                    {
+                      "count": 3,
+                      "type": "g6-standard-2"
+                    }
+                  ]
+                }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "pool": [
+                    {
+                      "count": 3,
+                      "type": "g6-standard-2"
+                    }
                   ]
                 }
         argumentDocs:
@@ -1011,7 +1084,7 @@ resources:
             kubeconfig: '- The base64 encoded kubeconfig for the Kubernetes cluster.'
             label: '- (Required) This Kubernetes cluster''s unique label.'
             pool: '- Additional nested attributes:'
-            pool.count: '- (Required) The number of nodes in the Node Pool.'
+            pool.count: '- (Required; Optional with autoscaler) The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.'
             pool.type: '- (Required) A Linode Type for all of the nodes in the Node Pool. See all node types here.'
             region: '- (Required) This Kubernetes cluster''s location.'
             status: '- The status of the cluster.'
@@ -1034,15 +1107,22 @@ resources:
                   ]
                 }
         argumentDocs:
+            action: '- Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.'
             client_conn_throttle: '- (Optional) Throttle connections per second (0-20). Set to 0 (default) to disable throttling.'
             created: '- When this NodeBalancer was created'
             hostname: '- This NodeBalancer''s hostname, ending with .nodebalancer.linode.com'
+            id: '- (Required) The Firewall''s ID.'
             in: '- The total transfer, in MB, used by this NodeBalancer for the current month'
+            inbound_policy: '- The default behavior for inbound traffic. (ACCEPT, DROP)'
             ipv4: '- The Public IPv4 Address of this NodeBalancer'
             ipv6: '- The Public IPv6 Address of this NodeBalancer'
             label: '- (Optional) The label of the Linode NodeBalancer'
             out: '- The total inbound transfer, in MB, used for this NodeBalancer for the current month'
+            outbound_policy: '- The default behavior for outbound traffic. (ACCEPT, DROP)'
+            ports: '- A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").'
+            protocol: '- The network protocol this rule controls. (TCP, UDP, ICMP)'
             region: '- (Required) The region where this NodeBalancer will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here.  Changing .'
+            status: '- The status of the firewall. (enabled, disabled, deleted)'
             tags: '- (Optional) A list of tags applied to this object. Tags are for organizational purposes only.'
             total: '- The total outbound transfer, in MB, used for this NodeBalancer for the current month'
             updated: '- When this NodeBalancer was last updated.'
@@ -1110,6 +1190,13 @@ resources:
                   "config_id": "${linode_nodebalancer_config.foofig.id}",
                   "count": "3",
                   "label": "mynodebalancernode",
+                  "lifecycle": [
+                    {
+                      "replace_triggered_by": [
+                        "${linode_instance.foo.id}"
+                      ]
+                    }
+                  ],
                   "nodebalancer_id": "${linode_nodebalancer.foobar.id}",
                   "weight": 50
                 }
@@ -1123,7 +1210,7 @@ resources:
                         "ssh-rsa AAAA...Gw== user@example.local"
                       ],
                       "count": "3",
-                      "image": "linode/ubuntu18.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "web-${count.index + 1}",
                       "private_ip": true,
                       "region": "us-east",
@@ -1284,6 +1371,7 @@ resources:
             content_encoding: '- (Optional) Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read w3c content encoding for further information.'
             content_language: '- (Optional) The language the content is in e.g. en-US or en-GB.'
             content_type: '- (Optional) A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.'
+            endpoint: '- (Optional) Used with the s3 client to make bucket changes and will be computed automatically if left blank, override for testing/debug purposes.'
             etag: '- (Optional) Used to trigger updates. The only meaningful value is ${filemd5("path/to/file")} (Terraform 0.11.12 or later) or ${md5(file("path/to/file"))} (Terraform 0.11.11 or earlier).'
             force_destroy: '- (Optional) Allow the object to be deleted regardless of any legal hold or object lock (defaults to false).'
             key: '- (Required) They name of the object once it is in the bucket.'
@@ -1310,7 +1398,7 @@ resources:
               dependencies:
                 linode_instance.foo: |-
                     {
-                      "image": "linode/alpine3.9",
+                      "image": "linode/alpine3.19",
                       "region": "ca-east",
                       "type": "g6-dedicated-2"
                     }
@@ -1325,7 +1413,7 @@ resources:
                 linode_instance.my_instance: |-
                     {
                       "count": 3,
-                      "image": "linode/ubuntu18.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "simple_instance-${count.index + 1}",
                       "region": "us-central",
                       "root_pass": "terr4form-test",
@@ -1354,7 +1442,7 @@ resources:
                       "authorized_keys": [
                         "${linode_sshkey.foo.ssh_key}"
                       ],
-                      "image": "linode/ubuntu18.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "foo",
                       "region": "us-east",
                       "root_pass": "...",
@@ -1376,8 +1464,8 @@ resources:
                 {
                   "description": "Installs a Package",
                   "images": [
-                    "linode/ubuntu18.04",
-                    "linode/ubuntu16.04lts"
+                    "linode/ubuntu22.04",
+                    "linode/ubuntu20.04"
                   ],
                   "label": "foo",
                   "rev_note": "initial version",
@@ -1389,7 +1477,7 @@ resources:
                       "authorized_keys": [
                         "..."
                       ],
-                      "image": "linode/ubuntu18.04",
+                      "image": "linode/ubuntu22.04",
                       "label": "foo",
                       "region": "us-east",
                       "root_pass": "...",
@@ -1482,7 +1570,7 @@ resources:
                   "username": "cooluser123"
                 }
         argumentDocs:
-            account-access: '- (optional) The level of access this User has to Account-level actions, like billing information. (read_only, read_write)'
+            account_access: '- (optional) The level of access this User has to Account-level actions, like billing information. (read_only, read_write)'
             add_databases: '- (optional) If true, this User may add Databases.'
             add_domains: '- (optional) If true, this User may add Domains.'
             add_firewalls: '- (optional) If true, this User may add Firewalls.'
@@ -1553,4 +1641,47 @@ resources:
             timeouts.create: '- (Defaults to 10 mins) Used when creating the volume (until the volume is reaches the initial active state)'
             timeouts.delete: '- (Defaults to 10 mins) Used when deleting the volume'
             timeouts.update: '- (Defaults to 20 mins) Used when updating the volume when necessary during update - e.g. when resizing the volume'
+        importStatements: []
+    linode_vpc:
+        subCategory: ""
+        description: Manages a Linode VPC.
+        name: linode_vpc
+        title: linode_vpc
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "description": "My first VPC.",
+                  "label": "test-vpc",
+                  "region": "us-iad"
+                }
+        argumentDocs:
+            created: '- The date and time when the VPC was created.'
+            description: '- (Optional) The user-defined description of this VPC.'
+            id: '- The ID of the VPC.'
+            label: '- (Required) The label of the VPC. This field can only contain ASCII letters, digits and dashes.'
+            region: '- (Required) The region of the VPC.'
+            updated: '- The date and time when the VPC was last updated.'
+        importStatements: []
+    linode_vpc_subnet:
+        subCategory: ""
+        description: Manages a Linode VPC subnet.
+        name: linode_vpc_subnet
+        title: linode_vpc_subnet
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "ipv4": "10.0.0.0/24",
+                  "label": "test-subnet",
+                  "vpc_id": 123
+                }
+        argumentDocs:
+            created: '- The date and time when the VPC was created.'
+            id: '- The ID of the VPC Subnet.'
+            ipv4: '- (Required) The IPv4 range of this subnet in CIDR format.'
+            label: '- (Required) The label of the VPC. Only contains ASCII letters, digits and dashes.'
+            linodes: '- A list of Linode IDs that added to this subnet.'
+            updated: '- The date and time when the VPC was last updated.'
+            vpc_id: '- (Required) The id of the parent VPC for this VPC Subnet.'
         importStatements: []

@@ -34,7 +34,7 @@ spec:
     authorizedKeys:
     - ssh-rsa AAAA...Gw== user@example.local
     count: "3"
-    image: linode/ubuntu18.04
+    image: linode/ubuntu22.04
     label: web-${count.index + 1}
     privateIp: true
     region: us-east

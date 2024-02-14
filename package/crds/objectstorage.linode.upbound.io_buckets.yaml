@@ -809,6 +809,9 @@ spec:
                       origins. If true, the bucket will be created with CORS enabled
                       for all origins.
                     type: boolean
+                  endpoint:
+                    description: The endpoint for the bucket used for s3 connections.
+                    type: string
                   hostname:
                     description: The hostname where this bucket can be accessed. This
                       hostname can be accessed through a browser if the bucket is

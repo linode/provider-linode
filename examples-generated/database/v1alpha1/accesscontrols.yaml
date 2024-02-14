@@ -42,7 +42,7 @@ metadata:
   name: my-instance
 spec:
   forProvider:
-    image: linode/alpine3.14
+    image: linode/alpine3.19
     label: myinstance
     region: us-southeast
     type: g6-nanode-1

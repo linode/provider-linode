@@ -97,6 +97,9 @@ type IPObservation struct {
 	// The type of IP address. (ipv4, ipv6, ipv6/pool, ipv6/range)
 	// The type of IP address.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.
+	VPCNAT11 []VPCNAT11Observation `json:"vpcNat11,omitempty" tf:"vpc_nat_1_1,omitempty"`
 }
 
 type IPParameters struct {
@@ -138,6 +141,22 @@ type IPParameters struct {
 	// Selector for a RDNS in rdns to populate rdns.
 	// +kubebuilder:validation:Optional
 	RdnsSelector *v1.Selector `json:"rdnsSelector,omitempty" tf:"-"`
+}
+
+type VPCNAT11InitParameters struct {
+}
+
+type VPCNAT11Observation struct {
+
+	// The resulting IPv4 address.
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
+
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+}
+
+type VPCNAT11Parameters struct {
 }
 
 // IPSpec defines the desired state of IP

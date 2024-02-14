@@ -10,8 +10,7 @@ spec:
   forProvider:
     authorizedKeys:
     - ssh-rsa AAAA...Gw== user@example.local
-    group: foo
-    image: linode/ubuntu18.04
+    image: linode/ubuntu22.04
     label: simple_instance
     privateIp: true
     region: us-central

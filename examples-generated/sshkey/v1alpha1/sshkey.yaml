@@ -25,7 +25,7 @@ spec:
   forProvider:
     authorizedKeys:
     - ${linode_sshkey.foo.ssh_key}
-    image: linode/ubuntu18.04
+    image: linode/ubuntu22.04
     label: foo
     region: us-east
     rootPassSecretRef:

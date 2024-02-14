@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: clusters.lke.linode.upbound.io
+  name: subnets.vpc.linode.upbound.io
 spec:
-  group: lke.linode.upbound.io
+  group: vpc.linode.upbound.io
   names:
     categories:
     - crossplane
     - managed
     - linode
-    kind: Cluster
-    listKind: ClusterList
-    plural: clusters
-    singular: cluster
+    kind: Subnet
+    listKind: SubnetList
+    plural: subnets
+    singular: subnet
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Cluster is the Schema for the Clusters API. Manages a Linode
-          instance.
+        description: Subnet is the Schema for the Subnets API. Manages a Linode VPC
+          subnet.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ClusterSpec defines the desired state of Cluster
+            description: SubnetSpec defines the desired state of Subnet
             properties:
               deletionPolicy:
                 default: Delete
@@ -67,74 +67,18 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  controlPlane:
-                    description: Defines settings for the Kubernetes Control Plane.
-                    items:
-                      properties:
-                        highAvailability:
-                          description: Defines whether High Availability is enabled
-                            for the cluster Control Plane. This is an irreversible
-                            change. Defines whether High Availability is enabled for
-                            the Control Plane Components of the cluster.
-                          type: boolean
-                      type: object
-                    type: array
-                  k8sVersion:
-                    description: The desired Kubernetes version for this Kubernetes
-                      cluster in the format of major.minor (e.g. 1.21), and the latest
-                      supported patch version will be deployed. The desired Kubernetes
-                      version for this Kubernetes cluster in the format of <major>.<minor>.
-                      The latest supported patch version will be deployed.
+                  ipv4:
+                    description: The IPv4 range of this subnet in CIDR format. The
+                      IPv4 range of this subnet in CIDR format.
                     type: string
                   label:
-                    description: This Kubernetes cluster's unique label. The unique
-                      label for the cluster.
+                    description: The label of the VPC. Only contains ASCII letters,
+                      digits and dashes. The label of the VPC subnet.
                     type: string
-                  pool:
-                    description: 'Additional nested attributes: A node pool in the
-                      cluster.'
-                    items:
-                      properties:
-                        autoscaler:
-                          description: When specified, the number of nodes autoscales
-                            within the defined minimum and maximum values.
-                          items:
-                            properties:
-                              max:
-                                description: The maximum number of nodes to autoscale
-                                  to. The maximum number of nodes to autoscale to.
-                                type: number
-                              min:
-                                description: The minimum number of nodes to autoscale
-                                  to. The minimum number of nodes to autoscale to.
-                                type: number
-                            type: object
-                          type: array
-                        count:
-                          description: The number of nodes in the Node Pool. If undefined
-                            with an autoscaler the initial node count will equal the
-                            autoscaler minimum. The number of nodes in the Node Pool.
-                          type: number
-                        type:
-                          description: A Linode Type for all of the nodes in the Node
-                            Pool. See all node types here. A Linode Type for all of
-                            the nodes in the Node Pool.
-                          type: string
-                      type: object
-                    type: array
-                  region:
-                    description: This Kubernetes cluster's location. This cluster's
-                      location.
-                    type: string
-                  tags:
-                    description: An array of tags applied to the Kubernetes cluster.
-                      Tags are for organizational purposes only. An array of tags
-                      applied to this object. Tags are for organizational purposes
-                      only.
-                    items:
-                      type: string
-                    type: array
-                    x-kubernetes-list-type: set
+                  vpcId:
+                    description: The id of the parent VPC for this VPC Subnet. The
+                      id of the parent VPC for this VPC Subnet
+                    type: number
                 type: object
               initProvider:
                 description: THIS IS A BETA FIELD. It will be honored unless the Management
@@ -148,74 +92,18 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
-                  controlPlane:
-                    description: Defines settings for the Kubernetes Control Plane.
-                    items:
-                      properties:
-                        highAvailability:
-                          description: Defines whether High Availability is enabled
-                            for the cluster Control Plane. This is an irreversible
-                            change. Defines whether High Availability is enabled for
-                            the Control Plane Components of the cluster.
-                          type: boolean
-                      type: object
-                    type: array
-                  k8sVersion:
-                    description: The desired Kubernetes version for this Kubernetes
-                      cluster in the format of major.minor (e.g. 1.21), and the latest
-                      supported patch version will be deployed. The desired Kubernetes
-                      version for this Kubernetes cluster in the format of <major>.<minor>.
-                      The latest supported patch version will be deployed.
+                  ipv4:
+                    description: The IPv4 range of this subnet in CIDR format. The
+                      IPv4 range of this subnet in CIDR format.
                     type: string
                   label:
-                    description: This Kubernetes cluster's unique label. The unique
-                      label for the cluster.
+                    description: The label of the VPC. Only contains ASCII letters,
+                      digits and dashes. The label of the VPC subnet.
                     type: string
-                  pool:
-                    description: 'Additional nested attributes: A node pool in the
-                      cluster.'
-                    items:
-                      properties:
-                        autoscaler:
-                          description: When specified, the number of nodes autoscales
-                            within the defined minimum and maximum values.
-                          items:
-                            properties:
-                              max:
-                                description: The maximum number of nodes to autoscale
-                                  to. The maximum number of nodes to autoscale to.
-                                type: number
-                              min:
-                                description: The minimum number of nodes to autoscale
-                                  to. The minimum number of nodes to autoscale to.
-                                type: number
-                            type: object
-                          type: array
-                        count:
-                          description: The number of nodes in the Node Pool. If undefined
-                            with an autoscaler the initial node count will equal the
-                            autoscaler minimum. The number of nodes in the Node Pool.
-                          type: number
-                        type:
-                          description: A Linode Type for all of the nodes in the Node
-                            Pool. See all node types here. A Linode Type for all of
-                            the nodes in the Node Pool.
-                          type: string
-                      type: object
-                    type: array
-                  region:
-                    description: This Kubernetes cluster's location. This cluster's
-                      location.
-                    type: string
-                  tags:
-                    description: An array of tags applied to the Kubernetes cluster.
-                      Tags are for organizational purposes only. An array of tags
-                      applied to this object. Tags are for organizational purposes
-                      only.
-                    items:
-                      type: string
-                    type: array
-                    x-kubernetes-list-type: set
+                  vpcId:
+                    description: The id of the parent VPC for this VPC Subnet. The
+                      id of the parent VPC for this VPC Subnet
+                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -378,129 +266,65 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.k8sVersion is a required parameter
+            - message: spec.forProvider.ipv4 is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.k8sVersion)
-                || (has(self.initProvider) && has(self.initProvider.k8sVersion))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.ipv4)
+                || (has(self.initProvider) && has(self.initProvider.ipv4))'
             - message: spec.forProvider.label is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
                 || (has(self.initProvider) && has(self.initProvider.label))'
-            - message: spec.forProvider.pool is a required parameter
+            - message: spec.forProvider.vpcId is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.pool)
-                || (has(self.initProvider) && has(self.initProvider.pool))'
-            - message: spec.forProvider.region is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
-                || (has(self.initProvider) && has(self.initProvider.region))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.vpcId)
+                || (has(self.initProvider) && has(self.initProvider.vpcId))'
           status:
-            description: ClusterStatus defines the observed state of Cluster.
+            description: SubnetStatus defines the observed state of Subnet.
             properties:
               atProvider:
                 properties:
-                  apiEndpoints:
-                    description: The endpoints for the Kubernetes API server. The
-                      API endpoints for the cluster.
-                    items:
-                      type: string
-                    type: array
-                  controlPlane:
-                    description: Defines settings for the Kubernetes Control Plane.
-                    items:
-                      properties:
-                        highAvailability:
-                          description: Defines whether High Availability is enabled
-                            for the cluster Control Plane. This is an irreversible
-                            change. Defines whether High Availability is enabled for
-                            the Control Plane Components of the cluster.
-                          type: boolean
-                      type: object
-                    type: array
-                  dashboardUrl:
-                    description: The Kubernetes Dashboard access URL for this cluster.
-                      The dashboard URL of the cluster.
+                  created:
+                    description: The date and time when the VPC was created. The date
+                      and time when the VPC Subnet was created.
                     type: string
                   id:
-                    description: The ID of the cluster.
+                    description: The ID of the VPC Subnet.
                     type: string
-                  k8sVersion:
-                    description: The desired Kubernetes version for this Kubernetes
-                      cluster in the format of major.minor (e.g. 1.21), and the latest
-                      supported patch version will be deployed. The desired Kubernetes
-                      version for this Kubernetes cluster in the format of <major>.<minor>.
-                      The latest supported patch version will be deployed.
+                  ipv4:
+                    description: The IPv4 range of this subnet in CIDR format. The
+                      IPv4 range of this subnet in CIDR format.
                     type: string
                   label:
-                    description: This Kubernetes cluster's unique label. The unique
-                      label for the cluster.
+                    description: The label of the VPC. Only contains ASCII letters,
+                      digits and dashes. The label of the VPC subnet.
                     type: string
-                  pool:
-                    description: 'Additional nested attributes: A node pool in the
-                      cluster.'
+                  linodes:
+                    description: A list of Linode IDs that added to this subnet.
                     items:
                       properties:
-                        autoscaler:
-                          description: When specified, the number of nodes autoscales
-                            within the defined minimum and maximum values.
-                          items:
-                            properties:
-                              max:
-                                description: The maximum number of nodes to autoscale
-                                  to. The maximum number of nodes to autoscale to.
-                                type: number
-                              min:
-                                description: The minimum number of nodes to autoscale
-                                  to. The minimum number of nodes to autoscale to.
-                                type: number
-                            type: object
-                          type: array
-                        count:
-                          description: The number of nodes in the Node Pool. If undefined
-                            with an autoscaler the initial node count will equal the
-                            autoscaler minimum. The number of nodes in the Node Pool.
-                          type: number
                         id:
-                          description: The ID of the cluster. The ID of the Node Pool.
+                          description: The ID of the VPC Subnet.
                           type: number
-                        nodes:
-                          description: The nodes in the node pool.
+                        interfaces:
                           items:
                             properties:
+                              active:
+                                type: boolean
                               id:
-                                description: The ID of the cluster.
-                                type: string
-                              instanceId:
-                                description: The ID of the underlying Linode instance.
+                                description: The ID of the VPC Subnet.
                                 type: number
-                              status:
-                                description: The status of the cluster.
-                                type: string
                             type: object
                           type: array
-                        type:
-                          description: A Linode Type for all of the nodes in the Node
-                            Pool. See all node types here. A Linode Type for all of
-                            the nodes in the Node Pool.
-                          type: string
                       type: object
                     type: array
-                  region:
-                    description: This Kubernetes cluster's location. This cluster's
-                      location.
+                  updated:
+                    description: The date and time when the VPC was last updated.
+                      The date and time when the VPC Subnet was updated.
                     type: string
-                  status:
-                    description: The status of the cluster. The status of the cluster.
-                    type: string
-                  tags:
-                    description: An array of tags applied to the Kubernetes cluster.
-                      Tags are for organizational purposes only. An array of tags
-                      applied to this object. Tags are for organizational purposes
-                      only.
-                    items:
-                      type: string
-                    type: array
-                    x-kubernetes-list-type: set
+                  vpcId:
+                    description: The id of the parent VPC for this VPC Subnet. The
+                      id of the parent VPC for this VPC Subnet
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

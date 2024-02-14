@@ -73,7 +73,8 @@ spec:
                       (0-20). Set to 0 (zero) to disable throttling.
                     type: number
                   firewallId:
-                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    description: The Firewall's ID. ID for the firewall you'd like
+                      to use with this NodeBalancer.
                     type: number
                   label:
                     description: The label of the Linode NodeBalancer The label of
@@ -111,7 +112,8 @@ spec:
                       (0-20). Set to 0 (zero) to disable throttling.
                     type: number
                   firewallId:
-                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    description: The Firewall's ID. ID for the firewall you'd like
+                      to use with this NodeBalancer.
                     type: number
                   label:
                     description: The label of the Linode NodeBalancer The label of
@@ -306,13 +308,116 @@ spec:
                       was created.
                     type: string
                   firewallId:
-                    description: ID for the firewall you'd like to use with this NodeBalancer.
+                    description: The Firewall's ID. ID for the firewall you'd like
+                      to use with this NodeBalancer.
                     type: number
+                  firewalls:
+                    description: A list of Firewalls assigned to this NodeBalancer.
+                    items:
+                      properties:
+                        created:
+                          description: When this NodeBalancer was created
+                          type: string
+                        id:
+                          description: The Firewall's ID.
+                          type: number
+                        inbound:
+                          items:
+                            properties:
+                              action:
+                                description: Controls whether traffic is accepted
+                                  or dropped by this rule. Overrides the Firewall’s
+                                  inbound_policy if this is an inbound rule, or the
+                                  outbound_policy if this is an outbound rule.
+                                type: string
+                              ipv4:
+                                description: The Public IPv4 Address of this NodeBalancer
+                                items:
+                                  type: string
+                                type: array
+                              ipv6:
+                                description: The Public IPv6 Address of this NodeBalancer
+                                items:
+                                  type: string
+                                type: array
+                              label:
+                                description: The label of the Linode NodeBalancer
+                                type: string
+                              ports:
+                                description: A string representation of ports and/or
+                                  port ranges (i.e. "443" or "80-90, 91").
+                                type: string
+                              protocol:
+                                description: The network protocol this rule controls.
+                                  (TCP, UDP, ICMP)
+                                type: string
+                            type: object
+                          type: array
+                        inboundPolicy:
+                          description: The default behavior for inbound traffic. (ACCEPT,
+                            DROP)
+                          type: string
+                        label:
+                          description: The label of the Linode NodeBalancer
+                          type: string
+                        outbound:
+                          items:
+                            properties:
+                              action:
+                                description: Controls whether traffic is accepted
+                                  or dropped by this rule. Overrides the Firewall’s
+                                  inbound_policy if this is an inbound rule, or the
+                                  outbound_policy if this is an outbound rule.
+                                type: string
+                              ipv4:
+                                description: The Public IPv4 Address of this NodeBalancer
+                                items:
+                                  type: string
+                                type: array
+                              ipv6:
+                                description: The Public IPv6 Address of this NodeBalancer
+                                items:
+                                  type: string
+                                type: array
+                              label:
+                                description: The label of the Linode NodeBalancer
+                                type: string
+                              ports:
+                                description: A string representation of ports and/or
+                                  port ranges (i.e. "443" or "80-90, 91").
+                                type: string
+                              protocol:
+                                description: The network protocol this rule controls.
+                                  (TCP, UDP, ICMP)
+                                type: string
+                            type: object
+                          type: array
+                        outboundPolicy:
+                          description: The default behavior for outbound traffic.
+                            (ACCEPT, DROP)
+                          type: string
+                        status:
+                          description: The status of the firewall. (enabled, disabled,
+                            deleted)
+                          type: string
+                        tags:
+                          description: A list of tags applied to this object. Tags
+                            are for organizational purposes only.
+                          items:
+                            type: string
+                          type: array
+                          x-kubernetes-list-type: set
+                        updated:
+                          description: When this NodeBalancer was last updated.
+                          type: string
+                      type: object
+                    type: array
                   hostname:
                     description: This NodeBalancer's hostname, ending with .nodebalancer.linode.com
                       This NodeBalancer's hostname, ending with .nodebalancer.linode.com
                     type: string
                   id:
+                    description: The Firewall's ID.
                     type: string
                   ipv4:
                     description: The Public IPv4 Address of this NodeBalancer The

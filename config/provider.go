@@ -44,6 +44,7 @@ import (
 	"github.com/linode/provider-linode/config/token"
 	"github.com/linode/provider-linode/config/user"
 	"github.com/linode/provider-linode/config/volume"
+	"github.com/linode/provider-linode/config/vpc"
 )
 
 const (
@@ -138,6 +139,7 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		token.Configure,
 		user.Configure,
 		volume.Configure,
+		vpc.Configure,
 	} {
 		configure(pc)
 	}

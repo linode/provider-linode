@@ -617,6 +617,20 @@ spec:
                     description: The type of IP address. (ipv4, ipv6, ipv6/pool, ipv6/range)
                       The type of IP address.
                     type: string
+                  vpcNat11:
+                    description: Contains information about the NAT 1:1 mapping of
+                      a public IP address to a VPC subnet.
+                    items:
+                      properties:
+                        address:
+                          description: The resulting IPv4 address.
+                          type: string
+                        subnetId:
+                          type: number
+                        vpcId:
+                          type: number
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

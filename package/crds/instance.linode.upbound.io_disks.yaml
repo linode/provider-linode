@@ -70,19 +70,20 @@ spec:
                   authorizedKeys:
                     description: A list of public SSH keys that will be automatically
                       appended to the root user’s ~/.ssh/authorized_keys file when
-                      deploying from an Image. A list of public SSH keys that will
-                      be automatically appended to the root user’s ~/.ssh/authorized_keys
-                      file when deploying from an Image.
+                      deploying from an Image. (Requires image) A list of public SSH
+                      keys that will be automatically appended to the root user’s
+                      ~/.ssh/authorized_keys file when deploying from an Image.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   authorizedUsers:
                     description: A list of usernames. If the usernames have associated
-                      SSH keys, the keys will be appended to the A list of usernames.
-                      If the usernames have associated SSH keys, the keys will be
-                      appended to the root users ~/.ssh/authorized_keys file automatically
-                      when deploying from an Image.
+                      SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys
+                      file. (Requires image) A list of usernames. If the usernames
+                      have associated SSH keys, the keys will be appended to the root
+                      users ~/.ssh/authorized_keys file automatically when deploying
+                      from an Image.
                     items:
                       type: string
                     type: array
@@ -178,9 +179,9 @@ spec:
                     type: object
                   rootPassSecretRef:
                     description: The root user’s password on a newly-created Linode
-                      Disk when deploying from an Image. This sets the root user’s
-                      password on a newly-created Linode Disk when deploying from
-                      an Image.
+                      Disk when deploying from an Image. (Requires image) This sets
+                      the root user’s password on a newly-created Linode Disk when
+                      deploying from an Image.
                     properties:
                       key:
                         description: The key to select.
@@ -203,11 +204,11 @@ spec:
                   stackscriptDataSecretRef:
                     description: An object containing responses to any User Defined
                       Fields present in the StackScript being deployed to this Disk.
-                      Only accepted if stackscript_id is given. An object containing
-                      responses to any User Defined Fields present in the StackScript
-                      being deployed to this Disk. Only accepted if 'stackscript_id'
-                      is given. The required values depend on the StackScript being
-                      deployed.
+                      Only accepted if stackscript_id is given. (Requires image) An
+                      object containing responses to any User Defined Fields present
+                      in the StackScript being deployed to this Disk. Only accepted
+                      if 'stackscript_id' is given. The required values depend on
+                      the StackScript being deployed.
                     properties:
                       name:
                         description: Name of the secret.
@@ -221,9 +222,9 @@ spec:
                     type: object
                   stackscriptId:
                     description: A StackScript ID that will cause the referenced StackScript
-                      to be run during deployment of this Disk. A StackScript ID that
-                      will cause the referenced StackScript to be run during deployment
-                      of this Linode.
+                      to be run during deployment of this Disk. (Requires image) A
+                      StackScript ID that will cause the referenced StackScript to
+                      be run during deployment of this Linode.
                     type: number
                   stackscriptIdRef:
                     description: Reference to a Stackscript in stackscript to populate
@@ -316,19 +317,20 @@ spec:
                   authorizedKeys:
                     description: A list of public SSH keys that will be automatically
                       appended to the root user’s ~/.ssh/authorized_keys file when
-                      deploying from an Image. A list of public SSH keys that will
-                      be automatically appended to the root user’s ~/.ssh/authorized_keys
-                      file when deploying from an Image.
+                      deploying from an Image. (Requires image) A list of public SSH
+                      keys that will be automatically appended to the root user’s
+                      ~/.ssh/authorized_keys file when deploying from an Image.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   authorizedUsers:
                     description: A list of usernames. If the usernames have associated
-                      SSH keys, the keys will be appended to the A list of usernames.
-                      If the usernames have associated SSH keys, the keys will be
-                      appended to the root users ~/.ssh/authorized_keys file automatically
-                      when deploying from an Image.
+                      SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys
+                      file. (Requires image) A list of usernames. If the usernames
+                      have associated SSH keys, the keys will be appended to the root
+                      users ~/.ssh/authorized_keys file automatically when deploying
+                      from an Image.
                     items:
                       type: string
                     type: array
@@ -428,9 +430,9 @@ spec:
                     type: number
                   stackscriptId:
                     description: A StackScript ID that will cause the referenced StackScript
-                      to be run during deployment of this Disk. A StackScript ID that
-                      will cause the referenced StackScript to be run during deployment
-                      of this Linode.
+                      to be run during deployment of this Disk. (Requires image) A
+                      StackScript ID that will cause the referenced StackScript to
+                      be run during deployment of this Linode.
                     type: number
                   stackscriptIdRef:
                     description: Reference to a Stackscript in stackscript to populate
@@ -685,19 +687,20 @@ spec:
                   authorizedKeys:
                     description: A list of public SSH keys that will be automatically
                       appended to the root user’s ~/.ssh/authorized_keys file when
-                      deploying from an Image. A list of public SSH keys that will
-                      be automatically appended to the root user’s ~/.ssh/authorized_keys
-                      file when deploying from an Image.
+                      deploying from an Image. (Requires image) A list of public SSH
+                      keys that will be automatically appended to the root user’s
+                      ~/.ssh/authorized_keys file when deploying from an Image.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   authorizedUsers:
                     description: A list of usernames. If the usernames have associated
-                      SSH keys, the keys will be appended to the A list of usernames.
-                      If the usernames have associated SSH keys, the keys will be
-                      appended to the root users ~/.ssh/authorized_keys file automatically
-                      when deploying from an Image.
+                      SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys
+                      file. (Requires image) A list of usernames. If the usernames
+                      have associated SSH keys, the keys will be appended to the root
+                      users ~/.ssh/authorized_keys file automatically when deploying
+                      from an Image.
                     items:
                       type: string
                     type: array
@@ -729,9 +732,9 @@ spec:
                     type: number
                   stackscriptId:
                     description: A StackScript ID that will cause the referenced StackScript
-                      to be run during deployment of this Disk. A StackScript ID that
-                      will cause the referenced StackScript to be run during deployment
-                      of this Linode.
+                      to be run during deployment of this Disk. (Requires image) A
+                      StackScript ID that will cause the referenced StackScript to
+                      be run during deployment of this Linode.
                     type: number
                   status:
                     description: A brief description of this Disk's current state.

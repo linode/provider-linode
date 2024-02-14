@@ -426,20 +426,75 @@ spec:
                             Configuration Profile.
                           items:
                             properties:
+                              ipRanges:
+                                description: IPv4 CIDR VPC Subnet ranges that are
+                                  routed to this Interface. IPv6 ranges are also available
+                                  to select participants in the Beta program. List
+                                  of VPC IPs or IP ranges inside the VPC subnet.
+                                items:
+                                  type: string
+                                type: array
                               ipamAddress:
                                 description: This Network Interface’s private IP address
                                   in Classless Inter-Domain Routing (CIDR) notation.
-                                  The IPAM Address of this interface.
+                                  (e.g. 10.0.0.1/24) This field is only allowed for
+                                  interfaces with the vlan purpose. This Network Interface's
+                                  private IP address in Classless Inter-Domain Routing
+                                  (CIDR) notation.This attribute is only allowed for
+                                  VLAN interfaces.
                                 type: string
+                              ipv4:
+                                description: This Linode's IPv4 Addresses. Each Linode
+                                  is assigned a single public IPv4 address upon creation,
+                                  and may get a single private IPv4 address if needed.
+                                  You may need to open a support ticket to get additional
+                                  IPv4 addresses. The IPv4 configuration of the VPC
+                                  interface.This attribute is only allowed for VPC
+                                  interfaces.
+                                items:
+                                  properties:
+                                    nat11:
+                                      description: The public IP that will be used
+                                        for the one-to-one NAT purpose. If this is
+                                        any, the public IPv4 address assigned to this
+                                        Linode is used on this interface and will
+                                        be 1:1 NATted with the VPC IPv4 address. The
+                                        public IP that will be used for the one-to-one
+                                        NAT purpose.
+                                      type: string
+                                    vpc:
+                                      description: purpose. The IP from the VPC subnet
+                                        to use for this interface.
+                                      type: string
+                                  type: object
+                                type: array
                               label:
                                 description: The Linode's label is for display purposes
                                   only. If no label is provided for a Linode, a default
-                                  will be assigned. The unique label of this interface.
+                                  will be assigned. The name of the VALN. This attribute
+                                  is required for VLAN interfaces. This attribute
+                                  is only allowed for VLAN interfaces.
                                 type: string
+                              primary:
+                                description: Whether the interface is the primary
+                                  interface that should have the default route for
+                                  this Linode. This field is only allowed for interfaces
+                                  with the public or vpc purpose. Whether the interface
+                                  is the primary interface that should have the default
+                                  route for this Linode.
+                                type: boolean
                               purpose:
-                                description: The type of interface. (public, vlan)
-                                  The purpose of this interface.
+                                description: The type of interface. (public, vlan,
+                                  vpc) The type of interface.
                                 type: string
+                              subnetId:
+                                description: The name of the VPC Subnet to join. This
+                                  field is only allowed and required for interfaces
+                                  with the vpc purpose. The ID of the subnet which
+                                  the VPC interface is connected to.This attribute
+                                  is required for VPC interfaces.This attribute is
+                                  only allowed for VPC interfaces.
+                                type: number
                             type: object
                           type: array
                         kernel:
@@ -515,8 +570,8 @@ spec:
                           description: An Image ID to deploy the Disk from. Official
                             Linode Images start with linode/, while your Images start
                             with private/. See images for more information on the
-                            Images available for you to use. Examples are linode/debian9,
-                            linode/fedora28, linode/ubuntu16.04lts, linode/arch, and
+                            Images available for you to use. Examples are linode/debian12,
+                            linode/fedora39, linode/ubuntu22.04, linode/arch, and
                             private/12345. See all images here (Requires a personal
                             access token; docs here). This value can not be imported.
                             Changing An Image ID to deploy the Disk from. Official
@@ -587,15 +642,21 @@ spec:
                           type: number
                       type: object
                     type: array
+                  firewallId:
+                    description: The ID of the Firewall to attach to the instance
+                      upon creation. Changing The ID of the firewall applied to the
+                      Linode instance during creation.
+                    type: number
                   group:
-                    description: The display group of the Linode instance. The display
-                      group of the Linode instance.
+                    description: A deprecated property denoting a group label for
+                      this Linode. We recommend using the tags attribute instead.
+                      The display group of the Linode instance.
                     type: string
                   image:
                     description: An Image ID to deploy the Disk from. Official Linode
                       Images start with linode/, while your Images start with private/.
                       See images for more information on the Images available for
-                      you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts,
+                      you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04,
                       linode/arch, and private/12345. See all images here (Requires
                       a personal access token; docs here). This value can not be imported.
                       Changing An Image ID to deploy the Disk from. Official Linode
@@ -609,20 +670,70 @@ spec:
                       must be declared in the config block.
                     items:
                       properties:
+                        ipRanges:
+                          description: IPv4 CIDR VPC Subnet ranges that are routed
+                            to this Interface. IPv6 ranges are also available to select
+                            participants in the Beta program. List of VPC IPs or IP
+                            ranges inside the VPC subnet.
+                          items:
+                            type: string
+                          type: array
                         ipamAddress:
                           description: This Network Interface’s private IP address
-                            in Classless Inter-Domain Routing (CIDR) notation. The
-                            IPAM Address of this interface.
+                            in Classless Inter-Domain Routing (CIDR) notation. (e.g.
+                            10.0.0.1/24) This field is only allowed for interfaces
+                            with the vlan purpose. This Network Interface's private
+                            IP address in Classless Inter-Domain Routing (CIDR) notation.This
+                            attribute is only allowed for VLAN interfaces.
                           type: string
+                        ipv4:
+                          description: This Linode's IPv4 Addresses. Each Linode is
+                            assigned a single public IPv4 address upon creation, and
+                            may get a single private IPv4 address if needed. You may
+                            need to open a support ticket to get additional IPv4 addresses.
+                            The IPv4 configuration of the VPC interface.This attribute
+                            is only allowed for VPC interfaces.
+                          items:
+                            properties:
+                              nat11:
+                                description: The public IP that will be used for the
+                                  one-to-one NAT purpose. If this is any, the public
+                                  IPv4 address assigned to this Linode is used on
+                                  this interface and will be 1:1 NATted with the VPC
+                                  IPv4 address. The public IP that will be used for
+                                  the one-to-one NAT purpose.
+                                type: string
+                              vpc:
+                                description: purpose. The IP from the VPC subnet to
+                                  use for this interface.
+                                type: string
+                            type: object
+                          type: array
                         label:
                           description: The Linode's label is for display purposes
                             only. If no label is provided for a Linode, a default
-                            will be assigned. The unique label of this interface.
+                            will be assigned. The name of the VALN. This attribute
+                            is required for VLAN interfaces. This attribute is only
+                            allowed for VLAN interfaces.
                           type: string
+                        primary:
+                          description: Whether the interface is the primary interface
+                            that should have the default route for this Linode. This
+                            field is only allowed for interfaces with the public or
+                            vpc purpose. Whether the interface is the primary interface
+                            that should have the default route for this Linode.
+                          type: boolean
                         purpose:
-                          description: The type of interface. (public, vlan) The purpose
-                            of this interface.
+                          description: The type of interface. (public, vlan, vpc)
+                            The type of interface.
                           type: string
+                        subnetId:
+                          description: The name of the VPC Subnet to join. This field
+                            is only allowed and required for interfaces with the vpc
+                            purpose. The ID of the subnet which the VPC interface
+                            is connected to.This attribute is required for VPC interfaces.This
+                            attribute is only allowed for VPC interfaces.
+                          type: number
                       type: object
                     type: array
                   label:
@@ -639,10 +750,19 @@ spec:
                           description: The base64-encoded user-defined data exposed
                             to this instance through the Linode Metadata service.
                             Refer to the base64encode(...) function for information
-                            on encoding content for this field.
+                            on encoding content for this field. The base64-encoded
+                            user-defined data exposed to this instance through the
+                            Linode Metadata service. Refer to the base64encode(...)
+                            function for information on encoding content for this
+                            field.
                           type: string
                       type: object
                     type: array
+                  migrationType:
+                    description: The type of migration to use when updating the type
+                      or region of a Linode. (cold, warm; default cold) The type of
+                      migration to use for resize and migration operations.
+                    type: string
                   privateIp:
                     description: If true, the created Linode will have private networking
                       enabled, allowing use of the 192.168.128.0/17 network within
@@ -670,7 +790,7 @@ spec:
                     type: boolean
                   rootPassSecretRef:
                     description: The initial password for the root user account. This
-                      value can not be imported. The password that will be initialially
+                      value can not be imported. The password that will be initially
                       assigned to the 'root' user account.
                     properties:
                       key:
@@ -1208,20 +1328,75 @@ spec:
                             Configuration Profile.
                           items:
                             properties:
+                              ipRanges:
+                                description: IPv4 CIDR VPC Subnet ranges that are
+                                  routed to this Interface. IPv6 ranges are also available
+                                  to select participants in the Beta program. List
+                                  of VPC IPs or IP ranges inside the VPC subnet.
+                                items:
+                                  type: string
+                                type: array
                               ipamAddress:
                                 description: This Network Interface’s private IP address
                                   in Classless Inter-Domain Routing (CIDR) notation.
-                                  The IPAM Address of this interface.
+                                  (e.g. 10.0.0.1/24) This field is only allowed for
+                                  interfaces with the vlan purpose. This Network Interface's
+                                  private IP address in Classless Inter-Domain Routing
+                                  (CIDR) notation.This attribute is only allowed for
+                                  VLAN interfaces.
                                 type: string
+                              ipv4:
+                                description: This Linode's IPv4 Addresses. Each Linode
+                                  is assigned a single public IPv4 address upon creation,
+                                  and may get a single private IPv4 address if needed.
+                                  You may need to open a support ticket to get additional
+                                  IPv4 addresses. The IPv4 configuration of the VPC
+                                  interface.This attribute is only allowed for VPC
+                                  interfaces.
+                                items:
+                                  properties:
+                                    nat11:
+                                      description: The public IP that will be used
+                                        for the one-to-one NAT purpose. If this is
+                                        any, the public IPv4 address assigned to this
+                                        Linode is used on this interface and will
+                                        be 1:1 NATted with the VPC IPv4 address. The
+                                        public IP that will be used for the one-to-one
+                                        NAT purpose.
+                                      type: string
+                                    vpc:
+                                      description: purpose. The IP from the VPC subnet
+                                        to use for this interface.
+                                      type: string
+                                  type: object
+                                type: array
                               label:
                                 description: The Linode's label is for display purposes
                                   only. If no label is provided for a Linode, a default
-                                  will be assigned. The unique label of this interface.
+                                  will be assigned. The name of the VALN. This attribute
+                                  is required for VLAN interfaces. This attribute
+                                  is only allowed for VLAN interfaces.
                                 type: string
+                              primary:
+                                description: Whether the interface is the primary
+                                  interface that should have the default route for
+                                  this Linode. This field is only allowed for interfaces
+                                  with the public or vpc purpose. Whether the interface
+                                  is the primary interface that should have the default
+                                  route for this Linode.
+                                type: boolean
                               purpose:
-                                description: The type of interface. (public, vlan)
-                                  The purpose of this interface.
+                                description: The type of interface. (public, vlan,
+                                  vpc) The type of interface.
                                 type: string
+                              subnetId:
+                                description: The name of the VPC Subnet to join. This
+                                  field is only allowed and required for interfaces
+                                  with the vpc purpose. The ID of the subnet which
+                                  the VPC interface is connected to.This attribute
+                                  is required for VPC interfaces.This attribute is
+                                  only allowed for VPC interfaces.
+                                type: number
                             type: object
                           type: array
                         kernel:
@@ -1297,8 +1472,8 @@ spec:
                           description: An Image ID to deploy the Disk from. Official
                             Linode Images start with linode/, while your Images start
                             with private/. See images for more information on the
-                            Images available for you to use. Examples are linode/debian9,
-                            linode/fedora28, linode/ubuntu16.04lts, linode/arch, and
+                            Images available for you to use. Examples are linode/debian12,
+                            linode/fedora39, linode/ubuntu22.04, linode/arch, and
                             private/12345. See all images here (Requires a personal
                             access token; docs here). This value can not be imported.
                             Changing An Image ID to deploy the Disk from. Official
@@ -1329,15 +1504,21 @@ spec:
                           type: number
                       type: object
                     type: array
+                  firewallId:
+                    description: The ID of the Firewall to attach to the instance
+                      upon creation. Changing The ID of the firewall applied to the
+                      Linode instance during creation.
+                    type: number
                   group:
-                    description: The display group of the Linode instance. The display
-                      group of the Linode instance.
+                    description: A deprecated property denoting a group label for
+                      this Linode. We recommend using the tags attribute instead.
+                      The display group of the Linode instance.
                     type: string
                   image:
                     description: An Image ID to deploy the Disk from. Official Linode
                       Images start with linode/, while your Images start with private/.
                       See images for more information on the Images available for
-                      you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts,
+                      you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04,
                       linode/arch, and private/12345. See all images here (Requires
                       a personal access token; docs here). This value can not be imported.
                       Changing An Image ID to deploy the Disk from. Official Linode
@@ -1351,20 +1532,70 @@ spec:
                       must be declared in the config block.
                     items:
                       properties:
+                        ipRanges:
+                          description: IPv4 CIDR VPC Subnet ranges that are routed
+                            to this Interface. IPv6 ranges are also available to select
+                            participants in the Beta program. List of VPC IPs or IP
+                            ranges inside the VPC subnet.
+                          items:
+                            type: string
+                          type: array
                         ipamAddress:
                           description: This Network Interface’s private IP address
-                            in Classless Inter-Domain Routing (CIDR) notation. The
-                            IPAM Address of this interface.
+                            in Classless Inter-Domain Routing (CIDR) notation. (e.g.
+                            10.0.0.1/24) This field is only allowed for interfaces
+                            with the vlan purpose. This Network Interface's private
+                            IP address in Classless Inter-Domain Routing (CIDR) notation.This
+                            attribute is only allowed for VLAN interfaces.
                           type: string
+                        ipv4:
+                          description: This Linode's IPv4 Addresses. Each Linode is
+                            assigned a single public IPv4 address upon creation, and
+                            may get a single private IPv4 address if needed. You may
+                            need to open a support ticket to get additional IPv4 addresses.
+                            The IPv4 configuration of the VPC interface.This attribute
+                            is only allowed for VPC interfaces.
+                          items:
+                            properties:
+                              nat11:
+                                description: The public IP that will be used for the
+                                  one-to-one NAT purpose. If this is any, the public
+                                  IPv4 address assigned to this Linode is used on
+                                  this interface and will be 1:1 NATted with the VPC
+                                  IPv4 address. The public IP that will be used for
+                                  the one-to-one NAT purpose.
+                                type: string
+                              vpc:
+                                description: purpose. The IP from the VPC subnet to
+                                  use for this interface.
+                                type: string
+                            type: object
+                          type: array
                         label:
                           description: The Linode's label is for display purposes
                             only. If no label is provided for a Linode, a default
-                            will be assigned. The unique label of this interface.
+                            will be assigned. The name of the VALN. This attribute
+                            is required for VLAN interfaces. This attribute is only
+                            allowed for VLAN interfaces.
                           type: string
+                        primary:
+                          description: Whether the interface is the primary interface
+                            that should have the default route for this Linode. This
+                            field is only allowed for interfaces with the public or
+                            vpc purpose. Whether the interface is the primary interface
+                            that should have the default route for this Linode.
+                          type: boolean
                         purpose:
-                          description: The type of interface. (public, vlan) The purpose
-                            of this interface.
+                          description: The type of interface. (public, vlan, vpc)
+                            The type of interface.
                           type: string
+                        subnetId:
+                          description: The name of the VPC Subnet to join. This field
+                            is only allowed and required for interfaces with the vpc
+                            purpose. The ID of the subnet which the VPC interface
+                            is connected to.This attribute is required for VPC interfaces.This
+                            attribute is only allowed for VPC interfaces.
+                          type: number
                       type: object
                     type: array
                   label:
@@ -1381,10 +1612,19 @@ spec:
                           description: The base64-encoded user-defined data exposed
                             to this instance through the Linode Metadata service.
                             Refer to the base64encode(...) function for information
-                            on encoding content for this field.
+                            on encoding content for this field. The base64-encoded
+                            user-defined data exposed to this instance through the
+                            Linode Metadata service. Refer to the base64encode(...)
+                            function for information on encoding content for this
+                            field.
                           type: string
                       type: object
                     type: array
+                  migrationType:
+                    description: The type of migration to use when updating the type
+                      or region of a Linode. (cold, warm; default cold) The type of
+                      migration to use for resize and migration operations.
+                    type: string
                   privateIp:
                     description: If true, the created Linode will have private networking
                       enabled, allowing use of the 192.168.128.0/17 network within
@@ -2103,25 +2343,97 @@ spec:
                                 type: boolean
                             type: object
                           type: array
+                        id:
+                          description: (Computed) The ID of the disk in the Linode
+                            API. The unique ID of this Config.
+                          type: number
                         interface:
                           description: An array of Network Interfaces for this Linode’s
                             Configuration Profile.
                           items:
                             properties:
+                              active:
+                                description: Whether this interface is currently booted
+                                  and active.
+                                type: boolean
+                              id:
+                                description: (Computed) The ID of the disk in the
+                                  Linode API. The ID of the interface.
+                                type: number
+                              ipRanges:
+                                description: IPv4 CIDR VPC Subnet ranges that are
+                                  routed to this Interface. IPv6 ranges are also available
+                                  to select participants in the Beta program. List
+                                  of VPC IPs or IP ranges inside the VPC subnet.
+                                items:
+                                  type: string
+                                type: array
                               ipamAddress:
                                 description: This Network Interface’s private IP address
                                   in Classless Inter-Domain Routing (CIDR) notation.
-                                  The IPAM Address of this interface.
+                                  (e.g. 10.0.0.1/24) This field is only allowed for
+                                  interfaces with the vlan purpose. This Network Interface's
+                                  private IP address in Classless Inter-Domain Routing
+                                  (CIDR) notation.This attribute is only allowed for
+                                  VLAN interfaces.
                                 type: string
+                              ipv4:
+                                description: This Linode's IPv4 Addresses. Each Linode
+                                  is assigned a single public IPv4 address upon creation,
+                                  and may get a single private IPv4 address if needed.
+                                  You may need to open a support ticket to get additional
+                                  IPv4 addresses. The IPv4 configuration of the VPC
+                                  interface.This attribute is only allowed for VPC
+                                  interfaces.
+                                items:
+                                  properties:
+                                    nat11:
+                                      description: The public IP that will be used
+                                        for the one-to-one NAT purpose. If this is
+                                        any, the public IPv4 address assigned to this
+                                        Linode is used on this interface and will
+                                        be 1:1 NATted with the VPC IPv4 address. The
+                                        public IP that will be used for the one-to-one
+                                        NAT purpose.
+                                      type: string
+                                    vpc:
+                                      description: purpose. The IP from the VPC subnet
+                                        to use for this interface.
+                                      type: string
+                                  type: object
+                                type: array
                               label:
                                 description: The Linode's label is for display purposes
                                   only. If no label is provided for a Linode, a default
-                                  will be assigned. The unique label of this interface.
+                                  will be assigned. The name of the VALN. This attribute
+                                  is required for VLAN interfaces. This attribute
+                                  is only allowed for VLAN interfaces.
                                 type: string
+                              primary:
+                                description: Whether the interface is the primary
+                                  interface that should have the default route for
+                                  this Linode. This field is only allowed for interfaces
+                                  with the public or vpc purpose. Whether the interface
+                                  is the primary interface that should have the default
+                                  route for this Linode.
+                                type: boolean
                               purpose:
-                                description: The type of interface. (public, vlan)
-                                  The purpose of this interface.
+                                description: The type of interface. (public, vlan,
+                                  vpc) The type of interface.
                                 type: string
+                              subnetId:
+                                description: The name of the VPC Subnet to join. This
+                                  field is only allowed and required for interfaces
+                                  with the vpc purpose. The ID of the subnet which
+                                  the VPC interface is connected to.This attribute
+                                  is required for VPC interfaces.This attribute is
+                                  only allowed for VPC interfaces.
+                                type: number
+                              vpcId:
+                                description: The ID of VPC which this interface is
+                                  attached to. The ID of VPC of the subnet which the
+                                  VPC interface is connected to.
+                                type: number
                             type: object
                           type: array
                         kernel:
@@ -2202,8 +2514,8 @@ spec:
                           description: An Image ID to deploy the Disk from. Official
                             Linode Images start with linode/, while your Images start
                             with private/. See images for more information on the
-                            Images available for you to use. Examples are linode/debian9,
-                            linode/fedora28, linode/ubuntu16.04lts, linode/arch, and
+                            Images available for you to use. Examples are linode/debian12,
+                            linode/fedora39, linode/ubuntu22.04, linode/arch, and
                             private/12345. See all images here (Requires a personal
                             access token; docs here). This value can not be imported.
                             Changing An Image ID to deploy the Disk from. Official
@@ -2234,12 +2546,19 @@ spec:
                           type: number
                       type: object
                     type: array
+                  firewallId:
+                    description: The ID of the Firewall to attach to the instance
+                      upon creation. Changing The ID of the firewall applied to the
+                      Linode instance during creation.
+                    type: number
                   group:
-                    description: The display group of the Linode instance. The display
-                      group of the Linode instance.
+                    description: A deprecated property denoting a group label for
+                      this Linode. We recommend using the tags attribute instead.
+                      The display group of the Linode instance.
                     type: string
                   hasUserData:
-                    description: Whether or not this Instance was created with user-data.
+                    description: Whether this Instance was created with user-data.
+                      Whether or not this Instance was created with user-data.
                     type: boolean
                   hostUuid:
                     description: (Computed) The ID of the disk in the Linode API.
@@ -2252,7 +2571,7 @@ spec:
                     description: An Image ID to deploy the Disk from. Official Linode
                       Images start with linode/, while your Images start with private/.
                       See images for more information on the Images available for
-                      you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts,
+                      you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04,
                       linode/arch, and private/12345. See all images here (Requires
                       a personal access token; docs here). This value can not be imported.
                       Changing An Image ID to deploy the Disk from. Official Linode
@@ -2266,20 +2585,83 @@ spec:
                       must be declared in the config block.
                     items:
                       properties:
+                        active:
+                          description: Whether this interface is currently booted
+                            and active.
+                          type: boolean
+                        id:
+                          description: (Computed) The ID of the disk in the Linode
+                            API. The ID of the interface.
+                          type: number
+                        ipRanges:
+                          description: IPv4 CIDR VPC Subnet ranges that are routed
+                            to this Interface. IPv6 ranges are also available to select
+                            participants in the Beta program. List of VPC IPs or IP
+                            ranges inside the VPC subnet.
+                          items:
+                            type: string
+                          type: array
                         ipamAddress:
                           description: This Network Interface’s private IP address
-                            in Classless Inter-Domain Routing (CIDR) notation. The
-                            IPAM Address of this interface.
+                            in Classless Inter-Domain Routing (CIDR) notation. (e.g.
+                            10.0.0.1/24) This field is only allowed for interfaces
+                            with the vlan purpose. This Network Interface's private
+                            IP address in Classless Inter-Domain Routing (CIDR) notation.This
+                            attribute is only allowed for VLAN interfaces.
                           type: string
+                        ipv4:
+                          description: This Linode's IPv4 Addresses. Each Linode is
+                            assigned a single public IPv4 address upon creation, and
+                            may get a single private IPv4 address if needed. You may
+                            need to open a support ticket to get additional IPv4 addresses.
+                            The IPv4 configuration of the VPC interface.This attribute
+                            is only allowed for VPC interfaces.
+                          items:
+                            properties:
+                              nat11:
+                                description: The public IP that will be used for the
+                                  one-to-one NAT purpose. If this is any, the public
+                                  IPv4 address assigned to this Linode is used on
+                                  this interface and will be 1:1 NATted with the VPC
+                                  IPv4 address. The public IP that will be used for
+                                  the one-to-one NAT purpose.
+                                type: string
+                              vpc:
+                                description: purpose. The IP from the VPC subnet to
+                                  use for this interface.
+                                type: string
+                            type: object
+                          type: array
                         label:
                           description: The Linode's label is for display purposes
                             only. If no label is provided for a Linode, a default
-                            will be assigned. The unique label of this interface.
+                            will be assigned. The name of the VALN. This attribute
+                            is required for VLAN interfaces. This attribute is only
+                            allowed for VLAN interfaces.
                           type: string
+                        primary:
+                          description: Whether the interface is the primary interface
+                            that should have the default route for this Linode. This
+                            field is only allowed for interfaces with the public or
+                            vpc purpose. Whether the interface is the primary interface
+                            that should have the default route for this Linode.
+                          type: boolean
                         purpose:
-                          description: The type of interface. (public, vlan) The purpose
-                            of this interface.
+                          description: The type of interface. (public, vlan, vpc)
+                            The type of interface.
                           type: string
+                        subnetId:
+                          description: The name of the VPC Subnet to join. This field
+                            is only allowed and required for interfaces with the vpc
+                            purpose. The ID of the subnet which the VPC interface
+                            is connected to.This attribute is required for VPC interfaces.This
+                            attribute is only allowed for VPC interfaces.
+                          type: number
+                        vpcId:
+                          description: The ID of VPC which this interface is attached
+                            to. The ID of VPC of the subnet which the VPC interface
+                            is connected to.
+                          type: number
                       type: object
                     type: array
                   ipAddress:
@@ -2322,10 +2704,19 @@ spec:
                           description: The base64-encoded user-defined data exposed
                             to this instance through the Linode Metadata service.
                             Refer to the base64encode(...) function for information
-                            on encoding content for this field.
+                            on encoding content for this field. The base64-encoded
+                            user-defined data exposed to this instance through the
+                            Linode Metadata service. Refer to the base64encode(...)
+                            function for information on encoding content for this
+                            field.
                           type: string
                       type: object
                     type: array
+                  migrationType:
+                    description: The type of migration to use when updating the type
+                      or region of a Linode. (cold, warm; default cold) The type of
+                      migration to use for resize and migration operations.
+                    type: string
                   privateIp:
                     description: If true, the created Linode will have private networking
                       enabled, allowing use of the 192.168.128.0/17 network within

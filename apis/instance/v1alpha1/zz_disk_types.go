@@ -19,12 +19,12 @@ import (
 
 type DiskInitParameters_2 struct {
 
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
-	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. (Requires image)
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
 	// +listType=set
 	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
@@ -58,7 +58,7 @@ type DiskInitParameters_2 struct {
 	// The size of the Disk in MB.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
-	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
+	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript
 	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
@@ -74,12 +74,12 @@ type DiskInitParameters_2 struct {
 
 type DiskObservation_2 struct {
 
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
-	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. (Requires image)
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
 	// +listType=set
 	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
@@ -110,7 +110,7 @@ type DiskObservation_2 struct {
 	// The size of the Disk in MB.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
-	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
+	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
 	StackscriptID *float64 `json:"stackscriptId,omitempty" tf:"stackscript_id,omitempty"`
 
@@ -125,13 +125,13 @@ type DiskObservation_2 struct {
 
 type DiskParameters_2 struct {
 
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
-	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. (Requires image)
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
 	// +kubebuilder:validation:Optional
 	// +listType=set
@@ -166,7 +166,7 @@ type DiskParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
-	// The root user’s password on a newly-created Linode Disk when deploying from an Image.
+	// The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)
 	// This sets the root user’s password on a newly-created Linode Disk when deploying from an Image.
 	// +kubebuilder:validation:Optional
 	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
@@ -176,12 +176,12 @@ type DiskParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
-	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given.
+	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given. (Requires image)
 	// An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if 'stackscript_id' is given. The required values depend on the StackScript being deployed.
 	// +kubebuilder:validation:Optional
 	StackscriptDataSecretRef *v1.SecretReference `json:"stackscriptDataSecretRef,omitempty" tf:"-"`
 
-	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk.
+	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript
 	// +kubebuilder:validation:Optional

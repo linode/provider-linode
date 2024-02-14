@@ -74,6 +74,10 @@ type ObjectInitParameters struct {
 	// The MIME type of the content.
 	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
 
+	// Used with the s3 client to make bucket changes and will be computed automatically if left blank, override for testing/debug purposes.
+	// The endpoint for the bucket used for s3 connections.
+	Endpoint *string `json:"endpoint,omitempty" tf:"endpoint,omitempty"`
+
 	// Used to trigger updates.11.11.11 or earlier).
 	// The specific version of this object.
 	Etag *string `json:"etag,omitempty" tf:"etag,omitempty"`
@@ -160,6 +164,10 @@ type ObjectObservation struct {
 	// A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.
 	// The MIME type of the content.
 	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
+
+	// Used with the s3 client to make bucket changes and will be computed automatically if left blank, override for testing/debug purposes.
+	// The endpoint for the bucket used for s3 connections.
+	Endpoint *string `json:"endpoint,omitempty" tf:"endpoint,omitempty"`
 
 	// Used to trigger updates.11.11.11 or earlier).
 	// The specific version of this object.
@@ -264,6 +272,11 @@ type ObjectParameters struct {
 	// The MIME type of the content.
 	// +kubebuilder:validation:Optional
 	ContentType *string `json:"contentType,omitempty" tf:"content_type,omitempty"`
+
+	// Used with the s3 client to make bucket changes and will be computed automatically if left blank, override for testing/debug purposes.
+	// The endpoint for the bucket used for s3 connections.
+	// +kubebuilder:validation:Optional
+	Endpoint *string `json:"endpoint,omitempty" tf:"endpoint,omitempty"`
 
 	// Used to trigger updates.11.11.11 or earlier).
 	// The specific version of this object.

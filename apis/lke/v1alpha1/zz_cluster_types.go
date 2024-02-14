@@ -199,7 +199,7 @@ type PoolInitParameters struct {
 	// When specified, the number of nodes autoscales within the defined minimum and maximum values.
 	Autoscaler []AutoscalerInitParameters `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
 
-	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
@@ -213,7 +213,7 @@ type PoolObservation struct {
 	// When specified, the number of nodes autoscales within the defined minimum and maximum values.
 	Autoscaler []AutoscalerObservation `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
 
-	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
@@ -235,10 +235,10 @@ type PoolParameters struct {
 	// +kubebuilder:validation:Optional
 	Autoscaler []AutoscalerParameters `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
 
-	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	// +kubebuilder:validation:Optional
-	Count *float64 `json:"count" tf:"count,omitempty"`
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
