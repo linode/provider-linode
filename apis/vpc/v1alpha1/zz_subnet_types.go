@@ -56,7 +56,16 @@ type SubnetInitParameters struct {
 
 	// The id of the parent VPC for this VPC Subnet.
 	// The id of the parent VPC for this VPC Subnet
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/vpc/v1alpha1.VPC
 	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+
+	// Reference to a VPC in vpc to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDRef *v1.Reference `json:"vpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in vpc to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
 type SubnetObservation struct {
@@ -102,8 +111,17 @@ type SubnetParameters struct {
 
 	// The id of the parent VPC for this VPC Subnet.
 	// The id of the parent VPC for this VPC Subnet
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/vpc/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+
+	// Reference to a VPC in vpc to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDRef *v1.Reference `json:"vpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in vpc to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDSelector *v1.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
 // SubnetSpec defines the desired state of Subnet
@@ -144,7 +162,6 @@ type Subnet struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ipv4) || (has(self.initProvider) && has(self.initProvider.ipv4))",message="spec.forProvider.ipv4 is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcId) || (has(self.initProvider) && has(self.initProvider.vpcId))",message="spec.forProvider.vpcId is a required parameter"
 	Spec   SubnetSpec   `json:"spec"`
 	Status SubnetStatus `json:"status,omitempty"`
 }
