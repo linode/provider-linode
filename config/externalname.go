@@ -13,24 +13,25 @@ import (
 // resources to be reconciled under the no-fork architecture for this
 // provider.
 var terraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName{
-	"linode_token":              config.IdentifierFromProvider,
-	"linode_stackscript":        config.IdentifierFromProvider,
-	"linode_rdns":               config.IdentifierFromProvider,
-	"linode_object_storage_key": config.IdentifierFromProvider,
-	"linode_sshkey":             config.IdentifierFromProvider,
-	"linode_ipv6_range":         config.IdentifierFromProvider,
-	"linode_nodebalancer":       config.IdentifierFromProvider,
-	"linode_vpc_subnet":         config.IdentifierFromProvider,
-	"linode_vpc":                config.IdentifierFromProvider,
-	"linode_instance_ip":        config.IdentifierFromProvider,
-	"linode_firewall_device":    config.IdentifierFromProvider,
-	"linode_volume":             config.IdentifierFromProvider,
+	"linode_token":               config.IdentifierFromProvider,
+	"linode_stackscript":         config.IdentifierFromProvider,
+	"linode_rdns":                config.IdentifierFromProvider,
+	"linode_object_storage_key":  config.IdentifierFromProvider,
+	"linode_sshkey":              config.IdentifierFromProvider,
+	"linode_ipv6_range":          config.IdentifierFromProvider,
+	"linode_nodebalancer":        config.IdentifierFromProvider,
+	"linode_vpc_subnet":          config.IdentifierFromProvider,
+	"linode_vpc":                 config.IdentifierFromProvider,
+	"linode_instance_ip":         config.IdentifierFromProvider,
+	"linode_firewall_device":     config.IdentifierFromProvider,
+	"linode_volume":              config.IdentifierFromProvider,
+	"linode_instance_shared_ips": config.IdentifierFromProvider,
 }
 
-// terraformPluginSDKIncludeList contains all external name configurations
+// terraformSDKIncludeList contains all external name configurations
 // belonging to Terraform Plugin SDKv2 resources to be reconciled
 // under the no-fork architecture for this provider.
-var terraformPluginSDKIncludeList = map[string]config.ExternalName{
+var terraformSDKIncludeList = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: 1234567
 	"linode_database_access_controls": config.IdentifierFromProvider,
 	"linode_database_mysql":           config.IdentifierFromProvider,
@@ -42,7 +43,6 @@ var terraformPluginSDKIncludeList = map[string]config.ExternalName{
 	"linode_instance":                 config.IdentifierFromProvider,
 	"linode_instance_config":          config.IdentifierFromProvider,
 	"linode_instance_disk":            config.IdentifierFromProvider,
-	"linode_instance_shared_ips":      config.IdentifierFromProvider,
 	"linode_lke_cluster":              config.IdentifierFromProvider,
 	"linode_nodebalancer_node":        config.IdentifierFromProvider,
 	"linode_nodebalancer_config":      config.IdentifierFromProvider,
@@ -79,7 +79,7 @@ func resourceConfigurator() config.ResourceOption {
 		// Plugin SDKv2, which takes precedence over CLI architecture.
 		e, configured := terraformPluginFrameworkExternalNameConfigs[r.Name]
 		if !configured {
-			e, configured = terraformPluginSDKIncludeList[r.Name]
+			e, configured = terraformSDKIncludeList[r.Name]
 			if !configured {
 				e, configured = cliReconciledExternalNameConfigs[r.Name]
 			}
