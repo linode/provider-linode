@@ -929,9 +929,9 @@ spec:
                       Linode.
                     type: number
                   tags:
-                    description: A list of tags applied to this object. Tags are for
-                      organizational purposes only. An array of tags applied to this
-                      object. Tags are for organizational purposes only.
+                    description: A list of tags applied to this object. Tags are case-insensitive
+                      and are for organizational purposes only. An array of tags applied
+                      to this object. Tags are for organizational purposes only.
                     items:
                       type: string
                     type: array
@@ -1752,9 +1752,9 @@ spec:
                       Linode.
                     type: number
                   tags:
-                    description: A list of tags applied to this object. Tags are for
-                      organizational purposes only. An array of tags applied to this
-                      object. Tags are for organizational purposes only.
+                    description: A list of tags applied to this object. Tags are case-insensitive
+                      and are for organizational purposes only. An array of tags applied
+                      to this object. Tags are for organizational purposes only.
                     items:
                       type: string
                     type: array
@@ -2812,9 +2812,9 @@ spec:
                       Linode.
                     type: number
                   tags:
-                    description: A list of tags applied to this object. Tags are for
-                      organizational purposes only. An array of tags applied to this
-                      object. Tags are for organizational purposes only.
+                    description: A list of tags applied to this object. Tags are case-insensitive
+                      and are for organizational purposes only. An array of tags applied
+                      to this object. Tags are for organizational purposes only.
                     items:
                       type: string
                     type: array

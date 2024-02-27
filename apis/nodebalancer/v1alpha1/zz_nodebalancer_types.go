@@ -44,7 +44,7 @@ type FirewallsObservation struct {
 	// The status of the firewall. (enabled, disabled, deleted)
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
@@ -100,7 +100,7 @@ type NodebalancerInitParameters struct {
 	// The region where this NodeBalancer will be deployed.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -146,7 +146,7 @@ type NodebalancerObservation struct {
 	// The region where this NodeBalancer will be deployed.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -181,7 +181,7 @@ type NodebalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set

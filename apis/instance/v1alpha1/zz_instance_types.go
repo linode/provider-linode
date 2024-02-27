@@ -660,7 +660,7 @@ type InstanceInitParameters struct {
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -910,7 +910,7 @@ type InstanceObservation struct {
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -1051,7 +1051,7 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set

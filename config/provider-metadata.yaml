@@ -323,7 +323,7 @@ resources:
             ports: '- (Optional) A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").'
             protocol: '- (Required) The network protocol this rule controls. (TCP, UDP, ICMP)'
             status: '- The status of the Firewall.'
-            tags: '- (Optional) A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.'
+            tags: '- (Optional) A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.'
             type: '- The type of Firewall Device.'
             url: The URL of the underlying entity this device references.
         importStatements: []
@@ -605,7 +605,7 @@ resources:
             status: '- The status of the instance, indicating the current readiness state. (running, offline, ...)'
             subnet_id: '- (Optional) The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.'
             swap_size: '- (Optional with image) When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.'
-            tags: '- (Optional) A list of tags applied to this object. Tags are for organizational purposes only.'
+            tags: '- (Optional) A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.'
             timeouts.create: '- (Defaults to 10 mins) Used when launching the instance (until it reaches the initial running state)'
             timeouts.delete: '- (Defaults to 10 mins) Used when terminating the instance'
             timeouts.update: '- (Defaults to 1 hour) Used when stopping and starting the instance when necessary during update - e.g. when changing instance type'
@@ -1088,7 +1088,7 @@ resources:
             pool.type: '- (Required) A Linode Type for all of the nodes in the Node Pool. See all node types here.'
             region: '- (Required) This Kubernetes cluster''s location.'
             status: '- The status of the cluster.'
-            tags: '- (Optional) An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.'
+            tags: '- (Optional) An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.'
         importStatements: []
     linode_nodebalancer:
         subCategory: ""
@@ -1123,7 +1123,7 @@ resources:
             protocol: '- The network protocol this rule controls. (TCP, UDP, ICMP)'
             region: '- (Required) The region where this NodeBalancer will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here.  Changing .'
             status: '- The status of the firewall. (enabled, disabled, deleted)'
-            tags: '- (Optional) A list of tags applied to this object. Tags are for organizational purposes only.'
+            tags: '- (Optional) A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.'
             total: '- The total outbound transfer, in MB, used for this NodeBalancer for the current month'
             updated: '- When this NodeBalancer was last updated.'
         importStatements: []
@@ -1637,7 +1637,7 @@ resources:
             size: '- (Optional) Size of the Volume in GB.'
             source_volume_id: '- (Optional) The ID of a Linode Volume to clone. NOTE: Cloned volumes must be in the same region as the source volume.'
             status: '- The status of the Linode Volume. (creating, active, resizing, contact_support)'
-            tags: '- (Optional) A list of tags applied to this object. Tags are for organizational purposes only.'
+            tags: '- (Optional) A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.'
             timeouts.create: '- (Defaults to 10 mins) Used when creating the volume (until the volume is reaches the initial active state)'
             timeouts.delete: '- (Defaults to 10 mins) Used when deleting the volume'
             timeouts.update: '- (Defaults to 20 mins) Used when updating the volume when necessary during update - e.g. when resizing the volume'

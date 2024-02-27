@@ -73,7 +73,7 @@ type ClusterInitParameters struct {
 	// This cluster's location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -115,7 +115,7 @@ type ClusterObservation struct {
 	// The status of the cluster.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -147,7 +147,7 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set
