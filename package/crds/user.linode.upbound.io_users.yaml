@@ -108,8 +108,10 @@ spec:
                       properties:
                         accountAccess:
                           description: The level of access this User has to Account-level
-                            actions, like billing information. A restricted User will
-                            never be able to manage users.
+                            actions, like billing information. (read_only, read_write)
+                            The level of access this User has to Account-level actions,
+                            like billing information. A restricted User will never
+                            be able to manage users.
                           type: string
                         addDatabases:
                           description: If true, this User may add Databases. If true,
@@ -317,8 +319,10 @@ spec:
                       properties:
                         accountAccess:
                           description: The level of access this User has to Account-level
-                            actions, like billing information. A restricted User will
-                            never be able to manage users.
+                            actions, like billing information. (read_only, read_write)
+                            The level of access this User has to Account-level actions,
+                            like billing information. A restricted User will never
+                            be able to manage users.
                           type: string
                         addDatabases:
                           description: If true, this User may add Databases. If true,
@@ -688,8 +692,10 @@ spec:
                       properties:
                         accountAccess:
                           description: The level of access this User has to Account-level
-                            actions, like billing information. A restricted User will
-                            never be able to manage users.
+                            actions, like billing information. (read_only, read_write)
+                            The level of access this User has to Account-level actions,
+                            like billing information. A restricted User will never
+                            be able to manage users.
                           type: string
                         addDatabases:
                           description: If true, this User may add Databases. If true,

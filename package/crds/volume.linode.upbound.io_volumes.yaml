@@ -162,9 +162,9 @@ spec:
                       ID of a volume to clone.'
                     type: number
                   tags:
-                    description: A list of tags applied to this object. Tags are for
-                      organizational purposes only. An array of tags applied to this
-                      object. Tags are for organizational purposes only.
+                    description: A list of tags applied to this object. Tags are case-insensitive
+                      and are for organizational purposes only. An array of tags applied
+                      to this object. Tags are for organizational purposes only.
                     items:
                       type: string
                     type: array
@@ -278,9 +278,9 @@ spec:
                       ID of a volume to clone.'
                     type: number
                   tags:
-                    description: A list of tags applied to this object. Tags are for
-                      organizational purposes only. An array of tags applied to this
-                      object. Tags are for organizational purposes only.
+                    description: A list of tags applied to this object. Tags are case-insensitive
+                      and are for organizational purposes only. An array of tags applied
+                      to this object. Tags are for organizational purposes only.
                     items:
                       type: string
                     type: array
@@ -493,9 +493,9 @@ spec:
                       the current readiness state.
                     type: string
                   tags:
-                    description: A list of tags applied to this object. Tags are for
-                      organizational purposes only. An array of tags applied to this
-                      object. Tags are for organizational purposes only.
+                    description: A list of tags applied to this object. Tags are case-insensitive
+                      and are for organizational purposes only. An array of tags applied
+                      to this object. Tags are for organizational purposes only.
                     items:
                       type: string
                     type: array

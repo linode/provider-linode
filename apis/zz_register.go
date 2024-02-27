@@ -31,6 +31,7 @@ import (
 	v1alpha1apis "github.com/linode/provider-linode/apis/v1alpha1"
 	v1beta1 "github.com/linode/provider-linode/apis/v1beta1"
 	v1alpha1volume "github.com/linode/provider-linode/apis/volume/v1alpha1"
+	v1alpha1vpc "github.com/linode/provider-linode/apis/vpc/v1alpha1"
 )
 
 func init() {
@@ -53,6 +54,7 @@ func init() {
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 		v1alpha1volume.SchemeBuilder.AddToScheme,
+		v1alpha1vpc.SchemeBuilder.AddToScheme,
 	)
 }
 

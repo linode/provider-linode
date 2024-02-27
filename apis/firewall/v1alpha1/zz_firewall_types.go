@@ -84,7 +84,7 @@ type FirewallInitParameters struct {
 	// The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule.
 	OutboundPolicy *string `json:"outboundPolicy,omitempty" tf:"outbound_policy,omitempty"`
 
-	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -137,7 +137,7 @@ type FirewallObservation struct {
 	// The status of the firewall.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -197,7 +197,7 @@ type FirewallParameters struct {
 	// +kubebuilder:validation:Optional
 	OutboundPolicy *string `json:"outboundPolicy,omitempty" tf:"outbound_policy,omitempty"`
 
-	// A list of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set

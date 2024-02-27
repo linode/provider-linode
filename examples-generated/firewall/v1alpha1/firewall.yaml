@@ -60,7 +60,7 @@ metadata:
   name: my-instance
 spec:
   forProvider:
-    image: linode/ubuntu18.04
+    image: linode/ubuntu22.04
     label: my_instance
     region: us-southeast
     rootPassSecretRef:

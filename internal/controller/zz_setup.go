@@ -37,6 +37,8 @@ import (
 	token "github.com/linode/provider-linode/internal/controller/token/token"
 	user "github.com/linode/provider-linode/internal/controller/user/user"
 	volume "github.com/linode/provider-linode/internal/controller/volume/volume"
+	subnet "github.com/linode/provider-linode/internal/controller/vpc/subnet"
+	vpc "github.com/linode/provider-linode/internal/controller/vpc/vpc"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -71,6 +73,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		token.Setup,
 		user.Setup,
 		volume.Setup,
+		subnet.Setup,
+		vpc.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

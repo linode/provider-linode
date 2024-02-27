@@ -73,7 +73,7 @@ type ClusterInitParameters struct {
 	// This cluster's location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -115,7 +115,7 @@ type ClusterObservation struct {
 	// The status of the cluster.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -147,7 +147,7 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set
@@ -199,7 +199,7 @@ type PoolInitParameters struct {
 	// When specified, the number of nodes autoscales within the defined minimum and maximum values.
 	Autoscaler []AutoscalerInitParameters `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
 
-	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
@@ -213,7 +213,7 @@ type PoolObservation struct {
 	// When specified, the number of nodes autoscales within the defined minimum and maximum values.
 	Autoscaler []AutoscalerObservation `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
 
-	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
@@ -235,10 +235,10 @@ type PoolParameters struct {
 	// +kubebuilder:validation:Optional
 	Autoscaler []AutoscalerParameters `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
 
-	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	// +kubebuilder:validation:Optional
-	Count *float64 `json:"count" tf:"count,omitempty"`
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.

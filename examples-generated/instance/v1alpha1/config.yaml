@@ -9,11 +9,9 @@ metadata:
 spec:
   forProvider:
     booted: true
-    devices:
-    - sda:
-      - diskIdSelector:
-          matchLabels:
-            testing.upbound.io/example-name: boot
+    device:
+    - deviceName: sda
+      diskId: ${linode_instance_disk.boot.id}
     label: my-config
     linodeIdSelector:
       matchLabels:
@@ -47,7 +45,7 @@ metadata:
   name: boot
 spec:
   forProvider:
-    image: linode/ubuntu20.04
+    image: linode/ubuntu22.04
     label: boot
     linodeIdSelector:
       matchLabels:

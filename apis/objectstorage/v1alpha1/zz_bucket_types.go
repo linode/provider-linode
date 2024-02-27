@@ -97,6 +97,9 @@ type BucketObservation struct {
 	// If true, the bucket will be created with CORS enabled for all origins.
 	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
 
+	// The endpoint for the bucket used for s3 connections.
+	Endpoint *string `json:"endpoint,omitempty" tf:"endpoint,omitempty"`
+
 	// The hostname where this bucket can be accessed. This hostname can be accessed through a browser if the bucket is made public.
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
 

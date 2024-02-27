@@ -196,6 +196,11 @@ spec:
                       object data, e.g. application/octet-stream. All Valid MIME Types
                       are valid for this input. The MIME type of the content.
                     type: string
+                  endpoint:
+                    description: Used with the s3 client to make bucket changes and
+                      will be computed automatically if left blank, override for testing/debug
+                      purposes. The endpoint for the bucket used for s3 connections.
+                    type: string
                   etag:
                     description: Used to trigger updates.11.11.11 or earlier). The
                       specific version of this object.
@@ -444,6 +449,11 @@ spec:
                     description: A standard MIME type describing the format of the
                       object data, e.g. application/octet-stream. All Valid MIME Types
                       are valid for this input. The MIME type of the content.
+                    type: string
+                  endpoint:
+                    description: Used with the s3 client to make bucket changes and
+                      will be computed automatically if left blank, override for testing/debug
+                      purposes. The endpoint for the bucket used for s3 connections.
                     type: string
                   etag:
                     description: Used to trigger updates.11.11.11 or earlier). The
@@ -786,6 +796,11 @@ spec:
                     description: A standard MIME type describing the format of the
                       object data, e.g. application/octet-stream. All Valid MIME Types
                       are valid for this input. The MIME type of the content.
+                    type: string
+                  endpoint:
+                    description: Used with the s3 client to make bucket changes and
+                      will be computed automatically if left blank, override for testing/debug
+                      purposes. The endpoint for the bucket used for s3 connections.
                     type: string
                   etag:
                     description: Used to trigger updates.11.11.11 or earlier). The

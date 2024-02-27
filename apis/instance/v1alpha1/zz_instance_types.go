@@ -162,6 +162,10 @@ type ConfigObservation struct {
 	// Helpers enabled when booting to this Linode Config.
 	Helpers []HelpersObservation `json:"helpers,omitempty" tf:"helpers,omitempty"`
 
+	// (Computed) The ID of the disk in the Linode API.
+	// The unique ID of this Config.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
 	// An array of Network Interfaces for this Linode’s Configuration Profile.
 	Interface []InterfaceObservation `json:"interface,omitempty" tf:"interface,omitempty"`
 
@@ -347,7 +351,7 @@ type DiskInitParameters struct {
 	// The Disk filesystem can be one of: raw, swap, ext3, ext4, initrd (max 32mb)
 	Filesystem *string `json:"filesystem,omitempty" tf:"filesystem,omitempty"`
 
-	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/.
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
@@ -384,7 +388,7 @@ type DiskObservation struct {
 	// The ID of the Disk (for use in Linode Image resources and Linode Instance Config Devices)
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
-	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/.
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
@@ -420,7 +424,7 @@ type DiskParameters struct {
 	// +kubebuilder:validation:Optional
 	Filesystem *string `json:"filesystem,omitempty" tf:"filesystem,omitempty"`
 
-	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/.
 	// +kubebuilder:validation:Optional
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
@@ -526,6 +530,41 @@ type HelpersParameters struct {
 	UpdatedbDisabled *bool `json:"updatedbDisabled,omitempty" tf:"updatedb_disabled,omitempty"`
 }
 
+type IPv4InitParameters struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
+type IPv4Observation struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
+type IPv4Parameters struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	// +kubebuilder:validation:Optional
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	// +kubebuilder:validation:Optional
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
 type InstanceInitParameters struct {
 
 	// Configuration options for alert triggers on this Linode.
@@ -561,11 +600,15 @@ type InstanceInitParameters struct {
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
 	Disk []DiskInitParameters `json:"disk,omitempty" tf:"disk,omitempty"`
 
-	// The display group of the Linode instance.
+	// The ID of the Firewall to attach to the instance upon creation. Changing
+	// The ID of the firewall applied to the Linode instance during creation.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// A deprecated property denoting a group label for this Linode. We recommend using the tags attribute instead.
 	// The display group of the Linode instance.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
-	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use.
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
@@ -578,6 +621,10 @@ type InstanceInitParameters struct {
 
 	// Various fields related to the Linode Metadata service.
 	Metadata []MetadataInitParameters `json:"metadata,omitempty" tf:"metadata,omitempty"`
+
+	// The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)
+	// The type of migration to use for resize and migration operations.
+	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
 
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
@@ -613,7 +660,7 @@ type InstanceInitParameters struct {
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -629,50 +676,113 @@ type InstanceInitParameters struct {
 
 type InstanceInterfaceInitParameters struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
-	// The IPAM Address of this interface.
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	IPv4 []InterfaceIPv4InitParameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
-	// The unique label of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
-	// The purpose of this interface.
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
+	// The type of interface.
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type InstanceInterfaceObservation struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
-	// The IPAM Address of this interface.
+	// Whether this interface is currently booted and active.
+	Active *bool `json:"active,omitempty" tf:"active,omitempty"`
+
+	// (Computed) The ID of the disk in the Linode API.
+	// The ID of the interface.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	IPv4 []InterfaceIPv4Observation `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
-	// The unique label of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
-	// The purpose of this interface.
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
+	// The type of interface.
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// The ID of VPC which this interface is attached to.
+	// The ID of VPC of the subnet which the VPC interface is connected to.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type InstanceInterfaceParameters struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
-	// The IPAM Address of this interface.
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	// +kubebuilder:validation:Optional
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	// +kubebuilder:validation:Optional
+	IPv4 []InterfaceIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	// +kubebuilder:validation:Optional
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
-	// The unique label of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
-	// The purpose of this interface.
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
 	// +kubebuilder:validation:Optional
-	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
+	// The type of interface.
+	// +kubebuilder:validation:Optional
+	Purpose *string `json:"purpose" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	// +kubebuilder:validation:Optional
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type InstanceObservation struct {
@@ -714,10 +824,15 @@ type InstanceObservation struct {
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
 	Disk []DiskObservation `json:"disk,omitempty" tf:"disk,omitempty"`
 
-	// The display group of the Linode instance.
+	// The ID of the Firewall to attach to the instance upon creation. Changing
+	// The ID of the firewall applied to the Linode instance during creation.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// A deprecated property denoting a group label for this Linode. We recommend using the tags attribute instead.
 	// The display group of the Linode instance.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// Whether this Instance was created with user-data.
 	// Whether or not this Instance was created with user-data.
 	HasUserData *bool `json:"hasUserData,omitempty" tf:"has_user_data,omitempty"`
 
@@ -741,7 +856,7 @@ type InstanceObservation struct {
 	// This Linode's IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.
 	IPv6 *string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 
-	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use.
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
@@ -754,6 +869,10 @@ type InstanceObservation struct {
 
 	// Various fields related to the Linode Metadata service.
 	Metadata []MetadataObservation `json:"metadata,omitempty" tf:"metadata,omitempty"`
+
+	// The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)
+	// The type of migration to use for resize and migration operations.
+	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
 
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
@@ -791,7 +910,7 @@ type InstanceObservation struct {
 	// When deploying from an Image, this field is optional with a Linode API default of 512mb, otherwise it is ignored. This is used to set the swap disk size for the newly-created Linode.
 	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -849,12 +968,17 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Disk []DiskParameters `json:"disk,omitempty" tf:"disk,omitempty"`
 
-	// The display group of the Linode instance.
+	// The ID of the Firewall to attach to the instance upon creation. Changing
+	// The ID of the firewall applied to the Linode instance during creation.
+	// +kubebuilder:validation:Optional
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// A deprecated property denoting a group label for this Linode. We recommend using the tags attribute instead.
 	// The display group of the Linode instance.
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
-	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian9, linode/fedora28, linode/ubuntu16.04lts, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
+	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use.
 	// +kubebuilder:validation:Optional
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
@@ -872,6 +996,11 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Metadata []MetadataParameters `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)
+	// The type of migration to use for resize and migration operations.
+	// +kubebuilder:validation:Optional
+	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
+
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
 	// +kubebuilder:validation:Optional
@@ -888,7 +1017,7 @@ type InstanceParameters struct {
 	ResizeDisk *bool `json:"resizeDisk,omitempty" tf:"resize_disk,omitempty"`
 
 	// The initial password for the root user account. This value can not be imported.
-	// The password that will be initialially assigned to the 'root' user account.
+	// The password that will be initially assigned to the 'root' user account.
 	// +kubebuilder:validation:Optional
 	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
 
@@ -922,7 +1051,7 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	SwapSize *float64 `json:"swapSize,omitempty" tf:"swap_size,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set
@@ -939,56 +1068,155 @@ type InstanceParameters struct {
 	WatchdogEnabled *bool `json:"watchdogEnabled,omitempty" tf:"watchdog_enabled,omitempty"`
 }
 
+type InterfaceIPv4InitParameters struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
+type InterfaceIPv4Observation struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
+type InterfaceIPv4Parameters struct {
+
+	// The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.
+	// The public IP that will be used for the one-to-one NAT purpose.
+	// +kubebuilder:validation:Optional
+	NAT11 *string `json:"nat11,omitempty" tf:"nat_1_1,omitempty"`
+
+	// purpose.
+	// The IP from the VPC subnet to use for this interface.
+	// +kubebuilder:validation:Optional
+	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
+}
+
 type InterfaceInitParameters struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
-	// The IPAM Address of this interface.
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	IPv4 []IPv4InitParameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
-	// The unique label of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
-	// The purpose of this interface.
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
+	// The type of interface.
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type InterfaceObservation struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
-	// The IPAM Address of this interface.
+	// Whether this interface is currently booted and active.
+	Active *bool `json:"active,omitempty" tf:"active,omitempty"`
+
+	// (Computed) The ID of the disk in the Linode API.
+	// The ID of the interface.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	IPv4 []IPv4Observation `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
-	// The unique label of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
-	// The purpose of this interface.
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
+	// The type of interface.
 	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// The ID of VPC which this interface is attached to.
+	// The ID of VPC of the subnet which the VPC interface is connected to.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type InterfaceParameters struct {
 
-	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
-	// The IPAM Address of this interface.
+	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
+	// List of VPC IPs or IP ranges inside the VPC subnet.
+	// +kubebuilder:validation:Optional
+	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
+
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
+	// +kubebuilder:validation:Optional
+	IPv4 []IPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
+	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	// +kubebuilder:validation:Optional
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
 
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
-	// The unique label of this interface.
+	// The name of the VALN. This attribute is required for VLAN interfaces. This attribute is only allowed for VLAN interfaces.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The type of interface. (public, vlan)
-	// The purpose of this interface.
+	// Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.
+	// Whether the interface is the primary interface that should have the default route for this Linode.
 	// +kubebuilder:validation:Optional
-	Purpose *string `json:"purpose,omitempty" tf:"purpose,omitempty"`
+	Primary *bool `json:"primary,omitempty" tf:"primary,omitempty"`
+
+	// The type of interface. (public, vlan, vpc)
+	// The type of interface.
+	// +kubebuilder:validation:Optional
+	Purpose *string `json:"purpose" tf:"purpose,omitempty"`
+
+	// The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.
+	// The ID of the subnet which the VPC interface is connected to.This attribute is required for VPC interfaces.This attribute is only allowed for VPC interfaces.
+	// +kubebuilder:validation:Optional
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type MetadataInitParameters struct {
 
+	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
 	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
 	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
 }
@@ -996,11 +1224,13 @@ type MetadataInitParameters struct {
 type MetadataObservation struct {
 
 	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
+	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
 	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
 }
 
 type MetadataParameters struct {
 
+	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
 	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
 	// +kubebuilder:validation:Optional
 	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`

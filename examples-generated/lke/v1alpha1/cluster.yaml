@@ -8,7 +8,7 @@ metadata:
   name: my-cluster
 spec:
   forProvider:
-    k8sVersion: "1.21"
+    k8sVersion: "1.28"
     label: my-cluster
     pool:
     - count: 3

@@ -48,7 +48,7 @@ type VolumeInitParameters struct {
 	// The ID of a volume to clone.
 	SourceVolumeID *float64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -86,7 +86,7 @@ type VolumeObservation struct {
 	// The status of the volume, indicating the current readiness state.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -128,7 +128,7 @@ type VolumeParameters struct {
 	// +kubebuilder:validation:Optional
 	SourceVolumeID *float64 `json:"sourceVolumeId,omitempty" tf:"source_volume_id,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set

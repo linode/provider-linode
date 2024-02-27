@@ -276,6 +276,11 @@ func (in *BucketObservation) DeepCopyInto(out *BucketObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Endpoint != nil {
+		in, out := &in.Endpoint, &out.Endpoint
+		*out = new(string)
+		**out = **in
+	}
 	if in.Hostname != nil {
 		in, out := &in.Hostname, &out.Hostname
 		*out = new(string)
@@ -1091,6 +1096,11 @@ func (in *ObjectInitParameters) DeepCopyInto(out *ObjectInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Endpoint != nil {
+		in, out := &in.Endpoint, &out.Endpoint
+		*out = new(string)
+		**out = **in
+	}
 	if in.Etag != nil {
 		in, out := &in.Etag, &out.Etag
 		*out = new(string)
@@ -1249,6 +1259,11 @@ func (in *ObjectObservation) DeepCopyInto(out *ObjectObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Endpoint != nil {
+		in, out := &in.Endpoint, &out.Endpoint
+		*out = new(string)
+		**out = **in
+	}
 	if in.Etag != nil {
 		in, out := &in.Etag, &out.Etag
 		*out = new(string)
@@ -1382,6 +1397,11 @@ func (in *ObjectParameters) DeepCopyInto(out *ObjectParameters) {
 	}
 	if in.ContentType != nil {
 		in, out := &in.ContentType, &out.ContentType
+		*out = new(string)
+		**out = **in
+	}
+	if in.Endpoint != nil {
+		in, out := &in.Endpoint, &out.Endpoint
 		*out = new(string)
 		**out = **in
 	}

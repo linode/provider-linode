@@ -44,6 +44,8 @@ import (
 	"github.com/linode/provider-linode/config/token"
 	"github.com/linode/provider-linode/config/user"
 	"github.com/linode/provider-linode/config/volume"
+	"github.com/linode/provider-linode/config/vpc"
+	"github.com/linode/provider-linode/config/vpcsubnet"
 )
 
 const (
@@ -103,7 +105,7 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 			resourceConfigurator(),
 		),
 		config.WithIncludeList(resourceList(cliReconciledExternalNameConfigs)),
-		config.WithTerraformPluginSDKIncludeList(resourceList(terraformPluginSDKIncludeList)),
+		config.WithTerraformPluginSDKIncludeList(resourceList(terraformSDKIncludeList)),
 		config.WithTerraformPluginFrameworkIncludeList(resourceList(terraformPluginFrameworkExternalNameConfigs)),
 		config.WithTerraformProvider(p),
 		config.WithTerraformPluginFrameworkProvider(fwProvider),
@@ -138,6 +140,8 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		token.Configure,
 		user.Configure,
 		volume.Configure,
+		vpc.Configure,
+		vpcsubnet.Configure,
 	} {
 		configure(pc)
 	}

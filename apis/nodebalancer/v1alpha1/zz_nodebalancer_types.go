@@ -17,12 +17,78 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type FirewallsInitParameters struct {
+}
+
+type FirewallsObservation struct {
+
+	// When this NodeBalancer was created
+	Created *string `json:"created,omitempty" tf:"created,omitempty"`
+
+	// The Firewall's ID.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	Inbound []InboundObservation `json:"inbound,omitempty" tf:"inbound,omitempty"`
+
+	// The default behavior for inbound traffic. (ACCEPT, DROP)
+	InboundPolicy *string `json:"inboundPolicy,omitempty" tf:"inbound_policy,omitempty"`
+
+	// The label of the Linode NodeBalancer
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	Outbound []OutboundObservation `json:"outbound,omitempty" tf:"outbound,omitempty"`
+
+	// The default behavior for outbound traffic. (ACCEPT, DROP)
+	OutboundPolicy *string `json:"outboundPolicy,omitempty" tf:"outbound_policy,omitempty"`
+
+	// The status of the firewall. (enabled, disabled, deleted)
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// When this NodeBalancer was last updated.
+	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
+}
+
+type FirewallsParameters struct {
+}
+
+type InboundInitParameters struct {
+}
+
+type InboundObservation struct {
+
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// The Public IPv4 Address of this NodeBalancer
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// The Public IPv6 Address of this NodeBalancer
+	IPv6 []*string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
+	// The label of the Linode NodeBalancer
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
+	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
+
+	// The network protocol this rule controls. (TCP, UDP, ICMP)
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
+}
+
+type InboundParameters struct {
+}
+
 type NodebalancerInitParameters struct {
 
 	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
 
+	// The Firewall's ID.
 	// ID for the firewall you'd like to use with this NodeBalancer.
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
@@ -34,7 +100,7 @@ type NodebalancerInitParameters struct {
 	// The region where this NodeBalancer will be deployed.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -50,13 +116,18 @@ type NodebalancerObservation struct {
 	// When this NodeBalancer was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
+	// The Firewall's ID.
 	// ID for the firewall you'd like to use with this NodeBalancer.
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// A list of Firewalls assigned to this NodeBalancer.
+	Firewalls []FirewallsObservation `json:"firewalls,omitempty" tf:"firewalls,omitempty"`
 
 	// This NodeBalancer's hostname, ending with .nodebalancer.linode.com
 	// This NodeBalancer's hostname, ending with .nodebalancer.linode.com
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
 
+	// The Firewall's ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The Public IPv4 Address of this NodeBalancer
@@ -75,7 +146,7 @@ type NodebalancerObservation struct {
 	// The region where this NodeBalancer will be deployed.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -95,6 +166,7 @@ type NodebalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
 
+	// The Firewall's ID.
 	// ID for the firewall you'd like to use with this NodeBalancer.
 	// +kubebuilder:validation:Optional
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
@@ -109,11 +181,38 @@ type NodebalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of tags applied to this object. Tags are for organizational purposes only.
+	// A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+}
+
+type OutboundInitParameters struct {
+}
+
+type OutboundObservation struct {
+
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// The Public IPv4 Address of this NodeBalancer
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// The Public IPv6 Address of this NodeBalancer
+	IPv6 []*string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
+	// The label of the Linode NodeBalancer
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
+	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
+
+	// The network protocol this rule controls. (TCP, UDP, ICMP)
+	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
+}
+
+type OutboundParameters struct {
 }
 
 type TransferInitParameters struct {
