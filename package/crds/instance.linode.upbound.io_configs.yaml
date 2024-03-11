@@ -3,8 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.11.3
-  creationTimestamp: null
+    controller-gen.kubebuilder.io/version: v0.14.0
   name: configs.instance.linode.upbound.io
 spec:
   group: instance.linode.upbound.io
@@ -39,14 +38,19 @@ spec:
           Config.
         properties:
           apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation
-              of an object. Servers should convert recognized schemas to the latest
-              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
             type: string
           kind:
-            description: 'Kind is a string value representing the REST resource this
-              object represents. Servers may infer this from the endpoint the client
-              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
             type: string
           metadata:
             type: object
@@ -55,13 +59,14 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: 'DeletionPolicy specifies what will happen to the underlying
-                  external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource. This field is planned to be deprecated
-                  in favor of the ManagementPolicy field in a future release. Currently,
-                  both could be set independently and non-default values would be
-                  honored if the feature flag is enabled. See the design doc for more
-                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                description: |-
+                  DeletionPolicy specifies what will happen to the underlying external
+                  when this managed resource is deleted - either "Delete" or "Orphan" the
+                  external resource.
+                  This field is planned to be deprecated in favor of the ManagementPolicies
+                  field in a future release. Currently, both could be set independently and
+                  non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
                 enum:
                 - Orphan
                 - Delete
@@ -69,17 +74,14 @@ spec:
               forProvider:
                 properties:
                   booted:
-                    description: If true, the Linode will be booted into this config.
-                      If another config is booted, the Linode will be rebooted into
-                      this config. If false, the Linode will be shutdown only if it
-                      is currently booted into this config. If undefined, the config
-                      will alter the boot status of the Linode. If true, the Linode
-                      will be booted to running state. If false, the Linode will be
-                      shutdown. If undefined, no action will be taken.
+                    description: |-
+                      If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.
+                      If true, the Linode will be booted to running state. If false, the Linode will be shutdown. If undefined, no action will be taken.
                     type: boolean
                   comments:
-                    description: Optional field for arbitrary User comments on this
-                      Config. Optional field for arbitrary User comments on this Config.
+                    description: |-
+                      Optional field for arbitrary User comments on this Config.
+                      Optional field for arbitrary User comments on this Config.
                     type: string
                   device:
                     description: Blocks for device disks in a Linode's configuration
@@ -90,15 +92,15 @@ spec:
                           description: The Disk ID to map to this disk slot
                           type: string
                         diskId:
-                          description: The Disk ID to map to this device slot The
-                            Disk ID to map to this disk slot
+                          description: |-
+                            The Disk ID to map to this device slot
+                            The Disk ID to map to this disk slot
                           type: number
                         volumeId:
-                          description: The Volume ID to map to this device slot. The
-                            Block Storage volume ID to map to this disk slot
+                          description: |-
+                            The Volume ID to map to this device slot.
+                            The Block Storage volume ID to map to this disk slot
                           type: number
-                      required:
-                      - deviceName
                       type: object
                     type: array
                   devices:
@@ -107,18 +109,14 @@ spec:
                     items:
                       properties:
                         sda:
-                          description: The SDA-SDH slots, represent the Linux block
-                            device nodes for the first 8 disks attached to the Linode.  Each
-                            device must be suplied sequentially.  The device can be
-                            either a Disk or a Volume identified by disk_id or volume_id.
-                            Only one disk identifier is permitted per slot. Devices
-                            mapped from sde through sdh are unavailable in "fullvirt"
-                            virt_mode. Device can be either a Disk or Volume identified
-                            by disk_id or volume_id. Only one type per slot allowed.
+                          description: |-
+                            The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+                            Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -132,23 +130,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -161,9 +157,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -176,23 +172,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -200,9 +194,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -212,7 +206,8 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -226,23 +221,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -255,9 +248,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -270,23 +263,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -294,9 +285,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -306,7 +297,8 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -320,23 +312,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -349,9 +339,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -364,23 +354,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -388,9 +376,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -400,7 +388,8 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -414,23 +403,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -443,9 +430,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -458,23 +445,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -482,9 +467,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -494,7 +479,8 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -508,23 +494,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -537,9 +521,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -552,23 +536,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -576,9 +558,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -588,7 +570,8 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -602,23 +585,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -631,9 +612,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -646,23 +627,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -670,9 +649,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -682,7 +661,8 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -696,23 +676,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -725,9 +703,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -740,23 +718,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -764,9 +740,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -776,7 +752,8 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               diskIdRef:
@@ -790,23 +767,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -819,9 +794,9 @@ spec:
                                 description: Selector for a Disk to populate diskId.
                                 properties:
                                   matchControllerRef:
-                                    description: MatchControllerRef ensures an object
-                                      with the same controller reference as the selecting
-                                      object is selected.
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
                                     type: boolean
                                   matchLabels:
                                     additionalProperties:
@@ -834,23 +809,21 @@ spec:
                                     properties:
                                       resolution:
                                         default: Required
-                                        description: Resolution specifies whether
-                                          resolution of this reference is required.
-                                          The default is 'Required', which means the
-                                          reconcile will fail if the reference cannot
-                                          be resolved. 'Optional' means this reference
-                                          will be a no-op if it cannot be resolved.
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
                                         enum:
                                         - Required
                                         - Optional
                                         type: string
                                       resolve:
-                                        description: Resolve specifies when this reference
-                                          should be resolved. The default is 'IfNotPresent',
-                                          which will attempt to resolve the reference
-                                          only when the corresponding field is not
-                                          present. Use 'Always' to resolve the reference
-                                          on every reconcile.
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
                                         enum:
                                         - Always
                                         - IfNotPresent
@@ -858,9 +831,9 @@ spec:
                                     type: object
                                 type: object
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -871,28 +844,29 @@ spec:
                     items:
                       properties:
                         devtmpfsAutomount:
-                          description: Populates the /dev directory early during boot
-                            without udev. (default true) Populates the /dev directory
-                            early during boot without udev.
+                          description: |-
+                            Populates the /dev directory early during boot without udev. (default true)
+                            Populates the /dev directory early during boot without udev.
                           type: boolean
                         distro:
-                          description: Helps maintain correct inittab/upstart console
-                            device. (default true) Helps maintain correct inittab/upstart
-                            console device.
+                          description: |-
+                            Helps maintain correct inittab/upstart console device. (default true)
+                            Helps maintain correct inittab/upstart console device.
                           type: boolean
                         modulesDep:
-                          description: Creates a modules dependency file for the Kernel
-                            you run. (default true) Creates a modules dependency file
-                            for the Kernel you run.
+                          description: |-
+                            Creates a modules dependency file for the Kernel you run. (default true)
+                            Creates a modules dependency file for the Kernel you run.
                           type: boolean
                         network:
-                          description: Automatically configures static networking.
-                            (default true) Automatically configures static networking.
+                          description: |-
+                            Automatically configures static networking. (default true)
+                            Automatically configures static networking.
                           type: boolean
                         updatedbDisabled:
-                          description: Disables updatedb cron job to avoid disk thrashing.
-                            (default true) Disables updatedb cron job to avoid disk
-                            thrashing.
+                          description: |-
+                            Disables updatedb cron job to avoid disk thrashing. (default true)
+                            Disables updatedb cron job to avoid disk thrashing.
                           type: boolean
                       type: object
                     type: array
@@ -902,35 +876,36 @@ spec:
                     items:
                       properties:
                         ipamAddress:
-                          description: This Network Interface’s private IP address
-                            in Classless Inter-Domain Routing (CIDR) notation. (e.g.
-                            10.0.0.1/24) This Network Interface’s private IP address
-                            in Classless Inter-Domain Routing (CIDR) notation.
+                          description: |-
+                            This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
+                            This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
                           type: string
                         label:
-                          description: The Config’s label for display purposes only.
+                          description: |-
+                            The Config’s label for display purposes only.
                             The name of this interface.
                           type: string
                         purpose:
-                          description: The type of interface. (public, vlan) The type
-                            of interface.
+                          description: |-
+                            The type of interface. (public, vlan)
+                            The type of interface.
                           type: string
-                      required:
-                      - purpose
                       type: object
                     type: array
                   kernel:
-                    description: A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+                    description: |-
+                      A Kernel ID to boot a Linode with. (default linode/latest-64bit)
                       A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
                     type: string
                   label:
-                    description: The Config’s label for display purposes only. The
-                      Config's label for display purposes only.
+                    description: |-
+                      The Config’s label for display purposes only.
+                      The Config's label for display purposes only.
                     type: string
                   linodeId:
-                    description: The ID of the Linode to create this configuration
-                      profile under. The ID of the Linode to create this configuration
-                      profile under.
+                    description: |-
+                      The ID of the Linode to create this configuration profile under.
+                      The ID of the Linode to create this configuration profile under.
                     type: number
                   linodeIdRef:
                     description: Reference to a Instance to populate linodeId.
@@ -943,21 +918,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -970,8 +945,9 @@ spec:
                     description: Selector for a Instance to populate linodeId.
                     properties:
                       matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
                         type: boolean
                       matchLabels:
                         additionalProperties:
@@ -984,21 +960,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -1006,126 +982,875 @@ spec:
                         type: object
                     type: object
                   memoryLimit:
-                    description: The memory limit of the Config. Defaults to the total
-                      ram of the Linode. The memory limit of the Linode.
+                    description: |-
+                      The memory limit of the Config. Defaults to the total ram of the Linode.
+                      The memory limit of the Linode.
                     type: number
                   rootDevice:
-                    description: The root device to boot. (default /dev/sda) The root
-                      device to boot. If no value or an invalid value is provided,
-                      root device will default to /dev/sda. If the device specified
-                      at the root device location is not mounted, the Linode will
-                      not boot until a device is mounted.
+                    description: |-
+                      The root device to boot. (default /dev/sda)
+                      The root device to boot. If no value or an invalid value is provided, root device will default to /dev/sda. If the device specified at the root device location is not mounted, the Linode will not boot until a device is mounted.
                     type: string
                   runLevel:
-                    description: Defines the state of your Linode after booting. (default,
-                      single, binbash) Defines the state of your Linode after booting.
+                    description: |-
+                      Defines the state of your Linode after booting. (default, single, binbash)
+                      Defines the state of your Linode after booting.
                     type: string
                   virtMode:
-                    description: Controls the virtualization mode. (paravirt, fullvirt)
+                    description: |-
+                      Controls the virtualization mode. (paravirt, fullvirt)
                       Controls the virtualization mode.
                     type: string
                 type: object
-              managementPolicy:
-                default: FullControl
-                description: 'THIS IS AN ALPHA FIELD. Do not use it in production.
-                  It is not honored unless the relevant Crossplane feature flag is
-                  enabled, and may be changed or removed without notice. ManagementPolicy
-                  specifies the level of control Crossplane has over the managed external
-                  resource. This field is planned to replace the DeletionPolicy field
-                  in a future release. Currently, both could be set independently
-                  and non-default values would be honored if the feature flag is enabled.
-                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
-                enum:
-                - FullControl
-                - ObserveOnly
-                - OrphanOnDelete
-                type: string
-              providerConfigRef:
-                default:
-                  name: default
-                description: ProviderConfigReference specifies how the provider that
-                  will be used to create, observe, update, and delete this managed
-                  resource should be configured.
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
                 properties:
-                  name:
-                    description: Name of the referenced object.
+                  booted:
+                    description: |-
+                      If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.
+                      If true, the Linode will be booted to running state. If false, the Linode will be shutdown. If undefined, no action will be taken.
+                    type: boolean
+                  comments:
+                    description: |-
+                      Optional field for arbitrary User comments on this Config.
+                      Optional field for arbitrary User comments on this Config.
                     type: string
-                  policy:
-                    description: Policies for referencing.
-                    properties:
-                      resolution:
-                        default: Required
-                        description: Resolution specifies whether resolution of this
-                          reference is required. The default is 'Required', which
-                          means the reconcile will fail if the reference cannot be
-                          resolved. 'Optional' means this reference will be a no-op
-                          if it cannot be resolved.
-                        enum:
-                        - Required
-                        - Optional
-                        type: string
-                      resolve:
-                        description: Resolve specifies when this reference should
-                          be resolved. The default is 'IfNotPresent', which will attempt
-                          to resolve the reference only when the corresponding field
-                          is not present. Use 'Always' to resolve the reference on
-                          every reconcile.
-                        enum:
-                        - Always
-                        - IfNotPresent
-                        type: string
-                    type: object
-                required:
-                - name
-                type: object
-              providerRef:
-                description: 'ProviderReference specifies the provider that will be
-                  used to create, observe, update, and delete this managed resource.
-                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
-                properties:
-                  name:
-                    description: Name of the referenced object.
+                  device:
+                    description: Blocks for device disks in a Linode's configuration
+                      profile.
+                    items:
+                      properties:
+                        deviceName:
+                          description: The Disk ID to map to this disk slot
+                          type: string
+                        diskId:
+                          description: |-
+                            The Disk ID to map to this device slot
+                            The Disk ID to map to this disk slot
+                          type: number
+                        volumeId:
+                          description: |-
+                            The Volume ID to map to this device slot.
+                            The Block Storage volume ID to map to this disk slot
+                          type: number
+                      type: object
+                    type: array
+                  devices:
+                    description: A dictionary of device disks to use as a device map
+                      in a Linode's configuration profile.
+                    items:
+                      properties:
+                        sda:
+                          description: |-
+                            The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+                            Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdb:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdc:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdd:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sde:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdg:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdh:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              diskIdRef:
+                                description: Reference to a Disk to populate diskId.
+                                properties:
+                                  name:
+                                    description: Name of the referenced object.
+                                    type: string
+                                  policy:
+                                    description: Policies for referencing.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                required:
+                                - name
+                                type: object
+                              diskIdSelector:
+                                description: Selector for a Disk to populate diskId.
+                                properties:
+                                  matchControllerRef:
+                                    description: |-
+                                      MatchControllerRef ensures an object with the same controller reference
+                                      as the selecting object is selected.
+                                    type: boolean
+                                  matchLabels:
+                                    additionalProperties:
+                                      type: string
+                                    description: MatchLabels ensures an object with
+                                      matching labels is selected.
+                                    type: object
+                                  policy:
+                                    description: Policies for selection.
+                                    properties:
+                                      resolution:
+                                        default: Required
+                                        description: |-
+                                          Resolution specifies whether resolution of this reference is required.
+                                          The default is 'Required', which means the reconcile will fail if the
+                                          reference cannot be resolved. 'Optional' means this reference will be
+                                          a no-op if it cannot be resolved.
+                                        enum:
+                                        - Required
+                                        - Optional
+                                        type: string
+                                      resolve:
+                                        description: |-
+                                          Resolve specifies when this reference should be resolved. The default
+                                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                                          the corresponding field is not present. Use 'Always' to resolve the
+                                          reference on every reconcile.
+                                        enum:
+                                        - Always
+                                        - IfNotPresent
+                                        type: string
+                                    type: object
+                                type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  helpers:
+                    description: Helpers enabled when booting to this Linode Config.
+                    items:
+                      properties:
+                        devtmpfsAutomount:
+                          description: |-
+                            Populates the /dev directory early during boot without udev. (default true)
+                            Populates the /dev directory early during boot without udev.
+                          type: boolean
+                        distro:
+                          description: |-
+                            Helps maintain correct inittab/upstart console device. (default true)
+                            Helps maintain correct inittab/upstart console device.
+                          type: boolean
+                        modulesDep:
+                          description: |-
+                            Creates a modules dependency file for the Kernel you run. (default true)
+                            Creates a modules dependency file for the Kernel you run.
+                          type: boolean
+                        network:
+                          description: |-
+                            Automatically configures static networking. (default true)
+                            Automatically configures static networking.
+                          type: boolean
+                        updatedbDisabled:
+                          description: |-
+                            Disables updatedb cron job to avoid disk thrashing. (default true)
+                            Disables updatedb cron job to avoid disk thrashing.
+                          type: boolean
+                      type: object
+                    type: array
+                  interface:
+                    description: An array of Network Interfaces to add to this Linode's
+                      Configuration Profile.
+                    items:
+                      properties:
+                        ipamAddress:
+                          description: |-
+                            This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
+                            This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
+                          type: string
+                        label:
+                          description: |-
+                            The Config’s label for display purposes only.
+                            The name of this interface.
+                          type: string
+                        purpose:
+                          description: |-
+                            The type of interface. (public, vlan)
+                            The type of interface.
+                          type: string
+                      type: object
+                    type: array
+                  kernel:
+                    description: |-
+                      A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+                      A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
                     type: string
-                  policy:
-                    description: Policies for referencing.
-                    properties:
-                      resolution:
-                        default: Required
-                        description: Resolution specifies whether resolution of this
-                          reference is required. The default is 'Required', which
-                          means the reconcile will fail if the reference cannot be
-                          resolved. 'Optional' means this reference will be a no-op
-                          if it cannot be resolved.
-                        enum:
-                        - Required
-                        - Optional
-                        type: string
-                      resolve:
-                        description: Resolve specifies when this reference should
-                          be resolved. The default is 'IfNotPresent', which will attempt
-                          to resolve the reference only when the corresponding field
-                          is not present. Use 'Always' to resolve the reference on
-                          every reconcile.
-                        enum:
-                        - Always
-                        - IfNotPresent
-                        type: string
-                    type: object
-                required:
-                - name
-                type: object
-              publishConnectionDetailsTo:
-                description: PublishConnectionDetailsTo specifies the connection secret
-                  config which contains a name, metadata and a reference to secret
-                  store config to which any connection details for this managed resource
-                  should be written. Connection details frequently include the endpoint,
-                  username, and password required to connect to the managed resource.
-                properties:
-                  configRef:
-                    default:
-                      name: default
-                    description: SecretStoreConfigRef specifies which secret store
-                      config should be used for this ConnectionSecret.
+                  label:
+                    description: |-
+                      The Config’s label for display purposes only.
+                      The Config's label for display purposes only.
+                    type: string
+                  linodeId:
+                    description: |-
+                      The ID of the Linode to create this configuration profile under.
+                      The ID of the Linode to create this configuration profile under.
+                    type: number
+                  linodeIdRef:
+                    description: Reference to a Instance to populate linodeId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -1135,21 +1860,194 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  linodeIdSelector:
+                    description: Selector for a Instance to populate linodeId.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  memoryLimit:
+                    description: |-
+                      The memory limit of the Config. Defaults to the total ram of the Linode.
+                      The memory limit of the Linode.
+                    type: number
+                  rootDevice:
+                    description: |-
+                      The root device to boot. (default /dev/sda)
+                      The root device to boot. If no value or an invalid value is provided, root device will default to /dev/sda. If the device specified at the root device location is not mounted, the Linode will not boot until a device is mounted.
+                    type: string
+                  runLevel:
+                    description: |-
+                      Defines the state of your Linode after booting. (default, single, binbash)
+                      Defines the state of your Linode after booting.
+                    type: string
+                  virtMode:
+                    description: |-
+                      Controls the virtualization mode. (paravirt, fullvirt)
+                      Controls the virtualization mode.
+                    type: string
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  This field is planned to replace the DeletionPolicy field in a future
+                  release. Currently, both could be set independently and non-default
+                  values would be honored if the feature flag is enabled. If both are
+                  custom, the DeletionPolicy field will be ignored.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: |-
+                          Resolution specifies whether resolution of this reference is required.
+                          The default is 'Required', which means the reconcile will fail if the
+                          reference cannot be resolved. 'Optional' means this reference will be
+                          a no-op if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: |-
+                          Resolve specifies when this reference should be resolved. The default
+                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                          the corresponding field is not present. Use 'Always' to resolve the
+                          reference on every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: |-
+                  PublishConnectionDetailsTo specifies the connection secret config which
+                  contains a name, metadata and a reference to secret store config to
+                  which any connection details for this managed resource should be written.
+                  Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: |-
+                      SecretStoreConfigRef specifies which secret store config should be used
+                      for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -1164,21 +2062,22 @@ spec:
                       annotations:
                         additionalProperties:
                           type: string
-                        description: Annotations are the annotations to be added to
-                          connection secret. - For Kubernetes secrets, this will be
-                          used as "metadata.annotations". - It is up to Secret Store
-                          implementation for others store types.
+                        description: |-
+                          Annotations are the annotations to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.annotations".
+                          - It is up to Secret Store implementation for others store types.
                         type: object
                       labels:
                         additionalProperties:
                           type: string
-                        description: Labels are the labels/tags to be added to connection
-                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store
-                          types.
+                        description: |-
+                          Labels are the labels/tags to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store types.
                         type: object
                       type:
-                        description: Type is the SecretType for the connection secret.
+                        description: |-
+                          Type is the SecretType for the connection secret.
                           - Only valid for Kubernetes Secret Stores.
                         type: string
                     type: object
@@ -1189,14 +2088,15 @@ spec:
                 - name
                 type: object
               writeConnectionSecretToRef:
-                description: WriteConnectionSecretToReference specifies the namespace
-                  and name of a Secret to which any connection details for this managed
-                  resource should be written. Connection details frequently include
-                  the endpoint, username, and password required to connect to the
-                  managed resource. This field is planned to be replaced in a future
-                  release in favor of PublishConnectionDetailsTo. Currently, both
-                  could be set independently and connection details would be published
-                  to both without affecting each other.
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                  This field is planned to be replaced in a future release in favor of
+                  PublishConnectionDetailsTo. Currently, both could be set independently
+                  and connection details would be published to both without affecting
+                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -1212,25 +2112,24 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: label is a required parameter
-              rule: self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)
+            - message: spec.forProvider.label is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
+                || (has(self.initProvider) && has(self.initProvider.label))'
           status:
             description: ConfigStatus defines the observed state of Config.
             properties:
               atProvider:
                 properties:
                   booted:
-                    description: If true, the Linode will be booted into this config.
-                      If another config is booted, the Linode will be rebooted into
-                      this config. If false, the Linode will be shutdown only if it
-                      is currently booted into this config. If undefined, the config
-                      will alter the boot status of the Linode. If true, the Linode
-                      will be booted to running state. If false, the Linode will be
-                      shutdown. If undefined, no action will be taken.
+                    description: |-
+                      If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.
+                      If true, the Linode will be booted to running state. If false, the Linode will be shutdown. If undefined, no action will be taken.
                     type: boolean
                   comments:
-                    description: Optional field for arbitrary User comments on this
-                      Config. Optional field for arbitrary User comments on this Config.
+                    description: |-
+                      Optional field for arbitrary User comments on this Config.
+                      Optional field for arbitrary User comments on this Config.
                     type: string
                   device:
                     description: Blocks for device disks in a Linode's configuration
@@ -1241,12 +2140,14 @@ spec:
                           description: The Disk ID to map to this disk slot
                           type: string
                         diskId:
-                          description: The Disk ID to map to this device slot The
-                            Disk ID to map to this disk slot
+                          description: |-
+                            The Disk ID to map to this device slot
+                            The Disk ID to map to this disk slot
                           type: number
                         volumeId:
-                          description: The Volume ID to map to this device slot. The
-                            Block Storage volume ID to map to this disk slot
+                          description: |-
+                            The Volume ID to map to this device slot.
+                            The Block Storage volume ID to map to this disk slot
                           type: number
                       type: object
                     type: array
@@ -1256,24 +2157,20 @@ spec:
                     items:
                       properties:
                         sda:
-                          description: The SDA-SDH slots, represent the Linux block
-                            device nodes for the first 8 disks attached to the Linode.  Each
-                            device must be suplied sequentially.  The device can be
-                            either a Disk or a Volume identified by disk_id or volume_id.
-                            Only one disk identifier is permitted per slot. Devices
-                            mapped from sde through sdh are unavailable in "fullvirt"
-                            virt_mode. Device can be either a Disk or Volume identified
-                            by disk_id or volume_id. Only one type per slot allowed.
+                          description: |-
+                            The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+                            Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1283,13 +2180,14 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1299,13 +2197,14 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1315,13 +2214,14 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1331,13 +2231,14 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1347,13 +2248,14 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1363,13 +2265,14 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1379,13 +2282,14 @@ spec:
                           items:
                             properties:
                               diskId:
-                                description: The Disk ID to map to this device slot
+                                description: |-
+                                  The Disk ID to map to this device slot
                                   The Disk ID to map to this disk slot
                                 type: number
                               volumeId:
-                                description: The Volume ID to map to this device slot.
-                                  The Block Storage volume ID to map to this disk
-                                  slot
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
                                 type: number
                             type: object
                           type: array
@@ -1396,28 +2300,29 @@ spec:
                     items:
                       properties:
                         devtmpfsAutomount:
-                          description: Populates the /dev directory early during boot
-                            without udev. (default true) Populates the /dev directory
-                            early during boot without udev.
+                          description: |-
+                            Populates the /dev directory early during boot without udev. (default true)
+                            Populates the /dev directory early during boot without udev.
                           type: boolean
                         distro:
-                          description: Helps maintain correct inittab/upstart console
-                            device. (default true) Helps maintain correct inittab/upstart
-                            console device.
+                          description: |-
+                            Helps maintain correct inittab/upstart console device. (default true)
+                            Helps maintain correct inittab/upstart console device.
                           type: boolean
                         modulesDep:
-                          description: Creates a modules dependency file for the Kernel
-                            you run. (default true) Creates a modules dependency file
-                            for the Kernel you run.
+                          description: |-
+                            Creates a modules dependency file for the Kernel you run. (default true)
+                            Creates a modules dependency file for the Kernel you run.
                           type: boolean
                         network:
-                          description: Automatically configures static networking.
-                            (default true) Automatically configures static networking.
+                          description: |-
+                            Automatically configures static networking. (default true)
+                            Automatically configures static networking.
                           type: boolean
                         updatedbDisabled:
-                          description: Disables updatedb cron job to avoid disk thrashing.
-                            (default true) Disables updatedb cron job to avoid disk
-                            thrashing.
+                          description: |-
+                            Disables updatedb cron job to avoid disk thrashing. (default true)
+                            Disables updatedb cron job to avoid disk thrashing.
                           type: boolean
                       type: object
                     type: array
@@ -1429,51 +2334,55 @@ spec:
                     items:
                       properties:
                         ipamAddress:
-                          description: This Network Interface’s private IP address
-                            in Classless Inter-Domain Routing (CIDR) notation. (e.g.
-                            10.0.0.1/24) This Network Interface’s private IP address
-                            in Classless Inter-Domain Routing (CIDR) notation.
+                          description: |-
+                            This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24)
+                            This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation.
                           type: string
                         label:
-                          description: The Config’s label for display purposes only.
+                          description: |-
+                            The Config’s label for display purposes only.
                             The name of this interface.
                           type: string
                         purpose:
-                          description: The type of interface. (public, vlan) The type
-                            of interface.
+                          description: |-
+                            The type of interface. (public, vlan)
+                            The type of interface.
                           type: string
                       type: object
                     type: array
                   kernel:
-                    description: A Kernel ID to boot a Linode with. (default linode/latest-64bit)
+                    description: |-
+                      A Kernel ID to boot a Linode with. (default linode/latest-64bit)
                       A Kernel ID to boot a Linode with. Defaults to “linode/latest-64bit”.
                     type: string
                   label:
-                    description: The Config’s label for display purposes only. The
-                      Config's label for display purposes only.
+                    description: |-
+                      The Config’s label for display purposes only.
+                      The Config's label for display purposes only.
                     type: string
                   linodeId:
-                    description: The ID of the Linode to create this configuration
-                      profile under. The ID of the Linode to create this configuration
-                      profile under.
+                    description: |-
+                      The ID of the Linode to create this configuration profile under.
+                      The ID of the Linode to create this configuration profile under.
                     type: number
                   memoryLimit:
-                    description: The memory limit of the Config. Defaults to the total
-                      ram of the Linode. The memory limit of the Linode.
+                    description: |-
+                      The memory limit of the Config. Defaults to the total ram of the Linode.
+                      The memory limit of the Linode.
                     type: number
                   rootDevice:
-                    description: The root device to boot. (default /dev/sda) The root
-                      device to boot. If no value or an invalid value is provided,
-                      root device will default to /dev/sda. If the device specified
-                      at the root device location is not mounted, the Linode will
-                      not boot until a device is mounted.
+                    description: |-
+                      The root device to boot. (default /dev/sda)
+                      The root device to boot. If no value or an invalid value is provided, root device will default to /dev/sda. If the device specified at the root device location is not mounted, the Linode will not boot until a device is mounted.
                     type: string
                   runLevel:
-                    description: Defines the state of your Linode after booting. (default,
-                      single, binbash) Defines the state of your Linode after booting.
+                    description: |-
+                      Defines the state of your Linode after booting. (default, single, binbash)
+                      Defines the state of your Linode after booting.
                     type: string
                   virtMode:
-                    description: Controls the virtualization mode. (paravirt, fullvirt)
+                    description: |-
+                      Controls the virtualization mode. (paravirt, fullvirt)
                       Controls the virtualization mode.
                     type: string
                 type: object
@@ -1483,13 +2392,15 @@ spec:
                   description: A Condition that may apply to a resource.
                   properties:
                     lastTransitionTime:
-                      description: LastTransitionTime is the last time this condition
-                        transitioned from one status to another.
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
                       format: date-time
                       type: string
                     message:
-                      description: A Message containing details about this condition's
-                        last transition from one status to another, if any.
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
                       type: string
                     reason:
                       description: A Reason for this condition's last transition from
@@ -1500,8 +2411,9 @@ spec:
                         False, or Unknown?
                       type: string
                     type:
-                      description: Type of this condition. At most one of each condition
-                        type may apply to a resource at any point in time.
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
                       type: string
                   required:
                   - lastTransitionTime
@@ -1510,6 +2422,9 @@ spec:
                   - type
                   type: object
                 type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
             type: object
         required:
         - spec

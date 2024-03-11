@@ -10,7 +10,7 @@ import (
 
 	"github.com/linode/provider-linode/config/ipv6range"
 
-	ujconfig "github.com/upbound/upjet/pkg/config"
+	ujconfig "github.com/crossplane/upjet/pkg/config"
 
 	"github.com/linode/provider-linode/config/databaseaccesscontrols"
 	"github.com/linode/provider-linode/config/databasemysql"

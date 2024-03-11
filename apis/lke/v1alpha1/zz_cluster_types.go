@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -12,6 +16,17 @@ import (
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
+
+type AutoscalerInitParameters struct {
+
+	// The maximum number of nodes to autoscale to.
+	// The maximum number of nodes to autoscale to.
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
+
+	// The minimum number of nodes to autoscale to.
+	// The minimum number of nodes to autoscale to.
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
+}
 
 type AutoscalerObservation struct {
 
@@ -28,13 +43,40 @@ type AutoscalerParameters struct {
 
 	// The maximum number of nodes to autoscale to.
 	// The maximum number of nodes to autoscale to.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Max *float64 `json:"max" tf:"max,omitempty"`
 
 	// The minimum number of nodes to autoscale to.
 	// The minimum number of nodes to autoscale to.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Min *float64 `json:"min" tf:"min,omitempty"`
+}
+
+type ClusterInitParameters struct {
+
+	// Defines settings for the Kubernetes Control Plane.
+	ControlPlane []ControlPlaneInitParameters `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
+
+	// The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.
+	// The desired Kubernetes version for this Kubernetes cluster in the format of <major>.<minor>. The latest supported patch version will be deployed.
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// This Kubernetes cluster's unique label.
+	// The unique label for the cluster.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// Additional nested attributes:
+	// A node pool in the cluster.
+	Pool []PoolInitParameters `json:"pool,omitempty" tf:"pool,omitempty"`
+
+	// This Kubernetes cluster's location.
+	// This cluster's location.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
+	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type ClusterObservation struct {
@@ -75,6 +117,7 @@ type ClusterObservation struct {
 
 	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
@@ -107,7 +150,15 @@ type ClusterParameters struct {
 	// An array of tags applied to the Kubernetes cluster. Tags are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+}
+
+type ControlPlaneInitParameters struct {
+
+	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
+	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.
+	HighAvailability *bool `json:"highAvailability,omitempty" tf:"high_availability,omitempty"`
 }
 
 type ControlPlaneObservation struct {
@@ -125,6 +176,9 @@ type ControlPlaneParameters struct {
 	HighAvailability *bool `json:"highAvailability,omitempty" tf:"high_availability,omitempty"`
 }
 
+type NodesInitParameters struct {
+}
+
 type NodesObservation struct {
 
 	// The ID of the cluster.
@@ -138,6 +192,20 @@ type NodesObservation struct {
 }
 
 type NodesParameters struct {
+}
+
+type PoolInitParameters struct {
+
+	// When specified, the number of nodes autoscales within the defined minimum and maximum values.
+	Autoscaler []AutoscalerInitParameters `json:"autoscaler,omitempty" tf:"autoscaler,omitempty"`
+
+	// The number of nodes in the Node Pool.
+	// The number of nodes in the Node Pool.
+	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
+
+	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
+	// A Linode Type for all of the nodes in the Node Pool.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type PoolObservation struct {
@@ -169,12 +237,12 @@ type PoolParameters struct {
 
 	// The number of nodes in the Node Pool.
 	// The number of nodes in the Node Pool.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Count *float64 `json:"count" tf:"count,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
-	// +kubebuilder:validation:Required
+	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
 }
 
@@ -182,6 +250,17 @@ type PoolParameters struct {
 type ClusterSpec struct {
 	v1.ResourceSpec `json:",inline"`
 	ForProvider     ClusterParameters `json:"forProvider"`
+	// THIS IS A BETA FIELD. It will be honored
+	// unless the Management Policies feature flag is disabled.
+	// InitProvider holds the same fields as ForProvider, with the exception
+	// of Identifier and other resource reference fields. The fields that are
+	// in InitProvider are merged into ForProvider when the resource is created.
+	// The same fields are also added to the terraform ignore_changes hook, to
+	// avoid updating them after creation. This is useful for fields that are
+	// required on creation, but we do not desire to update them after creation,
+	// for example because of an external controller is managing them, like an
+	// autoscaler.
+	InitProvider ClusterInitParameters `json:"initProvider,omitempty"`
 }
 
 // ClusterStatus defines the observed state of Cluster.
@@ -191,21 +270,22 @@ type ClusterStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Cluster is the Schema for the Clusters API. Manages a Linode instance.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}
 type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.k8sVersion)",message="k8sVersion is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.label)",message="label is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.pool)",message="pool is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.region)",message="region is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.k8sVersion) || (has(self.initProvider) && has(self.initProvider.k8sVersion))",message="spec.forProvider.k8sVersion is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.pool) || (has(self.initProvider) && has(self.initProvider.pool))",message="spec.forProvider.pool is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	Spec   ClusterSpec   `json:"spec"`
 	Status ClusterStatus `json:"status,omitempty"`
 }

@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 
 	"github.com/pkg/errors"
-	"github.com/upbound/upjet/pkg/config"
+	"github.com/crossplane/upjet/pkg/config"
 )
 
 const (
