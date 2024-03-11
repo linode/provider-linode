@@ -1,0 +1,18 @@
+apiVersion: lke.linode.upbound.io/v1alpha1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lke/v1alpha1/cluster
+  labels:
+    testing.upbound.io/example-name: my-cluster
+  name: my-cluster
+spec:
+  forProvider:
+    k8sVersion: "1.21"
+    label: my-cluster
+    pool:
+    - count: 3
+      type: g6-standard-2
+    region: us-central
+    tags:
+    - prod
