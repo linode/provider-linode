@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.13.0
+    controller-gen.kubebuilder.io/version: v0.14.0
   name: buckets.objectstorage.linode.upbound.io
 spec:
   group: objectstorage.linode.upbound.io
@@ -38,14 +38,19 @@ spec:
           Storage Bucket.
         properties:
           apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation
-              of an object. Servers should convert recognized schemas to the latest
-              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
             type: string
           kind:
-            description: 'Kind is a string value representing the REST resource this
-              object represents. Servers may infer this from the endpoint the client
-              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
             type: string
           metadata:
             type: object
@@ -54,13 +59,14 @@ spec:
             properties:
               deletionPolicy:
                 default: Delete
-                description: 'DeletionPolicy specifies what will happen to the underlying
-                  external when this managed resource is deleted - either "Delete"
-                  or "Orphan" the external resource. This field is planned to be deprecated
-                  in favor of the ManagementPolicies field in a future release. Currently,
-                  both could be set independently and non-default values would be
-                  honored if the feature flag is enabled. See the design doc for more
-                  information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223'
+                description: |-
+                  DeletionPolicy specifies what will happen to the underlying external
+                  when this managed resource is deleted - either "Delete" or "Orphan" the
+                  external resource.
+                  This field is planned to be deprecated in favor of the ManagementPolicies
+                  field in a future release. Currently, both could be set independently and
+                  non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
                 enum:
                 - Orphan
                 - Delete
@@ -68,9 +74,9 @@ spec:
               forProvider:
                 properties:
                   accessKey:
-                    description: The access key to authenticate with. The S3 access
-                      key to use for this resource. (Required for lifecycle_rule and
-                      versioning)
+                    description: |-
+                      The access key to authenticate with.
+                      The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
                     type: string
                   accessKeyRef:
                     description: Reference to a Key to populate accessKey.
@@ -83,21 +89,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -110,8 +116,9 @@ spec:
                     description: Selector for a Key to populate accessKey.
                     properties:
                       matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
                         type: boolean
                       matchLabels:
                         additionalProperties:
@@ -124,21 +131,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -146,8 +153,8 @@ spec:
                         type: object
                     type: object
                   acl:
-                    description: The Access Control Level of the bucket using a canned
-                      ACL string. See all ACL strings in the Linode API v4 documentation.
+                    description: |-
+                      The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.
                       The Access Control Level of the bucket using a canned ACL string.
                     type: string
                   cert:
@@ -155,41 +162,44 @@ spec:
                     items:
                       properties:
                         certificate:
-                          description: The Base64 encoded and PEM formatted SSL certificate.
+                          description: |-
+                            The Base64 encoded and PEM formatted SSL certificate.
                             The Base64 encoded and PEM formatted SSL certificate.
                           type: string
                         privateKey:
-                          description: The private key associated with the TLS/SSL
-                            certificate. The private key associated with the TLS/SSL
-                            certificate.
+                          description: |-
+                            The private key associated with the TLS/SSL certificate.
+                            The private key associated with the TLS/SSL certificate.
                           type: string
                       type: object
                     type: array
                   cluster:
-                    description: The cluster of the Linode Object Storage Bucket.
+                    description: |-
+                      The cluster of the Linode Object Storage Bucket.
                       The cluster of the Linode Object Storage Bucket.
                     type: string
                   corsEnabled:
-                    description: If true, the bucket will have CORS enabled for all
-                      origins. If true, the bucket will be created with CORS enabled
-                      for all origins.
+                    description: |-
+                      If true, the bucket will have CORS enabled for all origins.
+                      If true, the bucket will be created with CORS enabled for all origins.
                     type: boolean
                   label:
-                    description: The label of the Linode Object Storage Bucket. The
-                      label of the Linode Object Storage Bucket.
+                    description: |-
+                      The label of the Linode Object Storage Bucket.
+                      The label of the Linode Object Storage Bucket.
                     type: string
                   lifecycleRule:
                     description: Lifecycle rules to be applied to the bucket.
                     items:
                       properties:
                         abortIncompleteMultipartUploadDays:
-                          description: Specifies the number of days after initiating
-                            a multipart upload when the multipart upload must be completed.
-                            Specifies the number of days after initiating a multipart
-                            upload when the multipart upload must be completed.
+                          description: |-
+                            Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+                            Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
                           type: number
                         enabled:
-                          description: Specifies whether the lifecycle rule is active.
+                          description: |-
+                            Specifies whether the lifecycle rule is active.
                             Specifies whether the lifecycle rule is active.
                           type: boolean
                         expiration:
@@ -197,31 +207,26 @@ spec:
                           items:
                             properties:
                               date:
-                                description: Specifies the date after which you want
-                                  the corresponding action to take effect. Specifies
-                                  the date after which you want the corresponding
-                                  action to take effect.
+                                description: |-
+                                  Specifies the date after which you want the corresponding action to take effect.
+                                  Specifies the date after which you want the corresponding action to take effect.
                                 type: string
                               days:
-                                description: Specifies the number of days after object
-                                  creation when the specific rule action takes effect.
-                                  Specifies the number of days after object creation
-                                  when the specific rule action takes effect.
+                                description: |-
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
                                 type: number
                               expiredObjectDeleteMarker:
-                                description: On a versioned bucket (versioning-enabled
-                                  or versioning-suspended bucket), you can add this
-                                  element in the lifecycle configuration to direct
-                                  Linode Object Storage to delete expired object delete
-                                  markers. This cannot be specified with Days or Date
-                                  in a Lifecycle Expiration Policy. Directs Linode
-                                  Object Storage to remove expired deleted markers.
+                                description: |-
+                                  On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
+                                  Directs Linode Object Storage to remove expired deleted markers.
                                 type: boolean
                             type: object
                           type: array
                         id:
-                          description: The unique identifier for the rule. The unique
-                            identifier for the rule.
+                          description: |-
+                            The unique identifier for the rule.
+                            The unique identifier for the rule.
                           type: string
                         noncurrentVersionExpiration:
                           description: Specifies when non-current object versions
@@ -229,24 +234,23 @@ spec:
                           items:
                             properties:
                               days:
-                                description: Specifies the number of days after object
-                                  creation when the specific rule action takes effect.
-                                  Specifies the number of days non-current object
-                                  versions expire.
+                                description: |-
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
+                                  Specifies the number of days non-current object versions expire.
                                 type: number
                             type: object
                           type: array
                         prefix:
-                          description: The object key prefix identifying one or more
-                            objects to which the rule applies. The object key prefix
-                            identifying one or more objects to which the rule applies.
+                          description: |-
+                            The object key prefix identifying one or more objects to which the rule applies.
+                            The object key prefix identifying one or more objects to which the rule applies.
                           type: string
                       type: object
                     type: array
                   secretKey:
-                    description: The secret key to authenticate with. The S3 secret
-                      key to use for this resource. (Required for lifecycle_rule and
-                      versioning)
+                    description: |-
+                      The secret key to authenticate with.
+                      The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
                     type: string
                   secretKeyRef:
                     description: Reference to a Key to populate secretKey.
@@ -259,21 +263,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -286,8 +290,9 @@ spec:
                     description: Selector for a Key to populate secretKey.
                     properties:
                       matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
                         type: boolean
                       matchLabels:
                         additionalProperties:
@@ -300,21 +305,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -322,28 +327,28 @@ spec:
                         type: object
                     type: object
                   versioning:
-                    description: Whether to enable versioning. Once you version-enable
-                      a bucket, it can never return to an unversioned state. You can,
-                      however, suspend versioning on that bucket. (Requires access_key
-                      and secret_key) Whether to enable versioning.
+                    description: |-
+                      Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
+                      Whether to enable versioning.
                     type: boolean
                 type: object
               initProvider:
-                description: THIS IS A BETA FIELD. It will be honored unless the Management
-                  Policies feature flag is disabled. InitProvider holds the same fields
-                  as ForProvider, with the exception of Identifier and other resource
-                  reference fields. The fields that are in InitProvider are merged
-                  into ForProvider when the resource is created. The same fields are
-                  also added to the terraform ignore_changes hook, to avoid updating
-                  them after creation. This is useful for fields that are required
-                  on creation, but we do not desire to update them after creation,
-                  for example because of an external controller is managing them,
-                  like an autoscaler.
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
                 properties:
                   accessKey:
-                    description: The access key to authenticate with. The S3 access
-                      key to use for this resource. (Required for lifecycle_rule and
-                      versioning)
+                    description: |-
+                      The access key to authenticate with.
+                      The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
                     type: string
                   accessKeyRef:
                     description: Reference to a Key to populate accessKey.
@@ -356,21 +361,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -383,8 +388,9 @@ spec:
                     description: Selector for a Key to populate accessKey.
                     properties:
                       matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
                         type: boolean
                       matchLabels:
                         additionalProperties:
@@ -397,21 +403,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -419,8 +425,8 @@ spec:
                         type: object
                     type: object
                   acl:
-                    description: The Access Control Level of the bucket using a canned
-                      ACL string. See all ACL strings in the Linode API v4 documentation.
+                    description: |-
+                      The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.
                       The Access Control Level of the bucket using a canned ACL string.
                     type: string
                   cert:
@@ -428,41 +434,44 @@ spec:
                     items:
                       properties:
                         certificate:
-                          description: The Base64 encoded and PEM formatted SSL certificate.
+                          description: |-
+                            The Base64 encoded and PEM formatted SSL certificate.
                             The Base64 encoded and PEM formatted SSL certificate.
                           type: string
                         privateKey:
-                          description: The private key associated with the TLS/SSL
-                            certificate. The private key associated with the TLS/SSL
-                            certificate.
+                          description: |-
+                            The private key associated with the TLS/SSL certificate.
+                            The private key associated with the TLS/SSL certificate.
                           type: string
                       type: object
                     type: array
                   cluster:
-                    description: The cluster of the Linode Object Storage Bucket.
+                    description: |-
+                      The cluster of the Linode Object Storage Bucket.
                       The cluster of the Linode Object Storage Bucket.
                     type: string
                   corsEnabled:
-                    description: If true, the bucket will have CORS enabled for all
-                      origins. If true, the bucket will be created with CORS enabled
-                      for all origins.
+                    description: |-
+                      If true, the bucket will have CORS enabled for all origins.
+                      If true, the bucket will be created with CORS enabled for all origins.
                     type: boolean
                   label:
-                    description: The label of the Linode Object Storage Bucket. The
-                      label of the Linode Object Storage Bucket.
+                    description: |-
+                      The label of the Linode Object Storage Bucket.
+                      The label of the Linode Object Storage Bucket.
                     type: string
                   lifecycleRule:
                     description: Lifecycle rules to be applied to the bucket.
                     items:
                       properties:
                         abortIncompleteMultipartUploadDays:
-                          description: Specifies the number of days after initiating
-                            a multipart upload when the multipart upload must be completed.
-                            Specifies the number of days after initiating a multipart
-                            upload when the multipart upload must be completed.
+                          description: |-
+                            Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+                            Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
                           type: number
                         enabled:
-                          description: Specifies whether the lifecycle rule is active.
+                          description: |-
+                            Specifies whether the lifecycle rule is active.
                             Specifies whether the lifecycle rule is active.
                           type: boolean
                         expiration:
@@ -470,31 +479,26 @@ spec:
                           items:
                             properties:
                               date:
-                                description: Specifies the date after which you want
-                                  the corresponding action to take effect. Specifies
-                                  the date after which you want the corresponding
-                                  action to take effect.
+                                description: |-
+                                  Specifies the date after which you want the corresponding action to take effect.
+                                  Specifies the date after which you want the corresponding action to take effect.
                                 type: string
                               days:
-                                description: Specifies the number of days after object
-                                  creation when the specific rule action takes effect.
-                                  Specifies the number of days after object creation
-                                  when the specific rule action takes effect.
+                                description: |-
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
                                 type: number
                               expiredObjectDeleteMarker:
-                                description: On a versioned bucket (versioning-enabled
-                                  or versioning-suspended bucket), you can add this
-                                  element in the lifecycle configuration to direct
-                                  Linode Object Storage to delete expired object delete
-                                  markers. This cannot be specified with Days or Date
-                                  in a Lifecycle Expiration Policy. Directs Linode
-                                  Object Storage to remove expired deleted markers.
+                                description: |-
+                                  On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
+                                  Directs Linode Object Storage to remove expired deleted markers.
                                 type: boolean
                             type: object
                           type: array
                         id:
-                          description: The unique identifier for the rule. The unique
-                            identifier for the rule.
+                          description: |-
+                            The unique identifier for the rule.
+                            The unique identifier for the rule.
                           type: string
                         noncurrentVersionExpiration:
                           description: Specifies when non-current object versions
@@ -502,24 +506,23 @@ spec:
                           items:
                             properties:
                               days:
-                                description: Specifies the number of days after object
-                                  creation when the specific rule action takes effect.
-                                  Specifies the number of days non-current object
-                                  versions expire.
+                                description: |-
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
+                                  Specifies the number of days non-current object versions expire.
                                 type: number
                             type: object
                           type: array
                         prefix:
-                          description: The object key prefix identifying one or more
-                            objects to which the rule applies. The object key prefix
-                            identifying one or more objects to which the rule applies.
+                          description: |-
+                            The object key prefix identifying one or more objects to which the rule applies.
+                            The object key prefix identifying one or more objects to which the rule applies.
                           type: string
                       type: object
                     type: array
                   secretKey:
-                    description: The secret key to authenticate with. The S3 secret
-                      key to use for this resource. (Required for lifecycle_rule and
-                      versioning)
+                    description: |-
+                      The secret key to authenticate with.
+                      The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
                     type: string
                   secretKeyRef:
                     description: Reference to a Key to populate secretKey.
@@ -532,21 +535,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -559,8 +562,9 @@ spec:
                     description: Selector for a Key to populate secretKey.
                     properties:
                       matchControllerRef:
-                        description: MatchControllerRef ensures an object with the
-                          same controller reference as the selecting object is selected.
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
                         type: boolean
                       matchLabels:
                         additionalProperties:
@@ -573,21 +577,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -595,28 +599,29 @@ spec:
                         type: object
                     type: object
                   versioning:
-                    description: Whether to enable versioning. Once you version-enable
-                      a bucket, it can never return to an unversioned state. You can,
-                      however, suspend versioning on that bucket. (Requires access_key
-                      and secret_key) Whether to enable versioning.
+                    description: |-
+                      Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
+                      Whether to enable versioning.
                     type: boolean
                 type: object
               managementPolicies:
                 default:
                 - '*'
-                description: 'THIS IS A BETA FIELD. It is on by default but can be
-                  opted out through a Crossplane feature flag. ManagementPolicies
-                  specify the array of actions Crossplane is allowed to take on the
-                  managed and external resources. This field is planned to replace
-                  the DeletionPolicy field in a future release. Currently, both could
-                  be set independently and non-default values would be honored if
-                  the feature flag is enabled. If both are custom, the DeletionPolicy
-                  field will be ignored. See the design doc for more information:
-                  https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
-                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  This field is planned to replace the DeletionPolicy field in a future
+                  release. Currently, both could be set independently and non-default
+                  values would be honored if the feature flag is enabled. If both are
+                  custom, the DeletionPolicy field will be ignored.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
                 items:
-                  description: A ManagementAction represents an action that the Crossplane
-                    controllers can take on an external resource.
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
                   enum:
                   - Observe
                   - Create
@@ -629,9 +634,10 @@ spec:
               providerConfigRef:
                 default:
                   name: default
-                description: ProviderConfigReference specifies how the provider that
-                  will be used to create, observe, update, and delete this managed
-                  resource should be configured.
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
                 properties:
                   name:
                     description: Name of the referenced object.
@@ -641,21 +647,21 @@ spec:
                     properties:
                       resolution:
                         default: Required
-                        description: Resolution specifies whether resolution of this
-                          reference is required. The default is 'Required', which
-                          means the reconcile will fail if the reference cannot be
-                          resolved. 'Optional' means this reference will be a no-op
-                          if it cannot be resolved.
+                        description: |-
+                          Resolution specifies whether resolution of this reference is required.
+                          The default is 'Required', which means the reconcile will fail if the
+                          reference cannot be resolved. 'Optional' means this reference will be
+                          a no-op if it cannot be resolved.
                         enum:
                         - Required
                         - Optional
                         type: string
                       resolve:
-                        description: Resolve specifies when this reference should
-                          be resolved. The default is 'IfNotPresent', which will attempt
-                          to resolve the reference only when the corresponding field
-                          is not present. Use 'Always' to resolve the reference on
-                          every reconcile.
+                        description: |-
+                          Resolve specifies when this reference should be resolved. The default
+                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                          the corresponding field is not present. Use 'Always' to resolve the
+                          reference on every reconcile.
                         enum:
                         - Always
                         - IfNotPresent
@@ -665,17 +671,19 @@ spec:
                 - name
                 type: object
               publishConnectionDetailsTo:
-                description: PublishConnectionDetailsTo specifies the connection secret
-                  config which contains a name, metadata and a reference to secret
-                  store config to which any connection details for this managed resource
-                  should be written. Connection details frequently include the endpoint,
-                  username, and password required to connect to the managed resource.
+                description: |-
+                  PublishConnectionDetailsTo specifies the connection secret config which
+                  contains a name, metadata and a reference to secret store config to
+                  which any connection details for this managed resource should be written.
+                  Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
                 properties:
                   configRef:
                     default:
                       name: default
-                    description: SecretStoreConfigRef specifies which secret store
-                      config should be used for this ConnectionSecret.
+                    description: |-
+                      SecretStoreConfigRef specifies which secret store config should be used
+                      for this ConnectionSecret.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -685,21 +693,21 @@ spec:
                         properties:
                           resolution:
                             default: Required
-                            description: Resolution specifies whether resolution of
-                              this reference is required. The default is 'Required',
-                              which means the reconcile will fail if the reference
-                              cannot be resolved. 'Optional' means this reference
-                              will be a no-op if it cannot be resolved.
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
                             enum:
                             - Required
                             - Optional
                             type: string
                           resolve:
-                            description: Resolve specifies when this reference should
-                              be resolved. The default is 'IfNotPresent', which will
-                              attempt to resolve the reference only when the corresponding
-                              field is not present. Use 'Always' to resolve the reference
-                              on every reconcile.
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
                             enum:
                             - Always
                             - IfNotPresent
@@ -714,21 +722,22 @@ spec:
                       annotations:
                         additionalProperties:
                           type: string
-                        description: Annotations are the annotations to be added to
-                          connection secret. - For Kubernetes secrets, this will be
-                          used as "metadata.annotations". - It is up to Secret Store
-                          implementation for others store types.
+                        description: |-
+                          Annotations are the annotations to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.annotations".
+                          - It is up to Secret Store implementation for others store types.
                         type: object
                       labels:
                         additionalProperties:
                           type: string
-                        description: Labels are the labels/tags to be added to connection
-                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
-                          - It is up to Secret Store implementation for others store
-                          types.
+                        description: |-
+                          Labels are the labels/tags to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store types.
                         type: object
                       type:
-                        description: Type is the SecretType for the connection secret.
+                        description: |-
+                          Type is the SecretType for the connection secret.
                           - Only valid for Kubernetes Secret Stores.
                         type: string
                     type: object
@@ -739,14 +748,15 @@ spec:
                 - name
                 type: object
               writeConnectionSecretToRef:
-                description: WriteConnectionSecretToReference specifies the namespace
-                  and name of a Secret to which any connection details for this managed
-                  resource should be written. Connection details frequently include
-                  the endpoint, username, and password required to connect to the
-                  managed resource. This field is planned to be replaced in a future
-                  release in favor of PublishConnectionDetailsTo. Currently, both
-                  could be set independently and connection details would be published
-                  to both without affecting each other.
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                  This field is planned to be replaced in a future release in favor of
+                  PublishConnectionDetailsTo. Currently, both could be set independently
+                  and connection details would be published to both without affecting
+                  each other.
                 properties:
                   name:
                     description: Name of the secret.
@@ -776,13 +786,13 @@ spec:
               atProvider:
                 properties:
                   accessKey:
-                    description: The access key to authenticate with. The S3 access
-                      key to use for this resource. (Required for lifecycle_rule and
-                      versioning)
+                    description: |-
+                      The access key to authenticate with.
+                      The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
                     type: string
                   acl:
-                    description: The Access Control Level of the bucket using a canned
-                      ACL string. See all ACL strings in the Linode API v4 documentation.
+                    description: |-
+                      The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.
                       The Access Control Level of the bucket using a canned ACL string.
                     type: string
                   cert:
@@ -790,24 +800,26 @@ spec:
                     items:
                       properties:
                         certificate:
-                          description: The Base64 encoded and PEM formatted SSL certificate.
+                          description: |-
+                            The Base64 encoded and PEM formatted SSL certificate.
                             The Base64 encoded and PEM formatted SSL certificate.
                           type: string
                         privateKey:
-                          description: The private key associated with the TLS/SSL
-                            certificate. The private key associated with the TLS/SSL
-                            certificate.
+                          description: |-
+                            The private key associated with the TLS/SSL certificate.
+                            The private key associated with the TLS/SSL certificate.
                           type: string
                       type: object
                     type: array
                   cluster:
-                    description: The cluster of the Linode Object Storage Bucket.
+                    description: |-
+                      The cluster of the Linode Object Storage Bucket.
                       The cluster of the Linode Object Storage Bucket.
                     type: string
                   corsEnabled:
-                    description: If true, the bucket will have CORS enabled for all
-                      origins. If true, the bucket will be created with CORS enabled
-                      for all origins.
+                    description: |-
+                      If true, the bucket will have CORS enabled for all origins.
+                      If true, the bucket will be created with CORS enabled for all origins.
                     type: boolean
                   endpoint:
                     description: The endpoint for the bucket used for s3 connections.
@@ -821,21 +833,22 @@ spec:
                     description: The unique identifier for the rule.
                     type: string
                   label:
-                    description: The label of the Linode Object Storage Bucket. The
-                      label of the Linode Object Storage Bucket.
+                    description: |-
+                      The label of the Linode Object Storage Bucket.
+                      The label of the Linode Object Storage Bucket.
                     type: string
                   lifecycleRule:
                     description: Lifecycle rules to be applied to the bucket.
                     items:
                       properties:
                         abortIncompleteMultipartUploadDays:
-                          description: Specifies the number of days after initiating
-                            a multipart upload when the multipart upload must be completed.
-                            Specifies the number of days after initiating a multipart
-                            upload when the multipart upload must be completed.
+                          description: |-
+                            Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+                            Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
                           type: number
                         enabled:
-                          description: Specifies whether the lifecycle rule is active.
+                          description: |-
+                            Specifies whether the lifecycle rule is active.
                             Specifies whether the lifecycle rule is active.
                           type: boolean
                         expiration:
@@ -843,31 +856,26 @@ spec:
                           items:
                             properties:
                               date:
-                                description: Specifies the date after which you want
-                                  the corresponding action to take effect. Specifies
-                                  the date after which you want the corresponding
-                                  action to take effect.
+                                description: |-
+                                  Specifies the date after which you want the corresponding action to take effect.
+                                  Specifies the date after which you want the corresponding action to take effect.
                                 type: string
                               days:
-                                description: Specifies the number of days after object
-                                  creation when the specific rule action takes effect.
-                                  Specifies the number of days after object creation
-                                  when the specific rule action takes effect.
+                                description: |-
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
                                 type: number
                               expiredObjectDeleteMarker:
-                                description: On a versioned bucket (versioning-enabled
-                                  or versioning-suspended bucket), you can add this
-                                  element in the lifecycle configuration to direct
-                                  Linode Object Storage to delete expired object delete
-                                  markers. This cannot be specified with Days or Date
-                                  in a Lifecycle Expiration Policy. Directs Linode
-                                  Object Storage to remove expired deleted markers.
+                                description: |-
+                                  On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Linode Object Storage to delete expired object delete markers. This cannot be specified with Days or Date in a Lifecycle Expiration Policy.
+                                  Directs Linode Object Storage to remove expired deleted markers.
                                 type: boolean
                             type: object
                           type: array
                         id:
-                          description: The unique identifier for the rule. The unique
-                            identifier for the rule.
+                          description: |-
+                            The unique identifier for the rule.
+                            The unique identifier for the rule.
                           type: string
                         noncurrentVersionExpiration:
                           description: Specifies when non-current object versions
@@ -875,30 +883,28 @@ spec:
                           items:
                             properties:
                               days:
-                                description: Specifies the number of days after object
-                                  creation when the specific rule action takes effect.
-                                  Specifies the number of days non-current object
-                                  versions expire.
+                                description: |-
+                                  Specifies the number of days after object creation when the specific rule action takes effect.
+                                  Specifies the number of days non-current object versions expire.
                                 type: number
                             type: object
                           type: array
                         prefix:
-                          description: The object key prefix identifying one or more
-                            objects to which the rule applies. The object key prefix
-                            identifying one or more objects to which the rule applies.
+                          description: |-
+                            The object key prefix identifying one or more objects to which the rule applies.
+                            The object key prefix identifying one or more objects to which the rule applies.
                           type: string
                       type: object
                     type: array
                   secretKey:
-                    description: The secret key to authenticate with. The S3 secret
-                      key to use for this resource. (Required for lifecycle_rule and
-                      versioning)
+                    description: |-
+                      The secret key to authenticate with.
+                      The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
                     type: string
                   versioning:
-                    description: Whether to enable versioning. Once you version-enable
-                      a bucket, it can never return to an unversioned state. You can,
-                      however, suspend versioning on that bucket. (Requires access_key
-                      and secret_key) Whether to enable versioning.
+                    description: |-
+                      Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
+                      Whether to enable versioning.
                     type: boolean
                 type: object
               conditions:
@@ -907,13 +913,15 @@ spec:
                   description: A Condition that may apply to a resource.
                   properties:
                     lastTransitionTime:
-                      description: LastTransitionTime is the last time this condition
-                        transitioned from one status to another.
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
                       format: date-time
                       type: string
                     message:
-                      description: A Message containing details about this condition's
-                        last transition from one status to another, if any.
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
                       type: string
                     reason:
                       description: A Reason for this condition's last transition from
@@ -924,8 +932,9 @@ spec:
                         False, or Unknown?
                       type: string
                     type:
-                      description: Type of this condition. At most one of each condition
-                        type may apply to a resource at any point in time.
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
                       type: string
                   required:
                   - lastTransitionTime
