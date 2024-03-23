@@ -32,6 +32,7 @@ import (
 	"github.com/linode/provider-linode/config/instancesharedips"
 	"github.com/linode/provider-linode/config/ipv6range"
 	"github.com/linode/provider-linode/config/lkecluster"
+	"github.com/linode/provider-linode/config/lkenodepool"
 	"github.com/linode/provider-linode/config/nodebalancer"
 	"github.com/linode/provider-linode/config/nodebalancerconfig"
 	"github.com/linode/provider-linode/config/nodebalancernode"
@@ -43,9 +44,10 @@ import (
 	"github.com/linode/provider-linode/config/stackscript"
 	"github.com/linode/provider-linode/config/token"
 	"github.com/linode/provider-linode/config/user"
-	"github.com/linode/provider-linode/config/volume"
 	"github.com/linode/provider-linode/config/vpc"
 	"github.com/linode/provider-linode/config/vpcsubnet"
+
+	"github.com/linode/provider-linode/config/volume"
 )
 
 const (
@@ -143,6 +145,7 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		volume.Configure,
 		vpc.Configure,
 		vpcsubnet.Configure,
+		lkenodepool.Configure,
 	} {
 		configure(pc)
 	}

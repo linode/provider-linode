@@ -1078,6 +1078,7 @@ resources:
             autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
             control_plane.high_availability: '- (Optional) Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.'
             dashboard_url: '- The Kubernetes Dashboard access URL for this cluster.'
+            external_pool_tags: '- (Optional) An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.'
             id: '- The ID of the cluster.'
             instance_id: '- The ID of the underlying Linode instance.'
             k8s_version: '- (Required) The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.'
@@ -1089,6 +1090,42 @@ resources:
             region: '- (Required) This Kubernetes cluster''s location.'
             status: '- The status of the cluster.'
             tags: '- (Optional) An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.'
+        importStatements: []
+    linode_lke_node_pool:
+        subCategory: ""
+        description: Manages a Linode Node Pool.
+        name: linode_lke_node_pool
+        title: linode_lke_node_pool
+        examples:
+            - name: my-pool
+              manifest: |-
+                {
+                  "cluster_id": 150003,
+                  "node_count": 3,
+                  "type": "g6-standard-2"
+                }
+            - name: my-pool
+              manifest: |-
+                {
+                  "autoscaler": [
+                    {
+                      "max": 10,
+                      "min": 3
+                    }
+                  ],
+                  "cluster_id": 150003,
+                  "type": "g6-standard-2"
+                }
+        argumentDocs:
+            autoscaler.max: '- (Required) The maximum number of nodes to autoscale to.'
+            autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
+            cluster_id: '- ID of the LKE Cluster where to create the current Node Pool.'
+            id: '- The ID of the Node Pool within LKE Cluster.'
+            instance_id: '- The ID of the underlying Linode instance.'
+            node_count: '- (Required; Optional with autoscaler) The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.'
+            status: '- The status of the node. (ready, not_ready)'
+            tags: '- (Optional) An array of tags applied to the Node Pool. Tags are for organizational purposes only.'
+            type: '- (Required) A Linode Type for all of the nodes in the Node Pool. See all node types here.'
         importStatements: []
     linode_nodebalancer:
         subCategory: ""

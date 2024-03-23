@@ -29,7 +29,7 @@ Add a new resource:
 1. Find out if the resource is implemented using the `frameworkprovider` or the terraform v2 provider in the linode-terraform-provider - newer resources are usually frameworkprovider based
 2. Add the name of the provider to the appropriate list in `config/externalname.go`
 3. Create a directory for the resource group in config/
-4. Add a file `resourcename.go` implementing the `Configure` method (see config/vpc/vpc.go for an example)
+4. Add a file `config.go` implementing the `Configure` method (see config/vpc/vpc.go for an example)
 5. Add the configure method to the loop at `config/provider.go:GetProvider()`  method
 6. Run `make generate`, `make local-deploy` - create a manifest for your resource and test that it works.
 

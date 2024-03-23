@@ -20,7 +20,7 @@ import (
 type DiskInitParameters_2 struct {
 
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image.
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
@@ -38,7 +38,7 @@ type DiskInitParameters_2 struct {
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
 	// The Disk's label for display purposes only.
-	// The Disk’s label is for display purposes only.
+	// The Disk;s label is for display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of the Linode to create this Disk under.
@@ -55,7 +55,7 @@ type DiskInitParameters_2 struct {
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
-	// The size of the Disk in MB.
+	// The ID of the token.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)
@@ -75,7 +75,7 @@ type DiskInitParameters_2 struct {
 type DiskObservation_2 struct {
 
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image.
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
@@ -99,7 +99,7 @@ type DiskObservation_2 struct {
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
 	// The Disk's label for display purposes only.
-	// The Disk’s label is for display purposes only.
+	// The Disk;s label is for display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The ID of the Linode to create this Disk under.
@@ -107,7 +107,7 @@ type DiskObservation_2 struct {
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
-	// The size of the Disk in MB.
+	// The ID of the token.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)
@@ -126,7 +126,7 @@ type DiskObservation_2 struct {
 type DiskParameters_2 struct {
 
 	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image.
+	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
@@ -148,7 +148,7 @@ type DiskParameters_2 struct {
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
 	// The Disk's label for display purposes only.
-	// The Disk’s label is for display purposes only.
+	// The Disk;s label is for display purposes only.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
@@ -167,12 +167,12 @@ type DiskParameters_2 struct {
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)
-	// This sets the root user’s password on a newly-created Linode Disk when deploying from an Image.
+	// This sets the root user's password on a newly-created Linode Disk when deploying from an Image.
 	// +kubebuilder:validation:Optional
 	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
-	// The size of the Disk in MB.
+	// The ID of the token.
 	// +kubebuilder:validation:Optional
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 

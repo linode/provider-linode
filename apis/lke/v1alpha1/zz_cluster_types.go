@@ -57,6 +57,11 @@ type ClusterInitParameters struct {
 	// Defines settings for the Kubernetes Control Plane.
 	ControlPlane []ControlPlaneInitParameters `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
 
+	// An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.
+	// An array of tags indicating that node pools having those tags are defined with a separate nodepool resource, rather than inside the current cluster resource.
+	// +listType=set
+	ExternalPoolTags []*string `json:"externalPoolTags,omitempty" tf:"external_pool_tags,omitempty"`
+
 	// The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.
 	// The desired Kubernetes version for this Kubernetes cluster in the format of <major>.<minor>. The latest supported patch version will be deployed.
 	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
@@ -92,6 +97,11 @@ type ClusterObservation struct {
 	// The dashboard URL of the cluster.
 	DashboardURL *string `json:"dashboardUrl,omitempty" tf:"dashboard_url,omitempty"`
 
+	// An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.
+	// An array of tags indicating that node pools having those tags are defined with a separate nodepool resource, rather than inside the current cluster resource.
+	// +listType=set
+	ExternalPoolTags []*string `json:"externalPoolTags,omitempty" tf:"external_pool_tags,omitempty"`
+
 	// The ID of the cluster.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -126,6 +136,12 @@ type ClusterParameters struct {
 	// Defines settings for the Kubernetes Control Plane.
 	// +kubebuilder:validation:Optional
 	ControlPlane []ControlPlaneParameters `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
+
+	// An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.
+	// An array of tags indicating that node pools having those tags are defined with a separate nodepool resource, rather than inside the current cluster resource.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	ExternalPoolTags []*string `json:"externalPoolTags,omitempty" tf:"external_pool_tags,omitempty"`
 
 	// The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.
 	// The desired Kubernetes version for this Kubernetes cluster in the format of <major>.<minor>. The latest supported patch version will be deployed.
