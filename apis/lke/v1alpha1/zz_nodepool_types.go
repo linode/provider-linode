@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -66,12 +62,12 @@ type NodePoolInitParameters struct {
 	// The number of nodes in the Node Pool.
 	NodeCount *float64 `json:"nodeCount,omitempty" tf:"node_count,omitempty"`
 
-	// An array of tags applied to the Node Pool. Tags are for organizational purposes only.
+	// An array of tags applied to the Node Pool. Tags can be used to flag node pools as externally managed, see Externally Managed Node Pools for more details.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
+	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -111,12 +107,12 @@ type NodePoolObservation struct {
 	// A list of nodes in the node pool.
 	Nodes []NodePoolNodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
-	// An array of tags applied to the Node Pool. Tags are for organizational purposes only.
+	// An array of tags applied to the Node Pool. Tags can be used to flag node pools as externally managed, see Externally Managed Node Pools for more details.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
+	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -145,13 +141,13 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	NodeCount *float64 `json:"nodeCount,omitempty" tf:"node_count,omitempty"`
 
-	// An array of tags applied to the Node Pool. Tags are for organizational purposes only.
+	// An array of tags applied to the Node Pool. Tags can be used to flag node pools as externally managed, see Externally Managed Node Pools for more details.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
+	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -184,9 +180,9 @@ type NodePoolStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// NodePool is the Schema for the NodePools API. Manages a Linode Node Pool.
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
+// NodePool is the Schema for the NodePools API. Manages an LKE Node Pool.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}

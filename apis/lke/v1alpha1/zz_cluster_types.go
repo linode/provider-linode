@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -57,7 +53,7 @@ type ClusterInitParameters struct {
 	// Defines settings for the Kubernetes Control Plane.
 	ControlPlane []ControlPlaneInitParameters `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
 
-	// An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.
+	// A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.
 	// An array of tags indicating that node pools having those tags are defined with a separate nodepool resource, rather than inside the current cluster resource.
 	// +listType=set
 	ExternalPoolTags []*string `json:"externalPoolTags,omitempty" tf:"external_pool_tags,omitempty"`
@@ -97,7 +93,7 @@ type ClusterObservation struct {
 	// The dashboard URL of the cluster.
 	DashboardURL *string `json:"dashboardUrl,omitempty" tf:"dashboard_url,omitempty"`
 
-	// An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.
+	// A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.
 	// An array of tags indicating that node pools having those tags are defined with a separate nodepool resource, rather than inside the current cluster resource.
 	// +listType=set
 	ExternalPoolTags []*string `json:"externalPoolTags,omitempty" tf:"external_pool_tags,omitempty"`
@@ -137,7 +133,7 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	ControlPlane []ControlPlaneParameters `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
 
-	// An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.
+	// A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.
 	// An array of tags indicating that node pools having those tags are defined with a separate nodepool resource, rather than inside the current cluster resource.
 	// +kubebuilder:validation:Optional
 	// +listType=set
@@ -290,8 +286,8 @@ type ClusterStatus struct {
 // +kubebuilder:storageversion
 
 // Cluster is the Schema for the Clusters API. Manages a Linode instance.
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}

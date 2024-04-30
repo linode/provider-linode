@@ -182,21 +182,6 @@ func (in *BucketInitParameters) DeepCopyInto(out *BucketInitParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.SecretKey != nil {
-		in, out := &in.SecretKey, &out.SecretKey
-		*out = new(string)
-		**out = **in
-	}
-	if in.SecretKeyRef != nil {
-		in, out := &in.SecretKeyRef, &out.SecretKeyRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.SecretKeySelector != nil {
-		in, out := &in.SecretKeySelector, &out.SecretKeySelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Versioning != nil {
 		in, out := &in.Versioning, &out.Versioning
 		*out = new(bool)
@@ -303,11 +288,6 @@ func (in *BucketObservation) DeepCopyInto(out *BucketObservation) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.SecretKey != nil {
-		in, out := &in.SecretKey, &out.SecretKey
-		*out = new(string)
-		**out = **in
-	}
 	if in.Versioning != nil {
 		in, out := &in.Versioning, &out.Versioning
 		*out = new(bool)
@@ -377,20 +357,10 @@ func (in *BucketParameters) DeepCopyInto(out *BucketParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
-	if in.SecretKey != nil {
-		in, out := &in.SecretKey, &out.SecretKey
-		*out = new(string)
+	if in.SecretKeySecretRef != nil {
+		in, out := &in.SecretKeySecretRef, &out.SecretKeySecretRef
+		*out = new(v1.SecretKeySelector)
 		**out = **in
-	}
-	if in.SecretKeyRef != nil {
-		in, out := &in.SecretKeyRef, &out.SecretKeyRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.SecretKeySelector != nil {
-		in, out := &in.SecretKeySelector, &out.SecretKeySelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
 	}
 	if in.Versioning != nil {
 		in, out := &in.Versioning, &out.Versioning
@@ -1132,21 +1102,6 @@ func (in *ObjectInitParameters) DeepCopyInto(out *ObjectInitParameters) {
 			(*out)[key] = outVal
 		}
 	}
-	if in.SecretKey != nil {
-		in, out := &in.SecretKey, &out.SecretKey
-		*out = new(string)
-		**out = **in
-	}
-	if in.SecretKeyRef != nil {
-		in, out := &in.SecretKeyRef, &out.SecretKeyRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.SecretKeySelector != nil {
-		in, out := &in.SecretKeySelector, &out.SecretKeySelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Source != nil {
 		in, out := &in.Source, &out.Source
 		*out = new(string)
@@ -1300,11 +1255,6 @@ func (in *ObjectObservation) DeepCopyInto(out *ObjectObservation) {
 			(*out)[key] = outVal
 		}
 	}
-	if in.SecretKey != nil {
-		in, out := &in.SecretKey, &out.SecretKey
-		*out = new(string)
-		**out = **in
-	}
 	if in.Source != nil {
 		in, out := &in.Source, &out.Source
 		*out = new(string)
@@ -1436,20 +1386,10 @@ func (in *ObjectParameters) DeepCopyInto(out *ObjectParameters) {
 			(*out)[key] = outVal
 		}
 	}
-	if in.SecretKey != nil {
-		in, out := &in.SecretKey, &out.SecretKey
-		*out = new(string)
+	if in.SecretKeySecretRef != nil {
+		in, out := &in.SecretKeySecretRef, &out.SecretKeySecretRef
+		*out = new(v1.SecretKeySelector)
 		**out = **in
-	}
-	if in.SecretKeyRef != nil {
-		in, out := &in.SecretKeyRef, &out.SecretKeyRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.SecretKeySelector != nil {
-		in, out := &in.SecretKeySelector, &out.SecretKeySelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
 	}
 	if in.Source != nil {
 		in, out := &in.Source, &out.Source

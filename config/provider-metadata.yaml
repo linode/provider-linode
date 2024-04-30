@@ -1072,13 +1072,39 @@ resources:
                     }
                   ]
                 }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "external_pool_tags": [
+                    "${local.external_pool_tag}"
+                  ],
+                  "k8s_version": "1.28",
+                  "label": "my-cluster",
+                  "pool": [
+                    {
+                      "count": 1,
+                      "type": "g6-standard-1"
+                    }
+                  ],
+                  "region": "us-mia"
+                }
+              dependencies:
+                linode_lke_node_pool.my-pool: |-
+                    {
+                      "cluster_id": "${linode_lke_cluster.my-cluster.id}",
+                      "node_count": 3,
+                      "tags": [
+                        "${local.external_pool_tag}"
+                      ],
+                      "type": "g6-standard-2"
+                    }
         argumentDocs:
             api_endpoints: '- The endpoints for the Kubernetes API server.'
             autoscaler.max: '- (Required) The maximum number of nodes to autoscale to.'
             autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
             control_plane.high_availability: '- (Optional) Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.'
             dashboard_url: '- The Kubernetes Dashboard access URL for this cluster.'
-            external_pool_tags: '- (Optional) An array of tags indicating that node pools having those tags are defined with a separate linode_lke_node_pool resource, rather than inside the current cluster resource.'
+            external_pool_tags: '- (Optional) A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.'
             id: '- The ID of the cluster.'
             instance_id: '- The ID of the underlying Linode instance.'
             k8s_version: '- (Required) The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.'
@@ -1093,7 +1119,7 @@ resources:
         importStatements: []
     linode_lke_node_pool:
         subCategory: ""
-        description: Manages a Linode Node Pool.
+        description: Manages an LKE Node Pool.
         name: linode_lke_node_pool
         title: linode_lke_node_pool
         examples:
@@ -1116,6 +1142,34 @@ resources:
                   "cluster_id": 150003,
                   "type": "g6-standard-2"
                 }
+            - name: my-pool
+              manifest: |-
+                {
+                  "cluster_id": "${linode_lke_cluster.my-cluster.id}",
+                  "node_count": 3,
+                  "tags": [
+                    "${local.external_pool_tag}"
+                  ],
+                  "type": "g6-standard-2"
+                }
+              references:
+                cluster_id: linode_lke_cluster.my-cluster.id
+              dependencies:
+                linode_lke_cluster.my-cluster: |-
+                    {
+                      "external_pool_tags": [
+                        "${local.external_pool_tag}"
+                      ],
+                      "k8s_version": "1.28",
+                      "label": "my-cluster",
+                      "pool": [
+                        {
+                          "count": 1,
+                          "type": "g6-standard-1"
+                        }
+                      ],
+                      "region": "us-mia"
+                    }
         argumentDocs:
             autoscaler.max: '- (Required) The maximum number of nodes to autoscale to.'
             autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
@@ -1124,8 +1178,8 @@ resources:
             instance_id: '- The ID of the underlying Linode instance.'
             node_count: '- (Required; Optional with autoscaler) The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.'
             status: '- The status of the node. (ready, not_ready)'
-            tags: '- (Optional) An array of tags applied to the Node Pool. Tags are for organizational purposes only.'
-            type: '- (Required) A Linode Type for all of the nodes in the Node Pool. See all node types here.'
+            tags: '- (Optional) An array of tags applied to the Node Pool. Tags can be used to flag node pools as externally managed, see Externally Managed Node Pools for more details.'
+            type: '- (Required) A Linode Type for all nodes in the Node Pool. See all node types here.'
         importStatements: []
     linode_nodebalancer:
         subCategory: ""
@@ -1323,9 +1377,27 @@ resources:
                     {
                       "label": "image-access"
                     }
+            - name: mybucket
+              manifest: |-
+                {
+                  "cluster": "us-east-1",
+                  "label": "mybucket",
+                  "lifecycle_rule": [
+                    {}
+                  ]
+                }
+            - name: mybucket
+              manifest: |-
+                {
+                  "cluster": "us-east-1",
+                  "label": "mybucket",
+                  "lifecycle_rule": [
+                    {}
+                  ]
+                }
         argumentDocs:
             abort_incomplete_multipart_upload_days: '- (Optional) Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.'
-            access_key: '- (Optional) The access key to authenticate with.'
+            access_key: '- (Optional) The access key to authenticate with. If not specified with the resource, its value can be'
             acl: '- (Optional) The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.'
             certificate: '- (Required) The Base64 encoded and PEM formatted SSL certificate.'
             cluster: '- (Required) The cluster of the Linode Object Storage Bucket.'
@@ -1338,7 +1410,7 @@ resources:
             label: '- (Required) The label of the Linode Object Storage Bucket.'
             prefix: '- (Optional) The object key prefix identifying one or more objects to which the rule applies.'
             private_key: '- (Required) The private key associated with the TLS/SSL certificate.'
-            secret_key: '- (Optional) The secret key to authenticate with.'
+            secret_key: '- (Optional) The secret key to authenticate with. If not specified with the resource, its value can be'
             versioning: '- (Optional) Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)'
         importStatements: []
     linode_object_storage_key:
@@ -1396,8 +1468,24 @@ resources:
               references:
                 access_key: linode_object_storage_key.my_key.access_key
                 secret_key: linode_object_storage_key.my_key.secret_key
+            - name: object
+              manifest: |-
+                {
+                  "bucket": "my-bucket",
+                  "cluster": "us-east-1",
+                  "key": "my-object",
+                  "source": "${pathexpand(\"~/files/log.txt\")}"
+                }
+            - name: object
+              manifest: |-
+                {
+                  "bucket": "my-bucket",
+                  "cluster": "us-east-1",
+                  "key": "my-object",
+                  "source": "${pathexpand(\"~/files/log.txt\")}"
+                }
         argumentDocs:
-            access_key: '- (Required) The access key to authenticate with.'
+            access_key: '- (Optional) The REQUIRED access key to authenticate with. If it''s not specified with the resource, you must provide its value by'
             acl: '- (Optional) The canned ACL to apply. (private, public-read, authenticated-read, public-read-write, custom) (defaults to private).'
             bucket: '- (Required) The name of the bucket to put the object in.'
             cache_control: '- (Optional) Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.'
@@ -1413,7 +1501,7 @@ resources:
             force_destroy: '- (Optional) Allow the object to be deleted regardless of any legal hold or object lock (defaults to false).'
             key: '- (Required) They name of the object once it is in the bucket.'
             metadata: '- (Optional) A map of keys/values to provision metadata.'
-            secret_key: '- (Required) The secret key to authenitcate with.'
+            secret_key: '- (Optional) The REQUIRED secret key to authenticate with. If it''s not specified with the resource, you must provide its value by'
             source: '- (Optional, conflicts with content and content_base64) The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.'
             version_id: '- A unique version ID value for the object.'
             website_redirect: '- (Optional) Specifies a target URL for website redirect.'
