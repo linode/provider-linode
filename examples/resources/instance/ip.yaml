@@ -23,7 +23,7 @@ metadata:
   name: foo
 spec:
   forProvider:
-    image: linode/alpine3.12
+    image: linode/ubuntu22.04
     label: foobar-test
     region: us-east
     type: g6-nanode-1

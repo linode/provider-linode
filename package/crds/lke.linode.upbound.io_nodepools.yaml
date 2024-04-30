@@ -19,11 +19,11 @@ spec:
   scope: Cluster
   versions:
   - additionalPrinterColumns:
-    - jsonPath: .status.conditions[?(@.type=='Ready')].status
-      name: READY
-      type: string
     - jsonPath: .status.conditions[?(@.type=='Synced')].status
       name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
       type: string
     - jsonPath: .metadata.annotations.crossplane\.io/external-name
       name: EXTERNAL-NAME
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: NodePool is the Schema for the NodePools API. Manages a Linode
+        description: NodePool is the Schema for the NodePools API. Manages an LKE
           Node Pool.
         properties:
           apiVersion:
@@ -170,7 +170,7 @@ spec:
                     type: number
                   tags:
                     description: |-
-                      An array of tags applied to the Node Pool. Tags are for organizational purposes only.
+                      An array of tags applied to the Node Pool. Tags can be used to flag node pools as externally managed, see Externally Managed Node Pools for more details.
                       An array of tags applied to this object. Tags are for organizational purposes only.
                     items:
                       type: string
@@ -178,7 +178,7 @@ spec:
                     x-kubernetes-list-type: set
                   type:
                     description: |-
-                      A Linode Type for all of the nodes in the Node Pool. See all node types here.
+                      A Linode Type for all nodes in the Node Pool. See all node types here.
                       The type of node pool.
                     type: string
                 type: object
@@ -292,7 +292,7 @@ spec:
                     type: number
                   tags:
                     description: |-
-                      An array of tags applied to the Node Pool. Tags are for organizational purposes only.
+                      An array of tags applied to the Node Pool. Tags can be used to flag node pools as externally managed, see Externally Managed Node Pools for more details.
                       An array of tags applied to this object. Tags are for organizational purposes only.
                     items:
                       type: string
@@ -300,7 +300,7 @@ spec:
                     x-kubernetes-list-type: set
                   type:
                     description: |-
-                      A Linode Type for all of the nodes in the Node Pool. See all node types here.
+                      A Linode Type for all nodes in the Node Pool. See all node types here.
                       The type of node pool.
                     type: string
                 type: object
@@ -522,7 +522,7 @@ spec:
                     type: array
                   tags:
                     description: |-
-                      An array of tags applied to the Node Pool. Tags are for organizational purposes only.
+                      An array of tags applied to the Node Pool. Tags can be used to flag node pools as externally managed, see Externally Managed Node Pools for more details.
                       An array of tags applied to this object. Tags are for organizational purposes only.
                     items:
                       type: string
@@ -530,7 +530,7 @@ spec:
                     x-kubernetes-list-type: set
                   type:
                     description: |-
-                      A Linode Type for all of the nodes in the Node Pool. See all node types here.
+                      A Linode Type for all nodes in the Node Pool. See all node types here.
                       The type of node pool.
                     type: string
                 type: object
@@ -550,6 +550,13 @@ spec:
                         A Message containing details about this condition's last transition from
                         one status to another, if any.
                       type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
                     reason:
                       description: A Reason for this condition's last transition from
                         one status to another.
@@ -573,6 +580,13 @@ spec:
                 x-kubernetes-list-map-keys:
                 - type
                 x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
             type: object
         required:
         - spec

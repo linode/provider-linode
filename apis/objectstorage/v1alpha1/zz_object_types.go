@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -23,8 +19,8 @@ type ObjectInitParameters struct {
 	// The ACL config given to this object.
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
-	// The access key to authenticate with.
-	// The S3 access key with access to the target bucket.
+	// The REQUIRED access key to authenticate with. If it's not specified with the resource, you must provide its value by
+	// The REQUIRED S3 access key with access to the target bucket. If not specified with the resource, you must provide its value by configuring the obj_access_key, or, opting-in generating it implicitly at apply-time using obj_use_temp_keys at provider-level.
 	// +crossplane:generate:reference:type=Key
 	// +crossplane:generate:reference:refFieldName=AccessKeyRef
 	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
@@ -95,21 +91,6 @@ type ObjectInitParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// The secret key to authenitcate with.
-	// The S3 secret key with access to the target bucket.
-	// +crossplane:generate:reference:type=Key
-	// +crossplane:generate:reference:refFieldName=SecretKeyRef
-	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
-	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
-
-	// Reference to a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
-
-	// Selector for a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
-
 	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
 	// The source file to upload.
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
@@ -125,8 +106,8 @@ type ObjectObservation struct {
 	// The ACL config given to this object.
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
-	// The access key to authenticate with.
-	// The S3 access key with access to the target bucket.
+	// The REQUIRED access key to authenticate with. If it's not specified with the resource, you must provide its value by
+	// The REQUIRED S3 access key with access to the target bucket. If not specified with the resource, you must provide its value by configuring the obj_access_key, or, opting-in generating it implicitly at apply-time using obj_use_temp_keys at provider-level.
 	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
 
 	// The name of the bucket to put the object in.
@@ -188,10 +169,6 @@ type ObjectObservation struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// The secret key to authenitcate with.
-	// The S3 secret key with access to the target bucket.
-	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
-
 	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
 	// The source file to upload.
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
@@ -212,8 +189,8 @@ type ObjectParameters struct {
 	// +kubebuilder:validation:Optional
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
-	// The access key to authenticate with.
-	// The S3 access key with access to the target bucket.
+	// The REQUIRED access key to authenticate with. If it's not specified with the resource, you must provide its value by
+	// The REQUIRED S3 access key with access to the target bucket. If not specified with the resource, you must provide its value by configuring the obj_access_key, or, opting-in generating it implicitly at apply-time using obj_use_temp_keys at provider-level.
 	// +crossplane:generate:reference:type=Key
 	// +crossplane:generate:reference:refFieldName=AccessKeyRef
 	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
@@ -299,21 +276,10 @@ type ObjectParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// The secret key to authenitcate with.
-	// The S3 secret key with access to the target bucket.
-	// +crossplane:generate:reference:type=Key
-	// +crossplane:generate:reference:refFieldName=SecretKeyRef
-	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
+	// The REQUIRED secret key to authenticate with. If it's not specified with the resource, you must provide its value by
+	// The REQUIRED S3 secret key with access to the target bucket. If not specified with the resource, you must provide its value by configuring the obj_secret_key, or, opting-in generating it implicitly at apply-time using obj_use_temp_keys at provider-level.
 	// +kubebuilder:validation:Optional
-	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
-
-	// Reference to a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
-
-	// Selector for a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
+	SecretKeySecretRef *v1.SecretKeySelector `json:"secretKeySecretRef,omitempty" tf:"-"`
 
 	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
 	// The source file to upload.
@@ -354,8 +320,8 @@ type ObjectStatus struct {
 // +kubebuilder:storageversion
 
 // Object is the Schema for the Objects API. Manages a Linode Object Storage Object.
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -23,8 +19,8 @@ type BucketInitParameters struct {
 	// The Access Control Level of the bucket using a canned ACL string.
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
-	// The access key to authenticate with.
-	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
+	// The access key to authenticate with. If not specified with the resource, its value can be
+	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_access_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
 	// +crossplane:generate:reference:type=Key
 	// +crossplane:generate:reference:refFieldName=AccessKeyRef
 	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
@@ -56,21 +52,6 @@ type BucketInitParameters struct {
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleInitParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
-	// The secret key to authenticate with.
-	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
-	// +crossplane:generate:reference:type=Key
-	// +crossplane:generate:reference:refFieldName=SecretKeyRef
-	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
-	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
-
-	// Reference to a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
-
-	// Selector for a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
-
 	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
 	// Whether to enable versioning.
 	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`
@@ -82,8 +63,8 @@ type BucketObservation struct {
 	// The Access Control Level of the bucket using a canned ACL string.
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
-	// The access key to authenticate with.
-	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
+	// The access key to authenticate with. If not specified with the resource, its value can be
+	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_access_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
 	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
 
 	// The cert used by this Object Storage Bucket.
@@ -113,10 +94,6 @@ type BucketObservation struct {
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleObservation `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
-	// The secret key to authenticate with.
-	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
-	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
-
 	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
 	// Whether to enable versioning.
 	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`
@@ -129,8 +106,8 @@ type BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	ACL *string `json:"acl,omitempty" tf:"acl,omitempty"`
 
-	// The access key to authenticate with.
-	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning)
+	// The access key to authenticate with. If not specified with the resource, its value can be
+	// The S3 access key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_access_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
 	// +crossplane:generate:reference:type=Key
 	// +crossplane:generate:reference:refFieldName=AccessKeyRef
 	// +crossplane:generate:reference:selectorFieldName=AccessKeySelector
@@ -168,21 +145,10 @@ type BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	LifecycleRule []LifecycleRuleParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
-	// The secret key to authenticate with.
-	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning)
-	// +crossplane:generate:reference:type=Key
-	// +crossplane:generate:reference:refFieldName=SecretKeyRef
-	// +crossplane:generate:reference:selectorFieldName=SecretKeySelector
+	// The secret key to authenticate with. If not specified with the resource, its value can be
+	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_secret_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
 	// +kubebuilder:validation:Optional
-	SecretKey *string `json:"secretKey,omitempty" tf:"secret_key,omitempty"`
-
-	// Reference to a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeyRef *v1.Reference `json:"secretKeyRef,omitempty" tf:"-"`
-
-	// Selector for a Key to populate secretKey.
-	// +kubebuilder:validation:Optional
-	SecretKeySelector *v1.Selector `json:"secretKeySelector,omitempty" tf:"-"`
+	SecretKeySecretRef *v1.SecretKeySelector `json:"secretKeySecretRef,omitempty" tf:"-"`
 
 	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
 	// Whether to enable versioning.
@@ -404,8 +370,8 @@ type BucketStatus struct {
 // +kubebuilder:storageversion
 
 // Bucket is the Schema for the Buckets API. Manages a Linode Object Storage Bucket.
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,linode}

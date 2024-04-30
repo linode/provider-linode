@@ -28,6 +28,8 @@ var terraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"linode_instance_shared_ips": config.IdentifierFromProvider,
 	"linode_instance_disk":       config.IdentifierFromProvider,
 	"linode_lke_node_pool":       config.IdentifierFromProvider,
+	"linode_nodebalancer_config": config.IdentifierFromProvider,
+	"linode_image":               config.IdentifierFromProvider,
 }
 
 // terraformSDKIncludeList contains all external name configurations
@@ -41,12 +43,10 @@ var terraformSDKIncludeList = map[string]config.ExternalName{
 	"linode_domain":                   config.IdentifierFromProvider,
 	"linode_domain_record":            config.IdentifierFromProvider,
 	"linode_firewall":                 config.IdentifierFromProvider,
-	"linode_image":                    config.IdentifierFromProvider,
 	"linode_instance":                 config.IdentifierFromProvider,
 	"linode_instance_config":          config.IdentifierFromProvider,
 	"linode_lke_cluster":              config.IdentifierFromProvider,
 	"linode_nodebalancer_node":        config.IdentifierFromProvider,
-	"linode_nodebalancer_config":      config.IdentifierFromProvider,
 	"linode_object_storage_bucket":    config.IdentifierFromProvider,
 	"linode_object_storage_object":    config.IdentifierFromProvider,
 	"linode_user":                     config.IdentifierFromProvider,

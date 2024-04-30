@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -25,7 +21,7 @@ func (mg *Bucket) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Bucket
 func (tr *Bucket) GetConnectionDetailsMapping() map[string]string {
-	return nil
+	return map[string]string{"secret_key": "spec.forProvider.secretKeySecretRef"}
 }
 
 // GetObservation of this Bucket

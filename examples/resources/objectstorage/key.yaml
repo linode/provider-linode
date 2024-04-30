@@ -1,13 +1,12 @@
----
 apiVersion: objectstorage.linode.upbound.io/v1alpha1
 kind: Key
 metadata:
-  name: test-registry-key
+  name: test-foo-key
 spec:
   forProvider:
-    label:  test-registry-key
+    label:  test-foo-key
   providerConfigRef:
     name: default
   writeConnectionSecretToRef:
-    name: access-key
+    name: access-foo-key
     namespace: default

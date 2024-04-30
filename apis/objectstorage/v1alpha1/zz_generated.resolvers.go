@@ -36,22 +36,6 @@ func (mg *Bucket) ResolveReferences(ctx context.Context, c client.Reader) error 
 	mg.Spec.ForProvider.AccessKeyRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SecretKey),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.SecretKeyRef,
-		Selector:     mg.Spec.ForProvider.SecretKeySelector,
-		To: reference.To{
-			List:    &KeyList{},
-			Managed: &Key{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.SecretKey")
-	}
-	mg.Spec.ForProvider.SecretKey = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.SecretKeyRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.AccessKey),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.InitProvider.AccessKeyRef,
@@ -66,22 +50,6 @@ func (mg *Bucket) ResolveReferences(ctx context.Context, c client.Reader) error 
 	}
 	mg.Spec.InitProvider.AccessKey = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.AccessKeyRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.SecretKey),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.InitProvider.SecretKeyRef,
-		Selector:     mg.Spec.InitProvider.SecretKeySelector,
-		To: reference.To{
-			List:    &KeyList{},
-			Managed: &Key{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.SecretKey")
-	}
-	mg.Spec.InitProvider.SecretKey = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.SecretKeyRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -110,22 +78,6 @@ func (mg *Object) ResolveReferences(ctx context.Context, c client.Reader) error 
 	mg.Spec.ForProvider.AccessKeyRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.SecretKey),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.SecretKeyRef,
-		Selector:     mg.Spec.ForProvider.SecretKeySelector,
-		To: reference.To{
-			List:    &KeyList{},
-			Managed: &Key{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.SecretKey")
-	}
-	mg.Spec.ForProvider.SecretKey = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.SecretKeyRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.AccessKey),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.InitProvider.AccessKeyRef,
@@ -140,22 +92,6 @@ func (mg *Object) ResolveReferences(ctx context.Context, c client.Reader) error 
 	}
 	mg.Spec.InitProvider.AccessKey = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.InitProvider.AccessKeyRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.SecretKey),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.InitProvider.SecretKeyRef,
-		Selector:     mg.Spec.InitProvider.SecretKeySelector,
-		To: reference.To{
-			List:    &KeyList{},
-			Managed: &Key{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.SecretKey")
-	}
-	mg.Spec.InitProvider.SecretKey = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.SecretKeyRef = rsp.ResolvedReference
 
 	return nil
 }
