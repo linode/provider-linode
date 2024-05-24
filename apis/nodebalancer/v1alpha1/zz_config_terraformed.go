@@ -21,7 +21,7 @@ func (mg *Config) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Config
 func (tr *Config) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"ssl_cert": "spec.forProvider.sslCertSecretRef", "ssl_key": "spec.forProvider.sslKeySecretRef"}
+	return map[string]string{"ssl_cert": "sslCertSecretRef", "ssl_key": "sslKeySecretRef"}
 }
 
 // GetObservation of this Config

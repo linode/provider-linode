@@ -358,9 +358,15 @@ type DiskInitParameters struct {
 	// If true, this Disk is read-only.
 	ReadOnly *bool `json:"readOnly,omitempty" tf:"read_only,omitempty"`
 
+	// The initial password for the root user account. This value can not be imported.
+	// The password that will be initialially assigned to the 'root' user account.
+	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
+
 	// The size of the Disk in MB.
 	// The size of the Disk in MB.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+
+	StackscriptData map[string]*string `json:"stackscriptDataSecretRef,omitempty" tf:"-"`
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.
@@ -634,10 +640,16 @@ type InstanceInitParameters struct {
 	// If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined. This is an irreversible action as Linode disks cannot be automatically downsized.
 	ResizeDisk *bool `json:"resizeDisk,omitempty" tf:"resize_disk,omitempty"`
 
+	// The initial password for the root user account. This value can not be imported.
+	// The password that will be initially assigned to the 'root' user account.
+	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
+
 	// A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.
 	// A set of IPv4 addresses to share with this Linode.
 	// +listType=set
 	SharedIPv4 []*string `json:"sharedIpv4,omitempty" tf:"shared_ipv4,omitempty"`
+
+	StackscriptData map[string]*string `json:"stackscriptDataSecretRef,omitempty" tf:"-"`
 
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
 	// The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript.

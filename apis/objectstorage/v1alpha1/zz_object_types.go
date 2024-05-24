@@ -91,6 +91,10 @@ type ObjectInitParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// The REQUIRED secret key to authenticate with. If it's not specified with the resource, you must provide its value by
+	// The REQUIRED S3 secret key with access to the target bucket. If not specified with the resource, you must provide its value by configuring the obj_secret_key, or, opting-in generating it implicitly at apply-time using obj_use_temp_keys at provider-level.
+	SecretKeySecretRef *v1.SecretKeySelector `json:"secretKeySecretRef,omitempty" tf:"-"`
+
 	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
 	// The source file to upload.
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`

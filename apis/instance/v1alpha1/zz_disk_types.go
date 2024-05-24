@@ -50,9 +50,15 @@ type DiskInitParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
+	// The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)
+	// This sets the root user's password on a newly-created Linode Disk when deploying from an Image.
+	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
+
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
 	// The ID of the token.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+
+	StackscriptData map[string]*string `json:"stackscriptDataSecretRef,omitempty" tf:"-"`
 
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)
 	// A StackScript ID that will cause the referenced StackScript to be run during deployment of this Linode.

@@ -1252,11 +1252,34 @@ spec:
                             If true, this Disk is read-only.
                             If true, this Disk is read-only.
                           type: boolean
+                        rootPassSecretRef:
+                          description: |-
+                            The initial password for the root user account. This value can not be imported.
+                            The password that will be initialially assigned to the 'root' user account.
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
                         size:
                           description: |-
                             The size of the Disk in MB.
                             The size of the Disk in MB.
                           type: number
+                        stackscriptDataSecretRef:
+                          additionalProperties:
+                            type: string
+                          type: object
                         stackscriptId:
                           description: |-
                             The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing
@@ -1373,6 +1396,25 @@ spec:
                       If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined. This is an irreversible action as Linode disks cannot be automatically downsized.
                       If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined. This is an irreversible action as Linode disks cannot be automatically downsized.
                     type: boolean
+                  rootPassSecretRef:
+                    description: |-
+                      The initial password for the root user account. This value can not be imported.
+                      The password that will be initially assigned to the 'root' user account.
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
                   sharedIpv4:
                     description: |-
                       A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.
@@ -1381,6 +1423,10 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  stackscriptDataSecretRef:
+                    additionalProperties:
+                      type: string
+                    type: object
                   stackscriptId:
                     description: |-
                       The StackScript to deploy to the newly created Linode. If provided, 'image' must also be provided, and must be an Image that is compatible with this StackScript. This value can not be imported. Changing

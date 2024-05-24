@@ -75,6 +75,14 @@ type ConfigInitParameters struct {
 	// The version of ProxyProtocol to use for the underlying NodeBalancer. This requires protocol to be `tcp`. Valid values are `none`, `v1`, and `v2`.
 	ProxyProtocol *string `json:"proxyProtocol,omitempty" tf:"proxy_protocol,omitempty"`
 
+	// The certificate this port is serving. This is not returned. If set, this field will come back as <REDACTED>. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
+	// The certificate this port is serving. This is not returned. If set, this field will come back as `<REDACTED>`. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
+	SSLCertSecretRef *v1.SecretKeySelector `json:"sslCertSecretRef,omitempty" tf:"-"`
+
+	// The private key corresponding to this port's certificate. This is not returned. If set, this field will come back as <REDACTED>. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
+	// The private key corresponding to this port's certificate. This is not returned. If set, this field will come back as `<REDACTED>`. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.
+	SSLKeySecretRef *v1.SecretKeySelector `json:"sslKeySecretRef,omitempty" tf:"-"`
+
 	// Controls how session stickiness is handled on this port. (none, table, http_cookie)
 	// Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`

@@ -21,7 +21,7 @@ func (mg *Disk) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Disk
 func (tr *Disk) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"root_pass": "spec.forProvider.rootPassSecretRef", "stackscript_data": "spec.forProvider.stackscriptDataSecretRef"}
+	return map[string]string{"root_pass": "rootPassSecretRef", "stackscript_data": "stackscriptDataSecretRef"}
 }
 
 // GetObservation of this Disk
