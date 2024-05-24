@@ -9,6 +9,8 @@ import (
 	"encoding/json"
 
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
+	"github.com/go-resty/resty/v2"
+
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/types"
@@ -18,7 +20,7 @@ import (
 	terraformsdk "github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
 	"github.com/linode/provider-linode/apis/v1beta1"
-
+	"github.com/linode/provider-linode/internal/metrics"
 	"github.com/linode/terraform-provider-linode/v2/linode"
 	"github.com/linode/terraform-provider-linode/v2/linode/helper"
 	"github.com/linode/terraform-provider-linode/v2/version"
@@ -108,8 +110,15 @@ func configureNoForkLinodeclient(ctx context.Context, ps *terraform.Setup, p sch
 	}
 
 	ps.Meta = p.Meta()
-
+	p.Meta().(*helper.ProviderMeta).Client.SetUserAgent("crossplane-provider-linode")
+	p.Meta().(*helper.ProviderMeta).Client.OnBeforeRequest(apiCallCounterMiddleware)
 	fwProvider := linode.CreateFrameworkProviderWithMeta(version.ProviderVersion, p.Meta().(*helper.ProviderMeta))
+
 	ps.FrameworkProvider = fwProvider
+	return nil
+}
+
+func apiCallCounterMiddleware(r *resty.Request) error {
+	metrics.IncLinodeAPICall(r.URL, r.Method)
 	return nil
 }

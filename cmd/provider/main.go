@@ -36,6 +36,7 @@ import (
 	"github.com/linode/provider-linode/internal/clients"
 	"github.com/linode/provider-linode/internal/controller"
 	"github.com/linode/provider-linode/internal/features"
+	linodemetrics "github.com/linode/provider-linode/internal/metrics"
 )
 
 func main() {
@@ -72,6 +73,7 @@ func main() {
 
 	cfg, err := ctrl.GetConfig()
 	kingpin.FatalIfError(err, "Cannot get API server rest config")
+	kingpin.FatalIfError(linodemetrics.SetupMetrics(), "Cannot setup Linode metrics hook")
 
 	mgr, err := ctrl.NewManager(ratelimiter.LimitRESTConfig(cfg, *maxReconcileRate), ctrl.Options{
 		LeaderElection:   *leaderElection,
