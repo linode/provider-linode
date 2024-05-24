@@ -21,6 +21,7 @@ import (
 
 	"github.com/linode/provider-linode/apis/v1beta1"
 	"github.com/linode/provider-linode/internal/metrics"
+
 	"github.com/linode/terraform-provider-linode/v2/linode"
 	"github.com/linode/terraform-provider-linode/v2/linode/helper"
 	"github.com/linode/terraform-provider-linode/v2/version"
