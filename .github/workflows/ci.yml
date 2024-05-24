@@ -70,7 +70,7 @@ jobs:
           restore-keys: ${{ runner.os }}-build-lint-
 
       - name: Vendor Dependencies
-        run: make vendor vendor.check
+        run: make go.vendor go.vendor.check
 
       # We could run 'make lint' but we prefer this action because it leaves
       # 'annotations' (i.e. it comments on PRs to point out linter violations).
@@ -112,7 +112,7 @@ jobs:
           restore-keys: ${{ runner.os }}-build-check-diff-
 
       - name: Vendor Dependencies
-        run: make vendor vendor.check
+        run: make go.vendor go.vendor.check
 
       - name: Check Diff
         id: check-diff
@@ -154,7 +154,7 @@ jobs:
           restore-keys: ${{ runner.os }}-build-unit-tests-
 
       - name: Vendor Dependencies
-        run: make vendor vendor.check
+        run: make go.vendor go.vendor.check
 
       - name: Run Unit Tests
         run: make -j2 test
@@ -193,7 +193,7 @@ jobs:
           restore-keys: ${{ runner.os }}-build-local-deploy-
       
       - name: Vendor Dependencies
-        run: make vendor vendor.check
+        run: make go.vendor go.vendor.check
      
       - name:  Deploying locally built provider package
         run: make local-deploy
@@ -248,7 +248,7 @@ jobs:
           restore-keys: ${{ runner.os }}-build-publish-artifacts-
 
       - name: Vendor Dependencies
-        run: make vendor vendor.check
+        run: make go.vendor go.vendor.check
 
       - name: Build Artifacts
         run: make -j2 build.all
