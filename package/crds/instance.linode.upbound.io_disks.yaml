@@ -427,11 +427,34 @@ spec:
                             type: string
                         type: object
                     type: object
+                  rootPassSecretRef:
+                    description: |-
+                      The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)
+                      This sets the root user's password on a newly-created Linode Disk when deploying from an Image.
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
                   size:
                     description: |-
                       The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
                       The ID of the token.
                     type: number
+                  stackscriptDataSecretRef:
+                    additionalProperties:
+                      type: string
+                    type: object
                   stackscriptId:
                     description: |-
                       A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)

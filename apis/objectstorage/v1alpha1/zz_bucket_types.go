@@ -52,6 +52,10 @@ type BucketInitParameters struct {
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleInitParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
+	// The secret key to authenticate with. If not specified with the resource, its value can be
+	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_secret_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
+	SecretKeySecretRef *v1.SecretKeySelector `json:"secretKeySecretRef,omitempty" tf:"-"`
+
 	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
 	// Whether to enable versioning.
 	Versioning *bool `json:"versioning,omitempty" tf:"versioning,omitempty"`

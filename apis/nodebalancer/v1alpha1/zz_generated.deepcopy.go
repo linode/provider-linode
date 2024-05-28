@@ -118,6 +118,16 @@ func (in *ConfigInitParameters) DeepCopyInto(out *ConfigInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SSLCertSecretRef != nil {
+		in, out := &in.SSLCertSecretRef, &out.SSLCertSecretRef
+		*out = new(v1.SecretKeySelector)
+		**out = **in
+	}
+	if in.SSLKeySecretRef != nil {
+		in, out := &in.SSLKeySecretRef, &out.SSLKeySecretRef
+		*out = new(v1.SecretKeySelector)
+		**out = **in
+	}
 	if in.Stickiness != nil {
 		in, out := &in.Stickiness, &out.Stickiness
 		*out = new(string)

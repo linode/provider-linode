@@ -2528,10 +2528,31 @@ func (in *DiskInitParameters) DeepCopyInto(out *DiskInitParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.RootPassSecretRef != nil {
+		in, out := &in.RootPassSecretRef, &out.RootPassSecretRef
+		*out = new(v1.SecretKeySelector)
+		**out = **in
+	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
 		*out = new(float64)
 		**out = **in
+	}
+	if in.StackscriptData != nil {
+		in, out := &in.StackscriptData, &out.StackscriptData
+		*out = make(map[string]*string, len(*in))
+		for key, val := range *in {
+			var outVal *string
+			if val == nil {
+				(*out)[key] = nil
+			} else {
+				inVal := (*in)[key]
+				in, out := &inVal, &outVal
+				*out = new(string)
+				**out = **in
+			}
+			(*out)[key] = outVal
+		}
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
@@ -2605,10 +2626,31 @@ func (in *DiskInitParameters_2) DeepCopyInto(out *DiskInitParameters_2) {
 		*out = new(v1.Selector)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.RootPassSecretRef != nil {
+		in, out := &in.RootPassSecretRef, &out.RootPassSecretRef
+		*out = new(v1.SecretKeySelector)
+		**out = **in
+	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
 		*out = new(float64)
 		**out = **in
+	}
+	if in.StackscriptData != nil {
+		in, out := &in.StackscriptData, &out.StackscriptData
+		*out = make(map[string]*string, len(*in))
+		for key, val := range *in {
+			var outVal *string
+			if val == nil {
+				(*out)[key] = nil
+			} else {
+				inVal := (*in)[key]
+				in, out := &inVal, &outVal
+				*out = new(string)
+				**out = **in
+			}
+			(*out)[key] = outVal
+		}
 	}
 	if in.StackscriptID != nil {
 		in, out := &in.StackscriptID, &out.StackscriptID
@@ -3660,6 +3702,11 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.RootPassSecretRef != nil {
+		in, out := &in.RootPassSecretRef, &out.RootPassSecretRef
+		*out = new(v1.SecretKeySelector)
+		**out = **in
+	}
 	if in.SharedIPv4 != nil {
 		in, out := &in.SharedIPv4, &out.SharedIPv4
 		*out = make([]*string, len(*in))
@@ -3669,6 +3716,22 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 				*out = new(string)
 				**out = **in
 			}
+		}
+	}
+	if in.StackscriptData != nil {
+		in, out := &in.StackscriptData, &out.StackscriptData
+		*out = make(map[string]*string, len(*in))
+		for key, val := range *in {
+			var outVal *string
+			if val == nil {
+				(*out)[key] = nil
+			} else {
+				inVal := (*in)[key]
+				in, out := &inVal, &outVal
+				*out = new(string)
+				**out = **in
+			}
+			(*out)[key] = outVal
 		}
 	}
 	if in.StackscriptID != nil {

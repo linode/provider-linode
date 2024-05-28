@@ -182,6 +182,11 @@ func (in *BucketInitParameters) DeepCopyInto(out *BucketInitParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.SecretKeySecretRef != nil {
+		in, out := &in.SecretKeySecretRef, &out.SecretKeySecretRef
+		*out = new(v1.SecretKeySelector)
+		**out = **in
+	}
 	if in.Versioning != nil {
 		in, out := &in.Versioning, &out.Versioning
 		*out = new(bool)
@@ -1101,6 +1106,11 @@ func (in *ObjectInitParameters) DeepCopyInto(out *ObjectInitParameters) {
 			}
 			(*out)[key] = outVal
 		}
+	}
+	if in.SecretKeySecretRef != nil {
+		in, out := &in.SecretKeySecretRef, &out.SecretKeySecretRef
+		*out = new(v1.SecretKeySelector)
+		**out = **in
 	}
 	if in.Source != nil {
 		in, out := &in.Source, &out.Source
