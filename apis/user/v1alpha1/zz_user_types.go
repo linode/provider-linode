@@ -522,6 +522,10 @@ type UserObservation struct {
 	// If the User has Two Factor Authentication (TFA) enabled.
 	TfaEnabled *bool `json:"tfaEnabled,omitempty" tf:"tfa_enabled,omitempty"`
 
+	// The type of this user.
+	// The type of this user.
+	UserType *string `json:"userType,omitempty" tf:"user_type,omitempty"`
+
 	// The username of the user.
 	// The username of the user.
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`

@@ -1004,6 +1004,11 @@ func (in *UserObservation) DeepCopyInto(out *UserObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.UserType != nil {
+		in, out := &in.UserType, &out.UserType
+		*out = new(string)
+		**out = **in
+	}
 	if in.Username != nil {
 		in, out := &in.Username, &out.Username
 		*out = new(string)

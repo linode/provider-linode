@@ -77,6 +77,40 @@ spec:
                     description: Defines settings for the Kubernetes Control Plane.
                     items:
                       properties:
+                        acl:
+                          description: Defines the ACL configuration for an LKE cluster's
+                            control plane.
+                          items:
+                            properties:
+                              addresses:
+                                description: A list of ip addresses to allow.
+                                items:
+                                  properties:
+                                    ipv4:
+                                      description: |-
+                                        A set of individual ipv4 addresses or CIDRs to ALLOW.
+                                        A set of individual ipv4 addresses or CIDRs to ALLOW.
+                                      items:
+                                        type: string
+                                      type: array
+                                      x-kubernetes-list-type: set
+                                    ipv6:
+                                      description: |-
+                                        A set of individual ipv6 addresses or CIDRs to ALLOW.
+                                        A set of individual ipv6 addresses or CIDRs to ALLOW.
+                                      items:
+                                        type: string
+                                      type: array
+                                      x-kubernetes-list-type: set
+                                  type: object
+                                type: array
+                              enabled:
+                                description: |-
+                                  Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+                                  Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+                                type: boolean
+                            type: object
+                          type: array
                         highAvailability:
                           description: |-
                             Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
@@ -168,6 +202,40 @@ spec:
                     description: Defines settings for the Kubernetes Control Plane.
                     items:
                       properties:
+                        acl:
+                          description: Defines the ACL configuration for an LKE cluster's
+                            control plane.
+                          items:
+                            properties:
+                              addresses:
+                                description: A list of ip addresses to allow.
+                                items:
+                                  properties:
+                                    ipv4:
+                                      description: |-
+                                        A set of individual ipv4 addresses or CIDRs to ALLOW.
+                                        A set of individual ipv4 addresses or CIDRs to ALLOW.
+                                      items:
+                                        type: string
+                                      type: array
+                                      x-kubernetes-list-type: set
+                                    ipv6:
+                                      description: |-
+                                        A set of individual ipv6 addresses or CIDRs to ALLOW.
+                                        A set of individual ipv6 addresses or CIDRs to ALLOW.
+                                      items:
+                                        type: string
+                                      type: array
+                                      x-kubernetes-list-type: set
+                                  type: object
+                                type: array
+                              enabled:
+                                description: |-
+                                  Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+                                  Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+                                type: boolean
+                            type: object
+                          type: array
                         highAvailability:
                           description: |-
                             Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
@@ -442,6 +510,40 @@ spec:
                     description: Defines settings for the Kubernetes Control Plane.
                     items:
                       properties:
+                        acl:
+                          description: Defines the ACL configuration for an LKE cluster's
+                            control plane.
+                          items:
+                            properties:
+                              addresses:
+                                description: A list of ip addresses to allow.
+                                items:
+                                  properties:
+                                    ipv4:
+                                      description: |-
+                                        A set of individual ipv4 addresses or CIDRs to ALLOW.
+                                        A set of individual ipv4 addresses or CIDRs to ALLOW.
+                                      items:
+                                        type: string
+                                      type: array
+                                      x-kubernetes-list-type: set
+                                    ipv6:
+                                      description: |-
+                                        A set of individual ipv6 addresses or CIDRs to ALLOW.
+                                        A set of individual ipv6 addresses or CIDRs to ALLOW.
+                                      items:
+                                        type: string
+                                      type: array
+                                      x-kubernetes-list-type: set
+                                  type: object
+                                type: array
+                              enabled:
+                                description: |-
+                                  Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+                                  Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+                                type: boolean
+                            type: object
+                          type: array
                         highAvailability:
                           description: |-
                             Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.

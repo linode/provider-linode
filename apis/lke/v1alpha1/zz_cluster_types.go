@@ -13,6 +13,79 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type ACLInitParameters struct {
+
+	// A list of ip addresses to allow.
+	Addresses []AddressesInitParameters `json:"addresses,omitempty" tf:"addresses,omitempty"`
+
+	// Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+	// Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type ACLObservation struct {
+
+	// A list of ip addresses to allow.
+	Addresses []AddressesObservation `json:"addresses,omitempty" tf:"addresses,omitempty"`
+
+	// Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+	// Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type ACLParameters struct {
+
+	// A list of ip addresses to allow.
+	// +kubebuilder:validation:Optional
+	Addresses []AddressesParameters `json:"addresses,omitempty" tf:"addresses,omitempty"`
+
+	// Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+	// Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type AddressesInitParameters struct {
+
+	// A set of individual ipv4 addresses or CIDRs to ALLOW.
+	// A set of individual ipv4 addresses or CIDRs to ALLOW.
+	// +listType=set
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// A set of individual ipv6 addresses or CIDRs to ALLOW.
+	// A set of individual ipv6 addresses or CIDRs to ALLOW.
+	// +listType=set
+	IPv6 []*string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+}
+
+type AddressesObservation struct {
+
+	// A set of individual ipv4 addresses or CIDRs to ALLOW.
+	// A set of individual ipv4 addresses or CIDRs to ALLOW.
+	// +listType=set
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// A set of individual ipv6 addresses or CIDRs to ALLOW.
+	// A set of individual ipv6 addresses or CIDRs to ALLOW.
+	// +listType=set
+	IPv6 []*string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+}
+
+type AddressesParameters struct {
+
+	// A set of individual ipv4 addresses or CIDRs to ALLOW.
+	// A set of individual ipv4 addresses or CIDRs to ALLOW.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// A set of individual ipv6 addresses or CIDRs to ALLOW.
+	// A set of individual ipv6 addresses or CIDRs to ALLOW.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	IPv6 []*string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+}
+
 type AutoscalerInitParameters struct {
 
 	// The maximum number of nodes to autoscale to.
@@ -168,6 +241,9 @@ type ClusterParameters struct {
 
 type ControlPlaneInitParameters struct {
 
+	// Defines the ACL configuration for an LKE cluster's control plane.
+	ACL []ACLInitParameters `json:"acl,omitempty" tf:"acl,omitempty"`
+
 	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
 	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.
 	HighAvailability *bool `json:"highAvailability,omitempty" tf:"high_availability,omitempty"`
@@ -175,12 +251,19 @@ type ControlPlaneInitParameters struct {
 
 type ControlPlaneObservation struct {
 
+	// Defines the ACL configuration for an LKE cluster's control plane.
+	ACL []ACLObservation `json:"acl,omitempty" tf:"acl,omitempty"`
+
 	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
 	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.
 	HighAvailability *bool `json:"highAvailability,omitempty" tf:"high_availability,omitempty"`
 }
 
 type ControlPlaneParameters struct {
+
+	// Defines the ACL configuration for an LKE cluster's control plane.
+	// +kubebuilder:validation:Optional
+	ACL []ACLParameters `json:"acl,omitempty" tf:"acl,omitempty"`
 
 	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
 	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.

@@ -1048,6 +1048,42 @@ resources:
                     "prod"
                   ]
                 }
+            - name: test
+              manifest: |-
+                {
+                  "control_plane": [
+                    {
+                      "acl": [
+                        {
+                          "addresses": [
+                            {
+                              "ipv4": [
+                                "0.0.0.0/0"
+                              ],
+                              "ipv6": [
+                                "2001:db8::/32"
+                              ]
+                            }
+                          ],
+                          "enabled": true
+                        }
+                      ],
+                      "high_availability": true
+                    }
+                  ],
+                  "k8s_version": "1.28",
+                  "label": "my-cluster",
+                  "pool": [
+                    {
+                      "count": 1,
+                      "type": "g6-standard-2"
+                    }
+                  ],
+                  "region": "us-central",
+                  "tags": [
+                    "prod"
+                  ]
+                }
             - name: my-cluster
               manifest: |-
                 {
@@ -1099,6 +1135,9 @@ resources:
                       "type": "g6-standard-2"
                     }
         argumentDocs:
+            acl.enabled: '- (Optional) Defines default policy. A value of true results in a default policy of DENY. A value of false results in default policy of ALLOW, and has the same effect as delete the ACL configuration.'
+            addresses.ipv4: '- (Optional) A set of individual ipv4 addresses or CIDRs to ALLOW.'
+            addresses.ipv6: '- (Optional) A set of individual ipv6 addresses or CIDRs to ALLOW.'
             api_endpoints: '- The endpoints for the Kubernetes API server.'
             autoscaler.max: '- (Required) The maximum number of nodes to autoscale to.'
             autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
@@ -1719,6 +1758,7 @@ resources:
             ssh_keys: '- A list of the User''s SSH keys.'
             stackscript_grant: '- (optional) The StackScripts the user has permissions access to.'
             tfa_enabled: '- Whether the user has two-factor-authentication enabled.'
+            user_type: '- The type of this user.'
             username: '- (required) The username of the user.'
             volume_grant: '- (optional) The volumes the user has permissions access to.'
         importStatements: []
