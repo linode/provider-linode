@@ -932,6 +932,11 @@ spec:
                       Whether the user has two-factor-authentication enabled.
                       If the User has Two Factor Authentication (TFA) enabled.
                     type: boolean
+                  userType:
+                    description: |-
+                      The type of this user.
+                      The type of this user.
+                    type: string
                   username:
                     description: |-
                       The username of the user.

@@ -1,24 +1,46 @@
 package metrics
 
 import (
+	"time"
+
 	"github.com/prometheus/client_golang/prometheus"
 
 	k8smetrics "sigs.k8s.io/controller-runtime/pkg/metrics"
 )
 
 var (
-	metricsLinodeApiCalls = prometheus.NewCounterVec(prometheus.CounterOpts{
-		Name: "linode_api_calls_total",
-		Help: "Number of API calls to the Linode API",
-	}, []string{"url", "method"})
+	metricsLinodeApiResponseCodesTotal = prometheus.NewCounterVec(prometheus.CounterOpts{
+		Name: "linode_api_responses_total",
+		Help: "Number of Linode API responses by return code and first 5 digits of the token",
+	}, []string{"service", "method", "code", "account"})
+
+	metricsLinodeApiResponseCodesLast5m = prometheus.NewCounterVec(prometheus.CounterOpts{
+		Name: "linode_api_responses_last_5m",
+		Help: "Number of Linode API responses by return code and first 5 digits of the token",
+	}, []string{"service", "method", "code", "account"})
 )
 
 // SetupMetrics will register the known Prometheus metrics with controller-runtime's metrics registry
 func SetupMetrics() error {
-	return k8smetrics.Registry.Register(metricsLinodeApiCalls)
+	k8smetrics.Registry.MustRegister(
+		metricsLinodeApiResponseCodesTotal,
+		metricsLinodeApiResponseCodesLast5m,
+	)
+
+	go func() {
+		// Reset the counters every 5 minutes
+		ticker := time.NewTicker(5 * time.Minute)
+		for range ticker.C {
+			metricsLinodeApiResponseCodesLast5m.Reset()
+		}
+	}()
+
+	return nil
 }
 
-// IncLinodeAPICall will increment the linode_api_calls_total metric for the specified service, operation, and apiVersion tuple
-func IncLinodeAPICall(url, method string) {
-	metricsLinodeApiCalls.WithLabelValues(url, method).Inc()
+// IncLinodeAPIResp will increment the linode_api_responses_total metric for the specified service, operation, and responseCode tuple
+func IncLinodeAPIResp(service, method, code, account string) error {
+	metricsLinodeApiResponseCodesLast5m.WithLabelValues(service, method, code, account).Inc()
+	metricsLinodeApiResponseCodesTotal.WithLabelValues(service, method, code, account).Inc()
+	return nil
 }

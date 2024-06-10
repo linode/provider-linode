@@ -7,6 +7,10 @@ package clients
 import (
 	"context"
 	"encoding/json"
+	"fmt"
+	"net/url"
+	"strconv"
+	"strings"
 
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
 	"github.com/go-resty/resty/v2"
@@ -112,14 +116,25 @@ func configureNoForkLinodeclient(ctx context.Context, ps *terraform.Setup, p sch
 
 	ps.Meta = p.Meta()
 	p.Meta().(*helper.ProviderMeta).Client.SetUserAgent("crossplane-provider-linode")
-	p.Meta().(*helper.ProviderMeta).Client.OnBeforeRequest(apiCallCounterMiddleware)
+	p.Meta().(*helper.ProviderMeta).Client.OnAfterResponse(apiResponseCounterMiddleware)
 	fwProvider := linode.CreateFrameworkProviderWithMeta(version.ProviderVersion, p.Meta().(*helper.ProviderMeta))
-
 	ps.FrameworkProvider = fwProvider
 	return nil
 }
 
-func apiCallCounterMiddleware(r *resty.Request) error {
-	metrics.IncLinodeAPICall(r.URL, r.Method)
-	return nil
+func apiResponseCounterMiddleware(r *resty.Response) error {
+	url, err := url.ParseRequestURI(r.Request.URL)
+	if err != nil {
+		return err
+	}
+	urlParts := strings.Split(strings.TrimLeft(url.Path, "/"), "/")
+	service := ""
+	if _, err := strconv.Atoi(urlParts[len(urlParts)-1]); err == nil {
+		// if the last part is a integer, we want the piece in front of it.
+		service = urlParts[len(urlParts)-2]
+	} else {
+		service = urlParts[len(urlParts)-1]
+	}
+	apiToken := strings.TrimPrefix(r.Request.Header.Get("Authorization"), "Bearer ")
+	return metrics.IncLinodeAPIResp(service, r.Request.Method, fmt.Sprintf("%d", r.StatusCode()), apiToken[:5])
 }
