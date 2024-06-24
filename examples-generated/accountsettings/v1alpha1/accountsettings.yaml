@@ -1,0 +1,12 @@
+apiVersion: accountsettings.linode.upbound.io/v1alpha1
+kind: AccountSettings
+metadata:
+  annotations:
+    meta.upbound.io/example-id: accountsettings/v1alpha1/accountsettings
+  labels:
+    testing.upbound.io/example-name: myaccount
+  name: myaccount
+spec:
+  forProvider:
+    backupsEnabled: "true"
+    longviewSubscription: longview-40

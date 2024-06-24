@@ -8,5 +8,8 @@ func Configure(p *config.Provider) {
 		// We need to override the default group that upjet generated for
 		// this resource, which would be "linode"
 		r.ShortGroup = "accountsettings"
+
+		// Overriding "Settings" to "AccountSettings" to make it less generic
+		r.Kind = "AccountSettings"
 	})
 }

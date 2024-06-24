@@ -10,7 +10,8 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/linode/provider-linode/apis/database/v1alpha1"
+	v1alpha1 "github.com/linode/provider-linode/apis/accountsettings/v1alpha1"
+	v1alpha1database "github.com/linode/provider-linode/apis/database/v1alpha1"
 	v1alpha1domain "github.com/linode/provider-linode/apis/domain/v1alpha1"
 	v1alpha1firewall "github.com/linode/provider-linode/apis/firewall/v1alpha1"
 	v1alpha1image "github.com/linode/provider-linode/apis/image/v1alpha1"
@@ -19,6 +20,8 @@ import (
 	v1alpha1lke "github.com/linode/provider-linode/apis/lke/v1alpha1"
 	v1alpha1nodebalancer "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
 	v1alpha1objectstorage "github.com/linode/provider-linode/apis/objectstorage/v1alpha1"
+	v1alpha1placementgroup "github.com/linode/provider-linode/apis/placementgroup/v1alpha1"
+	v1alpha1placementgroupassignment "github.com/linode/provider-linode/apis/placementgroupassignment/v1alpha1"
 	v1alpha1rdns "github.com/linode/provider-linode/apis/rdns/v1alpha1"
 	v1alpha1sshkey "github.com/linode/provider-linode/apis/sshkey/v1alpha1"
 	v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
@@ -34,6 +37,7 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1database.SchemeBuilder.AddToScheme,
 		v1alpha1domain.SchemeBuilder.AddToScheme,
 		v1alpha1firewall.SchemeBuilder.AddToScheme,
 		v1alpha1image.SchemeBuilder.AddToScheme,
@@ -42,6 +46,8 @@ func init() {
 		v1alpha1lke.SchemeBuilder.AddToScheme,
 		v1alpha1nodebalancer.SchemeBuilder.AddToScheme,
 		v1alpha1objectstorage.SchemeBuilder.AddToScheme,
+		v1alpha1placementgroup.SchemeBuilder.AddToScheme,
+		v1alpha1placementgroupassignment.SchemeBuilder.AddToScheme,
 		v1alpha1rdns.SchemeBuilder.AddToScheme,
 		v1alpha1sshkey.SchemeBuilder.AddToScheme,
 		v1alpha1stackscript.SchemeBuilder.AddToScheme,

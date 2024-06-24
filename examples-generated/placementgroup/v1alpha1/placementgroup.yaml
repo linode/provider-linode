@@ -1,0 +1,13 @@
+apiVersion: placementgroup.linode.upbound.io/v1alpha1
+kind: PlacementGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: placementgroup/v1alpha1/placementgroup
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    affinityType: anti_affinity:local
+    label: my-placement-group
+    region: us-mia
