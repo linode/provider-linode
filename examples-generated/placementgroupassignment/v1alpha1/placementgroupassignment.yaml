@@ -8,8 +8,12 @@ metadata:
   name: my-assignment
 spec:
   forProvider:
-    linodeId: ${linode_instance.my-inst.id}
-    placementGroupId: ${linode_placement_group.my-pg.id}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-inst
+    placementGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-pg
 
 ---
 

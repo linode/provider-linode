@@ -11,5 +11,13 @@ func Configure(p *config.Provider) {
 
 		// Overriding "GroupAssignment" to "PlacementGroupAssignment" to make it less generic
 		r.Kind = "PlacementGroupAssignment"
+
+		r.References["placement_group_id"] = config.Reference{
+			Type: "github.com/linode/provider-linode/apis/placementgroup/v1alpha1.PlacementGroup",
+		}
+
+		r.References["linode_id"] = config.Reference{
+			Type: "github.com/linode/provider-linode/apis/instance/v1alpha1.Instance",
+		}
 	})
 }

@@ -9,6 +9,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -52,10 +53,30 @@ func (in *PlacementGroupAssignmentInitParameters) DeepCopyInto(out *PlacementGro
 		*out = new(float64)
 		**out = **in
 	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.PlacementGroupID != nil {
 		in, out := &in.PlacementGroupID, &out.PlacementGroupID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.PlacementGroupIDRef != nil {
+		in, out := &in.PlacementGroupIDRef, &out.PlacementGroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PlacementGroupIDSelector != nil {
+		in, out := &in.PlacementGroupIDSelector, &out.PlacementGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -149,10 +170,30 @@ func (in *PlacementGroupAssignmentParameters) DeepCopyInto(out *PlacementGroupAs
 		*out = new(float64)
 		**out = **in
 	}
+	if in.LinodeIDRef != nil {
+		in, out := &in.LinodeIDRef, &out.LinodeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.LinodeIDSelector != nil {
+		in, out := &in.LinodeIDSelector, &out.LinodeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.PlacementGroupID != nil {
 		in, out := &in.PlacementGroupID, &out.PlacementGroupID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.PlacementGroupIDRef != nil {
+		in, out := &in.PlacementGroupIDRef, &out.PlacementGroupIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PlacementGroupIDSelector != nil {
+		in, out := &in.PlacementGroupIDSelector, &out.PlacementGroupIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 

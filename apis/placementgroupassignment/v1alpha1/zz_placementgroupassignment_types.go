@@ -18,11 +18,29 @@ type PlacementGroupAssignmentInitParameters struct {
 
 	// The unique ID of the Linode to assign.
 	// A set of Linode IDs to assign to the Placement Group.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
+
+	// Reference to a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
 	// The unique ID of the target Placement Group.
 	// The ID of the Placement Group for this assignment.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/placementgroup/v1alpha1.PlacementGroup
 	PlacementGroupID *float64 `json:"placementGroupId,omitempty" tf:"placement_group_id,omitempty"`
+
+	// Reference to a PlacementGroup in placementgroup to populate placementGroupId.
+	// +kubebuilder:validation:Optional
+	PlacementGroupIDRef *v1.Reference `json:"placementGroupIdRef,omitempty" tf:"-"`
+
+	// Selector for a PlacementGroup in placementgroup to populate placementGroupId.
+	// +kubebuilder:validation:Optional
+	PlacementGroupIDSelector *v1.Selector `json:"placementGroupIdSelector,omitempty" tf:"-"`
 }
 
 type PlacementGroupAssignmentObservation struct {
@@ -46,13 +64,31 @@ type PlacementGroupAssignmentParameters struct {
 
 	// The unique ID of the Linode to assign.
 	// A set of Linode IDs to assign to the Placement Group.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
+	// Reference to a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDRef *v1.Reference `json:"linodeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Instance in instance to populate linodeId.
+	// +kubebuilder:validation:Optional
+	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
+
 	// The unique ID of the target Placement Group.
 	// The ID of the Placement Group for this assignment.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/placementgroup/v1alpha1.PlacementGroup
 	// +kubebuilder:validation:Optional
 	PlacementGroupID *float64 `json:"placementGroupId,omitempty" tf:"placement_group_id,omitempty"`
+
+	// Reference to a PlacementGroup in placementgroup to populate placementGroupId.
+	// +kubebuilder:validation:Optional
+	PlacementGroupIDRef *v1.Reference `json:"placementGroupIdRef,omitempty" tf:"-"`
+
+	// Selector for a PlacementGroup in placementgroup to populate placementGroupId.
+	// +kubebuilder:validation:Optional
+	PlacementGroupIDSelector *v1.Selector `json:"placementGroupIdSelector,omitempty" tf:"-"`
 }
 
 // PlacementGroupAssignmentSpec defines the desired state of PlacementGroupAssignment
@@ -91,10 +127,8 @@ type PlacementGroupAssignmentStatus struct {
 type PlacementGroupAssignment struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.linodeId) || (has(self.initProvider) && has(self.initProvider.linodeId))",message="spec.forProvider.linodeId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.placementGroupId) || (has(self.initProvider) && has(self.initProvider.placementGroupId))",message="spec.forProvider.placementGroupId is a required parameter"
-	Spec   PlacementGroupAssignmentSpec   `json:"spec"`
-	Status PlacementGroupAssignmentStatus `json:"status,omitempty"`
+	Spec              PlacementGroupAssignmentSpec   `json:"spec"`
+	Status            PlacementGroupAssignmentStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
