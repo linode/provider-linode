@@ -539,7 +539,20 @@ resources:
                       "region": "us-central",
                       "size": 20
                     }
+            - name: my-instance
+              manifest: |-
+                {
+                  "label": "my-instance",
+                  "placement_group": [
+                    {
+                      "id": 12345
+                    }
+                  ],
+                  "region": "us-mia",
+                  "type": "g6-standard-1"
+                }
         argumentDocs:
+            affinity_type: '- The affinity policy enforced by the Placement Group.'
             alerts.0.cpu: '- (Optional) The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we''ll send you an alert. If this is set to 0, the alert is disabled.'
             alerts.0.io: '- (Optional) The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we''ll send you an alert. If set to 0, this alert is disabled.'
             alerts.0.network_in: '- (Optional) The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we''ll send you an alert. If this is set to 0 (zero), the alert is disabled.'
@@ -578,11 +591,15 @@ resources:
             ipv4.nat_1_1: '- (Optional) The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.'
             ipv4.vpc: '- (Optional) The IP from the VPC subnet to use for this interface. A random address will be assigned if this is not specified in a VPC interface.'
             ipv6: '- This Linode''s IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/64) is included in this attribute.'
+            is_strict: '- Whether the Placement Group enforces strict compliance.'
             label: '- (Optional) The Linode''s label is for display purposes only. If no label is provided for a Linode, a default will be assigned.'
             metadata.0.user_data: '- (Optional) The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.'
             migration_type: '- (Optional) The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)'
             modules_dep: '- (Optional) Creates a modules dependency file for the Kernel you run.'
             network: '- (Optional) Controls the behavior of the Linode Config''s Network Helper setting, used to automatically configure additional IP addresses assigned to this instance.'
+            placement_group: '- Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.'
+            placement_group.0.id: '- (Optional) The ID of the Placement Group to assign this Linode to.'
+            placement_group_externally_managed: '- (Optional) If true, changes to the Linode''s assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.'
             primary: '- (Optional) Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.'
             private_ip: '- (Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode''s region. It can be enabled on an existing Linode but it can''t be disabled.'
             private_ip_address: '- This Linode''s Private IPv4 Address, if enabled.  The regional private IP address range, 192.168.128.0/17, is shared by all Linode Instances in a region.'
@@ -1544,6 +1561,61 @@ resources:
             source: '- (Optional, conflicts with content and content_base64) The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.'
             version_id: '- A unique version ID value for the object.'
             website_redirect: '- (Optional) Specifies a target URL for website redirect.'
+        importStatements: []
+    linode_placement_group:
+        subCategory: ""
+        description: Manages a Linode Placement Group.
+        name: linode_placement_group
+        title: linode_placement_group
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "affinity_type": "anti_affinity:local",
+                  "label": "my-placement-group",
+                  "region": "us-mia"
+                }
+        argumentDocs:
+            affinity_type: '- (Required) The affinity policy to use when placing Linodes in this group.'
+            id: '- The ID of the Placement Group.'
+            is_compliant: '- Whether all Linodes in this group are currently compliant with the group''s affinity policy.'
+            is_strict: '- (Optional) Whether Linodes must be able to become compliant during assignment. (Default true)'
+            label: '- (Required) The label of the Placement Group. This field can only contain ASCII letters, digits and dashes.'
+            linode_id: '- The ID of the Linode.'
+            region: '- (Required) The region of the Placement Group.'
+        importStatements: []
+    linode_placement_group_assignment:
+        subCategory: ""
+        description: Manages a single assignment between a Linode and a Placement Group.
+        name: linode_placement_group_assignment
+        title: linode_placement_group_assignment
+        examples:
+            - name: my-assignment
+              manifest: |-
+                {
+                  "linode_id": "${linode_instance.my-inst.id}",
+                  "placement_group_id": "${linode_placement_group.my-pg.id}"
+                }
+              references:
+                linode_id: linode_instance.my-inst.id
+                placement_group_id: linode_placement_group.my-pg.id
+              dependencies:
+                linode_instance.my-inst: |-
+                    {
+                      "label": "my-inst",
+                      "placement_group_externally_managed": true,
+                      "region": "us-east",
+                      "type": "g6-nanode-1"
+                    }
+                linode_placement_group.my-pg: |-
+                    {
+                      "affinity_type": "anti_affinity:local",
+                      "label": "my-pg",
+                      "region": "us-east"
+                    }
+        argumentDocs:
+            linode_id: '- (Required) The unique ID of the Linode to assign.'
+            placement_group_id: '- (Required) The unique ID of the target Placement Group.'
         importStatements: []
     linode_rdns:
         subCategory: ""

@@ -645,6 +645,26 @@ spec:
                       The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)
                       The type of migration to use for resize and migration operations.
                     type: string
+                  placementGroup:
+                    description: |-
+                      Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+                      Fields related to the Placement Group this instance is assigned to.
+                    items:
+                      properties:
+                        compliantOnly:
+                          type: boolean
+                        id:
+                          description: |-
+                            The ID of the Placement Group to assign this Linode to.
+                            The ID of the Placement Group to assign this Linode to.
+                          type: number
+                      type: object
+                    type: array
+                  placementGroupExternallyManaged:
+                    description: |-
+                      If true, changes to the Linode's assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.
+                      If true, this placement group's assignment is externally managed and will NOT be updated by this resource.
+                    type: boolean
                   privateIp:
                     description: |-
                       If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
@@ -1381,6 +1401,26 @@ spec:
                       The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)
                       The type of migration to use for resize and migration operations.
                     type: string
+                  placementGroup:
+                    description: |-
+                      Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+                      Fields related to the Placement Group this instance is assigned to.
+                    items:
+                      properties:
+                        compliantOnly:
+                          type: boolean
+                        id:
+                          description: |-
+                            The ID of the Placement Group to assign this Linode to.
+                            The ID of the Placement Group to assign this Linode to.
+                          type: number
+                      type: object
+                    type: array
+                  placementGroupExternallyManaged:
+                    description: |-
+                      If true, changes to the Linode's assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.
+                      If true, this placement group's assignment is externally managed and will NOT be updated by this resource.
+                    type: boolean
                   privateIp:
                     description: |-
                       If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
@@ -2053,7 +2093,7 @@ spec:
                           type: array
                         id:
                           description: |-
-                            (Computed) The ID of the disk in the Linode API.
+                            The ID of the Placement Group to assign this Linode to.
                             The unique ID of this Config.
                           type: number
                         interface:
@@ -2067,7 +2107,7 @@ spec:
                                 type: boolean
                               id:
                                 description: |-
-                                  (Computed) The ID of the disk in the Linode API.
+                                  The ID of the Placement Group to assign this Linode to.
                                   The ID of the interface.
                                 type: number
                               ipRanges:
@@ -2187,7 +2227,7 @@ spec:
                           type: string
                         id:
                           description: |-
-                            (Computed) The ID of the disk in the Linode API.
+                            The ID of the Placement Group to assign this Linode to.
                             The ID of the Disk (for use in Linode Image resources and Linode Instance Config Devices)
                           type: number
                         image:
@@ -2257,7 +2297,7 @@ spec:
                           type: boolean
                         id:
                           description: |-
-                            (Computed) The ID of the disk in the Linode API.
+                            The ID of the Placement Group to assign this Linode to.
                             The ID of the interface.
                           type: number
                         ipRanges:
@@ -2356,6 +2396,41 @@ spec:
                       The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)
                       The type of migration to use for resize and migration operations.
                     type: string
+                  placementGroup:
+                    description: |-
+                      Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+                      Fields related to the Placement Group this instance is assigned to.
+                    items:
+                      properties:
+                        affinityType:
+                          description: |-
+                            The affinity policy enforced by the Placement Group.
+                            The affinity policy for this Placement Group.
+                          type: string
+                        compliantOnly:
+                          type: boolean
+                        id:
+                          description: |-
+                            The ID of the Placement Group to assign this Linode to.
+                            The ID of the Placement Group to assign this Linode to.
+                          type: number
+                        isStrict:
+                          description: |-
+                            Whether the Placement Group enforces strict compliance.
+                            Whether compliance is strictly enforced by this Placement Group.
+                          type: boolean
+                        label:
+                          description: |-
+                            The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
+                            The label of this Placement Group.
+                          type: string
+                      type: object
+                    type: array
+                  placementGroupExternallyManaged:
+                    description: |-
+                      If true, changes to the Linode's assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.
+                      If true, this placement group's assignment is externally managed and will NOT be updated by this resource.
+                    type: boolean
                   privateIp:
                     description: |-
                       If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.

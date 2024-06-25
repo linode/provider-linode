@@ -158,7 +158,7 @@ type ConfigObservation struct {
 	// Helpers enabled when booting to this Linode Config.
 	Helpers []HelpersObservation `json:"helpers,omitempty" tf:"helpers,omitempty"`
 
-	// (Computed) The ID of the disk in the Linode API.
+	// The ID of the Placement Group to assign this Linode to.
 	// The unique ID of this Config.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -386,7 +386,7 @@ type DiskObservation struct {
 	// The Disk filesystem can be one of: raw, swap, ext3, ext4, initrd (max 32mb)
 	Filesystem *string `json:"filesystem,omitempty" tf:"filesystem,omitempty"`
 
-	// (Computed) The ID of the disk in the Linode API.
+	// The ID of the Placement Group to assign this Linode to.
 	// The ID of the Disk (for use in Linode Image resources and Linode Instance Config Devices)
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -628,6 +628,14 @@ type InstanceInitParameters struct {
 	// The type of migration to use for resize and migration operations.
 	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
 
+	// Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+	// Fields related to the Placement Group this instance is assigned to.
+	PlacementGroup []PlacementGroupInitParameters `json:"placementGroup,omitempty" tf:"placement_group,omitempty"`
+
+	// If true, changes to the Linode's assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.
+	// If true, this placement group's assignment is externally managed and will NOT be updated by this resource.
+	PlacementGroupExternallyManaged *bool `json:"placementGroupExternallyManaged,omitempty" tf:"placement_group_externally_managed,omitempty"`
+
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
 	PrivateIP *bool `json:"privateIp,omitempty" tf:"private_ip,omitempty"`
@@ -718,7 +726,7 @@ type InstanceInterfaceObservation struct {
 	// Whether this interface is currently booted and active.
 	Active *bool `json:"active,omitempty" tf:"active,omitempty"`
 
-	// (Computed) The ID of the disk in the Linode API.
+	// The ID of the Placement Group to assign this Linode to.
 	// The ID of the interface.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -882,6 +890,14 @@ type InstanceObservation struct {
 	// The type of migration to use for resize and migration operations.
 	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
 
+	// Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+	// Fields related to the Placement Group this instance is assigned to.
+	PlacementGroup []PlacementGroupObservation `json:"placementGroup,omitempty" tf:"placement_group,omitempty"`
+
+	// If true, changes to the Linode's assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.
+	// If true, this placement group's assignment is externally managed and will NOT be updated by this resource.
+	PlacementGroupExternallyManaged *bool `json:"placementGroupExternallyManaged,omitempty" tf:"placement_group_externally_managed,omitempty"`
+
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
 	PrivateIP *bool `json:"privateIp,omitempty" tf:"private_ip,omitempty"`
@@ -1008,6 +1024,16 @@ type InstanceParameters struct {
 	// The type of migration to use for resize and migration operations.
 	// +kubebuilder:validation:Optional
 	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
+
+	// Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+	// Fields related to the Placement Group this instance is assigned to.
+	// +kubebuilder:validation:Optional
+	PlacementGroup []PlacementGroupParameters `json:"placementGroup,omitempty" tf:"placement_group,omitempty"`
+
+	// If true, changes to the Linode's assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.
+	// If true, this placement group's assignment is externally managed and will NOT be updated by this resource.
+	// +kubebuilder:validation:Optional
+	PlacementGroupExternallyManaged *bool `json:"placementGroupExternallyManaged,omitempty" tf:"placement_group_externally_managed,omitempty"`
 
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.
 	// If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region.
@@ -1147,7 +1173,7 @@ type InterfaceObservation struct {
 	// Whether this interface is currently booted and active.
 	Active *bool `json:"active,omitempty" tf:"active,omitempty"`
 
-	// (Computed) The ID of the disk in the Linode API.
+	// The ID of the Placement Group to assign this Linode to.
 	// The ID of the interface.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -1242,6 +1268,46 @@ type MetadataParameters struct {
 	// The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.
 	// +kubebuilder:validation:Optional
 	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
+}
+
+type PlacementGroupInitParameters struct {
+	CompliantOnly *bool `json:"compliantOnly,omitempty" tf:"compliant_only,omitempty"`
+
+	// The ID of the Placement Group to assign this Linode to.
+	// The ID of the Placement Group to assign this Linode to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+}
+
+type PlacementGroupObservation struct {
+
+	// The affinity policy enforced by the Placement Group.
+	// The affinity policy for this Placement Group.
+	AffinityType *string `json:"affinityType,omitempty" tf:"affinity_type,omitempty"`
+
+	CompliantOnly *bool `json:"compliantOnly,omitempty" tf:"compliant_only,omitempty"`
+
+	// The ID of the Placement Group to assign this Linode to.
+	// The ID of the Placement Group to assign this Linode to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Whether the Placement Group enforces strict compliance.
+	// Whether compliance is strictly enforced by this Placement Group.
+	IsStrict *bool `json:"isStrict,omitempty" tf:"is_strict,omitempty"`
+
+	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
+	// The label of this Placement Group.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+}
+
+type PlacementGroupParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CompliantOnly *bool `json:"compliantOnly,omitempty" tf:"compliant_only,omitempty"`
+
+	// The ID of the Placement Group to assign this Linode to.
+	// The ID of the Placement Group to assign this Linode to.
+	// +kubebuilder:validation:Optional
+	ID *float64 `json:"id" tf:"id,omitempty"`
 }
 
 type ScheduleInitParameters struct {

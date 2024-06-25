@@ -1,0 +1,47 @@
+apiVersion: placementgroupassignment.linode.upbound.io/v1alpha1
+kind: GroupAssignment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: placementgroupassignment/v1alpha1/groupassignment
+  labels:
+    testing.upbound.io/example-name: my-assignment
+  name: my-assignment
+spec:
+  forProvider:
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my-inst
+    placementGroupId: ${linode_placement_group.my-pg.id}
+
+---
+
+apiVersion: instance.linode.upbound.io/v1alpha1
+kind: Instance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: placementgroupassignment/v1alpha1/groupassignment
+  labels:
+    testing.upbound.io/example-name: my-inst
+  name: my-inst
+spec:
+  forProvider:
+    label: my-inst
+    placementGroupExternallyManaged: true
+    region: us-east
+    type: g6-nanode-1
+
+---
+
+apiVersion: placementgroup.linode.upbound.io/v1alpha1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: placementgroupassignment/v1alpha1/groupassignment
+  labels:
+    testing.upbound.io/example-name: my-pg
+  name: my-pg
+spec:
+  forProvider:
+    affinityType: anti_affinity:local
+    label: my-pg
+    region: us-east

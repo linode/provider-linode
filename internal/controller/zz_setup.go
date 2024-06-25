@@ -31,6 +31,8 @@ import (
 	bucket "github.com/linode/provider-linode/internal/controller/objectstorage/bucket"
 	key "github.com/linode/provider-linode/internal/controller/objectstorage/key"
 	object "github.com/linode/provider-linode/internal/controller/objectstorage/object"
+	group "github.com/linode/provider-linode/internal/controller/placementgroup/group"
+	groupassignment "github.com/linode/provider-linode/internal/controller/placementgroupassignment/groupassignment"
 	providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	rdns "github.com/linode/provider-linode/internal/controller/rdns/rdns"
 	sshkey "github.com/linode/provider-linode/internal/controller/sshkey/sshkey"
@@ -68,6 +70,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		bucket.Setup,
 		key.Setup,
 		object.Setup,
+		group.Setup,
+		groupassignment.Setup,
 		providerconfig.Setup,
 		rdns.Setup,
 		sshkey.Setup,

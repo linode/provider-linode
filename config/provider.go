@@ -31,6 +31,8 @@ import (
 	"github.com/linode/provider-linode/config/instanceip"
 	"github.com/linode/provider-linode/config/instancesharedips"
 	"github.com/linode/provider-linode/config/ipv6range"
+	"github.com/linode/provider-linode/config/linodeplacementgroup"
+	"github.com/linode/provider-linode/config/linodeplacementgroupassignment"
 	"github.com/linode/provider-linode/config/lkecluster"
 	"github.com/linode/provider-linode/config/lkenodepool"
 	"github.com/linode/provider-linode/config/nodebalancer"
@@ -130,7 +132,10 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		instanceip.Configure,
 		instancesharedips.Configure,
 		ipv6range.Configure,
+		linodeplacementgroup.Configure,
+		linodeplacementgroupassignment.Configure,
 		lkecluster.Configure,
+		lkenodepool.Configure,
 		nodebalancer.Configure,
 		nodebalancerconfig.Configure,
 		nodebalancernode.Configure,
@@ -145,7 +150,6 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		volume.Configure,
 		vpc.Configure,
 		vpcsubnet.Configure,
-		lkenodepool.Configure,
 	} {
 		configure(pc)
 	}
