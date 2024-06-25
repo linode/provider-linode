@@ -6,7 +6,7 @@ PROJECT_REPO := github.com/linode/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.5.5
 export TERRAFORM_PROVIDER_SOURCE := linode/linode
-export TERRAFORM_PROVIDER_VERSION := 2.22.0
+export TERRAFORM_PROVIDER_VERSION := 2.23.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-linode
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-linode_v$(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_PROVIDER_REPO := https://github.com/linode/terraform-provider-linode
@@ -59,7 +59,7 @@ GO_SUBDIRS += cmd internal apis
 # Setup Kubernetes tools
 
 KIND_VERSION = v0.20.0
-UP_VERSION = v0.20.0
+UP_VERSION = v0.28.0
 UP_CHANNEL = stable
 UPTEST_VERSION = v0.6.1
 

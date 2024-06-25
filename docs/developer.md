@@ -26,12 +26,41 @@ make build
 
 ### Add a new resource:
 
-1. Find out if the resource is implemented using the `frameworkprovider` or the terraform v2 provider in the linode-terraform-provider - newer resources are usually frameworkprovider based
-2. Add the name of the provider to the appropriate list in `config/externalname.go`
-3. Create a directory for the resource group in config/
-4. Add a file `config.go` implementing the `Configure` method (see config/vpc/vpc.go for an example)
-5. Add the configure method to the loop at `config/provider.go:GetProvider()`  method
-6. Run `make generate`, `make local-deploy` - create a manifest for your resource and test that it works.
+1. Find the resource (not data source) that was added in [Terraform Provider for Linode](https://github.com/linode/terraform-provider-linode). Newer resources are usually implemented through the `framework` plugin, and you can find them in `linode/framework_provider.go` under `Resources`. Older resources may be implemented with `SDKv2`.
+2. In this repo, add the name of the provider to the appropriate list in `config/externalname.go`. If `framework` based, this will be in the `terraformPluginFrameworkExternalNameConfigs` list; make sure there is a 1:1 mapping with the list from `linode/framework_provider.go`.
+3. Create a directory for the new resource group in `config/`.
+4. Add a file `config.go` implementing the `Configure` method (see config/vpc/config.go for an example). The minimum change needed is overriding the `ShortGroup`.
+5. Add the configure method to the loop at `config/provider.go:GetProvider()`  method.
+6. Change the terraform provider version in the `Makefile` and the `go.mod` file. 
+7. Run `make submodules` and `make generate`.
+8. Check the new CRDs created in `examples-generated/`. If you need to make any changes, go back to step 4 and edit the config, then `make generate` again.
+9. Run `make local-deploy`. This will create a Kind cluster set up with Crossplane and Provider Linode.
+10. Create a ProviderConfig and a secret with your Linode API token
+```
+apiVersion: linode.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: linode-api-token
+      namespace: default
+      key: credentials
+```
+The Linode API token secret needs to be in the form `echo '{"token": "$LINODE_API_TOKEN", "api_version": "v4beta"}' | base64`. Take that value and input it here:
+```
+apiVersion: v1
+data:
+  credentials: PUT THE SECRET HERE
+kind: Secret
+metadata:
+  name: linode-api-token
+  namespace: default
+type: Opaque
+```
+11. Create a manifest for your resource, or use the generated example depending on what you are testing. `k apply` the new resource, the ProviderConfig, and the linode API token secret. Test that it works!
 
 ### Upgrading to a new terraform provider:
 1. Review the terraform-provider-linode release notes, and verify if there are is any migration from sdk->plugin framework. k ge

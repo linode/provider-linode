@@ -17,6 +17,7 @@ import (
 	"github.com/linode/terraform-provider-linode/v2/version"
 	"github.com/pkg/errors"
 
+	"github.com/linode/provider-linode/config/accountsettings"
 	"github.com/linode/provider-linode/config/databaseaccesscontrols"
 	"github.com/linode/provider-linode/config/databasemysql"
 	"github.com/linode/provider-linode/config/databasepostgresql"
@@ -39,6 +40,8 @@ import (
 	"github.com/linode/provider-linode/config/objectstoragebucket"
 	"github.com/linode/provider-linode/config/objectstoragekey"
 	"github.com/linode/provider-linode/config/objectstorageobject"
+	"github.com/linode/provider-linode/config/placementgroup"
+	"github.com/linode/provider-linode/config/placementgroupassignment"
 	"github.com/linode/provider-linode/config/rdns"
 	"github.com/linode/provider-linode/config/sshkey"
 	"github.com/linode/provider-linode/config/stackscript"
@@ -116,6 +119,7 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 
 	for _, configure := range []func(provider *config.Provider){
 		// add custom config functions
+		accountsettings.Configure,
 		databaseaccesscontrols.Configure,
 		databasemysql.Configure,
 		databasepostgresql.Configure,
@@ -131,12 +135,15 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		instancesharedips.Configure,
 		ipv6range.Configure,
 		lkecluster.Configure,
+		lkenodepool.Configure,
 		nodebalancer.Configure,
 		nodebalancerconfig.Configure,
 		nodebalancernode.Configure,
 		objectstoragebucket.Configure,
 		objectstoragekey.Configure,
 		objectstorageobject.Configure,
+		placementgroup.Configure,
+		placementgroupassignment.Configure,
 		rdns.Configure,
 		sshkey.Configure,
 		stackscript.Configure,
@@ -145,7 +152,6 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		volume.Configure,
 		vpc.Configure,
 		vpcsubnet.Configure,
-		lkenodepool.Configure,
 	} {
 		configure(pc)
 	}

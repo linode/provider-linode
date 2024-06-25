@@ -9,6 +9,7 @@ import (
 
 	"github.com/crossplane/upjet/pkg/controller"
 
+	accountsettings "github.com/linode/provider-linode/internal/controller/accountsettings/accountsettings"
 	accesscontrols "github.com/linode/provider-linode/internal/controller/database/accesscontrols"
 	mysql "github.com/linode/provider-linode/internal/controller/database/mysql"
 	postgresql "github.com/linode/provider-linode/internal/controller/database/postgresql"
@@ -31,6 +32,8 @@ import (
 	bucket "github.com/linode/provider-linode/internal/controller/objectstorage/bucket"
 	key "github.com/linode/provider-linode/internal/controller/objectstorage/key"
 	object "github.com/linode/provider-linode/internal/controller/objectstorage/object"
+	placementgroup "github.com/linode/provider-linode/internal/controller/placementgroup/placementgroup"
+	placementgroupassignment "github.com/linode/provider-linode/internal/controller/placementgroupassignment/placementgroupassignment"
 	providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	rdns "github.com/linode/provider-linode/internal/controller/rdns/rdns"
 	sshkey "github.com/linode/provider-linode/internal/controller/sshkey/sshkey"
@@ -46,6 +49,7 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		accountsettings.Setup,
 		accesscontrols.Setup,
 		mysql.Setup,
 		postgresql.Setup,
@@ -68,6 +72,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		bucket.Setup,
 		key.Setup,
 		object.Setup,
+		placementgroup.Setup,
+		placementgroupassignment.Setup,
 		providerconfig.Setup,
 		rdns.Setup,
 		sshkey.Setup,
