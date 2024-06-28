@@ -55,6 +55,62 @@ type SetupConfig struct {
 	TerraformProvider     *schema.Provider
 }
 
+func prepareTerraformProviderConfiguration(creds map[string]string, pc v1beta1.ProviderConfiguration) map[string]any {
+	var config map[string]any
+
+	if v, ok := creds[keyToken]; ok {
+		config[keyToken] = v
+	}
+	if v, ok := creds[keyURL]; ok {
+		config[keyURL] = v
+	}
+	if v, ok := creds[keyVersion]; ok {
+		config[keyVersion] = v
+	}
+
+	// Set the booleans as is.
+	config["obj_bucket_force_delete"] = pc.ObjForceDelete
+	config["obj_use_temp_keys"] = pc.ObjUseTempKeys
+	config["skip_instance_ready_poll"] = pc.SkipInstanceReadyPoll
+	config["skip_instance_delete_poll"] = pc.SkipInstanceDeletePoll
+	config["skip_implicit_reboots"] = pc.SkipImplicitReboots
+	config["disable_internal_cache"] = pc.DisableInternalCache
+
+	// do not want to override terraform defaults
+	if len(pc.UserAgentPrefix) > 0 {
+		config["ua_prefix"] = pc.UserAgentPrefix
+	}
+
+	if pc.MinRetryDelayms > 0 {
+		config["min_retry_delay_ms"] = pc.MinRetryDelayms
+	}
+
+	if pc.MaxRetryDelayms > 0 {
+		config["max_retry_delay_ms"] = pc.MaxRetryDelayms
+	}
+
+	if pc.EventPollms > 0 {
+		config["event_poll_ms"] = pc.MaxRetryDelayms
+	}
+
+	if pc.LKEEventPollms > 0 {
+		config["lke_event_poll_ms"] = pc.LKEEventPollms
+	}
+
+	if pc.LKENodeReadyPollms > 0 {
+		config["lke_node_ready_poll_ms"] = pc.LKENodeReadyPollms
+	}
+
+	if len(pc.ObjAccessKey) > 0 {
+		config["obj_access_key"] = pc.ObjAccessKey
+	}
+
+	if len(pc.ObjSecretKey) > 0 {
+		config["obj_secret_key"] = pc.ObjSecretKey
+	}
+	return config
+}
+
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
 // returns Terraform provider setup configuration
 func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
@@ -89,57 +145,7 @@ func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
 		}
 
 		// set provider configuration
-		ps.Configuration = map[string]any{}
-		if v, ok := creds[keyToken]; ok {
-			ps.Configuration[keyToken] = v
-		}
-		if v, ok := creds[keyURL]; ok {
-			ps.Configuration[keyURL] = v
-		}
-		if v, ok := creds[keyVersion]; ok {
-			ps.Configuration[keyVersion] = v
-		}
-
-		// Set the booleans as is.
-		ps.Configuration["obj_bucket_force_delete"] = pc.Spec.Configuration.ObjForceDelete
-		ps.Configuration["obj_use_temp_keys"] = pc.Spec.Configuration.ObjUseTempKeys
-		ps.Configuration["skip_instance_ready_poll"] = pc.Spec.Configuration.SkipInstanceReadyPoll
-		ps.Configuration["skip_instance_delete_poll"] = pc.Spec.Configuration.SkipInstanceDeletePoll
-		ps.Configuration["skip_implicit_reboots"] = pc.Spec.Configuration.SkipImplicitReboots
-		ps.Configuration["disable_internal_cache"] = pc.Spec.Configuration.DisableInternalCache
-
-		// do not want to override terraform defaults
-		if len(pc.Spec.Configuration.UserAgentPrefix) > 0 {
-			ps.Configuration["ua_prefix"] = pc.Spec.Configuration.UserAgentPrefix
-		}
-
-		if pc.Spec.Configuration.MinRetryDelayms > 0 {
-			ps.Configuration["min_retry_delay_ms"] = pc.Spec.Configuration.MinRetryDelayms
-		}
-
-		if pc.Spec.Configuration.MaxRetryDelayms > 0 {
-			ps.Configuration["max_retry_delay_ms"] = pc.Spec.Configuration.MaxRetryDelayms
-		}
-
-		if pc.Spec.Configuration.EventPollms > 0 {
-			ps.Configuration["event_poll_ms"] = pc.Spec.Configuration.MaxRetryDelayms
-		}
-
-		if pc.Spec.Configuration.LKEEventPollms > 0 {
-			ps.Configuration["lke_event_poll_ms"] = pc.Spec.Configuration.LKEEventPollms
-		}
-
-		if pc.Spec.Configuration.LKENodeReadyPollms > 0 {
-			ps.Configuration["lke_node_ready_poll_ms"] = pc.Spec.Configuration.LKENodeReadyPollms
-		}
-
-		if len(pc.Spec.Configuration.ObjAccessKey) > 0 {
-			ps.Configuration["obj_access_key"] = pc.Spec.Configuration.ObjAccessKey
-		}
-
-		if len(pc.Spec.Configuration.ObjSecretKey) > 0 {
-			ps.Configuration["obj_secret_key"] = pc.Spec.Configuration.ObjSecretKey
-		}
+		ps.Configuration = prepareTerraformProviderConfiguration(creds, pc.Spec.Configuration)
 
 		return ps, errors.Wrap(configureNoForkLinodeclient(ctx, &ps, *tfProvider), "failed to configure the no-fork linode client")
 	}
