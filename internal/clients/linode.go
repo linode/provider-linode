@@ -84,6 +84,10 @@ func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
+		if pc.Spec.Configuration.ObjForceDelete && !pc.Spec.Configuration.ObjUseTempKeys && (pc.Spec.Configuration.ObjAccessKey == "" || pc.Spec.Configuration.ObjSecretKey == "") {
+			return ps, errors.Wrap(err, "if obj_bucket_force_delete is set, then set obj_use_temp_keys or obj_access_key and obj_secret_key")
+		}
+
 		// set provider configuration
 		ps.Configuration = map[string]any{}
 		if v, ok := creds[keyToken]; ok {
@@ -94,6 +98,47 @@ func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
 		}
 		if v, ok := creds[keyVersion]; ok {
 			ps.Configuration[keyVersion] = v
+		}
+
+		// Set the booleans as is.
+		ps.Configuration["obj_bucket_force_delete"] = pc.Spec.Configuration.ObjForceDelete
+		ps.Configuration["obj_use_temp_keys"] = pc.Spec.Configuration.ObjUseTempKeys
+		ps.Configuration["skip_instance_ready_poll"] = pc.Spec.Configuration.SkipInstanceReadyPoll
+		ps.Configuration["skip_instance_delete_poll"] = pc.Spec.Configuration.SkipInstanceDeletePoll
+		ps.Configuration["skip_implicit_reboots"] = pc.Spec.Configuration.SkipImplicitReboots
+		ps.Configuration["disable_internal_cache"] = pc.Spec.Configuration.DisableInternalCache
+
+		// do not want to override terraform defaults
+		if len(pc.Spec.Configuration.UserAgentPrefix) > 0 {
+			ps.Configuration["ua_prefix"] = pc.Spec.Configuration.UserAgentPrefix
+		}
+
+		if pc.Spec.Configuration.MinRetryDelayms > 0 {
+			ps.Configuration["min_retry_delay_ms"] = pc.Spec.Configuration.MinRetryDelayms
+		}
+
+		if pc.Spec.Configuration.MaxRetryDelayms > 0 {
+			ps.Configuration["max_retry_delay_ms"] = pc.Spec.Configuration.MaxRetryDelayms
+		}
+
+		if pc.Spec.Configuration.EventPollms > 0 {
+			ps.Configuration["event_poll_ms"] = pc.Spec.Configuration.MaxRetryDelayms
+		}
+
+		if pc.Spec.Configuration.LKEEventPollms > 0 {
+			ps.Configuration["lke_event_poll_ms"] = pc.Spec.Configuration.LKEEventPollms
+		}
+
+		if pc.Spec.Configuration.LKENodeReadyPollms > 0 {
+			ps.Configuration["lke_node_ready_poll_ms"] = pc.Spec.Configuration.LKENodeReadyPollms
+		}
+
+		if len(pc.Spec.Configuration.ObjAccessKey) > 0 {
+			ps.Configuration["obj_access_key"] = pc.Spec.Configuration.ObjAccessKey
+		}
+
+		if len(pc.Spec.Configuration.ObjSecretKey) > 0 {
+			ps.Configuration["obj_secret_key"] = pc.Spec.Configuration.ObjSecretKey
 		}
 
 		return ps, errors.Wrap(configureNoForkLinodeclient(ctx, &ps, *tfProvider), "failed to configure the no-fork linode client")

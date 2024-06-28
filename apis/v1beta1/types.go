@@ -13,6 +13,42 @@ import (
 type ProviderConfigSpec struct {
 	// Credentials required to authenticate to this provider.
 	Credentials ProviderCredentials `json:"credentials"`
+
+	// +kubebuilder:validation:Optional
+	Configuration ProviderConfiguration `json:"config"`
+}
+
+// ProviderConfiguration for configuring the terraform provider
+// see https://registry.terraform.io/providers/linode/linode/latest/docs#configuration-reference
+type ProviderConfiguration struct {
+	// +kubebuilder:validation:Optional
+	UserAgentPrefix string `json:"ua_prefix"`
+	// +kubebuilder:validation:Optional
+	SkipInstanceReadyPoll bool `json:"skip_instance_ready_poll"`
+	// +kubebuilder:validation:Optional
+	SkipInstanceDeletePoll bool `json:"skip_instance_delete_poll"`
+	// +kubebuilder:validation:Optional
+	SkipImplicitReboots bool `json:"skip_implicit_reboots"`
+	// +kubebuilder:validation:Optional
+	DisableInternalCache bool `json:"disable_internal_cache"`
+	// +kubebuilder:validation:Optional
+	MinRetryDelayms int `json:"min_retry_delay_ms"`
+	// +kubebuilder:validation:Optional
+	MaxRetryDelayms int `json:"max_retry_delay_ms"`
+	// +kubebuilder:validation:Optional
+	EventPollms int `json:"event_poll_ms"`
+	// +kubebuilder:validation:Optional
+	LKEEventPollms int `json:"lke_event_poll_ms"`
+	// +kubebuilder:validation:Optional
+	LKENodeReadyPollms int `json:"lke_node_ready_poll_ms"`
+	// +kubebuilder:validation:Optional
+	ObjAccessKey string `json:"obj_access_key"`
+	// +kubebuilder:validation:Optional
+	ObjSecretKey string `json:"obj_secret_key"`
+	// +kubebuilder:validation:Optional
+	ObjUseTempKeys bool `json:"obj_use_temp_keys"`
+	// +kubebuilder:validation:Optional
+	ObjForceDelete bool `json:"obj_bucket_force_delete"`
 }
 
 // ProviderCredentials required to authenticate.

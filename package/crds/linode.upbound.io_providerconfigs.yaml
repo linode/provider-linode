@@ -51,6 +51,40 @@ spec:
           spec:
             description: A ProviderConfigSpec defines the desired state of a ProviderConfig.
             properties:
+              config:
+                description: |-
+                  ProviderConfiguration for configuring the terraform provider
+                  see https://registry.terraform.io/providers/linode/linode/latest/docs#configuration-reference
+                properties:
+                  disable_internal_cache:
+                    type: boolean
+                  event_poll_ms:
+                    type: integer
+                  lke_event_poll_ms:
+                    type: integer
+                  lke_node_ready_poll_ms:
+                    type: integer
+                  max_retry_delay_ms:
+                    type: integer
+                  min_retry_delay_ms:
+                    type: integer
+                  obj_access_key:
+                    type: string
+                  obj_bucket_force_delete:
+                    type: boolean
+                  obj_secret_key:
+                    type: string
+                  obj_use_temp_keys:
+                    type: boolean
+                  skip_implicit_reboots:
+                    type: boolean
+                  skip_instance_delete_poll:
+                    type: boolean
+                  skip_instance_ready_poll:
+                    type: boolean
+                  ua_prefix:
+                    type: string
+                type: object
               credentials:
                 description: Credentials required to authenticate to this provider.
                 properties:
