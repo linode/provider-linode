@@ -55,6 +55,62 @@ type SetupConfig struct {
 	TerraformProvider     *schema.Provider
 }
 
+func prepareTerraformProviderConfiguration(creds map[string]string, pc v1beta1.ProviderConfiguration) map[string]any {
+	var config map[string]any
+
+	if v, ok := creds[keyToken]; ok {
+		config[keyToken] = v
+	}
+	if v, ok := creds[keyURL]; ok {
+		config[keyURL] = v
+	}
+	if v, ok := creds[keyVersion]; ok {
+		config[keyVersion] = v
+	}
+
+	// Set the booleans as is.
+	config["obj_bucket_force_delete"] = pc.ObjForceDelete
+	config["obj_use_temp_keys"] = pc.ObjUseTempKeys
+	config["skip_instance_ready_poll"] = pc.SkipInstanceReadyPoll
+	config["skip_instance_delete_poll"] = pc.SkipInstanceDeletePoll
+	config["skip_implicit_reboots"] = pc.SkipImplicitReboots
+	config["disable_internal_cache"] = pc.DisableInternalCache
+
+	// do not want to override terraform defaults
+	if len(pc.UserAgentPrefix) > 0 {
+		config["ua_prefix"] = pc.UserAgentPrefix
+	}
+
+	if pc.MinRetryDelayms > 0 {
+		config["min_retry_delay_ms"] = pc.MinRetryDelayms
+	}
+
+	if pc.MaxRetryDelayms > 0 {
+		config["max_retry_delay_ms"] = pc.MaxRetryDelayms
+	}
+
+	if pc.EventPollms > 0 {
+		config["event_poll_ms"] = pc.MaxRetryDelayms
+	}
+
+	if pc.LKEEventPollms > 0 {
+		config["lke_event_poll_ms"] = pc.LKEEventPollms
+	}
+
+	if pc.LKENodeReadyPollms > 0 {
+		config["lke_node_ready_poll_ms"] = pc.LKENodeReadyPollms
+	}
+
+	if len(pc.ObjAccessKey) > 0 {
+		config["obj_access_key"] = pc.ObjAccessKey
+	}
+
+	if len(pc.ObjSecretKey) > 0 {
+		config["obj_secret_key"] = pc.ObjSecretKey
+	}
+	return config
+}
+
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
 // returns Terraform provider setup configuration
 func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
@@ -84,17 +140,12 @@ func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
+		if pc.Spec.Configuration.ObjForceDelete && !pc.Spec.Configuration.ObjUseTempKeys && (pc.Spec.Configuration.ObjAccessKey == "" || pc.Spec.Configuration.ObjSecretKey == "") {
+			return ps, errors.Wrap(err, "if obj_bucket_force_delete is set, then set obj_use_temp_keys or obj_access_key and obj_secret_key")
+		}
+
 		// set provider configuration
-		ps.Configuration = map[string]any{}
-		if v, ok := creds[keyToken]; ok {
-			ps.Configuration[keyToken] = v
-		}
-		if v, ok := creds[keyURL]; ok {
-			ps.Configuration[keyURL] = v
-		}
-		if v, ok := creds[keyVersion]; ok {
-			ps.Configuration[keyVersion] = v
-		}
+		ps.Configuration = prepareTerraformProviderConfiguration(creds, pc.Spec.Configuration)
 
 		return ps, errors.Wrap(configureNoForkLinodeclient(ctx, &ps, *tfProvider), "failed to configure the no-fork linode client")
 	}
