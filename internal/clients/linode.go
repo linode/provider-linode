@@ -56,7 +56,7 @@ type SetupConfig struct {
 }
 
 func prepareTerraformProviderConfiguration(creds map[string]string, pc v1beta1.ProviderConfiguration) map[string]any {
-	var config map[string]any
+	config := make(map[string]any)
 
 	if v, ok := creds[keyToken]; ok {
 		config[keyToken] = v
