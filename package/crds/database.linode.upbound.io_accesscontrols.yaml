@@ -88,7 +88,7 @@ spec:
                     type: number
                   databaseType:
                     description: |-
-                      The unique type of the target database. (mysql, mongodb, postgresql)
+                      The unique type of the target database. (mysql, postgresql)
                       The type of the  database to manage the allow list for.
                     type: string
                 type: object
@@ -120,7 +120,7 @@ spec:
                     type: number
                   databaseType:
                     description: |-
-                      The unique type of the target database. (mysql, mongodb, postgresql)
+                      The unique type of the target database. (mysql, postgresql)
                       The type of the  database to manage the allow list for.
                     type: string
                 type: object
@@ -324,7 +324,7 @@ spec:
                     type: number
                   databaseType:
                     description: |-
-                      The unique type of the target database. (mysql, mongodb, postgresql)
+                      The unique type of the target database. (mysql, postgresql)
                       The type of the  database to manage the allow list for.
                     type: string
                   id:

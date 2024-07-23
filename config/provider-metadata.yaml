@@ -54,7 +54,7 @@ resources:
         argumentDocs:
             allow_list: '- (Required) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.'
             database_id: '- (Required) The unique ID of the target database.'
-            database_type: '- (Required) The unique type of the target database. (mysql, mongodb, postgresql)'
+            database_type: '- (Required) The unique type of the target database. (mysql, postgresql)'
         importStatements: []
     linode_database_mysql:
         subCategory: ""
@@ -552,7 +552,6 @@ resources:
                   "type": "g6-standard-1"
                 }
         argumentDocs:
-            affinity_type: '- The affinity policy enforced by the Placement Group.'
             alerts.0.cpu: '- (Optional) The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we''ll send you an alert. If this is set to 0, the alert is disabled.'
             alerts.0.io: '- (Optional) The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we''ll send you an alert. If set to 0, this alert is disabled.'
             alerts.0.network_in: '- (Optional) The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we''ll send you an alert. If this is set to 0 (zero), the alert is disabled.'
@@ -591,7 +590,6 @@ resources:
             ipv4.nat_1_1: '- (Optional) The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.'
             ipv4.vpc: '- (Optional) The IP from the VPC subnet to use for this interface. A random address will be assigned if this is not specified in a VPC interface.'
             ipv6: '- This Linode''s IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/64) is included in this attribute.'
-            is_strict: '- Whether the Placement Group enforces strict compliance.'
             label: '- (Optional) The Linode''s label is for display purposes only. If no label is provided for a Linode, a default will be assigned.'
             metadata.0.user_data: '- (Optional) The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.'
             migration_type: '- (Optional) The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)'
@@ -600,6 +598,8 @@ resources:
             placement_group: '- Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.'
             placement_group.0.id: '- (Optional) The ID of the Placement Group to assign this Linode to.'
             placement_group_externally_managed: '- (Optional) If true, changes to the Linode''s assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.'
+            placement_group_policy: '- Whether the Placement Group enforces strict compliance.'
+            placement_group_type: '- The placement group type enforced by the Placement Group.'
             primary: '- (Optional) Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.'
             private_ip: '- (Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode''s region. It can be enabled on an existing Linode but it can''t be disabled.'
             private_ip_address: '- This Linode''s Private IPv4 Address, if enabled.  The regional private IP address range, 192.168.128.0/17, is shared by all Linode Instances in a region.'
@@ -1456,7 +1456,9 @@ resources:
             access_key: '- (Optional) The access key to authenticate with. If not specified with the resource, its value can be'
             acl: '- (Optional) The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.'
             certificate: '- (Required) The Base64 encoded and PEM formatted SSL certificate.'
-            cluster: '- (Required) The cluster of the Linode Object Storage Bucket.'
+            cluster: |-
+                - (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
+                For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
             cors_enabled: '- (Optional) If true, the bucket will have CORS enabled for all origins.'
             date: '- (Optional) Specifies the date after which you want the corresponding action to take effect.'
             days: '- (Optional) Specifies the number of days after object creation when the specific rule action takes effect.'
@@ -1466,6 +1468,7 @@ resources:
             label: '- (Required) The label of the Linode Object Storage Bucket.'
             prefix: '- (Optional) The object key prefix identifying one or more objects to which the rule applies.'
             private_key: '- (Required) The private key associated with the TLS/SSL certificate.'
+            region: '- (Required) The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.'
             secret_key: '- (Optional) The secret key to authenticate with. If not specified with the resource, its value can be'
             versioning: '- (Optional) Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)'
         importStatements: []
@@ -1480,14 +1483,31 @@ resources:
                 {
                   "label": "image-access"
                 }
+            - name: foobar
+              manifest: |-
+                {
+                  "bucket_access": [
+                    {
+                      "bucket_name": "my-bucket-name",
+                      "permissions": "read_write",
+                      "region": "us-mia"
+                    }
+                  ],
+                  "label": "my-key"
+                }
         argumentDocs:
             access_key: '- This keypair''s access key. This is not secret.'
             bucket_access: '- (Optional) Defines this key as a Limited Access Key. Limited Access Keys restrict this Object Storage key’s access to only the bucket(s) declared in this array and define their bucket-level permissions. Not providing this block will not limit this Object Storage Key.'
             bucket_name: '- The unique label of the bucket to which the key will grant limited access.'
-            cluster: '- The Object Storage cluster where a bucket to which the key is granting access is hosted.'
+            cluster: '- (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.'
+            id: '- The ID of the region.'
             label: '- (Required) The label given to this key. For display purposes only.'
             limited: '- Whether or not this key is a limited access key.'
             permissions: '- This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)'
+            region: '- The region where the bucket resides.'
+            regions: '- A set of regions where the key will grant access to create buckets.'
+            regions_details: '- A set of objects containing the detailed info of the regions where this key can access.'
+            s3_endpoint: '- The S3-compatible hostname you can use to access the Object Storage buckets in this region.'
             secret_key: '- This keypair''s secret key.'
         importStatements: []
     linode_object_storage_object:
@@ -1545,7 +1565,7 @@ resources:
             acl: '- (Optional) The canned ACL to apply. (private, public-read, authenticated-read, public-read-write, custom) (defaults to private).'
             bucket: '- (Required) The name of the bucket to put the object in.'
             cache_control: '- (Optional) Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.'
-            cluster: '- (Required) The cluster the bucket is in.'
+            cluster: '- (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.'
             content: '- (Optional, conflicts with source and content_base64) Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.'
             content_base64: '- (Optional, conflicts with source and content) Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the gzipbase64 function with small text strings. For larger objects, use source to stream the content from a disk file.'
             content_disposition: '- (Optional) Specifies presentational information for the object. Read w3c content_disposition for further information.'
@@ -1557,6 +1577,7 @@ resources:
             force_destroy: '- (Optional) Allow the object to be deleted regardless of any legal hold or object lock (defaults to false).'
             key: '- (Required) They name of the object once it is in the bucket.'
             metadata: '- (Optional) A map of keys/values to provision metadata.'
+            region: '- The cluster the bucket is in. Required if cluster is not configured.'
             secret_key: '- (Optional) The REQUIRED secret key to authenticate with. If it''s not specified with the resource, you must provide its value by'
             source: '- (Optional, conflicts with content and content_base64) The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.'
             version_id: '- A unique version ID value for the object.'
@@ -1571,17 +1592,17 @@ resources:
             - name: test
               manifest: |-
                 {
-                  "affinity_type": "anti_affinity:local",
                   "label": "my-placement-group",
+                  "placement_group_type": "anti_affinity:local",
                   "region": "us-mia"
                 }
         argumentDocs:
-            affinity_type: '- (Required) The affinity policy to use when placing Linodes in this group.'
             id: '- The ID of the Placement Group.'
-            is_compliant: '- Whether all Linodes in this group are currently compliant with the group''s affinity policy.'
-            is_strict: '- (Optional) Whether Linodes must be able to become compliant during assignment. (Default true)'
+            is_compliant: '- Whether all Linodes in this group are currently compliant with the group''s placement group type.'
             label: '- (Required) The label of the Placement Group. This field can only contain ASCII letters, digits and dashes.'
             linode_id: '- The ID of the Linode.'
+            placement_group_policy: '- (Optional) Whether Linodes must be able to become compliant during assignment. (Default strict)'
+            placement_group_type: '- (Required) The placement group type to use when placing Linodes in this group.'
             region: '- (Required) The region of the Placement Group.'
         importStatements: []
     linode_placement_group_assignment:
@@ -1609,8 +1630,8 @@ resources:
                     }
                 linode_placement_group.my-pg: |-
                     {
-                      "affinity_type": "anti_affinity:local",
                       "label": "my-pg",
+                      "placement_group_type": "anti_affinity:local",
                       "region": "us-east"
                     }
         argumentDocs:

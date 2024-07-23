@@ -175,7 +175,8 @@ spec:
                     type: array
                   cluster:
                     description: |-
-                      The cluster of the Linode Object Storage Bucket.
+                      (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
+                      For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
                       The cluster of the Linode Object Storage Bucket.
                     type: string
                   corsEnabled:
@@ -247,6 +248,11 @@ spec:
                           type: string
                       type: object
                     type: array
+                  region:
+                    description: |-
+                      The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+                      The region of the Linode Object Storage Bucket.
+                    type: string
                   secretKeySecretRef:
                     description: |-
                       The secret key to authenticate with. If not specified with the resource, its value can be
@@ -387,7 +393,8 @@ spec:
                     type: array
                   cluster:
                     description: |-
-                      The cluster of the Linode Object Storage Bucket.
+                      (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
+                      For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
                       The cluster of the Linode Object Storage Bucket.
                     type: string
                   corsEnabled:
@@ -459,6 +466,11 @@ spec:
                           type: string
                       type: object
                     type: array
+                  region:
+                    description: |-
+                      The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+                      The region of the Linode Object Storage Bucket.
+                    type: string
                   secretKeySecretRef:
                     description: |-
                       The secret key to authenticate with. If not specified with the resource, its value can be
@@ -652,10 +664,6 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.cluster is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.cluster)
-                || (has(self.initProvider) && has(self.initProvider.cluster))'
             - message: spec.forProvider.label is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
@@ -693,7 +701,8 @@ spec:
                     type: array
                   cluster:
                     description: |-
-                      The cluster of the Linode Object Storage Bucket.
+                      (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
+                      For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
                       The cluster of the Linode Object Storage Bucket.
                     type: string
                   corsEnabled:
@@ -776,6 +785,11 @@ spec:
                           type: string
                       type: object
                     type: array
+                  region:
+                    description: |-
+                      The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+                      The region of the Linode Object Storage Bucket.
+                    type: string
                   versioning:
                     description: |-
                       Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)

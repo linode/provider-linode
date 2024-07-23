@@ -24,7 +24,7 @@ type TokenInitParameters struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. All scopes can be viewed in the Linode API documentation.
-	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
+	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference
 	Scopes *string `json:"scopes,omitempty" tf:"scopes,omitempty"`
 }
 
@@ -45,7 +45,7 @@ type TokenObservation struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. All scopes can be viewed in the Linode API documentation.
-	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
+	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference
 	Scopes *string `json:"scopes,omitempty" tf:"scopes,omitempty"`
 }
 
@@ -62,7 +62,7 @@ type TokenParameters struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. All scopes can be viewed in the Linode API documentation.
-	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://www.linode.com/docs/api#oauth-reference
+	// The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure. Multiple scopes are separated by a space character (e.g., "databases:read_only events:read_only"). You can find the list of available scopes on Linode API docs site, https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference
 	// +kubebuilder:validation:Optional
 	Scopes *string `json:"scopes,omitempty" tf:"scopes,omitempty"`
 }

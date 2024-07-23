@@ -1276,27 +1276,30 @@ type PlacementGroupInitParameters struct {
 	// The ID of the Placement Group to assign this Linode to.
 	// The ID of the Placement Group to assign this Linode to.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Whether the Placement Group enforces strict compliance.
+	// Whether compliance is strictly enforced by this Placement Group.
+	PlacementGroupPolicy *string `json:"placementGroupPolicy,omitempty" tf:"placement_group_policy,omitempty"`
 }
 
 type PlacementGroupObservation struct {
-
-	// The affinity policy enforced by the Placement Group.
-	// The affinity policy for this Placement Group.
-	AffinityType *string `json:"affinityType,omitempty" tf:"affinity_type,omitempty"`
-
 	CompliantOnly *bool `json:"compliantOnly,omitempty" tf:"compliant_only,omitempty"`
 
 	// The ID of the Placement Group to assign this Linode to.
 	// The ID of the Placement Group to assign this Linode to.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Whether the Placement Group enforces strict compliance.
-	// Whether compliance is strictly enforced by this Placement Group.
-	IsStrict *bool `json:"isStrict,omitempty" tf:"is_strict,omitempty"`
-
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
 	// The label of this Placement Group.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// Whether the Placement Group enforces strict compliance.
+	// Whether compliance is strictly enforced by this Placement Group.
+	PlacementGroupPolicy *string `json:"placementGroupPolicy,omitempty" tf:"placement_group_policy,omitempty"`
+
+	// The placement group type enforced by the Placement Group.
+	// The placement group type for this Placement Group.
+	PlacementGroupType *string `json:"placementGroupType,omitempty" tf:"placement_group_type,omitempty"`
 }
 
 type PlacementGroupParameters struct {
@@ -1308,6 +1311,11 @@ type PlacementGroupParameters struct {
 	// The ID of the Placement Group to assign this Linode to.
 	// +kubebuilder:validation:Optional
 	ID *float64 `json:"id" tf:"id,omitempty"`
+
+	// Whether the Placement Group enforces strict compliance.
+	// Whether compliance is strictly enforced by this Placement Group.
+	// +kubebuilder:validation:Optional
+	PlacementGroupPolicy *string `json:"placementGroupPolicy,omitempty" tf:"placement_group_policy,omitempty"`
 }
 
 type ScheduleInitParameters struct {

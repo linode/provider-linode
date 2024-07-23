@@ -42,7 +42,7 @@ type ObjectInitParameters struct {
 	// This cache_control configuration of this object.
 	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
 
-	// The cluster the bucket is in.
+	// (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
 	// The target cluster that the bucket is in.
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
@@ -91,6 +91,10 @@ type ObjectInitParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// The cluster the bucket is in. Required if cluster is not configured.
+	// The target region that the bucket is in.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
 	// The REQUIRED secret key to authenticate with. If it's not specified with the resource, you must provide its value by
 	// The REQUIRED S3 secret key with access to the target bucket. If not specified with the resource, you must provide its value by configuring the obj_secret_key, or, opting-in generating it implicitly at apply-time using obj_use_temp_keys at provider-level.
 	SecretKeySecretRef *v1.SecretKeySelector `json:"secretKeySecretRef,omitempty" tf:"-"`
@@ -122,7 +126,7 @@ type ObjectObservation struct {
 	// This cache_control configuration of this object.
 	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
 
-	// The cluster the bucket is in.
+	// (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
 	// The target cluster that the bucket is in.
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
@@ -173,6 +177,10 @@ type ObjectObservation struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// The cluster the bucket is in. Required if cluster is not configured.
+	// The target region that the bucket is in.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
 	// The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
 	// The source file to upload.
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
@@ -219,7 +227,7 @@ type ObjectParameters struct {
 	// +kubebuilder:validation:Optional
 	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
 
-	// The cluster the bucket is in.
+	// (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
 	// The target cluster that the bucket is in.
 	// +kubebuilder:validation:Optional
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
@@ -279,6 +287,11 @@ type ObjectParameters struct {
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
+
+	// The cluster the bucket is in. Required if cluster is not configured.
+	// The target region that the bucket is in.
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The REQUIRED secret key to authenticate with. If it's not specified with the resource, you must provide its value by
 	// The REQUIRED S3 secret key with access to the target bucket. If not specified with the resource, you must provide its value by configuring the obj_secret_key, or, opting-in generating it implicitly at apply-time using obj_use_temp_keys at provider-level.
@@ -333,7 +346,6 @@ type Object struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.bucket) || (has(self.initProvider) && has(self.initProvider.bucket))",message="spec.forProvider.bucket is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cluster) || (has(self.initProvider) && has(self.initProvider.cluster))",message="spec.forProvider.cluster is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.key) || (has(self.initProvider) && has(self.initProvider.key))",message="spec.forProvider.key is a required parameter"
 	Spec   ObjectSpec   `json:"spec"`
 	Status ObjectStatus `json:"status,omitempty"`

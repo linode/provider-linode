@@ -86,13 +86,18 @@ spec:
                           type: string
                         cluster:
                           description: |-
-                            The Object Storage cluster where a bucket to which the key is granting access is hosted.
-                            The Object Storage cluster where a bucket to which the key is granting access is hosted.
+                            (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
+                            The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
                           type: string
                         permissions:
                           description: |-
                             This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
                             This Limited Access Key's permissions for the selected bucket.
+                          type: string
+                        region:
+                          description: |-
+                            The region where the bucket resides.
+                            The region where the bucket resides.
                           type: string
                       type: object
                     type: array
@@ -101,6 +106,14 @@ spec:
                       The label given to this key. For display purposes only.
                       The label given to this key. For display purposes only.
                     type: string
+                  regions:
+                    description: |-
+                      A set of regions where the key will grant access to create buckets.
+                      A set of regions where the key will grant access to create buckets.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                 type: object
               initProvider:
                 description: |-
@@ -128,13 +141,18 @@ spec:
                           type: string
                         cluster:
                           description: |-
-                            The Object Storage cluster where a bucket to which the key is granting access is hosted.
-                            The Object Storage cluster where a bucket to which the key is granting access is hosted.
+                            (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
+                            The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
                           type: string
                         permissions:
                           description: |-
                             This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
                             This Limited Access Key's permissions for the selected bucket.
+                          type: string
+                        region:
+                          description: |-
+                            The region where the bucket resides.
+                            The region where the bucket resides.
                           type: string
                       type: object
                     type: array
@@ -143,6 +161,14 @@ spec:
                       The label given to this key. For display purposes only.
                       The label given to this key. For display purposes only.
                     type: string
+                  regions:
+                    description: |-
+                      A set of regions where the key will grant access to create buckets.
+                      A set of regions where the key will grant access to create buckets.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                 type: object
               managementPolicies:
                 default:
@@ -334,17 +360,23 @@ spec:
                           type: string
                         cluster:
                           description: |-
-                            The Object Storage cluster where a bucket to which the key is granting access is hosted.
-                            The Object Storage cluster where a bucket to which the key is granting access is hosted.
+                            (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
+                            The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
                           type: string
                         permissions:
                           description: |-
                             This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
                             This Limited Access Key's permissions for the selected bucket.
                           type: string
+                        region:
+                          description: |-
+                            The region where the bucket resides.
+                            The region where the bucket resides.
+                          type: string
                       type: object
                     type: array
                   id:
+                    description: The ID of the region.
                     type: string
                   label:
                     description: |-
@@ -356,6 +388,29 @@ spec:
                       Whether or not this key is a limited access key.
                       Whether or not this key is a limited access key.
                     type: boolean
+                  regions:
+                    description: |-
+                      A set of regions where the key will grant access to create buckets.
+                      A set of regions where the key will grant access to create buckets.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  regionsDetails:
+                    description: |-
+                      A set of objects containing the detailed info of the regions where this key can access.
+                      A set of objects containing the detailed info of the regions where the key will grant access.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the region.
+                          type: string
+                        s3Endpoint:
+                          description: The S3-compatible hostname you can use to access
+                            the Object Storage buckets in this region.
+                          type: string
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

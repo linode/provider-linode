@@ -37,7 +37,8 @@ type BucketInitParameters struct {
 	// The cert used by this Object Storage Bucket.
 	Cert []CertInitParameters `json:"cert,omitempty" tf:"cert,omitempty"`
 
-	// The cluster of the Linode Object Storage Bucket.
+	// (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
+	// For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
 	// The cluster of the Linode Object Storage Bucket.
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
@@ -51,6 +52,10 @@ type BucketInitParameters struct {
 
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleInitParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
+
+	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+	// The region of the Linode Object Storage Bucket.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The secret key to authenticate with. If not specified with the resource, its value can be
 	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_secret_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
@@ -74,7 +79,8 @@ type BucketObservation struct {
 	// The cert used by this Object Storage Bucket.
 	Cert []CertObservation `json:"cert,omitempty" tf:"cert,omitempty"`
 
-	// The cluster of the Linode Object Storage Bucket.
+	// (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
+	// For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
 	// The cluster of the Linode Object Storage Bucket.
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
@@ -97,6 +103,10 @@ type BucketObservation struct {
 
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleObservation `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
+
+	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+	// The region of the Linode Object Storage Bucket.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
 	// Whether to enable versioning.
@@ -130,7 +140,8 @@ type BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	Cert []CertParameters `json:"cert,omitempty" tf:"cert,omitempty"`
 
-	// The cluster of the Linode Object Storage Bucket.
+	// (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
+	// For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
 	// The cluster of the Linode Object Storage Bucket.
 	// +kubebuilder:validation:Optional
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
@@ -148,6 +159,11 @@ type BucketParameters struct {
 	// Lifecycle rules to be applied to the bucket.
 	// +kubebuilder:validation:Optional
 	LifecycleRule []LifecycleRuleParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
+
+	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+	// The region of the Linode Object Storage Bucket.
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The secret key to authenticate with. If not specified with the resource, its value can be
 	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_secret_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
@@ -382,7 +398,6 @@ type BucketStatus struct {
 type Bucket struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.cluster) || (has(self.initProvider) && has(self.initProvider.cluster))",message="spec.forProvider.cluster is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
 	Spec   BucketSpec   `json:"spec"`
 	Status BucketStatus `json:"status,omitempty"`

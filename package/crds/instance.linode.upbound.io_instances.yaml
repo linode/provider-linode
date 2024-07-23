@@ -658,6 +658,11 @@ spec:
                             The ID of the Placement Group to assign this Linode to.
                             The ID of the Placement Group to assign this Linode to.
                           type: number
+                        placementGroupPolicy:
+                          description: |-
+                            Whether the Placement Group enforces strict compliance.
+                            Whether compliance is strictly enforced by this Placement Group.
+                          type: string
                       type: object
                     type: array
                   placementGroupExternallyManaged:
@@ -1414,6 +1419,11 @@ spec:
                             The ID of the Placement Group to assign this Linode to.
                             The ID of the Placement Group to assign this Linode to.
                           type: number
+                        placementGroupPolicy:
+                          description: |-
+                            Whether the Placement Group enforces strict compliance.
+                            Whether compliance is strictly enforced by this Placement Group.
+                          type: string
                       type: object
                     type: array
                   placementGroupExternallyManaged:
@@ -2402,11 +2412,6 @@ spec:
                       Fields related to the Placement Group this instance is assigned to.
                     items:
                       properties:
-                        affinityType:
-                          description: |-
-                            The affinity policy enforced by the Placement Group.
-                            The affinity policy for this Placement Group.
-                          type: string
                         compliantOnly:
                           type: boolean
                         id:
@@ -2414,15 +2419,20 @@ spec:
                             The ID of the Placement Group to assign this Linode to.
                             The ID of the Placement Group to assign this Linode to.
                           type: number
-                        isStrict:
-                          description: |-
-                            Whether the Placement Group enforces strict compliance.
-                            Whether compliance is strictly enforced by this Placement Group.
-                          type: boolean
                         label:
                           description: |-
                             The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
                             The label of this Placement Group.
+                          type: string
+                        placementGroupPolicy:
+                          description: |-
+                            Whether the Placement Group enforces strict compliance.
+                            Whether compliance is strictly enforced by this Placement Group.
+                          type: string
+                        placementGroupType:
+                          description: |-
+                            The placement group type enforced by the Placement Group.
+                            The placement group type for this Placement Group.
                           type: string
                       type: object
                     type: array

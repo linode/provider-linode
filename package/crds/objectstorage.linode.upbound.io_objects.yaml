@@ -169,7 +169,7 @@ spec:
                     type: string
                   cluster:
                     description: |-
-                      The cluster the bucket is in.
+                      (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
                       The target cluster that the bucket is in.
                     type: string
                   content:
@@ -230,6 +230,11 @@ spec:
                       The metadata of this object
                     type: object
                     x-kubernetes-map-type: granular
+                  region:
+                    description: |-
+                      The cluster the bucket is in. Required if cluster is not configured.
+                      The target region that the bucket is in.
+                    type: string
                   secretKeySecretRef:
                     description: |-
                       The REQUIRED secret key to authenticate with. If it's not specified with the resource, you must provide its value by
@@ -369,7 +374,7 @@ spec:
                     type: string
                   cluster:
                     description: |-
-                      The cluster the bucket is in.
+                      (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
                       The target cluster that the bucket is in.
                     type: string
                   content:
@@ -430,6 +435,11 @@ spec:
                       The metadata of this object
                     type: object
                     x-kubernetes-map-type: granular
+                  region:
+                    description: |-
+                      The cluster the bucket is in. Required if cluster is not configured.
+                      The target region that the bucket is in.
+                    type: string
                   secretKeySecretRef:
                     description: |-
                       The REQUIRED secret key to authenticate with. If it's not specified with the resource, you must provide its value by
@@ -632,10 +642,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.bucket)
                 || (has(self.initProvider) && has(self.initProvider.bucket))'
-            - message: spec.forProvider.cluster is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.cluster)
-                || (has(self.initProvider) && has(self.initProvider.cluster))'
             - message: spec.forProvider.key is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.key)
@@ -667,7 +673,7 @@ spec:
                     type: string
                   cluster:
                     description: |-
-                      The cluster the bucket is in.
+                      (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
                       The target cluster that the bucket is in.
                     type: string
                   content:
@@ -730,6 +736,11 @@ spec:
                       The metadata of this object
                     type: object
                     x-kubernetes-map-type: granular
+                  region:
+                    description: |-
+                      The cluster the bucket is in. Required if cluster is not configured.
+                      The target region that the bucket is in.
+                    type: string
                   source:
                     description: |-
                       The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.
