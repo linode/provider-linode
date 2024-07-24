@@ -18,7 +18,7 @@ type MembersInitParameters struct {
 
 type MembersObservation struct {
 
-	// Whether all Linodes in this group are currently compliant with the group's affinity policy.
+	// Whether all Linodes in this group are currently compliant with the group's placement group type.
 	IsCompliant *bool `json:"isCompliant,omitempty" tf:"is_compliant,omitempty"`
 
 	// The ID of the Linode.
@@ -30,17 +30,17 @@ type MembersParameters struct {
 
 type PlacementGroupInitParameters struct {
 
-	// The affinity policy to use when placing Linodes in this group.
-	// The affinity type for Linodes in this Placement Group.
-	AffinityType *string `json:"affinityType,omitempty" tf:"affinity_type,omitempty"`
-
-	// Whether Linodes must be able to become compliant during assignment. (Default true)
-	// Whether this Placement Group has a strict compliance policy.
-	IsStrict *bool `json:"isStrict,omitempty" tf:"is_strict,omitempty"`
-
 	// The label of the Placement Group. This field can only contain ASCII letters, digits and dashes.
 	// The label of the Placement Group.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// Whether Linodes must be able to become compliant during assignment. (Default strict)
+	// Whether this Placement Group has a strict compliance policy.
+	PlacementGroupPolicy *string `json:"placementGroupPolicy,omitempty" tf:"placement_group_policy,omitempty"`
+
+	// The placement group type to use when placing Linodes in this group.
+	// The placement group type for Linodes in this Placement Group.
+	PlacementGroupType *string `json:"placementGroupType,omitempty" tf:"placement_group_type,omitempty"`
 
 	// The region of the Placement Group.
 	// The region of the Placement Group.
@@ -49,20 +49,12 @@ type PlacementGroupInitParameters struct {
 
 type PlacementGroupObservation struct {
 
-	// The affinity policy to use when placing Linodes in this group.
-	// The affinity type for Linodes in this Placement Group.
-	AffinityType *string `json:"affinityType,omitempty" tf:"affinity_type,omitempty"`
-
 	// The ID of the Placement Group.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Whether all Linodes in this group are currently compliant with the group's affinity policy.
+	// Whether all Linodes in this group are currently compliant with the group's placement group type.
 	// Whether all Linodes in this Placement Group are currently compliant.
 	IsCompliant *bool `json:"isCompliant,omitempty" tf:"is_compliant,omitempty"`
-
-	// Whether Linodes must be able to become compliant during assignment. (Default true)
-	// Whether this Placement Group has a strict compliance policy.
-	IsStrict *bool `json:"isStrict,omitempty" tf:"is_strict,omitempty"`
 
 	// The label of the Placement Group. This field can only contain ASCII letters, digits and dashes.
 	// The label of the Placement Group.
@@ -71,6 +63,14 @@ type PlacementGroupObservation struct {
 	// A set of Linodes currently assigned to this Placement Group.
 	Members []MembersObservation `json:"members,omitempty" tf:"members,omitempty"`
 
+	// Whether Linodes must be able to become compliant during assignment. (Default strict)
+	// Whether this Placement Group has a strict compliance policy.
+	PlacementGroupPolicy *string `json:"placementGroupPolicy,omitempty" tf:"placement_group_policy,omitempty"`
+
+	// The placement group type to use when placing Linodes in this group.
+	// The placement group type for Linodes in this Placement Group.
+	PlacementGroupType *string `json:"placementGroupType,omitempty" tf:"placement_group_type,omitempty"`
+
 	// The region of the Placement Group.
 	// The region of the Placement Group.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -78,20 +78,20 @@ type PlacementGroupObservation struct {
 
 type PlacementGroupParameters struct {
 
-	// The affinity policy to use when placing Linodes in this group.
-	// The affinity type for Linodes in this Placement Group.
-	// +kubebuilder:validation:Optional
-	AffinityType *string `json:"affinityType,omitempty" tf:"affinity_type,omitempty"`
-
-	// Whether Linodes must be able to become compliant during assignment. (Default true)
-	// Whether this Placement Group has a strict compliance policy.
-	// +kubebuilder:validation:Optional
-	IsStrict *bool `json:"isStrict,omitempty" tf:"is_strict,omitempty"`
-
 	// The label of the Placement Group. This field can only contain ASCII letters, digits and dashes.
 	// The label of the Placement Group.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// Whether Linodes must be able to become compliant during assignment. (Default strict)
+	// Whether this Placement Group has a strict compliance policy.
+	// +kubebuilder:validation:Optional
+	PlacementGroupPolicy *string `json:"placementGroupPolicy,omitempty" tf:"placement_group_policy,omitempty"`
+
+	// The placement group type to use when placing Linodes in this group.
+	// The placement group type for Linodes in this Placement Group.
+	// +kubebuilder:validation:Optional
+	PlacementGroupType *string `json:"placementGroupType,omitempty" tf:"placement_group_type,omitempty"`
 
 	// The region of the Placement Group.
 	// The region of the Placement Group.
@@ -135,8 +135,8 @@ type PlacementGroupStatus struct {
 type PlacementGroup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.affinityType) || (has(self.initProvider) && has(self.initProvider.affinityType))",message="spec.forProvider.affinityType is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.placementGroupType) || (has(self.initProvider) && has(self.initProvider.placementGroupType))",message="spec.forProvider.placementGroupType is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	Spec   PlacementGroupSpec   `json:"spec"`
 	Status PlacementGroupStatus `json:"status,omitempty"`

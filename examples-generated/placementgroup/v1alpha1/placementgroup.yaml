@@ -8,6 +8,6 @@ metadata:
   name: test
 spec:
   forProvider:
-    affinityType: anti_affinity:local
     label: my-placement-group
+    placementGroupType: anti_affinity:local
     region: us-mia

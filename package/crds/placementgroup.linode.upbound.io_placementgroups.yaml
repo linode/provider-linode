@@ -73,20 +73,20 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  affinityType:
-                    description: |-
-                      The affinity policy to use when placing Linodes in this group.
-                      The affinity type for Linodes in this Placement Group.
-                    type: string
-                  isStrict:
-                    description: |-
-                      Whether Linodes must be able to become compliant during assignment. (Default true)
-                      Whether this Placement Group has a strict compliance policy.
-                    type: boolean
                   label:
                     description: |-
                       The label of the Placement Group. This field can only contain ASCII letters, digits and dashes.
                       The label of the Placement Group.
+                    type: string
+                  placementGroupPolicy:
+                    description: |-
+                      Whether Linodes must be able to become compliant during assignment. (Default strict)
+                      Whether this Placement Group has a strict compliance policy.
+                    type: string
+                  placementGroupType:
+                    description: |-
+                      The placement group type to use when placing Linodes in this group.
+                      The placement group type for Linodes in this Placement Group.
                     type: string
                   region:
                     description: |-
@@ -107,20 +107,20 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  affinityType:
-                    description: |-
-                      The affinity policy to use when placing Linodes in this group.
-                      The affinity type for Linodes in this Placement Group.
-                    type: string
-                  isStrict:
-                    description: |-
-                      Whether Linodes must be able to become compliant during assignment. (Default true)
-                      Whether this Placement Group has a strict compliance policy.
-                    type: boolean
                   label:
                     description: |-
                       The label of the Placement Group. This field can only contain ASCII letters, digits and dashes.
                       The label of the Placement Group.
+                    type: string
+                  placementGroupPolicy:
+                    description: |-
+                      Whether Linodes must be able to become compliant during assignment. (Default strict)
+                      Whether this Placement Group has a strict compliance policy.
+                    type: string
+                  placementGroupType:
+                    description: |-
+                      The placement group type to use when placing Linodes in this group.
+                      The placement group type for Linodes in this Placement Group.
                     type: string
                   region:
                     description: |-
@@ -296,14 +296,14 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.affinityType is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.affinityType)
-                || (has(self.initProvider) && has(self.initProvider.affinityType))'
             - message: spec.forProvider.label is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
                 || (has(self.initProvider) && has(self.initProvider.label))'
+            - message: spec.forProvider.placementGroupType is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.placementGroupType)
+                || (has(self.initProvider) && has(self.initProvider.placementGroupType))'
             - message: spec.forProvider.region is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
@@ -313,23 +313,13 @@ spec:
             properties:
               atProvider:
                 properties:
-                  affinityType:
-                    description: |-
-                      The affinity policy to use when placing Linodes in this group.
-                      The affinity type for Linodes in this Placement Group.
-                    type: string
                   id:
                     description: The ID of the Placement Group.
                     type: string
                   isCompliant:
                     description: |-
-                      Whether all Linodes in this group are currently compliant with the group's affinity policy.
+                      Whether all Linodes in this group are currently compliant with the group's placement group type.
                       Whether all Linodes in this Placement Group are currently compliant.
-                    type: boolean
-                  isStrict:
-                    description: |-
-                      Whether Linodes must be able to become compliant during assignment. (Default true)
-                      Whether this Placement Group has a strict compliance policy.
                     type: boolean
                   label:
                     description: |-
@@ -343,13 +333,23 @@ spec:
                       properties:
                         isCompliant:
                           description: Whether all Linodes in this group are currently
-                            compliant with the group's affinity policy.
+                            compliant with the group's placement group type.
                           type: boolean
                         linodeId:
                           description: The ID of the Linode.
                           type: number
                       type: object
                     type: array
+                  placementGroupPolicy:
+                    description: |-
+                      Whether Linodes must be able to become compliant during assignment. (Default strict)
+                      Whether this Placement Group has a strict compliance policy.
+                    type: string
+                  placementGroupType:
+                    description: |-
+                      The placement group type to use when placing Linodes in this group.
+                      The placement group type for Linodes in this Placement Group.
+                    type: string
                   region:
                     description: |-
                       The region of the Placement Group.

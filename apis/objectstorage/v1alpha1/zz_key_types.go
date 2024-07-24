@@ -19,13 +19,17 @@ type BucketAccessInitParameters struct {
 	// The unique label of the bucket to which the key will grant limited access.
 	BucketName *string `json:"bucketName,omitempty" tf:"bucket_name,omitempty"`
 
-	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
-	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
+	// (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
+	// The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
 	// This Limited Access Key's permissions for the selected bucket.
 	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
+
+	// The region where the bucket resides.
+	// The region where the bucket resides.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
 type BucketAccessObservation struct {
@@ -34,13 +38,17 @@ type BucketAccessObservation struct {
 	// The unique label of the bucket to which the key will grant limited access.
 	BucketName *string `json:"bucketName,omitempty" tf:"bucket_name,omitempty"`
 
-	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
-	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
+	// (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
+	// The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
 	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
 	// This Limited Access Key's permissions for the selected bucket.
 	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
+
+	// The region where the bucket resides.
+	// The region where the bucket resides.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
 type BucketAccessParameters struct {
@@ -50,15 +58,20 @@ type BucketAccessParameters struct {
 	// +kubebuilder:validation:Optional
 	BucketName *string `json:"bucketName" tf:"bucket_name,omitempty"`
 
-	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
-	// The Object Storage cluster where a bucket to which the key is granting access is hosted.
+	// (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
+	// The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
 	// +kubebuilder:validation:Optional
-	Cluster *string `json:"cluster" tf:"cluster,omitempty"`
+	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
 	// This Limited Access Key's permissions for the selected bucket.
 	// +kubebuilder:validation:Optional
 	Permissions *string `json:"permissions" tf:"permissions,omitempty"`
+
+	// The region where the bucket resides.
+	// The region where the bucket resides.
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
 
 type KeyInitParameters struct {
@@ -70,6 +83,11 @@ type KeyInitParameters struct {
 	// The label given to this key. For display purposes only.
 	// The label given to this key. For display purposes only.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A set of regions where the key will grant access to create buckets.
+	// A set of regions where the key will grant access to create buckets.
+	// +listType=set
+	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 }
 
 type KeyObservation struct {
@@ -78,6 +96,7 @@ type KeyObservation struct {
 	// A list of permissions to grant this limited access key.
 	BucketAccess []BucketAccessObservation `json:"bucketAccess,omitempty" tf:"bucket_access,omitempty"`
 
+	// The ID of the region.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The label given to this key. For display purposes only.
@@ -87,6 +106,15 @@ type KeyObservation struct {
 	// Whether or not this key is a limited access key.
 	// Whether or not this key is a limited access key.
 	Limited *bool `json:"limited,omitempty" tf:"limited,omitempty"`
+
+	// A set of regions where the key will grant access to create buckets.
+	// A set of regions where the key will grant access to create buckets.
+	// +listType=set
+	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
+
+	// A set of objects containing the detailed info of the regions where this key can access.
+	// A set of objects containing the detailed info of the regions where the key will grant access.
+	RegionsDetails []RegionsDetailsObservation `json:"regionsDetails,omitempty" tf:"regions_details,omitempty"`
 }
 
 type KeyParameters struct {
@@ -100,6 +128,27 @@ type KeyParameters struct {
 	// The label given to this key. For display purposes only.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A set of regions where the key will grant access to create buckets.
+	// A set of regions where the key will grant access to create buckets.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
+}
+
+type RegionsDetailsInitParameters struct {
+}
+
+type RegionsDetailsObservation struct {
+
+	// The ID of the region.
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The S3-compatible hostname you can use to access the Object Storage buckets in this region.
+	S3Endpoint *string `json:"s3Endpoint,omitempty" tf:"s3_endpoint,omitempty"`
+}
+
+type RegionsDetailsParameters struct {
 }
 
 // KeySpec defines the desired state of Key
