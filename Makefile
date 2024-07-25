@@ -126,6 +126,11 @@ run: go.build
 	@# To see other arguments that can be provided, run the command with --help instead
 	UPBOUND_CONTEXT="local" $(GO_OUT_DIR)/provider --debug
 
+debug: go.build
+	@$(INFO) Running Crossplane locally out-of-cluster in debug mode . . .
+	@# To see other arguments that can be provided, run the command with --help instead
+	UPBOUND_CONTEXT="local" dlv exec $(GO_OUT_DIR)/provider -- --debug
+
 # NOTE(hasheddan): we ensure up is installed prior to running platform-specific
 # build steps in parallel to avoid encountering an installation race condition.
 build.init: $(UP)
