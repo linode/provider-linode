@@ -31,6 +31,7 @@ var terraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"linode_lke_node_pool":              config.IdentifierFromProvider,
 	"linode_image":                      config.IdentifierFromProvider,
 	"linode_nodebalancer_config":        config.IdentifierFromProvider,
+	"linode_firewall":                   config.IdentifierFromProvider,
 	"linode_placement_group":            config.IdentifierFromProvider,
 	"linode_placement_group_assignment": config.IdentifierFromProvider,
 }
@@ -45,7 +46,6 @@ var terraformSDKIncludeList = map[string]config.ExternalName{
 	"linode_database_postgresql":      config.IdentifierFromProvider,
 	"linode_domain":                   config.IdentifierFromProvider,
 	"linode_domain_record":            config.IdentifierFromProvider,
-	"linode_firewall":                 config.IdentifierFromProvider,
 	"linode_instance":                 config.IdentifierFromProvider,
 	"linode_instance_config":          config.IdentifierFromProvider,
 	"linode_lke_cluster":              config.IdentifierFromProvider,

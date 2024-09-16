@@ -58,6 +58,11 @@ type NodePoolInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
+	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
+	// +mapType=granular
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
 	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	NodeCount *float64 `json:"nodeCount,omitempty" tf:"node_count,omitempty"`
@@ -66,6 +71,9 @@ type NodePoolInitParameters struct {
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
+	Taint []TaintInitParameters `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
@@ -97,8 +105,17 @@ type NodePoolObservation struct {
 	// The ID of the cluster to associate this node pool with.
 	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// The disk encryption policy for nodes in this pool.
+	// The disk encryption policy for nodes in this pool. NOTE: Disk encryption may not currently be available to all users.
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
 	// The ID of the Node Pool within LKE Cluster.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
+	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
+	// +mapType=granular
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 
 	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
@@ -111,6 +128,9 @@ type NodePoolObservation struct {
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
+	Taint []TaintObservation `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
@@ -136,6 +156,12 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
+	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
 	// The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
 	// The number of nodes in the Node Pool.
 	// +kubebuilder:validation:Optional
@@ -147,10 +173,62 @@ type NodePoolParameters struct {
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
+	// +kubebuilder:validation:Optional
+	Taint []TaintParameters `json:"taint,omitempty" tf:"taint,omitempty"`
+
 	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type TaintInitParameters struct {
+
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
+	// The Kubernetes taint effect.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
+
+	// The Kubernetes taint key.
+	// The Kubernetes taint key.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The Kubernetes taint value.
+	// The Kubernetes taint value.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type TaintObservation struct {
+
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
+	// The Kubernetes taint effect.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
+
+	// The Kubernetes taint key.
+	// The Kubernetes taint key.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The Kubernetes taint value.
+	// The Kubernetes taint value.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type TaintParameters struct {
+
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
+	// The Kubernetes taint effect.
+	// +kubebuilder:validation:Optional
+	Effect *string `json:"effect" tf:"effect,omitempty"`
+
+	// The Kubernetes taint key.
+	// The Kubernetes taint key.
+	// +kubebuilder:validation:Optional
+	Key *string `json:"key" tf:"key,omitempty"`
+
+	// The Kubernetes taint value.
+	// The Kubernetes taint value.
+	// +kubebuilder:validation:Optional
+	Value *string `json:"value" tf:"value,omitempty"`
 }
 
 // NodePoolSpec defines the desired state of NodePool

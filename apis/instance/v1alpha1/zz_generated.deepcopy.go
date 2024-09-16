@@ -2813,6 +2813,11 @@ func (in *DiskObservation_2) DeepCopyInto(out *DiskObservation_2) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DiskEncryption != nil {
+		in, out := &in.DiskEncryption, &out.DiskEncryption
+		*out = new(string)
+		**out = **in
+	}
 	if in.Filesystem != nil {
 		in, out := &in.Filesystem, &out.Filesystem
 		*out = new(string)
@@ -3648,6 +3653,11 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.DiskEncryption != nil {
+		in, out := &in.DiskEncryption, &out.DiskEncryption
+		*out = new(string)
+		**out = **in
+	}
 	if in.FirewallID != nil {
 		in, out := &in.FirewallID, &out.FirewallID
 		*out = new(float64)
@@ -4093,6 +4103,11 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.DiskEncryption != nil {
+		in, out := &in.DiskEncryption, &out.DiskEncryption
+		*out = new(string)
+		**out = **in
+	}
 	if in.FirewallID != nil {
 		in, out := &in.FirewallID, &out.FirewallID
 		*out = new(float64)
@@ -4154,6 +4169,11 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
 		*out = new(string)
+		**out = **in
+	}
+	if in.LkeClusterID != nil {
+		in, out := &in.LkeClusterID, &out.LkeClusterID
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Metadata != nil {
@@ -4331,6 +4351,11 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
+	}
+	if in.DiskEncryption != nil {
+		in, out := &in.DiskEncryption, &out.DiskEncryption
+		*out = new(string)
+		**out = **in
 	}
 	if in.FirewallID != nil {
 		in, out := &in.FirewallID, &out.FirewallID

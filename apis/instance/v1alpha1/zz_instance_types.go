@@ -602,6 +602,10 @@ type InstanceInitParameters struct {
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
 	Disk []DiskInitParameters `json:"disk,omitempty" tf:"disk,omitempty"`
 
+	// The disk encryption policy for this instance. (enabled, disabled; default enabled in supported regions)
+	// The disk encryption policy for this Instance. NOTE: Disk encryption may not currently be available to all users.
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
 	// The ID of the Firewall to attach to the instance upon creation. Changing
 	// The ID of the firewall applied to the Linode instance during creation.
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
@@ -840,6 +844,10 @@ type InstanceObservation struct {
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
 	Disk []DiskObservation `json:"disk,omitempty" tf:"disk,omitempty"`
 
+	// The disk encryption policy for this instance. (enabled, disabled; default enabled in supported regions)
+	// The disk encryption policy for this Instance. NOTE: Disk encryption may not currently be available to all users.
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
 	// The ID of the Firewall to attach to the instance upon creation. Changing
 	// The ID of the firewall applied to the Linode instance during creation.
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
@@ -882,6 +890,10 @@ type InstanceObservation struct {
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
 	// The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// If applicable, the ID of the LKE cluster this instance is a part of.
+	// If applicable, the ID of the LKE cluster this Instance is a node of.
+	LkeClusterID *float64 `json:"lkeClusterId,omitempty" tf:"lke_cluster_id,omitempty"`
 
 	// Various fields related to the Linode Metadata service.
 	Metadata []MetadataObservation `json:"metadata,omitempty" tf:"metadata,omitempty"`
@@ -991,6 +1003,11 @@ type InstanceParameters struct {
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
 	// +kubebuilder:validation:Optional
 	Disk []DiskParameters `json:"disk,omitempty" tf:"disk,omitempty"`
+
+	// The disk encryption policy for this instance. (enabled, disabled; default enabled in supported regions)
+	// The disk encryption policy for this Instance. NOTE: Disk encryption may not currently be available to all users.
+	// +kubebuilder:validation:Optional
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
 
 	// The ID of the Firewall to attach to the instance upon creation. Changing
 	// The ID of the firewall applied to the Linode instance during creation.

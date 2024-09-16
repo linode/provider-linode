@@ -552,6 +552,11 @@ func (in *InboundObservation) DeepCopyInto(out *InboundObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]*string, len(*in))
@@ -1246,6 +1251,11 @@ func (in *OutboundObservation) DeepCopyInto(out *OutboundObservation) {
 	*out = *in
 	if in.Action != nil {
 		in, out := &in.Action, &out.Action
+		*out = new(string)
+		**out = **in
+	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
 		*out = new(string)
 		**out = **in
 	}

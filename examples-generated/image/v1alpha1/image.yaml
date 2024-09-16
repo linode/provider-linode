@@ -16,6 +16,9 @@ spec:
     linodeIdSelector:
       matchLabels:
         testing.upbound.io/example-name: foo
+    tags:
+    - image-tag
+    - test
 
 ---
 

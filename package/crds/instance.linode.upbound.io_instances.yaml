@@ -551,6 +551,11 @@ spec:
                           type: number
                       type: object
                     type: array
+                  diskEncryption:
+                    description: |-
+                      The disk encryption policy for this instance. (enabled, disabled; default enabled in supported regions)
+                      The disk encryption policy for this Instance. NOTE: Disk encryption may not currently be available to all users.
+                    type: string
                   firewallId:
                     description: |-
                       The ID of the Firewall to attach to the instance upon creation. Changing
@@ -1312,6 +1317,11 @@ spec:
                           type: number
                       type: object
                     type: array
+                  diskEncryption:
+                    description: |-
+                      The disk encryption policy for this instance. (enabled, disabled; default enabled in supported regions)
+                      The disk encryption policy for this Instance. NOTE: Disk encryption may not currently be available to all users.
+                    type: string
                   firewallId:
                     description: |-
                       The ID of the Firewall to attach to the instance upon creation. Changing
@@ -2267,6 +2277,11 @@ spec:
                           type: number
                       type: object
                     type: array
+                  diskEncryption:
+                    description: |-
+                      The disk encryption policy for this instance. (enabled, disabled; default enabled in supported regions)
+                      The disk encryption policy for this Instance. NOTE: Disk encryption may not currently be available to all users.
+                    type: string
                   firewallId:
                     description: |-
                       The ID of the Firewall to attach to the instance upon creation. Changing
@@ -2390,6 +2405,11 @@ spec:
                       The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
                       The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned
                     type: string
+                  lkeClusterId:
+                    description: |-
+                      If applicable, the ID of the LKE cluster this instance is a part of.
+                      If applicable, the ID of the LKE cluster this Instance is a node of.
+                    type: number
                   metadata:
                     description: Various fields related to the Linode Metadata service.
                     items:

@@ -350,6 +350,8 @@ spec:
                                   inbound_policy if this is an inbound rule, or the
                                   outbound_policy if this is an outbound rule.
                                 type: string
+                              description:
+                                type: string
                               ipv4:
                                 description: The Public IPv4 Address of this NodeBalancer
                                 items:
@@ -388,6 +390,8 @@ spec:
                                   or dropped by this rule. Overrides the Firewall’s
                                   inbound_policy if this is an inbound rule, or the
                                   outbound_policy if this is an outbound rule.
+                                type: string
+                              description:
                                 type: string
                               ipv4:
                                 description: The Public IPv4 Address of this NodeBalancer
