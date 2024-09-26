@@ -8,7 +8,7 @@ require (
 	dario.cat/mergo v1.0.0
 	github.com/crossplane/crossplane-runtime v1.16.0
 	github.com/crossplane/crossplane-tools v0.0.0-20240516011917-bfb5045f0903
-	github.com/crossplane/upjet v1.4.0
+	github.com/crossplane/upjet v1.4.1-0.20240911184956-3afbb7796d46
 	github.com/go-resty/resty/v2 v2.14.0
 	github.com/hashicorp/terraform-json v0.22.1
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
@@ -159,5 +159,3 @@ require (
 	sigs.k8s.io/structured-merge-diff/v4 v4.4.1 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
-
-replace github.com/crossplane/upjet => github.com/tchinmai7/upjet v0.0.0-20240725221335-67bd255fdb28
