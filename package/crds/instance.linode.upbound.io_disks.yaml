@@ -739,6 +739,11 @@ spec:
                       When this disk was created.
                       When this disk was created.
                     type: string
+                  diskEncryption:
+                    description: |-
+                      The disk encryption policy for this disk's parent instance. (enabled, disabled)
+                      The disk encryption policy for this disk's parent Linode. NOTE: Disk encryption may not currently be available to all users.
+                    type: string
                   filesystem:
                     description: |-
                       The filesystem of this disk. (raw, swap, ext3, ext4, initrd)

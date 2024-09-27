@@ -164,6 +164,14 @@ spec:
                             The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
                             The number of nodes in the Node Pool.
                           type: number
+                        tags:
+                          description: |-
+                            An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+                            A set of tags applied to this node pool.
+                          items:
+                            type: string
+                          type: array
+                          x-kubernetes-list-type: set
                         type:
                           description: |-
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
@@ -289,6 +297,14 @@ spec:
                             The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
                             The number of nodes in the Node Pool.
                           type: number
+                        tags:
+                          description: |-
+                            An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+                            A set of tags applied to this node pool.
+                          items:
+                            type: string
+                          type: array
+                          x-kubernetes-list-type: set
                         type:
                           description: |-
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
@@ -605,6 +621,11 @@ spec:
                             The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
                             The number of nodes in the Node Pool.
                           type: number
+                        diskEncryption:
+                          description: |-
+                            The disk encryption policy for nodes in this pool.
+                            The disk encryption policy for the nodes in this pool. NOTE: Disk encryption may not currently be available to all users.
+                          type: string
                         id:
                           description: |-
                             The ID of the cluster.
@@ -625,6 +646,14 @@ spec:
                                 type: string
                             type: object
                           type: array
+                        tags:
+                          description: |-
+                            An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+                            A set of tags applied to this node pool.
+                          items:
+                            type: string
+                          type: array
+                          x-kubernetes-list-type: set
                         type:
                           description: |-
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.

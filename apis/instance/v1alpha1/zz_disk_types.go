@@ -90,6 +90,10 @@ type DiskObservation_2 struct {
 	// When this disk was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
+	// The disk encryption policy for this disk's parent instance. (enabled, disabled)
+	// The disk encryption policy for this disk's parent Linode. NOTE: Disk encryption may not currently be available to all users.
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
 	// The filesystem of this disk. (raw, swap, ext3, ext4, initrd)
 	// The filesystem of this disk.
 	Filesystem *string `json:"filesystem,omitempty" tf:"filesystem,omitempty"`

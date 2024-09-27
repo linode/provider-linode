@@ -298,6 +298,11 @@ type PoolInitParameters struct {
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -312,12 +317,21 @@ type PoolObservation struct {
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// The disk encryption policy for nodes in this pool.
+	// The disk encryption policy for the nodes in this pool. NOTE: Disk encryption may not currently be available to all users.
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
 	// The ID of the cluster.
 	// The ID of the Node Pool.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
 	// The nodes in the node pool.
 	Nodes []NodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
+
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
@@ -334,6 +348,12 @@ type PoolParameters struct {
 	// The number of nodes in the Node Pool.
 	// +kubebuilder:validation:Optional
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
+
+	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.

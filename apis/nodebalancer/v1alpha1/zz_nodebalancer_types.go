@@ -59,6 +59,8 @@ type InboundObservation struct {
 	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
 	// The Public IPv4 Address of this NodeBalancer
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
@@ -191,6 +193,8 @@ type OutboundObservation struct {
 
 	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// The Public IPv4 Address of this NodeBalancer
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`

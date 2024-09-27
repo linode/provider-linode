@@ -258,6 +258,25 @@ spec:
                       The region of the image. See all regions here.
                       The region to upload to.
                     type: string
+                  replicaRegions:
+                    description: |-
+                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+                      A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
+                    items:
+                      type: string
+                    type: array
+                  tags:
+                    description: |-
+                      A list of customized tags.
+                      The customized tags for the image.
+                    items:
+                      type: string
+                    type: array
+                  waitForReplications:
+                    description: |-
+                      Whether to wait for all image replications become available. Default to false.
+                      Whether to wait for all image replications become `available`.
+                    type: boolean
                 type: object
               initProvider:
                 description: |-
@@ -458,6 +477,25 @@ spec:
                       The region of the image. See all regions here.
                       The region to upload to.
                     type: string
+                  replicaRegions:
+                    description: |-
+                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+                      A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
+                    items:
+                      type: string
+                    type: array
+                  tags:
+                    description: |-
+                      A list of customized tags.
+                      The customized tags for the image.
+                    items:
+                      type: string
+                    type: array
+                  waitForReplications:
+                    description: |-
+                      Whether to wait for all image replications become available. Default to false.
+                      Whether to wait for all image replications become `available`.
+                    type: boolean
                 type: object
               managementPolicies:
                 default:
@@ -709,14 +747,49 @@ spec:
                       The region of the image. See all regions here.
                       The region to upload to.
                     type: string
+                  replicaRegions:
+                    description: |-
+                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+                      A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
+                    items:
+                      type: string
+                    type: array
+                  replications:
+                    description: |-
+                      A list of image replications region and corresponding status.
+                      A list of image replications region and corresponding status.
+                    items:
+                      properties:
+                        region:
+                          description: The region of the image. See all regions here.
+                          type: string
+                        status:
+                          description: The status of an image replica.
+                          type: string
+                      type: object
+                    type: array
                   size:
                     description: |-
                       The minimum size this Image needs to deploy. Size is in MB.
                       The minimum size this Image needs to deploy. Size is in MB.
                     type: number
                   status:
-                    description: The current status of this Image.
+                    description: |-
+                      The status of an image replica.
+                      The current status of this Image.
                     type: string
+                  tags:
+                    description: |-
+                      A list of customized tags.
+                      The customized tags for the image.
+                    items:
+                      type: string
+                    type: array
+                  totalSize:
+                    description: |-
+                      The total size of the image in all available regions.
+                      The total size of the image in all available regions.
+                    type: number
                   type:
                     description: |-
                       How the Image was created. 'Manual' Images can be created at any time. 'Automatic' images are created automatically from a deleted Linode.
@@ -727,6 +800,11 @@ spec:
                       The upstream distribution vendor. Nil for private Images.
                       The upstream distribution vendor. Nil for private Images.
                     type: string
+                  waitForReplications:
+                    description: |-
+                      Whether to wait for all image replications become available. Default to false.
+                      Whether to wait for all image replications become `available`.
+                    type: boolean
                 type: object
               conditions:
                 description: Conditions of the resource.

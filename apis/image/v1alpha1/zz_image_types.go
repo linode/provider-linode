@@ -63,6 +63,18 @@ type ImageInitParameters struct {
 	// The region of the image. See all regions here.
 	// The region to upload to.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+	// A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
+	ReplicaRegions []*string `json:"replicaRegions,omitempty" tf:"replica_regions,omitempty"`
+
+	// A list of customized tags.
+	// The customized tags for the image.
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// Whether to wait for all image replications become available. Default to false.
+	// Whether to wait for all image replications become `available`.
+	WaitForReplications *bool `json:"waitForReplications,omitempty" tf:"wait_for_replications,omitempty"`
 }
 
 type ImageObservation struct {
@@ -124,12 +136,29 @@ type ImageObservation struct {
 	// The region to upload to.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+	// A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
+	ReplicaRegions []*string `json:"replicaRegions,omitempty" tf:"replica_regions,omitempty"`
+
+	// A list of image replications region and corresponding status.
+	// A list of image replications region and corresponding status.
+	Replications []ReplicationsObservation `json:"replications,omitempty" tf:"replications,omitempty"`
+
 	// The minimum size this Image needs to deploy. Size is in MB.
 	// The minimum size this Image needs to deploy. Size is in MB.
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
+	// The status of an image replica.
 	// The current status of this Image.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// A list of customized tags.
+	// The customized tags for the image.
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// The total size of the image in all available regions.
+	// The total size of the image in all available regions.
+	TotalSize *float64 `json:"totalSize,omitempty" tf:"total_size,omitempty"`
 
 	// How the Image was created. 'Manual' Images can be created at any time. 'Automatic' images are created automatically from a deleted Linode.
 	// How the Image was created. 'Manual' Images can be created at any time. 'Automatic' images are created automatically from a deleted Linode.
@@ -138,6 +167,10 @@ type ImageObservation struct {
 	// The upstream distribution vendor. Nil for private Images.
 	// The upstream distribution vendor. Nil for private Images.
 	Vendor *string `json:"vendor,omitempty" tf:"vendor,omitempty"`
+
+	// Whether to wait for all image replications become available. Default to false.
+	// Whether to wait for all image replications become `available`.
+	WaitForReplications *bool `json:"waitForReplications,omitempty" tf:"wait_for_replications,omitempty"`
 }
 
 type ImageParameters struct {
@@ -198,6 +231,36 @@ type ImageParameters struct {
 	// The region to upload to.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+	// A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
+	// +kubebuilder:validation:Optional
+	ReplicaRegions []*string `json:"replicaRegions,omitempty" tf:"replica_regions,omitempty"`
+
+	// A list of customized tags.
+	// The customized tags for the image.
+	// +kubebuilder:validation:Optional
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// Whether to wait for all image replications become available. Default to false.
+	// Whether to wait for all image replications become `available`.
+	// +kubebuilder:validation:Optional
+	WaitForReplications *bool `json:"waitForReplications,omitempty" tf:"wait_for_replications,omitempty"`
+}
+
+type ReplicationsInitParameters struct {
+}
+
+type ReplicationsObservation struct {
+
+	// The region of the image. See all regions here.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The status of an image replica.
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+}
+
+type ReplicationsParameters struct {
 }
 
 // ImageSpec defines the desired state of Image

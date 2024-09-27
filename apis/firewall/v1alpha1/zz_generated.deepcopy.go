@@ -721,6 +721,11 @@ func (in *InboundInitParameters) DeepCopyInto(out *InboundInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]*string, len(*in))
@@ -775,6 +780,11 @@ func (in *InboundObservation) DeepCopyInto(out *InboundObservation) {
 	*out = *in
 	if in.Action != nil {
 		in, out := &in.Action, &out.Action
+		*out = new(string)
+		**out = **in
+	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
 		*out = new(string)
 		**out = **in
 	}
@@ -835,6 +845,11 @@ func (in *InboundParameters) DeepCopyInto(out *InboundParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]*string, len(*in))
@@ -889,6 +904,11 @@ func (in *OutboundInitParameters) DeepCopyInto(out *OutboundInitParameters) {
 	*out = *in
 	if in.Action != nil {
 		in, out := &in.Action, &out.Action
+		*out = new(string)
+		**out = **in
+	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
 		*out = new(string)
 		**out = **in
 	}
@@ -949,6 +969,11 @@ func (in *OutboundObservation) DeepCopyInto(out *OutboundObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]*string, len(*in))
@@ -1003,6 +1028,11 @@ func (in *OutboundParameters) DeepCopyInto(out *OutboundParameters) {
 	*out = *in
 	if in.Action != nil {
 		in, out := &in.Action, &out.Action
+		*out = new(string)
+		**out = **in
+	}
+	if in.Description != nil {
+		in, out := &in.Description, &out.Description
 		*out = new(string)
 		**out = **in
 	}

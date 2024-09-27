@@ -6,7 +6,7 @@ PROJECT_REPO := github.com/linode/$(PROJECT_NAME)
 
 export TERRAFORM_VERSION := 1.5.5
 export TERRAFORM_PROVIDER_SOURCE := linode/linode
-export TERRAFORM_PROVIDER_VERSION := 2.25.0
+export TERRAFORM_PROVIDER_VERSION := 2.29.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-linode
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-linode_v$(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_PROVIDER_REPO := https://github.com/linode/terraform-provider-linode
@@ -47,7 +47,7 @@ export GOPRIVATE = github.com/upbound/*
 GO_REQUIRED_VERSION ?= 1.21
 # GOLANGCILINT_VERSION is inherited from build submodule by default.
 # Uncomment below if you need to override the version.
-# GOLANGCILINT_VERSION ?= 1.54.0
+GOLANGCILINT_VERSION ?= 1.61.0
 
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)

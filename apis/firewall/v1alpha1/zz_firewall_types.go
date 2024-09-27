@@ -81,7 +81,7 @@ type FirewallInitParameters struct {
 	OutboundPolicy *string `json:"outboundPolicy,omitempty" tf:"outbound_policy,omitempty"`
 
 	// A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
-	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// An array of tags applied to the firewall. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
@@ -134,7 +134,7 @@ type FirewallObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
-	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// An array of tags applied to the firewall. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
@@ -194,7 +194,7 @@ type FirewallParameters struct {
 	OutboundPolicy *string `json:"outboundPolicy,omitempty" tf:"outbound_policy,omitempty"`
 
 	// A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
-	// An array of tags applied to this object. Tags are for organizational purposes only.
+	// An array of tags applied to the firewall. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
@@ -203,8 +203,11 @@ type FirewallParameters struct {
 type InboundInitParameters struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// Used to describe this rule. For display purposes only.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
 	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
@@ -230,8 +233,11 @@ type InboundInitParameters struct {
 type InboundObservation struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// Used to describe this rule. For display purposes only.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
 	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
@@ -257,9 +263,13 @@ type InboundObservation struct {
 type InboundParameters struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	// +kubebuilder:validation:Optional
 	Action *string `json:"action" tf:"action,omitempty"`
+
+	// Used to describe this rule. For display purposes only.
+	// +kubebuilder:validation:Optional
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
 	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
@@ -290,8 +300,11 @@ type InboundParameters struct {
 type OutboundInitParameters struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// Used to describe this rule. For display purposes only.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
 	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
@@ -317,8 +330,11 @@ type OutboundInitParameters struct {
 type OutboundObservation struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
+
+	// Used to describe this rule. For display purposes only.
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
 	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
@@ -344,9 +360,13 @@ type OutboundObservation struct {
 type OutboundParameters struct {
 
 	// Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
-	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
+	// Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall's inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.
 	// +kubebuilder:validation:Optional
 	Action *string `json:"action" tf:"action,omitempty"`
+
+	// Used to describe this rule. For display purposes only.
+	// +kubebuilder:validation:Optional
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.
 	// A list of CIDR blocks or 0.0.0.0/0 (to allow all) this rule applies to.
