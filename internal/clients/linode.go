@@ -42,7 +42,8 @@ const (
 
 const (
 	keyToken   = "token"
-	keyURL     = "api_url"
+	keyURL     = "url"
+	keyApiURL  = "api_url"
 	keyVersion = "api_version"
 )
 
@@ -63,6 +64,9 @@ func prepareTerraformProviderConfiguration(creds map[string]string, pc v1beta1.P
 	}
 	if v, ok := creds[keyURL]; ok {
 		config[keyURL] = v
+	}
+	if v, ok := creds[keyApiURL]; ok {
+		config[keyApiURL] = v
 	}
 	if v, ok := creds[keyVersion]; ok {
 		config[keyVersion] = v
