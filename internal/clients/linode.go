@@ -6,8 +6,10 @@ package clients
 
 import (
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
@@ -150,6 +152,12 @@ func TerraformSetupBuilder(tfProvider *schema.Provider) terraform.SetupFn {
 
 		// set provider configuration
 		ps.Configuration = prepareTerraformProviderConfiguration(creds, pc.Spec.Configuration)
+
+		// The terraform provider uses the default transport so that's where we need to adjust TLS settings
+		// The linode-go client is broken and unable to honor LINODE_CA for most implementations so we need to set it here
+		http.DefaultTransport = &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		}
 
 		return ps, errors.Wrap(configureNoForkLinodeclient(ctx, &ps, *tfProvider), "failed to configure the no-fork linode client")
 	}
