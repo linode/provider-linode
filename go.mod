@@ -162,5 +162,4 @@ require (
 
 replace github.com/crossplane/upjet => github.com/tchinmai7/upjet v0.0.0-20240725221335-67bd255fdb28
 
-//replace github.com/linode/terraform-provider-linode/v2 => github.com/julsemaan/terraform-provider-linode/v2 v2.0.0-20241008135324-df656b9e1615
 replace github.com/linode/terraform-provider-linode/v2 => ../terraform-provider-linode
