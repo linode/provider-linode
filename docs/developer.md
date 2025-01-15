@@ -85,7 +85,7 @@ type: Opaque
 4. Create a repo if you don't have one `up repository create provider-linode`
 5. run `make build`
 6. run `make xpkg.build`
-7. run `up xpkg push <username>:<repo_name>:<version> -f <path to built xpkg>`
+7. run `up xpkg push <username>/<repo_name>:<version> -f <path to built xpkg>`
 ```bash
    up xpkg push tchinmai7/provider-linode:v0.0.1 -f _output/xpkg/linux_amd64/provider-linode-v0.0.0-130.g7bacec4.xpkg
 ``` 
