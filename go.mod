@@ -4,6 +4,8 @@ go 1.22.0
 
 toolchain go1.22.5
 
+replace github.com/crossplane/crossplane-runtime => github.com/guilhem/crossplane-runtime v1.16.1-0.20250116161626-a92ea4102aa4
+
 require (
 	dario.cat/mergo v1.0.0
 	github.com/crossplane/crossplane-runtime v1.16.0
