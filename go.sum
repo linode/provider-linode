@@ -238,8 +238,6 @@ github.com/linode/linodego v1.49.0 h1:MNd3qwvQzbXB5mCpvdCqlUIu1RPA9oC+50LyB9kK+G
 github.com/linode/linodego v1.49.0/go.mod h1:B+HAM3//4w1wOS0BwdaQBKwBxlfe6kYJ7bSC6jJ/xtc=
 github.com/linode/linodego/k8s v1.25.2 h1:PY6S0sAD3xANVvM9WY38bz9GqMTjIbytC8IJJ9Cv23o=
 github.com/linode/linodego/k8s v1.25.2/go.mod h1:DC1XCSRZRGsmaa/ggpDPSDUmOM6aK1bhSIP6+f9Cwhc=
-github.com/linode/terraform-provider-linode/v2 v2.37.0 h1:mVADbhJ9s9fGfQJFXEeVheTjg64Se0waZ78Qu8A09as=
-github.com/linode/terraform-provider-linode/v2 v2.37.0/go.mod h1:Th2/ECI4q9Ivq3OeQXR0Wui1E5JEPcZNGZRbxNb0GPE=
 github.com/mailru/easyjson v0.7.7 h1:UGYAvKxe3sBsEDzO8ZeWOSlIQfWFlxbzLZe7hwFURr0=
 github.com/mailru/easyjson v0.7.7/go.mod h1:xzfreul335JAWq5oZzymOObrkdz5UnU4kGfJJLY9Nlc=
 github.com/mattn/go-colorable v0.1.9/go.mod h1:u6P/XSegPjTcexA+o6vUJrdnUu04hMope9wVRipJSqc=
@@ -321,6 +319,8 @@ github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.10.0 h1:Xv5erBjTwe/5IxqUQTdXv5kgmIvbHo3QQyRwhJsOfJA=
 github.com/stretchr/testify v1.10.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
+github.com/tchinmai7/terraform-provider-linode/v2 v2.37.1-0.20250410211733-1b24dfd5b938 h1:CbRKtIBHeYc9a6Ko1lxRLtUi/F9XCHcSZR8C1xA/xBI=
+github.com/tchinmai7/terraform-provider-linode/v2 v2.37.1-0.20250410211733-1b24dfd5b938/go.mod h1:Th2/ECI4q9Ivq3OeQXR0Wui1E5JEPcZNGZRbxNb0GPE=
 github.com/tmccombs/hcl2json v0.3.3 h1:+DLNYqpWE0CsOQiEZu+OZm5ZBImake3wtITYxQ8uLFQ=
 github.com/tmccombs/hcl2json v0.3.3/go.mod h1:Y2chtz2x9bAeRTvSibVRVgbLJhLJXKlUeIvjeVdnm4w=
 github.com/vmihailenco/msgpack v3.3.3+incompatible/go.mod h1:fy3FlTQTDXWkZ7Bh6AcGMlsjHatGryHQYUTf1ShIgkk=
