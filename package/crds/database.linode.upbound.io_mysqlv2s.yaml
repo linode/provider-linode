@@ -1,0 +1,590 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.14.0
+  name: mysqlv2s.database.linode.upbound.io
+spec:
+  group: database.linode.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - linode
+    kind: MySQLv2
+    listKind: MySQLv2List
+    plural: mysqlv2s
+    singular: mysqlv2
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: MySQLv2 is the Schema for the MySQLv2s API. Manages a Linode
+          MySQL Database.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: MySQLv2Spec defines the desired state of MySQLv2
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: |-
+                  DeletionPolicy specifies what will happen to the underlying external
+                  when this managed resource is deleted - either "Delete" or "Orphan" the
+                  external resource.
+                  This field is planned to be deprecated in favor of the ManagementPolicies
+                  field in a future release. Currently, both could be set independently and
+                  non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  allowList:
+                    description: |-
+                      A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
+                      A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  clusterSize:
+                    description: |-
+                      The number of Linode Instance nodes deployed to the Managed Database. (default 1)
+                      The number of Linode instance nodes deployed to the Managed Database.
+                    type: number
+                  engineId:
+                    description: |-
+                      The Managed Database engine in engine/version format. (e.g. mysql)
+                      The unique ID of the database engine and version to use. (e.g. mysql/8)
+                    type: string
+                  forkRestoreTime:
+                    description: |-
+                      The database timestamp from which it was restored.
+                      The database timestamp from which it was restored.
+                    type: string
+                  forkSource:
+                    description: |-
+                      The ID of the database that was forked from.
+                      The ID of the database that was forked from.
+                    type: number
+                  label:
+                    description: |-
+                      A unique, user-defined string referring to the Managed Database.
+                      A unique, user-defined string referring to the Managed Database.
+                    type: string
+                  region:
+                    description: |-
+                      The region to use for the Managed Database.
+                      The Region ID for the Managed Database.
+                    type: string
+                  suspended:
+                    description: |-
+                      Whether this Managed Database should be suspended.
+                      Whether this database is suspended.
+                    type: boolean
+                  type:
+                    description: |-
+                      The Linode Instance type used for the nodes of the Managed Database.
+                      The Linode Instance type used by the Managed Database for its nodes.
+                    type: string
+                  updates:
+                    additionalProperties:
+                      type: string
+                    description: Configuration settings for automated patch update
+                      maintenance for the Managed Database.
+                    type: object
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  allowList:
+                    description: |-
+                      A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
+                      A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  clusterSize:
+                    description: |-
+                      The number of Linode Instance nodes deployed to the Managed Database. (default 1)
+                      The number of Linode instance nodes deployed to the Managed Database.
+                    type: number
+                  engineId:
+                    description: |-
+                      The Managed Database engine in engine/version format. (e.g. mysql)
+                      The unique ID of the database engine and version to use. (e.g. mysql/8)
+                    type: string
+                  forkRestoreTime:
+                    description: |-
+                      The database timestamp from which it was restored.
+                      The database timestamp from which it was restored.
+                    type: string
+                  forkSource:
+                    description: |-
+                      The ID of the database that was forked from.
+                      The ID of the database that was forked from.
+                    type: number
+                  label:
+                    description: |-
+                      A unique, user-defined string referring to the Managed Database.
+                      A unique, user-defined string referring to the Managed Database.
+                    type: string
+                  region:
+                    description: |-
+                      The region to use for the Managed Database.
+                      The Region ID for the Managed Database.
+                    type: string
+                  suspended:
+                    description: |-
+                      Whether this Managed Database should be suspended.
+                      Whether this database is suspended.
+                    type: boolean
+                  type:
+                    description: |-
+                      The Linode Instance type used for the nodes of the Managed Database.
+                      The Linode Instance type used by the Managed Database for its nodes.
+                    type: string
+                  updates:
+                    additionalProperties:
+                      type: string
+                    description: Configuration settings for automated patch update
+                      maintenance for the Managed Database.
+                    type: object
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  This field is planned to replace the DeletionPolicy field in a future
+                  release. Currently, both could be set independently and non-default
+                  values would be honored if the feature flag is enabled. If both are
+                  custom, the DeletionPolicy field will be ignored.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: |-
+                          Resolution specifies whether resolution of this reference is required.
+                          The default is 'Required', which means the reconcile will fail if the
+                          reference cannot be resolved. 'Optional' means this reference will be
+                          a no-op if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: |-
+                          Resolve specifies when this reference should be resolved. The default
+                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                          the corresponding field is not present. Use 'Always' to resolve the
+                          reference on every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: |-
+                  PublishConnectionDetailsTo specifies the connection secret config which
+                  contains a name, metadata and a reference to secret store config to
+                  which any connection details for this managed resource should be written.
+                  Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: |-
+                      SecretStoreConfigRef specifies which secret store config should be used
+                      for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Annotations are the annotations to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.annotations".
+                          - It is up to Secret Store implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Labels are the labels/tags to be added to connection secret.
+                          - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store types.
+                        type: object
+                      type:
+                        description: |-
+                          Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                  This field is planned to be replaced in a future release in favor of
+                  PublishConnectionDetailsTo. Currently, both could be set independently
+                  and connection details would be published to both without affecting
+                  each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.engineId is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.engineId)
+                || (has(self.initProvider) && has(self.initProvider.engineId))'
+            - message: spec.forProvider.label is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
+                || (has(self.initProvider) && has(self.initProvider.label))'
+            - message: spec.forProvider.region is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
+                || (has(self.initProvider) && has(self.initProvider.region))'
+            - message: spec.forProvider.type is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.type)
+                || (has(self.initProvider) && has(self.initProvider.type))'
+          status:
+            description: MySQLv2Status defines the observed state of MySQLv2.
+            properties:
+              atProvider:
+                properties:
+                  allowList:
+                    description: |-
+                      A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.
+                      A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
+                  clusterSize:
+                    description: |-
+                      The number of Linode Instance nodes deployed to the Managed Database. (default 1)
+                      The number of Linode instance nodes deployed to the Managed Database.
+                    type: number
+                  created:
+                    description: |-
+                      When this Managed Database was created.
+                      When this Managed Database was created.
+                    type: string
+                  encrypted:
+                    description: |-
+                      Whether the Managed Databases is encrypted.
+                      Whether the Managed Databases is encrypted.
+                    type: boolean
+                  engine:
+                    description: |-
+                      The Managed Database engine. (e.g. mysql)
+                      The Managed Database engine in engine/version format.
+                    type: string
+                  engineId:
+                    description: |-
+                      The Managed Database engine in engine/version format. (e.g. mysql)
+                      The unique ID of the database engine and version to use. (e.g. mysql/8)
+                    type: string
+                  forkRestoreTime:
+                    description: |-
+                      The database timestamp from which it was restored.
+                      The database timestamp from which it was restored.
+                    type: string
+                  forkSource:
+                    description: |-
+                      The ID of the database that was forked from.
+                      The ID of the database that was forked from.
+                    type: number
+                  hostPrimary:
+                    description: |-
+                      The primary host for the Managed Database.
+                      The primary host for the Managed Database.
+                    type: string
+                  hostSecondary:
+                    description: |-
+                      The secondary/private host for the managed database.
+                      The secondary/private host for the Managed Database.
+                    type: string
+                  id:
+                    description: The ID of the Managed Database.
+                    type: string
+                  label:
+                    description: |-
+                      A unique, user-defined string referring to the Managed Database.
+                      A unique, user-defined string referring to the Managed Database.
+                    type: string
+                  members:
+                    additionalProperties:
+                      type: string
+                    description: A mapping between IP addresses and strings designating
+                      them as primary or failover.
+                    type: object
+                    x-kubernetes-map-type: granular
+                  oldestRestoreTime:
+                    description: The oldest time to which a database can be restored.
+                    type: string
+                  pendingUpdates:
+                    description: |-
+                      A set of pending updates.
+                      A set of pending updates.
+                    items:
+                      properties:
+                        deadline:
+                          description: The time when a mandatory update needs to be
+                            applied.
+                          type: string
+                        description:
+                          description: A description of the update.
+                          type: string
+                        plannedFor:
+                          description: The date and time a maintenance update will
+                            be applied.
+                          type: string
+                      type: object
+                    type: array
+                  platform:
+                    description: |-
+                      The back-end platform for relational databases used by the service.
+                      The back-end platform for relational databases used by the service.
+                    type: string
+                  port:
+                    description: |-
+                      The access port for this Managed Database.
+                      The access port for this Managed Database.
+                    type: number
+                  region:
+                    description: |-
+                      The region to use for the Managed Database.
+                      The Region ID for the Managed Database.
+                    type: string
+                  sslConnection:
+                    description: |-
+                      Whether to require SSL credentials to establish a connection to the Managed Database.
+                      Whether to require SSL credentials to establish a connection to the Managed Database.
+                    type: boolean
+                  status:
+                    description: |-
+                      The operating status of the Managed Database.
+                      The operating status of the Managed Database.
+                    type: string
+                  suspended:
+                    description: |-
+                      Whether this Managed Database should be suspended.
+                      Whether this database is suspended.
+                    type: boolean
+                  type:
+                    description: |-
+                      The Linode Instance type used for the nodes of the Managed Database.
+                      The Linode Instance type used by the Managed Database for its nodes.
+                    type: string
+                  updated:
+                    description: |-
+                      When this Managed Database was last updated.
+                      When this Managed Database was last updated.
+                    type: string
+                  updates:
+                    additionalProperties:
+                      type: string
+                    description: Configuration settings for automated patch update
+                      maintenance for the Managed Database.
+                    type: object
+                  version:
+                    description: |-
+                      The Managed Database engine version. (e.g. 13.2)
+                      The Managed Database engine version.
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

@@ -1,0 +1,14 @@
+apiVersion: database.linode.upbound.io/v1alpha1
+kind: MySQLv2
+metadata:
+  annotations:
+    meta.upbound.io/example-id: database/v1alpha1/mysqlv2
+  labels:
+    testing.upbound.io/example-name: foobar
+  name: foobar
+spec:
+  forProvider:
+    engineId: mysql/8
+    label: mydatabase
+    region: us-mia
+    type: g6-nanode-1

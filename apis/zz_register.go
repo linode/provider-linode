@@ -18,11 +18,13 @@ import (
 	v1alpha1instance "github.com/linode/provider-linode/apis/instance/v1alpha1"
 	v1alpha1ipv6 "github.com/linode/provider-linode/apis/ipv6/v1alpha1"
 	v1alpha1lke "github.com/linode/provider-linode/apis/lke/v1alpha1"
+	v1alpha1networking "github.com/linode/provider-linode/apis/networking/v1alpha1"
 	v1alpha1nodebalancer "github.com/linode/provider-linode/apis/nodebalancer/v1alpha1"
 	v1alpha1objectstorage "github.com/linode/provider-linode/apis/objectstorage/v1alpha1"
 	v1alpha1placementgroup "github.com/linode/provider-linode/apis/placementgroup/v1alpha1"
 	v1alpha1placementgroupassignment "github.com/linode/provider-linode/apis/placementgroupassignment/v1alpha1"
 	v1alpha1rdns "github.com/linode/provider-linode/apis/rdns/v1alpha1"
+	v1alpha1reserved "github.com/linode/provider-linode/apis/reserved/v1alpha1"
 	v1alpha1sshkey "github.com/linode/provider-linode/apis/sshkey/v1alpha1"
 	v1alpha1stackscript "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
 	v1alpha1token "github.com/linode/provider-linode/apis/token/v1alpha1"
@@ -44,11 +46,13 @@ func init() {
 		v1alpha1instance.SchemeBuilder.AddToScheme,
 		v1alpha1ipv6.SchemeBuilder.AddToScheme,
 		v1alpha1lke.SchemeBuilder.AddToScheme,
+		v1alpha1networking.SchemeBuilder.AddToScheme,
 		v1alpha1nodebalancer.SchemeBuilder.AddToScheme,
 		v1alpha1objectstorage.SchemeBuilder.AddToScheme,
 		v1alpha1placementgroup.SchemeBuilder.AddToScheme,
 		v1alpha1placementgroupassignment.SchemeBuilder.AddToScheme,
 		v1alpha1rdns.SchemeBuilder.AddToScheme,
+		v1alpha1reserved.SchemeBuilder.AddToScheme,
 		v1alpha1sshkey.SchemeBuilder.AddToScheme,
 		v1alpha1stackscript.SchemeBuilder.AddToScheme,
 		v1alpha1token.SchemeBuilder.AddToScheme,

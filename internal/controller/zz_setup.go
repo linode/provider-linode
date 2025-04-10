@@ -12,7 +12,9 @@ import (
 	accountsettings "github.com/linode/provider-linode/internal/controller/accountsettings/accountsettings"
 	accesscontrols "github.com/linode/provider-linode/internal/controller/database/accesscontrols"
 	mysql "github.com/linode/provider-linode/internal/controller/database/mysql"
+	mysqlv2 "github.com/linode/provider-linode/internal/controller/database/mysqlv2"
 	postgresql "github.com/linode/provider-linode/internal/controller/database/postgresql"
+	postgresqlv2 "github.com/linode/provider-linode/internal/controller/database/postgresqlv2"
 	domain "github.com/linode/provider-linode/internal/controller/domain/domain"
 	record "github.com/linode/provider-linode/internal/controller/domain/record"
 	device "github.com/linode/provider-linode/internal/controller/firewall/device"
@@ -26,6 +28,7 @@ import (
 	ipv6range "github.com/linode/provider-linode/internal/controller/ipv6/ipv6range"
 	cluster "github.com/linode/provider-linode/internal/controller/lke/cluster"
 	nodepool "github.com/linode/provider-linode/internal/controller/lke/nodepool"
+	ipnetworking "github.com/linode/provider-linode/internal/controller/networking/ip"
 	confignodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/config"
 	node "github.com/linode/provider-linode/internal/controller/nodebalancer/node"
 	nodebalancer "github.com/linode/provider-linode/internal/controller/nodebalancer/nodebalancer"
@@ -36,6 +39,7 @@ import (
 	placementgroupassignment "github.com/linode/provider-linode/internal/controller/placementgroupassignment/placementgroupassignment"
 	providerconfig "github.com/linode/provider-linode/internal/controller/providerconfig"
 	rdns "github.com/linode/provider-linode/internal/controller/rdns/rdns"
+	ipassignment "github.com/linode/provider-linode/internal/controller/reserved/ipassignment"
 	sshkey "github.com/linode/provider-linode/internal/controller/sshkey/sshkey"
 	stackscript "github.com/linode/provider-linode/internal/controller/stackscript/stackscript"
 	token "github.com/linode/provider-linode/internal/controller/token/token"
@@ -52,7 +56,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		accountsettings.Setup,
 		accesscontrols.Setup,
 		mysql.Setup,
+		mysqlv2.Setup,
 		postgresql.Setup,
+		postgresqlv2.Setup,
 		domain.Setup,
 		record.Setup,
 		device.Setup,
@@ -66,6 +72,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		ipv6range.Setup,
 		cluster.Setup,
 		nodepool.Setup,
+		ipnetworking.Setup,
 		confignodebalancer.Setup,
 		node.Setup,
 		nodebalancer.Setup,
@@ -76,6 +83,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		placementgroupassignment.Setup,
 		providerconfig.Setup,
 		rdns.Setup,
+		ipassignment.Setup,
 		sshkey.Setup,
 		stackscript.Setup,
 		token.Setup,
