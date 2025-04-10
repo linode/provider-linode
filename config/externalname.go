@@ -36,6 +36,10 @@ var terraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"linode_object_storage_object":      config.IdentifierFromProvider,
 	"linode_placement_group":            config.IdentifierFromProvider,
 	"linode_placement_group_assignment": config.IdentifierFromProvider,
+	"linode_reserved_ip_assignment":     config.IdentifierFromProvider,
+	"linode_networking_ip":              config.IdentifierFromProvider,
+	"linode_database_postgresql_v2":     config.IdentifierFromProvider,
+	"linode_database_mysql_v2":          config.IdentifierFromProvider,
 }
 
 // terraformSDKIncludeList contains all external name configurations
