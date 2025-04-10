@@ -1,10 +1,4 @@
-run:
-  deadline: 20m
-
-output:
-  # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is "colored-line-number"
-  format: colored-line-number
-
+# Remove the version field
 linters-settings:
   errcheck:
     # report about not checking of errors in type assetions: `a := b.(MyStruct)`;
@@ -18,11 +12,12 @@ linters-settings:
     # [deprecated] comma-separated list of pairs of the form pkg:regex
     # the regex is used to ignore names within pkg. (default "fmt:.*").
     # see https://github.com/kisielk/errcheck#the-deprecated-method for details
-    exclude-functions: fmt:.*,io/ioutil:^Read.*
+    exclude-functions:
+      - fmt:.*
+      - io/ioutil:^Read.*
 
-  govet:
-    # report about shadowed variables
-    check-shadowing: false
+  # Simplified govet config
+  govet: {}
 
   revive:
     # confidence for issues, default is 0.8
@@ -41,9 +36,7 @@ linters-settings:
     # minimal code complexity to report, 30 by default (but we recommend 10-20)
     min-complexity: 20
 
-  maligned:
-    # print struct with more effective memory layout or not, false by default
-    suggest-new: true
+  # Removed maligned config
 
   dupl:
     # tokens count to trigger issue, 150 by default
@@ -58,13 +51,6 @@ linters-settings:
   lll:
     # tab width in spaces. Default to 1.
     tab-width: 1
-
-  unused:
-    # treat code as a program (not a library) and report unused exported identifiers; default is false.
-    # XXX: if you enable this setting, unused will report a lot of false-positives in text editors:
-    # if it's called for subdir of a project it can't find funcs usages. All text editor integrations
-    # with golangci-lint call it on a directory with the changed file.
-    check-exported: false
 
   unparam:
     # Inspect exported functions, default is false. Set to true if no external program/library imports your code.
@@ -115,6 +101,7 @@ linters:
     - unconvert
     - misspell
     - nakedret
+    # Removed maligned
 
   presets:
     - bugs
@@ -188,8 +175,7 @@ issues:
   # Default is false.
   new: false
 
-  # Maximum issues count per one linter. Set to 0 to disable. Default is 50.
-  max-per-linter: 0
+  # Removed max-per-linter property
 
   # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
   max-same-issues: 0
