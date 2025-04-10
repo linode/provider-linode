@@ -8,11 +8,11 @@ metadata:
   name: foonode
 spec:
   forProvider:
-    address: ${element(linode_instance.web.*.private_ip_address, count.index)}:80
+    address: ${element(linode_instance.foo.*.private_ip_address, count.index)}:80
     configIdSelector:
       matchLabels:
         testing.upbound.io/example-name: foofig
-    count: "3"
+    count: "2"
     label: mynodebalancernode
     nodebalancerIdSelector:
       matchLabels:
@@ -27,17 +27,17 @@ metadata:
   annotations:
     meta.upbound.io/example-id: nodebalancer/v1alpha1/node
   labels:
-    testing.upbound.io/example-name: web
-  name: web
+    testing.upbound.io/example-name: foo
+  name: foo
 spec:
   forProvider:
     authorizedKeys:
     - ssh-rsa AAAA...Gw== user@example.local
-    count: "3"
-    image: linode/ubuntu22.04
+    count: "2"
+    image: linode/ubuntu24.04
     label: web-${count.index + 1}
     privateIp: true
-    region: us-east
+    region: us-mia
     rootPassSecretRef:
       key: example-key
       name: example-secret
@@ -58,7 +58,7 @@ spec:
   forProvider:
     clientConnThrottle: 20
     label: mynodebalancer
-    region: us-east
+    region: us-mia
 
 ---
 

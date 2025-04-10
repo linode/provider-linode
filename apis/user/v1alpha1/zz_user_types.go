@@ -117,12 +117,20 @@ type GlobalGrantsInitParameters struct {
 	// If true, this User may add NodeBalancers.
 	AddNodebalancers *bool `json:"addNodebalancers,omitempty" tf:"add_nodebalancers,omitempty"`
 
+	// If true, this User may add Placement Groups.
+	// If true, this User may add Placement Groups.
+	AddPlacementGroups *bool `json:"addPlacementGroups,omitempty" tf:"add_placement_groups,omitempty"`
+
 	// If true, this User may add StackScripts.
 	// If true, this User may add StackScripts.
 	AddStackscripts *bool `json:"addStackscripts,omitempty" tf:"add_stackscripts,omitempty"`
 
 	// If true, this User may add Volumes.
 	AddVolumes *bool `json:"addVolumes,omitempty" tf:"add_volumes,omitempty"`
+
+	// If true, this User may add Virtual Private Clouds (VPCs).
+	// If true, this User may add Virtual Private Clouds (VPCs).
+	AddVpcs *bool `json:"addVpcs,omitempty" tf:"add_vpcs,omitempty"`
 
 	// If true, this User may cancel the entire Account.
 	// If true, this User may cancel the entire Account.
@@ -167,12 +175,20 @@ type GlobalGrantsObservation struct {
 	// If true, this User may add NodeBalancers.
 	AddNodebalancers *bool `json:"addNodebalancers,omitempty" tf:"add_nodebalancers,omitempty"`
 
+	// If true, this User may add Placement Groups.
+	// If true, this User may add Placement Groups.
+	AddPlacementGroups *bool `json:"addPlacementGroups,omitempty" tf:"add_placement_groups,omitempty"`
+
 	// If true, this User may add StackScripts.
 	// If true, this User may add StackScripts.
 	AddStackscripts *bool `json:"addStackscripts,omitempty" tf:"add_stackscripts,omitempty"`
 
 	// If true, this User may add Volumes.
 	AddVolumes *bool `json:"addVolumes,omitempty" tf:"add_volumes,omitempty"`
+
+	// If true, this User may add Virtual Private Clouds (VPCs).
+	// If true, this User may add Virtual Private Clouds (VPCs).
+	AddVpcs *bool `json:"addVpcs,omitempty" tf:"add_vpcs,omitempty"`
 
 	// If true, this User may cancel the entire Account.
 	// If true, this User may cancel the entire Account.
@@ -225,6 +241,11 @@ type GlobalGrantsParameters struct {
 	// +kubebuilder:validation:Optional
 	AddNodebalancers *bool `json:"addNodebalancers,omitempty" tf:"add_nodebalancers,omitempty"`
 
+	// If true, this User may add Placement Groups.
+	// If true, this User may add Placement Groups.
+	// +kubebuilder:validation:Optional
+	AddPlacementGroups *bool `json:"addPlacementGroups,omitempty" tf:"add_placement_groups,omitempty"`
+
 	// If true, this User may add StackScripts.
 	// If true, this User may add StackScripts.
 	// +kubebuilder:validation:Optional
@@ -233,6 +254,11 @@ type GlobalGrantsParameters struct {
 	// If true, this User may add Volumes.
 	// +kubebuilder:validation:Optional
 	AddVolumes *bool `json:"addVolumes,omitempty" tf:"add_volumes,omitempty"`
+
+	// If true, this User may add Virtual Private Clouds (VPCs).
+	// If true, this User may add Virtual Private Clouds (VPCs).
+	// +kubebuilder:validation:Optional
+	AddVpcs *bool `json:"addVpcs,omitempty" tf:"add_vpcs,omitempty"`
 
 	// If true, this User may cancel the entire Account.
 	// If true, this User may cancel the entire Account.
@@ -385,6 +411,41 @@ type NodebalancerGrantParameters struct {
 	Permissions *string `json:"permissions" tf:"permissions,omitempty"`
 }
 
+type PlacementGroupGrantInitParameters struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
+}
+
+type PlacementGroupGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
+}
+
+type PlacementGroupGrantParameters struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	// +kubebuilder:validation:Optional
+	ID *float64 `json:"id" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	// +kubebuilder:validation:Optional
+	Permissions *string `json:"permissions" tf:"permissions,omitempty"`
+}
+
 type StackscriptGrantInitParameters struct {
 
 	// The ID of the entity this grant applies to.
@@ -453,6 +514,10 @@ type UserInitParameters struct {
 	// A set containing all of the user's active grants.
 	NodebalancerGrant []NodebalancerGrantInitParameters `json:"nodebalancerGrant,omitempty" tf:"nodebalancer_grant,omitempty"`
 
+	// The Placement Groups the user has permissions access to.
+	// A set containing all of the user's active grants.
+	PlacementGroupGrant []PlacementGroupGrantInitParameters `json:"placementGroupGrant,omitempty" tf:"placement_group_grant,omitempty"`
+
 	// If true, this user will only have explicit permissions granted.
 	// If true, the user must be explicitly granted access to platform actions and entities.
 	Restricted *bool `json:"restricted,omitempty" tf:"restricted,omitempty"`
@@ -464,6 +529,10 @@ type UserInitParameters struct {
 	// The username of the user.
 	// The username of the user.
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
+
+	// The Virtual Private Clouds (VPCs) the user has permissions access to.
+	// A set containing all of the user's active grants.
+	VPCGrant []VPCGrantInitParameters `json:"vpcGrant,omitempty" tf:"vpc_grant,omitempty"`
 
 	// The volumes the user has permissions access to.
 	// A set containing all of the user's active grants.
@@ -506,6 +575,10 @@ type UserObservation struct {
 	// A set containing all of the user's active grants.
 	NodebalancerGrant []NodebalancerGrantObservation `json:"nodebalancerGrant,omitempty" tf:"nodebalancer_grant,omitempty"`
 
+	// The Placement Groups the user has permissions access to.
+	// A set containing all of the user's active grants.
+	PlacementGroupGrant []PlacementGroupGrantObservation `json:"placementGroupGrant,omitempty" tf:"placement_group_grant,omitempty"`
+
 	// If true, this user will only have explicit permissions granted.
 	// If true, the user must be explicitly granted access to platform actions and entities.
 	Restricted *bool `json:"restricted,omitempty" tf:"restricted,omitempty"`
@@ -529,6 +602,10 @@ type UserObservation struct {
 	// The username of the user.
 	// The username of the user.
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
+
+	// The Virtual Private Clouds (VPCs) the user has permissions access to.
+	// A set containing all of the user's active grants.
+	VPCGrant []VPCGrantObservation `json:"vpcGrant,omitempty" tf:"vpc_grant,omitempty"`
 
 	// The volumes the user has permissions access to.
 	// A set containing all of the user's active grants.
@@ -576,6 +653,11 @@ type UserParameters struct {
 	// +kubebuilder:validation:Optional
 	NodebalancerGrant []NodebalancerGrantParameters `json:"nodebalancerGrant,omitempty" tf:"nodebalancer_grant,omitempty"`
 
+	// The Placement Groups the user has permissions access to.
+	// A set containing all of the user's active grants.
+	// +kubebuilder:validation:Optional
+	PlacementGroupGrant []PlacementGroupGrantParameters `json:"placementGroupGrant,omitempty" tf:"placement_group_grant,omitempty"`
+
 	// If true, this user will only have explicit permissions granted.
 	// If true, the user must be explicitly granted access to platform actions and entities.
 	// +kubebuilder:validation:Optional
@@ -591,10 +673,50 @@ type UserParameters struct {
 	// +kubebuilder:validation:Optional
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 
+	// The Virtual Private Clouds (VPCs) the user has permissions access to.
+	// A set containing all of the user's active grants.
+	// +kubebuilder:validation:Optional
+	VPCGrant []VPCGrantParameters `json:"vpcGrant,omitempty" tf:"vpc_grant,omitempty"`
+
 	// The volumes the user has permissions access to.
 	// A set containing all of the user's active grants.
 	// +kubebuilder:validation:Optional
 	VolumeGrant []VolumeGrantParameters `json:"volumeGrant,omitempty" tf:"volume_grant,omitempty"`
+}
+
+type VPCGrantInitParameters struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
+}
+
+type VPCGrantObservation struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
+}
+
+type VPCGrantParameters struct {
+
+	// The ID of the entity this grant applies to.
+	// The ID of the entity this grant applies to.
+	// +kubebuilder:validation:Optional
+	ID *float64 `json:"id" tf:"id,omitempty"`
+
+	// The level of access this User has to this entity. (read_only, read_write)
+	// The level of access this User has to this entity. If null, this User has no access.
+	// +kubebuilder:validation:Optional
+	Permissions *string `json:"permissions" tf:"permissions,omitempty"`
 }
 
 type VolumeGrantInitParameters struct {

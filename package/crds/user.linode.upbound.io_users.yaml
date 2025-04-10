@@ -158,6 +158,11 @@ spec:
                             If true, this User may add NodeBalancers.
                             If true, this User may add NodeBalancers.
                           type: boolean
+                        addPlacementGroups:
+                          description: |-
+                            If true, this User may add Placement Groups.
+                            If true, this User may add Placement Groups.
+                          type: boolean
                         addStackscripts:
                           description: |-
                             If true, this User may add StackScripts.
@@ -165,6 +170,11 @@ spec:
                           type: boolean
                         addVolumes:
                           description: If true, this User may add Volumes.
+                          type: boolean
+                        addVpcs:
+                          description: |-
+                            If true, this User may add Virtual Private Clouds (VPCs).
+                            If true, this User may add Virtual Private Clouds (VPCs).
                           type: boolean
                         cancelAccount:
                           description: |-
@@ -250,6 +260,24 @@ spec:
                           type: string
                       type: object
                     type: array
+                  placementGroupGrant:
+                    description: |-
+                      The Placement Groups the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: |-
+                            The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: |-
+                            The level of access this User has to this entity. (read_only, read_write)
+                            The level of access this User has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
                   restricted:
                     description: |-
                       If true, this user will only have explicit permissions granted.
@@ -281,6 +309,24 @@ spec:
                   volumeGrant:
                     description: |-
                       The volumes the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: |-
+                            The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: |-
+                            The level of access this User has to this entity. (read_only, read_write)
+                            The level of access this User has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  vpcGrant:
+                    description: |-
+                      The Virtual Private Clouds (VPCs) the user has permissions access to.
                       A set containing all of the user's active grants.
                     items:
                       properties:
@@ -396,6 +442,11 @@ spec:
                             If true, this User may add NodeBalancers.
                             If true, this User may add NodeBalancers.
                           type: boolean
+                        addPlacementGroups:
+                          description: |-
+                            If true, this User may add Placement Groups.
+                            If true, this User may add Placement Groups.
+                          type: boolean
                         addStackscripts:
                           description: |-
                             If true, this User may add StackScripts.
@@ -403,6 +454,11 @@ spec:
                           type: boolean
                         addVolumes:
                           description: If true, this User may add Volumes.
+                          type: boolean
+                        addVpcs:
+                          description: |-
+                            If true, this User may add Virtual Private Clouds (VPCs).
+                            If true, this User may add Virtual Private Clouds (VPCs).
                           type: boolean
                         cancelAccount:
                           description: |-
@@ -488,6 +544,24 @@ spec:
                           type: string
                       type: object
                     type: array
+                  placementGroupGrant:
+                    description: |-
+                      The Placement Groups the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: |-
+                            The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: |-
+                            The level of access this User has to this entity. (read_only, read_write)
+                            The level of access this User has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
                   restricted:
                     description: |-
                       If true, this user will only have explicit permissions granted.
@@ -519,6 +593,24 @@ spec:
                   volumeGrant:
                     description: |-
                       The volumes the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: |-
+                            The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: |-
+                            The level of access this User has to this entity. (read_only, read_write)
+                            The level of access this User has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  vpcGrant:
+                    description: |-
+                      The Virtual Private Clouds (VPCs) the user has permissions access to.
                       A set containing all of the user's active grants.
                     items:
                       properties:
@@ -802,6 +894,11 @@ spec:
                             If true, this User may add NodeBalancers.
                             If true, this User may add NodeBalancers.
                           type: boolean
+                        addPlacementGroups:
+                          description: |-
+                            If true, this User may add Placement Groups.
+                            If true, this User may add Placement Groups.
+                          type: boolean
                         addStackscripts:
                           description: |-
                             If true, this User may add StackScripts.
@@ -809,6 +906,11 @@ spec:
                           type: boolean
                         addVolumes:
                           description: If true, this User may add Volumes.
+                          type: boolean
+                        addVpcs:
+                          description: |-
+                            If true, this User may add Virtual Private Clouds (VPCs).
+                            If true, this User may add Virtual Private Clouds (VPCs).
                           type: boolean
                         cancelAccount:
                           description: |-
@@ -897,6 +999,24 @@ spec:
                           type: string
                       type: object
                     type: array
+                  placementGroupGrant:
+                    description: |-
+                      The Placement Groups the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: |-
+                            The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: |-
+                            The level of access this User has to this entity. (read_only, read_write)
+                            The level of access this User has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
                   restricted:
                     description: |-
                       If true, this user will only have explicit permissions granted.
@@ -945,6 +1065,24 @@ spec:
                   volumeGrant:
                     description: |-
                       The volumes the user has permissions access to.
+                      A set containing all of the user's active grants.
+                    items:
+                      properties:
+                        id:
+                          description: |-
+                            The ID of the entity this grant applies to.
+                            The ID of the entity this grant applies to.
+                          type: number
+                        permissions:
+                          description: |-
+                            The level of access this User has to this entity. (read_only, read_write)
+                            The level of access this User has to this entity. If null, this User has no access.
+                          type: string
+                      type: object
+                    type: array
+                  vpcGrant:
+                    description: |-
+                      The Virtual Private Clouds (VPCs) the user has permissions access to.
                       A set containing all of the user's active grants.
                     items:
                       properties:

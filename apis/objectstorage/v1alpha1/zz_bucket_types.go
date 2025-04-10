@@ -46,6 +46,10 @@ type BucketInitParameters struct {
 	// If true, the bucket will be created with CORS enabled for all origins.
 	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
 
+	// The type of s3_endpoint available to the user in this region. See Endpoint types for more information.
+	// The type of the S3 endpoint available in this region.
+	EndpointType *string `json:"endpointType,omitempty" tf:"endpoint_type,omitempty"`
+
 	// The label of the Linode Object Storage Bucket.
 	// The label of the Linode Object Storage Bucket.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
@@ -56,6 +60,10 @@ type BucketInitParameters struct {
 	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
 	// The region of the Linode Object Storage Bucket.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The user's s3 endpoint URL, based on the endpoint_type and region.
+	// The endpoint for the bucket used for s3 connections.
+	S3Endpoint *string `json:"s3Endpoint,omitempty" tf:"s3_endpoint,omitempty"`
 
 	// The secret key to authenticate with. If not specified with the resource, its value can be
 	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_secret_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.
@@ -91,6 +99,10 @@ type BucketObservation struct {
 	// The endpoint for the bucket used for s3 connections.
 	Endpoint *string `json:"endpoint,omitempty" tf:"endpoint,omitempty"`
 
+	// The type of s3_endpoint available to the user in this region. See Endpoint types for more information.
+	// The type of the S3 endpoint available in this region.
+	EndpointType *string `json:"endpointType,omitempty" tf:"endpoint_type,omitempty"`
+
 	// The hostname where this bucket can be accessed. This hostname can be accessed through a browser if the bucket is made public.
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
 
@@ -107,6 +119,10 @@ type BucketObservation struct {
 	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
 	// The region of the Linode Object Storage Bucket.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The user's s3 endpoint URL, based on the endpoint_type and region.
+	// The endpoint for the bucket used for s3 connections.
+	S3Endpoint *string `json:"s3Endpoint,omitempty" tf:"s3_endpoint,omitempty"`
 
 	// Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)
 	// Whether to enable versioning.
@@ -151,6 +167,11 @@ type BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
 
+	// The type of s3_endpoint available to the user in this region. See Endpoint types for more information.
+	// The type of the S3 endpoint available in this region.
+	// +kubebuilder:validation:Optional
+	EndpointType *string `json:"endpointType,omitempty" tf:"endpoint_type,omitempty"`
+
 	// The label of the Linode Object Storage Bucket.
 	// The label of the Linode Object Storage Bucket.
 	// +kubebuilder:validation:Optional
@@ -164,6 +185,11 @@ type BucketParameters struct {
 	// The region of the Linode Object Storage Bucket.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The user's s3 endpoint URL, based on the endpoint_type and region.
+	// The endpoint for the bucket used for s3 connections.
+	// +kubebuilder:validation:Optional
+	S3Endpoint *string `json:"s3Endpoint,omitempty" tf:"s3_endpoint,omitempty"`
 
 	// The secret key to authenticate with. If not specified with the resource, its value can be
 	// The S3 secret key to use for this resource. (Required for lifecycle_rule and versioning). If not specified with the resource, the value will be read from provider-level obj_secret_key, or, generated implicitly at apply-time if obj_use_temp_keys in provider configuration is set.

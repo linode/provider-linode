@@ -164,6 +164,14 @@ spec:
                             The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
                             The number of nodes in the Node Pool.
                           type: number
+                        labels:
+                          additionalProperties:
+                            type: string
+                          description: Key-value pairs added as labels to nodes in
+                            the node pool. Labels help classify your nodes and to
+                            easily select subsets of objects.
+                          type: object
+                          x-kubernetes-map-type: granular
                         tags:
                           description: |-
                             An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
@@ -172,6 +180,23 @@ spec:
                             type: string
                           type: array
                           x-kubernetes-list-type: set
+                        taint:
+                          description: Kubernetes taints to add to node pool nodes.
+                            Taints help control how pods are scheduled onto nodes,
+                            specifically allowing them to repel certain pods.
+                          items:
+                            properties:
+                              effect:
+                                description: The Kubernetes taint effect.
+                                type: string
+                              key:
+                                description: The Kubernetes taint key.
+                                type: string
+                              value:
+                                description: The Kubernetes taint value.
+                                type: string
+                            type: object
+                          type: array
                         type:
                           description: |-
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
@@ -192,6 +217,11 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  tier:
+                    description: |-
+                      The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+                      The desired Kubernetes tier.
+                    type: string
                 type: object
               initProvider:
                 description: |-
@@ -297,6 +327,14 @@ spec:
                             The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
                             The number of nodes in the Node Pool.
                           type: number
+                        labels:
+                          additionalProperties:
+                            type: string
+                          description: Key-value pairs added as labels to nodes in
+                            the node pool. Labels help classify your nodes and to
+                            easily select subsets of objects.
+                          type: object
+                          x-kubernetes-map-type: granular
                         tags:
                           description: |-
                             An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
@@ -305,6 +343,23 @@ spec:
                             type: string
                           type: array
                           x-kubernetes-list-type: set
+                        taint:
+                          description: Kubernetes taints to add to node pool nodes.
+                            Taints help control how pods are scheduled onto nodes,
+                            specifically allowing them to repel certain pods.
+                          items:
+                            properties:
+                              effect:
+                                description: The Kubernetes taint effect.
+                                type: string
+                              key:
+                                description: The Kubernetes taint key.
+                                type: string
+                              value:
+                                description: The Kubernetes taint value.
+                                type: string
+                            type: object
+                          type: array
                         type:
                           description: |-
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
@@ -325,6 +380,11 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  tier:
+                    description: |-
+                      The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+                      The desired Kubernetes tier.
+                    type: string
                 type: object
               managementPolicies:
                 default:
@@ -569,7 +629,7 @@ spec:
                     type: array
                   dashboardUrl:
                     description: |-
-                      The Kubernetes Dashboard access URL for this cluster.
+                      The Kubernetes Dashboard access URL for this cluster. LKE Enterprise does not have a dashboard URL.
                       The dashboard URL of the cluster.
                     type: string
                   externalPoolTags:
@@ -631,6 +691,14 @@ spec:
                             The ID of the cluster.
                             The ID of the Node Pool.
                           type: number
+                        labels:
+                          additionalProperties:
+                            type: string
+                          description: Key-value pairs added as labels to nodes in
+                            the node pool. Labels help classify your nodes and to
+                            easily select subsets of objects.
+                          type: object
+                          x-kubernetes-map-type: granular
                         nodes:
                           description: The nodes in the node pool.
                           items:
@@ -654,6 +722,23 @@ spec:
                             type: string
                           type: array
                           x-kubernetes-list-type: set
+                        taint:
+                          description: Kubernetes taints to add to node pool nodes.
+                            Taints help control how pods are scheduled onto nodes,
+                            specifically allowing them to repel certain pods.
+                          items:
+                            properties:
+                              effect:
+                                description: The Kubernetes taint effect.
+                                type: string
+                              key:
+                                description: The Kubernetes taint key.
+                                type: string
+                              value:
+                                description: The Kubernetes taint value.
+                                type: string
+                            type: object
+                          type: array
                         type:
                           description: |-
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
@@ -679,6 +764,11 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  tier:
+                    description: |-
+                      The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+                      The desired Kubernetes tier.
+                    type: string
                 type: object
               conditions:
                 description: Conditions of the resource.

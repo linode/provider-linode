@@ -151,6 +151,10 @@ type ClusterInitParameters struct {
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+	// The desired Kubernetes tier.
+	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
 type ClusterObservation struct {
@@ -162,7 +166,7 @@ type ClusterObservation struct {
 	// Defines settings for the Kubernetes Control Plane.
 	ControlPlane []ControlPlaneObservation `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
 
-	// The Kubernetes Dashboard access URL for this cluster.
+	// The Kubernetes Dashboard access URL for this cluster. LKE Enterprise does not have a dashboard URL.
 	// The dashboard URL of the cluster.
 	DashboardURL *string `json:"dashboardUrl,omitempty" tf:"dashboard_url,omitempty"`
 
@@ -198,6 +202,10 @@ type ClusterObservation struct {
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+	// The desired Kubernetes tier.
+	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
 type ClusterParameters struct {
@@ -237,6 +245,11 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+	// The desired Kubernetes tier.
+	// +kubebuilder:validation:Optional
+	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
 }
 
 type ControlPlaneInitParameters struct {
@@ -298,10 +311,17 @@ type PoolInitParameters struct {
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
+	// +mapType=granular
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
 	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// A set of tags applied to this node pool.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
+	Taint []TaintInitParameters `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
@@ -325,6 +345,10 @@ type PoolObservation struct {
 	// The ID of the Node Pool.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
+	// +mapType=granular
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
 	// The nodes in the node pool.
 	Nodes []NodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
@@ -332,6 +356,9 @@ type PoolObservation struct {
 	// A set of tags applied to this node pool.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
+	Taint []TaintObservation `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
@@ -349,16 +376,64 @@ type PoolParameters struct {
 	// +kubebuilder:validation:Optional
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
+
 	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// A set of tags applied to this node pool.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
+	// +kubebuilder:validation:Optional
+	Taint []TaintParameters `json:"taint,omitempty" tf:"taint,omitempty"`
+
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
+}
+
+type TaintInitParameters struct {
+
+	// The Kubernetes taint effect.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
+
+	// The Kubernetes taint key.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The Kubernetes taint value.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type TaintObservation struct {
+
+	// The Kubernetes taint effect.
+	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
+
+	// The Kubernetes taint key.
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The Kubernetes taint value.
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type TaintParameters struct {
+
+	// The Kubernetes taint effect.
+	// +kubebuilder:validation:Optional
+	Effect *string `json:"effect" tf:"effect,omitempty"`
+
+	// The Kubernetes taint key.
+	// +kubebuilder:validation:Optional
+	Key *string `json:"key" tf:"key,omitempty"`
+
+	// The Kubernetes taint value.
+	// +kubebuilder:validation:Optional
+	Value *string `json:"value" tf:"value,omitempty"`
 }
 
 // ClusterSpec defines the desired state of Cluster

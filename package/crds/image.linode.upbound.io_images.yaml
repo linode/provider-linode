@@ -260,7 +260,7 @@ spec:
                     type: string
                   replicaRegions:
                     description: |-
-                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. See Replicate an Image here for more details.
                       A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
                     items:
                       type: string
@@ -479,7 +479,7 @@ spec:
                     type: string
                   replicaRegions:
                     description: |-
-                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. See Replicate an Image here for more details.
                       A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
                     items:
                       type: string
@@ -749,7 +749,7 @@ spec:
                     type: string
                   replicaRegions:
                     description: |-
-                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+                      A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. See Replicate an Image here for more details.
                       A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
                     items:
                       type: string

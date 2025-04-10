@@ -72,6 +72,11 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  encryption:
+                    description: |-
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                    type: string
                   label:
                     description: |-
                       The label of the Linode Volume
@@ -193,6 +198,11 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  encryption:
+                    description: |-
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                    type: string
                   label:
                     description: |-
                       The label of the Linode Volume
@@ -478,6 +488,11 @@ spec:
             properties:
               atProvider:
                 properties:
+                  encryption:
+                    description: |-
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                    type: string
                   filesystemPath:
                     description: |-
                       The full filesystem path for the Volume based on the Volume's label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label

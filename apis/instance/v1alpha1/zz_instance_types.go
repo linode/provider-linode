@@ -614,6 +614,11 @@ type InstanceInitParameters struct {
 	// The display group of the Linode instance.
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You could pass a reserved IPv4 address here to create a linode with a particular reserved IP address. You may need to open a support ticket to get additional IPv4 addresses.
+	// +listType=set
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use.
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
@@ -632,7 +637,7 @@ type InstanceInitParameters struct {
 	// The type of migration to use for resize and migration operations.
 	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
 
-	// Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+	// Information about the Placement Group this Linode is assigned to.
 	// Fields related to the Placement Group this instance is assigned to.
 	PlacementGroup []PlacementGroupInitParameters `json:"placementGroup,omitempty" tf:"placement_group,omitempty"`
 
@@ -700,7 +705,7 @@ type InstanceInterfaceInitParameters struct {
 	// List of VPC IPs or IP ranges inside the VPC subnet.
 	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
 
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	IPv4 []InterfaceIPv4InitParameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
@@ -738,7 +743,7 @@ type InstanceInterfaceObservation struct {
 	// List of VPC IPs or IP ranges inside the VPC subnet.
 	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
 
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	IPv4 []InterfaceIPv4Observation `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
@@ -774,7 +779,7 @@ type InstanceInterfaceParameters struct {
 	// +kubebuilder:validation:Optional
 	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
 
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	// +kubebuilder:validation:Optional
 	IPv4 []InterfaceIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
@@ -837,6 +842,10 @@ type InstanceObservation struct {
 	// If true, then the instance is kept or converted into in a running state. If false, the instance will be shutdown. If unspecified, the Linode's power status will not be managed by the Provider.
 	Booted *bool `json:"booted,omitempty" tf:"booted,omitempty"`
 
+	// A list of capabilities of this Linode instance.
+	// +listType=set
+	Capabilities []*string `json:"capabilities,omitempty" tf:"capabilities,omitempty"`
+
 	// block
 	// Configuration profiles define the VM settings and boot behavior of the Linode Instance.
 	Config []ConfigObservation `json:"config,omitempty" tf:"config,omitempty"`
@@ -871,8 +880,8 @@ type InstanceObservation struct {
 	// This Linode's Public IPv4 Address. If there are multiple public IPv4 addresses on this Instance, an arbitrary address will be used for this field.
 	IPAddress *string `json:"ipAddress,omitempty" tf:"ip_address,omitempty"`
 
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You could pass a reserved IPv4 address here to create a linode with a particular reserved IP address. You may need to open a support ticket to get additional IPv4 addresses.
 	// +listType=set
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
@@ -902,7 +911,7 @@ type InstanceObservation struct {
 	// The type of migration to use for resize and migration operations.
 	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
 
-	// Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+	// Information about the Placement Group this Linode is assigned to.
 	// Fields related to the Placement Group this instance is assigned to.
 	PlacementGroup []PlacementGroupObservation `json:"placementGroup,omitempty" tf:"placement_group,omitempty"`
 
@@ -1019,6 +1028,12 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
+	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You could pass a reserved IPv4 address here to create a linode with a particular reserved IP address. You may need to open a support ticket to get additional IPv4 addresses.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing
 	// An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See /images for more information on the Images available for you to use.
 	// +kubebuilder:validation:Optional
@@ -1042,7 +1057,7 @@ type InstanceParameters struct {
 	// +kubebuilder:validation:Optional
 	MigrationType *string `json:"migrationType,omitempty" tf:"migration_type,omitempty"`
 
-	// Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+	// Information about the Placement Group this Linode is assigned to.
 	// Fields related to the Placement Group this instance is assigned to.
 	// +kubebuilder:validation:Optional
 	PlacementGroup []PlacementGroupParameters `json:"placementGroup,omitempty" tf:"placement_group,omitempty"`
@@ -1160,7 +1175,7 @@ type InterfaceInitParameters struct {
 	// List of VPC IPs or IP ranges inside the VPC subnet.
 	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
 
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	IPv4 []IPv4InitParameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
@@ -1198,7 +1213,7 @@ type InterfaceObservation struct {
 	// List of VPC IPs or IP ranges inside the VPC subnet.
 	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
 
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	IPv4 []IPv4Observation `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
@@ -1234,7 +1249,7 @@ type InterfaceParameters struct {
 	// +kubebuilder:validation:Optional
 	IPRanges []*string `json:"ipRanges,omitempty" tf:"ip_ranges,omitempty"`
 
-	// This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+	// A set of reserved IPv4 addresses to assign to this Linode on creation.
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	// +kubebuilder:validation:Optional
 	IPv4 []IPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
@@ -1739,8 +1754,14 @@ type SpecsInitParameters struct {
 
 type SpecsObservation struct {
 
+	// The number of VPUs this Linode has access to.
+	AcceleratedDevices *float64 `json:"acceleratedDevices,omitempty" tf:"accelerated_devices,omitempty"`
+
 	// The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.
 	Disk *float64 `json:"disk,omitempty" tf:"disk,omitempty"`
+
+	// The number of GPUs this Linode has access to.
+	Gpus *float64 `json:"gpus,omitempty" tf:"gpus,omitempty"`
 
 	// The amount of RAM, in MB, this Linode has access to. Typically a Linode will choose to boot with all of its available RAM, but this can be configured in a Config profile.
 	Memory *float64 `json:"memory,omitempty" tf:"memory,omitempty"`
