@@ -394,7 +394,7 @@ spec:
                                 type: string
                               ipv4:
                                 description: |-
-                                  This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+                                  A set of reserved IPv4 addresses to assign to this Linode on creation.
                                   The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
                                 items:
                                   properties:
@@ -591,7 +591,7 @@ spec:
                           type: string
                         ipv4:
                           description: |-
-                            This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+                            A set of reserved IPv4 addresses to assign to this Linode on creation.
                             The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
                           items:
                             properties:
@@ -629,6 +629,14 @@ spec:
                           type: number
                       type: object
                     type: array
+                  ipv4:
+                    description: |-
+                      A set of reserved IPv4 addresses to assign to this Linode on creation.
+                      This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You could pass a reserved IPv4 address here to create a linode with a particular reserved IP address. You may need to open a support ticket to get additional IPv4 addresses.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   label:
                     description: |-
                       The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
@@ -652,7 +660,7 @@ spec:
                     type: string
                   placementGroup:
                     description: |-
-                      Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+                      Information about the Placement Group this Linode is assigned to.
                       Fields related to the Placement Group this instance is assigned to.
                     items:
                       properties:
@@ -1171,7 +1179,7 @@ spec:
                                 type: string
                               ipv4:
                                 description: |-
-                                  This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+                                  A set of reserved IPv4 addresses to assign to this Linode on creation.
                                   The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
                                 items:
                                   properties:
@@ -1357,7 +1365,7 @@ spec:
                           type: string
                         ipv4:
                           description: |-
-                            This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+                            A set of reserved IPv4 addresses to assign to this Linode on creation.
                             The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
                           items:
                             properties:
@@ -1395,6 +1403,14 @@ spec:
                           type: number
                       type: object
                     type: array
+                  ipv4:
+                    description: |-
+                      A set of reserved IPv4 addresses to assign to this Linode on creation.
+                      This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You could pass a reserved IPv4 address here to create a linode with a particular reserved IP address. You may need to open a support ticket to get additional IPv4 addresses.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   label:
                     description: |-
                       The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.
@@ -1418,7 +1434,7 @@ spec:
                     type: string
                   placementGroup:
                     description: |-
-                      Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+                      Information about the Placement Group this Linode is assigned to.
                       Fields related to the Placement Group this instance is assigned to.
                     items:
                       properties:
@@ -1876,6 +1892,12 @@ spec:
                       If unspecified, the Linode's power status will not be managed
                       by the Provider.
                     type: boolean
+                  capabilities:
+                    description: A list of capabilities of this Linode instance.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   config:
                     description: |-
                       block
@@ -2144,7 +2166,7 @@ spec:
                                 type: string
                               ipv4:
                                 description: |-
-                                  This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+                                  A set of reserved IPv4 addresses to assign to this Linode on creation.
                                   The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
                                 items:
                                   properties:
@@ -2339,7 +2361,7 @@ spec:
                           type: string
                         ipv4:
                           description: |-
-                            This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+                            A set of reserved IPv4 addresses to assign to this Linode on creation.
                             The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
                           items:
                             properties:
@@ -2389,8 +2411,8 @@ spec:
                     type: string
                   ipv4:
                     description: |-
-                      This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
-                      This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You may need to open a support ticket to get additional IPv4 addresses.
+                      A set of reserved IPv4 addresses to assign to this Linode on creation.
+                      This Linode's IPv4 Addresses. Each Linode is assigned a single public IPv4 address upon creation, and may get a single private IPv4 address if needed. You could pass a reserved IPv4 address here to create a linode with a particular reserved IP address. You may need to open a support ticket to get additional IPv4 addresses.
                     items:
                       type: string
                     type: array
@@ -2428,7 +2450,7 @@ spec:
                     type: string
                   placementGroup:
                     description: |-
-                      Information about the Placement Group this Linode is assigned to. NOTE: Placement Groups may not currently be available to all users.
+                      Information about the Placement Group this Linode is assigned to.
                       Fields related to the Placement Group this instance is assigned to.
                     items:
                       properties:
@@ -2494,6 +2516,9 @@ spec:
                       Linode.
                     items:
                       properties:
+                        acceleratedDevices:
+                          description: The number of VPUs this Linode has access to.
+                          type: number
                         disk:
                           description: The amount of storage space, in GB. this Linode
                             has access to. A typical Linode will divide this space
@@ -2501,6 +2526,9 @@ spec:
                             a swap disk, usually 512 MB. This is the default configuration
                             created when deploying a Linode with an image through
                             POST /linode/instances.
+                          type: number
+                        gpus:
+                          description: The number of GPUs this Linode has access to.
                           type: number
                         memory:
                           description: The amount of RAM, in MB, this Linode has access

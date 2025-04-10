@@ -16,30 +16,36 @@ import (
 type NodePoolAutoscalerInitParameters struct {
 
 	// The maximum number of nodes to autoscale to.
+	// The maximum number of nodes to automatically scale to.
 	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
 
 	// The minimum number of nodes to autoscale to.
+	// The minimum number of nodes to automatically scale to.
 	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 }
 
 type NodePoolAutoscalerObservation struct {
 
 	// The maximum number of nodes to autoscale to.
+	// The maximum number of nodes to automatically scale to.
 	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
 
 	// The minimum number of nodes to autoscale to.
+	// The minimum number of nodes to automatically scale to.
 	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 }
 
 type NodePoolAutoscalerParameters struct {
 
 	// The maximum number of nodes to autoscale to.
+	// The maximum number of nodes to automatically scale to.
 	// +kubebuilder:validation:Optional
-	Max *float64 `json:"max" tf:"max,omitempty"`
+	Max *float64 `json:"max,omitempty" tf:"max,omitempty"`
 
 	// The minimum number of nodes to autoscale to.
+	// The minimum number of nodes to automatically scale to.
 	// +kubebuilder:validation:Optional
-	Min *float64 `json:"min" tf:"min,omitempty"`
+	Min *float64 `json:"min,omitempty" tf:"min,omitempty"`
 }
 
 type NodePoolInitParameters struct {
@@ -58,6 +64,10 @@ type NodePoolInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
 	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +mapType=granular
@@ -73,11 +83,15 @@ type NodePoolInitParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
-	Taint []TaintInitParameters `json:"taint,omitempty" tf:"taint,omitempty"`
+	Taint []NodePoolTaintInitParameters `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
 type NodePoolNodesInitParameters struct {
@@ -112,6 +126,10 @@ type NodePoolObservation struct {
 	// The ID of the Node Pool within LKE Cluster.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
 	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +mapType=granular
@@ -130,11 +148,15 @@ type NodePoolObservation struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
-	Taint []TaintObservation `json:"taint,omitempty" tf:"taint,omitempty"`
+	Taint []NodePoolTaintObservation `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
 type NodePoolParameters struct {
@@ -156,6 +178,11 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+	// +kubebuilder:validation:Optional
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
 	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +kubebuilder:validation:Optional
@@ -175,15 +202,20 @@ type NodePoolParameters struct {
 
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
 	// +kubebuilder:validation:Optional
-	Taint []TaintParameters `json:"taint,omitempty" tf:"taint,omitempty"`
+	Taint []NodePoolTaintParameters `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all nodes in the Node Pool. See all node types here.
 	// The type of node pool.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+	// +kubebuilder:validation:Optional
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
-type TaintInitParameters struct {
+type NodePoolTaintInitParameters struct {
 
 	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
@@ -198,7 +230,7 @@ type TaintInitParameters struct {
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
-type TaintObservation struct {
+type NodePoolTaintObservation struct {
 
 	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
@@ -213,7 +245,7 @@ type TaintObservation struct {
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
-type TaintParameters struct {
+type NodePoolTaintParameters struct {
 
 	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.

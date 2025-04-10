@@ -77,10 +77,14 @@ spec:
                     items:
                       properties:
                         max:
-                          description: The maximum number of nodes to autoscale to.
+                          description: |-
+                            The maximum number of nodes to autoscale to.
+                            The maximum number of nodes to automatically scale to.
                           type: number
                         min:
-                          description: The minimum number of nodes to autoscale to.
+                          description: |-
+                            The minimum number of nodes to autoscale to.
+                            The minimum number of nodes to automatically scale to.
                           type: number
                       type: object
                     type: array
@@ -163,6 +167,11 @@ spec:
                             type: string
                         type: object
                     type: object
+                  k8sVersion:
+                    description: |-
+                      The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+                      The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+                    type: string
                   labels:
                     additionalProperties:
                       type: string
@@ -212,6 +221,11 @@ spec:
                       A Linode Type for all nodes in the Node Pool. See all node types here.
                       The type of node pool.
                     type: string
+                  updateStrategy:
+                    description: |-
+                      The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+                      The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+                    type: string
                 type: object
               initProvider:
                 description: |-
@@ -230,10 +244,14 @@ spec:
                     items:
                       properties:
                         max:
-                          description: The maximum number of nodes to autoscale to.
+                          description: |-
+                            The maximum number of nodes to autoscale to.
+                            The maximum number of nodes to automatically scale to.
                           type: number
                         min:
-                          description: The minimum number of nodes to autoscale to.
+                          description: |-
+                            The minimum number of nodes to autoscale to.
+                            The minimum number of nodes to automatically scale to.
                           type: number
                       type: object
                     type: array
@@ -316,6 +334,11 @@ spec:
                             type: string
                         type: object
                     type: object
+                  k8sVersion:
+                    description: |-
+                      The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+                      The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+                    type: string
                   labels:
                     additionalProperties:
                       type: string
@@ -364,6 +387,11 @@ spec:
                     description: |-
                       A Linode Type for all nodes in the Node Pool. See all node types here.
                       The type of node pool.
+                    type: string
+                  updateStrategy:
+                    description: |-
+                      The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+                      The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
                     type: string
                 type: object
               managementPolicies:
@@ -547,10 +575,14 @@ spec:
                     items:
                       properties:
                         max:
-                          description: The maximum number of nodes to autoscale to.
+                          description: |-
+                            The maximum number of nodes to autoscale to.
+                            The maximum number of nodes to automatically scale to.
                           type: number
                         min:
-                          description: The minimum number of nodes to autoscale to.
+                          description: |-
+                            The minimum number of nodes to autoscale to.
+                            The minimum number of nodes to automatically scale to.
                           type: number
                       type: object
                     type: array
@@ -566,6 +598,11 @@ spec:
                     type: string
                   id:
                     description: The ID of the Node Pool within LKE Cluster.
+                    type: string
+                  k8sVersion:
+                    description: |-
+                      The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+                      The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
                     type: string
                   labels:
                     additionalProperties:
@@ -630,6 +667,11 @@ spec:
                     description: |-
                       A Linode Type for all nodes in the Node Pool. See all node types here.
                       The type of node pool.
+                    type: string
+                  updateStrategy:
+                    description: |-
+                      The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+                      The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
                     type: string
                 type: object
               conditions:

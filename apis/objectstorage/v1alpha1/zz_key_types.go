@@ -141,6 +141,9 @@ type RegionsDetailsInitParameters struct {
 
 type RegionsDetailsObservation struct {
 
+	// The type of s3_endpoint available to the user in this region. See Endpoint types for more information.
+	EndpointType *string `json:"endpointType,omitempty" tf:"endpoint_type,omitempty"`
+
 	// The ID of the region.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 

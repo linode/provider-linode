@@ -8,5 +8,5 @@ metadata:
   name: foobar
 spec:
   forProvider:
-    cluster: ${data.linode_object_storage_cluster.primary.id}
     label: mybucket
+    region: us-mia

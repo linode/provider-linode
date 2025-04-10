@@ -402,6 +402,10 @@ spec:
                       A set of objects containing the detailed info of the regions where the key will grant access.
                     items:
                       properties:
+                        endpointType:
+                          description: The type of s3_endpoint available to the user
+                            in this region. See Endpoint types for more information.
+                          type: string
                         id:
                           description: The ID of the region.
                           type: string

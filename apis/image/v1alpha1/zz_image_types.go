@@ -64,7 +64,7 @@ type ImageInitParameters struct {
 	// The region to upload to.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. See Replicate an Image here for more details.
 	// A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
 	ReplicaRegions []*string `json:"replicaRegions,omitempty" tf:"replica_regions,omitempty"`
 
@@ -136,7 +136,7 @@ type ImageObservation struct {
 	// The region to upload to.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. See Replicate an Image here for more details.
 	// A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
 	ReplicaRegions []*string `json:"replicaRegions,omitempty" tf:"replica_regions,omitempty"`
 
@@ -232,7 +232,7 @@ type ImageParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. Note: Image replication may not be available to all users. See Replicate an Image here for more details.
+	// A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. See Replicate an Image here for more details.
 	// A list of regions that customer wants to replicate this image in. At least one available region is required and only core regions allowed. Existing images in the regions not passed will be removed.
 	// +kubebuilder:validation:Optional
 	ReplicaRegions []*string `json:"replicaRegions,omitempty" tf:"replica_regions,omitempty"`

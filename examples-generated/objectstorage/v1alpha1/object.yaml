@@ -12,8 +12,8 @@ spec:
       matchLabels:
         testing.upbound.io/example-name: my_key
     bucket: my-bucket
-    cluster: us-east-1
     key: my-object
+    region: us-mia
     secretKeySecretRef:
       key: attribute.secret_key
       name: example-object-storage-key
