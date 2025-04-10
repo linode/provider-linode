@@ -76,3 +76,18 @@ type: Opaque
 ### Debugging using dlv:
 1. use `make run` to run the provider locally
 2. `dlv attach <pid>` to begin a debug session
+
+
+### Creating and publishing xpkgs
+1. Create an account on the upbound marketplace
+2. Install UP from - https://docs.upbound.io/reference/cli/#homebrew 
+3. login to the account using `up login` (if you're already logged in, logout first)
+4. Create a repo if you don't have one `up repository create provider-linode`
+5. run `make build`
+6. run `make xpkg.build`
+7. run `up xpkg push <username>/<repo_name>:<version> -f <path to built xpkg>`
+```bash
+   up xpkg push tchinmai7/provider-linode:v0.0.1 -f _output/xpkg/linux_amd64/provider-linode-v0.0.0-130.g7bacec4.xpkg
+``` 
+the version HAS to be a semver
+8. modify your provider package to use this version instead.
