@@ -85,7 +85,7 @@ type BucketObservation struct {
 	AccessKey *string `json:"accessKey,omitempty" tf:"access_key,omitempty"`
 
 	// The cert used by this Object Storage Bucket.
-	Cert []CertObservation `json:"cert,omitempty" tf:"cert,omitempty"`
+	Cert []CertParameters `json:"cert,omitempty" tf:"cert,omitempty"`
 
 	// (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
 	// For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
@@ -206,22 +206,14 @@ type CertInitParameters struct {
 
 	// The Base64 encoded and PEM formatted SSL certificate.
 	// The Base64 encoded and PEM formatted SSL certificate.
-	Certificate *string `json:"certificate,omitempty" tf:"certificate,omitempty"`
+	CertificateSecretRef v1.SecretKeySelector `json:"certificateSecretRef" tf:"-"`
 
 	// The private key associated with the TLS/SSL certificate.
 	// The private key associated with the TLS/SSL certificate.
-	PrivateKey *string `json:"privateKey,omitempty" tf:"private_key,omitempty"`
+	PrivateKeySecretRef v1.SecretKeySelector `json:"privateKeySecretRef" tf:"-"`
 }
 
 type CertObservation struct {
-
-	// The Base64 encoded and PEM formatted SSL certificate.
-	// The Base64 encoded and PEM formatted SSL certificate.
-	Certificate *string `json:"certificate,omitempty" tf:"certificate,omitempty"`
-
-	// The private key associated with the TLS/SSL certificate.
-	// The private key associated with the TLS/SSL certificate.
-	PrivateKey *string `json:"privateKey,omitempty" tf:"private_key,omitempty"`
 }
 
 type CertParameters struct {
@@ -229,12 +221,12 @@ type CertParameters struct {
 	// The Base64 encoded and PEM formatted SSL certificate.
 	// The Base64 encoded and PEM formatted SSL certificate.
 	// +kubebuilder:validation:Optional
-	Certificate *string `json:"certificate" tf:"certificate,omitempty"`
+	CertificateSecretRef v1.SecretKeySelector `json:"certificateSecretRef" tf:"-"`
 
 	// The private key associated with the TLS/SSL certificate.
 	// The private key associated with the TLS/SSL certificate.
 	// +kubebuilder:validation:Optional
-	PrivateKey *string `json:"privateKey" tf:"private_key,omitempty"`
+	PrivateKeySecretRef v1.SecretKeySelector `json:"privateKeySecretRef" tf:"-"`
 }
 
 type ExpirationInitParameters struct {

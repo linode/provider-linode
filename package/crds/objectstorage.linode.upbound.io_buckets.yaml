@@ -161,16 +161,44 @@ spec:
                     description: The cert used by this Object Storage Bucket.
                     items:
                       properties:
-                        certificate:
+                        certificateSecretRef:
                           description: |-
                             The Base64 encoded and PEM formatted SSL certificate.
                             The Base64 encoded and PEM formatted SSL certificate.
-                          type: string
-                        privateKey:
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
+                        privateKeySecretRef:
                           description: |-
                             The private key associated with the TLS/SSL certificate.
                             The private key associated with the TLS/SSL certificate.
-                          type: string
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
                       type: object
                     type: array
                   cluster:
@@ -389,16 +417,47 @@ spec:
                     description: The cert used by this Object Storage Bucket.
                     items:
                       properties:
-                        certificate:
+                        certificateSecretRef:
                           description: |-
                             The Base64 encoded and PEM formatted SSL certificate.
                             The Base64 encoded and PEM formatted SSL certificate.
-                          type: string
-                        privateKey:
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
+                        privateKeySecretRef:
                           description: |-
                             The private key associated with the TLS/SSL certificate.
                             The private key associated with the TLS/SSL certificate.
-                          type: string
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
+                      required:
+                      - certificateSecretRef
+                      - privateKeySecretRef
                       type: object
                     type: array
                   cluster:
@@ -707,16 +766,44 @@ spec:
                     description: The cert used by this Object Storage Bucket.
                     items:
                       properties:
-                        certificate:
+                        certificateSecretRef:
                           description: |-
                             The Base64 encoded and PEM formatted SSL certificate.
                             The Base64 encoded and PEM formatted SSL certificate.
-                          type: string
-                        privateKey:
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
+                        privateKeySecretRef:
                           description: |-
                             The private key associated with the TLS/SSL certificate.
                             The private key associated with the TLS/SSL certificate.
-                          type: string
+                          properties:
+                            key:
+                              description: The key to select.
+                              type: string
+                            name:
+                              description: Name of the secret.
+                              type: string
+                            namespace:
+                              description: Namespace of the secret.
+                              type: string
+                          required:
+                          - key
+                          - name
+                          - namespace
+                          type: object
                       type: object
                     type: array
                   cluster:
