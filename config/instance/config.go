@@ -9,8 +9,9 @@ func Configure(p *config.Provider) {
 		// this resource, which would be "linode"
 		r.ShortGroup = "instance"
 		r.UseAsync = true
+
 		r.LateInitializer = config.LateInitializer{
-			IgnoredFields: []string{"disk", "config"},
+			IgnoredFields: []string{"disk", "config", "ipv4"},
 		}
 
 		r.References["stackscript_id"] = config.Reference{

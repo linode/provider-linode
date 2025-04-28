@@ -74,8 +74,10 @@ type: Opaque
 5. Test changes locally with `make local-deploy` - create a manifest for your resource and test that it works.
 
 ### Debugging using dlv:
-1. use `make run` to run the provider locally
-2. `dlv attach <pid>` to begin a debug session
+1. `make controlplane.up` - will start a kind cluster with everything needed
+2. `make generate` to generate crd's and other generated code
+3. `k apply -f package/crds` to install CRDs
+4. use `make debug` to run the provider locally
 
 
 ### Creating and publishing xpkgs

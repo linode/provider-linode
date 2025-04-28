@@ -120,6 +120,7 @@ func (tr *Instance) LateInitialize(attrs []byte) (bool, error) {
 	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
 	opts = append(opts, resource.WithNameFilter("Config"))
 	opts = append(opts, resource.WithNameFilter("Disk"))
+	opts = append(opts, resource.WithNameFilter("IPv4"))
 
 	li := resource.NewGenericLateInitializer(opts...)
 	return li.LateInitialize(&tr.Spec.ForProvider, params)
