@@ -4,10 +4,7 @@ go 1.23.0
 
 toolchain go1.24.2
 
-replace (
-	github.com/crossplane/crossplane-runtime => github.com/guilhem/crossplane-runtime v1.16.1-0.20250116161626-a92ea4102aa4
-	github.com/linode/terraform-provider-linode/v2 => github.com/tchinmai7/terraform-provider-linode/v2 v2.37.1-0.20250410211733-1b24dfd5b938
-)
+replace github.com/crossplane/crossplane-runtime => github.com/guilhem/crossplane-runtime v1.16.1-0.20250116161626-a92ea4102aa4
 
 require (
 	dario.cat/mergo v1.0.0
