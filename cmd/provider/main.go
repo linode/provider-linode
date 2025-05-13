@@ -75,7 +75,7 @@ func main() {
 	kingpin.FatalIfError(err, "Cannot get API server rest config")
 	kingpin.FatalIfError(linodemetrics.SetupMetrics(), "Cannot setup Linode metrics hook")
 
-	mgr, err := ctrl.NewManager(ratelimiter.LimitRESTConfig(cfg, *maxReconcileRate), ctrl.Options{
+	opts := ctrl.Options{
 		LeaderElection:   *leaderElection,
 		LeaderElectionID: "crossplane-leader-election-provider-linode-config",
 		Cache: cache.Options{
@@ -84,7 +84,14 @@ func main() {
 		LeaderElectionResourceLock: resourcelock.LeasesResourceLock,
 		LeaseDuration:              func() *time.Duration { d := 60 * time.Second; return &d }(),
 		RenewDeadline:              func() *time.Duration { d := 50 * time.Second; return &d }(),
-	})
+	}
+
+	// Enable pprof when debug is enabled.
+	if *debug {
+		opts.PprofBindAddress = ":8082"
+	}
+
+	mgr, err := ctrl.NewManager(ratelimiter.LimitRESTConfig(cfg, *maxReconcileRate), opts)
 	kingpin.FatalIfError(err, "Cannot create controller manager")
 	kingpin.FatalIfError(apis.AddToScheme(mgr.GetScheme()), "Cannot add Linode APIs to scheme")
 
