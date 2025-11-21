@@ -6,7 +6,6 @@ on:
 
 jobs:
   e2e:
-    runs-on: ubuntu-latest
     uses: upbound/official-providers-ci/.github/workflows/pr-comment-trigger.yml@main
     secrets:
       UPTEST_CLOUD_CREDENTIALS: ${{ secrets.UPTEST_CLOUD_CREDENTIALS }}
