@@ -52,8 +52,7 @@ type PostgreSQLv2InitParameters struct {
 	// The Linode Instance type used by the Managed Database for its nodes.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// Configuration settings for automated patch update maintenance for the Managed Database.
-	Updates map[string]string `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []PostgreSQLv2UpdatesInitParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
 type PostgreSQLv2Observation struct {
@@ -149,8 +148,7 @@ type PostgreSQLv2Observation struct {
 	// When this Managed Database was last updated.
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 
-	// Configuration settings for automated patch update maintenance for the Managed Database.
-	Updates map[string]string `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []PostgreSQLv2UpdatesObservation `json:"updates,omitempty" tf:"updates,omitempty"`
 
 	// The Managed Database engine version. (e.g. 13.2)
 	// The Managed Database engine version.
@@ -205,9 +203,8 @@ type PostgreSQLv2Parameters struct {
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// Configuration settings for automated patch update maintenance for the Managed Database.
 	// +kubebuilder:validation:Optional
-	Updates map[string]string `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []PostgreSQLv2UpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
 type PostgreSQLv2PendingUpdatesInitParameters struct {
@@ -226,6 +223,55 @@ type PostgreSQLv2PendingUpdatesObservation struct {
 }
 
 type PostgreSQLv2PendingUpdatesParameters struct {
+}
+
+type PostgreSQLv2UpdatesInitParameters struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	DayOfWeek *float64 `json:"dayOfWeek,omitempty" tf:"day_of_week,omitempty"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
+
+	// The frequency at which maintenance occurs. (weekly)
+	Frequency *string `json:"frequency,omitempty" tf:"frequency,omitempty"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+}
+
+type PostgreSQLv2UpdatesObservation struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	DayOfWeek *float64 `json:"dayOfWeek,omitempty" tf:"day_of_week,omitempty"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
+
+	// The frequency at which maintenance occurs. (weekly)
+	Frequency *string `json:"frequency,omitempty" tf:"frequency,omitempty"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+}
+
+type PostgreSQLv2UpdatesParameters struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	// +kubebuilder:validation:Optional
+	DayOfWeek *float64 `json:"dayOfWeek,omitempty" tf:"day_of_week,omitempty"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	// +kubebuilder:validation:Optional
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
+
+	// The frequency at which maintenance occurs. (weekly)
+	// +kubebuilder:validation:Optional
+	Frequency *string `json:"frequency,omitempty" tf:"frequency,omitempty"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	// +kubebuilder:validation:Optional
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
 }
 
 // PostgreSQLv2Spec defines the desired state of PostgreSQLv2
