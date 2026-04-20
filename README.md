@@ -35,7 +35,7 @@ This provider plugin is maintained by Linode.
 ## Requirements
 
 - [Crossplane](https://docs.crossplane.io/v1.10/getting-started/install-configure/) 0.10.0+
-- [Go](https://golang.org/doc/install) 1.18.0 or higher (to build the provider plugin)
+- [Go](https://golang.org/doc/install) 1.25.0 or higher (to build the provider plugin)
 
 ## Using the provider
 
