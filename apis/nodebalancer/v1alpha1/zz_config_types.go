@@ -86,6 +86,10 @@ type ConfigInitParameters struct {
 	// Controls how session stickiness is handled on this port. (none, table, http_cookie)
 	// Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
+
+	// Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.
+	// Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic.
+	UDPCheckPort *float64 `json:"udpCheckPort,omitempty" tf:"udp_check_port,omitempty"`
 }
 
 type ConfigObservation struct {
@@ -157,6 +161,14 @@ type ConfigObservation struct {
 	// Controls how session stickiness is handled on this port. (none, table, http_cookie)
 	// Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
+
+	// Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.
+	// Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic.
+	UDPCheckPort *float64 `json:"udpCheckPort,omitempty" tf:"udp_check_port,omitempty"`
+
+	// The read-only idle time in seconds after which a session that hasn’t received packets is destroyed.
+	// The read-only idle time in seconds after which a session that hasn’t received packets is destroyed.
+	UDPSessionTimeout *float64 `json:"udpSessionTimeout,omitempty" tf:"udp_session_timeout,omitempty"`
 }
 
 type ConfigParameters struct {
@@ -248,6 +260,11 @@ type ConfigParameters struct {
 	// Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
 	// +kubebuilder:validation:Optional
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
+
+	// Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.
+	// Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic.
+	// +kubebuilder:validation:Optional
+	UDPCheckPort *float64 `json:"udpCheckPort,omitempty" tf:"udp_check_port,omitempty"`
 }
 
 type NodeStatusInitParameters struct {

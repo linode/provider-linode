@@ -618,6 +618,146 @@ func (in *MySQLv2InitParameters) DeepCopyInto(out *MySQLv2InitParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.EngineConfigBinlogRetentionPeriod != nil {
+		in, out := &in.EngineConfigBinlogRetentionPeriod, &out.EngineConfigBinlogRetentionPeriod
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLConnectTimeout != nil {
+		in, out := &in.EngineConfigMySQLConnectTimeout, &out.EngineConfigMySQLConnectTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLDefaultTimeZone != nil {
+		in, out := &in.EngineConfigMySQLDefaultTimeZone, &out.EngineConfigMySQLDefaultTimeZone
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLGroupConcatMaxLen != nil {
+		in, out := &in.EngineConfigMySQLGroupConcatMaxLen, &out.EngineConfigMySQLGroupConcatMaxLen
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInformationSchemaStatsExpiry != nil {
+		in, out := &in.EngineConfigMySQLInformationSchemaStatsExpiry, &out.EngineConfigMySQLInformationSchemaStatsExpiry
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbChangeBufferMaxSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbChangeBufferMaxSize, &out.EngineConfigMySQLInnodbChangeBufferMaxSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFlushNeighbors != nil {
+		in, out := &in.EngineConfigMySQLInnodbFlushNeighbors, &out.EngineConfigMySQLInnodbFlushNeighbors
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFtMinTokenSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbFtMinTokenSize, &out.EngineConfigMySQLInnodbFtMinTokenSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFtServerStopwordTable != nil {
+		in, out := &in.EngineConfigMySQLInnodbFtServerStopwordTable, &out.EngineConfigMySQLInnodbFtServerStopwordTable
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbLockWaitTimeout != nil {
+		in, out := &in.EngineConfigMySQLInnodbLockWaitTimeout, &out.EngineConfigMySQLInnodbLockWaitTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbLogBufferSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbLogBufferSize, &out.EngineConfigMySQLInnodbLogBufferSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbOnlineAlterLogMaxSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbOnlineAlterLogMaxSize, &out.EngineConfigMySQLInnodbOnlineAlterLogMaxSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbReadIoThreads != nil {
+		in, out := &in.EngineConfigMySQLInnodbReadIoThreads, &out.EngineConfigMySQLInnodbReadIoThreads
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbRollbackOnTimeout != nil {
+		in, out := &in.EngineConfigMySQLInnodbRollbackOnTimeout, &out.EngineConfigMySQLInnodbRollbackOnTimeout
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbThreadConcurrency != nil {
+		in, out := &in.EngineConfigMySQLInnodbThreadConcurrency, &out.EngineConfigMySQLInnodbThreadConcurrency
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbWriteIoThreads != nil {
+		in, out := &in.EngineConfigMySQLInnodbWriteIoThreads, &out.EngineConfigMySQLInnodbWriteIoThreads
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInteractiveTimeout != nil {
+		in, out := &in.EngineConfigMySQLInteractiveTimeout, &out.EngineConfigMySQLInteractiveTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInternalTmpMemStorageEngine != nil {
+		in, out := &in.EngineConfigMySQLInternalTmpMemStorageEngine, &out.EngineConfigMySQLInternalTmpMemStorageEngine
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLMaxAllowedPacket != nil {
+		in, out := &in.EngineConfigMySQLMaxAllowedPacket, &out.EngineConfigMySQLMaxAllowedPacket
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLMaxHeapTableSize != nil {
+		in, out := &in.EngineConfigMySQLMaxHeapTableSize, &out.EngineConfigMySQLMaxHeapTableSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetBufferLength != nil {
+		in, out := &in.EngineConfigMySQLNetBufferLength, &out.EngineConfigMySQLNetBufferLength
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetReadTimeout != nil {
+		in, out := &in.EngineConfigMySQLNetReadTimeout, &out.EngineConfigMySQLNetReadTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetWriteTimeout != nil {
+		in, out := &in.EngineConfigMySQLNetWriteTimeout, &out.EngineConfigMySQLNetWriteTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSQLMode != nil {
+		in, out := &in.EngineConfigMySQLSQLMode, &out.EngineConfigMySQLSQLMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSQLRequirePrimaryKey != nil {
+		in, out := &in.EngineConfigMySQLSQLRequirePrimaryKey, &out.EngineConfigMySQLSQLRequirePrimaryKey
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSortBufferSize != nil {
+		in, out := &in.EngineConfigMySQLSortBufferSize, &out.EngineConfigMySQLSortBufferSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLTmpTableSize != nil {
+		in, out := &in.EngineConfigMySQLTmpTableSize, &out.EngineConfigMySQLTmpTableSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLWaitTimeout != nil {
+		in, out := &in.EngineConfigMySQLWaitTimeout, &out.EngineConfigMySQLWaitTimeout
+		*out = new(float64)
+		**out = **in
+	}
 	if in.EngineID != nil {
 		in, out := &in.EngineID, &out.EngineID
 		*out = new(string)
@@ -736,6 +876,146 @@ func (in *MySQLv2Observation) DeepCopyInto(out *MySQLv2Observation) {
 	if in.Engine != nil {
 		in, out := &in.Engine, &out.Engine
 		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigBinlogRetentionPeriod != nil {
+		in, out := &in.EngineConfigBinlogRetentionPeriod, &out.EngineConfigBinlogRetentionPeriod
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLConnectTimeout != nil {
+		in, out := &in.EngineConfigMySQLConnectTimeout, &out.EngineConfigMySQLConnectTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLDefaultTimeZone != nil {
+		in, out := &in.EngineConfigMySQLDefaultTimeZone, &out.EngineConfigMySQLDefaultTimeZone
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLGroupConcatMaxLen != nil {
+		in, out := &in.EngineConfigMySQLGroupConcatMaxLen, &out.EngineConfigMySQLGroupConcatMaxLen
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInformationSchemaStatsExpiry != nil {
+		in, out := &in.EngineConfigMySQLInformationSchemaStatsExpiry, &out.EngineConfigMySQLInformationSchemaStatsExpiry
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbChangeBufferMaxSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbChangeBufferMaxSize, &out.EngineConfigMySQLInnodbChangeBufferMaxSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFlushNeighbors != nil {
+		in, out := &in.EngineConfigMySQLInnodbFlushNeighbors, &out.EngineConfigMySQLInnodbFlushNeighbors
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFtMinTokenSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbFtMinTokenSize, &out.EngineConfigMySQLInnodbFtMinTokenSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFtServerStopwordTable != nil {
+		in, out := &in.EngineConfigMySQLInnodbFtServerStopwordTable, &out.EngineConfigMySQLInnodbFtServerStopwordTable
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbLockWaitTimeout != nil {
+		in, out := &in.EngineConfigMySQLInnodbLockWaitTimeout, &out.EngineConfigMySQLInnodbLockWaitTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbLogBufferSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbLogBufferSize, &out.EngineConfigMySQLInnodbLogBufferSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbOnlineAlterLogMaxSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbOnlineAlterLogMaxSize, &out.EngineConfigMySQLInnodbOnlineAlterLogMaxSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbReadIoThreads != nil {
+		in, out := &in.EngineConfigMySQLInnodbReadIoThreads, &out.EngineConfigMySQLInnodbReadIoThreads
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbRollbackOnTimeout != nil {
+		in, out := &in.EngineConfigMySQLInnodbRollbackOnTimeout, &out.EngineConfigMySQLInnodbRollbackOnTimeout
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbThreadConcurrency != nil {
+		in, out := &in.EngineConfigMySQLInnodbThreadConcurrency, &out.EngineConfigMySQLInnodbThreadConcurrency
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbWriteIoThreads != nil {
+		in, out := &in.EngineConfigMySQLInnodbWriteIoThreads, &out.EngineConfigMySQLInnodbWriteIoThreads
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInteractiveTimeout != nil {
+		in, out := &in.EngineConfigMySQLInteractiveTimeout, &out.EngineConfigMySQLInteractiveTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInternalTmpMemStorageEngine != nil {
+		in, out := &in.EngineConfigMySQLInternalTmpMemStorageEngine, &out.EngineConfigMySQLInternalTmpMemStorageEngine
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLMaxAllowedPacket != nil {
+		in, out := &in.EngineConfigMySQLMaxAllowedPacket, &out.EngineConfigMySQLMaxAllowedPacket
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLMaxHeapTableSize != nil {
+		in, out := &in.EngineConfigMySQLMaxHeapTableSize, &out.EngineConfigMySQLMaxHeapTableSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetBufferLength != nil {
+		in, out := &in.EngineConfigMySQLNetBufferLength, &out.EngineConfigMySQLNetBufferLength
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetReadTimeout != nil {
+		in, out := &in.EngineConfigMySQLNetReadTimeout, &out.EngineConfigMySQLNetReadTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetWriteTimeout != nil {
+		in, out := &in.EngineConfigMySQLNetWriteTimeout, &out.EngineConfigMySQLNetWriteTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSQLMode != nil {
+		in, out := &in.EngineConfigMySQLSQLMode, &out.EngineConfigMySQLSQLMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSQLRequirePrimaryKey != nil {
+		in, out := &in.EngineConfigMySQLSQLRequirePrimaryKey, &out.EngineConfigMySQLSQLRequirePrimaryKey
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSortBufferSize != nil {
+		in, out := &in.EngineConfigMySQLSortBufferSize, &out.EngineConfigMySQLSortBufferSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLTmpTableSize != nil {
+		in, out := &in.EngineConfigMySQLTmpTableSize, &out.EngineConfigMySQLTmpTableSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLWaitTimeout != nil {
+		in, out := &in.EngineConfigMySQLWaitTimeout, &out.EngineConfigMySQLWaitTimeout
+		*out = new(float64)
 		**out = **in
 	}
 	if in.EngineID != nil {
@@ -881,6 +1161,146 @@ func (in *MySQLv2Parameters) DeepCopyInto(out *MySQLv2Parameters) {
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigBinlogRetentionPeriod != nil {
+		in, out := &in.EngineConfigBinlogRetentionPeriod, &out.EngineConfigBinlogRetentionPeriod
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLConnectTimeout != nil {
+		in, out := &in.EngineConfigMySQLConnectTimeout, &out.EngineConfigMySQLConnectTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLDefaultTimeZone != nil {
+		in, out := &in.EngineConfigMySQLDefaultTimeZone, &out.EngineConfigMySQLDefaultTimeZone
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLGroupConcatMaxLen != nil {
+		in, out := &in.EngineConfigMySQLGroupConcatMaxLen, &out.EngineConfigMySQLGroupConcatMaxLen
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInformationSchemaStatsExpiry != nil {
+		in, out := &in.EngineConfigMySQLInformationSchemaStatsExpiry, &out.EngineConfigMySQLInformationSchemaStatsExpiry
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbChangeBufferMaxSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbChangeBufferMaxSize, &out.EngineConfigMySQLInnodbChangeBufferMaxSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFlushNeighbors != nil {
+		in, out := &in.EngineConfigMySQLInnodbFlushNeighbors, &out.EngineConfigMySQLInnodbFlushNeighbors
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFtMinTokenSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbFtMinTokenSize, &out.EngineConfigMySQLInnodbFtMinTokenSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbFtServerStopwordTable != nil {
+		in, out := &in.EngineConfigMySQLInnodbFtServerStopwordTable, &out.EngineConfigMySQLInnodbFtServerStopwordTable
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbLockWaitTimeout != nil {
+		in, out := &in.EngineConfigMySQLInnodbLockWaitTimeout, &out.EngineConfigMySQLInnodbLockWaitTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbLogBufferSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbLogBufferSize, &out.EngineConfigMySQLInnodbLogBufferSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbOnlineAlterLogMaxSize != nil {
+		in, out := &in.EngineConfigMySQLInnodbOnlineAlterLogMaxSize, &out.EngineConfigMySQLInnodbOnlineAlterLogMaxSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbReadIoThreads != nil {
+		in, out := &in.EngineConfigMySQLInnodbReadIoThreads, &out.EngineConfigMySQLInnodbReadIoThreads
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbRollbackOnTimeout != nil {
+		in, out := &in.EngineConfigMySQLInnodbRollbackOnTimeout, &out.EngineConfigMySQLInnodbRollbackOnTimeout
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbThreadConcurrency != nil {
+		in, out := &in.EngineConfigMySQLInnodbThreadConcurrency, &out.EngineConfigMySQLInnodbThreadConcurrency
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInnodbWriteIoThreads != nil {
+		in, out := &in.EngineConfigMySQLInnodbWriteIoThreads, &out.EngineConfigMySQLInnodbWriteIoThreads
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInteractiveTimeout != nil {
+		in, out := &in.EngineConfigMySQLInteractiveTimeout, &out.EngineConfigMySQLInteractiveTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLInternalTmpMemStorageEngine != nil {
+		in, out := &in.EngineConfigMySQLInternalTmpMemStorageEngine, &out.EngineConfigMySQLInternalTmpMemStorageEngine
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLMaxAllowedPacket != nil {
+		in, out := &in.EngineConfigMySQLMaxAllowedPacket, &out.EngineConfigMySQLMaxAllowedPacket
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLMaxHeapTableSize != nil {
+		in, out := &in.EngineConfigMySQLMaxHeapTableSize, &out.EngineConfigMySQLMaxHeapTableSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetBufferLength != nil {
+		in, out := &in.EngineConfigMySQLNetBufferLength, &out.EngineConfigMySQLNetBufferLength
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetReadTimeout != nil {
+		in, out := &in.EngineConfigMySQLNetReadTimeout, &out.EngineConfigMySQLNetReadTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLNetWriteTimeout != nil {
+		in, out := &in.EngineConfigMySQLNetWriteTimeout, &out.EngineConfigMySQLNetWriteTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSQLMode != nil {
+		in, out := &in.EngineConfigMySQLSQLMode, &out.EngineConfigMySQLSQLMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSQLRequirePrimaryKey != nil {
+		in, out := &in.EngineConfigMySQLSQLRequirePrimaryKey, &out.EngineConfigMySQLSQLRequirePrimaryKey
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigMySQLSortBufferSize != nil {
+		in, out := &in.EngineConfigMySQLSortBufferSize, &out.EngineConfigMySQLSortBufferSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLTmpTableSize != nil {
+		in, out := &in.EngineConfigMySQLTmpTableSize, &out.EngineConfigMySQLTmpTableSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigMySQLWaitTimeout != nil {
+		in, out := &in.EngineConfigMySQLWaitTimeout, &out.EngineConfigMySQLWaitTimeout
 		*out = new(float64)
 		**out = **in
 	}
@@ -1572,6 +1992,241 @@ func (in *PostgreSQLv2InitParameters) DeepCopyInto(out *PostgreSQLv2InitParamete
 		*out = new(float64)
 		**out = **in
 	}
+	if in.EngineConfigPgAutovacuumAnalyzeScaleFactor != nil {
+		in, out := &in.EngineConfigPgAutovacuumAnalyzeScaleFactor, &out.EngineConfigPgAutovacuumAnalyzeScaleFactor
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumAnalyzeThreshold != nil {
+		in, out := &in.EngineConfigPgAutovacuumAnalyzeThreshold, &out.EngineConfigPgAutovacuumAnalyzeThreshold
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumMaxWorkers != nil {
+		in, out := &in.EngineConfigPgAutovacuumMaxWorkers, &out.EngineConfigPgAutovacuumMaxWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumNaptime != nil {
+		in, out := &in.EngineConfigPgAutovacuumNaptime, &out.EngineConfigPgAutovacuumNaptime
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumCostDelay != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumCostDelay, &out.EngineConfigPgAutovacuumVacuumCostDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumCostLimit != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumCostLimit, &out.EngineConfigPgAutovacuumVacuumCostLimit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumScaleFactor != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumScaleFactor, &out.EngineConfigPgAutovacuumVacuumScaleFactor
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumThreshold != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumThreshold, &out.EngineConfigPgAutovacuumVacuumThreshold
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterDelay != nil {
+		in, out := &in.EngineConfigPgBgwriterDelay, &out.EngineConfigPgBgwriterDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterFlushAfter != nil {
+		in, out := &in.EngineConfigPgBgwriterFlushAfter, &out.EngineConfigPgBgwriterFlushAfter
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterLruMaxpages != nil {
+		in, out := &in.EngineConfigPgBgwriterLruMaxpages, &out.EngineConfigPgBgwriterLruMaxpages
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterLruMultiplier != nil {
+		in, out := &in.EngineConfigPgBgwriterLruMultiplier, &out.EngineConfigPgBgwriterLruMultiplier
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgDeadlockTimeout != nil {
+		in, out := &in.EngineConfigPgDeadlockTimeout, &out.EngineConfigPgDeadlockTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgDefaultToastCompression != nil {
+		in, out := &in.EngineConfigPgDefaultToastCompression, &out.EngineConfigPgDefaultToastCompression
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgIdleInTransactionSessionTimeout != nil {
+		in, out := &in.EngineConfigPgIdleInTransactionSessionTimeout, &out.EngineConfigPgIdleInTransactionSessionTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgJit != nil {
+		in, out := &in.EngineConfigPgJit, &out.EngineConfigPgJit
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxFilesPerProcess != nil {
+		in, out := &in.EngineConfigPgMaxFilesPerProcess, &out.EngineConfigPgMaxFilesPerProcess
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxLocksPerTransaction != nil {
+		in, out := &in.EngineConfigPgMaxLocksPerTransaction, &out.EngineConfigPgMaxLocksPerTransaction
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxLogicalReplicationWorkers != nil {
+		in, out := &in.EngineConfigPgMaxLogicalReplicationWorkers, &out.EngineConfigPgMaxLogicalReplicationWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxParallelWorkers != nil {
+		in, out := &in.EngineConfigPgMaxParallelWorkers, &out.EngineConfigPgMaxParallelWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxParallelWorkersPerGather != nil {
+		in, out := &in.EngineConfigPgMaxParallelWorkersPerGather, &out.EngineConfigPgMaxParallelWorkersPerGather
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxPredLocksPerTransaction != nil {
+		in, out := &in.EngineConfigPgMaxPredLocksPerTransaction, &out.EngineConfigPgMaxPredLocksPerTransaction
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxReplicationSlots != nil {
+		in, out := &in.EngineConfigPgMaxReplicationSlots, &out.EngineConfigPgMaxReplicationSlots
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxSlotWalKeepSize != nil {
+		in, out := &in.EngineConfigPgMaxSlotWalKeepSize, &out.EngineConfigPgMaxSlotWalKeepSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStackDepth != nil {
+		in, out := &in.EngineConfigPgMaxStackDepth, &out.EngineConfigPgMaxStackDepth
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStandbyArchiveDelay != nil {
+		in, out := &in.EngineConfigPgMaxStandbyArchiveDelay, &out.EngineConfigPgMaxStandbyArchiveDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStandbyStreamingDelay != nil {
+		in, out := &in.EngineConfigPgMaxStandbyStreamingDelay, &out.EngineConfigPgMaxStandbyStreamingDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxWalSenders != nil {
+		in, out := &in.EngineConfigPgMaxWalSenders, &out.EngineConfigPgMaxWalSenders
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxWorkerProcesses != nil {
+		in, out := &in.EngineConfigPgMaxWorkerProcesses, &out.EngineConfigPgMaxWorkerProcesses
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPasswordEncryption != nil {
+		in, out := &in.EngineConfigPgPasswordEncryption, &out.EngineConfigPgPasswordEncryption
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgPgPartmanBgwInterval != nil {
+		in, out := &in.EngineConfigPgPgPartmanBgwInterval, &out.EngineConfigPgPgPartmanBgwInterval
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPgPartmanBgwRole != nil {
+		in, out := &in.EngineConfigPgPgPartmanBgwRole, &out.EngineConfigPgPgPartmanBgwRole
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan != nil {
+		in, out := &in.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan, &out.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatMonitorPgsmMaxBuckets != nil {
+		in, out := &in.EngineConfigPgPgStatMonitorPgsmMaxBuckets, &out.EngineConfigPgPgStatMonitorPgsmMaxBuckets
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatStatementsTrack != nil {
+		in, out := &in.EngineConfigPgPgStatStatementsTrack, &out.EngineConfigPgPgStatStatementsTrack
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgStatMonitorEnable != nil {
+		in, out := &in.EngineConfigPgStatMonitorEnable, &out.EngineConfigPgStatMonitorEnable
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgTempFileLimit != nil {
+		in, out := &in.EngineConfigPgTempFileLimit, &out.EngineConfigPgTempFileLimit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgTimezone != nil {
+		in, out := &in.EngineConfigPgTimezone, &out.EngineConfigPgTimezone
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackActivityQuerySize != nil {
+		in, out := &in.EngineConfigPgTrackActivityQuerySize, &out.EngineConfigPgTrackActivityQuerySize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackCommitTimestamp != nil {
+		in, out := &in.EngineConfigPgTrackCommitTimestamp, &out.EngineConfigPgTrackCommitTimestamp
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackFunctions != nil {
+		in, out := &in.EngineConfigPgTrackFunctions, &out.EngineConfigPgTrackFunctions
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackIoTiming != nil {
+		in, out := &in.EngineConfigPgTrackIoTiming, &out.EngineConfigPgTrackIoTiming
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgWalSenderTimeout != nil {
+		in, out := &in.EngineConfigPgWalSenderTimeout, &out.EngineConfigPgWalSenderTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgWalWriterDelay != nil {
+		in, out := &in.EngineConfigPgWalWriterDelay, &out.EngineConfigPgWalWriterDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPglookoutMaxFailoverReplicationTimeLag != nil {
+		in, out := &in.EngineConfigPglookoutMaxFailoverReplicationTimeLag, &out.EngineConfigPglookoutMaxFailoverReplicationTimeLag
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigSharedBuffersPercentage != nil {
+		in, out := &in.EngineConfigSharedBuffersPercentage, &out.EngineConfigSharedBuffersPercentage
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigWorkMem != nil {
+		in, out := &in.EngineConfigWorkMem, &out.EngineConfigWorkMem
+		*out = new(float64)
+		**out = **in
+	}
 	if in.EngineID != nil {
 		in, out := &in.EngineID, &out.EngineID
 		*out = new(string)
@@ -1690,6 +2345,241 @@ func (in *PostgreSQLv2Observation) DeepCopyInto(out *PostgreSQLv2Observation) {
 	if in.Engine != nil {
 		in, out := &in.Engine, &out.Engine
 		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumAnalyzeScaleFactor != nil {
+		in, out := &in.EngineConfigPgAutovacuumAnalyzeScaleFactor, &out.EngineConfigPgAutovacuumAnalyzeScaleFactor
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumAnalyzeThreshold != nil {
+		in, out := &in.EngineConfigPgAutovacuumAnalyzeThreshold, &out.EngineConfigPgAutovacuumAnalyzeThreshold
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumMaxWorkers != nil {
+		in, out := &in.EngineConfigPgAutovacuumMaxWorkers, &out.EngineConfigPgAutovacuumMaxWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumNaptime != nil {
+		in, out := &in.EngineConfigPgAutovacuumNaptime, &out.EngineConfigPgAutovacuumNaptime
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumCostDelay != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumCostDelay, &out.EngineConfigPgAutovacuumVacuumCostDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumCostLimit != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumCostLimit, &out.EngineConfigPgAutovacuumVacuumCostLimit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumScaleFactor != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumScaleFactor, &out.EngineConfigPgAutovacuumVacuumScaleFactor
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumThreshold != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumThreshold, &out.EngineConfigPgAutovacuumVacuumThreshold
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterDelay != nil {
+		in, out := &in.EngineConfigPgBgwriterDelay, &out.EngineConfigPgBgwriterDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterFlushAfter != nil {
+		in, out := &in.EngineConfigPgBgwriterFlushAfter, &out.EngineConfigPgBgwriterFlushAfter
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterLruMaxpages != nil {
+		in, out := &in.EngineConfigPgBgwriterLruMaxpages, &out.EngineConfigPgBgwriterLruMaxpages
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterLruMultiplier != nil {
+		in, out := &in.EngineConfigPgBgwriterLruMultiplier, &out.EngineConfigPgBgwriterLruMultiplier
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgDeadlockTimeout != nil {
+		in, out := &in.EngineConfigPgDeadlockTimeout, &out.EngineConfigPgDeadlockTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgDefaultToastCompression != nil {
+		in, out := &in.EngineConfigPgDefaultToastCompression, &out.EngineConfigPgDefaultToastCompression
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgIdleInTransactionSessionTimeout != nil {
+		in, out := &in.EngineConfigPgIdleInTransactionSessionTimeout, &out.EngineConfigPgIdleInTransactionSessionTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgJit != nil {
+		in, out := &in.EngineConfigPgJit, &out.EngineConfigPgJit
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxFilesPerProcess != nil {
+		in, out := &in.EngineConfigPgMaxFilesPerProcess, &out.EngineConfigPgMaxFilesPerProcess
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxLocksPerTransaction != nil {
+		in, out := &in.EngineConfigPgMaxLocksPerTransaction, &out.EngineConfigPgMaxLocksPerTransaction
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxLogicalReplicationWorkers != nil {
+		in, out := &in.EngineConfigPgMaxLogicalReplicationWorkers, &out.EngineConfigPgMaxLogicalReplicationWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxParallelWorkers != nil {
+		in, out := &in.EngineConfigPgMaxParallelWorkers, &out.EngineConfigPgMaxParallelWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxParallelWorkersPerGather != nil {
+		in, out := &in.EngineConfigPgMaxParallelWorkersPerGather, &out.EngineConfigPgMaxParallelWorkersPerGather
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxPredLocksPerTransaction != nil {
+		in, out := &in.EngineConfigPgMaxPredLocksPerTransaction, &out.EngineConfigPgMaxPredLocksPerTransaction
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxReplicationSlots != nil {
+		in, out := &in.EngineConfigPgMaxReplicationSlots, &out.EngineConfigPgMaxReplicationSlots
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxSlotWalKeepSize != nil {
+		in, out := &in.EngineConfigPgMaxSlotWalKeepSize, &out.EngineConfigPgMaxSlotWalKeepSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStackDepth != nil {
+		in, out := &in.EngineConfigPgMaxStackDepth, &out.EngineConfigPgMaxStackDepth
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStandbyArchiveDelay != nil {
+		in, out := &in.EngineConfigPgMaxStandbyArchiveDelay, &out.EngineConfigPgMaxStandbyArchiveDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStandbyStreamingDelay != nil {
+		in, out := &in.EngineConfigPgMaxStandbyStreamingDelay, &out.EngineConfigPgMaxStandbyStreamingDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxWalSenders != nil {
+		in, out := &in.EngineConfigPgMaxWalSenders, &out.EngineConfigPgMaxWalSenders
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxWorkerProcesses != nil {
+		in, out := &in.EngineConfigPgMaxWorkerProcesses, &out.EngineConfigPgMaxWorkerProcesses
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPasswordEncryption != nil {
+		in, out := &in.EngineConfigPgPasswordEncryption, &out.EngineConfigPgPasswordEncryption
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgPgPartmanBgwInterval != nil {
+		in, out := &in.EngineConfigPgPgPartmanBgwInterval, &out.EngineConfigPgPgPartmanBgwInterval
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPgPartmanBgwRole != nil {
+		in, out := &in.EngineConfigPgPgPartmanBgwRole, &out.EngineConfigPgPgPartmanBgwRole
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan != nil {
+		in, out := &in.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan, &out.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatMonitorPgsmMaxBuckets != nil {
+		in, out := &in.EngineConfigPgPgStatMonitorPgsmMaxBuckets, &out.EngineConfigPgPgStatMonitorPgsmMaxBuckets
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatStatementsTrack != nil {
+		in, out := &in.EngineConfigPgPgStatStatementsTrack, &out.EngineConfigPgPgStatStatementsTrack
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgStatMonitorEnable != nil {
+		in, out := &in.EngineConfigPgStatMonitorEnable, &out.EngineConfigPgStatMonitorEnable
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgTempFileLimit != nil {
+		in, out := &in.EngineConfigPgTempFileLimit, &out.EngineConfigPgTempFileLimit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgTimezone != nil {
+		in, out := &in.EngineConfigPgTimezone, &out.EngineConfigPgTimezone
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackActivityQuerySize != nil {
+		in, out := &in.EngineConfigPgTrackActivityQuerySize, &out.EngineConfigPgTrackActivityQuerySize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackCommitTimestamp != nil {
+		in, out := &in.EngineConfigPgTrackCommitTimestamp, &out.EngineConfigPgTrackCommitTimestamp
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackFunctions != nil {
+		in, out := &in.EngineConfigPgTrackFunctions, &out.EngineConfigPgTrackFunctions
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackIoTiming != nil {
+		in, out := &in.EngineConfigPgTrackIoTiming, &out.EngineConfigPgTrackIoTiming
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgWalSenderTimeout != nil {
+		in, out := &in.EngineConfigPgWalSenderTimeout, &out.EngineConfigPgWalSenderTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgWalWriterDelay != nil {
+		in, out := &in.EngineConfigPgWalWriterDelay, &out.EngineConfigPgWalWriterDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPglookoutMaxFailoverReplicationTimeLag != nil {
+		in, out := &in.EngineConfigPglookoutMaxFailoverReplicationTimeLag, &out.EngineConfigPglookoutMaxFailoverReplicationTimeLag
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigSharedBuffersPercentage != nil {
+		in, out := &in.EngineConfigSharedBuffersPercentage, &out.EngineConfigSharedBuffersPercentage
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigWorkMem != nil {
+		in, out := &in.EngineConfigWorkMem, &out.EngineConfigWorkMem
+		*out = new(float64)
 		**out = **in
 	}
 	if in.EngineID != nil {
@@ -1835,6 +2725,241 @@ func (in *PostgreSQLv2Parameters) DeepCopyInto(out *PostgreSQLv2Parameters) {
 	}
 	if in.ClusterSize != nil {
 		in, out := &in.ClusterSize, &out.ClusterSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumAnalyzeScaleFactor != nil {
+		in, out := &in.EngineConfigPgAutovacuumAnalyzeScaleFactor, &out.EngineConfigPgAutovacuumAnalyzeScaleFactor
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumAnalyzeThreshold != nil {
+		in, out := &in.EngineConfigPgAutovacuumAnalyzeThreshold, &out.EngineConfigPgAutovacuumAnalyzeThreshold
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumMaxWorkers != nil {
+		in, out := &in.EngineConfigPgAutovacuumMaxWorkers, &out.EngineConfigPgAutovacuumMaxWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumNaptime != nil {
+		in, out := &in.EngineConfigPgAutovacuumNaptime, &out.EngineConfigPgAutovacuumNaptime
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumCostDelay != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumCostDelay, &out.EngineConfigPgAutovacuumVacuumCostDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumCostLimit != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumCostLimit, &out.EngineConfigPgAutovacuumVacuumCostLimit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumScaleFactor != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumScaleFactor, &out.EngineConfigPgAutovacuumVacuumScaleFactor
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgAutovacuumVacuumThreshold != nil {
+		in, out := &in.EngineConfigPgAutovacuumVacuumThreshold, &out.EngineConfigPgAutovacuumVacuumThreshold
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterDelay != nil {
+		in, out := &in.EngineConfigPgBgwriterDelay, &out.EngineConfigPgBgwriterDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterFlushAfter != nil {
+		in, out := &in.EngineConfigPgBgwriterFlushAfter, &out.EngineConfigPgBgwriterFlushAfter
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterLruMaxpages != nil {
+		in, out := &in.EngineConfigPgBgwriterLruMaxpages, &out.EngineConfigPgBgwriterLruMaxpages
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgBgwriterLruMultiplier != nil {
+		in, out := &in.EngineConfigPgBgwriterLruMultiplier, &out.EngineConfigPgBgwriterLruMultiplier
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgDeadlockTimeout != nil {
+		in, out := &in.EngineConfigPgDeadlockTimeout, &out.EngineConfigPgDeadlockTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgDefaultToastCompression != nil {
+		in, out := &in.EngineConfigPgDefaultToastCompression, &out.EngineConfigPgDefaultToastCompression
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgIdleInTransactionSessionTimeout != nil {
+		in, out := &in.EngineConfigPgIdleInTransactionSessionTimeout, &out.EngineConfigPgIdleInTransactionSessionTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgJit != nil {
+		in, out := &in.EngineConfigPgJit, &out.EngineConfigPgJit
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxFilesPerProcess != nil {
+		in, out := &in.EngineConfigPgMaxFilesPerProcess, &out.EngineConfigPgMaxFilesPerProcess
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxLocksPerTransaction != nil {
+		in, out := &in.EngineConfigPgMaxLocksPerTransaction, &out.EngineConfigPgMaxLocksPerTransaction
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxLogicalReplicationWorkers != nil {
+		in, out := &in.EngineConfigPgMaxLogicalReplicationWorkers, &out.EngineConfigPgMaxLogicalReplicationWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxParallelWorkers != nil {
+		in, out := &in.EngineConfigPgMaxParallelWorkers, &out.EngineConfigPgMaxParallelWorkers
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxParallelWorkersPerGather != nil {
+		in, out := &in.EngineConfigPgMaxParallelWorkersPerGather, &out.EngineConfigPgMaxParallelWorkersPerGather
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxPredLocksPerTransaction != nil {
+		in, out := &in.EngineConfigPgMaxPredLocksPerTransaction, &out.EngineConfigPgMaxPredLocksPerTransaction
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxReplicationSlots != nil {
+		in, out := &in.EngineConfigPgMaxReplicationSlots, &out.EngineConfigPgMaxReplicationSlots
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxSlotWalKeepSize != nil {
+		in, out := &in.EngineConfigPgMaxSlotWalKeepSize, &out.EngineConfigPgMaxSlotWalKeepSize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStackDepth != nil {
+		in, out := &in.EngineConfigPgMaxStackDepth, &out.EngineConfigPgMaxStackDepth
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStandbyArchiveDelay != nil {
+		in, out := &in.EngineConfigPgMaxStandbyArchiveDelay, &out.EngineConfigPgMaxStandbyArchiveDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxStandbyStreamingDelay != nil {
+		in, out := &in.EngineConfigPgMaxStandbyStreamingDelay, &out.EngineConfigPgMaxStandbyStreamingDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxWalSenders != nil {
+		in, out := &in.EngineConfigPgMaxWalSenders, &out.EngineConfigPgMaxWalSenders
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgMaxWorkerProcesses != nil {
+		in, out := &in.EngineConfigPgMaxWorkerProcesses, &out.EngineConfigPgMaxWorkerProcesses
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPasswordEncryption != nil {
+		in, out := &in.EngineConfigPgPasswordEncryption, &out.EngineConfigPgPasswordEncryption
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgPgPartmanBgwInterval != nil {
+		in, out := &in.EngineConfigPgPgPartmanBgwInterval, &out.EngineConfigPgPgPartmanBgwInterval
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPgPartmanBgwRole != nil {
+		in, out := &in.EngineConfigPgPgPartmanBgwRole, &out.EngineConfigPgPgPartmanBgwRole
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan != nil {
+		in, out := &in.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan, &out.EngineConfigPgPgStatMonitorPgsmEnableQueryPlan
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatMonitorPgsmMaxBuckets != nil {
+		in, out := &in.EngineConfigPgPgStatMonitorPgsmMaxBuckets, &out.EngineConfigPgPgStatMonitorPgsmMaxBuckets
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgPgStatStatementsTrack != nil {
+		in, out := &in.EngineConfigPgPgStatStatementsTrack, &out.EngineConfigPgPgStatStatementsTrack
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgStatMonitorEnable != nil {
+		in, out := &in.EngineConfigPgStatMonitorEnable, &out.EngineConfigPgStatMonitorEnable
+		*out = new(bool)
+		**out = **in
+	}
+	if in.EngineConfigPgTempFileLimit != nil {
+		in, out := &in.EngineConfigPgTempFileLimit, &out.EngineConfigPgTempFileLimit
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgTimezone != nil {
+		in, out := &in.EngineConfigPgTimezone, &out.EngineConfigPgTimezone
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackActivityQuerySize != nil {
+		in, out := &in.EngineConfigPgTrackActivityQuerySize, &out.EngineConfigPgTrackActivityQuerySize
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackCommitTimestamp != nil {
+		in, out := &in.EngineConfigPgTrackCommitTimestamp, &out.EngineConfigPgTrackCommitTimestamp
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackFunctions != nil {
+		in, out := &in.EngineConfigPgTrackFunctions, &out.EngineConfigPgTrackFunctions
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgTrackIoTiming != nil {
+		in, out := &in.EngineConfigPgTrackIoTiming, &out.EngineConfigPgTrackIoTiming
+		*out = new(string)
+		**out = **in
+	}
+	if in.EngineConfigPgWalSenderTimeout != nil {
+		in, out := &in.EngineConfigPgWalSenderTimeout, &out.EngineConfigPgWalSenderTimeout
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPgWalWriterDelay != nil {
+		in, out := &in.EngineConfigPgWalWriterDelay, &out.EngineConfigPgWalWriterDelay
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigPglookoutMaxFailoverReplicationTimeLag != nil {
+		in, out := &in.EngineConfigPglookoutMaxFailoverReplicationTimeLag, &out.EngineConfigPglookoutMaxFailoverReplicationTimeLag
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigSharedBuffersPercentage != nil {
+		in, out := &in.EngineConfigSharedBuffersPercentage, &out.EngineConfigSharedBuffersPercentage
+		*out = new(float64)
+		**out = **in
+	}
+	if in.EngineConfigWorkMem != nil {
+		in, out := &in.EngineConfigWorkMem, &out.EngineConfigWorkMem
 		*out = new(float64)
 		**out = **in
 	}
