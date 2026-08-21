@@ -1,8 +1,19 @@
 ## Developing
 
+Fetch the build submodule, which the Makefile targets are built on:
+```console
+make submodules
+```
+
 Run code-generation pipeline - you need to do this everytime you change the linode-terraform-provider version, to update CRDs
 ```console
 make generate
+```
+
+The code generator shells out to `goimports`, which is not vendored, so it has
+to be on your `PATH`:
+```console
+go install golang.org/x/tools/cmd/goimports@latest
 ```
 
 Run against a Kubernetes cluster:

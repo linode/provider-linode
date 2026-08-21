@@ -61,7 +61,7 @@ type InboundObservation struct {
 
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// The Public IPv4 Address of this NodeBalancer
+	// The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// The Public IPv6 Address of this NodeBalancer
@@ -80,15 +80,48 @@ type InboundObservation struct {
 type InboundParameters struct {
 }
 
+type LkeClusterInitParameters struct {
+}
+
+type LkeClusterObservation struct {
+
+	// The Firewall's ID.
+	// The ID of the related LKE cluster.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The label of the Linode NodeBalancer
+	// The label of the related LKE cluster.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The type of the related LKE cluster.
+	// The type of the related LKE cluster.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The URL where you can access the related LKE cluster.
+	// The URL where you can access the related LKE cluster.
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+}
+
+type LkeClusterParameters struct {
+}
+
 type NodebalancerInitParameters struct {
 
 	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
 
+	// Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+	// Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+	ClientUDPSessThrottle *float64 `json:"clientUdpSessThrottle,omitempty" tf:"client_udp_sess_throttle,omitempty"`
+
 	// The Firewall's ID.
 	// ID for the firewall you'd like to use with this NodeBalancer.
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
+	// The Public IPv4 Address of this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. *Changing `ipv4` forces the creation of a new Linode NodeBalancer.* Note: once `ipv4` is set, removing it from configuration will not revert the NodeBalancer to an auto-assigned address — the prior value is retained in state. To switch back to an auto-assigned address, the resource must be explicitly replaced (e.g.
+	IPv4 *string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// The label of the Linode NodeBalancer
 	// The label of the Linode NodeBalancer.
@@ -102,6 +135,9 @@ type NodebalancerInitParameters struct {
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// A list of VPCs to be assigned to this NodeBalancer.
+	Vpcs []VpcsInitParameters `json:"vpcs,omitempty" tf:"vpcs,omitempty"`
 }
 
 type NodebalancerObservation struct {
@@ -109,6 +145,10 @@ type NodebalancerObservation struct {
 	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+
+	// Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+	// Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+	ClientUDPSessThrottle *float64 `json:"clientUdpSessThrottle,omitempty" tf:"client_udp_sess_throttle,omitempty"`
 
 	// When this NodeBalancer was created
 	// When this NodeBalancer was created.
@@ -128,8 +168,8 @@ type NodebalancerObservation struct {
 	// The Firewall's ID.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The Public IPv4 Address of this NodeBalancer
-	// The Public IPv4 Address of this NodeBalancer
+	// The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
+	// The Public IPv4 Address of this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. *Changing `ipv4` forces the creation of a new Linode NodeBalancer.* Note: once `ipv4` is set, removing it from configuration will not revert the NodeBalancer to an auto-assigned address — the prior value is retained in state. To switch back to an auto-assigned address, the resource must be explicitly replaced (e.g.
 	IPv4 *string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// The Public IPv6 Address of this NodeBalancer
@@ -139,6 +179,9 @@ type NodebalancerObservation struct {
 	// The label of the Linode NodeBalancer
 	// The label of the Linode NodeBalancer.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The related LKE cluster for this NodeBalancer, if any.
+	LkeCluster []LkeClusterObservation `json:"lkeCluster,omitempty" tf:"lke_cluster,omitempty"`
 
 	// The region where this NodeBalancer will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here.  Changing .
 	// The region where this NodeBalancer will be deployed.
@@ -155,6 +198,9 @@ type NodebalancerObservation struct {
 	// When this NodeBalancer was last updated.
 	// When this NodeBalancer was last updated.
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
+
+	// A list of VPCs to be assigned to this NodeBalancer.
+	Vpcs []VpcsObservation `json:"vpcs,omitempty" tf:"vpcs,omitempty"`
 }
 
 type NodebalancerParameters struct {
@@ -164,10 +210,20 @@ type NodebalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
 
+	// Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+	// Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+	// +kubebuilder:validation:Optional
+	ClientUDPSessThrottle *float64 `json:"clientUdpSessThrottle,omitempty" tf:"client_udp_sess_throttle,omitempty"`
+
 	// The Firewall's ID.
 	// ID for the firewall you'd like to use with this NodeBalancer.
 	// +kubebuilder:validation:Optional
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
+	// The Public IPv4 Address of this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. *Changing `ipv4` forces the creation of a new Linode NodeBalancer.* Note: once `ipv4` is set, removing it from configuration will not revert the NodeBalancer to an auto-assigned address — the prior value is retained in state. To switch back to an auto-assigned address, the resource must be explicitly replaced (e.g.
+	// +kubebuilder:validation:Optional
+	IPv4 *string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// The label of the Linode NodeBalancer
 	// The label of the Linode NodeBalancer.
@@ -184,6 +240,10 @@ type NodebalancerParameters struct {
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// A list of VPCs to be assigned to this NodeBalancer.
+	// +kubebuilder:validation:Optional
+	Vpcs []VpcsParameters `json:"vpcs,omitempty" tf:"vpcs,omitempty"`
 }
 
 type OutboundInitParameters struct {
@@ -196,7 +256,7 @@ type OutboundObservation struct {
 
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// The Public IPv4 Address of this NodeBalancer
+	// The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// The Public IPv6 Address of this NodeBalancer
@@ -231,6 +291,67 @@ type TransferObservation struct {
 }
 
 type TransferParameters struct {
+}
+
+type VpcsInitParameters struct {
+
+	// A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	IPv4Range *string `json:"ipv4Range,omitempty" tf:"ipv4_range"`
+
+	// Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+	// Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+	IPv4RangeAutoAssign *bool `json:"ipv4RangeAutoAssign,omitempty" tf:"ipv4_range_auto_assign"`
+
+	// A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	IPv6Range *string `json:"ipv6Range,omitempty" tf:"ipv6_range"`
+
+	// The ID of a subnet to assign to this NodeBalancer.
+	// The ID of a subnet to assign to this NodeBalancer.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id"`
+}
+
+type VpcsObservation struct {
+
+	// A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	IPv4Range *string `json:"ipv4Range,omitempty" tf:"ipv4_range,omitempty"`
+
+	// Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+	// Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+	IPv4RangeAutoAssign *bool `json:"ipv4RangeAutoAssign,omitempty" tf:"ipv4_range_auto_assign,omitempty"`
+
+	// A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	IPv6Range *string `json:"ipv6Range,omitempty" tf:"ipv6_range,omitempty"`
+
+	// The ID of a subnet to assign to this NodeBalancer.
+	// The ID of a subnet to assign to this NodeBalancer.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+}
+
+type VpcsParameters struct {
+
+	// A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// +kubebuilder:validation:Optional
+	IPv4Range *string `json:"ipv4Range,omitempty" tf:"ipv4_range"`
+
+	// Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+	// Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+	// +kubebuilder:validation:Optional
+	IPv4RangeAutoAssign *bool `json:"ipv4RangeAutoAssign,omitempty" tf:"ipv4_range_auto_assign"`
+
+	// A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+	// +kubebuilder:validation:Optional
+	IPv6Range *string `json:"ipv6Range,omitempty" tf:"ipv6_range"`
+
+	// The ID of a subnet to assign to this NodeBalancer.
+	// The ID of a subnet to assign to this NodeBalancer.
+	// +kubebuilder:validation:Optional
+	SubnetID *float64 `json:"subnetId" tf:"subnet_id"`
 }
 
 // NodebalancerSpec defines the desired state of Nodebalancer

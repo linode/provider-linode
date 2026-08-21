@@ -24,6 +24,194 @@ type PostgreSQLv2InitParameters struct {
 	// The number of Linode instance nodes deployed to the Managed Database.
 	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
 
+	// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)
+	// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)
+	EngineConfigPgAutovacuumAnalyzeScaleFactor *float64 `json:"engineConfigPgAutovacuumAnalyzeScaleFactor,omitempty" tf:"engine_config_pg_autovacuum_analyze_scale_factor,omitempty"`
+
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	EngineConfigPgAutovacuumAnalyzeThreshold *float64 `json:"engineConfigPgAutovacuumAnalyzeThreshold,omitempty" tf:"engine_config_pg_autovacuum_analyze_threshold,omitempty"`
+
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	EngineConfigPgAutovacuumMaxWorkers *float64 `json:"engineConfigPgAutovacuumMaxWorkers,omitempty" tf:"engine_config_pg_autovacuum_max_workers,omitempty"`
+
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute
+	EngineConfigPgAutovacuumNaptime *float64 `json:"engineConfigPgAutovacuumNaptime,omitempty" tf:"engine_config_pg_autovacuum_naptime,omitempty"`
+
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds
+	EngineConfigPgAutovacuumVacuumCostDelay *float64 `json:"engineConfigPgAutovacuumVacuumCostDelay,omitempty" tf:"engine_config_pg_autovacuum_vacuum_cost_delay,omitempty"`
+
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+	EngineConfigPgAutovacuumVacuumCostLimit *float64 `json:"engineConfigPgAutovacuumVacuumCostLimit,omitempty" tf:"engine_config_pg_autovacuum_vacuum_cost_limit,omitempty"`
+
+	// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)
+	// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)
+	EngineConfigPgAutovacuumVacuumScaleFactor *float64 `json:"engineConfigPgAutovacuumVacuumScaleFactor,omitempty" tf:"engine_config_pg_autovacuum_vacuum_scale_factor,omitempty"`
+
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples
+	EngineConfigPgAutovacuumVacuumThreshold *float64 `json:"engineConfigPgAutovacuumVacuumThreshold,omitempty" tf:"engine_config_pg_autovacuum_vacuum_threshold,omitempty"`
+
+	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	EngineConfigPgBgwriterDelay *float64 `json:"engineConfigPgBgwriterDelay,omitempty" tf:"engine_config_pg_bgwriter_delay,omitempty"`
+
+	// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	EngineConfigPgBgwriterFlushAfter *float64 `json:"engineConfigPgBgwriterFlushAfter,omitempty" tf:"engine_config_pg_bgwriter_flush_after,omitempty"`
+
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	EngineConfigPgBgwriterLruMaxpages *float64 `json:"engineConfigPgBgwriterLruMaxpages,omitempty" tf:"engine_config_pg_bgwriter_lru_maxpages,omitempty"`
+
+	// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	EngineConfigPgBgwriterLruMultiplier *float64 `json:"engineConfigPgBgwriterLruMultiplier,omitempty" tf:"engine_config_pg_bgwriter_lru_multiplier,omitempty"`
+
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	EngineConfigPgDeadlockTimeout *float64 `json:"engineConfigPgDeadlockTimeout,omitempty" tf:"engine_config_pg_deadlock_timeout,omitempty"`
+
+	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	EngineConfigPgDefaultToastCompression *string `json:"engineConfigPgDefaultToastCompression,omitempty" tf:"engine_config_pg_default_toast_compression,omitempty"`
+
+	// Time out sessions with open transactions after this number of milliseconds.
+	// Time out sessions with open transactions after this number of milliseconds
+	EngineConfigPgIdleInTransactionSessionTimeout *float64 `json:"engineConfigPgIdleInTransactionSessionTimeout,omitempty" tf:"engine_config_pg_idle_in_transaction_session_timeout,omitempty"`
+
+	// Controls system-wide use of Just-in-Time Compilation (JIT).
+	// Controls system-wide use of Just-in-Time Compilation (JIT).
+	EngineConfigPgJit *bool `json:"engineConfigPgJit,omitempty" tf:"engine_config_pg_jit,omitempty"`
+
+	// PostgreSQL maximum number of files that can be open per process.
+	// PostgreSQL maximum number of files that can be open per process
+	EngineConfigPgMaxFilesPerProcess *float64 `json:"engineConfigPgMaxFilesPerProcess,omitempty" tf:"engine_config_pg_max_files_per_process,omitempty"`
+
+	// PostgreSQL maximum locks per transaction.
+	// PostgreSQL maximum locks per transaction
+	EngineConfigPgMaxLocksPerTransaction *float64 `json:"engineConfigPgMaxLocksPerTransaction,omitempty" tf:"engine_config_pg_max_locks_per_transaction,omitempty"`
+
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers)
+	EngineConfigPgMaxLogicalReplicationWorkers *float64 `json:"engineConfigPgMaxLogicalReplicationWorkers,omitempty" tf:"engine_config_pg_max_logical_replication_workers,omitempty"`
+
+	// Sets the maximum number of workers that the system can support for parallel queries.
+	// Sets the maximum number of workers that the system can support for parallel queries
+	EngineConfigPgMaxParallelWorkers *float64 `json:"engineConfigPgMaxParallelWorkers,omitempty" tf:"engine_config_pg_max_parallel_workers,omitempty"`
+
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node
+	EngineConfigPgMaxParallelWorkersPerGather *float64 `json:"engineConfigPgMaxParallelWorkersPerGather,omitempty" tf:"engine_config_pg_max_parallel_workers_per_gather,omitempty"`
+
+	// PostgreSQL maximum predicate locks per transaction.
+	// PostgreSQL maximum predicate locks per transaction
+	EngineConfigPgMaxPredLocksPerTransaction *float64 `json:"engineConfigPgMaxPredLocksPerTransaction,omitempty" tf:"engine_config_pg_max_pred_locks_per_transaction,omitempty"`
+
+	// PostgreSQL maximum replication slots.
+	// PostgreSQL maximum replication slots
+	EngineConfigPgMaxReplicationSlots *float64 `json:"engineConfigPgMaxReplicationSlots,omitempty" tf:"engine_config_pg_max_replication_slots,omitempty"`
+
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+	EngineConfigPgMaxSlotWalKeepSize *float64 `json:"engineConfigPgMaxSlotWalKeepSize,omitempty" tf:"engine_config_pg_max_slot_wal_keep_size,omitempty"`
+
+	// Maximum depth of the stack in bytes.
+	// Maximum depth of the stack in bytes
+	EngineConfigPgMaxStackDepth *float64 `json:"engineConfigPgMaxStackDepth,omitempty" tf:"engine_config_pg_max_stack_depth,omitempty"`
+
+	// Max standby archive delay in milliseconds.
+	// Max standby archive delay in milliseconds
+	EngineConfigPgMaxStandbyArchiveDelay *float64 `json:"engineConfigPgMaxStandbyArchiveDelay,omitempty" tf:"engine_config_pg_max_standby_archive_delay,omitempty"`
+
+	// Max standby streaming delay in milliseconds.
+	// Max standby streaming delay in milliseconds
+	EngineConfigPgMaxStandbyStreamingDelay *float64 `json:"engineConfigPgMaxStandbyStreamingDelay,omitempty" tf:"engine_config_pg_max_standby_streaming_delay,omitempty"`
+
+	// PostgreSQL maximum WAL senders.
+	// PostgreSQL maximum WAL senders
+	EngineConfigPgMaxWalSenders *float64 `json:"engineConfigPgMaxWalSenders,omitempty" tf:"engine_config_pg_max_wal_senders,omitempty"`
+
+	// Sets the maximum number of background processes that the system can support.
+	// Sets the maximum number of background processes that the system can support
+	EngineConfigPgMaxWorkerProcesses *float64 `json:"engineConfigPgMaxWorkerProcesses,omitempty" tf:"engine_config_pg_max_worker_processes,omitempty"`
+
+	// Chooses the algorithm for encrypting passwords. (default md5)
+	// Chooses the algorithm for encrypting passwords.
+	EngineConfigPgPasswordEncryption *string `json:"engineConfigPgPasswordEncryption,omitempty" tf:"engine_config_pg_password_encryption,omitempty"`
+
+	// Sets the time interval to run pg_partman's scheduled tasks.
+	// Sets the time interval to run pg_partman's scheduled tasks
+	EngineConfigPgPgPartmanBgwInterval *float64 `json:"engineConfigPgPgPartmanBgwInterval,omitempty" tf:"engine_config_pg_pg_partman_bgw_interval,omitempty"`
+
+	// Controls which role to use for pg_partman's scheduled background tasks.
+	// Controls which role to use for pg_partman's scheduled background tasks.
+	EngineConfigPgPgPartmanBgwRole *string `json:"engineConfigPgPgPartmanBgwRole,omitempty" tf:"engine_config_pg_pg_partman_bgw_role,omitempty"`
+
+	// Enables or disables query plan monitoring.
+	// Enables or disables query plan monitoring
+	EngineConfigPgPgStatMonitorPgsmEnableQueryPlan *bool `json:"engineConfigPgPgStatMonitorPgsmEnableQueryPlan,omitempty" tf:"engine_config_pg_pg_stat_monitor_pgsm_enable_query_plan,omitempty"`
+
+	// Sets the maximum number of buckets.
+	// Sets the maximum number of buckets
+	EngineConfigPgPgStatMonitorPgsmMaxBuckets *float64 `json:"engineConfigPgPgStatMonitorPgsmMaxBuckets,omitempty" tf:"engine_config_pg_pg_stat_monitor_pgsm_max_buckets,omitempty"`
+
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	EngineConfigPgPgStatStatementsTrack *string `json:"engineConfigPgPgStatStatementsTrack,omitempty" tf:"engine_config_pg_pg_stat_statements_track,omitempty"`
+
+	// Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable. (default false)
+	// Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+	EngineConfigPgStatMonitorEnable *bool `json:"engineConfigPgStatMonitorEnable,omitempty" tf:"engine_config_pg_stat_monitor_enable,omitempty"`
+
+	// PostgreSQL temporary file limit in KiB, -1 for unlimited.
+	// PostgreSQL temporary file limit in KiB, -1 for unlimited
+	EngineConfigPgTempFileLimit *float64 `json:"engineConfigPgTempFileLimit,omitempty" tf:"engine_config_pg_temp_file_limit,omitempty"`
+
+	// PostgreSQL service timezone.
+	// PostgreSQL service timezone
+	EngineConfigPgTimezone *string `json:"engineConfigPgTimezone,omitempty" tf:"engine_config_pg_timezone,omitempty"`
+
+	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	EngineConfigPgTrackActivityQuerySize *float64 `json:"engineConfigPgTrackActivityQuerySize,omitempty" tf:"engine_config_pg_track_activity_query_size,omitempty"`
+
+	// Record commit time of transactions.
+	// Record commit time of transactions.
+	EngineConfigPgTrackCommitTimestamp *string `json:"engineConfigPgTrackCommitTimestamp,omitempty" tf:"engine_config_pg_track_commit_timestamp,omitempty"`
+
+	// Enables tracking of function call counts and time used.
+	// Enables tracking of function call counts and time used.
+	EngineConfigPgTrackFunctions *string `json:"engineConfigPgTrackFunctions,omitempty" tf:"engine_config_pg_track_functions,omitempty"`
+
+	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	EngineConfigPgTrackIoTiming *string `json:"engineConfigPgTrackIoTiming,omitempty" tf:"engine_config_pg_track_io_timing,omitempty"`
+
+	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
+	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
+	EngineConfigPgWalSenderTimeout *float64 `json:"engineConfigPgWalSenderTimeout,omitempty" tf:"engine_config_pg_wal_sender_timeout,omitempty"`
+
+	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	EngineConfigPgWalWriterDelay *float64 `json:"engineConfigPgWalWriterDelay,omitempty" tf:"engine_config_pg_wal_writer_delay,omitempty"`
+
+	// Number of seconds of master unavailability before triggering database failover to standby. (default 60)
+	// Number of seconds of master unavailability before triggering database failover to standby.
+	EngineConfigPglookoutMaxFailoverReplicationTimeLag *float64 `json:"engineConfigPglookoutMaxFailoverReplicationTimeLag,omitempty" tf:"engine_config_pglookout_max_failover_replication_time_lag,omitempty"`
+
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+	EngineConfigSharedBuffersPercentage *float64 `json:"engineConfigSharedBuffersPercentage,omitempty" tf:"engine_config_shared_buffers_percentage,omitempty"`
+
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	EngineConfigWorkMem *float64 `json:"engineConfigWorkMem,omitempty" tf:"engine_config_work_mem,omitempty"`
+
 	// The Managed Database engine in engine/version format. (e.g. postgresql/16)
 	// The unique ID of the database engine and version to use. (e.g. postgresql/16)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
@@ -40,6 +228,9 @@ type PostgreSQLv2InitParameters struct {
 	// A unique, user-defined string referring to the Managed Database.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Restricts access to this database using a virtual private cloud (VPC) that you've configured in the region where the database will live.
+	PrivateNetwork []PostgreSQLv2PrivateNetworkInitParameters `json:"privateNetwork,omitempty" tf:"private_network,omitempty"`
+
 	// The region to use for the Managed Database.
 	// The Region ID for the Managed Database.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -53,7 +244,7 @@ type PostgreSQLv2InitParameters struct {
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Configuration settings for automated patch update maintenance for the Managed Database.
-	Updates map[string]string `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []PostgreSQLv2UpdatesInitParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
 type PostgreSQLv2Observation struct {
@@ -79,6 +270,194 @@ type PostgreSQLv2Observation struct {
 	// The Managed Database engine in engine/version format.
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)
+	// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)
+	EngineConfigPgAutovacuumAnalyzeScaleFactor *float64 `json:"engineConfigPgAutovacuumAnalyzeScaleFactor,omitempty" tf:"engine_config_pg_autovacuum_analyze_scale_factor,omitempty"`
+
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	EngineConfigPgAutovacuumAnalyzeThreshold *float64 `json:"engineConfigPgAutovacuumAnalyzeThreshold,omitempty" tf:"engine_config_pg_autovacuum_analyze_threshold,omitempty"`
+
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	EngineConfigPgAutovacuumMaxWorkers *float64 `json:"engineConfigPgAutovacuumMaxWorkers,omitempty" tf:"engine_config_pg_autovacuum_max_workers,omitempty"`
+
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute
+	EngineConfigPgAutovacuumNaptime *float64 `json:"engineConfigPgAutovacuumNaptime,omitempty" tf:"engine_config_pg_autovacuum_naptime,omitempty"`
+
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds
+	EngineConfigPgAutovacuumVacuumCostDelay *float64 `json:"engineConfigPgAutovacuumVacuumCostDelay,omitempty" tf:"engine_config_pg_autovacuum_vacuum_cost_delay,omitempty"`
+
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+	EngineConfigPgAutovacuumVacuumCostLimit *float64 `json:"engineConfigPgAutovacuumVacuumCostLimit,omitempty" tf:"engine_config_pg_autovacuum_vacuum_cost_limit,omitempty"`
+
+	// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)
+	// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)
+	EngineConfigPgAutovacuumVacuumScaleFactor *float64 `json:"engineConfigPgAutovacuumVacuumScaleFactor,omitempty" tf:"engine_config_pg_autovacuum_vacuum_scale_factor,omitempty"`
+
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples
+	EngineConfigPgAutovacuumVacuumThreshold *float64 `json:"engineConfigPgAutovacuumVacuumThreshold,omitempty" tf:"engine_config_pg_autovacuum_vacuum_threshold,omitempty"`
+
+	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	EngineConfigPgBgwriterDelay *float64 `json:"engineConfigPgBgwriterDelay,omitempty" tf:"engine_config_pg_bgwriter_delay,omitempty"`
+
+	// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	EngineConfigPgBgwriterFlushAfter *float64 `json:"engineConfigPgBgwriterFlushAfter,omitempty" tf:"engine_config_pg_bgwriter_flush_after,omitempty"`
+
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	EngineConfigPgBgwriterLruMaxpages *float64 `json:"engineConfigPgBgwriterLruMaxpages,omitempty" tf:"engine_config_pg_bgwriter_lru_maxpages,omitempty"`
+
+	// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	EngineConfigPgBgwriterLruMultiplier *float64 `json:"engineConfigPgBgwriterLruMultiplier,omitempty" tf:"engine_config_pg_bgwriter_lru_multiplier,omitempty"`
+
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	EngineConfigPgDeadlockTimeout *float64 `json:"engineConfigPgDeadlockTimeout,omitempty" tf:"engine_config_pg_deadlock_timeout,omitempty"`
+
+	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	EngineConfigPgDefaultToastCompression *string `json:"engineConfigPgDefaultToastCompression,omitempty" tf:"engine_config_pg_default_toast_compression,omitempty"`
+
+	// Time out sessions with open transactions after this number of milliseconds.
+	// Time out sessions with open transactions after this number of milliseconds
+	EngineConfigPgIdleInTransactionSessionTimeout *float64 `json:"engineConfigPgIdleInTransactionSessionTimeout,omitempty" tf:"engine_config_pg_idle_in_transaction_session_timeout,omitempty"`
+
+	// Controls system-wide use of Just-in-Time Compilation (JIT).
+	// Controls system-wide use of Just-in-Time Compilation (JIT).
+	EngineConfigPgJit *bool `json:"engineConfigPgJit,omitempty" tf:"engine_config_pg_jit,omitempty"`
+
+	// PostgreSQL maximum number of files that can be open per process.
+	// PostgreSQL maximum number of files that can be open per process
+	EngineConfigPgMaxFilesPerProcess *float64 `json:"engineConfigPgMaxFilesPerProcess,omitempty" tf:"engine_config_pg_max_files_per_process,omitempty"`
+
+	// PostgreSQL maximum locks per transaction.
+	// PostgreSQL maximum locks per transaction
+	EngineConfigPgMaxLocksPerTransaction *float64 `json:"engineConfigPgMaxLocksPerTransaction,omitempty" tf:"engine_config_pg_max_locks_per_transaction,omitempty"`
+
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers)
+	EngineConfigPgMaxLogicalReplicationWorkers *float64 `json:"engineConfigPgMaxLogicalReplicationWorkers,omitempty" tf:"engine_config_pg_max_logical_replication_workers,omitempty"`
+
+	// Sets the maximum number of workers that the system can support for parallel queries.
+	// Sets the maximum number of workers that the system can support for parallel queries
+	EngineConfigPgMaxParallelWorkers *float64 `json:"engineConfigPgMaxParallelWorkers,omitempty" tf:"engine_config_pg_max_parallel_workers,omitempty"`
+
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node
+	EngineConfigPgMaxParallelWorkersPerGather *float64 `json:"engineConfigPgMaxParallelWorkersPerGather,omitempty" tf:"engine_config_pg_max_parallel_workers_per_gather,omitempty"`
+
+	// PostgreSQL maximum predicate locks per transaction.
+	// PostgreSQL maximum predicate locks per transaction
+	EngineConfigPgMaxPredLocksPerTransaction *float64 `json:"engineConfigPgMaxPredLocksPerTransaction,omitempty" tf:"engine_config_pg_max_pred_locks_per_transaction,omitempty"`
+
+	// PostgreSQL maximum replication slots.
+	// PostgreSQL maximum replication slots
+	EngineConfigPgMaxReplicationSlots *float64 `json:"engineConfigPgMaxReplicationSlots,omitempty" tf:"engine_config_pg_max_replication_slots,omitempty"`
+
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+	EngineConfigPgMaxSlotWalKeepSize *float64 `json:"engineConfigPgMaxSlotWalKeepSize,omitempty" tf:"engine_config_pg_max_slot_wal_keep_size,omitempty"`
+
+	// Maximum depth of the stack in bytes.
+	// Maximum depth of the stack in bytes
+	EngineConfigPgMaxStackDepth *float64 `json:"engineConfigPgMaxStackDepth,omitempty" tf:"engine_config_pg_max_stack_depth,omitempty"`
+
+	// Max standby archive delay in milliseconds.
+	// Max standby archive delay in milliseconds
+	EngineConfigPgMaxStandbyArchiveDelay *float64 `json:"engineConfigPgMaxStandbyArchiveDelay,omitempty" tf:"engine_config_pg_max_standby_archive_delay,omitempty"`
+
+	// Max standby streaming delay in milliseconds.
+	// Max standby streaming delay in milliseconds
+	EngineConfigPgMaxStandbyStreamingDelay *float64 `json:"engineConfigPgMaxStandbyStreamingDelay,omitempty" tf:"engine_config_pg_max_standby_streaming_delay,omitempty"`
+
+	// PostgreSQL maximum WAL senders.
+	// PostgreSQL maximum WAL senders
+	EngineConfigPgMaxWalSenders *float64 `json:"engineConfigPgMaxWalSenders,omitempty" tf:"engine_config_pg_max_wal_senders,omitempty"`
+
+	// Sets the maximum number of background processes that the system can support.
+	// Sets the maximum number of background processes that the system can support
+	EngineConfigPgMaxWorkerProcesses *float64 `json:"engineConfigPgMaxWorkerProcesses,omitempty" tf:"engine_config_pg_max_worker_processes,omitempty"`
+
+	// Chooses the algorithm for encrypting passwords. (default md5)
+	// Chooses the algorithm for encrypting passwords.
+	EngineConfigPgPasswordEncryption *string `json:"engineConfigPgPasswordEncryption,omitempty" tf:"engine_config_pg_password_encryption,omitempty"`
+
+	// Sets the time interval to run pg_partman's scheduled tasks.
+	// Sets the time interval to run pg_partman's scheduled tasks
+	EngineConfigPgPgPartmanBgwInterval *float64 `json:"engineConfigPgPgPartmanBgwInterval,omitempty" tf:"engine_config_pg_pg_partman_bgw_interval,omitempty"`
+
+	// Controls which role to use for pg_partman's scheduled background tasks.
+	// Controls which role to use for pg_partman's scheduled background tasks.
+	EngineConfigPgPgPartmanBgwRole *string `json:"engineConfigPgPgPartmanBgwRole,omitempty" tf:"engine_config_pg_pg_partman_bgw_role,omitempty"`
+
+	// Enables or disables query plan monitoring.
+	// Enables or disables query plan monitoring
+	EngineConfigPgPgStatMonitorPgsmEnableQueryPlan *bool `json:"engineConfigPgPgStatMonitorPgsmEnableQueryPlan,omitempty" tf:"engine_config_pg_pg_stat_monitor_pgsm_enable_query_plan,omitempty"`
+
+	// Sets the maximum number of buckets.
+	// Sets the maximum number of buckets
+	EngineConfigPgPgStatMonitorPgsmMaxBuckets *float64 `json:"engineConfigPgPgStatMonitorPgsmMaxBuckets,omitempty" tf:"engine_config_pg_pg_stat_monitor_pgsm_max_buckets,omitempty"`
+
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	EngineConfigPgPgStatStatementsTrack *string `json:"engineConfigPgPgStatStatementsTrack,omitempty" tf:"engine_config_pg_pg_stat_statements_track,omitempty"`
+
+	// Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable. (default false)
+	// Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+	EngineConfigPgStatMonitorEnable *bool `json:"engineConfigPgStatMonitorEnable,omitempty" tf:"engine_config_pg_stat_monitor_enable,omitempty"`
+
+	// PostgreSQL temporary file limit in KiB, -1 for unlimited.
+	// PostgreSQL temporary file limit in KiB, -1 for unlimited
+	EngineConfigPgTempFileLimit *float64 `json:"engineConfigPgTempFileLimit,omitempty" tf:"engine_config_pg_temp_file_limit,omitempty"`
+
+	// PostgreSQL service timezone.
+	// PostgreSQL service timezone
+	EngineConfigPgTimezone *string `json:"engineConfigPgTimezone,omitempty" tf:"engine_config_pg_timezone,omitempty"`
+
+	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	EngineConfigPgTrackActivityQuerySize *float64 `json:"engineConfigPgTrackActivityQuerySize,omitempty" tf:"engine_config_pg_track_activity_query_size,omitempty"`
+
+	// Record commit time of transactions.
+	// Record commit time of transactions.
+	EngineConfigPgTrackCommitTimestamp *string `json:"engineConfigPgTrackCommitTimestamp,omitempty" tf:"engine_config_pg_track_commit_timestamp,omitempty"`
+
+	// Enables tracking of function call counts and time used.
+	// Enables tracking of function call counts and time used.
+	EngineConfigPgTrackFunctions *string `json:"engineConfigPgTrackFunctions,omitempty" tf:"engine_config_pg_track_functions,omitempty"`
+
+	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	EngineConfigPgTrackIoTiming *string `json:"engineConfigPgTrackIoTiming,omitempty" tf:"engine_config_pg_track_io_timing,omitempty"`
+
+	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
+	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
+	EngineConfigPgWalSenderTimeout *float64 `json:"engineConfigPgWalSenderTimeout,omitempty" tf:"engine_config_pg_wal_sender_timeout,omitempty"`
+
+	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	EngineConfigPgWalWriterDelay *float64 `json:"engineConfigPgWalWriterDelay,omitempty" tf:"engine_config_pg_wal_writer_delay,omitempty"`
+
+	// Number of seconds of master unavailability before triggering database failover to standby. (default 60)
+	// Number of seconds of master unavailability before triggering database failover to standby.
+	EngineConfigPglookoutMaxFailoverReplicationTimeLag *float64 `json:"engineConfigPglookoutMaxFailoverReplicationTimeLag,omitempty" tf:"engine_config_pglookout_max_failover_replication_time_lag,omitempty"`
+
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+	EngineConfigSharedBuffersPercentage *float64 `json:"engineConfigSharedBuffersPercentage,omitempty" tf:"engine_config_shared_buffers_percentage,omitempty"`
+
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	EngineConfigWorkMem *float64 `json:"engineConfigWorkMem,omitempty" tf:"engine_config_work_mem,omitempty"`
+
 	// The Managed Database engine in engine/version format. (e.g. postgresql/16)
 	// The unique ID of the database engine and version to use. (e.g. postgresql/16)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
@@ -98,6 +477,9 @@ type PostgreSQLv2Observation struct {
 	// The secondary/private host for the managed database.
 	// The secondary/private host for the Managed Database.
 	HostSecondary *string `json:"hostSecondary,omitempty" tf:"host_secondary,omitempty"`
+
+	// The standby host for the Managed Database.
+	HostStandby *string `json:"hostStandby,omitempty" tf:"host_standby,omitempty"`
 
 	// The ID of the Managed Database.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -125,6 +507,9 @@ type PostgreSQLv2Observation struct {
 	// The access port for this Managed Database.
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Restricts access to this database using a virtual private cloud (VPC) that you've configured in the region where the database will live.
+	PrivateNetwork []PostgreSQLv2PrivateNetworkObservation `json:"privateNetwork,omitempty" tf:"private_network,omitempty"`
+
 	// The region to use for the Managed Database.
 	// The Region ID for the Managed Database.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -150,7 +535,7 @@ type PostgreSQLv2Observation struct {
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 
 	// Configuration settings for automated patch update maintenance for the Managed Database.
-	Updates map[string]string `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []PostgreSQLv2UpdatesObservation `json:"updates,omitempty" tf:"updates,omitempty"`
 
 	// The Managed Database engine version. (e.g. 13.2)
 	// The Managed Database engine version.
@@ -169,6 +554,241 @@ type PostgreSQLv2Parameters struct {
 	// The number of Linode instance nodes deployed to the Managed Database.
 	// +kubebuilder:validation:Optional
 	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+
+	// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)
+	// Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumAnalyzeScaleFactor *float64 `json:"engineConfigPgAutovacuumAnalyzeScaleFactor,omitempty" tf:"engine_config_pg_autovacuum_analyze_scale_factor,omitempty"`
+
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	// Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumAnalyzeThreshold *float64 `json:"engineConfigPgAutovacuumAnalyzeThreshold,omitempty" tf:"engine_config_pg_autovacuum_analyze_threshold,omitempty"`
+
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	// Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumMaxWorkers *float64 `json:"engineConfigPgAutovacuumMaxWorkers,omitempty" tf:"engine_config_pg_autovacuum_max_workers,omitempty"`
+
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute
+	// Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumNaptime *float64 `json:"engineConfigPgAutovacuumNaptime,omitempty" tf:"engine_config_pg_autovacuum_naptime,omitempty"`
+
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds
+	// Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumVacuumCostDelay *float64 `json:"engineConfigPgAutovacuumVacuumCostDelay,omitempty" tf:"engine_config_pg_autovacuum_vacuum_cost_delay,omitempty"`
+
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+	// Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumVacuumCostLimit *float64 `json:"engineConfigPgAutovacuumVacuumCostLimit,omitempty" tf:"engine_config_pg_autovacuum_vacuum_cost_limit,omitempty"`
+
+	// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)
+	// Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumVacuumScaleFactor *float64 `json:"engineConfigPgAutovacuumVacuumScaleFactor,omitempty" tf:"engine_config_pg_autovacuum_vacuum_scale_factor,omitempty"`
+
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.
+	// Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples
+	// +kubebuilder:validation:Optional
+	EngineConfigPgAutovacuumVacuumThreshold *float64 `json:"engineConfigPgAutovacuumVacuumThreshold,omitempty" tf:"engine_config_pg_autovacuum_vacuum_threshold,omitempty"`
+
+	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	// Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgBgwriterDelay *float64 `json:"engineConfigPgBgwriterDelay,omitempty" tf:"engine_config_pg_bgwriter_delay,omitempty"`
+
+	// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	// Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgBgwriterFlushAfter *float64 `json:"engineConfigPgBgwriterFlushAfter,omitempty" tf:"engine_config_pg_bgwriter_flush_after,omitempty"`
+
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	// In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgBgwriterLruMaxpages *float64 `json:"engineConfigPgBgwriterLruMaxpages,omitempty" tf:"engine_config_pg_bgwriter_lru_maxpages,omitempty"`
+
+	// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	// The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgBgwriterLruMultiplier *float64 `json:"engineConfigPgBgwriterLruMultiplier,omitempty" tf:"engine_config_pg_bgwriter_lru_multiplier,omitempty"`
+
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	// This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgDeadlockTimeout *float64 `json:"engineConfigPgDeadlockTimeout,omitempty" tf:"engine_config_pg_deadlock_timeout,omitempty"`
+
+	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	// Specifies the default TOAST compression method for values of compressible columns (the default is lz4).
+	// +kubebuilder:validation:Optional
+	EngineConfigPgDefaultToastCompression *string `json:"engineConfigPgDefaultToastCompression,omitempty" tf:"engine_config_pg_default_toast_compression,omitempty"`
+
+	// Time out sessions with open transactions after this number of milliseconds.
+	// Time out sessions with open transactions after this number of milliseconds
+	// +kubebuilder:validation:Optional
+	EngineConfigPgIdleInTransactionSessionTimeout *float64 `json:"engineConfigPgIdleInTransactionSessionTimeout,omitempty" tf:"engine_config_pg_idle_in_transaction_session_timeout,omitempty"`
+
+	// Controls system-wide use of Just-in-Time Compilation (JIT).
+	// Controls system-wide use of Just-in-Time Compilation (JIT).
+	// +kubebuilder:validation:Optional
+	EngineConfigPgJit *bool `json:"engineConfigPgJit,omitempty" tf:"engine_config_pg_jit,omitempty"`
+
+	// PostgreSQL maximum number of files that can be open per process.
+	// PostgreSQL maximum number of files that can be open per process
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxFilesPerProcess *float64 `json:"engineConfigPgMaxFilesPerProcess,omitempty" tf:"engine_config_pg_max_files_per_process,omitempty"`
+
+	// PostgreSQL maximum locks per transaction.
+	// PostgreSQL maximum locks per transaction
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxLocksPerTransaction *float64 `json:"engineConfigPgMaxLocksPerTransaction,omitempty" tf:"engine_config_pg_max_locks_per_transaction,omitempty"`
+
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).
+	// PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers)
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxLogicalReplicationWorkers *float64 `json:"engineConfigPgMaxLogicalReplicationWorkers,omitempty" tf:"engine_config_pg_max_logical_replication_workers,omitempty"`
+
+	// Sets the maximum number of workers that the system can support for parallel queries.
+	// Sets the maximum number of workers that the system can support for parallel queries
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxParallelWorkers *float64 `json:"engineConfigPgMaxParallelWorkers,omitempty" tf:"engine_config_pg_max_parallel_workers,omitempty"`
+
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.
+	// Sets the maximum number of workers that can be started by a single Gather or Gather Merge node
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxParallelWorkersPerGather *float64 `json:"engineConfigPgMaxParallelWorkersPerGather,omitempty" tf:"engine_config_pg_max_parallel_workers_per_gather,omitempty"`
+
+	// PostgreSQL maximum predicate locks per transaction.
+	// PostgreSQL maximum predicate locks per transaction
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxPredLocksPerTransaction *float64 `json:"engineConfigPgMaxPredLocksPerTransaction,omitempty" tf:"engine_config_pg_max_pred_locks_per_transaction,omitempty"`
+
+	// PostgreSQL maximum replication slots.
+	// PostgreSQL maximum replication slots
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxReplicationSlots *float64 `json:"engineConfigPgMaxReplicationSlots,omitempty" tf:"engine_config_pg_max_replication_slots,omitempty"`
+
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+	// PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxSlotWalKeepSize *float64 `json:"engineConfigPgMaxSlotWalKeepSize,omitempty" tf:"engine_config_pg_max_slot_wal_keep_size,omitempty"`
+
+	// Maximum depth of the stack in bytes.
+	// Maximum depth of the stack in bytes
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxStackDepth *float64 `json:"engineConfigPgMaxStackDepth,omitempty" tf:"engine_config_pg_max_stack_depth,omitempty"`
+
+	// Max standby archive delay in milliseconds.
+	// Max standby archive delay in milliseconds
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxStandbyArchiveDelay *float64 `json:"engineConfigPgMaxStandbyArchiveDelay,omitempty" tf:"engine_config_pg_max_standby_archive_delay,omitempty"`
+
+	// Max standby streaming delay in milliseconds.
+	// Max standby streaming delay in milliseconds
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxStandbyStreamingDelay *float64 `json:"engineConfigPgMaxStandbyStreamingDelay,omitempty" tf:"engine_config_pg_max_standby_streaming_delay,omitempty"`
+
+	// PostgreSQL maximum WAL senders.
+	// PostgreSQL maximum WAL senders
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxWalSenders *float64 `json:"engineConfigPgMaxWalSenders,omitempty" tf:"engine_config_pg_max_wal_senders,omitempty"`
+
+	// Sets the maximum number of background processes that the system can support.
+	// Sets the maximum number of background processes that the system can support
+	// +kubebuilder:validation:Optional
+	EngineConfigPgMaxWorkerProcesses *float64 `json:"engineConfigPgMaxWorkerProcesses,omitempty" tf:"engine_config_pg_max_worker_processes,omitempty"`
+
+	// Chooses the algorithm for encrypting passwords. (default md5)
+	// Chooses the algorithm for encrypting passwords.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgPasswordEncryption *string `json:"engineConfigPgPasswordEncryption,omitempty" tf:"engine_config_pg_password_encryption,omitempty"`
+
+	// Sets the time interval to run pg_partman's scheduled tasks.
+	// Sets the time interval to run pg_partman's scheduled tasks
+	// +kubebuilder:validation:Optional
+	EngineConfigPgPgPartmanBgwInterval *float64 `json:"engineConfigPgPgPartmanBgwInterval,omitempty" tf:"engine_config_pg_pg_partman_bgw_interval,omitempty"`
+
+	// Controls which role to use for pg_partman's scheduled background tasks.
+	// Controls which role to use for pg_partman's scheduled background tasks.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgPgPartmanBgwRole *string `json:"engineConfigPgPgPartmanBgwRole,omitempty" tf:"engine_config_pg_pg_partman_bgw_role,omitempty"`
+
+	// Enables or disables query plan monitoring.
+	// Enables or disables query plan monitoring
+	// +kubebuilder:validation:Optional
+	EngineConfigPgPgStatMonitorPgsmEnableQueryPlan *bool `json:"engineConfigPgPgStatMonitorPgsmEnableQueryPlan,omitempty" tf:"engine_config_pg_pg_stat_monitor_pgsm_enable_query_plan,omitempty"`
+
+	// Sets the maximum number of buckets.
+	// Sets the maximum number of buckets
+	// +kubebuilder:validation:Optional
+	EngineConfigPgPgStatMonitorPgsmMaxBuckets *float64 `json:"engineConfigPgPgStatMonitorPgsmMaxBuckets,omitempty" tf:"engine_config_pg_pg_stat_monitor_pgsm_max_buckets,omitempty"`
+
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	// Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgPgStatStatementsTrack *string `json:"engineConfigPgPgStatStatementsTrack,omitempty" tf:"engine_config_pg_pg_stat_statements_track,omitempty"`
+
+	// Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable. (default false)
+	// Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgStatMonitorEnable *bool `json:"engineConfigPgStatMonitorEnable,omitempty" tf:"engine_config_pg_stat_monitor_enable,omitempty"`
+
+	// PostgreSQL temporary file limit in KiB, -1 for unlimited.
+	// PostgreSQL temporary file limit in KiB, -1 for unlimited
+	// +kubebuilder:validation:Optional
+	EngineConfigPgTempFileLimit *float64 `json:"engineConfigPgTempFileLimit,omitempty" tf:"engine_config_pg_temp_file_limit,omitempty"`
+
+	// PostgreSQL service timezone.
+	// PostgreSQL service timezone
+	// +kubebuilder:validation:Optional
+	EngineConfigPgTimezone *string `json:"engineConfigPgTimezone,omitempty" tf:"engine_config_pg_timezone,omitempty"`
+
+	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	// Specifies the number of bytes reserved to track the currently executing command for each active session.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgTrackActivityQuerySize *float64 `json:"engineConfigPgTrackActivityQuerySize,omitempty" tf:"engine_config_pg_track_activity_query_size,omitempty"`
+
+	// Record commit time of transactions.
+	// Record commit time of transactions.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgTrackCommitTimestamp *string `json:"engineConfigPgTrackCommitTimestamp,omitempty" tf:"engine_config_pg_track_commit_timestamp,omitempty"`
+
+	// Enables tracking of function call counts and time used.
+	// Enables tracking of function call counts and time used.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgTrackFunctions *string `json:"engineConfigPgTrackFunctions,omitempty" tf:"engine_config_pg_track_functions,omitempty"`
+
+	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	// Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgTrackIoTiming *string `json:"engineConfigPgTrackIoTiming,omitempty" tf:"engine_config_pg_track_io_timing,omitempty"`
+
+	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
+	// Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgWalSenderTimeout *float64 `json:"engineConfigPgWalSenderTimeout,omitempty" tf:"engine_config_pg_wal_sender_timeout,omitempty"`
+
+	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	// WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.
+	// +kubebuilder:validation:Optional
+	EngineConfigPgWalWriterDelay *float64 `json:"engineConfigPgWalWriterDelay,omitempty" tf:"engine_config_pg_wal_writer_delay,omitempty"`
+
+	// Number of seconds of master unavailability before triggering database failover to standby. (default 60)
+	// Number of seconds of master unavailability before triggering database failover to standby.
+	// +kubebuilder:validation:Optional
+	EngineConfigPglookoutMaxFailoverReplicationTimeLag *float64 `json:"engineConfigPglookoutMaxFailoverReplicationTimeLag,omitempty" tf:"engine_config_pglookout_max_failover_replication_time_lag,omitempty"`
+
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+	// Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.
+	// +kubebuilder:validation:Optional
+	EngineConfigSharedBuffersPercentage *float64 `json:"engineConfigSharedBuffersPercentage,omitempty" tf:"engine_config_shared_buffers_percentage,omitempty"`
+
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	// Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).
+	// +kubebuilder:validation:Optional
+	EngineConfigWorkMem *float64 `json:"engineConfigWorkMem,omitempty" tf:"engine_config_work_mem,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. postgresql/16)
 	// The unique ID of the database engine and version to use. (e.g. postgresql/16)
@@ -190,6 +810,10 @@ type PostgreSQLv2Parameters struct {
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Restricts access to this database using a virtual private cloud (VPC) that you've configured in the region where the database will live.
+	// +kubebuilder:validation:Optional
+	PrivateNetwork []PostgreSQLv2PrivateNetworkParameters `json:"privateNetwork,omitempty" tf:"private_network,omitempty"`
+
 	// The region to use for the Managed Database.
 	// The Region ID for the Managed Database.
 	// +kubebuilder:validation:Optional
@@ -207,7 +831,7 @@ type PostgreSQLv2Parameters struct {
 
 	// Configuration settings for automated patch update maintenance for the Managed Database.
 	// +kubebuilder:validation:Optional
-	Updates map[string]string `json:"updates,omitempty" tf:"updates,omitempty"`
+	Updates []PostgreSQLv2UpdatesParameters `json:"updates,omitempty" tf:"updates,omitempty"`
 }
 
 type PostgreSQLv2PendingUpdatesInitParameters struct {
@@ -216,16 +840,128 @@ type PostgreSQLv2PendingUpdatesInitParameters struct {
 type PostgreSQLv2PendingUpdatesObservation struct {
 
 	// The time when a mandatory update needs to be applied.
+	// The time when a mandatory update needs to be applied.
 	Deadline *string `json:"deadline,omitempty" tf:"deadline,omitempty"`
 
 	// A description of the update.
+	// A description of the update.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The date and time a maintenance update will be applied.
 	// The date and time a maintenance update will be applied.
 	PlannedFor *string `json:"plannedFor,omitempty" tf:"planned_for,omitempty"`
 }
 
 type PostgreSQLv2PendingUpdatesParameters struct {
+}
+
+type PostgreSQLv2PrivateNetworkInitParameters struct {
+
+	// Set to true to allow clients outside the VPC to connect to the database using a public IP address. (Default false)
+	// Set to `true` to allow clients outside of the VPC to connect to the database using a public IP address.
+	PublicAccess *bool `json:"publicAccess,omitempty" tf:"public_access"`
+
+	// The ID of the VPC subnet to restrict access to this database using.
+	// The ID of the VPC subnet to restrict access to this database using.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id"`
+
+	// The ID of the virtual private cloud (VPC) to restrict access to this database using.
+	// The ID of the virtual private cloud (VPC) to restrict access to this database using.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id"`
+}
+
+type PostgreSQLv2PrivateNetworkObservation struct {
+
+	// Set to true to allow clients outside the VPC to connect to the database using a public IP address. (Default false)
+	// Set to `true` to allow clients outside of the VPC to connect to the database using a public IP address.
+	PublicAccess *bool `json:"publicAccess,omitempty" tf:"public_access,omitempty"`
+
+	// The ID of the VPC subnet to restrict access to this database using.
+	// The ID of the VPC subnet to restrict access to this database using.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// The ID of the virtual private cloud (VPC) to restrict access to this database using.
+	// The ID of the virtual private cloud (VPC) to restrict access to this database using.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+}
+
+type PostgreSQLv2PrivateNetworkParameters struct {
+
+	// Set to true to allow clients outside the VPC to connect to the database using a public IP address. (Default false)
+	// Set to `true` to allow clients outside of the VPC to connect to the database using a public IP address.
+	// +kubebuilder:validation:Optional
+	PublicAccess *bool `json:"publicAccess,omitempty" tf:"public_access"`
+
+	// The ID of the VPC subnet to restrict access to this database using.
+	// The ID of the VPC subnet to restrict access to this database using.
+	// +kubebuilder:validation:Optional
+	SubnetID *float64 `json:"subnetId" tf:"subnet_id"`
+
+	// The ID of the virtual private cloud (VPC) to restrict access to this database using.
+	// The ID of the virtual private cloud (VPC) to restrict access to this database using.
+	// +kubebuilder:validation:Optional
+	VPCID *float64 `json:"vpcId" tf:"vpc_id"`
+}
+
+type PostgreSQLv2UpdatesInitParameters struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	// The numeric reference for the day of the week to perform maintenance. 1 is Monday, 2 is Tuesday, through to 7 which is Sunday.
+	DayOfWeek *float64 `json:"dayOfWeek,omitempty" tf:"day_of_week"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	// The maximum maintenance window time in hours.
+	Duration *float64 `json:"duration,omitempty" tf:"duration"`
+
+	// The frequency at which maintenance occurs. (weekly)
+	// How frequently maintenance occurs. Currently can only be weekly.
+	Frequency *string `json:"frequency,omitempty" tf:"frequency"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	// How frequently maintenance occurs. Currently can only be weekly.
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day"`
+}
+
+type PostgreSQLv2UpdatesObservation struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	// The numeric reference for the day of the week to perform maintenance. 1 is Monday, 2 is Tuesday, through to 7 which is Sunday.
+	DayOfWeek *float64 `json:"dayOfWeek,omitempty" tf:"day_of_week,omitempty"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	// The maximum maintenance window time in hours.
+	Duration *float64 `json:"duration,omitempty" tf:"duration,omitempty"`
+
+	// The frequency at which maintenance occurs. (weekly)
+	// How frequently maintenance occurs. Currently can only be weekly.
+	Frequency *string `json:"frequency,omitempty" tf:"frequency,omitempty"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	// How frequently maintenance occurs. Currently can only be weekly.
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day,omitempty"`
+}
+
+type PostgreSQLv2UpdatesParameters struct {
+
+	// The day to perform maintenance. (monday, tuesday, ...)
+	// The numeric reference for the day of the week to perform maintenance. 1 is Monday, 2 is Tuesday, through to 7 which is Sunday.
+	// +kubebuilder:validation:Optional
+	DayOfWeek *float64 `json:"dayOfWeek,omitempty" tf:"day_of_week"`
+
+	// The maximum maintenance window time in hours. (1..3)
+	// The maximum maintenance window time in hours.
+	// +kubebuilder:validation:Optional
+	Duration *float64 `json:"duration,omitempty" tf:"duration"`
+
+	// The frequency at which maintenance occurs. (weekly)
+	// How frequently maintenance occurs. Currently can only be weekly.
+	// +kubebuilder:validation:Optional
+	Frequency *string `json:"frequency,omitempty" tf:"frequency"`
+
+	// The hour to begin maintenance based in UTC time. (0..23)
+	// How frequently maintenance occurs. Currently can only be weekly.
+	// +kubebuilder:validation:Optional
+	HourOfDay *float64 `json:"hourOfDay,omitempty" tf:"hour_of_day"`
 }
 
 // PostgreSQLv2Spec defines the desired state of PostgreSQLv2

@@ -13,8 +13,8 @@ import (
 	conversiontfjson "github.com/crossplane/upjet/pkg/types/conversion/tfjson"
 	tfjson "github.com/hashicorp/terraform-json"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/linode/terraform-provider-linode/v2/linode"
-	"github.com/linode/terraform-provider-linode/v2/version"
+	"github.com/linode/terraform-provider-linode/v4/linode"
+	"github.com/linode/terraform-provider-linode/v4/version"
 	"github.com/pkg/errors"
 
 	"github.com/linode/provider-linode/config/accountsettings"
@@ -90,6 +90,183 @@ func getProviderSchema(s string) (*schema.Provider, error) {
 	}, nil
 }
 
+// resourceBlocks returns the raw terraform-json schema block of every resource,
+// keyed by Terraform resource name.
+func resourceBlocks(s string) map[string]*tfjson.SchemaBlock {
+	ps := tfjson.ProviderSchemas{}
+	if err := ps.UnmarshalJSON([]byte(s)); err != nil {
+		panic(err)
+	}
+	blocks := map[string]*tfjson.SchemaBlock{}
+	for _, v := range ps.Schemas {
+		for name, rs := range v.ResourceSchemas {
+			if rs != nil {
+				blocks[name] = rs.Block
+			}
+		}
+		break
+	}
+	return blocks
+}
+
+// untypedAttributeConfig repairs the attributes that upjet's tfjson to SDKv2
+// converter leaves without a type, which the code generator later rejects with
+// "invalid schema type TypeInvalid".
+//
+// The converter only understands attributes carrying a primitive or collection
+// cty type, plus nested *blocks*. Terraform Plugin Framework resources have
+// two more shapes it does not cover:
+//
+//   - nested attributes ("nested_type" in the JSON schema), used by among
+//     others linode_vpc.ipv6, linode_nodebalancer.vpcs and
+//     linode_database_*_v2.updates;
+//   - attributes whose cty type is a bare object, used by
+//     linode_networking_ip.assigned_entity, its vpc_nat_1_1 and
+//     linode_reserved_ip_assignment.assigned_entity.
+//
+// This runs as a default resource option so that it covers resources
+// reconciled through both the Plugin SDK and the Plugin Framework: upjet
+// derives the former from config.Provider.TerraformProvider but the latter
+// from its own internal conversion, and only Resource.TerraformResource is
+// common to both.
+func untypedAttributeConfig(blocks map[string]*tfjson.SchemaBlock) config.ResourceOption {
+	return func(r *config.Resource) {
+		if r.TerraformResource == nil {
+			return
+		}
+		resolveUntypedAttributes(blocks[r.Name], r.TerraformResource)
+	}
+}
+
+// resolveUntypedAttributes fills in SDKv2 schemas for the attributes of b that
+// the converter could not type. Entries that already carry a valid type are
+// left alone, so that a hand-written Go schema always wins over the
+// reconstructed one.
+//
+// We deliberately do not route nested attributes through the converter's
+// nested block handling: that path infers Optional/Computed from
+// MinItems/MaxItems, because blocks carry no such flags, and therefore cannot
+// represent a computed-only field like linode_nodebalancer.lke_cluster. Nested
+// attributes do carry the flags, so we honour them directly.
+func resolveUntypedAttributes(b *tfjson.SchemaBlock, r *schema.Resource) {
+	if b == nil || r == nil || r.Schema == nil {
+		return
+	}
+	for name, attr := range b.Attributes {
+		if existing, ok := r.Schema[name]; ok && existing != nil && existing.Type != schema.TypeInvalid {
+			continue
+		}
+		if s := attributeToV2Schema(attr); s != nil {
+			r.Schema[name] = s
+		}
+	}
+	// Untyped attributes may also appear underneath a nested block.
+	for name, nb := range b.NestedBlocks {
+		if nb == nil {
+			continue
+		}
+		s, ok := r.Schema[name]
+		if !ok || s == nil {
+			continue
+		}
+		if elem, ok := s.Elem.(*schema.Resource); ok {
+			resolveUntypedAttributes(nb.Block, elem)
+		}
+	}
+}
+
+// attributeToV2Schema converts a nested or object-typed attribute into an
+// SDKv2 schema. It returns nil for any other attribute, which the converter
+// already handles.
+func attributeToV2Schema(attr *tfjson.SchemaAttribute) *schema.Schema {
+	if attr == nil {
+		return nil
+	}
+	nt := attr.AttributeNestedType
+	if nt == nil && !attr.AttributeType.IsObjectType() {
+		return nil
+	}
+
+	s := &schema.Schema{
+		Description: attr.Description,
+		Required:    attr.Required,
+		Optional:    attr.Optional,
+		Computed:    attr.Computed,
+		Sensitive:   attr.Sensitive,
+		ConfigMode:  schema.SchemaConfigModeAttr,
+	}
+	if attr.Deprecated {
+		s.Deprecated = "deprecated"
+	}
+
+	if nt == nil {
+		// A bare object is a single element, so it is modelled the same way
+		// the converter models a "single" nested block. Its fields are
+		// presented as plain attributes inheriting the object's own flags,
+		// which the SDKv2 schema has no way to express per field.
+		s.Type = schema.TypeList
+		s.MaxItems = 1
+		fields := map[string]*tfjson.SchemaAttribute{}
+		for name, t := range attr.AttributeType.AttributeTypes() {
+			fields[name] = &tfjson.SchemaAttribute{
+				AttributeType: t,
+				Optional:      attr.Optional,
+				Computed:      attr.Computed,
+			}
+		}
+		s.Elem = elemResource(fields)
+		return s
+	}
+
+	// Nesting modes follow the same conventions the upjet converter uses for
+	// nested blocks, so that "single" becomes a one-element list.
+	switch nt.NestingMode {
+	case tfjson.SchemaNestingModeSet:
+		s.Type = schema.TypeSet
+	case tfjson.SchemaNestingModeMap:
+		s.Type = schema.TypeMap
+	case tfjson.SchemaNestingModeList:
+		s.Type = schema.TypeList
+	case tfjson.SchemaNestingModeSingle, tfjson.SchemaNestingModeGroup:
+		// These hold exactly one element.
+		s.Type = schema.TypeList
+		s.MaxItems = 1
+	default:
+		s.Type = schema.TypeList
+		s.MaxItems = 1
+	}
+	if nt.MinItems > 0 {
+		s.MinItems = int(nt.MinItems) //nolint:gosec
+	}
+	if nt.MaxItems > 0 {
+		s.MaxItems = int(nt.MaxItems) //nolint:gosec
+	}
+	s.Elem = elemResource(nt.Attributes)
+
+	return s
+}
+
+// elemResource builds the element schema of a nested or object-typed
+// attribute. It reuses upjet's converter for the attributes it can type by
+// presenting them as a standalone resource schema, then recurses for the rest.
+func elemResource(attrs map[string]*tfjson.SchemaAttribute) *schema.Resource {
+	elem := &schema.Resource{Schema: map[string]*schema.Schema{}}
+	if converted := conversiontfjson.GetV2ResourceMap(map[string]*tfjson.Schema{
+		"": {Block: &tfjson.SchemaBlock{Attributes: attrs}},
+	})[""]; converted != nil && converted.Schema != nil {
+		elem.Schema = converted.Schema
+	}
+	for name, attr := range attrs {
+		if existing, ok := elem.Schema[name]; ok && existing != nil && existing.Type != schema.TypeInvalid {
+			continue
+		}
+		if s := attributeToV2Schema(attr); s != nil {
+			elem.Schema[name] = s
+		}
+	}
+	return elem
+}
+
 // GetProvider returns provider configuration
 func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, error) {
 	var p *schema.Provider
@@ -110,6 +287,7 @@ func GetProvider(_ context.Context, generationProvider bool) (*config.Provider, 
 		config.WithDefaultResourceOptions(
 			externalNameConfig(),
 			resourceConfigurator(),
+			untypedAttributeConfig(resourceBlocks(providerSchema)),
 		),
 		config.WithFeaturesPackage("internal/features"),
 		config.WithIncludeList(resourceList(cliReconciledExternalNameConfigs)),

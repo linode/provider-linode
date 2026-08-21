@@ -13,14 +13,38 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type AssignedEntityInitParameters struct {
+}
+
+type AssignedEntityObservation struct {
+
+	// The ID of the IPv4 address (the address itself).
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The label of the entity.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The type of IP address.
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The URL of the entity.
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+}
+
+type AssignedEntityParameters struct {
+}
+
 type IPAssignmentInitParameters struct {
 
+	// The reserved IPv4 address to assign to the Linode.
 	// The resulting IPv4 address.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// If true, the instance will be rebooted to update network interfaces. Defaults to false.
 	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
+	// The ID of the Linode to assign the reserved IP to. Changing this forces creation of a new resource.
 	// The ID of the Linode to allocate an IPv4 address for.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
@@ -33,9 +57,11 @@ type IPAssignmentInitParameters struct {
 	// +kubebuilder:validation:Optional
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
+	// Whether the IP address is public. Defaults to true. This must match the reserved IP's existing public/private status. Changing this forces creation of a new resource.
 	// Whether the IPv4 address is public or private.
 	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
 
+	// The reverse DNS assigned to this address. Configured via a separate API call after the IP is assigned.
 	// The reverse DNS assigned to this address.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/rdns/v1alpha1.RDNS
 	Rdns *string `json:"rdns,omitempty" tf:"rdns,omitempty"`
@@ -51,55 +77,80 @@ type IPAssignmentInitParameters struct {
 
 type IPAssignmentObservation struct {
 
+	// The reserved IPv4 address to assign to the Linode.
 	// The resulting IPv4 address.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// If true, the instance will be rebooted to update network interfaces. Defaults to false.
 	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
+	// The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.
+	// The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.
+	AssignedEntity []AssignedEntityObservation `json:"assignedEntity,omitempty" tf:"assigned_entity,omitempty"`
+
+	// The default gateway for this address.
 	// The default gateway for this address
 	Gateway *string `json:"gateway,omitempty" tf:"gateway,omitempty"`
 
+	// The ID of the IPv4 address (the address itself).
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The ID of the Linode to assign the reserved IP to. Changing this forces creation of a new resource.
 	// The ID of the Linode to allocate an IPv4 address for.
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
 	// The number of bits set in the subnet mask.
+	// The number of bits set in the subnet mask.
 	Prefix *float64 `json:"prefix,omitempty" tf:"prefix,omitempty"`
 
+	// Whether the IP address is public. Defaults to true. This must match the reserved IP's existing public/private status. Changing this forces creation of a new resource.
 	// Whether the IPv4 address is public or private.
 	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
 
+	// The reverse DNS assigned to this address. Configured via a separate API call after the IP is assigned.
 	// The reverse DNS assigned to this address.
 	Rdns *string `json:"rdns,omitempty" tf:"rdns,omitempty"`
 
 	// The region this IP resides in.
+	// The region this IP resides in.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The reservation status of the IP address.
 	// The reservation status of the IP address
 	Reserved *bool `json:"reserved,omitempty" tf:"reserved,omitempty"`
 
 	// The mask that separates host bits from network bits for this address.
+	// The mask that separates host bits from network bits for this address.
 	SubnetMask *string `json:"subnetMask,omitempty" tf:"subnet_mask,omitempty"`
 
+	// A set of tags associated with this IP address.
+	// A set of tags associated with this IP address.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// The type of IP address.
 	// The type of IP address.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.
 	// Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.
 	VPCNAT11 []VPCNAT11Observation `json:"vpcNat11,omitempty" tf:"vpc_nat_1_1,omitempty"`
 }
 
 type IPAssignmentParameters struct {
 
+	// The reserved IPv4 address to assign to the Linode.
 	// The resulting IPv4 address.
 	// +kubebuilder:validation:Optional
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// If true, the instance will be rebooted to update network interfaces. Defaults to false.
 	// If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
 	// +kubebuilder:validation:Optional
 	ApplyImmediately *bool `json:"applyImmediately,omitempty" tf:"apply_immediately,omitempty"`
 
+	// The ID of the Linode to assign the reserved IP to. Changing this forces creation of a new resource.
 	// The ID of the Linode to allocate an IPv4 address for.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
@@ -113,10 +164,12 @@ type IPAssignmentParameters struct {
 	// +kubebuilder:validation:Optional
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
+	// Whether the IP address is public. Defaults to true. This must match the reserved IP's existing public/private status. Changing this forces creation of a new resource.
 	// Whether the IPv4 address is public or private.
 	// +kubebuilder:validation:Optional
 	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
 
+	// The reverse DNS assigned to this address. Configured via a separate API call after the IP is assigned.
 	// The reverse DNS assigned to this address.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/rdns/v1alpha1.RDNS
 	// +kubebuilder:validation:Optional
@@ -135,10 +188,14 @@ type VPCNAT11InitParameters struct {
 }
 
 type VPCNAT11Observation struct {
+
+	// The reserved IPv4 address to assign to the Linode.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// The id of the VPC Subnet for this Interface.
 	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
+	// The id of the VPC configured for this Interface.
 	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
@@ -172,7 +229,7 @@ type IPAssignmentStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// IPAssignment is the Schema for the IPAssignments API. <no value>
+// IPAssignment is the Schema for the IPAssignments API. Manages assignment of a reserved IP address to a Linode instance.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -48,15 +48,16 @@ var terraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 var terraformSDKIncludeList = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: 1234567
 	"linode_database_access_controls": config.IdentifierFromProvider,
-	"linode_database_mysql":           config.IdentifierFromProvider,
-	"linode_database_postgresql":      config.IdentifierFromProvider,
-	"linode_domain":                   config.IdentifierFromProvider,
-	"linode_domain_record":            config.IdentifierFromProvider,
-	"linode_instance":                 config.IdentifierFromProvider,
-	"linode_instance_config":          config.IdentifierFromProvider,
-	"linode_lke_cluster":              config.IdentifierFromProvider,
-	"linode_object_storage_bucket":    config.IdentifierFromProvider,
-	"linode_user":                     config.IdentifierFromProvider,
+	// NOTE: linode_database_mysql and linode_database_postgresql were removed
+	// in terraform-provider-linode v4. Use linode_database_mysql_v2 and
+	// linode_database_postgresql_v2 instead.
+	"linode_domain":                config.IdentifierFromProvider,
+	"linode_domain_record":         config.IdentifierFromProvider,
+	"linode_instance":              config.IdentifierFromProvider,
+	"linode_instance_config":       config.IdentifierFromProvider,
+	"linode_lke_cluster":           config.IdentifierFromProvider,
+	"linode_object_storage_bucket": config.IdentifierFromProvider,
+	"linode_user":                  config.IdentifierFromProvider,
 }
 
 // cliReconciledExternalNameConfigs contains all external name configurations

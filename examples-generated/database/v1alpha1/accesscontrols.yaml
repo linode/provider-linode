@@ -10,13 +10,13 @@ spec:
   forProvider:
     allowList:
     - ${linode_instance.my-instance.ip_address}
-    databaseId: ${linode_database_mysql.my-db.id}
+    databaseId: ${linode_database_mysql_v2.my-db.id}
     databaseType: mysql
 
 ---
 
 apiVersion: database.linode.upbound.io/v1alpha1
-kind: MySQL
+kind: MySQLv2
 metadata:
   annotations:
     meta.upbound.io/example-id: database/v1alpha1/accesscontrols
@@ -25,7 +25,7 @@ metadata:
   name: my-db
 spec:
   forProvider:
-    engineId: mysql/8.0.30
+    engineId: mysql/8
     label: mydatabase
     region: us-southeast
     type: g6-nanode-1
@@ -42,7 +42,7 @@ metadata:
   name: my-instance
 spec:
   forProvider:
-    image: linode/alpine3.19
+    image: linode/arch
     label: myinstance
     region: us-southeast
     type: g6-nanode-1

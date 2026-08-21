@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: buckets.objectstorage.linode.upbound.io
 spec:
   group: objectstorage.linode.upbound.io
@@ -201,15 +201,9 @@ spec:
                           type: object
                       type: object
                     type: array
-                  cluster:
-                    description: |-
-                      (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
-                      For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
-                      The cluster of the Linode Object Storage Bucket.
-                    type: string
                   corsEnabled:
                     description: |-
-                      If true, the bucket will have CORS enabled for all origins.
+                      If true, the bucket will have CORS enabled for all origins. Not supported by E2/E3 endpoints.
                       If true, the bucket will be created with CORS enabled for all origins.
                     type: boolean
                   endpointType:
@@ -283,7 +277,7 @@ spec:
                     type: array
                   region:
                     description: |-
-                      The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+                      The region of the Linode Object Storage Bucket.
                       The region of the Linode Object Storage Bucket.
                     type: string
                   s3Endpoint:
@@ -460,15 +454,9 @@ spec:
                       - privateKeySecretRef
                       type: object
                     type: array
-                  cluster:
-                    description: |-
-                      (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
-                      For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
-                      The cluster of the Linode Object Storage Bucket.
-                    type: string
                   corsEnabled:
                     description: |-
-                      If true, the bucket will have CORS enabled for all origins.
+                      If true, the bucket will have CORS enabled for all origins. Not supported by E2/E3 endpoints.
                       If true, the bucket will be created with CORS enabled for all origins.
                     type: boolean
                   endpointType:
@@ -542,7 +530,7 @@ spec:
                     type: array
                   region:
                     description: |-
-                      The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+                      The region of the Linode Object Storage Bucket.
                       The region of the Linode Object Storage Bucket.
                     type: string
                   s3Endpoint:
@@ -747,6 +735,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
                 || (has(self.initProvider) && has(self.initProvider.label))'
+            - message: spec.forProvider.region is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
+                || (has(self.initProvider) && has(self.initProvider.region))'
           status:
             description: BucketStatus defines the observed state of Bucket.
             properties:
@@ -806,15 +798,9 @@ spec:
                           type: object
                       type: object
                     type: array
-                  cluster:
-                    description: |-
-                      (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
-                      For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
-                      The cluster of the Linode Object Storage Bucket.
-                    type: string
                   corsEnabled:
                     description: |-
-                      If true, the bucket will have CORS enabled for all origins.
+                      If true, the bucket will have CORS enabled for all origins. Not supported by E2/E3 endpoints.
                       If true, the bucket will be created with CORS enabled for all origins.
                     type: boolean
                   endpoint:
@@ -899,7 +885,7 @@ spec:
                     type: array
                   region:
                     description: |-
-                      The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+                      The region of the Linode Object Storage Bucket.
                       The region of the Linode Object Storage Bucket.
                     type: string
                   s3Endpoint:

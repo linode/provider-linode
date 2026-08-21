@@ -37,12 +37,7 @@ type BucketInitParameters struct {
 	// The cert used by this Object Storage Bucket.
 	Cert []CertInitParameters `json:"cert,omitempty" tf:"cert,omitempty"`
 
-	// (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
-	// For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
-	// The cluster of the Linode Object Storage Bucket.
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
-
-	// If true, the bucket will have CORS enabled for all origins.
+	// If true, the bucket will have CORS enabled for all origins. Not supported by E2/E3 endpoints.
 	// If true, the bucket will be created with CORS enabled for all origins.
 	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
 
@@ -57,7 +52,7 @@ type BucketInitParameters struct {
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleInitParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
-	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+	// The region of the Linode Object Storage Bucket.
 	// The region of the Linode Object Storage Bucket.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
@@ -87,12 +82,7 @@ type BucketObservation struct {
 	// The cert used by this Object Storage Bucket.
 	Cert []CertParameters `json:"cert,omitempty" tf:"cert,omitempty"`
 
-	// (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
-	// For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
-	// The cluster of the Linode Object Storage Bucket.
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
-
-	// If true, the bucket will have CORS enabled for all origins.
+	// If true, the bucket will have CORS enabled for all origins. Not supported by E2/E3 endpoints.
 	// If true, the bucket will be created with CORS enabled for all origins.
 	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
 
@@ -116,7 +106,7 @@ type BucketObservation struct {
 	// Lifecycle rules to be applied to the bucket.
 	LifecycleRule []LifecycleRuleObservation `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
-	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+	// The region of the Linode Object Storage Bucket.
 	// The region of the Linode Object Storage Bucket.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
@@ -156,13 +146,7 @@ type BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	Cert []CertParameters `json:"cert,omitempty" tf:"cert,omitempty"`
 
-	// (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
-	// For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
-	// The cluster of the Linode Object Storage Bucket.
-	// +kubebuilder:validation:Optional
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
-
-	// If true, the bucket will have CORS enabled for all origins.
+	// If true, the bucket will have CORS enabled for all origins. Not supported by E2/E3 endpoints.
 	// If true, the bucket will be created with CORS enabled for all origins.
 	// +kubebuilder:validation:Optional
 	CorsEnabled *bool `json:"corsEnabled,omitempty" tf:"cors_enabled,omitempty"`
@@ -181,7 +165,7 @@ type BucketParameters struct {
 	// +kubebuilder:validation:Optional
 	LifecycleRule []LifecycleRuleParameters `json:"lifecycleRule,omitempty" tf:"lifecycle_rule,omitempty"`
 
-	// The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.
+	// The region of the Linode Object Storage Bucket.
 	// The region of the Linode Object Storage Bucket.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -417,6 +401,7 @@ type Bucket struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	Spec   BucketSpec   `json:"spec"`
 	Status BucketStatus `json:"status,omitempty"`
 }

@@ -64,9 +64,21 @@ type NodePoolInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The disk encryption policy for nodes in this pool.
+	// The disk encryption policy for nodes in this pool.
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
+	// The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+	// The ID of the Firewall to attach to nodes in this node pool.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
 	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
 	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
 	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// A label for the Node Pool. If not provided, it defaults to empty string.
+	// The label of the Node Pool.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
@@ -120,8 +132,12 @@ type NodePoolObservation struct {
 	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// The disk encryption policy for nodes in this pool.
-	// The disk encryption policy for nodes in this pool. NOTE: Disk encryption may not currently be available to all users.
+	// The disk encryption policy for nodes in this pool.
 	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
+	// The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+	// The ID of the Firewall to attach to nodes in this node pool.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
 	// The ID of the Node Pool within LKE Cluster.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -129,6 +145,10 @@ type NodePoolObservation struct {
 	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
 	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
 	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// A label for the Node Pool. If not provided, it defaults to empty string.
+	// The label of the Node Pool.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
@@ -178,10 +198,25 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The disk encryption policy for nodes in this pool.
+	// The disk encryption policy for nodes in this pool.
+	// +kubebuilder:validation:Optional
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
+	// The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+	// The ID of the Firewall to attach to nodes in this node pool.
+	// +kubebuilder:validation:Optional
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
 	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
 	// The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
 	// +kubebuilder:validation:Optional
 	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// A label for the Node Pool. If not provided, it defaults to empty string.
+	// The label of the Node Pool.
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.

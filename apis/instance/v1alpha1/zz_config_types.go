@@ -15,12 +15,126 @@ import (
 
 type ConfigDevicesInitParameters struct {
 
-	// The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+	// Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type's RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_id or volume_id.
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sda []DevicesSdaInitParameters `json:"sda,omitempty" tf:"sda,omitempty"`
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaa []DevicesSdaaInitParameters `json:"sdaa,omitempty" tf:"sdaa,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdab []DevicesSdabInitParameters `json:"sdab,omitempty" tf:"sdab,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdac []DevicesSdacInitParameters `json:"sdac,omitempty" tf:"sdac,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdad []DevicesSdadInitParameters `json:"sdad,omitempty" tf:"sdad,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdae []DevicesSdaeInitParameters `json:"sdae,omitempty" tf:"sdae,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaf []DevicesSdafInitParameters `json:"sdaf,omitempty" tf:"sdaf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdag []DevicesSdagInitParameters `json:"sdag,omitempty" tf:"sdag,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdah []DevicesSdahInitParameters `json:"sdah,omitempty" tf:"sdah,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdai []DevicesSdaiInitParameters `json:"sdai,omitempty" tf:"sdai,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaj []DevicesSdajInitParameters `json:"sdaj,omitempty" tf:"sdaj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdak []DevicesSdakInitParameters `json:"sdak,omitempty" tf:"sdak,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdal []DevicesSdalInitParameters `json:"sdal,omitempty" tf:"sdal,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdam []DevicesSdamInitParameters `json:"sdam,omitempty" tf:"sdam,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdan []DevicesSdanInitParameters `json:"sdan,omitempty" tf:"sdan,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdao []DevicesSdaoInitParameters `json:"sdao,omitempty" tf:"sdao,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdap []DevicesSdapInitParameters `json:"sdap,omitempty" tf:"sdap,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaq []DevicesSdaqInitParameters `json:"sdaq,omitempty" tf:"sdaq,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdar []DevicesSdarInitParameters `json:"sdar,omitempty" tf:"sdar,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdas []DevicesSdasInitParameters `json:"sdas,omitempty" tf:"sdas,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdat []DevicesSdatInitParameters `json:"sdat,omitempty" tf:"sdat,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdau []DevicesSdauInitParameters `json:"sdau,omitempty" tf:"sdau,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdav []DevicesSdavInitParameters `json:"sdav,omitempty" tf:"sdav,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaw []DevicesSdawInitParameters `json:"sdaw,omitempty" tf:"sdaw,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdax []DevicesSdaxInitParameters `json:"sdax,omitempty" tf:"sdax,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sday []DevicesSdayInitParameters `json:"sday,omitempty" tf:"sday,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaz []DevicesSdazInitParameters `json:"sdaz,omitempty" tf:"sdaz,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sdb []DevicesSdbInitParameters `json:"sdb,omitempty" tf:"sdb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdba []DevicesSdbaInitParameters `json:"sdba,omitempty" tf:"sdba,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbb []DevicesSdbbInitParameters `json:"sdbb,omitempty" tf:"sdbb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbc []DevicesSdbcInitParameters `json:"sdbc,omitempty" tf:"sdbc,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbd []DevicesSdbdInitParameters `json:"sdbd,omitempty" tf:"sdbd,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbe []DevicesSdbeInitParameters `json:"sdbe,omitempty" tf:"sdbe,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbf []DevicesSdbfInitParameters `json:"sdbf,omitempty" tf:"sdbf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbg []DevicesSdbgInitParameters `json:"sdbg,omitempty" tf:"sdbg,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbh []DevicesSdbhInitParameters `json:"sdbh,omitempty" tf:"sdbh,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbi []DevicesSdbiInitParameters `json:"sdbi,omitempty" tf:"sdbi,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbj []DevicesSdbjInitParameters `json:"sdbj,omitempty" tf:"sdbj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbk []DevicesSdbkInitParameters `json:"sdbk,omitempty" tf:"sdbk,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbl []DevicesSdblInitParameters `json:"sdbl,omitempty" tf:"sdbl,omitempty"`
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sdc []DevicesSdcInitParameters `json:"sdc,omitempty" tf:"sdc,omitempty"`
@@ -39,16 +153,184 @@ type ConfigDevicesInitParameters struct {
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sdh []DevicesSdhInitParameters `json:"sdh,omitempty" tf:"sdh,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdi []DevicesSdiInitParameters `json:"sdi,omitempty" tf:"sdi,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdj []DevicesSdjInitParameters `json:"sdj,omitempty" tf:"sdj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdk []DevicesSdkInitParameters `json:"sdk,omitempty" tf:"sdk,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdl []DevicesSdlInitParameters `json:"sdl,omitempty" tf:"sdl,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdm []DevicesSdmInitParameters `json:"sdm,omitempty" tf:"sdm,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdn []DevicesSdnInitParameters `json:"sdn,omitempty" tf:"sdn,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdo []DevicesSdoInitParameters `json:"sdo,omitempty" tf:"sdo,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdp []DevicesSdpInitParameters `json:"sdp,omitempty" tf:"sdp,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdq []DevicesSdqInitParameters `json:"sdq,omitempty" tf:"sdq,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdr []DevicesSdrInitParameters `json:"sdr,omitempty" tf:"sdr,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sds []DevicesSdsInitParameters `json:"sds,omitempty" tf:"sds,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdt []DevicesSdtInitParameters `json:"sdt,omitempty" tf:"sdt,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdu []DevicesSduInitParameters `json:"sdu,omitempty" tf:"sdu,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdv []DevicesSdvInitParameters `json:"sdv,omitempty" tf:"sdv,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdw []DevicesSdwInitParameters `json:"sdw,omitempty" tf:"sdw,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdx []DevicesSdxInitParameters `json:"sdx,omitempty" tf:"sdx,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdy []DevicesSdyInitParameters `json:"sdy,omitempty" tf:"sdy,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdz []DevicesSdzInitParameters `json:"sdz,omitempty" tf:"sdz,omitempty"`
 }
 
 type ConfigDevicesObservation struct {
 
-	// The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+	// Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type's RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_id or volume_id.
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sda []DevicesSdaObservation `json:"sda,omitempty" tf:"sda,omitempty"`
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaa []DevicesSdaaObservation `json:"sdaa,omitempty" tf:"sdaa,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdab []DevicesSdabObservation `json:"sdab,omitempty" tf:"sdab,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdac []DevicesSdacObservation `json:"sdac,omitempty" tf:"sdac,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdad []DevicesSdadObservation `json:"sdad,omitempty" tf:"sdad,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdae []DevicesSdaeObservation `json:"sdae,omitempty" tf:"sdae,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaf []DevicesSdafObservation `json:"sdaf,omitempty" tf:"sdaf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdag []DevicesSdagObservation `json:"sdag,omitempty" tf:"sdag,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdah []DevicesSdahObservation `json:"sdah,omitempty" tf:"sdah,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdai []DevicesSdaiObservation `json:"sdai,omitempty" tf:"sdai,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaj []DevicesSdajObservation `json:"sdaj,omitempty" tf:"sdaj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdak []DevicesSdakObservation `json:"sdak,omitempty" tf:"sdak,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdal []DevicesSdalObservation `json:"sdal,omitempty" tf:"sdal,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdam []DevicesSdamObservation `json:"sdam,omitempty" tf:"sdam,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdan []DevicesSdanObservation `json:"sdan,omitempty" tf:"sdan,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdao []DevicesSdaoObservation `json:"sdao,omitempty" tf:"sdao,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdap []DevicesSdapObservation `json:"sdap,omitempty" tf:"sdap,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaq []DevicesSdaqObservation `json:"sdaq,omitempty" tf:"sdaq,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdar []DevicesSdarObservation `json:"sdar,omitempty" tf:"sdar,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdas []DevicesSdasObservation `json:"sdas,omitempty" tf:"sdas,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdat []DevicesSdatObservation `json:"sdat,omitempty" tf:"sdat,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdau []DevicesSdauObservation `json:"sdau,omitempty" tf:"sdau,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdav []DevicesSdavObservation `json:"sdav,omitempty" tf:"sdav,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaw []DevicesSdawObservation `json:"sdaw,omitempty" tf:"sdaw,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdax []DevicesSdaxObservation `json:"sdax,omitempty" tf:"sdax,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sday []DevicesSdayObservation `json:"sday,omitempty" tf:"sday,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdaz []DevicesSdazObservation `json:"sdaz,omitempty" tf:"sdaz,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sdb []DevicesSdbObservation `json:"sdb,omitempty" tf:"sdb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdba []DevicesSdbaObservation `json:"sdba,omitempty" tf:"sdba,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbb []DevicesSdbbObservation `json:"sdbb,omitempty" tf:"sdbb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbc []DevicesSdbcObservation `json:"sdbc,omitempty" tf:"sdbc,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbd []DevicesSdbdObservation `json:"sdbd,omitempty" tf:"sdbd,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbe []DevicesSdbeObservation `json:"sdbe,omitempty" tf:"sdbe,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbf []DevicesSdbfObservation `json:"sdbf,omitempty" tf:"sdbf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbg []DevicesSdbgObservation `json:"sdbg,omitempty" tf:"sdbg,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbh []DevicesSdbhObservation `json:"sdbh,omitempty" tf:"sdbh,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbi []DevicesSdbiObservation `json:"sdbi,omitempty" tf:"sdbi,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbj []DevicesSdbjObservation `json:"sdbj,omitempty" tf:"sdbj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbk []DevicesSdbkObservation `json:"sdbk,omitempty" tf:"sdbk,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdbl []DevicesSdblObservation `json:"sdbl,omitempty" tf:"sdbl,omitempty"`
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sdc []DevicesSdcObservation `json:"sdc,omitempty" tf:"sdc,omitempty"`
@@ -67,18 +349,224 @@ type ConfigDevicesObservation struct {
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	Sdh []DevicesSdhObservation `json:"sdh,omitempty" tf:"sdh,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdi []DevicesSdiObservation `json:"sdi,omitempty" tf:"sdi,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdj []DevicesSdjObservation `json:"sdj,omitempty" tf:"sdj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdk []DevicesSdkObservation `json:"sdk,omitempty" tf:"sdk,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdl []DevicesSdlObservation `json:"sdl,omitempty" tf:"sdl,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdm []DevicesSdmObservation `json:"sdm,omitempty" tf:"sdm,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdn []DevicesSdnObservation `json:"sdn,omitempty" tf:"sdn,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdo []DevicesSdoObservation `json:"sdo,omitempty" tf:"sdo,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdp []DevicesSdpObservation `json:"sdp,omitempty" tf:"sdp,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdq []DevicesSdqObservation `json:"sdq,omitempty" tf:"sdq,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdr []DevicesSdrObservation `json:"sdr,omitempty" tf:"sdr,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sds []DevicesSdsObservation `json:"sds,omitempty" tf:"sds,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdt []DevicesSdtObservation `json:"sdt,omitempty" tf:"sdt,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdu []DevicesSduObservation `json:"sdu,omitempty" tf:"sdu,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdv []DevicesSdvObservation `json:"sdv,omitempty" tf:"sdv,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdw []DevicesSdwObservation `json:"sdw,omitempty" tf:"sdw,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdx []DevicesSdxObservation `json:"sdx,omitempty" tf:"sdx,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdy []DevicesSdyObservation `json:"sdy,omitempty" tf:"sdy,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	Sdz []DevicesSdzObservation `json:"sdz,omitempty" tf:"sdz,omitempty"`
 }
 
 type ConfigDevicesParameters struct {
 
-	// The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+	// Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type's RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_id or volume_id.
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	// +kubebuilder:validation:Optional
 	Sda []DevicesSdaParameters `json:"sda,omitempty" tf:"sda,omitempty"`
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	// +kubebuilder:validation:Optional
+	Sdaa []DevicesSdaaParameters `json:"sdaa,omitempty" tf:"sdaa,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdab []DevicesSdabParameters `json:"sdab,omitempty" tf:"sdab,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdac []DevicesSdacParameters `json:"sdac,omitempty" tf:"sdac,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdad []DevicesSdadParameters `json:"sdad,omitempty" tf:"sdad,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdae []DevicesSdaeParameters `json:"sdae,omitempty" tf:"sdae,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdaf []DevicesSdafParameters `json:"sdaf,omitempty" tf:"sdaf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdag []DevicesSdagParameters `json:"sdag,omitempty" tf:"sdag,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdah []DevicesSdahParameters `json:"sdah,omitempty" tf:"sdah,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdai []DevicesSdaiParameters `json:"sdai,omitempty" tf:"sdai,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdaj []DevicesSdajParameters `json:"sdaj,omitempty" tf:"sdaj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdak []DevicesSdakParameters `json:"sdak,omitempty" tf:"sdak,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdal []DevicesSdalParameters `json:"sdal,omitempty" tf:"sdal,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdam []DevicesSdamParameters `json:"sdam,omitempty" tf:"sdam,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdan []DevicesSdanParameters `json:"sdan,omitempty" tf:"sdan,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdao []DevicesSdaoParameters `json:"sdao,omitempty" tf:"sdao,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdap []DevicesSdapParameters `json:"sdap,omitempty" tf:"sdap,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdaq []DevicesSdaqParameters `json:"sdaq,omitempty" tf:"sdaq,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdar []DevicesSdarParameters `json:"sdar,omitempty" tf:"sdar,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdas []DevicesSdasParameters `json:"sdas,omitempty" tf:"sdas,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdat []DevicesSdatParameters `json:"sdat,omitempty" tf:"sdat,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdau []DevicesSdauParameters `json:"sdau,omitempty" tf:"sdau,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdav []DevicesSdavParameters `json:"sdav,omitempty" tf:"sdav,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdaw []DevicesSdawParameters `json:"sdaw,omitempty" tf:"sdaw,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdax []DevicesSdaxParameters `json:"sdax,omitempty" tf:"sdax,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sday []DevicesSdayParameters `json:"sday,omitempty" tf:"sday,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdaz []DevicesSdazParameters `json:"sdaz,omitempty" tf:"sdaz,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
 	Sdb []DevicesSdbParameters `json:"sdb,omitempty" tf:"sdb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdba []DevicesSdbaParameters `json:"sdba,omitempty" tf:"sdba,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbb []DevicesSdbbParameters `json:"sdbb,omitempty" tf:"sdbb,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbc []DevicesSdbcParameters `json:"sdbc,omitempty" tf:"sdbc,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbd []DevicesSdbdParameters `json:"sdbd,omitempty" tf:"sdbd,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbe []DevicesSdbeParameters `json:"sdbe,omitempty" tf:"sdbe,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbf []DevicesSdbfParameters `json:"sdbf,omitempty" tf:"sdbf,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbg []DevicesSdbgParameters `json:"sdbg,omitempty" tf:"sdbg,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbh []DevicesSdbhParameters `json:"sdbh,omitempty" tf:"sdbh,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbi []DevicesSdbiParameters `json:"sdbi,omitempty" tf:"sdbi,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbj []DevicesSdbjParameters `json:"sdbj,omitempty" tf:"sdbj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbk []DevicesSdbkParameters `json:"sdbk,omitempty" tf:"sdbk,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdbl []DevicesSdblParameters `json:"sdbl,omitempty" tf:"sdbl,omitempty"`
 
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	// +kubebuilder:validation:Optional
@@ -103,6 +591,78 @@ type ConfigDevicesParameters struct {
 	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
 	// +kubebuilder:validation:Optional
 	Sdh []DevicesSdhParameters `json:"sdh,omitempty" tf:"sdh,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdi []DevicesSdiParameters `json:"sdi,omitempty" tf:"sdi,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdj []DevicesSdjParameters `json:"sdj,omitempty" tf:"sdj,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdk []DevicesSdkParameters `json:"sdk,omitempty" tf:"sdk,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdl []DevicesSdlParameters `json:"sdl,omitempty" tf:"sdl,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdm []DevicesSdmParameters `json:"sdm,omitempty" tf:"sdm,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdn []DevicesSdnParameters `json:"sdn,omitempty" tf:"sdn,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdo []DevicesSdoParameters `json:"sdo,omitempty" tf:"sdo,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdp []DevicesSdpParameters `json:"sdp,omitempty" tf:"sdp,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdq []DevicesSdqParameters `json:"sdq,omitempty" tf:"sdq,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdr []DevicesSdrParameters `json:"sdr,omitempty" tf:"sdr,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sds []DevicesSdsParameters `json:"sds,omitempty" tf:"sds,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdt []DevicesSdtParameters `json:"sdt,omitempty" tf:"sdt,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdu []DevicesSduParameters `json:"sdu,omitempty" tf:"sdu,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdv []DevicesSdvParameters `json:"sdv,omitempty" tf:"sdv,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdw []DevicesSdwParameters `json:"sdw,omitempty" tf:"sdw,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdx []DevicesSdxParameters `json:"sdx,omitempty" tf:"sdx,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdy []DevicesSdyParameters `json:"sdy,omitempty" tf:"sdy,omitempty"`
+
+	// Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
+	// +kubebuilder:validation:Optional
+	Sdz []DevicesSdzParameters `json:"sdz,omitempty" tf:"sdz,omitempty"`
 }
 
 type ConfigHelpersInitParameters struct {
@@ -274,6 +834,51 @@ type ConfigInterfaceIPv4Parameters struct {
 	VPC *string `json:"vpc,omitempty" tf:"vpc,omitempty"`
 }
 
+type ConfigInterfaceIPv6InitParameters struct {
+
+	// If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)
+	// If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted.
+	IsPublic *bool `json:"isPublic,omitempty" tf:"is_public,omitempty"`
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// An array of SLAAC prefixes to use for this interface.
+	Range []InterfaceIPv6RangeInitParameters `json:"range,omitempty" tf:"range,omitempty"`
+
+	// An array of SLAAC prefixes to use for this interface.
+	Slaac []InterfaceIPv6SlaacInitParameters `json:"slaac,omitempty" tf:"slaac,omitempty"`
+}
+
+type ConfigInterfaceIPv6Observation struct {
+
+	// If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)
+	// If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted.
+	IsPublic *bool `json:"isPublic,omitempty" tf:"is_public,omitempty"`
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// An array of SLAAC prefixes to use for this interface.
+	Range []InterfaceIPv6RangeObservation `json:"range,omitempty" tf:"range,omitempty"`
+
+	// An array of SLAAC prefixes to use for this interface.
+	Slaac []InterfaceIPv6SlaacObservation `json:"slaac,omitempty" tf:"slaac,omitempty"`
+}
+
+type ConfigInterfaceIPv6Parameters struct {
+
+	// If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)
+	// If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted.
+	// +kubebuilder:validation:Optional
+	IsPublic *bool `json:"isPublic,omitempty" tf:"is_public,omitempty"`
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// An array of SLAAC prefixes to use for this interface.
+	// +kubebuilder:validation:Optional
+	Range []InterfaceIPv6RangeParameters `json:"range,omitempty" tf:"range,omitempty"`
+
+	// An array of SLAAC prefixes to use for this interface.
+	// +kubebuilder:validation:Optional
+	Slaac []InterfaceIPv6SlaacParameters `json:"slaac,omitempty" tf:"slaac,omitempty"`
+}
+
 type ConfigInterfaceInitParameters struct {
 
 	// IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.
@@ -282,6 +887,9 @@ type ConfigInterfaceInitParameters struct {
 
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	IPv4 []ConfigInterfaceIPv4InitParameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// The IPv6 configuration of the VPC interface. This attribute is only allowed for VPC interfaces.
+	IPv6 []ConfigInterfaceIPv6InitParameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 
 	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
 	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
@@ -319,6 +927,9 @@ type ConfigInterfaceObservation struct {
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	IPv4 []ConfigInterfaceIPv4Observation `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
+	// The IPv6 configuration of the VPC interface. This attribute is only allowed for VPC interfaces.
+	IPv6 []ConfigInterfaceIPv6Observation `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
 	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
 	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
 	IpamAddress *string `json:"ipamAddress,omitempty" tf:"ipam_address,omitempty"`
@@ -354,6 +965,10 @@ type ConfigInterfaceParameters struct {
 	// The IPv4 configuration of the VPC interface.This attribute is only allowed for VPC interfaces.
 	// +kubebuilder:validation:Optional
 	IPv4 []ConfigInterfaceIPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// The IPv6 configuration of the VPC interface. This attribute is only allowed for VPC interfaces.
+	// +kubebuilder:validation:Optional
+	IPv6 []ConfigInterfaceIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 
 	// This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.
 	// This Network Interface's private IP address in Classless Inter-Domain Routing (CIDR) notation.This attribute is only allowed for VLAN interfaces.
@@ -509,7 +1124,7 @@ type ConfigParameters_2 struct {
 
 type DeviceInitParameters struct {
 
-	// The Disk ID to map to this disk slot
+	// The device slot identifier (for example, sda, sdb) to map a disk or volume into
 	DeviceName *string `json:"deviceName,omitempty" tf:"device_name,omitempty"`
 
 	// The Disk ID to map to this device slot
@@ -523,7 +1138,7 @@ type DeviceInitParameters struct {
 
 type DeviceObservation struct {
 
-	// The Disk ID to map to this disk slot
+	// The device slot identifier (for example, sda, sdb) to map a disk or volume into
 	DeviceName *string `json:"deviceName,omitempty" tf:"device_name,omitempty"`
 
 	// The Disk ID to map to this device slot
@@ -537,7 +1152,7 @@ type DeviceObservation struct {
 
 type DeviceParameters struct {
 
-	// The Disk ID to map to this disk slot
+	// The device slot identifier (for example, sda, sdb) to map a disk or volume into
 	// +kubebuilder:validation:Optional
 	DeviceName *string `json:"deviceName" tf:"device_name,omitempty"`
 
@@ -605,6 +1220,916 @@ type DevicesSdaParameters struct {
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
+type DevicesSdaaInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaaObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaaParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdabInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdabObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdabParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdacInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdacObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdacParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdadInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdadObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdadParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaeInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaeObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaeParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdafInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdafObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdafParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdagInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdagObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdagParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdahInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdahObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdahParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaiInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaiObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaiParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdajInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdajObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdajParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdakInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdakObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdakParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdalInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdalObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdalParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdamInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdamObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdamParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdanInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdanObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdanParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaoInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaoObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaoParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdapInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdapObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdapParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaqInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaqObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaqParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdarInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdarObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdarParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdasInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdasObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdasParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdatInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdatObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdatParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdauInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdauObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdauParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdavInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdavObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdavParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdawInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdawObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdawParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaxInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaxObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdaxParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdayInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdayObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdayParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdazInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdazObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdazParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
 type DevicesSdbInitParameters struct {
 
 	// The Disk ID to map to this device slot
@@ -651,6 +2176,426 @@ type DevicesSdbParameters struct {
 	// Selector for a Disk to populate diskId.
 	// +kubebuilder:validation:Optional
 	DiskIDSelector *v1.Selector `json:"diskIdSelector,omitempty" tf:"-"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbaInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbaObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbaParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbbInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbbObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbbParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbcInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbcObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbcParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbdInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbdObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbdParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbeInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbeObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbeParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbfInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbfObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbfParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbgInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbgObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbgParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbhInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbhObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbhParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbiInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbiObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbiParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbjInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbjObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbjParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbkInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbkObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdbkParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdblInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdblObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdblParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
 
 	// The Volume ID to map to this device slot.
 	// The Block Storage volume ID to map to this disk slot
@@ -974,6 +2919,690 @@ type DevicesSdhParameters struct {
 	// The Block Storage volume ID to map to this disk slot
 	// +kubebuilder:validation:Optional
 	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdiInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdiObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdiParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdjInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdjObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdjParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdkInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdkObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdkParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdlInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdlObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdlParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdmInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdmObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdmParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdnInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdnObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdnParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdoInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdoObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdoParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdpInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdpObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdpParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdqInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdqObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdqParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdrInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdrObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdrParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdsInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdsObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdsParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdtInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdtObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdtParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSduInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSduObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSduParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdvInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdvObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdvParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdwInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdwObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdwParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdxInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdxObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdxParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdyInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdyObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdyParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdzInitParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdzObservation struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type DevicesSdzParameters struct {
+
+	// The Disk ID to map to this device slot
+	// The Disk ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	DiskID *float64 `json:"diskId,omitempty" tf:"disk_id,omitempty"`
+
+	// The Volume ID to map to this device slot.
+	// The Block Storage volume ID to map to this disk slot
+	// +kubebuilder:validation:Optional
+	VolumeID *float64 `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+}
+
+type InterfaceIPv6RangeInitParameters struct {
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// A prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type InterfaceIPv6RangeObservation struct {
+
+	// The value of `range` computed by the API. This is necessary when needing to access the range implicitly allocated using `auto`.
+	AssignedRange *string `json:"assignedRange,omitempty" tf:"assigned_range,omitempty"`
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// A prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type InterfaceIPv6RangeParameters struct {
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// A prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+	// +kubebuilder:validation:Optional
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type InterfaceIPv6SlaacInitParameters struct {
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// A SLAAC prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type InterfaceIPv6SlaacObservation struct {
+
+	// (Read-Only) The SLAAC address chosen for this interface.
+	// The SLAAC address chosen for this interface.
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
+
+	// The value of `range` computed by the API. This is necessary when needing to access the range implicitly allocated using `auto`.
+	AssignedRange *string `json:"assignedRange,omitempty" tf:"assigned_range,omitempty"`
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// A SLAAC prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type InterfaceIPv6SlaacParameters struct {
+
+	// A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+	// A SLAAC prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+	// +kubebuilder:validation:Optional
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
 }
 
 // ConfigSpec defines the desired state of Config

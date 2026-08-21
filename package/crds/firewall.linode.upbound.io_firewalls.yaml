@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: firewalls.firewall.linode.upbound.io
 spec:
   group: firewall.linode.upbound.io
@@ -118,8 +118,8 @@ spec:
                           type: string
                         protocol:
                           description: |-
-                            The network protocol this rule controls. (TCP, UDP, ICMP)
-                            The network protocol this rule controls.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
                           type: string
                       type: object
                     type: array
@@ -128,6 +128,14 @@ spec:
                       The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (ACCEPT, DROP)
                       The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property for an individual Firewall Rule.
                     type: string
+                  interfaces:
+                    description: |-
+                      A list of IDs of Linode Interfaces this Firewall should govern network traffic for.
+                      The IDs of Linode interfaces to apply this firewall to.
+                    items:
+                      type: number
+                    type: array
+                    x-kubernetes-list-type: set
                   label:
                     description: |-
                       This Firewall's unique label.
@@ -267,8 +275,8 @@ spec:
                           type: string
                         protocol:
                           description: |-
-                            The network protocol this rule controls. (TCP, UDP, ICMP)
-                            The network protocol this rule controls.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
                           type: string
                       type: object
                     type: array
@@ -344,8 +352,8 @@ spec:
                           type: string
                         protocol:
                           description: |-
-                            The network protocol this rule controls. (TCP, UDP, ICMP)
-                            The network protocol this rule controls.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
                           type: string
                       type: object
                     type: array
@@ -354,6 +362,14 @@ spec:
                       The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (ACCEPT, DROP)
                       The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property for an individual Firewall Rule.
                     type: string
+                  interfaces:
+                    description: |-
+                      A list of IDs of Linode Interfaces this Firewall should govern network traffic for.
+                      The IDs of Linode interfaces to apply this firewall to.
+                    items:
+                      type: number
+                    type: array
+                    x-kubernetes-list-type: set
                   label:
                     description: |-
                       This Firewall's unique label.
@@ -493,8 +509,8 @@ spec:
                           type: string
                         protocol:
                           description: |-
-                            The network protocol this rule controls. (TCP, UDP, ICMP)
-                            The network protocol this rule controls.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
                           type: string
                       type: object
                     type: array
@@ -728,6 +744,11 @@ spec:
                       If true, the Firewall's rules are not enforced (defaults to false).
                       If true, the Firewall is inactive.
                     type: boolean
+                  fingerprint:
+                    description: |-
+                      The fingerprint of the current Firewall rules.
+                      The fingerprint of the current Firewall rules.
+                    type: string
                   id:
                     description: The ID of the Firewall.
                     type: string
@@ -771,8 +792,8 @@ spec:
                           type: string
                         protocol:
                           description: |-
-                            The network protocol this rule controls. (TCP, UDP, ICMP)
-                            The network protocol this rule controls.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
                           type: string
                       type: object
                     type: array
@@ -781,6 +802,14 @@ spec:
                       The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (ACCEPT, DROP)
                       The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property for an individual Firewall Rule.
                     type: string
+                  interfaces:
+                    description: |-
+                      A list of IDs of Linode Interfaces this Firewall should govern network traffic for.
+                      The IDs of Linode interfaces to apply this firewall to.
+                    items:
+                      type: number
+                    type: array
+                    x-kubernetes-list-type: set
                   label:
                     description: |-
                       This Firewall's unique label.
@@ -842,8 +871,8 @@ spec:
                           type: string
                         protocol:
                           description: |-
-                            The network protocol this rule controls. (TCP, UDP, ICMP)
-                            The network protocol this rule controls.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+                            The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
                           type: string
                       type: object
                     type: array
@@ -868,6 +897,11 @@ spec:
                   updated:
                     description: When this firewall was last updated
                     type: string
+                  version:
+                    description: |-
+                      The current version of the Firewall rules.
+                      The current version of the Firewall rules.
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

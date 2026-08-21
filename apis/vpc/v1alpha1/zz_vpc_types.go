@@ -13,11 +13,78 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type IPv4InitParameters struct {
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	// The IPv4 range assigned to this VPC.
+	Range *string `json:"range,omitempty" tf:"range"`
+}
+
+type IPv4Observation struct {
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	// The IPv4 range assigned to this VPC.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type IPv4Parameters struct {
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	// The IPv4 range assigned to this VPC.
+	// +kubebuilder:validation:Optional
+	Range *string `json:"range" tf:"range"`
+}
+
+type IPv6InitParameters struct {
+
+	// Indicates the labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+	// The labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+	AllocationClass *string `json:"allocationClass,omitempty" tf:"allocation_class"`
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	// The IPv6 range assigned to this VPC.
+	Range *string `json:"range,omitempty" tf:"range"`
+}
+
+type IPv6Observation struct {
+
+	// (Read-Only) The value of range computed by the API. This is necessary when needing to access the range for an implicit allocation.
+	// The IPv6 range assigned to this VPC.
+	AllocatedRange *string `json:"allocatedRange,omitempty" tf:"allocated_range,omitempty"`
+
+	// Indicates the labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+	// The labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+	AllocationClass *string `json:"allocationClass,omitempty" tf:"allocation_class,omitempty"`
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	// The IPv6 range assigned to this VPC.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type IPv6Parameters struct {
+
+	// Indicates the labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+	// The labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+	// +kubebuilder:validation:Optional
+	AllocationClass *string `json:"allocationClass,omitempty" tf:"allocation_class"`
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	// The IPv6 range assigned to this VPC.
+	// +kubebuilder:validation:Optional
+	Range *string `json:"range,omitempty" tf:"range"`
+}
+
 type VPCInitParameters struct {
 
 	// The user-defined description of this VPC.
 	// The user-defined description of this VPC.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The IPv4 configuration of this VPC.
+	IPv4 []IPv4InitParameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// The IPv6 configuration of this VPC.
+	IPv6 []IPv6InitParameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 
 	// The label of the VPC. This field can only contain ASCII letters, digits and dashes.
 	// The label of the VPC. Only contains ascii letters, digits and dashes
@@ -26,6 +93,10 @@ type VPCInitParameters struct {
 	// The region of the VPC.
 	// The region of the VPC.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The type of the VPC. Can be either regular or rdma. Defaults to regular. The rdma type creates an RDMA VPC and may not be available to all users. Changing this value forces the creation of a new VPC.
+	// The type of the VPC. Can be either 'regular' or 'rdma'. Defaults to 'regular'. The 'rdma' type may not be available to all users.
+	VPCType *string `json:"vpcType,omitempty" tf:"vpc_type,omitempty"`
 }
 
 type VPCObservation struct {
@@ -41,6 +112,12 @@ type VPCObservation struct {
 	// The ID of the VPC.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The IPv4 configuration of this VPC.
+	IPv4 []IPv4Observation `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// The IPv6 configuration of this VPC.
+	IPv6 []IPv6Observation `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
 	// The label of the VPC. This field can only contain ASCII letters, digits and dashes.
 	// The label of the VPC. Only contains ascii letters, digits and dashes
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
@@ -52,6 +129,10 @@ type VPCObservation struct {
 	// The date and time when the VPC was last updated.
 	// The date and time when the VPC was updated.
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
+
+	// The type of the VPC. Can be either regular or rdma. Defaults to regular. The rdma type creates an RDMA VPC and may not be available to all users. Changing this value forces the creation of a new VPC.
+	// The type of the VPC. Can be either 'regular' or 'rdma'. Defaults to 'regular'. The 'rdma' type may not be available to all users.
+	VPCType *string `json:"vpcType,omitempty" tf:"vpc_type,omitempty"`
 }
 
 type VPCParameters struct {
@@ -60,6 +141,14 @@ type VPCParameters struct {
 	// The user-defined description of this VPC.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// The IPv4 configuration of this VPC.
+	// +kubebuilder:validation:Optional
+	IPv4 []IPv4Parameters `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
+
+	// The IPv6 configuration of this VPC.
+	// +kubebuilder:validation:Optional
+	IPv6 []IPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 
 	// The label of the VPC. This field can only contain ASCII letters, digits and dashes.
 	// The label of the VPC. Only contains ascii letters, digits and dashes
@@ -70,6 +159,11 @@ type VPCParameters struct {
 	// The region of the VPC.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// The type of the VPC. Can be either regular or rdma. Defaults to regular. The rdma type creates an RDMA VPC and may not be available to all users. Changing this value forces the creation of a new VPC.
+	// The type of the VPC. Can be either 'regular' or 'rdma'. Defaults to 'regular'. The 'rdma' type may not be available to all users.
+	// +kubebuilder:validation:Optional
+	VPCType *string `json:"vpcType,omitempty" tf:"vpc_type,omitempty"`
 }
 
 // VPCSpec defines the desired state of VPC

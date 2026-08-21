@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: vpcs.vpc.linode.upbound.io
 spec:
   group: vpc.linode.upbound.io
@@ -77,6 +77,33 @@ spec:
                       The user-defined description of this VPC.
                       The user-defined description of this VPC.
                     type: string
+                  ipv4:
+                    description: The IPv4 configuration of this VPC.
+                    items:
+                      properties:
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                            The IPv4 range assigned to this VPC.
+                          type: string
+                      type: object
+                    type: array
+                  ipv6:
+                    description: The IPv6 configuration of this VPC.
+                    items:
+                      properties:
+                        allocationClass:
+                          description: |-
+                            Indicates the labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+                            The labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+                          type: string
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                            The IPv6 range assigned to this VPC.
+                          type: string
+                      type: object
+                    type: array
                   label:
                     description: |-
                       The label of the VPC. This field can only contain ASCII letters, digits and dashes.
@@ -86,6 +113,11 @@ spec:
                     description: |-
                       The region of the VPC.
                       The region of the VPC.
+                    type: string
+                  vpcType:
+                    description: |-
+                      The type of the VPC. Can be either regular or rdma. Defaults to regular. The rdma type creates an RDMA VPC and may not be available to all users. Changing this value forces the creation of a new VPC.
+                      The type of the VPC. Can be either 'regular' or 'rdma'. Defaults to 'regular'. The 'rdma' type may not be available to all users.
                     type: string
                 type: object
               initProvider:
@@ -106,6 +138,33 @@ spec:
                       The user-defined description of this VPC.
                       The user-defined description of this VPC.
                     type: string
+                  ipv4:
+                    description: The IPv4 configuration of this VPC.
+                    items:
+                      properties:
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                            The IPv4 range assigned to this VPC.
+                          type: string
+                      type: object
+                    type: array
+                  ipv6:
+                    description: The IPv6 configuration of this VPC.
+                    items:
+                      properties:
+                        allocationClass:
+                          description: |-
+                            Indicates the labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+                            The labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+                          type: string
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                            The IPv6 range assigned to this VPC.
+                          type: string
+                      type: object
+                    type: array
                   label:
                     description: |-
                       The label of the VPC. This field can only contain ASCII letters, digits and dashes.
@@ -115,6 +174,11 @@ spec:
                     description: |-
                       The region of the VPC.
                       The region of the VPC.
+                    type: string
+                  vpcType:
+                    description: |-
+                      The type of the VPC. Can be either regular or rdma. Defaults to regular. The rdma type creates an RDMA VPC and may not be available to all users. Changing this value forces the creation of a new VPC.
+                      The type of the VPC. Can be either 'regular' or 'rdma'. Defaults to 'regular'. The 'rdma' type may not be available to all users.
                     type: string
                 type: object
               managementPolicies:
@@ -311,6 +375,38 @@ spec:
                   id:
                     description: The ID of the VPC.
                     type: string
+                  ipv4:
+                    description: The IPv4 configuration of this VPC.
+                    items:
+                      properties:
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                            The IPv4 range assigned to this VPC.
+                          type: string
+                      type: object
+                    type: array
+                  ipv6:
+                    description: The IPv6 configuration of this VPC.
+                    items:
+                      properties:
+                        allocatedRange:
+                          description: |-
+                            (Read-Only) The value of range computed by the API. This is necessary when needing to access the range for an implicit allocation.
+                            The IPv6 range assigned to this VPC.
+                          type: string
+                        allocationClass:
+                          description: |-
+                            Indicates the labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+                            The labeled IPv6 Inventory that the VPC Prefix should be allocated from.
+                          type: string
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                            The IPv6 range assigned to this VPC.
+                          type: string
+                      type: object
+                    type: array
                   label:
                     description: |-
                       The label of the VPC. This field can only contain ASCII letters, digits and dashes.
@@ -325,6 +421,11 @@ spec:
                     description: |-
                       The date and time when the VPC was last updated.
                       The date and time when the VPC was updated.
+                    type: string
+                  vpcType:
+                    description: |-
+                      The type of the VPC. Can be either regular or rdma. Defaults to regular. The rdma type creates an RDMA VPC and may not be available to all users. Changing this value forces the creation of a new VPC.
+                      The type of the VPC. Can be either 'regular' or 'rdma'. Defaults to 'regular'. The 'rdma' type may not be available to all users.
                     type: string
                 type: object
               conditions:

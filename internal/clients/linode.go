@@ -8,12 +8,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"net/url"
+	"net/http"
 	"strconv"
 	"strings"
 
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
-	"github.com/go-resty/resty/v2"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/pkg/errors"
@@ -26,9 +25,9 @@ import (
 	"github.com/linode/provider-linode/apis/v1beta1"
 	"github.com/linode/provider-linode/internal/metrics"
 
-	"github.com/linode/terraform-provider-linode/v2/linode"
-	"github.com/linode/terraform-provider-linode/v2/linode/helper"
-	"github.com/linode/terraform-provider-linode/v2/version"
+	"github.com/linode/terraform-provider-linode/v4/linode"
+	"github.com/linode/terraform-provider-linode/v4/linode/helper"
+	"github.com/linode/terraform-provider-linode/v4/version"
 )
 
 const (
@@ -173,12 +172,11 @@ func configureNoForkLinodeclient(ctx context.Context, ps *terraform.Setup, p sch
 	return nil
 }
 
-func apiResponseCounterMiddleware(r *resty.Response) error {
-	url, err := url.ParseRequestURI(r.Request.URL)
-	if err != nil {
-		return err
-	}
-	urlParts := strings.Split(strings.TrimLeft(url.Path, "/"), "/")
+// apiResponseCounterMiddleware records a metric for each Linode API response.
+// linodego v2 dropped resty in favour of net/http, so this is registered as a
+// plain http.Response hook.
+func apiResponseCounterMiddleware(r *http.Response) error {
+	urlParts := strings.Split(strings.TrimLeft(r.Request.URL.Path, "/"), "/")
 	service := ""
 	if _, err := strconv.Atoi(urlParts[len(urlParts)-1]); err == nil {
 		// if the last part is a integer, we want the piece in front of it.
@@ -187,5 +185,10 @@ func apiResponseCounterMiddleware(r *resty.Response) error {
 		service = urlParts[len(urlParts)-1]
 	}
 	apiToken := strings.TrimPrefix(r.Request.Header.Get("Authorization"), "Bearer ")
-	return metrics.IncLinodeAPIResp(service, r.Request.Method, fmt.Sprintf("%d", r.StatusCode()), apiToken[:5])
+	// Only a token prefix is recorded, to distinguish tokens without leaking
+	// them. Guard against a missing or short Authorization header.
+	if len(apiToken) > 5 {
+		apiToken = apiToken[:5]
+	}
+	return metrics.IncLinodeAPIResp(service, r.Request.Method, fmt.Sprintf("%d", r.StatusCode), apiToken)
 }

@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: subnets.vpc.linode.upbound.io
 spec:
   group: vpc.linode.upbound.io
@@ -78,6 +78,17 @@ spec:
                       The IPv4 range of this subnet in CIDR format.
                       The IPv4 range of this subnet in CIDR format.
                     type: string
+                  ipv6:
+                    description: The IPv6 ranges of this subnet.
+                    items:
+                      properties:
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                          type: string
+                      type: object
+                    type: array
                   label:
                     description: |-
                       The label of the VPC. Only contains ASCII letters, digits and dashes.
@@ -85,7 +96,7 @@ spec:
                     type: string
                   vpcId:
                     description: |-
-                      The id of the parent VPC for this VPC Subnet.
+                      The id of the parent VPC for this VPC subnet.
                       The id of the parent VPC for this VPC Subnet
                     type: number
                   vpcIdRef:
@@ -181,6 +192,17 @@ spec:
                       The IPv4 range of this subnet in CIDR format.
                       The IPv4 range of this subnet in CIDR format.
                     type: string
+                  ipv6:
+                    description: The IPv6 ranges of this subnet.
+                    items:
+                      properties:
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                          type: string
+                      type: object
+                    type: array
                   label:
                     description: |-
                       The label of the VPC. Only contains ASCII letters, digits and dashes.
@@ -188,7 +210,7 @@ spec:
                     type: string
                   vpcId:
                     description: |-
-                      The id of the parent VPC for this VPC Subnet.
+                      The id of the parent VPC for this VPC subnet.
                       The id of the parent VPC for this VPC Subnet
                     type: number
                   vpcIdRef:
@@ -434,10 +456,6 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.ipv4 is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.ipv4)
-                || (has(self.initProvider) && has(self.initProvider.ipv4))'
             - message: spec.forProvider.label is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
@@ -452,6 +470,30 @@ spec:
                       The date and time when the VPC was created.
                       The date and time when the VPC Subnet was created.
                     type: string
+                  databases:
+                    description: A list of Managed databases assigned to the VPC Subnet.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the VPC Subnet.
+                          type: number
+                        ipv4Range:
+                          description: IPv4 range assigned to the database.
+                          type: string
+                        ipv6Ranges:
+                          description: A list of IPv6 ranges assigned to the database.
+                          items:
+                            properties:
+                              range:
+                                description: An existing IPv6 prefix owned by the
+                                  current account or a forward slash (/) followed
+                                  by a valid prefix length. If auto, a range with
+                                  the default prefix will be allocated for this VPC.
+                                type: string
+                            type: object
+                          type: array
+                      type: object
+                    type: array
                   id:
                     description: The ID of the VPC Subnet.
                     type: string
@@ -460,26 +502,73 @@ spec:
                       The IPv4 range of this subnet in CIDR format.
                       The IPv4 range of this subnet in CIDR format.
                     type: string
+                  ipv6:
+                    description: The IPv6 ranges of this subnet.
+                    items:
+                      properties:
+                        allocatedRange:
+                          description: |-
+                            (Read-Only) The value of range computed by the API. This is necessary when needing to access the range for an implicit allocation.
+                            The IPv6 range assigned to this subnet.
+                          type: string
+                        range:
+                          description: |-
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+                            An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+                          type: string
+                      type: object
+                    type: array
                   label:
                     description: |-
                       The label of the VPC. Only contains ASCII letters, digits and dashes.
                       The label of the VPC subnet.
                     type: string
                   linodes:
-                    description: A list of Linode IDs that added to this subnet.
+                    description: A list of Linodes added to this subnet.
                     items:
                       properties:
                         id:
                           description: The ID of the VPC Subnet.
                           type: number
                         interfaces:
+                          description: A list of networking interfaces objects.
                           items:
                             properties:
                               active:
+                                description: Whether the Interface is actively in
+                                  use.
                                 type: boolean
+                              configId:
+                                description: ID of Linode Config that the interface
+                                  is associated with. null for a Linode Interface.
+                                type: number
                               id:
                                 description: The ID of the VPC Subnet.
                                 type: number
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  nodebalancers:
+                    description: A list of NodeBalancers assigned to the VPC Subnet.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the VPC Subnet.
+                          type: number
+                        ipv4Range:
+                          description: IPv4 range assigned to the database.
+                          type: string
+                        ipv6Ranges:
+                          description: A list of IPv6 ranges assigned to the database.
+                          items:
+                            properties:
+                              range:
+                                description: An existing IPv6 prefix owned by the
+                                  current account or a forward slash (/) followed
+                                  by a valid prefix length. If auto, a range with
+                                  the default prefix will be allocated for this VPC.
+                                type: string
                             type: object
                           type: array
                       type: object
@@ -491,9 +580,14 @@ spec:
                     type: string
                   vpcId:
                     description: |-
-                      The id of the parent VPC for this VPC Subnet.
+                      The id of the parent VPC for this VPC subnet.
                       The id of the parent VPC for this VPC Subnet
                     type: number
+                  vpcType:
+                    description: |-
+                      The type of the parent VPC (regular or rdma).
+                      The type of the parent VPC ('regular' or 'rdma'). Omitted if the requesting account does not have access to the GPUDirect RDMA functionality.
+                    type: string
                 type: object
               conditions:
                 description: Conditions of the resource.

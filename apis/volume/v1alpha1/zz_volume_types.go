@@ -15,8 +15,8 @@ import (
 
 type VolumeInitParameters struct {
 
-	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
-	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
+	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	// The label of the Linode Volume
@@ -56,8 +56,8 @@ type VolumeInitParameters struct {
 
 type VolumeObservation struct {
 
-	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
-	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
+	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	// The full filesystem path for the Volume based on the Volume's label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label
@@ -65,6 +65,10 @@ type VolumeObservation struct {
 	FilesystemPath *string `json:"filesystemPath,omitempty" tf:"filesystem_path,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.
+	// Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.
+	IoReady *bool `json:"ioReady,omitempty" tf:"io_ready,omitempty"`
 
 	// The label of the Linode Volume
 	// The label of the Linode Volume.
@@ -98,8 +102,8 @@ type VolumeObservation struct {
 
 type VolumeParameters struct {
 
-	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
-	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
+	// Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
 	// +kubebuilder:validation:Optional
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 

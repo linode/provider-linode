@@ -120,9 +120,17 @@ type ImageObservation struct {
 	// The unique ID of this Image.  The ID of private images begin with private/ followed by the numeric identifier of the private image, for example private/12345.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Details about image sharing, including who the image is shared with and by. (Note: v4beta only and may not currently be available to all users.)
+	// Details about image sharing, including who the image is shared with and by.
+	ImageSharing []ImageSharingObservation `json:"imageSharing,omitempty" tf:"image_sharing,omitempty"`
+
 	// True if the Image is public.
 	// True if the Image is public.
 	IsPublic *bool `json:"isPublic,omitempty" tf:"is_public,omitempty"`
+
+	// True if the Image is shared. (Note: v4beta only and may not currently be available to all users.)
+	// True if the Image is shared.
+	IsShared *bool `json:"isShared,omitempty" tf:"is_shared,omitempty"`
 
 	// A short description of the Image. Labels cannot contain special characters.
 	// A short description of the Image. Labels cannot contain special characters.
@@ -248,6 +256,21 @@ type ImageParameters struct {
 	WaitForReplications *bool `json:"waitForReplications,omitempty" tf:"wait_for_replications,omitempty"`
 }
 
+type ImageSharingInitParameters struct {
+}
+
+type ImageSharingObservation struct {
+
+	// Details about who the image is shared by.
+	SharedBy []SharedByObservation `json:"sharedBy,omitempty" tf:"shared_by,omitempty"`
+
+	// Details about who the image is shared with.
+	SharedWith []SharedWithObservation `json:"sharedWith,omitempty" tf:"shared_with,omitempty"`
+}
+
+type ImageSharingParameters struct {
+}
+
 type ReplicationsInitParameters struct {
 }
 
@@ -261,6 +284,48 @@ type ReplicationsObservation struct {
 }
 
 type ReplicationsParameters struct {
+}
+
+type SharedByInitParameters struct {
+}
+
+type SharedByObservation struct {
+
+	// The sharegroup_id from the im_ImageShare row.
+	// The sharegroup_id from the im_ImageShare row.
+	SharegroupID *float64 `json:"sharegroupId,omitempty" tf:"sharegroup_id,omitempty"`
+
+	// The label from the associated im_ImageShareGroup row.
+	// The label from the associated im_ImageShareGroup row.
+	SharegroupLabel *string `json:"sharegroupLabel,omitempty" tf:"sharegroup_label,omitempty"`
+
+	// The sharegroup_uuid from the im_ImageShare row.
+	// The sharegroup_uuid from the im_ImageShare row.
+	SharegroupUUID *string `json:"sharegroupUuid,omitempty" tf:"sharegroup_uuid,omitempty"`
+
+	// The image id of the base image (will only be shown to producers, will be null for consumers).
+	// The image id of the base image (will only be shown to producers, will be null for consumers).
+	SourceImageID *string `json:"sourceImageId,omitempty" tf:"source_image_id,omitempty"`
+}
+
+type SharedByParameters struct {
+}
+
+type SharedWithInitParameters struct {
+}
+
+type SharedWithObservation struct {
+
+	// The number of sharegroups the private image is present in.
+	// The number of sharegroups the private image is present in.
+	SharegroupCount *float64 `json:"sharegroupCount,omitempty" tf:"sharegroup_count,omitempty"`
+
+	// The GET api url to view the sharegroups in which the image is shared.
+	// The GET api url to view the sharegroups in which the image is shared.
+	SharegroupListURL *string `json:"sharegroupListUrl,omitempty" tf:"sharegroup_list_url,omitempty"`
+}
+
+type SharedWithParameters struct {
 }
 
 // ImageSpec defines the desired state of Image

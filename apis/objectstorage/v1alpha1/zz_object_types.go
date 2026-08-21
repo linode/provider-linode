@@ -42,10 +42,6 @@ type ObjectInitParameters struct {
 	// This cache_control configuration of this object.
 	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
 
-	// (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
-	// The target cluster that the bucket is in.
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
-
 	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
 	// The contents of the Object to upload.
 	Content *string `json:"content,omitempty" tf:"content,omitempty"`
@@ -91,7 +87,7 @@ type ObjectInitParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// The cluster the bucket is in. Required if cluster is not configured.
+	// The region the bucket is in.
 	// The target region that the bucket is in.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
@@ -125,10 +121,6 @@ type ObjectObservation struct {
 	// Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.
 	// This cache_control configuration of this object.
 	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
-
-	// (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
-	// The target cluster that the bucket is in.
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
 	// The contents of the Object to upload.
@@ -177,7 +169,7 @@ type ObjectObservation struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// The cluster the bucket is in. Required if cluster is not configured.
+	// The region the bucket is in.
 	// The target region that the bucket is in.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
@@ -227,11 +219,6 @@ type ObjectParameters struct {
 	// +kubebuilder:validation:Optional
 	CacheControl *string `json:"cacheControl,omitempty" tf:"cache_control,omitempty"`
 
-	// (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
-	// The target cluster that the bucket is in.
-	// +kubebuilder:validation:Optional
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
-
 	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
 	// The contents of the Object to upload.
 	// +kubebuilder:validation:Optional
@@ -288,7 +275,7 @@ type ObjectParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// The cluster the bucket is in. Required if cluster is not configured.
+	// The region the bucket is in.
 	// The target region that the bucket is in.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
@@ -347,6 +334,7 @@ type Object struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.bucket) || (has(self.initProvider) && has(self.initProvider.bucket))",message="spec.forProvider.bucket is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.key) || (has(self.initProvider) && has(self.initProvider.key))",message="spec.forProvider.key is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	Spec   ObjectSpec   `json:"spec"`
 	Status ObjectStatus `json:"status,omitempty"`
 }

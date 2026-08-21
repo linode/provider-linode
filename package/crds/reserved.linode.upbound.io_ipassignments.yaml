@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: ipassignments.reserved.linode.upbound.io
 spec:
   group: reserved.linode.upbound.io
@@ -34,7 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: IPAssignment is the Schema for the IPAssignments API. <no value>
+        description: IPAssignment is the Schema for the IPAssignments API. Manages
+          assignment of a reserved IP address to a Linode instance.
         properties:
           apiVersion:
             description: |-
@@ -73,16 +74,19 @@ spec:
               forProvider:
                 properties:
                   address:
-                    description: The resulting IPv4 address.
+                    description: |-
+                      The reserved IPv4 address to assign to the Linode.
+                      The resulting IPv4 address.
                     type: string
                   applyImmediately:
-                    description: If true, the instance will be rebooted to update
-                      network interfaces. This functionality is not affected by the
-                      `skip_implicit_reboots` provider argument.
+                    description: |-
+                      If true, the instance will be rebooted to update network interfaces. Defaults to false.
+                      If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
                     type: boolean
                   linodeId:
-                    description: The ID of the Linode to allocate an IPv4 address
-                      for.
+                    description: |-
+                      The ID of the Linode to assign the reserved IP to. Changing this forces creation of a new resource.
+                      The ID of the Linode to allocate an IPv4 address for.
                     type: number
                   linodeIdRef:
                     description: Reference to a Instance in instance to populate linodeId.
@@ -159,10 +163,14 @@ spec:
                         type: object
                     type: object
                   public:
-                    description: Whether the IPv4 address is public or private.
+                    description: |-
+                      Whether the IP address is public. Defaults to true. This must match the reserved IP's existing public/private status. Changing this forces creation of a new resource.
+                      Whether the IPv4 address is public or private.
                     type: boolean
                   rdns:
-                    description: The reverse DNS assigned to this address.
+                    description: |-
+                      The reverse DNS assigned to this address. Configured via a separate API call after the IP is assigned.
+                      The reverse DNS assigned to this address.
                     type: string
                   rdnsRef:
                     description: Reference to a RDNS in rdns to populate rdns.
@@ -253,16 +261,19 @@ spec:
                   autoscaler.
                 properties:
                   address:
-                    description: The resulting IPv4 address.
+                    description: |-
+                      The reserved IPv4 address to assign to the Linode.
+                      The resulting IPv4 address.
                     type: string
                   applyImmediately:
-                    description: If true, the instance will be rebooted to update
-                      network interfaces. This functionality is not affected by the
-                      `skip_implicit_reboots` provider argument.
+                    description: |-
+                      If true, the instance will be rebooted to update network interfaces. Defaults to false.
+                      If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
                     type: boolean
                   linodeId:
-                    description: The ID of the Linode to allocate an IPv4 address
-                      for.
+                    description: |-
+                      The ID of the Linode to assign the reserved IP to. Changing this forces creation of a new resource.
+                      The ID of the Linode to allocate an IPv4 address for.
                     type: number
                   linodeIdRef:
                     description: Reference to a Instance in instance to populate linodeId.
@@ -339,10 +350,14 @@ spec:
                         type: object
                     type: object
                   public:
-                    description: Whether the IPv4 address is public or private.
+                    description: |-
+                      Whether the IP address is public. Defaults to true. This must match the reserved IP's existing public/private status. Changing this forces creation of a new resource.
+                      Whether the IPv4 address is public or private.
                     type: boolean
                   rdns:
-                    description: The reverse DNS assigned to this address.
+                    description: |-
+                      The reverse DNS assigned to this address. Configured via a separate API call after the IP is assigned.
+                      The reverse DNS assigned to this address.
                     type: string
                   rdnsRef:
                     description: Reference to a RDNS in rdns to populate rdns.
@@ -597,54 +612,106 @@ spec:
               atProvider:
                 properties:
                   address:
-                    description: The resulting IPv4 address.
+                    description: |-
+                      The reserved IPv4 address to assign to the Linode.
+                      The resulting IPv4 address.
                     type: string
                   applyImmediately:
-                    description: If true, the instance will be rebooted to update
-                      network interfaces. This functionality is not affected by the
-                      `skip_implicit_reboots` provider argument.
+                    description: |-
+                      If true, the instance will be rebooted to update network interfaces. Defaults to false.
+                      If true, the instance will be rebooted to update network interfaces. This functionality is not affected by the `skip_implicit_reboots` provider argument.
                     type: boolean
+                  assignedEntity:
+                    description: |-
+                      The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.
+                      The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.
+                    items:
+                      properties:
+                        id:
+                          description: The ID of the IPv4 address (the address itself).
+                          type: number
+                        label:
+                          description: The label of the entity.
+                          type: string
+                        type:
+                          description: The type of IP address.
+                          type: string
+                        url:
+                          description: The URL of the entity.
+                          type: string
+                      type: object
+                    type: array
                   gateway:
-                    description: The default gateway for this address
+                    description: |-
+                      The default gateway for this address.
+                      The default gateway for this address
                     type: string
                   id:
+                    description: The ID of the IPv4 address (the address itself).
                     type: string
                   linodeId:
-                    description: The ID of the Linode to allocate an IPv4 address
-                      for.
+                    description: |-
+                      The ID of the Linode to assign the reserved IP to. Changing this forces creation of a new resource.
+                      The ID of the Linode to allocate an IPv4 address for.
                     type: number
                   prefix:
-                    description: The number of bits set in the subnet mask.
+                    description: |-
+                      The number of bits set in the subnet mask.
+                      The number of bits set in the subnet mask.
                     type: number
                   public:
-                    description: Whether the IPv4 address is public or private.
+                    description: |-
+                      Whether the IP address is public. Defaults to true. This must match the reserved IP's existing public/private status. Changing this forces creation of a new resource.
+                      Whether the IPv4 address is public or private.
                     type: boolean
                   rdns:
-                    description: The reverse DNS assigned to this address.
+                    description: |-
+                      The reverse DNS assigned to this address. Configured via a separate API call after the IP is assigned.
+                      The reverse DNS assigned to this address.
                     type: string
                   region:
-                    description: The region this IP resides in.
+                    description: |-
+                      The region this IP resides in.
+                      The region this IP resides in.
                     type: string
                   reserved:
-                    description: The reservation status of the IP address
+                    description: |-
+                      The reservation status of the IP address.
+                      The reservation status of the IP address
                     type: boolean
                   subnetMask:
-                    description: The mask that separates host bits from network bits
-                      for this address.
+                    description: |-
+                      The mask that separates host bits from network bits for this address.
+                      The mask that separates host bits from network bits for this address.
                     type: string
+                  tags:
+                    description: |-
+                      A set of tags associated with this IP address.
+                      A set of tags associated with this IP address.
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   type:
-                    description: The type of IP address.
+                    description: |-
+                      The type of IP address.
+                      The type of IP address.
                     type: string
                   vpcNat11:
-                    description: Contains information about the NAT 1:1 mapping of
-                      a public IP address to a VPC subnet.
+                    description: |-
+                      Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.
+                      Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.
                     items:
                       properties:
                         address:
+                          description: The reserved IPv4 address to assign to the
+                            Linode.
                           type: string
                         subnetId:
+                          description: The id of the VPC Subnet for this Interface.
                           type: number
                         vpcId:
+                          description: The id of the VPC configured for this Interface.
                           type: number
                       type: object
                     type: array

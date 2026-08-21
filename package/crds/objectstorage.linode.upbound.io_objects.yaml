@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: objects.objectstorage.linode.upbound.io
 spec:
   group: objectstorage.linode.upbound.io
@@ -167,11 +167,6 @@ spec:
                       Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.
                       This cache_control configuration of this object.
                     type: string
-                  cluster:
-                    description: |-
-                      (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
-                      The target cluster that the bucket is in.
-                    type: string
                   content:
                     description: |-
                       Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
@@ -232,7 +227,7 @@ spec:
                     x-kubernetes-map-type: granular
                   region:
                     description: |-
-                      The cluster the bucket is in. Required if cluster is not configured.
+                      The region the bucket is in.
                       The target region that the bucket is in.
                     type: string
                   secretKeySecretRef:
@@ -372,11 +367,6 @@ spec:
                       Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.
                       This cache_control configuration of this object.
                     type: string
-                  cluster:
-                    description: |-
-                      (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
-                      The target cluster that the bucket is in.
-                    type: string
                   content:
                     description: |-
                       Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
@@ -437,7 +427,7 @@ spec:
                     x-kubernetes-map-type: granular
                   region:
                     description: |-
-                      The cluster the bucket is in. Required if cluster is not configured.
+                      The region the bucket is in.
                       The target region that the bucket is in.
                     type: string
                   secretKeySecretRef:
@@ -646,6 +636,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.key)
                 || (has(self.initProvider) && has(self.initProvider.key))'
+            - message: spec.forProvider.region is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
+                || (has(self.initProvider) && has(self.initProvider.region))'
           status:
             description: ObjectStatus defines the observed state of Object.
             properties:
@@ -670,11 +664,6 @@ spec:
                     description: |-
                       Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.
                       This cache_control configuration of this object.
-                    type: string
-                  cluster:
-                    description: |-
-                      (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.
-                      The target cluster that the bucket is in.
                     type: string
                   content:
                     description: |-
@@ -738,7 +727,7 @@ spec:
                     x-kubernetes-map-type: granular
                   region:
                     description: |-
-                      The cluster the bucket is in. Required if cluster is not configured.
+                      The region the bucket is in.
                       The target region that the bucket is in.
                     type: string
                   source:

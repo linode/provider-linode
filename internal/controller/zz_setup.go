@@ -11,9 +11,7 @@ import (
 
 	accountsettings "github.com/linode/provider-linode/internal/controller/accountsettings/accountsettings"
 	accesscontrols "github.com/linode/provider-linode/internal/controller/database/accesscontrols"
-	mysql "github.com/linode/provider-linode/internal/controller/database/mysql"
 	mysqlv2 "github.com/linode/provider-linode/internal/controller/database/mysqlv2"
-	postgresql "github.com/linode/provider-linode/internal/controller/database/postgresql"
 	postgresqlv2 "github.com/linode/provider-linode/internal/controller/database/postgresqlv2"
 	domain "github.com/linode/provider-linode/internal/controller/domain/domain"
 	record "github.com/linode/provider-linode/internal/controller/domain/record"
@@ -55,9 +53,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		accountsettings.Setup,
 		accesscontrols.Setup,
-		mysql.Setup,
 		mysqlv2.Setup,
-		postgresql.Setup,
 		postgresqlv2.Setup,
 		domain.Setup,
 		record.Setup,

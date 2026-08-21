@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: volumes.volume.linode.upbound.io
 spec:
   group: volume.linode.upbound.io
@@ -74,8 +74,8 @@ spec:
                 properties:
                   encryption:
                     description: |-
-                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
-                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
                     type: string
                   label:
                     description: |-
@@ -200,8 +200,8 @@ spec:
                 properties:
                   encryption:
                     description: |-
-                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
-                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
                     type: string
                   label:
                     description: |-
@@ -490,8 +490,8 @@ spec:
                 properties:
                   encryption:
                     description: |-
-                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
-                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
+                      Whether Block Storage Disk Encryption is enabled or disabled on this Volume.
                     type: string
                   filesystemPath:
                     description: |-
@@ -500,6 +500,11 @@ spec:
                     type: string
                   id:
                     type: string
+                  ioReady:
+                    description: |-
+                      Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.
+                      Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.
+                    type: boolean
                   label:
                     description: |-
                       The label of the Linode Volume

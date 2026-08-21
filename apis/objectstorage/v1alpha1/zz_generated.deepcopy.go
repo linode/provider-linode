@@ -48,11 +48,6 @@ func (in *BucketAccessInitParameters) DeepCopyInto(out *BucketAccessInitParamete
 		*out = new(string)
 		**out = **in
 	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
-		*out = new(string)
-		**out = **in
-	}
 	if in.Permissions != nil {
 		in, out := &in.Permissions, &out.Permissions
 		*out = new(string)
@@ -83,11 +78,6 @@ func (in *BucketAccessObservation) DeepCopyInto(out *BucketAccessObservation) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
-		*out = new(string)
-		**out = **in
-	}
 	if in.Permissions != nil {
 		in, out := &in.Permissions, &out.Permissions
 		*out = new(string)
@@ -115,11 +105,6 @@ func (in *BucketAccessParameters) DeepCopyInto(out *BucketAccessParameters) {
 	*out = *in
 	if in.BucketName != nil {
 		in, out := &in.BucketName, &out.BucketName
-		*out = new(string)
-		**out = **in
-	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
 		*out = new(string)
 		**out = **in
 	}
@@ -172,11 +157,6 @@ func (in *BucketInitParameters) DeepCopyInto(out *BucketInitParameters) {
 		in, out := &in.Cert, &out.Cert
 		*out = make([]CertInitParameters, len(*in))
 		copy(*out, *in)
-	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
-		*out = new(string)
-		**out = **in
 	}
 	if in.CorsEnabled != nil {
 		in, out := &in.CorsEnabled, &out.CorsEnabled
@@ -282,11 +262,6 @@ func (in *BucketObservation) DeepCopyInto(out *BucketObservation) {
 		*out = make([]CertParameters, len(*in))
 		copy(*out, *in)
 	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
-		*out = new(string)
-		**out = **in
-	}
 	if in.CorsEnabled != nil {
 		in, out := &in.CorsEnabled, &out.CorsEnabled
 		*out = new(bool)
@@ -378,11 +353,6 @@ func (in *BucketParameters) DeepCopyInto(out *BucketParameters) {
 		in, out := &in.Cert, &out.Cert
 		*out = make([]CertParameters, len(*in))
 		copy(*out, *in)
-	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
-		*out = new(string)
-		**out = **in
 	}
 	if in.CorsEnabled != nil {
 		in, out := &in.CorsEnabled, &out.CorsEnabled
@@ -1104,11 +1074,6 @@ func (in *ObjectInitParameters) DeepCopyInto(out *ObjectInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
-		*out = new(string)
-		**out = **in
-	}
 	if in.Content != nil {
 		in, out := &in.Content, &out.Content
 		*out = new(string)
@@ -1262,11 +1227,6 @@ func (in *ObjectObservation) DeepCopyInto(out *ObjectObservation) {
 		*out = new(string)
 		**out = **in
 	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
-		*out = new(string)
-		**out = **in
-	}
 	if in.Content != nil {
 		in, out := &in.Content, &out.Content
 		*out = new(string)
@@ -1400,11 +1360,6 @@ func (in *ObjectParameters) DeepCopyInto(out *ObjectParameters) {
 	}
 	if in.CacheControl != nil {
 		in, out := &in.CacheControl, &out.CacheControl
-		*out = new(string)
-		**out = **in
-	}
-	if in.Cluster != nil {
-		in, out := &in.Cluster, &out.Cluster
 		*out = new(string)
 		**out = **in
 	}

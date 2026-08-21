@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: nodebalancers.nodebalancer.linode.upbound.io
 spec:
   group: nodebalancer.linode.upbound.io
@@ -78,11 +78,21 @@ spec:
                       Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
                       Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
                     type: number
+                  clientUdpSessThrottle:
+                    description: |-
+                      Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+                      Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+                    type: number
                   firewallId:
                     description: |-
                       The Firewall's ID.
                       ID for the firewall you'd like to use with this NodeBalancer.
                     type: number
+                  ipv4:
+                    description: |-
+                      The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
+                      The Public IPv4 Address of this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. *Changing `ipv4` forces the creation of a new Linode NodeBalancer.* Note: once `ipv4` is set, removing it from configuration will not revert the NodeBalancer to an auto-assigned address — the prior value is retained in state. To switch back to an auto-assigned address, the resource must be explicitly replaced (e.g.
+                    type: string
                   label:
                     description: |-
                       The label of the Linode NodeBalancer
@@ -101,6 +111,32 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  vpcs:
+                    description: A list of VPCs to be assigned to this NodeBalancer.
+                    items:
+                      properties:
+                        ipv4Range:
+                          description: |-
+                            A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                            A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                          type: string
+                        ipv4RangeAutoAssign:
+                          description: |-
+                            Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+                            Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+                          type: boolean
+                        ipv6Range:
+                          description: |-
+                            A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                            A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                          type: string
+                        subnetId:
+                          description: |-
+                            The ID of a subnet to assign to this NodeBalancer.
+                            The ID of a subnet to assign to this NodeBalancer.
+                          type: number
+                      type: object
+                    type: array
                 type: object
               initProvider:
                 description: |-
@@ -120,11 +156,21 @@ spec:
                       Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
                       Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
                     type: number
+                  clientUdpSessThrottle:
+                    description: |-
+                      Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+                      Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+                    type: number
                   firewallId:
                     description: |-
                       The Firewall's ID.
                       ID for the firewall you'd like to use with this NodeBalancer.
                     type: number
+                  ipv4:
+                    description: |-
+                      The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
+                      The Public IPv4 Address of this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. *Changing `ipv4` forces the creation of a new Linode NodeBalancer.* Note: once `ipv4` is set, removing it from configuration will not revert the NodeBalancer to an auto-assigned address — the prior value is retained in state. To switch back to an auto-assigned address, the resource must be explicitly replaced (e.g.
+                    type: string
                   label:
                     description: |-
                       The label of the Linode NodeBalancer
@@ -143,6 +189,32 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  vpcs:
+                    description: A list of VPCs to be assigned to this NodeBalancer.
+                    items:
+                      properties:
+                        ipv4Range:
+                          description: |-
+                            A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                            A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                          type: string
+                        ipv4RangeAutoAssign:
+                          description: |-
+                            Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+                            Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+                          type: boolean
+                        ipv6Range:
+                          description: |-
+                            A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                            A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                          type: string
+                        subnetId:
+                          description: |-
+                            The ID of a subnet to assign to this NodeBalancer.
+                            The ID of a subnet to assign to this NodeBalancer.
+                          type: number
+                      type: object
+                    type: array
                 type: object
               managementPolicies:
                 default:
@@ -321,6 +393,11 @@ spec:
                       Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
                       Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
                     type: number
+                  clientUdpSessThrottle:
+                    description: |-
+                      Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+                      Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+                    type: number
                   created:
                     description: |-
                       When this NodeBalancer was created
@@ -353,7 +430,10 @@ spec:
                               description:
                                 type: string
                               ipv4:
-                                description: The Public IPv4 Address of this NodeBalancer
+                                description: The Public IPv4 address to assign to
+                                  this NodeBalancer. When provided, the address must
+                                  be a reserved IPv4 address that is unassigned and
+                                  owned by the account. Changing
                                 items:
                                   type: string
                                 type: array
@@ -394,7 +474,10 @@ spec:
                               description:
                                 type: string
                               ipv4:
-                                description: The Public IPv4 Address of this NodeBalancer
+                                description: The Public IPv4 address to assign to
+                                  this NodeBalancer. When provided, the address must
+                                  be a reserved IPv4 address that is unassigned and
+                                  owned by the account. Changing
                                 items:
                                   type: string
                                 type: array
@@ -447,8 +530,8 @@ spec:
                     type: string
                   ipv4:
                     description: |-
-                      The Public IPv4 Address of this NodeBalancer
-                      The Public IPv4 Address of this NodeBalancer
+                      The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing
+                      The Public IPv4 Address of this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. *Changing `ipv4` forces the creation of a new Linode NodeBalancer.* Note: once `ipv4` is set, removing it from configuration will not revert the NodeBalancer to an auto-assigned address — the prior value is retained in state. To switch back to an auto-assigned address, the resource must be explicitly replaced (e.g.
                     type: string
                   ipv6:
                     description: |-
@@ -460,6 +543,33 @@ spec:
                       The label of the Linode NodeBalancer
                       The label of the Linode NodeBalancer.
                     type: string
+                  lkeCluster:
+                    description: The related LKE cluster for this NodeBalancer, if
+                      any.
+                    items:
+                      properties:
+                        id:
+                          description: |-
+                            The Firewall's ID.
+                            The ID of the related LKE cluster.
+                          type: number
+                        label:
+                          description: |-
+                            The label of the Linode NodeBalancer
+                            The label of the related LKE cluster.
+                          type: string
+                        type:
+                          description: |-
+                            The type of the related LKE cluster.
+                            The type of the related LKE cluster.
+                          type: string
+                        url:
+                          description: |-
+                            The URL where you can access the related LKE cluster.
+                            The URL where you can access the related LKE cluster.
+                          type: string
+                      type: object
+                    type: array
                   region:
                     description: |-
                       The region where this NodeBalancer will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here.  Changing .
@@ -497,6 +607,32 @@ spec:
                       When this NodeBalancer was last updated.
                       When this NodeBalancer was last updated.
                     type: string
+                  vpcs:
+                    description: A list of VPCs to be assigned to this NodeBalancer.
+                    items:
+                      properties:
+                        ipv4Range:
+                          description: |-
+                            A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                            A CIDR range for the VPC's IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                          type: string
+                        ipv4RangeAutoAssign:
+                          description: |-
+                            Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+                            Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer's backends.
+                          type: boolean
+                        ipv6Range:
+                          description: |-
+                            A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                            A CIDR range for the VPC's IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.
+                          type: string
+                        subnetId:
+                          description: |-
+                            The ID of a subnet to assign to this NodeBalancer.
+                            The ID of a subnet to assign to this NodeBalancer.
+                          type: number
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

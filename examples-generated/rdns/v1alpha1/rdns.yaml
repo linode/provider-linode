@@ -23,6 +23,6 @@ metadata:
   name: foo
 spec:
   forProvider:
-    image: linode/alpine3.19
+    image: linode/arch
     region: ca-east
     type: g6-dedicated-2

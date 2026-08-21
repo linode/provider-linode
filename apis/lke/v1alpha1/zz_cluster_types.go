@@ -123,6 +123,10 @@ type AutoscalerParameters struct {
 
 type ClusterInitParameters struct {
 
+	// Enables the App Platform Layer
+	// Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+	AplEnabled *bool `json:"aplEnabled,omitempty" tf:"apl_enabled,omitempty"`
+
 	// Defines settings for the Kubernetes Control Plane.
 	ControlPlane []ControlPlaneInitParameters `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
 
@@ -140,21 +144,33 @@ type ClusterInitParameters struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// Additional nested attributes:
-	// A node pool in the cluster.
+	// A node pool in the cluster. At least one pool is required for standard tier clusters.
 	Pool []PoolInitParameters `json:"pool,omitempty" tf:"pool,omitempty"`
 
 	// This Kubernetes cluster's location.
 	// This cluster's location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The networking stack type of the Kubernetes cluster.
+	// The networking stack type of the Kubernetes cluster.
+	StackType *string `json:"stackType,omitempty" tf:"stack_type,omitempty"`
+
+	// The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled). NOTE: This field may not be available for all users and is only accepted and populated when api_version is set to
+	// The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled).
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
 	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+	// The desired Kubernetes tier. NOTE: This field may not be available to all users and is only accepted and populated when api_version is set to
 	// The desired Kubernetes tier.
 	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
+
+	// The ID of the VPC to use for the Kubernetes cluster.
+	// The ID of the VPC to use for the Kubernetes cluster.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type ClusterObservation struct {
@@ -163,12 +179,12 @@ type ClusterObservation struct {
 	// The API endpoints for the cluster.
 	APIEndpoints []*string `json:"apiEndpoints,omitempty" tf:"api_endpoints,omitempty"`
 
+	// Enables the App Platform Layer
+	// Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+	AplEnabled *bool `json:"aplEnabled,omitempty" tf:"apl_enabled,omitempty"`
+
 	// Defines settings for the Kubernetes Control Plane.
 	ControlPlane []ControlPlaneObservation `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
-
-	// The Kubernetes Dashboard access URL for this cluster. LKE Enterprise does not have a dashboard URL.
-	// The dashboard URL of the cluster.
-	DashboardURL *string `json:"dashboardUrl,omitempty" tf:"dashboard_url,omitempty"`
 
 	// A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.
 	// An array of tags indicating that node pools having those tags are defined with a separate nodepool resource, rather than inside the current cluster resource.
@@ -187,28 +203,45 @@ type ClusterObservation struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// Additional nested attributes:
-	// A node pool in the cluster.
+	// A node pool in the cluster. At least one pool is required for standard tier clusters.
 	Pool []PoolObservation `json:"pool,omitempty" tf:"pool,omitempty"`
 
 	// This Kubernetes cluster's location.
 	// This cluster's location.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The networking stack type of the Kubernetes cluster.
+	// The networking stack type of the Kubernetes cluster.
+	StackType *string `json:"stackType,omitempty" tf:"stack_type,omitempty"`
+
 	// The status of the cluster.
 	// The status of the cluster.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled). NOTE: This field may not be available for all users and is only accepted and populated when api_version is set to
+	// The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled).
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
 	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+	// The desired Kubernetes tier. NOTE: This field may not be available to all users and is only accepted and populated when api_version is set to
 	// The desired Kubernetes tier.
 	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
+
+	// The ID of the VPC to use for the Kubernetes cluster.
+	// The ID of the VPC to use for the Kubernetes cluster.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type ClusterParameters struct {
+
+	// Enables the App Platform Layer
+	// Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+	// +kubebuilder:validation:Optional
+	AplEnabled *bool `json:"aplEnabled,omitempty" tf:"apl_enabled,omitempty"`
 
 	// Defines settings for the Kubernetes Control Plane.
 	// +kubebuilder:validation:Optional
@@ -231,7 +264,7 @@ type ClusterParameters struct {
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
 	// Additional nested attributes:
-	// A node pool in the cluster.
+	// A node pool in the cluster. At least one pool is required for standard tier clusters.
 	// +kubebuilder:validation:Optional
 	Pool []PoolParameters `json:"pool,omitempty" tf:"pool,omitempty"`
 
@@ -240,22 +273,41 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The networking stack type of the Kubernetes cluster.
+	// The networking stack type of the Kubernetes cluster.
+	// +kubebuilder:validation:Optional
+	StackType *string `json:"stackType,omitempty" tf:"stack_type,omitempty"`
+
+	// The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled). NOTE: This field may not be available for all users and is only accepted and populated when api_version is set to
+	// The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled).
+	// +kubebuilder:validation:Optional
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
 	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
 	// An array of tags applied to this object. Tags are for organizational purposes only.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+	// The desired Kubernetes tier. NOTE: This field may not be available to all users and is only accepted and populated when api_version is set to
 	// The desired Kubernetes tier.
 	// +kubebuilder:validation:Optional
 	Tier *string `json:"tier,omitempty" tf:"tier,omitempty"`
+
+	// The ID of the VPC to use for the Kubernetes cluster.
+	// The ID of the VPC to use for the Kubernetes cluster.
+	// +kubebuilder:validation:Optional
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type ControlPlaneInitParameters struct {
 
 	// Defines the ACL configuration for an LKE cluster's control plane.
 	ACL []ACLInitParameters `json:"acl,omitempty" tf:"acl,omitempty"`
+
+	// Enables audit logs on the cluster's control plane.
+	// Enables audit logs on the cluster's control plane.
+	AuditLogsEnabled *bool `json:"auditLogsEnabled,omitempty" tf:"audit_logs_enabled,omitempty"`
 
 	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
 	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.
@@ -267,6 +319,10 @@ type ControlPlaneObservation struct {
 	// Defines the ACL configuration for an LKE cluster's control plane.
 	ACL []ACLObservation `json:"acl,omitempty" tf:"acl,omitempty"`
 
+	// Enables audit logs on the cluster's control plane.
+	// Enables audit logs on the cluster's control plane.
+	AuditLogsEnabled *bool `json:"auditLogsEnabled,omitempty" tf:"audit_logs_enabled,omitempty"`
+
 	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
 	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.
 	HighAvailability *bool `json:"highAvailability,omitempty" tf:"high_availability,omitempty"`
@@ -277,6 +333,11 @@ type ControlPlaneParameters struct {
 	// Defines the ACL configuration for an LKE cluster's control plane.
 	// +kubebuilder:validation:Optional
 	ACL []ACLParameters `json:"acl,omitempty" tf:"acl,omitempty"`
+
+	// Enables audit logs on the cluster's control plane.
+	// Enables audit logs on the cluster's control plane.
+	// +kubebuilder:validation:Optional
+	AuditLogsEnabled *bool `json:"auditLogsEnabled,omitempty" tf:"audit_logs_enabled,omitempty"`
 
 	// Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
 	// Defines whether High Availability is enabled for the Control Plane Components of the cluster.
@@ -311,21 +372,43 @@ type PoolInitParameters struct {
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// The disk encryption policy for nodes in this pool. Must be enabled or disabled. If omitted, the account default encryption policy is applied. Changing this value will cause the pool to be replaced (deleted and recreated).
+	// The disk encryption policy for the nodes in this pool.
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
+	// The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+	// The ID of the Firewall to attach to nodes in this node pool.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// The k8s version of the nodes in this Node Pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The desired Kubernetes version for this pool. This is only available for Enterprise clusters.
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// A label for the Node Pool. If not provided, it defaults to empty string.
+	// The label of the Node Pool.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
 	// A set of tags applied to this node pool.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
 	Taint []TaintInitParameters `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The strategy for updating the Node Pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
 type PoolObservation struct {
@@ -337,14 +420,27 @@ type PoolObservation struct {
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
-	// The disk encryption policy for nodes in this pool.
-	// The disk encryption policy for the nodes in this pool. NOTE: Disk encryption may not currently be available to all users.
+	// The disk encryption policy for nodes in this pool. Must be enabled or disabled. If omitted, the account default encryption policy is applied. Changing this value will cause the pool to be replaced (deleted and recreated).
+	// The disk encryption policy for the nodes in this pool.
 	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
+	// The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+	// The ID of the Firewall to attach to nodes in this node pool.
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
 
 	// The ID of the cluster.
 	// The ID of the Node Pool.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The k8s version of the nodes in this Node Pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The desired Kubernetes version for this pool. This is only available for Enterprise clusters.
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// A label for the Node Pool. If not provided, it defaults to empty string.
+	// The label of the Node Pool.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
@@ -352,17 +448,22 @@ type PoolObservation struct {
 	// The nodes in the node pool.
 	Nodes []NodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
 	// A set of tags applied to this node pool.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
 	Taint []TaintObservation `json:"taint,omitempty" tf:"taint,omitempty"`
 
 	// A Linode Type for all of the nodes in the Node Pool. See all node types here.
 	// A Linode Type for all of the nodes in the Node Pool.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The strategy for updating the Node Pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
 type PoolParameters struct {
@@ -376,17 +477,39 @@ type PoolParameters struct {
 	// +kubebuilder:validation:Optional
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// The disk encryption policy for nodes in this pool. Must be enabled or disabled. If omitted, the account default encryption policy is applied. Changing this value will cause the pool to be replaced (deleted and recreated).
+	// The disk encryption policy for the nodes in this pool.
+	// +kubebuilder:validation:Optional
+	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
+
+	// The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+	// The ID of the Firewall to attach to nodes in this node pool.
+	// +kubebuilder:validation:Optional
+	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
+
+	// The k8s version of the nodes in this Node Pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The desired Kubernetes version for this pool. This is only available for Enterprise clusters.
+	// +kubebuilder:validation:Optional
+	K8SVersion *string `json:"k8sVersion,omitempty" tf:"k8s_version,omitempty"`
+
+	// A label for the Node Pool. If not provided, it defaults to empty string.
+	// The label of the Node Pool.
+	// +kubebuilder:validation:Optional
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
 	// A set of tags applied to this node pool.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
 	// +kubebuilder:validation:Optional
 	Taint []TaintParameters `json:"taint,omitempty" tf:"taint,omitempty"`
@@ -395,42 +518,56 @@ type PoolParameters struct {
 	// A Linode Type for all of the nodes in the Node Pool.
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
+
+	// The strategy for updating the Node Pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+	// The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+	// +kubebuilder:validation:Optional
+	UpdateStrategy *string `json:"updateStrategy,omitempty" tf:"update_strategy,omitempty"`
 }
 
 type TaintInitParameters struct {
 
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
 	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
 
 	// The Kubernetes taint key.
+	// The Kubernetes taint key.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
+	// The Kubernetes taint value.
 	// The Kubernetes taint value.
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TaintObservation struct {
 
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
 	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
 
 	// The Kubernetes taint key.
+	// The Kubernetes taint key.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
+	// The Kubernetes taint value.
 	// The Kubernetes taint value.
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TaintParameters struct {
 
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
 	// +kubebuilder:validation:Optional
 	Effect *string `json:"effect" tf:"effect,omitempty"`
 
 	// The Kubernetes taint key.
+	// The Kubernetes taint key.
 	// +kubebuilder:validation:Optional
 	Key *string `json:"key" tf:"key,omitempty"`
 
+	// The Kubernetes taint value.
 	// The Kubernetes taint value.
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -474,7 +611,6 @@ type Cluster struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.k8sVersion) || (has(self.initProvider) && has(self.initProvider.k8sVersion))",message="spec.forProvider.k8sVersion is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.pool) || (has(self.initProvider) && has(self.initProvider.pool))",message="spec.forProvider.pool is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	Spec   ClusterSpec   `json:"spec"`
 	Status ClusterStatus `json:"status,omitempty"`

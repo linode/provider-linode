@@ -156,6 +156,11 @@ func (in *VolumeObservation) DeepCopyInto(out *VolumeObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.IoReady != nil {
+		in, out := &in.IoReady, &out.IoReady
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
 		*out = new(string)

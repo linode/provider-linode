@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: configs.instance.linode.upbound.io
 spec:
   group: instance.linode.upbound.io
@@ -89,7 +89,8 @@ spec:
                     items:
                       properties:
                         deviceName:
-                          description: The Disk ID to map to this disk slot
+                          description: The device slot identifier (for example, sda,
+                            sdb) to map a disk or volume into
                           type: string
                         diskId:
                           description: |-
@@ -110,7 +111,7 @@ spec:
                       properties:
                         sda:
                           description: |-
-                            The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+                            Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type's RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_id or volume_id.
                             Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
                           items:
                             properties:
@@ -193,6 +194,448 @@ spec:
                                         type: string
                                     type: object
                                 type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaa:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdab:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdac:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdad:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdae:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdag:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdah:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdai:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdak:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdal:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdam:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdan:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdao:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdap:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaq:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdar:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdas:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdat:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdau:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdav:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaw:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdax:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sday:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaz:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
                               volumeId:
                                 description: |-
                                   The Volume ID to map to this device slot.
@@ -284,6 +727,210 @@ spec:
                                         type: string
                                     type: object
                                 type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdba:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbb:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbc:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbd:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbe:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbg:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbh:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbi:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbk:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbl:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
                               volumeId:
                                 description: |-
                                   The Volume ID to map to this device slot.
@@ -837,6 +1484,312 @@ spec:
                                 type: number
                             type: object
                           type: array
+                        sdi:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdk:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdl:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdm:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdn:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdo:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdp:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdq:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdr:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sds:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdt:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdu:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdv:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdw:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdx:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdy:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdz:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
                       type: object
                     type: array
                   helpers:
@@ -902,6 +1855,43 @@ spec:
                                   purpose.
                                   The IP from the VPC subnet to use for this interface.
                                 type: string
+                            type: object
+                          type: array
+                        ipv6:
+                          description: The IPv6 configuration of the VPC interface.
+                            This attribute is only allowed for VPC interfaces.
+                          items:
+                            properties:
+                              isPublic:
+                                description: |-
+                                  If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)
+                                  If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted.
+                                type: boolean
+                              range:
+                                description: |-
+                                  A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                  An array of SLAAC prefixes to use for this interface.
+                                items:
+                                  properties:
+                                    range:
+                                      description: |-
+                                        A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                        A prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+                                      type: string
+                                  type: object
+                                type: array
+                              slaac:
+                                description: An array of SLAAC prefixes to use for
+                                  this interface.
+                                items:
+                                  properties:
+                                    range:
+                                      description: |-
+                                        A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                        A SLAAC prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+                                      type: string
+                                  type: object
+                                type: array
                             type: object
                           type: array
                         label:
@@ -1065,7 +2055,8 @@ spec:
                     items:
                       properties:
                         deviceName:
-                          description: The Disk ID to map to this disk slot
+                          description: The device slot identifier (for example, sda,
+                            sdb) to map a disk or volume into
                           type: string
                         diskId:
                           description: |-
@@ -1086,7 +2077,7 @@ spec:
                       properties:
                         sda:
                           description: |-
-                            The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+                            Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type's RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_id or volume_id.
                             Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
                           items:
                             properties:
@@ -1169,6 +2160,448 @@ spec:
                                         type: string
                                     type: object
                                 type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaa:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdab:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdac:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdad:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdae:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdag:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdah:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdai:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdak:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdal:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdam:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdan:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdao:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdap:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaq:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdar:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdas:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdat:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdau:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdav:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaw:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdax:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sday:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaz:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
                               volumeId:
                                 description: |-
                                   The Volume ID to map to this device slot.
@@ -1260,6 +2693,210 @@ spec:
                                         type: string
                                     type: object
                                 type: object
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdba:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbb:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbc:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbd:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbe:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbg:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbh:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbi:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbk:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbl:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
                               volumeId:
                                 description: |-
                                   The Volume ID to map to this device slot.
@@ -1813,6 +3450,312 @@ spec:
                                 type: number
                             type: object
                           type: array
+                        sdi:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdk:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdl:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdm:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdn:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdo:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdp:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdq:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdr:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sds:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdt:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdu:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdv:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdw:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdx:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdy:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdz:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
                       type: object
                     type: array
                   helpers:
@@ -1878,6 +3821,43 @@ spec:
                                   purpose.
                                   The IP from the VPC subnet to use for this interface.
                                 type: string
+                            type: object
+                          type: array
+                        ipv6:
+                          description: The IPv6 configuration of the VPC interface.
+                            This attribute is only allowed for VPC interfaces.
+                          items:
+                            properties:
+                              isPublic:
+                                description: |-
+                                  If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)
+                                  If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted.
+                                type: boolean
+                              range:
+                                description: |-
+                                  A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                  An array of SLAAC prefixes to use for this interface.
+                                items:
+                                  properties:
+                                    range:
+                                      description: |-
+                                        A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                        A prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+                                      type: string
+                                  type: object
+                                type: array
+                              slaac:
+                                description: An array of SLAAC prefixes to use for
+                                  this interface.
+                                items:
+                                  properties:
+                                    range:
+                                      description: |-
+                                        A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                        A SLAAC prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+                                      type: string
+                                  type: object
+                                type: array
                             type: object
                           type: array
                         label:
@@ -2205,7 +4185,8 @@ spec:
                     items:
                       properties:
                         deviceName:
-                          description: The Disk ID to map to this disk slot
+                          description: The device slot identifier (for example, sda,
+                            sdb) to map a disk or volume into
                           type: string
                         diskId:
                           description: |-
@@ -2226,7 +4207,7 @@ spec:
                       properties:
                         sda:
                           description: |-
-                            The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.
+                            Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type's RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_id or volume_id.
                             Device can be either a Disk or Volume identified by disk_id or volume_id. Only one type per slot allowed.
                           items:
                             properties:
@@ -2242,7 +4223,653 @@ spec:
                                 type: number
                             type: object
                           type: array
+                        sdaa:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdab:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdac:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdad:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdae:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdag:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdah:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdai:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdak:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdal:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdam:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdan:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdao:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdap:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaq:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdar:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdas:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdat:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdau:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdav:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaw:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdax:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sday:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdaz:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
                         sdb:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdba:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbb:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbc:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbd:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbe:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbf:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbg:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbh:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbi:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbk:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdbl:
                           description: Device can be either a Disk or Volume identified
                             by disk_id or volume_id. Only one type per slot allowed.
                           items:
@@ -2361,6 +4988,312 @@ spec:
                                 type: number
                             type: object
                           type: array
+                        sdi:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdj:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdk:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdl:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdm:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdn:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdo:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdp:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdq:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdr:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sds:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdt:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdu:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdv:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdw:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdx:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdy:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
+                        sdz:
+                          description: Device can be either a Disk or Volume identified
+                            by disk_id or volume_id. Only one type per slot allowed.
+                          items:
+                            properties:
+                              diskId:
+                                description: |-
+                                  The Disk ID to map to this device slot
+                                  The Disk ID to map to this disk slot
+                                type: number
+                              volumeId:
+                                description: |-
+                                  The Volume ID to map to this device slot.
+                                  The Block Storage volume ID to map to this disk slot
+                                type: number
+                            type: object
+                          type: array
                       type: object
                     type: array
                   helpers:
@@ -2435,6 +5368,60 @@ spec:
                                   purpose.
                                   The IP from the VPC subnet to use for this interface.
                                 type: string
+                            type: object
+                          type: array
+                        ipv6:
+                          description: The IPv6 configuration of the VPC interface.
+                            This attribute is only allowed for VPC interfaces.
+                          items:
+                            properties:
+                              isPublic:
+                                description: |-
+                                  If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)
+                                  If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted.
+                                type: boolean
+                              range:
+                                description: |-
+                                  A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                  An array of SLAAC prefixes to use for this interface.
+                                items:
+                                  properties:
+                                    assignedRange:
+                                      description: The value of `range` computed by
+                                        the API. This is necessary when needing to
+                                        access the range implicitly allocated using
+                                        `auto`.
+                                      type: string
+                                    range:
+                                      description: |-
+                                        A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                        A prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+                                      type: string
+                                  type: object
+                                type: array
+                              slaac:
+                                description: An array of SLAAC prefixes to use for
+                                  this interface.
+                                items:
+                                  properties:
+                                    address:
+                                      description: |-
+                                        (Read-Only) The SLAAC address chosen for this interface.
+                                        The SLAAC address chosen for this interface.
+                                      type: string
+                                    assignedRange:
+                                      description: The value of `range` computed by
+                                        the API. This is necessary when needing to
+                                        access the range implicitly allocated using
+                                        `auto`.
+                                      type: string
+                                    range:
+                                      description: |-
+                                        A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.
+                                        A SLAAC prefix to add to this interface, or `auto` for a new IPv6 prefix to be automatically allocated.
+                                      type: string
+                                  type: object
+                                type: array
                             type: object
                           type: array
                         label:

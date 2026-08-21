@@ -9,4 +9,3 @@ metadata:
 spec:
   forProvider:
     backupsEnabled: "true"
-    longviewSubscription: longview-40

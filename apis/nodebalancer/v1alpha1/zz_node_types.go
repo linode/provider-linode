@@ -53,6 +53,10 @@ type NodeInitParameters struct {
 	// +kubebuilder:validation:Optional
 	NodebalancerIDSelector *v1.Selector `json:"nodebalancerIdSelector,omitempty" tf:"-"`
 
+	// The ID of the related VPC subnet. This is only set for VPC nodes. NOTE: VPC-attached NodeBalancers may not currently be available to all users and may require the api_version provider argument must be set to v4beta.
+	// The ID of the VPC subnet for this node.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
@@ -85,6 +89,14 @@ type NodeObservation struct {
 	// The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).
 	// The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN)
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// The ID of the related VPC subnet. This is only set for VPC nodes. NOTE: VPC-attached NodeBalancers may not currently be available to all users and may require the api_version provider argument must be set to v4beta.
+	// The ID of the VPC subnet for this node.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// The ID of the related NodeBalancer-VPC configuration. This is only set for VPC nodes. NOTE: VPC-attached NodeBalancers may not currently be available to all users and may require the api_version provider argument must be set to v4beta.
+	// The ID of the NB-VPC config for this node.
+	VPCConfigID *float64 `json:"vpcConfigId,omitempty" tf:"vpc_config_id,omitempty"`
 
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)
@@ -135,6 +147,11 @@ type NodeParameters struct {
 	// Selector for a Nodebalancer to populate nodebalancerId.
 	// +kubebuilder:validation:Optional
 	NodebalancerIDSelector *v1.Selector `json:"nodebalancerIdSelector,omitempty" tf:"-"`
+
+	// The ID of the related VPC subnet. This is only set for VPC nodes. NOTE: VPC-attached NodeBalancers may not currently be available to all users and may require the api_version provider argument must be set to v4beta.
+	// The ID of the VPC subnet for this node.
+	// +kubebuilder:validation:Optional
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).
 	// Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255)

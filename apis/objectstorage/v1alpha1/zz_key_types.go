@@ -19,10 +19,6 @@ type BucketAccessInitParameters struct {
 	// The unique label of the bucket to which the key will grant limited access.
 	BucketName *string `json:"bucketName,omitempty" tf:"bucket_name,omitempty"`
 
-	// (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
-	// The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
-
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
 	// This Limited Access Key's permissions for the selected bucket.
 	Permissions *string `json:"permissions,omitempty" tf:"permissions,omitempty"`
@@ -37,10 +33,6 @@ type BucketAccessObservation struct {
 	// The unique label of the bucket to which the key will grant limited access.
 	// The unique label of the bucket to which the key will grant limited access.
 	BucketName *string `json:"bucketName,omitempty" tf:"bucket_name,omitempty"`
-
-	// (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
-	// The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
 
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
 	// This Limited Access Key's permissions for the selected bucket.
@@ -58,11 +50,6 @@ type BucketAccessParameters struct {
 	// +kubebuilder:validation:Optional
 	BucketName *string `json:"bucketName" tf:"bucket_name,omitempty"`
 
-	// (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.
-	// The Object Storage cluster where the bucket resides. Deprecated in favor of `region`
-	// +kubebuilder:validation:Optional
-	Cluster *string `json:"cluster,omitempty" tf:"cluster,omitempty"`
-
 	// This Limited Access Key’s permissions for the selected bucket. Changing  (read_write, read_only)
 	// This Limited Access Key's permissions for the selected bucket.
 	// +kubebuilder:validation:Optional
@@ -71,7 +58,7 @@ type BucketAccessParameters struct {
 	// The region where the bucket resides.
 	// The region where the bucket resides.
 	// +kubebuilder:validation:Optional
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+	Region *string `json:"region" tf:"region,omitempty"`
 }
 
 type KeyInitParameters struct {

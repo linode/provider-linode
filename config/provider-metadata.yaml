@@ -9,15 +9,40 @@ resources:
             - name: myaccount
               manifest: |-
                 {
-                  "backups_enabled": "true",
-                  "longview_subscription": "longview-40"
+                  "backups_enabled": "true"
                 }
         argumentDocs:
             backups_enabled: '- (Optional) The account-wide backups default. If true, all Linodes created will automatically be enrolled in the Backups service. If false, Linodes will not be enrolled by default, but may still be enrolled on creation or later.'
-            longview_subscription: '- (Optional) The Longview Pro tier you are currently subscribed to. The value must be a Longview Subscription ID or null for Longview Free.'
+            interfaces_for_new_linodes: '- (Optional) Type of interfaces for new Linode instances. Available values are "legacy_config_only", "legacy_config_default_but_linode_allowed", "linode_default_but_legacy_config_allowed", and "linode_only".'
+            longview_subscription: '- (Deprecated) The Longview Pro tier you are currently subscribed to.'
+            maintenance_policy: '- (Optional) The default maintenance policy for this account. Examples are "linode/migrate" and "linode/power_off_on". Defaults to "linode/migrate".'
             managed: '- Enables monitoring for connectivity, response, and total request time.'
             network_helper: '- (Optional) Enables network helper across all users by default for new Linodes and Linode Configs.'
             object_storage: '- A string describing the status of this account’s Object Storage service enrollment.'
+        importStatements: []
+    linode_consumer_image_share_group_token:
+        subCategory: ""
+        description: Manages a token for an Image Share Group.
+        name: linode_consumer_image_share_group_token
+        title: linode_consumer_image_share_group_token
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "label": "example-token",
+                  "valid_for_sharegroup_uuid": "03fbb93e-c27d-4c4a-9180-67f6e0cd74ca"
+                }
+        argumentDocs:
+            created: '- When the token was created.'
+            expiry: '- When the token will expire.'
+            label: '- (Optional) A label for the token.'
+            sharegroup_label: '- The label of the Image Share Group that the token is for.'
+            sharegroup_uuid: '- The UUID of the Image Share Group that the token is for.'
+            status: '- The status of the token.'
+            token: '- The one-time-use token to be provided to the Image Share Group Producer.'
+            token_uuid: '- The UUID of the token.'
+            updated: '- When the token was last updated.'
+            valid_for_sharegroup_uuid: '- (Required) The UUID of the Image Share Group for which to create a token.'
         importStatements: []
     linode_database_access_controls:
         subCategory: ""
@@ -31,22 +56,23 @@ resources:
                   "allow_list": [
                     "${linode_instance.my-instance.ip_address}"
                   ],
-                  "database_id": "${linode_database_mysql.my-db.id}",
+                  "database_id": "${linode_database_mysql_v2.my-db.id}",
                   "database_type": "mysql"
                 }
               references:
-                database_id: linode_database_mysql.my-db.id
+                allow_list: linode_instance.my-instance.ip_address
+                database_id: linode_database_mysql_v2.my-db.id
               dependencies:
-                linode_database_mysql.my-db: |-
+                linode_database_mysql_v2.my-db: |-
                     {
-                      "engine_id": "mysql/8.0.30",
+                      "engine_id": "mysql/8",
                       "label": "mydatabase",
                       "region": "us-southeast",
                       "type": "g6-nanode-1"
                     }
                 linode_instance.my-instance: |-
                     {
-                      "image": "linode/alpine3.19",
+                      "image": "linode/arch",
                       "label": "myinstance",
                       "region": "us-southeast",
                       "type": "g6-nanode-1"
@@ -55,73 +81,6 @@ resources:
             allow_list: '- (Required) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format.'
             database_id: '- (Required) The unique ID of the target database.'
             database_type: '- (Required) The unique type of the target database. (mysql, postgresql)'
-        importStatements: []
-    linode_database_mysql:
-        subCategory: ""
-        description: Manages a Linode MySQL Database.
-        name: linode_database_mysql
-        title: linode_database_mysql
-        examples:
-            - name: foobar
-              manifest: |-
-                {
-                  "engine_id": "mysql/8.0.30",
-                  "label": "mydatabase",
-                  "region": "us-southeast",
-                  "type": "g6-nanode-1"
-                }
-            - name: foobar
-              manifest: |-
-                {
-                  "allow_list": [
-                    "0.0.0.0/0"
-                  ],
-                  "cluster_size": 3,
-                  "encrypted": true,
-                  "engine_id": "mysql/8.0.30",
-                  "label": "mydatabase",
-                  "region": "us-southeast",
-                  "replication_type": "asynch",
-                  "ssl_connection": true,
-                  "type": "g6-nanode-1",
-                  "updates": [
-                    {
-                      "day_of_week": "saturday",
-                      "duration": 1,
-                      "frequency": "monthly",
-                      "hour_of_day": 22,
-                      "week_of_month": 2
-                    }
-                  ]
-                }
-        argumentDocs:
-            allow_list: '- (Optional) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.'
-            asynch: or semi_synch for a high availability cluster.
-            ca_cert: '- The base64-encoded SSL CA certificate for the Managed Database instance.'
-            cluster_size: '- (Optional) The number of Linode Instance nodes deployed to the Managed Database. (default 1)'
-            created: '- When this Managed Database was created.'
-            encrypted: '- (Optional) Whether the Managed Databases is encrypted. (default false)'
-            engine: '- The Managed Database engine. (e.g. mysql)'
-            engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mysql/8.0.30)'
-            host_primary: '- The primary host for the Managed Database.'
-            host_secondary: '- The secondary/private network host for the Managed Database.'
-            id: '- The ID of the Managed Database.'
-            label: '- (Required) A unique, user-defined string referring to the Managed Database.'
-            none: for a single node cluster.
-            region: '- (Required) The region to use for the Managed Database.'
-            replication_type: '- (Optional) The replication method used for the Managed Database. (none, asynch, semi_synch; default none)'
-            root_password: '- The randomly-generated root password for the Managed Database instance.'
-            root_username: '- The root username for the Managed Database instance.'
-            ssl_connection: '- (Optional) Whether to require SSL credentials to establish a connection to the Managed Database. (default false)'
-            status: '- The operating status of the Managed Database.'
-            type: '- (Required) The Linode Instance type used for the nodes of the  Managed Database instance.'
-            updated: '- When this Managed Database was last updated.'
-            updates.day_of_week: '- (Required) The day to perform maintenance. (monday, tuesday, ...)'
-            updates.duration: '- (Required) The maximum maintenance window time in hours. (1..3)'
-            updates.frequency: '- (Required) Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)'
-            updates.hour_of_day: '- (Required) The hour to begin maintenance based in UTC time. (0..23)'
-            updates.week_of_month: '- (Optional) The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)'
-            version: '- The Managed Database engine version. (e.g. v8.0.26)'
         importStatements: []
     linode_database_mysql_v2:
         subCategory: ""
@@ -169,9 +128,58 @@ resources:
             - name: foobar
               manifest: |-
                 {
+                  "engine_config_binlog_retention_period": 3600,
+                  "engine_config_mysql_connect_timeout": 10,
+                  "engine_config_mysql_default_time_zone": "+00:00",
+                  "engine_config_mysql_group_concat_max_len": 4096,
+                  "engine_config_mysql_information_schema_stats_expiry": 3600,
+                  "engine_config_mysql_innodb_change_buffer_max_size": 25,
+                  "engine_config_mysql_innodb_flush_neighbors": 0,
+                  "engine_config_mysql_innodb_ft_min_token_size": 7,
+                  "engine_config_mysql_innodb_ft_server_stopword_table": "mysql/innodb_ft_default_stopword",
+                  "engine_config_mysql_innodb_lock_wait_timeout": 300,
+                  "engine_config_mysql_innodb_log_buffer_size": 16777216,
+                  "engine_config_mysql_innodb_online_alter_log_max_size": 268435456,
+                  "engine_config_mysql_innodb_read_io_threads": 4,
+                  "engine_config_mysql_innodb_rollback_on_timeout": true,
+                  "engine_config_mysql_innodb_thread_concurrency": 8,
+                  "engine_config_mysql_innodb_write_io_threads": 4,
+                  "engine_config_mysql_interactive_timeout": 300,
+                  "engine_config_mysql_internal_tmp_mem_storage_engine": "TempTable",
+                  "engine_config_mysql_max_allowed_packet": 67108864,
+                  "engine_config_mysql_max_heap_table_size": 16777216,
+                  "engine_config_mysql_net_buffer_length": 16384,
+                  "engine_config_mysql_net_read_timeout": 30,
+                  "engine_config_mysql_net_write_timeout": 30,
+                  "engine_config_mysql_sort_buffer_size": 262144,
+                  "engine_config_mysql_sql_mode": "TRADITIONAL,ANSI",
+                  "engine_config_mysql_sql_require_primary_key": false,
+                  "engine_config_mysql_tmp_table_size": 16777216,
+                  "engine_config_mysql_wait_timeout": 28800,
+                  "engine_id": "mysql/8",
+                  "label": "mydatabase",
+                  "region": "us-mia",
+                  "type": "g6-nanode-1"
+                }
+            - name: foobar
+              manifest: |-
+                {
                   "engine_id": "mysql/8",
                   "fork_source": 12345,
                   "label": "mydatabase",
+                  "region": "us-mia",
+                  "type": "g6-nanode-1"
+                }
+            - name: foobar
+              manifest: |-
+                {
+                  "engine_id": "mysql/8",
+                  "label": "mydatabase",
+                  "private_network": {
+                    "public_access": false,
+                    "subnet_id": 456,
+                    "vpc_id": 123
+                  },
                   "region": "us-mia",
                   "type": "g6-nanode-1"
                 }
@@ -182,6 +190,34 @@ resources:
             created: '- When this Managed Database was created.'
             encrypted: '- Whether the Managed Databases is encrypted.'
             engine: '- The Managed Database engine. (e.g. mysql)'
+            engine_config_binlog_retention_period: '- (Optional) The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.'
+            engine_config_mysql_connect_timeout: '- (Optional) The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".'
+            engine_config_mysql_default_time_zone: '- (Optional) Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.'
+            engine_config_mysql_group_concat_max_len: '- (Optional) The maximum permitted result length in bytes for the GROUP_CONCAT() function.'
+            engine_config_mysql_information_schema_stats_expiry: '- (Optional) The time, in seconds, before cached statistics expire.'
+            engine_config_mysql_innodb_change_buffer_max_size: '- (Optional) Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.'
+            engine_config_mysql_innodb_flush_neighbors: '- (Optional) Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.'
+            engine_config_mysql_innodb_ft_min_token_size: '- (Optional) Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_innodb_ft_server_stopword_table: '- (Optional) This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.'
+            engine_config_mysql_innodb_lock_wait_timeout: '- (Optional) The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.'
+            engine_config_mysql_innodb_log_buffer_size: '- (Optional) The size in bytes of the buffer that InnoDB uses to write to the log files on disk.'
+            engine_config_mysql_innodb_online_alter_log_max_size: '- (Optional) The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.'
+            engine_config_mysql_innodb_read_io_threads: '- (Optional) The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_innodb_rollback_on_timeout: '- (Optional) When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_innodb_thread_concurrency: '- (Optional) Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).'
+            engine_config_mysql_innodb_write_io_threads: '- (Optional) The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_interactive_timeout: '- (Optional) The number of seconds the server waits for activity on an interactive connection before closing it.'
+            engine_config_mysql_internal_tmp_mem_storage_engine: '- (Optional) The storage engine for in-memory internal temporary tables.'
+            engine_config_mysql_max_allowed_packet: '- (Optional) Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).'
+            engine_config_mysql_max_heap_table_size: '- (Optional) Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).'
+            engine_config_mysql_net_buffer_length: '- (Optional) Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_net_read_timeout: '- (Optional) The number of seconds to wait for more data from a connection before aborting the read.'
+            engine_config_mysql_net_write_timeout: '- (Optional) The number of seconds to wait for a block to be written to a connection before aborting the write.'
+            engine_config_mysql_sort_buffer_size: '- (Optional) Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).'
+            engine_config_mysql_sql_mode: '- (Optional) Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)'
+            engine_config_mysql_sql_require_primary_key: '- (Optional) Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)'
+            engine_config_mysql_tmp_table_size: '- (Optional) Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).'
+            engine_config_mysql_wait_timeout: '- (Optional) The number of seconds the server waits for activity on a noninteractive connection before closing it.'
             engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mysql)'
             fork_restore_time: '- (Optional) The database timestamp from which it was restored.'
             fork_source: '- (Optional) The ID of the database that was forked from.'
@@ -195,6 +231,9 @@ resources:
             pending_updates.planned_for: '- The date and time a maintenance update will be applied.'
             platform: '- The back-end platform for relational databases used by the service.'
             port: '- The access port for this Managed Database.'
+            private_network.public_access: '- (Optional) Set to true to allow clients outside the VPC to connect to the database using a public IP address. (Default false)'
+            private_network.subnet_id: '- (Required) The ID of the VPC subnet to restrict access to this database using.'
+            private_network.vpc_id: '- (Required) The ID of the virtual private cloud (VPC) to restrict access to this database using.'
             region: '- (Required) The region to use for the Managed Database.'
             root_password: '- The randomly-generated root password for the Managed Database instance.'
             root_username: '- The root username for the Managed Database instance.'
@@ -207,77 +246,6 @@ resources:
             updates.duration: '- (Required) The maximum maintenance window time in hours. (1..3)'
             updates.frequency: '- (Required) The frequency at which maintenance occurs. (weekly)'
             updates.hour_of_day: '- (Required) The hour to begin maintenance based in UTC time. (0..23)'
-            version: '- The Managed Database engine version. (e.g. 13.2)'
-        importStatements: []
-    linode_database_postgresql:
-        subCategory: ""
-        description: Manages a Linode PostgreSQL Database.
-        name: linode_database_postgresql
-        title: linode_database_postgresql
-        examples:
-            - name: foobar
-              manifest: |-
-                {
-                  "engine_id": "postgresql/13.2",
-                  "label": "mydatabase",
-                  "region": "us-southeast",
-                  "type": "g6-nanode-1"
-                }
-            - name: foobar
-              manifest: |-
-                {
-                  "allow_list": [
-                    "0.0.0.0/0"
-                  ],
-                  "cluster_size": 3,
-                  "encrypted": true,
-                  "engine_id": "postgresql/13.2",
-                  "label": "mydatabase",
-                  "region": "us-southeast",
-                  "replication_commit_type": "remote_write",
-                  "replication_type": "semi_synch",
-                  "ssl_connection": true,
-                  "type": "g6-nanode-1",
-                  "updates": [
-                    {
-                      "day_of_week": "saturday",
-                      "duration": 1,
-                      "frequency": "monthly",
-                      "hour_of_day": 22,
-                      "week_of_month": 2
-                    }
-                  ]
-                }
-        argumentDocs:
-            allow_list: '- (Optional) A list of IP addresses that can access the Managed Database. Each item can be a single IP address or a range in CIDR format. Use linode_database_access_controls to manage your allow list separately.'
-            asynch: or semi_synch for a high availability cluster.
-            ca_cert: '- The base64-encoded SSL CA certificate for the Managed Database instance.'
-            cluster_size: '- (Optional) The number of Linode Instance nodes deployed to the Managed Database. (default 1)'
-            created: '- When this Managed Database was created.'
-            encrypted: '- (Optional) Whether the Managed Databases is encrypted. (default false)'
-            engine: '- The Managed Database engine. (e.g. postgresql)'
-            engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. postgresql/13.2)'
-            host_primary: '- The primary host for the Managed Database.'
-            host_secondary: '- The secondary/private network host for the Managed Database.'
-            id: '- The ID of the Managed Database.'
-            label: '- (Required) A unique, user-defined string referring to the Managed Database.'
-            local: or off for the asynch replication type.
-            none: for a single node cluster.
-            "on": ', remote_write, or remote_apply for the semi_synch replication type.'
-            region: '- (Required) The region to use for the Managed Database.'
-            replication_commit_type: '- (Optional) The synchronization level of the replicating server. (on, local, remote_write, remote_apply, off; default off)'
-            replication_type: '- (Optional) The replication method used for the Managed Database. (none, asynch, semi_synch; default none)'
-            root_password: '- The randomly-generated root password for the Managed Database instance.'
-            root_username: '- The root username for the Managed Database instance.'
-            ssl_connection: '- (Optional) Whether to require SSL credentials to establish a connection to the Managed Database. (default false)'
-            status: '- The operating status of the Managed Database.'
-            type: '- (Required) The Linode Instance type used for the nodes of the  Managed Database instance.'
-            updated: '- When this Managed Database was last updated.'
-            updates.day_of_week: '- (Required) The day to perform maintenance. (monday, tuesday, ...)'
-            updates.duration: '- (Required) The maximum maintenance window time in hours. (1..3)'
-            updates.frequency: '- (Required) Whether maintenance occurs on a weekly or monthly basis. (weekly, monthly)'
-            updates.hour_of_day: '- (Required) The hour to begin maintenance based in UTC time. (0..23)'
-            updates.week_of_month: '- (Optional) The week of the month to perform monthly frequency updates. Required for monthly frequency updates. (1..4)'
             version: '- The Managed Database engine version. (e.g. 13.2)'
         importStatements: []
     linode_database_postgresql_v2:
@@ -326,9 +294,77 @@ resources:
             - name: foobar
               manifest: |-
                 {
+                  "engine_config_pg_autovacuum_analyze_scale_factor": 0.1,
+                  "engine_config_pg_autovacuum_analyze_threshold": 50,
+                  "engine_config_pg_autovacuum_max_workers": 3,
+                  "engine_config_pg_autovacuum_naptime": 100,
+                  "engine_config_pg_autovacuum_vacuum_cost_delay": 20,
+                  "engine_config_pg_autovacuum_vacuum_cost_limit": 200,
+                  "engine_config_pg_autovacuum_vacuum_scale_factor": 0.2,
+                  "engine_config_pg_autovacuum_vacuum_threshold": 100,
+                  "engine_config_pg_bgwriter_delay": 1000,
+                  "engine_config_pg_bgwriter_flush_after": 512,
+                  "engine_config_pg_bgwriter_lru_maxpages": 100,
+                  "engine_config_pg_bgwriter_lru_multiplier": 2,
+                  "engine_config_pg_deadlock_timeout": 1000,
+                  "engine_config_pg_default_toast_compression": "pglz",
+                  "engine_config_pg_idle_in_transaction_session_timeout": 60000,
+                  "engine_config_pg_jit": true,
+                  "engine_config_pg_max_files_per_process": 1000,
+                  "engine_config_pg_max_locks_per_transaction": 64,
+                  "engine_config_pg_max_logical_replication_workers": 4,
+                  "engine_config_pg_max_parallel_workers": 8,
+                  "engine_config_pg_max_parallel_workers_per_gather": 2,
+                  "engine_config_pg_max_pred_locks_per_transaction": 128,
+                  "engine_config_pg_max_replication_slots": 8,
+                  "engine_config_pg_max_slot_wal_keep_size": 128,
+                  "engine_config_pg_max_stack_depth": 2097152,
+                  "engine_config_pg_max_standby_archive_delay": 60000,
+                  "engine_config_pg_max_standby_streaming_delay": 60000,
+                  "engine_config_pg_max_wal_senders": 20,
+                  "engine_config_pg_max_worker_processes": 8,
+                  "engine_config_pg_password_encryption": "scram-sha-256",
+                  "engine_config_pg_pg_partman_bgw_interval": 3600,
+                  "engine_config_pg_pg_partman_bgw_role": "myrolename",
+                  "engine_config_pg_pg_stat_monitor_pgsm_enable_query_plan": true,
+                  "engine_config_pg_pg_stat_monitor_pgsm_max_buckets": 5,
+                  "engine_config_pg_pg_stat_statements_track": "all",
+                  "engine_config_pg_stat_monitor_enable": true,
+                  "engine_config_pg_temp_file_limit": 100,
+                  "engine_config_pg_timezone": "Europe/Helsinki",
+                  "engine_config_pg_track_activity_query_size": 2048,
+                  "engine_config_pg_track_commit_timestamp": "on",
+                  "engine_config_pg_track_functions": "all",
+                  "engine_config_pg_track_io_timing": "on",
+                  "engine_config_pg_wal_sender_timeout": 60000,
+                  "engine_config_pg_wal_writer_delay": 200,
+                  "engine_config_pglookout_max_failover_replication_time_lag": 10000,
+                  "engine_config_shared_buffers_percentage": 25,
+                  "engine_config_work_mem": 400,
+                  "engine_id": "postgresql/16",
+                  "label": "mydatabase",
+                  "region": "us-mia",
+                  "type": "g6-nanode-1"
+                }
+            - name: foobar
+              manifest: |-
+                {
                   "engine_id": "postgresql/16",
                   "fork_source": 12345,
                   "label": "mydatabase",
+                  "region": "us-mia",
+                  "type": "g6-nanode-1"
+                }
+            - name: foobar
+              manifest: |-
+                {
+                  "engine_id": "postgresql/16",
+                  "label": "mydatabase",
+                  "private_network": {
+                    "public_access": false,
+                    "subnet_id": 456,
+                    "vpc_id": 123
+                  },
                   "region": "us-mia",
                   "type": "g6-nanode-1"
                 }
@@ -339,6 +375,53 @@ resources:
             created: '- When this Managed Database was created.'
             encrypted: '- Whether the Managed Databases is encrypted.'
             engine: '- The Managed Database engine. (e.g. postgresql)'
+            engine_config_pg_autovacuum_analyze_scale_factor: '- (Optional) Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)'
+            engine_config_pg_autovacuum_analyze_threshold: '- (Optional) Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.'
+            engine_config_pg_autovacuum_max_workers: '- (Optional) Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.'
+            engine_config_pg_autovacuum_naptime: '- (Optional) Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute'
+            engine_config_pg_autovacuum_vacuum_cost_delay: '- (Optional) Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds'
+            engine_config_pg_autovacuum_vacuum_cost_limit: '- (Optional) Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.'
+            engine_config_pg_autovacuum_vacuum_scale_factor: '- (Optional) Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)'
+            engine_config_pg_autovacuum_vacuum_threshold: '- (Optional) Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.'
+            engine_config_pg_bgwriter_delay: '- (Optional) Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.'
+            engine_config_pg_bgwriter_flush_after: '- (Optional) Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.'
+            engine_config_pg_bgwriter_lru_maxpages: '- (Optional) In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.'
+            engine_config_pg_bgwriter_lru_multiplier: '- (Optional) The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.'
+            engine_config_pg_deadlock_timeout: '- (Optional) This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.'
+            engine_config_pg_default_toast_compression: '- (Optional) Specifies the default TOAST compression method for values of compressible columns (the default is lz4).'
+            engine_config_pg_idle_in_transaction_session_timeout: '- (Optional) Time out sessions with open transactions after this number of milliseconds.'
+            engine_config_pg_jit: '- (Optional) Controls system-wide use of Just-in-Time Compilation (JIT).'
+            engine_config_pg_max_files_per_process: '- (Optional) PostgreSQL maximum number of files that can be open per process.'
+            engine_config_pg_max_locks_per_transaction: '- (Optional) PostgreSQL maximum locks per transaction.'
+            engine_config_pg_max_logical_replication_workers: '- (Optional) PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).'
+            engine_config_pg_max_parallel_workers: '- (Optional) Sets the maximum number of workers that the system can support for parallel queries.'
+            engine_config_pg_max_parallel_workers_per_gather: '- (Optional) Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.'
+            engine_config_pg_max_pred_locks_per_transaction: '- (Optional) PostgreSQL maximum predicate locks per transaction.'
+            engine_config_pg_max_replication_slots: '- (Optional) PostgreSQL maximum replication slots.'
+            engine_config_pg_max_slot_wal_keep_size: '- (Optional) PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.'
+            engine_config_pg_max_stack_depth: '- (Optional) Maximum depth of the stack in bytes.'
+            engine_config_pg_max_standby_archive_delay: '- (Optional) Max standby archive delay in milliseconds.'
+            engine_config_pg_max_standby_streaming_delay: '- (Optional) Max standby streaming delay in milliseconds.'
+            engine_config_pg_max_wal_senders: '- (Optional) PostgreSQL maximum WAL senders.'
+            engine_config_pg_max_worker_processes: '- (Optional) Sets the maximum number of background processes that the system can support.'
+            engine_config_pg_password_encryption: '- (Optional) Chooses the algorithm for encrypting passwords. (default md5)'
+            engine_config_pg_pg_partman_bgw_interval: '- (Optional) Sets the time interval to run pg_partman''s scheduled tasks.'
+            engine_config_pg_pg_partman_bgw_role: '- (Optional) Controls which role to use for pg_partman''s scheduled background tasks.'
+            engine_config_pg_pg_stat_monitor_pgsm_enable_query_plan: '- (Optional) Enables or disables query plan monitoring.'
+            engine_config_pg_pg_stat_monitor_pgsm_max_buckets: '- (Optional) Sets the maximum number of buckets.'
+            engine_config_pg_pg_stat_statements_track: '- (Optional) Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.'
+            engine_config_pg_stat_monitor_enable: '- (Optional) Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable. (default false)'
+            engine_config_pg_temp_file_limit: '- (Optional) PostgreSQL temporary file limit in KiB, -1 for unlimited.'
+            engine_config_pg_timezone: '- (Optional) PostgreSQL service timezone.'
+            engine_config_pg_track_activity_query_size: '- (Optional) Specifies the number of bytes reserved to track the currently executing command for each active session.'
+            engine_config_pg_track_commit_timestamp: '- (Optional) Record commit time of transactions.'
+            engine_config_pg_track_functions: '- (Optional) Enables tracking of function call counts and time used.'
+            engine_config_pg_track_io_timing: '- (Optional) Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.'
+            engine_config_pg_wal_sender_timeout: '- (Optional) Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.'
+            engine_config_pg_wal_writer_delay: '- (Optional) WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.'
+            engine_config_pglookout_max_failover_replication_time_lag: '- (Optional) Number of seconds of master unavailability before triggering database failover to standby. (default 60)'
+            engine_config_shared_buffers_percentage: '- (Optional) Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.'
+            engine_config_work_mem: '- (Optional) Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).'
             engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. postgresql/16)'
             fork_restore_time: '- (Optional) The database timestamp from which it was restored.'
             fork_source: '- (Optional) The ID of the database that was forked from.'
@@ -352,6 +435,9 @@ resources:
             pending_updates.planned_for: '- The date and time a maintenance update will be applied.'
             platform: '- The back-end platform for relational databases used by the service.'
             port: '- The access port for this Managed Database.'
+            private_network.public_access: '- (Optional) Set to true to allow clients outside the VPC to connect to the database using a public IP address. (Default false)'
+            private_network.subnet_id: '- (Required) The ID of the VPC subnet to restrict access to this database using.'
+            private_network.vpc_id: '- (Required) The ID of the virtual private cloud (VPC) to restrict access to this database using.'
             region: '- (Required) The region to use for the Managed Database.'
             root_password: '- The randomly-generated root password for the Managed Database instance.'
             root_username: '- The root username for the Managed Database instance.'
@@ -470,6 +556,8 @@ resources:
                   ],
                   "outbound_policy": "ACCEPT"
                 }
+              references:
+                linodes: linode_instance.my_instance.id
               dependencies:
                 linode_instance.my_instance: |-
                     {
@@ -484,8 +572,10 @@ resources:
             action: '- (required) Controls whether traffic is accepted or dropped by this rule (ACCEPT, DROP). Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.'
             disabled: '- (Optional) If true, the Firewall''s rules are not enforced (defaults to false).'
             entity_id: '- The ID of the underlying entity this device references (i.e. the Linode''s ID).'
+            fingerprint: '- The fingerprint of the current Firewall rules.'
             id: '- The ID of the Firewall.'
             inbound_policy: '- (Required) The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (ACCEPT, DROP)'
+            interfaces: '- (Optional) A list of IDs of Linode Interfaces this Firewall should govern network traffic for.'
             ipv4: '- (Optional) A list of IPv4 addresses or networks. Must be in IP/mask (CIDR) format.'
             ipv6: '- (Optional) A list of IPv6 addresses or networks. Must be in IP/mask (CIDR) format.'
             label: '- (Required) This Firewall''s unique label.'
@@ -493,11 +583,12 @@ resources:
             nodebalancers: '- (Optional) A list of IDs of NodeBalancers this Firewall should govern network traffic for.'
             outbound_policy: '- (Required) The default behavior for outbound traffic. This setting can be overridden by updating the outbound.action property for an individual Firewall Rule. (ACCEPT, DROP)'
             ports: '- (Optional) A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").'
-            protocol: '- (Required) The network protocol this rule controls. (TCP, UDP, ICMP)'
+            protocol: '- (Required) The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.'
             status: '- The status of the Firewall.'
             tags: '- (Optional) A list of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.'
             type: '- The type of Firewall Device.'
             url: The URL of the underlying entity this device references.
+            version: '- The current version of the Firewall rules.'
         importStatements: []
     linode_firewall_device:
         subCategory: ""
@@ -547,6 +638,62 @@ resources:
             entity_type: '- (Optional) The type of the entity to attach. (default: linode)'
             firewall_id: '- (Required) The unique ID of the target Firewall.'
             updated: '- When the Firewall Device was last updated.'
+        importStatements: []
+    linode_firewall_settings:
+        subCategory: ""
+        description: Manages Linode account-level firewall settings.
+        name: linode_firewall_settings
+        title: linode_firewall_settings
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "default_firewall_ids": {
+                    "linode": 12345,
+                    "nodebalancer": 12345,
+                    "public_interface": 12345,
+                    "vpc_interface": 12345
+                  }
+                }
+        argumentDocs:
+            default_firewall_ids: '- (Optional) A map of default firewall IDs for various interfaces.'
+            linode: '- (Optional) The Linode''s default firewall.'
+            nodebalancer: '- (Optional) The NodeBalancer''s default firewall.'
+            public_interface: '- (Optional) The public interface''s default firewall.'
+            vpc_interface: '- (Optional) The VPC interface''s default firewall.'
+        importStatements: []
+    linode_iam_user:
+        subCategory: ""
+        description: Manages IAM details about a Linode user.
+        name: linode_iam_user
+        title: linode_iam_user
+        examples:
+            - name: foo
+              manifest: |-
+                {
+                  "account_access": [
+                    "account_event_viewer",
+                    "account_maintenance_viewer",
+                    "account_notification_viewer",
+                    "account_oauth_client_admin"
+                  ],
+                  "entity_access": [
+                    {
+                      "id": 1111111,
+                      "roles": [
+                        "volume_admin"
+                      ],
+                      "type": "volume"
+                    }
+                  ],
+                  "username": "foo"
+                }
+        argumentDocs:
+            account_access: '- A list of account level roles the user currently has.'
+            id: '- The unique ID for the entity.'
+            roles: '- A list of the roles for this entity and specific user.'
+            type: '- The type of product for the entity. (eg. Volume)'
+            username: '- (Required) The unique username of this User.'
         importStatements: []
     linode_image:
         subCategory: ""
@@ -624,13 +771,23 @@ resources:
             file_hash: '- (Optional) The MD5 hash of the file to be uploaded. This is used to trigger file updates.'
             file_path: '- (Required) The path of the image file to be uploaded.'
             id: '- The unique ID of this Image.  The ID of private images begin with private/ followed by the numeric identifier of the private image, for example private/12345.'
+            image_sharing: '- Details about image sharing, including who the image is shared with and by. (Note: v4beta only and may not currently be available to all users.)'
             is_public: '- True if the Image is public.'
+            is_shared: '- True if the Image is shared. (Note: v4beta only and may not currently be available to all users.)'
             label: '- (Required) A short description of the Image. Labels cannot contain special characters.'
             linode_id: '- (Required) The ID of the Linode that this Image will be created from.'
             region: '- (Required) The region of the image. See all regions here.'
             replica_regions: '- (Optional) A list of regions that customer wants to replicate this image in. At least one valid region is required and only core regions allowed. Existing images in the regions not passed will be removed. See Replicate an Image here for more details.'
             replications: '- A list of image replications region and corresponding status.'
+            shared_by: '- Details about who the image is shared by.'
+            shared_with: '- Details about who the image is shared with.'
+            sharegroup_count: '- The number of sharegroups the private image is present in.'
+            sharegroup_id: '- The sharegroup_id from the im_ImageShare row.'
+            sharegroup_label: '- The label from the associated im_ImageShareGroup row.'
+            sharegroup_list_url: '- The GET api url to view the sharegroups in which the image is shared.'
+            sharegroup_uuid: '- The sharegroup_uuid from the im_ImageShare row.'
             size: '- The minimum size this Image needs to deploy. Size is in MB.'
+            source_image_id: '- The image id of the base image (will only be shown to producers, will be null for consumers).'
             status: '- The status of an image replica.'
             tags: '- (Optional) A list of customized tags.'
             timeouts.create: '- (Defaults to 30 mins) Used when creating the instance image (until the instance is available)'
@@ -660,6 +817,17 @@ resources:
                   "tags": [
                     "foo"
                   ],
+                  "type": "g6-standard-1"
+                }
+            - name: web
+              manifest: |-
+                {
+                  "authorized_keys": [
+                    "ssh-rsa AAAA...Gw== user@example.local"
+                  ],
+                  "image": "linode/ubuntu22.04",
+                  "label": "simple_instance",
+                  "region": "us-central",
                   "type": "g6-standard-1"
                 }
             - name: web
@@ -761,12 +929,13 @@ resources:
             alerts.0.network_in: '- (Optional) The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we''ll send you an alert. If this is set to 0 (zero), the alert is disabled.'
             alerts.0.network_out: '- (Optional) The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we''ll send you an alert. If this is set to 0 (zero), the alert is disabled.'
             alerts.0.transfer_quota: '- (Optional) The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we''ll alert you. If this is set to 0 (zero), the alert is disabled.'
-            authorized_keys: '- (Optional with image) A list of SSH public keys to deploy for the root user on the newly created Linode. This value can not be imported. Changing'
-            authorized_users: '- (Optional with image) A list of Linode usernames. If the usernames have associated SSH keys, the keys will be appended to the root user''s ~/.ssh/authorized_keys file automatically. This value can not be imported. Changing'
+            authorized_keys: '- (Optional) A list of SSH public keys to deploy for the root user on the newly created Linode. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. This value can not be imported. Changing'
+            authorized_users: '- (Optional) A list of Linode usernames. If the usernames have associated SSH keys, the keys will be appended to the root user''s ~/.ssh/authorized_keys file automatically. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. This value can not be imported. Changing'
             backup_id: '- (Optional) A Backup ID from another Linode''s available backups. Your User must have read_write access to that Linode, the Backup must have a status of successful, and the Linode must be deployed to the same region as the Backup. See /linode/instances/{linodeId}/backups for a Linode''s available backups. This field and the image field are mutually exclusive. This value can not be imported. Changing'
             backups: '- Information about this Linode''s backups status.'
             backups_enabled: '- (Optional) If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service. This will incur an additional charge. The cost for the Backup service is dependent on the Type of Linode deployed.'
             boot_config_label: '- (Optional) The Label of the Instance Config that should be used to boot the Linode instance.  If there is only one config, the label of that config will be used as the boot_config_label. This value can not be imported.'
+            boot_size: '- (Optional) The size of the boot disk in MB for the newly-created Linode. Must be at least 8192 MB. The combined boot_size and swap_size must not exceed the total disk size provided by the instance''s plan. This value can not be imported. Changing'
             booted: '- (Optional) If true, then the instance is kept or converted into in a running state. If false, the instance will be shutdown. If unspecified, the Linode''s power status will not be managed by the Provider.'
             config: block
             day: '-  The day of the week that your Linode''s weekly Backup is taken. If not set manually, a day will be chosen for you. Backups are taken every day, but backups taken on this day are preferred when selecting backups to retain for a longer period.  If not set manually, then when backups are initially enabled, this may come back as "Scheduling" until the day is automatically selected.'
@@ -776,31 +945,39 @@ resources:
             devices.memory_limit: '- (Optional) - Defaults to the total RAM of the Linode'
             devices.root_device: '- (Optional) - The root device to boot. The corresponding disk must be attached to a device slot.  Example: "/dev/sda"'
             devices.run_level: '- (Optional) - Defines the state of your Linode after booting. Defaults to "default".'
-            devices.sda: '... sdh - (Optional) The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_label or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.'
+            devices.sda: '... sdbl - (Optional) Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type''s RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_label or volume_id.'
             devices.virt_mode: '- (Optional) - Controls the virtualization mode. Defaults to "paravirt".'
             disk_encryption: '- (Optional) The disk encryption policy for this instance. (enabled, disabled; default enabled in supported regions)'
+            disk_id: '- (Computed) The Disk ID of the associated disk_label, if used.'
+            disk_label: '- (Optional) The label of the disk to map to this device slot.'
             distro: '- (Optional) Controls the behavior of the Linode Config''s Distribution Helper setting.'
             enabled: '- If this Linode has the Backup service enabled.'
             filesystem: '- (Optional) The Disk filesystem can be one of: "raw", "swap", "ext3", "ext4", or "initrd" which has a max size of 32mb and can be used in the config initrd (not currently supported in this Terraform Provider).'
             firewall_id: '- (Optional) The ID of the Firewall to attach to the instance upon creation. Changing'
-            group: '- (Optional, Deprecated) A deprecated property denoting a group label for this Linode. We recommend using the tags attribute instead.'
             has_user_data: '- Whether this Instance was created with user-data.'
             helpers: '- (Options) Helpers enabled when booting to this Linode Config.'
             id: '- (Computed) The ID of the disk in the Linode API.'
             image: '- (Optional) An Image ID to deploy the Disk from. Official Linode Images start with linode/, while your Images start with private/. See images for more information on the Images available for you to use. Examples are linode/debian12, linode/fedora39, linode/ubuntu22.04, linode/arch, and private/12345. See all images here (Requires a personal access token; docs here). This value can not be imported. Changing'
+            interface_generation: '- (Optional) Specifies the interface type for the Linode. If set to linode, Linode interfaces must be created using a separate resource before this Linode can be booted. (linode, legacy_config; default is determined by the account interfaces_for_new_linodes setting)'
             ip_address: '- A string containing the Linode''s public IP address.'
             ip_ranges: '- IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.'
             ipam_address: '- (Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.'
             ipv4: '- (Optional) A set of reserved IPv4 addresses to assign to this Linode on creation.'
             ipv4.nat_1_1: '- (Optional) The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.'
             ipv4.vpc: '- (Optional) The IP from the VPC subnet to use for this interface. A random address will be assigned if this is not specified in a VPC interface.'
-            ipv6: '- This Linode''s IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/64) is included in this attribute.'
+            ipv6: '- This Linode''s IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/128) is included in this attribute.'
+            ipv6.is_public: '- (Optional) If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)'
+            kernel: '- (Optional) The kernel to deploy with when creating a Linode. Example values are linode/latest-64bit, linode/grub2, etc. See all kernels here. This value can not be imported. Changing'
             label: '- (Optional) The Linode''s label is for display purposes only. If no label is provided for a Linode, a default will be assigned.'
+            linode_instance_interface: resource
             lke_cluster_id: '- If applicable, the ID of the LKE cluster this instance is a part of.'
+            locks: '- (Read-Only) A list of locks applied to this Linode.'
+            maintenance_policy: '- (Optional) The maintenance policy of this Linode instance. Examples are "linode/migrate" and "linode/power_off_on". Defaults to the default maintenance policy of the account.'
             metadata.0.user_data: '- (Optional) The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.'
             migration_type: '- (Optional) The type of migration to use when updating the type or region of a Linode. (cold, warm; default cold)'
             modules_dep: '- (Optional) Creates a modules dependency file for the Kernel you run.'
             network: '- (Optional) Controls the behavior of the Linode Config''s Network Helper setting, used to automatically configure additional IP addresses assigned to this instance.'
+            network_helper: '- (Optional) Enables the Network Helper feature. The default value is determined by the network_helper setting in the account settings.'
             placement_group: '- Information about the Placement Group this Linode is assigned to.'
             placement_group.0.id: '- (Optional) The ID of the Placement Group to assign this Linode to.'
             placement_group_externally_managed: '- (Optional) If true, changes to the Linode''s assigned Placement Group will be ignored. This is necessary when using this resource in conjunction with the linode_placement_group_assignment resource.'
@@ -810,15 +987,17 @@ resources:
             private_ip: '- (Optional) If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode''s region. It can be enabled on an existing Linode but it can''t be disabled.'
             private_ip_address: '- This Linode''s Private IPv4 Address, if enabled.  The regional private IP address range, 192.168.128.0/17, is shared by all Linode Instances in a region.'
             purpose: '- (Required) The type of interface. (public, vlan, vpc)'
+            range.allocated_range: '- (Read-Only) The value of range computed by the API. This is necessary when needing to access the range implicitly allocated using auto.'
+            range.range: '- (Optional) A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.'
             read_only: '- (Optional) If true, this Disk is read-only.'
             region: '- (Required) This is the location where the Linode is deployed. Examples are "us-east", "us-west", "ap-south", etc. See all regions here. Changing .'
             resize_disk: '- (Optional) If true, changes in Linode type will attempt to upsize or downsize implicitly created disks. This must be false if explicit disks are defined. This is an irreversible action as Linode disks cannot be automatically downsized.'
-            root_pass: '- (Required with image) The initial password for the root user account. This value can not be imported. Changing  If omitted, a random password will be generated but will not be stored in Terraform state.'
-            sda.disk_id: '- (Computed) The Disk ID of the associated disk_label, if used.'
-            sda.disk_label: '- (Optional) The label of the disk to map to this device slot.'
-            sda.volume_id: '- (Optional) The Volume ID to map to this device slot.'
+            root_pass: '- (Optional with image) The initial password for the root user account. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. Updating this field in-place causes Terraform to request a root password reset via the Linode API, which may require powering the Linode off and back on to apply the change. When skip_implicit_reboots is enabled and the instance is running, the provider may be unable to perform the required reboot and the update can fail. Plan for potential downtime when changing this value. This value can not be imported.'
             shared_ipv4: '- (Optional) A set of IPv4 addresses to be shared with the Instance. These IP addresses can be both private and public, but must be in the same region as the instance.'
             size: '- (Required) The size of the Disk in MB.'
+            slaac.address: '- (Read-Only) The SLAAC address chosen for this interface.'
+            slaac.allocated_range: '- (Read-Only) The value of range computed by the API. This is necessary when needing to access the range implicitly allocated using auto.'
+            slaac.range: '- (Optional) A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.'
             specs.0.accelerated_devices: '- The number of VPUs this Linode has access to.'
             specs.0.disk: '-  The amount of storage space, in GB. this Linode has access to. A typical Linode will divide this space between a primary disk with an image deployed to it, and a swap disk, usually 512 MB. This is the default configuration created when deploying a Linode with an image through POST /linode/instances.'
             specs.0.gpus: '- The number of GPUs this Linode has access to.'
@@ -836,6 +1015,7 @@ resources:
             timeouts.update: '- (Defaults to 1 hour) Used when stopping and starting the instance when necessary during update - e.g. when changing instance type'
             type: '- (Required) The Linode type defines the pricing, CPU, disk, and RAM specs of the instance. Examples are "g6-nanode-1", "g6-standard-2", "g6-highmem-16", "g6-dedicated-16", etc. See all types here.'
             updatedb_disabled: '- (Optional) Disables updatedb cron job to avoid disk thrashing.'
+            volume_id: '- (Optional) The Volume ID to map to this device slot.'
             vpc: purpose.
             vpc_id: '- The ID of VPC which this interface is attached to.'
             watchdog_enabled: '- (Optional) The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.'
@@ -978,11 +1158,13 @@ resources:
             booted: '- (Optional) If true, the Linode will be booted into this config. If another config is booted, the Linode will be rebooted into this config. If false, the Linode will be shutdown only if it is currently booted into this config. If undefined, the config will alter the boot status of the Linode.'
             comments: '- (Optional) Optional field for arbitrary User comments on this Config.'
             devtmpfs_automount: '- (Optional) Populates the /dev directory early during boot without udev. (default true)'
+            disk_id: '- (Optional) The Disk ID to map to this device slot'
             distro: '- (Optional) Helps maintain correct inittab/upstart console device. (default true)'
             ip_ranges: '- (Optional) IPv4 CIDR VPC Subnet ranges that are routed to this Interface. IPv6 ranges are also available to select participants in the Beta program.'
             ipam_address: '- (Optional) This Network Interface’s private IP address in Classless Inter-Domain Routing (CIDR) notation. (e.g. 10.0.0.1/24) This field is only allowed for interfaces with the vlan purpose.'
             ipv4.nat_1_1: '- (Optional) The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.'
             ipv4.vpc: '- (Optional) The IP from the VPC subnet to use for this interface. A random address will be assigned if this is not specified in a VPC interface.'
+            ipv6.is_public: '- (Optional) If true, connections from the interface to IPv6 addresses outside the VPC, and connections from IPv6 addresses outside the VPC to the interface will be permitted. (Default: false)'
             kernel: '- (Optional) A Kernel ID to boot a Linode with. Default is linode/latest-64bit. Examples are linode/latest-64bit, linode/grub2, linode/direct-disk, etc. See all kernels here. Note that this is a paginated API endpoint (docs).'
             label: '- (Required) The Config’s label for display purposes only.'
             linode_id: '- (Required) The ID of the Linode to create this configuration profile under.'
@@ -991,14 +1173,18 @@ resources:
             network: '- (Optional) Automatically configures static networking. (default true)'
             primary: '- (Optional) Whether the interface is the primary interface that should have the default route for this Linode. This field is only allowed for interfaces with the public or vpc purpose.'
             purpose: '- (Required) The type of interface. (public, vlan, vpc)'
+            range.allocated_range: '- (Read-Only) The value of range computed by the API. This is necessary when needing to access the range implicitly allocated using auto.'
+            range.range: '- (Optional) A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.'
             root_device: '- (Optional) The root device to boot. (default /dev/sda)'
             run_level: '- (Optional) Defines the state of your Linode after booting. (default, single, binbash)'
-            sda: '... sdh - (Optional) The SDA-SDH slots, represent the Linux block device nodes for the first 8 disks attached to the Linode.  Each device must be suplied sequentially.  The device can be either a Disk or a Volume identified by disk_id or volume_id. Only one disk identifier is permitted per slot. Devices mapped from sde through sdh are unavailable in "fullvirt" virt_mode.'
-            sda.disk_id: '- (Optional) The Disk ID to map to this device slot'
-            sda.volume_id: '- (Optional) The Volume ID to map to this device slot.'
+            sda: '... sdbl - (Optional) Device slots for attaching disks and volumes (named sda-sdz, sdaa-sdaz, sdba-sdbl). The maximum number of available devices is determined by the instance type''s RAM (up to 64 devices). Each slot accepts either a Disk or Volume via disk_id or volume_id.'
+            slaac.address: '- (Read-Only) The SLAAC address chosen for this interface.'
+            slaac.allocated_range: '- (Read-Only) The value of range computed by the API. This is necessary when needing to access the range implicitly allocated using auto.'
+            slaac.range: '- (Optional) A prefix to add to this interface, or auto for a new IPv6 prefix to be automatically allocated.'
             subnet_id: '- (Optional) The name of the VPC Subnet to join. This field is only allowed and required for interfaces with the vpc purpose.'
             updatedb_disabled: '- (Optional) Disables updatedb cron job to avoid disk thrashing. (default true)'
             virt_mode: '- (Optional) Controls the virtualization mode. (paravirt, fullvirt)'
+            volume_id: '- (Optional) The Volume ID to map to this device slot.'
             vpc: purpose.
             vpc_id: '- The ID of VPC which this interface is attached to.'
         importStatements: []
@@ -1034,6 +1220,27 @@ resources:
                   "image": "linode/ubuntu22.04",
                   "label": "boot",
                   "linode_id": "${linode_instance.my-instance.id}",
+                  "size": "${linode_instance.my-instance.specs.0.disk}"
+                }
+              references:
+                linode_id: linode_instance.my-instance.id
+                size: linode_instance.my-instance.specs.0.disk
+              dependencies:
+                linode_instance.my-instance: |-
+                    {
+                      "label": "my-instance",
+                      "region": "us-southeast",
+                      "type": "g6-standard-1"
+                    }
+            - name: boot
+              manifest: |-
+                {
+                  "authorized_keys": [
+                    "ssh-rsa AAAA...Gw== user@example.local"
+                  ],
+                  "image": "linode/ubuntu22.04",
+                  "label": "boot",
+                  "linode_id": "${linode_instance.my-instance.id}",
                   "root_pass": "myc00lpass!",
                   "size": "${linode_instance.my-instance.specs.0.disk}",
                   "stackscript_data": {
@@ -1052,15 +1259,15 @@ resources:
                       "type": "g6-standard-1"
                     }
         argumentDocs:
-            authorized_keys: '- (Optional) A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)'
-            authorized_users: '- (Optional) A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user''s ~/.ssh/authorized_keys file. (Requires image)'
+            authorized_keys: '- (Optional) A list of public SSH keys that will be automatically appended to the root user''s ~/.ssh/authorized_keys file when deploying from an Image. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)'
+            authorized_users: '- (Optional) A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user''s ~/.ssh/authorized_keys file. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)'
             created: '- When this disk was created.'
             disk_encryption: '- The disk encryption policy for this disk''s parent instance. (enabled, disabled)'
             filesystem: '- (Optional) The filesystem of this disk. (raw, swap, ext3, ext4, initrd)'
             image: '- (Optional) An Image ID to deploy the Linode Disk from.'
             label: '- (Required) The Disk''s label for display purposes only.'
             linode_id: '- (Required) The ID of the Linode to create this Disk under.'
-            root_pass: '- (Optional) The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)'
+            root_pass: '- (Optional) The root user''s password on a newly-created Linode Disk when deploying from an Image. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)'
             size: '- (Required) The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.'
             stackscript_data: '- (Optional) An object containing responses to any User Defined Fields present in the StackScript being deployed to this Disk. Only accepted if stackscript_id is given. (Requires image)'
             stackscript_id: '- (Optional) A StackScript ID that will cause the referenced StackScript to be run during deployment of this Disk. (Requires image)'
@@ -1084,7 +1291,7 @@ resources:
               dependencies:
                 linode_instance.foo: |-
                     {
-                      "image": "linode/alpine3.19",
+                      "image": "linode/arch",
                       "label": "foobar-test",
                       "region": "us-east",
                       "type": "g6-nanode-1"
@@ -1116,6 +1323,7 @@ resources:
                   "linode_id": "${linode_instance.secondary.id}"
                 }
               references:
+                addresses: linode_instance_ip.primary.address
                 linode_id: linode_instance.secondary.id
               dependencies:
                 linode_instance.primary: |-
@@ -1143,6 +1351,7 @@ resources:
                   "linode_id": "${linode_instance.primary.id}"
                 }
               references:
+                addresses: linode_ipv6_range.range.range
                 linode_id: linode_instance.primary.id
               dependencies:
                 linode_instance.primary: |-
@@ -1176,6 +1385,7 @@ resources:
                   "linode_id": "${linode_instance.secondary[count.index].id}"
                 }
               references:
+                addresses: linode_ipv6_range.range.range
                 count: var.number_replicas
               dependencies:
                 linode_instance.primary: |-
@@ -1200,6 +1410,194 @@ resources:
             addresses: '- (Required) The set of IPs to share with the Linode.'
             linode_id: '- (Required) The ID of the Linode to share the IPs to.'
         importStatements: []
+    linode_interface:
+        subCategory: ""
+        description: Manages a Linode interface configuration.
+        name: linode_interface
+        title: linode_interface
+        examples:
+            - name: public
+              manifest: |-
+                {
+                  "linode_id": "${linode_instance.my-instance.id}",
+                  "public": {
+                    "ipv4": {
+                      "addresses": [
+                        {
+                          "address": "auto",
+                          "primary": true
+                        }
+                      ]
+                    },
+                    "ipv6": {
+                      "ranges": [
+                        {
+                          "range": "/64"
+                        }
+                      ]
+                    }
+                  }
+                }
+              references:
+                linode_id: linode_instance.my-instance.id
+            - name: ipv6_only
+              manifest: |-
+                {
+                  "linode_id": "${linode_instance.my-instance.id}",
+                  "public": {
+                    "ipv4": {
+                      "addresses": []
+                    },
+                    "ipv6": {
+                      "ranges": [
+                        {
+                          "range": "/64"
+                        }
+                      ]
+                    }
+                  }
+                }
+              references:
+                linode_id: linode_instance.my-instance.id
+            - name: vpc
+              manifest: |-
+                {
+                  "linode_id": "${linode_instance.my-instance.id}",
+                  "vpc": {
+                    "ipv4": {
+                      "addresses": [
+                        {
+                          "address": "auto"
+                        }
+                      ],
+                      "ranges": [
+                        {
+                          "range": "/32"
+                        }
+                      ]
+                    },
+                    "subnet_id": 240213
+                  }
+                }
+              references:
+                linode_id: linode_instance.my-instance.id
+            - name: vpc
+              manifest: |-
+                {
+                  "linode_id": "${linode_instance.my-instance.id}",
+                  "vpc": {
+                    "ipv6": {
+                      "is_public": true,
+                      "ranges": [
+                        {
+                          "range": "auto"
+                        }
+                      ],
+                      "slaac": [
+                        {
+                          "range": "auto"
+                        }
+                      ]
+                    },
+                    "subnet_id": 12345
+                  }
+                }
+              references:
+                linode_id: linode_instance.my-instance.id
+            - name: vlan
+              manifest: |-
+                {
+                  "linode_id": "${linode_instance.web.id}",
+                  "vlan": {
+                    "ipam_address": "192.168.200.5/24",
+                    "vlan_label": "web-vlan"
+                  }
+                }
+              references:
+                linode_id: linode_instance.web.id
+            - name: public
+              manifest: |-
+                {
+                  "linode_id": "${linode_instance.my-instance.id}",
+                  "public": {
+                    "ipv4": {
+                      "addresses": [
+                        {
+                          "address": "auto",
+                          "primary": true
+                        }
+                      ]
+                    },
+                    "ipv6": {
+                      "ranges": [
+                        {
+                          "range": "/64"
+                        }
+                      ]
+                    }
+                  }
+                }
+              references:
+                linode_id: linode_instance.my-instance.id
+              dependencies:
+                linode_instance.my-instance: |-
+                    {
+                      "interface_generation": "linode",
+                      "label": "my-instance",
+                      "region": "us-mia",
+                      "type": "g6-standard-1"
+                    }
+                linode_instance_config.my-config: |-
+                    {
+                      "booted": true,
+                      "depends_on": [
+                        "${linode_interface.public}"
+                      ],
+                      "device": [
+                        {
+                          "device_name": "sda",
+                          "disk_id": "${linode_instance_disk.boot.id}"
+                        }
+                      ],
+                      "label": "my-config",
+                      "linode_id": "${linode_instance.my-instance.id}"
+                    }
+                linode_instance_disk.boot: |-
+                    {
+                      "image": "linode/debian12",
+                      "label": "boot",
+                      "linode_id": "${linode_instance.my-instance.id}",
+                      "root_pass": "this-is-NOT-a-safe-password",
+                      "size": "${linode_instance.my-instance.specs.0.disk}"
+                    }
+        argumentDocs:
+            address: '- (Optional) The IPv4 address. Defaults to "auto" for automatic assignment.'
+            addresses: '- (Optional) IPv4 addresses configured for this Linode interface. Each object in this list supports:'
+            assigned_addresses: '- (Computed) The IPv4 addresses exclusively assigned to this Linode interface. Each object in this set supports:'
+            assigned_ranges: '- (Computed) The IPv6 ranges exclusively assigned to this Linode interface. Each object in this set supports:'
+            assigned_slaac: '- Assigned IPv6 SLAAC address ranges to use in the VPC subnet, calculated from slaac input.'
+            default_route: '- (Optional) Indicates if the interface serves as the default route when multiple interfaces are eligible for this role.'
+            firewall_id: '- (Optional) The ID of an enabled firewall to secure a VPC or public interface. Not allowed for VLAN interfaces.'
+            id: '- The unique ID for this interface.'
+            ipam_address: '- (Optional) The VLAN interface''s private IPv4 address in CIDR notation.'
+            ipv4: '- (Optional) If set to true, the interface is used for the IPv4 default route.'
+            ipv6: '- (Optional) If set to true, the interface is used for the IPv6 default route.'
+            is_public: '- (Optional) Indicates whether the IPv6 configuration profile interface is public. (Default false)'
+            linode_id: '- (Required) The ID of the Linode to assign this interface to.'
+            nat_1_1_address: '- (Optional) The 1:1 NAT IPv4 address used to associate a public IPv4 address with the interface''s VPC subnet IPv4 address.'
+            prefix: '- The subnet prefix length.'
+            primary: '- (Optional) Whether this address is the primary address for the interface.'
+            public: '- (Optional) Nested attributes object for a Linode public interface. Exactly one of public, vlan, or vpc must be specified.'
+            range: '- (Required) The IPv6 range.'
+            ranges: '- (Optional) Configured IPv6 range in CIDR notation (2600:0db8::1/64) or prefix-only (/64). Each object in this list supports:'
+            route_target: '- The public IPv6 address that the range is routed to.'
+            shared: '- (Computed) The IPv4 addresses assigned to this Linode interface that are also shared with another Linode. Each object in this set supports:'
+            slaac: '- (Optional) Defines IPv6 SLAAC address ranges. An address is automatically generated from the assigned /64 prefix using the Linode’s MAC address, just like on public IPv6 interfaces. Router advertisements (RA) are sent to the Linode, so standard SLAAC configuration works without any changes.'
+            subnet_id: '- (Required) The VPC subnet identifier for this interface.'
+            vlan: '- (Optional) Nested attributes object for a Linode VLAN interface. Exactly one of public, vlan, or vpc must be specified.'
+            vlan_label: '- (Required) The VLAN''s unique label. Must be between 1 and 64 characters.'
+            vpc: '- (Optional) Nested attributes object for a Linode VPC interface. Exactly one of public, vlan, or vpc must be specified.'
+        importStatements: []
     linode_ipv6_range:
         subCategory: ""
         description: Manages a Linode IPv6 range.
@@ -1217,7 +1615,7 @@ resources:
               dependencies:
                 linode_instance.foobar: |-
                     {
-                      "image": "linode/alpine3.19",
+                      "image": "linode/arch",
                       "label": "my-linode",
                       "region": "us-southeast",
                       "type": "g6-nanode-1"
@@ -1240,7 +1638,7 @@ resources:
             - name: my-cluster
               manifest: |-
                 {
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
@@ -1253,10 +1651,30 @@ resources:
                     "prod"
                   ]
                 }
+            - name: test
+              manifest: |-
+                {
+                  "k8s_version": "v1.31.8+lke5",
+                  "label": "lke-e-cluster",
+                  "pool": [
+                    {
+                      "count": 3,
+                      "tags": [
+                        "test"
+                      ],
+                      "type": "g7-premium-2"
+                    }
+                  ],
+                  "region": "us-lax",
+                  "tags": [
+                    "test"
+                  ],
+                  "tier": "enterprise"
+                }
             - name: my-cluster
               manifest: |-
                 {
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
@@ -1297,12 +1715,102 @@ resources:
                       "high_availability": true
                     }
                   ],
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
                       "count": 1,
                       "type": "g6-standard-2"
+                    }
+                  ],
+                  "region": "us-central",
+                  "tags": [
+                    "prod"
+                  ]
+                }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "k8s_version": "1.32",
+                  "label": "my-cluster",
+                  "pool": [
+                    {
+                      "count": 2,
+                      "label": "db-pool",
+                      "type": "g6-standard-2"
+                    },
+                    {
+                      "count": 3,
+                      "label": "app-pool",
+                      "type": "g6-standard-1"
+                    }
+                  ],
+                  "region": "us-central",
+                  "tags": [
+                    "prod"
+                  ]
+                }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "k8s_version": "1.32",
+                  "label": "my-cluster",
+                  "pool": [
+                    {
+                      "count": 2,
+                      "firewall_id": 12345,
+                      "label": "db-pool",
+                      "type": "g6-standard-2"
+                    }
+                  ],
+                  "region": "us-central",
+                  "tags": [
+                    "prod"
+                  ]
+                }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "k8s_version": "1.32",
+                  "label": "my-cluster",
+                  "pool": [
+                    {
+                      "count": 2,
+                      "labels": {
+                        "environment": "production",
+                        "role": "database"
+                      },
+                      "type": "g6-standard-2"
+                    },
+                    {
+                      "count": 3,
+                      "labels": {
+                        "environment": "production",
+                        "role": "application"
+                      },
+                      "type": "g6-standard-1"
+                    }
+                  ],
+                  "region": "us-central",
+                  "tags": [
+                    "prod"
+                  ]
+                }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "k8s_version": "1.32",
+                  "label": "my-cluster",
+                  "pool": [
+                    {
+                      "count": 2,
+                      "disk_encryption": "enabled",
+                      "type": "g6-standard-2"
+                    },
+                    {
+                      "count": 1,
+                      "disk_encryption": "disabled",
+                      "type": "g6-standard-1"
                     }
                   ],
                   "region": "us-central",
@@ -1340,7 +1848,7 @@ resources:
                   "external_pool_tags": [
                     "${local.external_pool_tag}"
                   ],
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
@@ -1350,6 +1858,8 @@ resources:
                   ],
                   "region": "us-mia"
                 }
+              references:
+                external_pool_tags: local.external_pool_tag
               dependencies:
                 linode_lke_node_pool.my-pool: |-
                     {
@@ -1365,24 +1875,39 @@ resources:
             addresses.ipv4: '- (Optional) A set of individual ipv4 addresses or CIDRs to ALLOW.'
             addresses.ipv6: '- (Optional) A set of individual ipv6 addresses or CIDRs to ALLOW.'
             api_endpoints: '- The endpoints for the Kubernetes API server.'
+            apl_enabled: '- Enables the App Platform Layer'
             autoscaler.max: '- (Required) The maximum number of nodes to autoscale to.'
             autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
+            control_plane.audit_logs_enabled: '- (Optional) Enables audit logs on the cluster''s control plane.'
             control_plane.high_availability: '- (Optional) Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.'
-            dashboard_url: '- The Kubernetes Dashboard access URL for this cluster. LKE Enterprise does not have a dashboard URL.'
-            disk_encryption: '- The disk encryption policy for nodes in this pool.'
+            effect: '- (Required) The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.'
             external_pool_tags: '- (Optional) A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.'
             id: '- The ID of the cluster.'
             instance_id: '- The ID of the underlying Linode instance.'
             k8s_version: '- (Required) The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.'
+            key: '- (Required) The Kubernetes taint key.'
             kubeconfig: '- The base64 encoded kubeconfig for the Kubernetes cluster.'
             label: '- (Required) This Kubernetes cluster''s unique label.'
             pool: '- Additional nested attributes:'
             pool.count: '- (Required; Optional with autoscaler) The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.'
+            pool.disk_encryption: '- (Optional) The disk encryption policy for nodes in this pool. Must be enabled or disabled. If omitted, the account default encryption policy is applied. Changing this value will cause the pool to be replaced (deleted and recreated).'
+            pool.firewall_id: '- (Optional) The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.'
+            pool.k8s_version: '- (Optional) The k8s version of the nodes in this Node Pool. For LKE enterprise only and may not currently available to all users even under v4beta.'
+            pool.label: '- (Optional) A label for the Node Pool. If not provided, it defaults to empty string.'
+            pool.labels: '- (Optional) A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.'
+            pool.tags: '- (Optional) A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.'
+            pool.taint: '- (Optional) Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.'
             pool.type: '- (Required) A Linode Type for all of the nodes in the Node Pool. See all node types here.'
+            pool.update_strategy: '- (Optional) The strategy for updating the Node Pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.'
             region: '- (Required) This Kubernetes cluster''s location.'
+            stack_type: '- (Optional) The networking stack type of the Kubernetes cluster.'
             status: '- The status of the cluster.'
+            subnet_id: '- (Optional) The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled). NOTE: This field may not be available for all users and is only accepted and populated when api_version is set to'
             tags: '- (Optional) An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.'
-            tier: '- (Optional) The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)'
+            tier: '- (Optional) The desired Kubernetes tier. NOTE: This field may not be available to all users and is only accepted and populated when api_version is set to'
+            v4beta: .
+            value: '- (Required) The Kubernetes taint value.'
+            vpc_id: '- (Optional) The ID of the VPC to use for the Kubernetes cluster.'
         importStatements: []
     linode_lke_node_pool:
         subCategory: ""
@@ -1394,6 +1919,22 @@ resources:
               manifest: |-
                 {
                   "cluster_id": 150003,
+                  "node_count": 3,
+                  "type": "g6-standard-2"
+                }
+            - name: my-pool
+              manifest: |-
+                {
+                  "cluster_id": 150003,
+                  "label": "app-pool",
+                  "node_count": 3,
+                  "type": "g6-standard-2"
+                }
+            - name: my-pool
+              manifest: |-
+                {
+                  "cluster_id": 150003,
+                  "firewall_id": 12345,
                   "node_count": 3,
                   "type": "g6-standard-2"
                 }
@@ -1421,13 +1962,14 @@ resources:
                 }
               references:
                 cluster_id: linode_lke_cluster.my-cluster.id
+                tags: local.external_pool_tag
               dependencies:
                 linode_lke_cluster.my-cluster: |-
                     {
                       "external_pool_tags": [
                         "${local.external_pool_tag}"
                       ],
-                      "k8s_version": "1.28",
+                      "k8s_version": "1.32",
                       "label": "my-cluster",
                       "labels": {
                         "key": "value"
@@ -1444,10 +1986,12 @@ resources:
             autoscaler.max: '- (Required) The maximum number of nodes to autoscale to.'
             autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
             cluster_id: '- ID of the LKE Cluster where to create the current Node Pool.'
-            disk_encryption: '- The disk encryption policy for nodes in this pool.'
+            disk_encryption: '- (Optional) The disk encryption policy for nodes in this pool.'
+            firewall_id: '- (Optional) The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.'
             id: '- The ID of the Node Pool within LKE Cluster.'
             instance_id: '- The ID of the underlying Linode instance.'
             k8s_version: '- (Optional) The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.'
+            label: '- (Optional) A label for the Node Pool. If not provided, it defaults to empty string.'
             labels: '- (Optional) A map attribute containing key-value pairs to be added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects. To learn more, review Add Labels and Taints to your LKE Node Pools.'
             node_count: '- (Required; Optional with autoscaler) The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.'
             status: '- The status of the node. (ready, not_ready)'
@@ -1457,6 +2001,289 @@ resources:
             taint.value: '- (Required) The Kubernetes taint value.'
             type: '- (Required) A Linode Type for all nodes in the Node Pool. See all node types here.'
             update_strategy: '- (Optional) The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.'
+        importStatements: []
+    linode_lock:
+        subCategory: ""
+        description: Manages a Linode Lock to prevent accidental deletion of resources.
+        name: linode_lock
+        title: linode_lock
+        examples:
+            - name: my-lock
+              manifest: |-
+                {
+                  "entity_id": "${linode_instance.my-inst.id}",
+                  "entity_type": "linode",
+                  "lock_type": "cannot_delete"
+                }
+              references:
+                entity_id: linode_instance.my-inst.id
+              dependencies:
+                linode_instance.my-inst: |-
+                    {
+                      "label": "my-inst",
+                      "region": "us-east",
+                      "type": "g6-nanode-1"
+                    }
+            - name: my-lock
+              manifest: |-
+                {
+                  "entity_id": "${linode_instance.my-inst.id}",
+                  "entity_type": "linode",
+                  "lock_type": "cannot_delete_with_subresources"
+                }
+              references:
+                entity_id: linode_instance.my-inst.id
+              dependencies:
+                linode_instance.my-inst: |-
+                    {
+                      "label": "my-inst",
+                      "region": "us-east",
+                      "type": "g6-nanode-1"
+                    }
+        argumentDocs:
+            cannot_delete: '- Prevents the resource from being deleted, rebuilt, or transferred to another account.'
+            cannot_delete_with_subresources: '- Prevents the resource from being deleted, rebuilt, or transferred, and also prevents deletion of subresources (disks, configs, interfaces, and IP addresses).'
+            entity_id: '- (Required) The ID of the entity to lock.'
+            entity_label: '- The label of the locked entity.'
+            entity_type: '- (Required) The type of the entity to lock. Supported values are linode, nodebalancer, volume, lkecluster, and lkenodepool. Note: Linodes that are part of an LKE cluster cannot be locked.'
+            entity_url: '- The URL of the locked entity.'
+            id: '- The unique ID of the Lock.'
+            lock_type: '- (Required) The type of lock to apply. Only one lock type can exist per resource at a time. Valid values are:'
+        importStatements: []
+    linode_monitor_alert_definition:
+        subCategory: ""
+        description: Manages a Monitor Alert Definition.
+        name: linode_monitor_alert_definition
+        title: linode_monitor_alert_definition
+        examples:
+            - name: test
+              manifest: |-
+                {
+                  "channel_ids": [
+                    10000
+                  ],
+                  "description": "An alert definition for ansible test",
+                  "label": "test-alert-definition",
+                  "rule_criteria": {
+                    "rules": [
+                      {
+                        "aggregate_function": "avg",
+                        "dimension_filters": [
+                          {
+                            "dimension_label": "node_type",
+                            "operator": "eq",
+                            "value": "primary"
+                          }
+                        ],
+                        "metric": "memory_usage",
+                        "operator": "gt",
+                        "threshold": 90
+                      }
+                    ]
+                  },
+                  "service_type": "dbaas",
+                  "severity": 1,
+                  "trigger_conditions": {
+                    "criteria_condition": "ALL",
+                    "evaluation_period_seconds": 300,
+                    "polling_interval_seconds": 300,
+                    "trigger_occurrences": "1"
+                  },
+                  "wait_for": true
+                }
+        argumentDocs:
+            alert_channels.id: '- The unique identifier assigned to the alert channel.'
+            alert_channels.label: '- The label of the alert channel.'
+            alert_channels.type: '- The type of alert channel.'
+            alert_channels.url: '- The URL of the alert channel.'
+            channel_ids: '- (Required) A list of channel IDs to associate with the alert definition.'
+            class: '- "The plan type for the Managed Database cluster, either shared or dedicated. This only applies to a system alert for a service_type of dbaas (Managed Databases). For user alerts for dbaas, this is returned as null.",'
+            created: '- The date and time the alert definition was created.'
+            created_by: '- For a user alert definition, this is the user on your account that created it. For a system alert definition, this is returned as system.'
+            description: '- (Optional) A description for the alert definition.'
+            dimension_filters.dimension_label: '- (Optional) The label of the dimension to filter on.'
+            dimension_filters.label: '- The name of the dimension filter. Used for display purposes.'
+            dimension_filters.operator: '- (Optional) The operator to apply to the dimension. Allowed values: eq, neq, startswith, endswith.'
+            dimension_filters.value: '- (Optional) The value to compare the dimension_label against.'
+            entities.count: '- The number of entities associated with the alert definition.'
+            entities.has_more_resources: '- Whether there are additional entities associated with the alert.'
+            entities.url: '- The URL to list entities associated with the alert definition.'
+            entity_ids: '- (Optional) A list of entity IDs to associate with the alert definition.'
+            id: '- The unique identifier assigned to the alert definition.'
+            label: '- (Required) The label for the alert definition.'
+            regions: '- (Optional) The regions the alert definition applies to. Only used for region-scoped alerts.'
+            rules.aggregate_function: '- (Optional) The aggregate function to apply to the metric data.'
+            rules.label: '- The name of the individual rule. This is used for display purposes in Akamai Cloud Manager.'
+            rules.metric: '- (Optional) The metric to query.'
+            rules.operator: '- (Optional) The operator to apply to the metric. Allowed values: eq, gt, lt, gte, lte.'
+            rules.threshold: '- (Optional) The predefined value or condition that triggers an alert when met or exceeded.'
+            rules.unit: '- The unit of the metric. This can be values like percent for percentage or GB for gigabyte.'
+            scope: '- (Optional) The scope of the alert definition. Allowed values: account, entity, region. Defaults to entity.'
+            service_type: '- (Required) The service type (e.g., dbaas).'
+            severity: '- (Required) The severity level of the alert definition.'
+            status: '- (Optional) The status of the alert definition.'
+            trigger_conditions.criteria_condition: '- (Optional) The logical operation applied. Currently only ''ALL'' allowed.'
+            trigger_conditions.evaluation_period_seconds: '- (Optional) Time period over which data is collected before evaluating the threshold.'
+            trigger_conditions.polling_interval_seconds: '- (Optional) Frequency at which the metric data is polled.'
+            trigger_conditions.trigger_occurrences: '- (Optional) Number of times the condition must be met before triggering an alert.'
+            type: '- The type of alert. This can be either user for an alert specific to the current user, or system for one that applies to all users on your account.'
+            updated: '- The date and time the alert definition was last updated.'
+            updated_by: '- For a user alert definition, this is the user on your account that last updated it. For a system alert definition, this is returned as system. If it hasn''t been updated, this value is the same as created_by.'
+            wait_for: '- (Optional) Whether to wait for the alert definition to be ready before completing the resource creation.'
+        importStatements: []
+    linode_monitor_logs_destination:
+        subCategory: ""
+        description: Manages a Linode Monitor Logs Destination.
+        name: linode_monitor_logs_destination
+        title: linode_monitor_logs_destination
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "akamai_object_storage_details": {
+                    "access_key_id": "${linode_object_storage_key.key.access_key}",
+                    "access_key_secret": "${linode_object_storage_key.key.secret_key}",
+                    "bucket_name": "${linode_object_storage_bucket.bucket.label}",
+                    "host": "${linode_object_storage_bucket.bucket.hostname}"
+                  },
+                  "label": "my-logs-destination",
+                  "type": "akamai_object_storage"
+                }
+              dependencies:
+                linode_object_storage_bucket.bucket: |-
+                    {
+                      "access_key": "${linode_object_storage_key.key.access_key}",
+                      "label": "my-logs-bucket",
+                      "region": "us-east",
+                      "secret_key": "${linode_object_storage_key.key.secret_key}"
+                    }
+                linode_object_storage_key.key: |-
+                    {
+                      "label": "my-logs-key",
+                      "regions": [
+                        "us-east"
+                      ]
+                    }
+            - name: https_example
+              manifest: |-
+                {
+                  "custom_https_details": {
+                    "authentication": {
+                      "password": "mypassword",
+                      "type": "basic",
+                      "username": "myuser"
+                    },
+                    "content_type": "application/json",
+                    "data_compression": "gzip",
+                    "endpoint_url": "https://logs.example.com/ingest"
+                  },
+                  "label": "my-https-destination",
+                  "type": "custom_https"
+                }
+        argumentDocs:
+            access_key_id: '- (Required) The access key ID for the object storage bucket.'
+            access_key_secret: '- (Required, Sensitive) The access key secret for the object storage bucket. This value is write-only and will not be returned by the API.'
+            akamai_object_storage: logs destination. Exactly one of akamai_object_storage_details or custom_https_details must be specified.
+            bucket_name: '- (Required) The name of the object storage bucket.'
+            client_ca_certificate: '- (Required, Sensitive) The client CA certificate. This value is write-only and will not be returned by the API.'
+            client_certificate: '- (Required, Sensitive) The client certificate. This value is write-only and will not be returned by the API.'
+            client_private_key: '- (Required, Sensitive) The client private key. This value is write-only and will not be returned by the API.'
+            content_type: '- (Required) The content type of the log data. One of: application/json, application/json; charset=utf-8.'
+            created: '- When this logs destination was created.'
+            created_by: '- The user who created this logs destination.'
+            custom_https: logs destination. Exactly one of akamai_object_storage_details or custom_https_details must be specified.
+            data_compression: '- (Required) The compression format for log data. One of: none, gzip.'
+            endpoint_url: '- (Required) The HTTPS endpoint URL to send logs to.'
+            host: '- (Required) The hostname of the object storage endpoint.'
+            id: '- The unique ID of this logs destination.'
+            label: '- (Required) The label for this logs destination.'
+            name: '- (Required) The name of the HTTP header.'
+            password: '- (Optional, Sensitive) The password for basic authentication. This value is write-only and will not be returned by the API.'
+            path: '- (Optional) The path within the bucket where logs will be stored.'
+            status: '- The status of this logs destination.'
+            tls_hostname: '- (Required) The TLS hostname for certificate verification.'
+            type: '- (Required, Forces New) The type of this logs destination. One of: akamai_object_storage, custom_https.'
+            updated: '- When this logs destination was last updated.'
+            updated_by: '- The user who last updated this logs destination.'
+            username: '- (Optional, Sensitive) The username for basic authentication. This value is write-only and will not be returned by the API.'
+            value: '- (Required, Sensitive) The value of the HTTP header. This value is write-only and will not be returned by the API.'
+            version: '- The version of this logs destination.'
+        importStatements: []
+    linode_monitor_logs_stream:
+        subCategory: ""
+        description: Manages a Linode Monitor Logs Stream.
+        name: linode_monitor_logs_stream
+        title: linode_monitor_logs_stream
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "destinations": [
+                    "${linode_monitor_logs_destination.destination.id}"
+                  ],
+                  "label": "my-audit-logs-stream",
+                  "type": "audit_logs"
+                }
+              references:
+                destinations: linode_monitor_logs_destination.destination.id
+              dependencies:
+                linode_monitor_logs_destination.destination: |-
+                    {
+                      "akamai_object_storage_details": {
+                        "access_key_id": "${linode_object_storage_key.key.access_key}",
+                        "access_key_secret": "${linode_object_storage_key.key.secret_key}",
+                        "bucket_name": "${linode_object_storage_bucket.bucket.label}",
+                        "host": "${linode_object_storage_bucket.bucket.hostname}"
+                      },
+                      "label": "my-logs-destination",
+                      "type": "akamai_object_storage"
+                    }
+                linode_object_storage_bucket.bucket: |-
+                    {
+                      "access_key": "${linode_object_storage_key.key.access_key}",
+                      "label": "my-logs-bucket",
+                      "region": "us-east",
+                      "secret_key": "${linode_object_storage_key.key.secret_key}"
+                    }
+                linode_object_storage_key.key: |-
+                    {
+                      "label": "my-logs-key",
+                      "regions": [
+                        "us-east"
+                      ]
+                    }
+            - name: lke_example
+              manifest: |-
+                {
+                  "destinations": [
+                    "${linode_monitor_logs_destination.destination.id}"
+                  ],
+                  "details": {
+                    "cluster_ids": [
+                      12345,
+                      67890
+                    ],
+                    "is_auto_add_all_clusters_enabled": false
+                  },
+                  "label": "my-lke-stream",
+                  "type": "lke_audit_logs"
+                }
+              references:
+                destinations: linode_monitor_logs_destination.destination.id
+        argumentDocs:
+            cluster_ids: '- (Optional) The list of LKE cluster IDs to include in this stream.'
+            created: '- The date and time when the logs stream was created.'
+            created_by: '- The user who created the logs stream.'
+            destinations: '- (Required) The list of logs destination IDs attached to this stream.'
+            id: '- The ID of the logs stream.'
+            is_auto_add_all_clusters_enabled: '- (Optional) When true, all LKE clusters are automatically added to this stream.'
+            label: '- (Required) The label of the logs stream.'
+            lke_audit_logs: streams.
+            status: '- (Optional) The status of the logs stream. One of: active, inactive, provisioning, deactivating.'
+            type: '- (Required, Forces New) The type of the logs stream. One of: audit_logs, lke_audit_logs.'
+            updated: '- The date and time when the logs stream was last updated.'
+            updated_by: '- The user who last updated the logs stream.'
+            version: '- The version of the logs stream.'
         importStatements: []
     linode_networking_ip:
         subCategory: ""
@@ -1473,17 +2300,21 @@ resources:
                 }
         argumentDocs:
             address: '- The IP address.'
+            assigned_entity: '- The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.'
             gateway: '- The default gateway for this address.'
             id: '- The unique identifier of this IP address.'
-            linode_id: '- (Optional) The ID of the Linode to which the IP address will be assigned. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.'
+            label: '- The label of the entity.'
+            linode_id: '- (Optional) The ID of the Linode to allocate an IPv4 address for. Required when reserved is false or not set. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.'
             prefix: '- The number of bits set in the subnet mask.'
             public: '- (Optional) Whether the IP address is public. Defaults to true.'
             rdns: '- The reverse DNS assigned to this address. For public IPv4 addresses, this will be set to a default value provided by Linode if not explicitly set.'
             region: '- (Optional) The region where the reserved IP should be allocated.'
-            reserved: '- (Optional) Whether this IP address should be a reserved IP.'
+            reserved: '- (Optional) Whether this IP address should be a reserved IP. Changing this value on an assigned IP triggers an in-place update (not replacement). Setting reserved = true converts an ephemeral IP to reserved. Setting reserved = false converts a reserved IP to ephemeral when the address is assigned. If the reserved IP is unassigned, the API deletes the IP as a side effect of setting reserved = false, and the provider returns an IP Address Deleted During Update error; after this occurs, remove the resource from your Terraform configuration so future applies succeed.'
             subnet_id: '- The id of the VPC Subnet for this Interface.'
             subnet_mask: '- The mask that separates host bits from network bits for this address.'
+            tags: '- A set of tags associated with this IP address.'
             type: '- (Required) The type of IP address. (ipv4, ipv6, etc.)'
+            url: '- The URL of the entity.'
             vpc_id: '- The id of the VPC configured for this Interface.'
             vpc_nat_1_1: '- Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.'
         importStatements: []
@@ -1509,11 +2340,17 @@ resources:
                   "region": "us-mia"
                 }
         argumentDocs:
+            assigned_entity: '- The entity this IP address has been assigned to.'
             assignments: '- (Required) A list of IP/Linode assignments to apply.'
             assignments.address: '- (Required) The IPv4 address or IPv6 range to assign.'
             assignments.linode_id: '- (Required) The ID of the Linode to which the IP address will be assigned.'
             id: '- The unique ID of this resource.'
+            label: '- The label of the entity.'
             region: '- (Required) The region where the IP addresses will be assigned.'
+            reserved: '- Whether this IP address is a reserved IP.'
+            tags: '- A set of tags associated with this IP address.'
+            type: '- The type of the entity.'
+            url: '- The URL of the entity.'
         importStatements: []
     linode_nodebalancer:
         subCategory: ""
@@ -1525,22 +2362,56 @@ resources:
               manifest: |-
                 {
                   "client_conn_throttle": 20,
+                  "client_udp_sess_throttle": 10,
                   "label": "mynodebalancer",
                   "region": "us-east",
                   "tags": [
                     "foobar"
                   ]
                 }
+            - name: foobar
+              manifest: |-
+                {
+                  "label": "mynodebalancer",
+                  "region": "us-mia",
+                  "vpcs": [
+                    {
+                      "subnet_id": "${linode_vpc_subnet.test.id}"
+                    }
+                  ]
+                }
+            - name: foobar
+              manifest: |-
+                {
+                  "ipv4": "${linode_networking_ip.my_reserved_ip.address}",
+                  "label": "mynodebalancer",
+                  "region": "us-east"
+                }
+              references:
+                ipv4: linode_networking_ip.my_reserved_ip.address
+              dependencies:
+                linode_networking_ip.my_reserved_ip: |-
+                    {
+                      "public": true,
+                      "region": "us-east",
+                      "reserved": true,
+                      "type": "ipv4"
+                    }
         argumentDocs:
             action: '- Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.'
+            api_version: provider argument must be set to v4beta.
             client_conn_throttle: '- (Optional) Throttle connections per second (0-20). Set to 0 (default) to disable throttling.'
+            client_udp_sess_throttle: '- Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.'
             created: '- When this NodeBalancer was created'
             hostname: '- This NodeBalancer''s hostname, ending with .nodebalancer.linode.com'
             id: '- (Required) The Firewall''s ID.'
             in: '- The total transfer, in MB, used by this NodeBalancer for the current month'
             inbound_policy: '- The default behavior for inbound traffic. (ACCEPT, DROP)'
-            ipv4: '- The Public IPv4 Address of this NodeBalancer'
+            ipv4: '- (Optional) The Public IPv4 address to assign to this NodeBalancer. When provided, the address must be a reserved IPv4 address that is unassigned and owned by the account. Changing'
+            ipv4_range: '- (Optional) A CIDR range for the VPC''s IPv4 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.'
+            ipv4_range_auto_assign: '- (Optional, Write-Only) Enables the use of a larger ipv4_range subnet for multiple NodeBalancers within the same VPC by allocating smaller /30 subnets for each NodeBalancer''s backends.'
             ipv6: '- The Public IPv6 Address of this NodeBalancer'
+            ipv6_range: '- (Optional) A CIDR range for the VPC''s IPv6 addresses. The NodeBalancer sources IP addresses from this range when routing traffic to the backend VPC nodes.'
             label: '- (Optional) The label of the Linode NodeBalancer'
             out: '- The total inbound transfer, in MB, used for this NodeBalancer for the current month'
             outbound_policy: '- The default behavior for outbound traffic. (ACCEPT, DROP)'
@@ -1548,9 +2419,12 @@ resources:
             protocol: '- The network protocol this rule controls. (TCP, UDP, ICMP)'
             region: '- (Required) The region where this NodeBalancer will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here.  Changing .'
             status: '- The status of the firewall. (enabled, disabled, deleted)'
+            subnet_id: '- (Required) The ID of a subnet to assign to this NodeBalancer.'
             tags: '- (Optional) A list of tags applied to this object. Tags are case-insensitive and are for organizational purposes only.'
             total: '- The total outbound transfer, in MB, used for this NodeBalancer for the current month'
+            type: '- The type of the related LKE cluster.'
             updated: '- When this NodeBalancer was last updated.'
+            url: '- The URL where you can access the related LKE cluster.'
         importStatements: []
     linode_nodebalancer_config:
         subCategory: ""
@@ -1569,7 +2443,8 @@ resources:
                   "nodebalancer_id": "${linode_nodebalancer.foobar.id}",
                   "port": 8088,
                   "protocol": "http",
-                  "stickiness": "http_cookie"
+                  "stickiness": "http_cookie",
+                  "udp_check_port": 12345
                 }
               references:
                 nodebalancer_id: linode_nodebalancer.foobar.id
@@ -1599,6 +2474,8 @@ resources:
             ssl_fingerprint: '- The read-only fingerprint automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.'
             ssl_key: '- (Optional) The private key corresponding to this port''s certificate. This is not returned. If set, this field will come back as <REDACTED>. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.'
             stickiness: '- (Optional) Controls how session stickiness is handled on this port. (none, table, http_cookie)'
+            udp_check_port: '- (Optional) Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.'
+            udp_session_timeout: '- The read-only idle time in seconds after which a session that hasn’t received packets is destroyed.'
             up: '- The number of backends considered to be ''UP'' and healthy, and that are serving requests.'
         importStatements: []
     linode_nodebalancer_node:
@@ -1626,6 +2503,7 @@ resources:
                 }
               references:
                 config_id: linode_nodebalancer_config.foofig.id
+                lifecycle.replace_triggered_by: linode_instance.foo
                 nodebalancer_id: linode_nodebalancer.foobar.id
               dependencies:
                 linode_instance.foo: |-
@@ -1666,6 +2544,8 @@ resources:
             mode: '- (Optional) The mode this NodeBalancer should use when sending traffic to this backend. If set to accept this backend is accepting traffic. If set to reject this backend will not receive traffic. If set to drain this backend will not receive new traffic, but connections already pinned to it will continue to be routed to it. (accept, reject, drain, backup)'
             nodebalancer_id: '- (Required) The ID of the NodeBalancer to access.'
             status: '- The current status of this node, based on the configured checks of its NodeBalancer Config. (unknown, UP, DOWN).'
+            subnet_id: '- (Optional) The ID of the related VPC subnet. This is only set for VPC nodes. NOTE: VPC-attached NodeBalancers may not currently be available to all users and may require the api_version provider argument must be set to v4beta.'
+            vpc_config_id: '- The ID of the related NodeBalancer-VPC configuration. This is only set for VPC nodes. NOTE: VPC-attached NodeBalancers may not currently be available to all users and may require the api_version provider argument must be set to v4beta.'
             weight: '- (Optional) Used when picking a backend to serve a request and is not pinned to a single backend yet. Nodes with a higher weight will receive more traffic. (1-255).'
         importStatements: []
     linode_object_storage_bucket:
@@ -1731,10 +2611,7 @@ resources:
             access_key: '- (Optional) The access key to authenticate with. If not specified with the resource, its value can be'
             acl: '- (Optional) The Access Control Level of the bucket using a canned ACL string. See all ACL strings in the Linode API v4 documentation.'
             certificate: '- (Required) The Base64 encoded and PEM formatted SSL certificate.'
-            cluster: |-
-                - (Deprecated) The cluster of the Linode Object Storage Bucket. This is deprecated in favor of region attribute.
-                For example, us-mia-1 cluster can be translated into us-mia region. Exactly one of region and cluster is required for creating a bucket.
-            cors_enabled: '- (Optional) If true, the bucket will have CORS enabled for all origins.'
+            cors_enabled: '- (Optional) If true, the bucket will have CORS enabled for all origins. Not supported by E2/E3 endpoints.'
             date: '- (Optional) Specifies the date after which you want the corresponding action to take effect.'
             days: '- (Optional) Specifies the number of days after object creation when the specific rule action takes effect.'
             enabled: '- (Optional) Specifies whether the lifecycle rule is active.'
@@ -1744,7 +2621,7 @@ resources:
             label: '- (Required) The label of the Linode Object Storage Bucket.'
             prefix: '- (Optional) The object key prefix identifying one or more objects to which the rule applies.'
             private_key: '- (Required) The private key associated with the TLS/SSL certificate.'
-            region: '- (Required) The region of the Linode Object Storage Bucket. Exactly one of region and cluster is required for creating a bucket.'
+            region: '- (Required) The region of the Linode Object Storage Bucket.'
             s3_endpoint: '- (Optional) The user''s s3 endpoint URL, based on the endpoint_type and region.'
             secret_key: '- (Optional) The secret key to authenticate with. If not specified with the resource, its value can be'
             versioning: '- (Optional) Whether to enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket. (Requires access_key and secret_key)'
@@ -1793,7 +2670,6 @@ resources:
             access_key: '- This keypair''s access key. This is not secret.'
             bucket_access: '- (Optional) Defines this key as a Limited Access Key. Limited Access Keys restrict this Object Storage key’s access to only the bucket(s) declared in this array and define their bucket-level permissions. Not providing this block will not limit this Object Storage Key.'
             bucket_name: '- The unique label of the bucket to which the key will grant limited access.'
-            cluster: '- (Deprecated) The Object Storage cluster where the bucket resides. Deprecated in favor of region.'
             endpoint_type: '- The type of s3_endpoint available to the user in this region. See Endpoint types for more information.'
             id: '- The ID of the region.'
             label: '- (Required) The label given to this key. For display purposes only.'
@@ -1860,7 +2736,6 @@ resources:
             acl: '- (Optional) The canned ACL to apply. (private, public-read, authenticated-read, public-read-write, custom) (defaults to private).'
             bucket: '- (Required) The name of the bucket to put the object in.'
             cache_control: '- (Optional) Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.'
-            cluster: '- (Deprecated) The cluster the bucket is in. Required if region is not configured. Deprecated in favor of region.'
             content: '- (Optional, conflicts with source and content_base64) Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.'
             content_base64: '- (Optional, conflicts with source and content) Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the gzipbase64 function with small text strings. For larger objects, use source to stream the content from a disk file.'
             content_disposition: '- (Optional) Specifies presentational information for the object. Read w3c content_disposition for further information.'
@@ -1872,7 +2747,7 @@ resources:
             force_destroy: '- (Optional) Allow the object to be deleted regardless of any legal hold or object lock (defaults to false).'
             key: '- (Required) They name of the object once it is in the bucket.'
             metadata: '- (Optional) A map of keys/values to provision metadata.'
-            region: '- The cluster the bucket is in. Required if cluster is not configured.'
+            region: '- (Required) The region the bucket is in.'
             secret_key: '- (Optional) The REQUIRED secret key to authenticate with. If it''s not specified with the resource, you must provide its value by'
             source: '- (Optional, conflicts with content and content_base64) The path to a file that will be read and uploaded as raw bytes for the object content. The path must either be relative to the root module or absolute.'
             version_id: '- A unique version ID value for the object.'
@@ -1933,6 +2808,66 @@ resources:
             linode_id: '- (Required) The unique ID of the Linode to assign.'
             placement_group_id: '- (Required) The unique ID of the target Placement Group.'
         importStatements: []
+    linode_producer_image_share_group:
+        subCategory: ""
+        description: Manages an Image Share Group.
+        name: linode_producer_image_share_group
+        title: linode_producer_image_share_group
+        examples:
+            - name: test-empty
+              manifest: |-
+                {
+                  "description": "My description.",
+                  "label": "my-image-share-group"
+                }
+            - name: test-images
+              manifest: |-
+                {
+                  "description": "My description.",
+                  "images": [
+                    {
+                      "description": "My image description.",
+                      "id": "private/12345",
+                      "label": "my-image"
+                    }
+                  ],
+                  "label": "my-image-share-group"
+                }
+        argumentDocs:
+            created: '- The date and time the Image Share Group was created.'
+            description: '- (Optional) The description of the Image Share Group'
+            expiry: '- The date and time the Image Share Group will expire.'
+            id: '- The ID of the Image Share Group.'
+            images_count: '- The number of images in the Image Share Group.'
+            is_suspended: '- Whether the Image Share Group is suspended.'
+            label: '- (Required) The label of the Image Share Group.'
+            members_count: '- The number of members in the Image Share Group.'
+            updated: '- The date and time the Image Share Group was last updated.'
+            uuid: '- The UUID of the Image Share Group.'
+        importStatements: []
+    linode_producer_image_share_group_member:
+        subCategory: ""
+        description: Manages a member of an Image Share Group.
+        name: linode_producer_image_share_group_member
+        title: linode_producer_image_share_group_member
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "label": "example-member",
+                  "sharegroup_id": 12345,
+                  "token": "abcdefghijklmnopqrstuvwxyz0123456789"
+                }
+        argumentDocs:
+            created: '- When the member was created.'
+            expiry: '- When the member will expire.'
+            label: '- (Required) A label for the member.'
+            sharegroup_id: '- (Required) The ID of the Image Share Group to which the member will be added.'
+            status: '- The status of the member.'
+            token: '- (Required) The token of the prospective member.'
+            token_uuid: '- The UUID of member''s token.'
+            updated: '- When the member was last updated.'
+        importStatements: []
     linode_rdns:
         subCategory: ""
         description: Manages the RDNS / PTR record for the IP Address associated with a Linode Instance.
@@ -1950,7 +2885,7 @@ resources:
               dependencies:
                 linode_instance.foo: |-
                     {
-                      "image": "linode/alpine3.19",
+                      "image": "linode/arch",
                       "region": "ca-east",
                       "type": "g6-dedicated-2"
                     }
@@ -1975,6 +2910,81 @@ resources:
             address: '- The Public IPv4 or IPv6 address that will receive the PTR record.  A matching A or AAAA record must exist.'
             rdns: '- The name of the RDNS address.'
             wait_for_available: '- (Optional) If true, the RDNS assignment will be retried within the operation timeout period.'
+        importStatements: []
+    linode_reserved_ip:
+        subCategory: ""
+        description: Manages a Linode reserved IP address.
+        name: linode_reserved_ip
+        title: linode_reserved_ip
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "region": "us-east"
+                }
+            - name: example
+              manifest: |-
+                {
+                  "region": "us-east",
+                  "tags": [
+                    "production",
+                    "web"
+                  ]
+                }
+        argumentDocs:
+            address: '- The reserved IPv4 address.'
+            assigned_entity: '- The entity this reserved IP address is currently assigned to, if any. Contains:'
+            gateway: '- The default gateway for this address.'
+            id: '- The unique identifier of this reserved IP address (same as address).'
+            label: '- The label of the assigned entity.'
+            linode_id: '- The ID of the Linode this address is currently assigned to, if any.'
+            prefix: '- The number of bits set in the subnet mask.'
+            public: '- Whether this is a public IP address.'
+            rdns: '- The reverse DNS assigned to this address.'
+            region: '- (Required) The region in which to reserve the IP address. Changing this forces a new resource to be created.'
+            reserved: '- Whether this IP address is reserved. Always true for this resource.'
+            subnet_mask: '- The mask that separates host bits from network bits for this address.'
+            tags: '- (Optional) A set of tags to assign to this reserved IP address.'
+            type: '- The type of IP address.'
+            url: '- The API URL of the assigned entity.'
+            vpc_nat_1_1: '- Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.'
+        importStatements: []
+    linode_reserved_ip_assignment:
+        subCategory: ""
+        description: Manages assignment of a reserved IP address to a Linode instance.
+        name: linode_reserved_ip_assignment
+        title: linode_reserved_ip_assignment
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "address": "${linode_networking_ip.reserved.address}",
+                  "linode_id": "${linode_instance.example.id}",
+                  "public": true
+                }
+              references:
+                address: linode_networking_ip.reserved.address
+                linode_id: linode_instance.example.id
+        argumentDocs:
+            address: '- (Required) The reserved IPv4 address to assign to the Linode.'
+            apply_immediately: '- (Optional) If true, the instance will be rebooted to update network interfaces. Defaults to false.'
+            assigned_entity: '- The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.'
+            gateway: '- The default gateway for this address.'
+            id: '- The ID of the IPv4 address (the address itself).'
+            label: '- The label of the entity.'
+            linode_id: '- (Required) The ID of the Linode to assign the reserved IP to. Changing this forces creation of a new resource.'
+            prefix: '- The number of bits set in the subnet mask.'
+            public: '- (Optional) Whether the IP address is public. Defaults to true. This must match the reserved IP''s existing public/private status. Changing this forces creation of a new resource.'
+            rdns: '- (Optional) The reverse DNS assigned to this address. Configured via a separate API call after the IP is assigned.'
+            region: '- The region this IP resides in.'
+            reserved: '- The reservation status of the IP address.'
+            subnet_id: '- The id of the VPC Subnet for this Interface.'
+            subnet_mask: '- The mask that separates host bits from network bits for this address.'
+            tags: '- A set of tags associated with this IP address.'
+            type: '- The type of IP address.'
+            url: '- The URL of the entity.'
+            vpc_id: '- The id of the VPC configured for this Interface.'
+            vpc_nat_1_1: '- Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.'
         importStatements: []
     linode_sshkey:
         subCategory: ""
@@ -2130,7 +3140,6 @@ resources:
             add_linodes: '- (optional) If true, this User may create Linodes.'
             add_longview: '- (optional) If true, this User may create Longview clients and view the current plan.'
             add_nodebalancers: '- (optional) If true, this User may add NodeBalancers.'
-            add_placement_groups: '- (optional) If true, this User may add Placement Groups.'
             add_stackscripts: '- (optional) If true, this User may add StackScripts.'
             add_vpcs: '- (optional) If true, this User may add Virtual Private Clouds (VPCs).'
             cancel_account: '- (optional) If true, this User may cancel the entire Account.'
@@ -2144,7 +3153,6 @@ resources:
             longview_subscription: '- (optional) If true, this User may manage the Account’s Longview subscription.'
             nodebalancer_grant: '- (optional) The NodeBalancers the user has permissions access to.'
             permissions: '- (required) The level of access this User has to this entity. (read_only, read_write)'
-            placement_group_grant: '- (optional) The Placement Groups the user has permissions access to.'
             restricted: '- (optional) If true, this user will only have explicit permissions granted.'
             ssh_keys: '- A list of the User''s SSH keys.'
             stackscript_grant: '- (optional) The StackScripts the user has permissions access to.'
@@ -2187,8 +3195,9 @@ resources:
                   "source_volume_id": 12345
                 }
         argumentDocs:
-            encryption: '- (Optional) Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.'
+            encryption: '- (Optional) Whether Block Storage Disk Encryption is enabled or disabled on this Volume.'
             filesystem_path: '- The full filesystem path for the Volume based on the Volume''s label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label'
+            io_ready: '- Indicates whether the volume is successfully attached to a Linode and ready for read and write operations.'
             label: '- (Required) The label of the Linode Volume'
             linode_id: '- (Optional) The ID of a Linode Instance where the Volume should be attached.'
             region: '- (Required) The region where this volume will be deployed.  Examples are "us-east", "us-west", "ap-south", etc. See all regions here. This field is optional for cloned volumes. Changing .'
@@ -2213,13 +3222,39 @@ resources:
                   "label": "test-vpc",
                   "region": "us-iad"
                 }
+            - name: test
+              manifest: |-
+                {
+                  "ipv6": [
+                    {
+                      "range": "/52"
+                    }
+                  ],
+                  "label": "test-vpc",
+                  "region": "us-iad"
+                }
+            - name: test
+              manifest: |-
+                {
+                  "ipv4": [
+                    {
+                      "range": "10.0.0.0/8"
+                    }
+                  ],
+                  "label": "test-vpc",
+                  "region": "us-iad"
+                }
         argumentDocs:
+            allocated_range: '- (Read-Only) The value of range computed by the API. This is necessary when needing to access the range for an implicit allocation.'
+            allocation_class: '- (Optional) Indicates the labeled IPv6 Inventory that the VPC Prefix should be allocated from.'
             created: '- The date and time when the VPC was created.'
             description: '- (Optional) The user-defined description of this VPC.'
             id: '- The ID of the VPC.'
             label: '- (Required) The label of the VPC. This field can only contain ASCII letters, digits and dashes.'
+            range: '- (Optional) An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.'
             region: '- (Required) The region of the VPC.'
             updated: '- The date and time when the VPC was last updated.'
+            vpc_type: '- (Optional) The type of the VPC. Can be either regular or rdma. Defaults to regular. The rdma type creates an RDMA VPC and may not be available to all users. Changing this value forces the creation of a new VPC.'
         importStatements: []
     linode_vpc_subnet:
         subCategory: ""
@@ -2234,12 +3269,47 @@ resources:
                   "label": "test-subnet",
                   "vpc_id": 123
                 }
+            - name: test
+              manifest: |-
+                {
+                  "ipv4": "10.0.0.0/24",
+                  "ipv6": [
+                    {
+                      "range": "auto"
+                    }
+                  ],
+                  "label": "test-subnet",
+                  "vpc_id": "${linode_vpc.test.id}"
+                }
+              references:
+                vpc_id: linode_vpc.test.id
+              dependencies:
+                linode_vpc.test: |-
+                    {
+                      "ipv6": [
+                        {
+                          "range": "/52"
+                        }
+                      ],
+                      "label": "test-vpc",
+                      "region": "us-mia"
+                    }
         argumentDocs:
+            active: '- Whether the Interface is actively in use.'
+            allocated_range: '- (Read-Only) The value of range computed by the API. This is necessary when needing to access the range for an implicit allocation.'
+            config_id: '- ID of Linode Config that the interface is associated with. null for a Linode Interface.'
             created: '- The date and time when the VPC was created.'
+            databases: '- A list of Managed databases assigned to the VPC Subnet.'
             id: '- The ID of the VPC Subnet.'
+            interfaces: '- A list of networking interfaces objects.'
             ipv4: '- (Required) The IPv4 range of this subnet in CIDR format.'
+            ipv4_range: '- IPv4 range assigned to the database.'
+            ipv6_ranges: '- A list of IPv6 ranges assigned to the database.'
             label: '- (Required) The label of the VPC. Only contains ASCII letters, digits and dashes.'
-            linodes: '- A list of Linode IDs that added to this subnet.'
+            linodes: '- A list of Linodes added to this subnet.'
+            nodebalancers: '- A list of NodeBalancers assigned to the VPC Subnet.'
+            range: '- (Optional) An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.'
             updated: '- The date and time when the VPC was last updated.'
-            vpc_id: '- (Required) The id of the parent VPC for this VPC Subnet.'
+            vpc_id: '- (Required) The id of the parent VPC for this VPC subnet.'
+            vpc_type: '- The type of the parent VPC (regular or rdma).'
         importStatements: []

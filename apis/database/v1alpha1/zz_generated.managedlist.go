@@ -16,26 +16,8 @@ func (l *AccessControlsList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this MySQLList.
-func (l *MySQLList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
 // GetItems of this MySQLv2List.
 func (l *MySQLv2List) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this PostgreSQLList.
-func (l *PostgreSQLList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

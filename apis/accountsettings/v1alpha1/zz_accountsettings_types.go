@@ -19,9 +19,13 @@ type AccountSettingsInitParameters struct {
 	// Account-wide backups default.
 	BackupsEnabled *bool `json:"backupsEnabled,omitempty" tf:"backups_enabled,omitempty"`
 
-	// The Longview Pro tier you are currently subscribed to. The value must be a Longview Subscription ID or null for Longview Free.
-	// The Longview Pro tier you are currently subscribed to.
-	LongviewSubscription *string `json:"longviewSubscription,omitempty" tf:"longview_subscription,omitempty"`
+	// Type of interfaces for new Linode instances. Available values are "legacy_config_only", "legacy_config_default_but_linode_allowed", "linode_default_but_legacy_config_allowed", and "linode_only".
+	// Type of interfaces for new Linode instances.
+	InterfacesForNewLinodes *string `json:"interfacesForNewLinodes,omitempty" tf:"interfaces_for_new_linodes,omitempty"`
+
+	// The default maintenance policy for this account. Examples are "linode/migrate" and "linode/power_off_on". Defaults to "linode/migrate".
+	// The default Maintenance Policy for this account. If not provided, the default policy (linode/migrate) will be applied.
+	MaintenancePolicy *string `json:"maintenancePolicy,omitempty" tf:"maintenance_policy,omitempty"`
 
 	// Enables network helper across all users by default for new Linodes and Linode Configs.
 	// Enables network helper across all users by default for new Linodes and Linode Configs.
@@ -36,9 +40,17 @@ type AccountSettingsObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The Longview Pro tier you are currently subscribed to. The value must be a Longview Subscription ID or null for Longview Free.
+	// Type of interfaces for new Linode instances. Available values are "legacy_config_only", "legacy_config_default_but_linode_allowed", "linode_default_but_legacy_config_allowed", and "linode_only".
+	// Type of interfaces for new Linode instances.
+	InterfacesForNewLinodes *string `json:"interfacesForNewLinodes,omitempty" tf:"interfaces_for_new_linodes,omitempty"`
+
+	// (Deprecated) The Longview Pro tier you are currently subscribed to.
 	// The Longview Pro tier you are currently subscribed to.
 	LongviewSubscription *string `json:"longviewSubscription,omitempty" tf:"longview_subscription,omitempty"`
+
+	// The default maintenance policy for this account. Examples are "linode/migrate" and "linode/power_off_on". Defaults to "linode/migrate".
+	// The default Maintenance Policy for this account. If not provided, the default policy (linode/migrate) will be applied.
+	MaintenancePolicy *string `json:"maintenancePolicy,omitempty" tf:"maintenance_policy,omitempty"`
 
 	// Enables monitoring for connectivity, response, and total request time.
 	// Enables monitoring for connectivity, response, and total request time.
@@ -60,10 +72,15 @@ type AccountSettingsParameters struct {
 	// +kubebuilder:validation:Optional
 	BackupsEnabled *bool `json:"backupsEnabled,omitempty" tf:"backups_enabled,omitempty"`
 
-	// The Longview Pro tier you are currently subscribed to. The value must be a Longview Subscription ID or null for Longview Free.
-	// The Longview Pro tier you are currently subscribed to.
+	// Type of interfaces for new Linode instances. Available values are "legacy_config_only", "legacy_config_default_but_linode_allowed", "linode_default_but_legacy_config_allowed", and "linode_only".
+	// Type of interfaces for new Linode instances.
 	// +kubebuilder:validation:Optional
-	LongviewSubscription *string `json:"longviewSubscription,omitempty" tf:"longview_subscription,omitempty"`
+	InterfacesForNewLinodes *string `json:"interfacesForNewLinodes,omitempty" tf:"interfaces_for_new_linodes,omitempty"`
+
+	// The default maintenance policy for this account. Examples are "linode/migrate" and "linode/power_off_on". Defaults to "linode/migrate".
+	// The default Maintenance Policy for this account. If not provided, the default policy (linode/migrate) will be applied.
+	// +kubebuilder:validation:Optional
+	MaintenancePolicy *string `json:"maintenancePolicy,omitempty" tf:"maintenance_policy,omitempty"`
 
 	// Enables network helper across all users by default for new Linodes and Linode Configs.
 	// Enables network helper across all users by default for new Linodes and Linode Configs.

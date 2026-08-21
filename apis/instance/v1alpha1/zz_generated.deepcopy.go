@@ -232,9 +232,275 @@ func (in *ConfigDevicesInitParameters) DeepCopyInto(out *ConfigDevicesInitParame
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdaa != nil {
+		in, out := &in.Sdaa, &out.Sdaa
+		*out = make([]DevicesSdaaInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdab != nil {
+		in, out := &in.Sdab, &out.Sdab
+		*out = make([]DevicesSdabInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdac != nil {
+		in, out := &in.Sdac, &out.Sdac
+		*out = make([]DevicesSdacInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdad != nil {
+		in, out := &in.Sdad, &out.Sdad
+		*out = make([]DevicesSdadInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdae != nil {
+		in, out := &in.Sdae, &out.Sdae
+		*out = make([]DevicesSdaeInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaf != nil {
+		in, out := &in.Sdaf, &out.Sdaf
+		*out = make([]DevicesSdafInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdag != nil {
+		in, out := &in.Sdag, &out.Sdag
+		*out = make([]DevicesSdagInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdah != nil {
+		in, out := &in.Sdah, &out.Sdah
+		*out = make([]DevicesSdahInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdai != nil {
+		in, out := &in.Sdai, &out.Sdai
+		*out = make([]DevicesSdaiInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaj != nil {
+		in, out := &in.Sdaj, &out.Sdaj
+		*out = make([]DevicesSdajInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdak != nil {
+		in, out := &in.Sdak, &out.Sdak
+		*out = make([]DevicesSdakInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdal != nil {
+		in, out := &in.Sdal, &out.Sdal
+		*out = make([]DevicesSdalInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdam != nil {
+		in, out := &in.Sdam, &out.Sdam
+		*out = make([]DevicesSdamInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdan != nil {
+		in, out := &in.Sdan, &out.Sdan
+		*out = make([]DevicesSdanInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdao != nil {
+		in, out := &in.Sdao, &out.Sdao
+		*out = make([]DevicesSdaoInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdap != nil {
+		in, out := &in.Sdap, &out.Sdap
+		*out = make([]DevicesSdapInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaq != nil {
+		in, out := &in.Sdaq, &out.Sdaq
+		*out = make([]DevicesSdaqInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdar != nil {
+		in, out := &in.Sdar, &out.Sdar
+		*out = make([]DevicesSdarInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdas != nil {
+		in, out := &in.Sdas, &out.Sdas
+		*out = make([]DevicesSdasInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdat != nil {
+		in, out := &in.Sdat, &out.Sdat
+		*out = make([]DevicesSdatInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdau != nil {
+		in, out := &in.Sdau, &out.Sdau
+		*out = make([]DevicesSdauInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdav != nil {
+		in, out := &in.Sdav, &out.Sdav
+		*out = make([]DevicesSdavInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaw != nil {
+		in, out := &in.Sdaw, &out.Sdaw
+		*out = make([]DevicesSdawInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdax != nil {
+		in, out := &in.Sdax, &out.Sdax
+		*out = make([]DevicesSdaxInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sday != nil {
+		in, out := &in.Sday, &out.Sday
+		*out = make([]DevicesSdayInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaz != nil {
+		in, out := &in.Sdaz, &out.Sdaz
+		*out = make([]DevicesSdazInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Sdb != nil {
 		in, out := &in.Sdb, &out.Sdb
 		*out = make([]DevicesSdbInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdba != nil {
+		in, out := &in.Sdba, &out.Sdba
+		*out = make([]DevicesSdbaInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbb != nil {
+		in, out := &in.Sdbb, &out.Sdbb
+		*out = make([]DevicesSdbbInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbc != nil {
+		in, out := &in.Sdbc, &out.Sdbc
+		*out = make([]DevicesSdbcInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbd != nil {
+		in, out := &in.Sdbd, &out.Sdbd
+		*out = make([]DevicesSdbdInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbe != nil {
+		in, out := &in.Sdbe, &out.Sdbe
+		*out = make([]DevicesSdbeInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbf != nil {
+		in, out := &in.Sdbf, &out.Sdbf
+		*out = make([]DevicesSdbfInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbg != nil {
+		in, out := &in.Sdbg, &out.Sdbg
+		*out = make([]DevicesSdbgInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbh != nil {
+		in, out := &in.Sdbh, &out.Sdbh
+		*out = make([]DevicesSdbhInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbi != nil {
+		in, out := &in.Sdbi, &out.Sdbi
+		*out = make([]DevicesSdbiInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbj != nil {
+		in, out := &in.Sdbj, &out.Sdbj
+		*out = make([]DevicesSdbjInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbk != nil {
+		in, out := &in.Sdbk, &out.Sdbk
+		*out = make([]DevicesSdbkInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbl != nil {
+		in, out := &in.Sdbl, &out.Sdbl
+		*out = make([]DevicesSdblInitParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -281,6 +547,132 @@ func (in *ConfigDevicesInitParameters) DeepCopyInto(out *ConfigDevicesInitParame
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdi != nil {
+		in, out := &in.Sdi, &out.Sdi
+		*out = make([]DevicesSdiInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdj != nil {
+		in, out := &in.Sdj, &out.Sdj
+		*out = make([]DevicesSdjInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdk != nil {
+		in, out := &in.Sdk, &out.Sdk
+		*out = make([]DevicesSdkInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdl != nil {
+		in, out := &in.Sdl, &out.Sdl
+		*out = make([]DevicesSdlInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdm != nil {
+		in, out := &in.Sdm, &out.Sdm
+		*out = make([]DevicesSdmInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdn != nil {
+		in, out := &in.Sdn, &out.Sdn
+		*out = make([]DevicesSdnInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdo != nil {
+		in, out := &in.Sdo, &out.Sdo
+		*out = make([]DevicesSdoInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdp != nil {
+		in, out := &in.Sdp, &out.Sdp
+		*out = make([]DevicesSdpInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdq != nil {
+		in, out := &in.Sdq, &out.Sdq
+		*out = make([]DevicesSdqInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdr != nil {
+		in, out := &in.Sdr, &out.Sdr
+		*out = make([]DevicesSdrInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sds != nil {
+		in, out := &in.Sds, &out.Sds
+		*out = make([]DevicesSdsInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdt != nil {
+		in, out := &in.Sdt, &out.Sdt
+		*out = make([]DevicesSdtInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdu != nil {
+		in, out := &in.Sdu, &out.Sdu
+		*out = make([]DevicesSduInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdv != nil {
+		in, out := &in.Sdv, &out.Sdv
+		*out = make([]DevicesSdvInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdw != nil {
+		in, out := &in.Sdw, &out.Sdw
+		*out = make([]DevicesSdwInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdx != nil {
+		in, out := &in.Sdx, &out.Sdx
+		*out = make([]DevicesSdxInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdy != nil {
+		in, out := &in.Sdy, &out.Sdy
+		*out = make([]DevicesSdyInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdz != nil {
+		in, out := &in.Sdz, &out.Sdz
+		*out = make([]DevicesSdzInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ConfigDevicesInitParameters.
@@ -303,9 +695,275 @@ func (in *ConfigDevicesObservation) DeepCopyInto(out *ConfigDevicesObservation) 
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdaa != nil {
+		in, out := &in.Sdaa, &out.Sdaa
+		*out = make([]DevicesSdaaObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdab != nil {
+		in, out := &in.Sdab, &out.Sdab
+		*out = make([]DevicesSdabObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdac != nil {
+		in, out := &in.Sdac, &out.Sdac
+		*out = make([]DevicesSdacObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdad != nil {
+		in, out := &in.Sdad, &out.Sdad
+		*out = make([]DevicesSdadObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdae != nil {
+		in, out := &in.Sdae, &out.Sdae
+		*out = make([]DevicesSdaeObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaf != nil {
+		in, out := &in.Sdaf, &out.Sdaf
+		*out = make([]DevicesSdafObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdag != nil {
+		in, out := &in.Sdag, &out.Sdag
+		*out = make([]DevicesSdagObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdah != nil {
+		in, out := &in.Sdah, &out.Sdah
+		*out = make([]DevicesSdahObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdai != nil {
+		in, out := &in.Sdai, &out.Sdai
+		*out = make([]DevicesSdaiObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaj != nil {
+		in, out := &in.Sdaj, &out.Sdaj
+		*out = make([]DevicesSdajObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdak != nil {
+		in, out := &in.Sdak, &out.Sdak
+		*out = make([]DevicesSdakObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdal != nil {
+		in, out := &in.Sdal, &out.Sdal
+		*out = make([]DevicesSdalObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdam != nil {
+		in, out := &in.Sdam, &out.Sdam
+		*out = make([]DevicesSdamObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdan != nil {
+		in, out := &in.Sdan, &out.Sdan
+		*out = make([]DevicesSdanObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdao != nil {
+		in, out := &in.Sdao, &out.Sdao
+		*out = make([]DevicesSdaoObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdap != nil {
+		in, out := &in.Sdap, &out.Sdap
+		*out = make([]DevicesSdapObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaq != nil {
+		in, out := &in.Sdaq, &out.Sdaq
+		*out = make([]DevicesSdaqObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdar != nil {
+		in, out := &in.Sdar, &out.Sdar
+		*out = make([]DevicesSdarObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdas != nil {
+		in, out := &in.Sdas, &out.Sdas
+		*out = make([]DevicesSdasObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdat != nil {
+		in, out := &in.Sdat, &out.Sdat
+		*out = make([]DevicesSdatObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdau != nil {
+		in, out := &in.Sdau, &out.Sdau
+		*out = make([]DevicesSdauObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdav != nil {
+		in, out := &in.Sdav, &out.Sdav
+		*out = make([]DevicesSdavObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaw != nil {
+		in, out := &in.Sdaw, &out.Sdaw
+		*out = make([]DevicesSdawObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdax != nil {
+		in, out := &in.Sdax, &out.Sdax
+		*out = make([]DevicesSdaxObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sday != nil {
+		in, out := &in.Sday, &out.Sday
+		*out = make([]DevicesSdayObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaz != nil {
+		in, out := &in.Sdaz, &out.Sdaz
+		*out = make([]DevicesSdazObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Sdb != nil {
 		in, out := &in.Sdb, &out.Sdb
 		*out = make([]DevicesSdbObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdba != nil {
+		in, out := &in.Sdba, &out.Sdba
+		*out = make([]DevicesSdbaObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbb != nil {
+		in, out := &in.Sdbb, &out.Sdbb
+		*out = make([]DevicesSdbbObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbc != nil {
+		in, out := &in.Sdbc, &out.Sdbc
+		*out = make([]DevicesSdbcObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbd != nil {
+		in, out := &in.Sdbd, &out.Sdbd
+		*out = make([]DevicesSdbdObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbe != nil {
+		in, out := &in.Sdbe, &out.Sdbe
+		*out = make([]DevicesSdbeObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbf != nil {
+		in, out := &in.Sdbf, &out.Sdbf
+		*out = make([]DevicesSdbfObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbg != nil {
+		in, out := &in.Sdbg, &out.Sdbg
+		*out = make([]DevicesSdbgObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbh != nil {
+		in, out := &in.Sdbh, &out.Sdbh
+		*out = make([]DevicesSdbhObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbi != nil {
+		in, out := &in.Sdbi, &out.Sdbi
+		*out = make([]DevicesSdbiObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbj != nil {
+		in, out := &in.Sdbj, &out.Sdbj
+		*out = make([]DevicesSdbjObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbk != nil {
+		in, out := &in.Sdbk, &out.Sdbk
+		*out = make([]DevicesSdbkObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbl != nil {
+		in, out := &in.Sdbl, &out.Sdbl
+		*out = make([]DevicesSdblObservation, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -352,6 +1010,132 @@ func (in *ConfigDevicesObservation) DeepCopyInto(out *ConfigDevicesObservation) 
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdi != nil {
+		in, out := &in.Sdi, &out.Sdi
+		*out = make([]DevicesSdiObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdj != nil {
+		in, out := &in.Sdj, &out.Sdj
+		*out = make([]DevicesSdjObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdk != nil {
+		in, out := &in.Sdk, &out.Sdk
+		*out = make([]DevicesSdkObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdl != nil {
+		in, out := &in.Sdl, &out.Sdl
+		*out = make([]DevicesSdlObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdm != nil {
+		in, out := &in.Sdm, &out.Sdm
+		*out = make([]DevicesSdmObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdn != nil {
+		in, out := &in.Sdn, &out.Sdn
+		*out = make([]DevicesSdnObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdo != nil {
+		in, out := &in.Sdo, &out.Sdo
+		*out = make([]DevicesSdoObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdp != nil {
+		in, out := &in.Sdp, &out.Sdp
+		*out = make([]DevicesSdpObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdq != nil {
+		in, out := &in.Sdq, &out.Sdq
+		*out = make([]DevicesSdqObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdr != nil {
+		in, out := &in.Sdr, &out.Sdr
+		*out = make([]DevicesSdrObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sds != nil {
+		in, out := &in.Sds, &out.Sds
+		*out = make([]DevicesSdsObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdt != nil {
+		in, out := &in.Sdt, &out.Sdt
+		*out = make([]DevicesSdtObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdu != nil {
+		in, out := &in.Sdu, &out.Sdu
+		*out = make([]DevicesSduObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdv != nil {
+		in, out := &in.Sdv, &out.Sdv
+		*out = make([]DevicesSdvObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdw != nil {
+		in, out := &in.Sdw, &out.Sdw
+		*out = make([]DevicesSdwObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdx != nil {
+		in, out := &in.Sdx, &out.Sdx
+		*out = make([]DevicesSdxObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdy != nil {
+		in, out := &in.Sdy, &out.Sdy
+		*out = make([]DevicesSdyObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdz != nil {
+		in, out := &in.Sdz, &out.Sdz
+		*out = make([]DevicesSdzObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ConfigDevicesObservation.
@@ -374,9 +1158,275 @@ func (in *ConfigDevicesParameters) DeepCopyInto(out *ConfigDevicesParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdaa != nil {
+		in, out := &in.Sdaa, &out.Sdaa
+		*out = make([]DevicesSdaaParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdab != nil {
+		in, out := &in.Sdab, &out.Sdab
+		*out = make([]DevicesSdabParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdac != nil {
+		in, out := &in.Sdac, &out.Sdac
+		*out = make([]DevicesSdacParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdad != nil {
+		in, out := &in.Sdad, &out.Sdad
+		*out = make([]DevicesSdadParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdae != nil {
+		in, out := &in.Sdae, &out.Sdae
+		*out = make([]DevicesSdaeParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaf != nil {
+		in, out := &in.Sdaf, &out.Sdaf
+		*out = make([]DevicesSdafParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdag != nil {
+		in, out := &in.Sdag, &out.Sdag
+		*out = make([]DevicesSdagParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdah != nil {
+		in, out := &in.Sdah, &out.Sdah
+		*out = make([]DevicesSdahParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdai != nil {
+		in, out := &in.Sdai, &out.Sdai
+		*out = make([]DevicesSdaiParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaj != nil {
+		in, out := &in.Sdaj, &out.Sdaj
+		*out = make([]DevicesSdajParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdak != nil {
+		in, out := &in.Sdak, &out.Sdak
+		*out = make([]DevicesSdakParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdal != nil {
+		in, out := &in.Sdal, &out.Sdal
+		*out = make([]DevicesSdalParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdam != nil {
+		in, out := &in.Sdam, &out.Sdam
+		*out = make([]DevicesSdamParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdan != nil {
+		in, out := &in.Sdan, &out.Sdan
+		*out = make([]DevicesSdanParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdao != nil {
+		in, out := &in.Sdao, &out.Sdao
+		*out = make([]DevicesSdaoParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdap != nil {
+		in, out := &in.Sdap, &out.Sdap
+		*out = make([]DevicesSdapParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaq != nil {
+		in, out := &in.Sdaq, &out.Sdaq
+		*out = make([]DevicesSdaqParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdar != nil {
+		in, out := &in.Sdar, &out.Sdar
+		*out = make([]DevicesSdarParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdas != nil {
+		in, out := &in.Sdas, &out.Sdas
+		*out = make([]DevicesSdasParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdat != nil {
+		in, out := &in.Sdat, &out.Sdat
+		*out = make([]DevicesSdatParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdau != nil {
+		in, out := &in.Sdau, &out.Sdau
+		*out = make([]DevicesSdauParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdav != nil {
+		in, out := &in.Sdav, &out.Sdav
+		*out = make([]DevicesSdavParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaw != nil {
+		in, out := &in.Sdaw, &out.Sdaw
+		*out = make([]DevicesSdawParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdax != nil {
+		in, out := &in.Sdax, &out.Sdax
+		*out = make([]DevicesSdaxParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sday != nil {
+		in, out := &in.Sday, &out.Sday
+		*out = make([]DevicesSdayParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaz != nil {
+		in, out := &in.Sdaz, &out.Sdaz
+		*out = make([]DevicesSdazParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Sdb != nil {
 		in, out := &in.Sdb, &out.Sdb
 		*out = make([]DevicesSdbParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdba != nil {
+		in, out := &in.Sdba, &out.Sdba
+		*out = make([]DevicesSdbaParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbb != nil {
+		in, out := &in.Sdbb, &out.Sdbb
+		*out = make([]DevicesSdbbParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbc != nil {
+		in, out := &in.Sdbc, &out.Sdbc
+		*out = make([]DevicesSdbcParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbd != nil {
+		in, out := &in.Sdbd, &out.Sdbd
+		*out = make([]DevicesSdbdParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbe != nil {
+		in, out := &in.Sdbe, &out.Sdbe
+		*out = make([]DevicesSdbeParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbf != nil {
+		in, out := &in.Sdbf, &out.Sdbf
+		*out = make([]DevicesSdbfParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbg != nil {
+		in, out := &in.Sdbg, &out.Sdbg
+		*out = make([]DevicesSdbgParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbh != nil {
+		in, out := &in.Sdbh, &out.Sdbh
+		*out = make([]DevicesSdbhParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbi != nil {
+		in, out := &in.Sdbi, &out.Sdbi
+		*out = make([]DevicesSdbiParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbj != nil {
+		in, out := &in.Sdbj, &out.Sdbj
+		*out = make([]DevicesSdbjParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbk != nil {
+		in, out := &in.Sdbk, &out.Sdbk
+		*out = make([]DevicesSdbkParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbl != nil {
+		in, out := &in.Sdbl, &out.Sdbl
+		*out = make([]DevicesSdblParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -419,6 +1469,132 @@ func (in *ConfigDevicesParameters) DeepCopyInto(out *ConfigDevicesParameters) {
 	if in.Sdh != nil {
 		in, out := &in.Sdh, &out.Sdh
 		*out = make([]DevicesSdhParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdi != nil {
+		in, out := &in.Sdi, &out.Sdi
+		*out = make([]DevicesSdiParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdj != nil {
+		in, out := &in.Sdj, &out.Sdj
+		*out = make([]DevicesSdjParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdk != nil {
+		in, out := &in.Sdk, &out.Sdk
+		*out = make([]DevicesSdkParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdl != nil {
+		in, out := &in.Sdl, &out.Sdl
+		*out = make([]DevicesSdlParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdm != nil {
+		in, out := &in.Sdm, &out.Sdm
+		*out = make([]DevicesSdmParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdn != nil {
+		in, out := &in.Sdn, &out.Sdn
+		*out = make([]DevicesSdnParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdo != nil {
+		in, out := &in.Sdo, &out.Sdo
+		*out = make([]DevicesSdoParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdp != nil {
+		in, out := &in.Sdp, &out.Sdp
+		*out = make([]DevicesSdpParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdq != nil {
+		in, out := &in.Sdq, &out.Sdq
+		*out = make([]DevicesSdqParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdr != nil {
+		in, out := &in.Sdr, &out.Sdr
+		*out = make([]DevicesSdrParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sds != nil {
+		in, out := &in.Sds, &out.Sds
+		*out = make([]DevicesSdsParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdt != nil {
+		in, out := &in.Sdt, &out.Sdt
+		*out = make([]DevicesSdtParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdu != nil {
+		in, out := &in.Sdu, &out.Sdu
+		*out = make([]DevicesSduParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdv != nil {
+		in, out := &in.Sdv, &out.Sdv
+		*out = make([]DevicesSdvParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdw != nil {
+		in, out := &in.Sdw, &out.Sdw
+		*out = make([]DevicesSdwParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdx != nil {
+		in, out := &in.Sdx, &out.Sdx
+		*out = make([]DevicesSdxParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdy != nil {
+		in, out := &in.Sdy, &out.Sdy
+		*out = make([]DevicesSdyParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdz != nil {
+		in, out := &in.Sdz, &out.Sdz
+		*out = make([]DevicesSdzParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -800,6 +1976,108 @@ func (in *ConfigInterfaceIPv4Parameters) DeepCopy() *ConfigInterfaceIPv4Paramete
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ConfigInterfaceIPv6InitParameters) DeepCopyInto(out *ConfigInterfaceIPv6InitParameters) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]InterfaceIPv6RangeInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]InterfaceIPv6SlaacInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ConfigInterfaceIPv6InitParameters.
+func (in *ConfigInterfaceIPv6InitParameters) DeepCopy() *ConfigInterfaceIPv6InitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(ConfigInterfaceIPv6InitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ConfigInterfaceIPv6Observation) DeepCopyInto(out *ConfigInterfaceIPv6Observation) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]InterfaceIPv6RangeObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]InterfaceIPv6SlaacObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ConfigInterfaceIPv6Observation.
+func (in *ConfigInterfaceIPv6Observation) DeepCopy() *ConfigInterfaceIPv6Observation {
+	if in == nil {
+		return nil
+	}
+	out := new(ConfigInterfaceIPv6Observation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ConfigInterfaceIPv6Parameters) DeepCopyInto(out *ConfigInterfaceIPv6Parameters) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]InterfaceIPv6RangeParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]InterfaceIPv6SlaacParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ConfigInterfaceIPv6Parameters.
+func (in *ConfigInterfaceIPv6Parameters) DeepCopy() *ConfigInterfaceIPv6Parameters {
+	if in == nil {
+		return nil
+	}
+	out := new(ConfigInterfaceIPv6Parameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *ConfigInterfaceInitParameters) DeepCopyInto(out *ConfigInterfaceInitParameters) {
 	*out = *in
 	if in.IPRanges != nil {
@@ -816,6 +2094,13 @@ func (in *ConfigInterfaceInitParameters) DeepCopyInto(out *ConfigInterfaceInitPa
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]ConfigInterfaceIPv4InitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]ConfigInterfaceIPv6InitParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -888,6 +2173,13 @@ func (in *ConfigInterfaceObservation) DeepCopyInto(out *ConfigInterfaceObservati
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]ConfigInterfaceIPv6Observation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.IpamAddress != nil {
 		in, out := &in.IpamAddress, &out.IpamAddress
 		*out = new(string)
@@ -947,6 +2239,13 @@ func (in *ConfigInterfaceParameters) DeepCopyInto(out *ConfigInterfaceParameters
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]ConfigInterfaceIPv4Parameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]ConfigInterfaceIPv6Parameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -1493,9 +2792,275 @@ func (in *DevicesInitParameters) DeepCopyInto(out *DevicesInitParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdaa != nil {
+		in, out := &in.Sdaa, &out.Sdaa
+		*out = make([]SdaaInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdab != nil {
+		in, out := &in.Sdab, &out.Sdab
+		*out = make([]SdabInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdac != nil {
+		in, out := &in.Sdac, &out.Sdac
+		*out = make([]SdacInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdad != nil {
+		in, out := &in.Sdad, &out.Sdad
+		*out = make([]SdadInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdae != nil {
+		in, out := &in.Sdae, &out.Sdae
+		*out = make([]SdaeInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaf != nil {
+		in, out := &in.Sdaf, &out.Sdaf
+		*out = make([]SdafInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdag != nil {
+		in, out := &in.Sdag, &out.Sdag
+		*out = make([]SdagInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdah != nil {
+		in, out := &in.Sdah, &out.Sdah
+		*out = make([]SdahInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdai != nil {
+		in, out := &in.Sdai, &out.Sdai
+		*out = make([]SdaiInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaj != nil {
+		in, out := &in.Sdaj, &out.Sdaj
+		*out = make([]SdajInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdak != nil {
+		in, out := &in.Sdak, &out.Sdak
+		*out = make([]SdakInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdal != nil {
+		in, out := &in.Sdal, &out.Sdal
+		*out = make([]SdalInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdam != nil {
+		in, out := &in.Sdam, &out.Sdam
+		*out = make([]SdamInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdan != nil {
+		in, out := &in.Sdan, &out.Sdan
+		*out = make([]SdanInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdao != nil {
+		in, out := &in.Sdao, &out.Sdao
+		*out = make([]SdaoInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdap != nil {
+		in, out := &in.Sdap, &out.Sdap
+		*out = make([]SdapInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaq != nil {
+		in, out := &in.Sdaq, &out.Sdaq
+		*out = make([]SdaqInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdar != nil {
+		in, out := &in.Sdar, &out.Sdar
+		*out = make([]SdarInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdas != nil {
+		in, out := &in.Sdas, &out.Sdas
+		*out = make([]SdasInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdat != nil {
+		in, out := &in.Sdat, &out.Sdat
+		*out = make([]SdatInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdau != nil {
+		in, out := &in.Sdau, &out.Sdau
+		*out = make([]SdauInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdav != nil {
+		in, out := &in.Sdav, &out.Sdav
+		*out = make([]SdavInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaw != nil {
+		in, out := &in.Sdaw, &out.Sdaw
+		*out = make([]SdawInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdax != nil {
+		in, out := &in.Sdax, &out.Sdax
+		*out = make([]SdaxInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sday != nil {
+		in, out := &in.Sday, &out.Sday
+		*out = make([]SdayInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaz != nil {
+		in, out := &in.Sdaz, &out.Sdaz
+		*out = make([]SdazInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Sdb != nil {
 		in, out := &in.Sdb, &out.Sdb
 		*out = make([]SdbInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdba != nil {
+		in, out := &in.Sdba, &out.Sdba
+		*out = make([]SdbaInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbb != nil {
+		in, out := &in.Sdbb, &out.Sdbb
+		*out = make([]SdbbInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbc != nil {
+		in, out := &in.Sdbc, &out.Sdbc
+		*out = make([]SdbcInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbd != nil {
+		in, out := &in.Sdbd, &out.Sdbd
+		*out = make([]SdbdInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbe != nil {
+		in, out := &in.Sdbe, &out.Sdbe
+		*out = make([]SdbeInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbf != nil {
+		in, out := &in.Sdbf, &out.Sdbf
+		*out = make([]SdbfInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbg != nil {
+		in, out := &in.Sdbg, &out.Sdbg
+		*out = make([]SdbgInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbh != nil {
+		in, out := &in.Sdbh, &out.Sdbh
+		*out = make([]SdbhInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbi != nil {
+		in, out := &in.Sdbi, &out.Sdbi
+		*out = make([]SdbiInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbj != nil {
+		in, out := &in.Sdbj, &out.Sdbj
+		*out = make([]SdbjInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbk != nil {
+		in, out := &in.Sdbk, &out.Sdbk
+		*out = make([]SdbkInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbl != nil {
+		in, out := &in.Sdbl, &out.Sdbl
+		*out = make([]SdblInitParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -1542,6 +3107,132 @@ func (in *DevicesInitParameters) DeepCopyInto(out *DevicesInitParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdi != nil {
+		in, out := &in.Sdi, &out.Sdi
+		*out = make([]SdiInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdj != nil {
+		in, out := &in.Sdj, &out.Sdj
+		*out = make([]SdjInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdk != nil {
+		in, out := &in.Sdk, &out.Sdk
+		*out = make([]SdkInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdl != nil {
+		in, out := &in.Sdl, &out.Sdl
+		*out = make([]SdlInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdm != nil {
+		in, out := &in.Sdm, &out.Sdm
+		*out = make([]SdmInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdn != nil {
+		in, out := &in.Sdn, &out.Sdn
+		*out = make([]SdnInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdo != nil {
+		in, out := &in.Sdo, &out.Sdo
+		*out = make([]SdoInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdp != nil {
+		in, out := &in.Sdp, &out.Sdp
+		*out = make([]SdpInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdq != nil {
+		in, out := &in.Sdq, &out.Sdq
+		*out = make([]SdqInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdr != nil {
+		in, out := &in.Sdr, &out.Sdr
+		*out = make([]SdrInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sds != nil {
+		in, out := &in.Sds, &out.Sds
+		*out = make([]SdsInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdt != nil {
+		in, out := &in.Sdt, &out.Sdt
+		*out = make([]SdtInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdu != nil {
+		in, out := &in.Sdu, &out.Sdu
+		*out = make([]SduInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdv != nil {
+		in, out := &in.Sdv, &out.Sdv
+		*out = make([]SdvInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdw != nil {
+		in, out := &in.Sdw, &out.Sdw
+		*out = make([]SdwInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdx != nil {
+		in, out := &in.Sdx, &out.Sdx
+		*out = make([]SdxInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdy != nil {
+		in, out := &in.Sdy, &out.Sdy
+		*out = make([]SdyInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdz != nil {
+		in, out := &in.Sdz, &out.Sdz
+		*out = make([]SdzInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesInitParameters.
@@ -1564,9 +3255,275 @@ func (in *DevicesObservation) DeepCopyInto(out *DevicesObservation) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdaa != nil {
+		in, out := &in.Sdaa, &out.Sdaa
+		*out = make([]SdaaObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdab != nil {
+		in, out := &in.Sdab, &out.Sdab
+		*out = make([]SdabObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdac != nil {
+		in, out := &in.Sdac, &out.Sdac
+		*out = make([]SdacObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdad != nil {
+		in, out := &in.Sdad, &out.Sdad
+		*out = make([]SdadObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdae != nil {
+		in, out := &in.Sdae, &out.Sdae
+		*out = make([]SdaeObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaf != nil {
+		in, out := &in.Sdaf, &out.Sdaf
+		*out = make([]SdafObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdag != nil {
+		in, out := &in.Sdag, &out.Sdag
+		*out = make([]SdagObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdah != nil {
+		in, out := &in.Sdah, &out.Sdah
+		*out = make([]SdahObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdai != nil {
+		in, out := &in.Sdai, &out.Sdai
+		*out = make([]SdaiObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaj != nil {
+		in, out := &in.Sdaj, &out.Sdaj
+		*out = make([]SdajObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdak != nil {
+		in, out := &in.Sdak, &out.Sdak
+		*out = make([]SdakObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdal != nil {
+		in, out := &in.Sdal, &out.Sdal
+		*out = make([]SdalObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdam != nil {
+		in, out := &in.Sdam, &out.Sdam
+		*out = make([]SdamObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdan != nil {
+		in, out := &in.Sdan, &out.Sdan
+		*out = make([]SdanObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdao != nil {
+		in, out := &in.Sdao, &out.Sdao
+		*out = make([]SdaoObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdap != nil {
+		in, out := &in.Sdap, &out.Sdap
+		*out = make([]SdapObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaq != nil {
+		in, out := &in.Sdaq, &out.Sdaq
+		*out = make([]SdaqObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdar != nil {
+		in, out := &in.Sdar, &out.Sdar
+		*out = make([]SdarObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdas != nil {
+		in, out := &in.Sdas, &out.Sdas
+		*out = make([]SdasObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdat != nil {
+		in, out := &in.Sdat, &out.Sdat
+		*out = make([]SdatObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdau != nil {
+		in, out := &in.Sdau, &out.Sdau
+		*out = make([]SdauObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdav != nil {
+		in, out := &in.Sdav, &out.Sdav
+		*out = make([]SdavObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaw != nil {
+		in, out := &in.Sdaw, &out.Sdaw
+		*out = make([]SdawObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdax != nil {
+		in, out := &in.Sdax, &out.Sdax
+		*out = make([]SdaxObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sday != nil {
+		in, out := &in.Sday, &out.Sday
+		*out = make([]SdayObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaz != nil {
+		in, out := &in.Sdaz, &out.Sdaz
+		*out = make([]SdazObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Sdb != nil {
 		in, out := &in.Sdb, &out.Sdb
 		*out = make([]SdbObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdba != nil {
+		in, out := &in.Sdba, &out.Sdba
+		*out = make([]SdbaObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbb != nil {
+		in, out := &in.Sdbb, &out.Sdbb
+		*out = make([]SdbbObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbc != nil {
+		in, out := &in.Sdbc, &out.Sdbc
+		*out = make([]SdbcObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbd != nil {
+		in, out := &in.Sdbd, &out.Sdbd
+		*out = make([]SdbdObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbe != nil {
+		in, out := &in.Sdbe, &out.Sdbe
+		*out = make([]SdbeObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbf != nil {
+		in, out := &in.Sdbf, &out.Sdbf
+		*out = make([]SdbfObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbg != nil {
+		in, out := &in.Sdbg, &out.Sdbg
+		*out = make([]SdbgObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbh != nil {
+		in, out := &in.Sdbh, &out.Sdbh
+		*out = make([]SdbhObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbi != nil {
+		in, out := &in.Sdbi, &out.Sdbi
+		*out = make([]SdbiObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbj != nil {
+		in, out := &in.Sdbj, &out.Sdbj
+		*out = make([]SdbjObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbk != nil {
+		in, out := &in.Sdbk, &out.Sdbk
+		*out = make([]SdbkObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbl != nil {
+		in, out := &in.Sdbl, &out.Sdbl
+		*out = make([]SdblObservation, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -1613,6 +3570,132 @@ func (in *DevicesObservation) DeepCopyInto(out *DevicesObservation) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdi != nil {
+		in, out := &in.Sdi, &out.Sdi
+		*out = make([]SdiObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdj != nil {
+		in, out := &in.Sdj, &out.Sdj
+		*out = make([]SdjObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdk != nil {
+		in, out := &in.Sdk, &out.Sdk
+		*out = make([]SdkObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdl != nil {
+		in, out := &in.Sdl, &out.Sdl
+		*out = make([]SdlObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdm != nil {
+		in, out := &in.Sdm, &out.Sdm
+		*out = make([]SdmObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdn != nil {
+		in, out := &in.Sdn, &out.Sdn
+		*out = make([]SdnObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdo != nil {
+		in, out := &in.Sdo, &out.Sdo
+		*out = make([]SdoObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdp != nil {
+		in, out := &in.Sdp, &out.Sdp
+		*out = make([]SdpObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdq != nil {
+		in, out := &in.Sdq, &out.Sdq
+		*out = make([]SdqObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdr != nil {
+		in, out := &in.Sdr, &out.Sdr
+		*out = make([]SdrObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sds != nil {
+		in, out := &in.Sds, &out.Sds
+		*out = make([]SdsObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdt != nil {
+		in, out := &in.Sdt, &out.Sdt
+		*out = make([]SdtObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdu != nil {
+		in, out := &in.Sdu, &out.Sdu
+		*out = make([]SduObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdv != nil {
+		in, out := &in.Sdv, &out.Sdv
+		*out = make([]SdvObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdw != nil {
+		in, out := &in.Sdw, &out.Sdw
+		*out = make([]SdwObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdx != nil {
+		in, out := &in.Sdx, &out.Sdx
+		*out = make([]SdxObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdy != nil {
+		in, out := &in.Sdy, &out.Sdy
+		*out = make([]SdyObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdz != nil {
+		in, out := &in.Sdz, &out.Sdz
+		*out = make([]SdzObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesObservation.
@@ -1635,9 +3718,275 @@ func (in *DevicesParameters) DeepCopyInto(out *DevicesParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.Sdaa != nil {
+		in, out := &in.Sdaa, &out.Sdaa
+		*out = make([]SdaaParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdab != nil {
+		in, out := &in.Sdab, &out.Sdab
+		*out = make([]SdabParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdac != nil {
+		in, out := &in.Sdac, &out.Sdac
+		*out = make([]SdacParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdad != nil {
+		in, out := &in.Sdad, &out.Sdad
+		*out = make([]SdadParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdae != nil {
+		in, out := &in.Sdae, &out.Sdae
+		*out = make([]SdaeParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaf != nil {
+		in, out := &in.Sdaf, &out.Sdaf
+		*out = make([]SdafParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdag != nil {
+		in, out := &in.Sdag, &out.Sdag
+		*out = make([]SdagParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdah != nil {
+		in, out := &in.Sdah, &out.Sdah
+		*out = make([]SdahParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdai != nil {
+		in, out := &in.Sdai, &out.Sdai
+		*out = make([]SdaiParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaj != nil {
+		in, out := &in.Sdaj, &out.Sdaj
+		*out = make([]SdajParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdak != nil {
+		in, out := &in.Sdak, &out.Sdak
+		*out = make([]SdakParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdal != nil {
+		in, out := &in.Sdal, &out.Sdal
+		*out = make([]SdalParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdam != nil {
+		in, out := &in.Sdam, &out.Sdam
+		*out = make([]SdamParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdan != nil {
+		in, out := &in.Sdan, &out.Sdan
+		*out = make([]SdanParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdao != nil {
+		in, out := &in.Sdao, &out.Sdao
+		*out = make([]SdaoParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdap != nil {
+		in, out := &in.Sdap, &out.Sdap
+		*out = make([]SdapParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaq != nil {
+		in, out := &in.Sdaq, &out.Sdaq
+		*out = make([]SdaqParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdar != nil {
+		in, out := &in.Sdar, &out.Sdar
+		*out = make([]SdarParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdas != nil {
+		in, out := &in.Sdas, &out.Sdas
+		*out = make([]SdasParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdat != nil {
+		in, out := &in.Sdat, &out.Sdat
+		*out = make([]SdatParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdau != nil {
+		in, out := &in.Sdau, &out.Sdau
+		*out = make([]SdauParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdav != nil {
+		in, out := &in.Sdav, &out.Sdav
+		*out = make([]SdavParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaw != nil {
+		in, out := &in.Sdaw, &out.Sdaw
+		*out = make([]SdawParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdax != nil {
+		in, out := &in.Sdax, &out.Sdax
+		*out = make([]SdaxParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sday != nil {
+		in, out := &in.Sday, &out.Sday
+		*out = make([]SdayParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdaz != nil {
+		in, out := &in.Sdaz, &out.Sdaz
+		*out = make([]SdazParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.Sdb != nil {
 		in, out := &in.Sdb, &out.Sdb
 		*out = make([]SdbParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdba != nil {
+		in, out := &in.Sdba, &out.Sdba
+		*out = make([]SdbaParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbb != nil {
+		in, out := &in.Sdbb, &out.Sdbb
+		*out = make([]SdbbParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbc != nil {
+		in, out := &in.Sdbc, &out.Sdbc
+		*out = make([]SdbcParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbd != nil {
+		in, out := &in.Sdbd, &out.Sdbd
+		*out = make([]SdbdParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbe != nil {
+		in, out := &in.Sdbe, &out.Sdbe
+		*out = make([]SdbeParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbf != nil {
+		in, out := &in.Sdbf, &out.Sdbf
+		*out = make([]SdbfParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbg != nil {
+		in, out := &in.Sdbg, &out.Sdbg
+		*out = make([]SdbgParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbh != nil {
+		in, out := &in.Sdbh, &out.Sdbh
+		*out = make([]SdbhParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbi != nil {
+		in, out := &in.Sdbi, &out.Sdbi
+		*out = make([]SdbiParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbj != nil {
+		in, out := &in.Sdbj, &out.Sdbj
+		*out = make([]SdbjParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbk != nil {
+		in, out := &in.Sdbk, &out.Sdbk
+		*out = make([]SdbkParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdbl != nil {
+		in, out := &in.Sdbl, &out.Sdbl
+		*out = make([]SdblParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -1680,6 +4029,132 @@ func (in *DevicesParameters) DeepCopyInto(out *DevicesParameters) {
 	if in.Sdh != nil {
 		in, out := &in.Sdh, &out.Sdh
 		*out = make([]SdhParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdi != nil {
+		in, out := &in.Sdi, &out.Sdi
+		*out = make([]SdiParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdj != nil {
+		in, out := &in.Sdj, &out.Sdj
+		*out = make([]SdjParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdk != nil {
+		in, out := &in.Sdk, &out.Sdk
+		*out = make([]SdkParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdl != nil {
+		in, out := &in.Sdl, &out.Sdl
+		*out = make([]SdlParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdm != nil {
+		in, out := &in.Sdm, &out.Sdm
+		*out = make([]SdmParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdn != nil {
+		in, out := &in.Sdn, &out.Sdn
+		*out = make([]SdnParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdo != nil {
+		in, out := &in.Sdo, &out.Sdo
+		*out = make([]SdoParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdp != nil {
+		in, out := &in.Sdp, &out.Sdp
+		*out = make([]SdpParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdq != nil {
+		in, out := &in.Sdq, &out.Sdq
+		*out = make([]SdqParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdr != nil {
+		in, out := &in.Sdr, &out.Sdr
+		*out = make([]SdrParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sds != nil {
+		in, out := &in.Sds, &out.Sds
+		*out = make([]SdsParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdt != nil {
+		in, out := &in.Sdt, &out.Sdt
+		*out = make([]SdtParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdu != nil {
+		in, out := &in.Sdu, &out.Sdu
+		*out = make([]SduParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdv != nil {
+		in, out := &in.Sdv, &out.Sdv
+		*out = make([]SdvParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdw != nil {
+		in, out := &in.Sdw, &out.Sdw
+		*out = make([]SdwParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdx != nil {
+		in, out := &in.Sdx, &out.Sdx
+		*out = make([]SdxParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdy != nil {
+		in, out := &in.Sdy, &out.Sdy
+		*out = make([]SdyParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Sdz != nil {
+		in, out := &in.Sdz, &out.Sdz
+		*out = make([]SdzParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -1792,6 +4267,1956 @@ func (in *DevicesSdaParameters) DeepCopy() *DevicesSdaParameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaaInitParameters) DeepCopyInto(out *DevicesSdaaInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaaInitParameters.
+func (in *DevicesSdaaInitParameters) DeepCopy() *DevicesSdaaInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaaInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaaObservation) DeepCopyInto(out *DevicesSdaaObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaaObservation.
+func (in *DevicesSdaaObservation) DeepCopy() *DevicesSdaaObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaaObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaaParameters) DeepCopyInto(out *DevicesSdaaParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaaParameters.
+func (in *DevicesSdaaParameters) DeepCopy() *DevicesSdaaParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaaParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdabInitParameters) DeepCopyInto(out *DevicesSdabInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdabInitParameters.
+func (in *DevicesSdabInitParameters) DeepCopy() *DevicesSdabInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdabInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdabObservation) DeepCopyInto(out *DevicesSdabObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdabObservation.
+func (in *DevicesSdabObservation) DeepCopy() *DevicesSdabObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdabObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdabParameters) DeepCopyInto(out *DevicesSdabParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdabParameters.
+func (in *DevicesSdabParameters) DeepCopy() *DevicesSdabParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdabParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdacInitParameters) DeepCopyInto(out *DevicesSdacInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdacInitParameters.
+func (in *DevicesSdacInitParameters) DeepCopy() *DevicesSdacInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdacInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdacObservation) DeepCopyInto(out *DevicesSdacObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdacObservation.
+func (in *DevicesSdacObservation) DeepCopy() *DevicesSdacObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdacObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdacParameters) DeepCopyInto(out *DevicesSdacParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdacParameters.
+func (in *DevicesSdacParameters) DeepCopy() *DevicesSdacParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdacParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdadInitParameters) DeepCopyInto(out *DevicesSdadInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdadInitParameters.
+func (in *DevicesSdadInitParameters) DeepCopy() *DevicesSdadInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdadInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdadObservation) DeepCopyInto(out *DevicesSdadObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdadObservation.
+func (in *DevicesSdadObservation) DeepCopy() *DevicesSdadObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdadObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdadParameters) DeepCopyInto(out *DevicesSdadParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdadParameters.
+func (in *DevicesSdadParameters) DeepCopy() *DevicesSdadParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdadParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaeInitParameters) DeepCopyInto(out *DevicesSdaeInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaeInitParameters.
+func (in *DevicesSdaeInitParameters) DeepCopy() *DevicesSdaeInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaeInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaeObservation) DeepCopyInto(out *DevicesSdaeObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaeObservation.
+func (in *DevicesSdaeObservation) DeepCopy() *DevicesSdaeObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaeObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaeParameters) DeepCopyInto(out *DevicesSdaeParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaeParameters.
+func (in *DevicesSdaeParameters) DeepCopy() *DevicesSdaeParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaeParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdafInitParameters) DeepCopyInto(out *DevicesSdafInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdafInitParameters.
+func (in *DevicesSdafInitParameters) DeepCopy() *DevicesSdafInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdafInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdafObservation) DeepCopyInto(out *DevicesSdafObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdafObservation.
+func (in *DevicesSdafObservation) DeepCopy() *DevicesSdafObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdafObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdafParameters) DeepCopyInto(out *DevicesSdafParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdafParameters.
+func (in *DevicesSdafParameters) DeepCopy() *DevicesSdafParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdafParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdagInitParameters) DeepCopyInto(out *DevicesSdagInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdagInitParameters.
+func (in *DevicesSdagInitParameters) DeepCopy() *DevicesSdagInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdagInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdagObservation) DeepCopyInto(out *DevicesSdagObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdagObservation.
+func (in *DevicesSdagObservation) DeepCopy() *DevicesSdagObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdagObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdagParameters) DeepCopyInto(out *DevicesSdagParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdagParameters.
+func (in *DevicesSdagParameters) DeepCopy() *DevicesSdagParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdagParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdahInitParameters) DeepCopyInto(out *DevicesSdahInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdahInitParameters.
+func (in *DevicesSdahInitParameters) DeepCopy() *DevicesSdahInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdahInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdahObservation) DeepCopyInto(out *DevicesSdahObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdahObservation.
+func (in *DevicesSdahObservation) DeepCopy() *DevicesSdahObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdahObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdahParameters) DeepCopyInto(out *DevicesSdahParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdahParameters.
+func (in *DevicesSdahParameters) DeepCopy() *DevicesSdahParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdahParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaiInitParameters) DeepCopyInto(out *DevicesSdaiInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaiInitParameters.
+func (in *DevicesSdaiInitParameters) DeepCopy() *DevicesSdaiInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaiInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaiObservation) DeepCopyInto(out *DevicesSdaiObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaiObservation.
+func (in *DevicesSdaiObservation) DeepCopy() *DevicesSdaiObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaiObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaiParameters) DeepCopyInto(out *DevicesSdaiParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaiParameters.
+func (in *DevicesSdaiParameters) DeepCopy() *DevicesSdaiParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaiParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdajInitParameters) DeepCopyInto(out *DevicesSdajInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdajInitParameters.
+func (in *DevicesSdajInitParameters) DeepCopy() *DevicesSdajInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdajInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdajObservation) DeepCopyInto(out *DevicesSdajObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdajObservation.
+func (in *DevicesSdajObservation) DeepCopy() *DevicesSdajObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdajObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdajParameters) DeepCopyInto(out *DevicesSdajParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdajParameters.
+func (in *DevicesSdajParameters) DeepCopy() *DevicesSdajParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdajParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdakInitParameters) DeepCopyInto(out *DevicesSdakInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdakInitParameters.
+func (in *DevicesSdakInitParameters) DeepCopy() *DevicesSdakInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdakInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdakObservation) DeepCopyInto(out *DevicesSdakObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdakObservation.
+func (in *DevicesSdakObservation) DeepCopy() *DevicesSdakObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdakObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdakParameters) DeepCopyInto(out *DevicesSdakParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdakParameters.
+func (in *DevicesSdakParameters) DeepCopy() *DevicesSdakParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdakParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdalInitParameters) DeepCopyInto(out *DevicesSdalInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdalInitParameters.
+func (in *DevicesSdalInitParameters) DeepCopy() *DevicesSdalInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdalInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdalObservation) DeepCopyInto(out *DevicesSdalObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdalObservation.
+func (in *DevicesSdalObservation) DeepCopy() *DevicesSdalObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdalObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdalParameters) DeepCopyInto(out *DevicesSdalParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdalParameters.
+func (in *DevicesSdalParameters) DeepCopy() *DevicesSdalParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdalParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdamInitParameters) DeepCopyInto(out *DevicesSdamInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdamInitParameters.
+func (in *DevicesSdamInitParameters) DeepCopy() *DevicesSdamInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdamInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdamObservation) DeepCopyInto(out *DevicesSdamObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdamObservation.
+func (in *DevicesSdamObservation) DeepCopy() *DevicesSdamObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdamObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdamParameters) DeepCopyInto(out *DevicesSdamParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdamParameters.
+func (in *DevicesSdamParameters) DeepCopy() *DevicesSdamParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdamParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdanInitParameters) DeepCopyInto(out *DevicesSdanInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdanInitParameters.
+func (in *DevicesSdanInitParameters) DeepCopy() *DevicesSdanInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdanInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdanObservation) DeepCopyInto(out *DevicesSdanObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdanObservation.
+func (in *DevicesSdanObservation) DeepCopy() *DevicesSdanObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdanObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdanParameters) DeepCopyInto(out *DevicesSdanParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdanParameters.
+func (in *DevicesSdanParameters) DeepCopy() *DevicesSdanParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdanParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaoInitParameters) DeepCopyInto(out *DevicesSdaoInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaoInitParameters.
+func (in *DevicesSdaoInitParameters) DeepCopy() *DevicesSdaoInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaoInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaoObservation) DeepCopyInto(out *DevicesSdaoObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaoObservation.
+func (in *DevicesSdaoObservation) DeepCopy() *DevicesSdaoObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaoObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaoParameters) DeepCopyInto(out *DevicesSdaoParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaoParameters.
+func (in *DevicesSdaoParameters) DeepCopy() *DevicesSdaoParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaoParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdapInitParameters) DeepCopyInto(out *DevicesSdapInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdapInitParameters.
+func (in *DevicesSdapInitParameters) DeepCopy() *DevicesSdapInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdapInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdapObservation) DeepCopyInto(out *DevicesSdapObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdapObservation.
+func (in *DevicesSdapObservation) DeepCopy() *DevicesSdapObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdapObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdapParameters) DeepCopyInto(out *DevicesSdapParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdapParameters.
+func (in *DevicesSdapParameters) DeepCopy() *DevicesSdapParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdapParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaqInitParameters) DeepCopyInto(out *DevicesSdaqInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaqInitParameters.
+func (in *DevicesSdaqInitParameters) DeepCopy() *DevicesSdaqInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaqInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaqObservation) DeepCopyInto(out *DevicesSdaqObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaqObservation.
+func (in *DevicesSdaqObservation) DeepCopy() *DevicesSdaqObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaqObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaqParameters) DeepCopyInto(out *DevicesSdaqParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaqParameters.
+func (in *DevicesSdaqParameters) DeepCopy() *DevicesSdaqParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaqParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdarInitParameters) DeepCopyInto(out *DevicesSdarInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdarInitParameters.
+func (in *DevicesSdarInitParameters) DeepCopy() *DevicesSdarInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdarInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdarObservation) DeepCopyInto(out *DevicesSdarObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdarObservation.
+func (in *DevicesSdarObservation) DeepCopy() *DevicesSdarObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdarObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdarParameters) DeepCopyInto(out *DevicesSdarParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdarParameters.
+func (in *DevicesSdarParameters) DeepCopy() *DevicesSdarParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdarParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdasInitParameters) DeepCopyInto(out *DevicesSdasInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdasInitParameters.
+func (in *DevicesSdasInitParameters) DeepCopy() *DevicesSdasInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdasInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdasObservation) DeepCopyInto(out *DevicesSdasObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdasObservation.
+func (in *DevicesSdasObservation) DeepCopy() *DevicesSdasObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdasObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdasParameters) DeepCopyInto(out *DevicesSdasParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdasParameters.
+func (in *DevicesSdasParameters) DeepCopy() *DevicesSdasParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdasParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdatInitParameters) DeepCopyInto(out *DevicesSdatInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdatInitParameters.
+func (in *DevicesSdatInitParameters) DeepCopy() *DevicesSdatInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdatInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdatObservation) DeepCopyInto(out *DevicesSdatObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdatObservation.
+func (in *DevicesSdatObservation) DeepCopy() *DevicesSdatObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdatObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdatParameters) DeepCopyInto(out *DevicesSdatParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdatParameters.
+func (in *DevicesSdatParameters) DeepCopy() *DevicesSdatParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdatParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdauInitParameters) DeepCopyInto(out *DevicesSdauInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdauInitParameters.
+func (in *DevicesSdauInitParameters) DeepCopy() *DevicesSdauInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdauInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdauObservation) DeepCopyInto(out *DevicesSdauObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdauObservation.
+func (in *DevicesSdauObservation) DeepCopy() *DevicesSdauObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdauObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdauParameters) DeepCopyInto(out *DevicesSdauParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdauParameters.
+func (in *DevicesSdauParameters) DeepCopy() *DevicesSdauParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdauParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdavInitParameters) DeepCopyInto(out *DevicesSdavInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdavInitParameters.
+func (in *DevicesSdavInitParameters) DeepCopy() *DevicesSdavInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdavInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdavObservation) DeepCopyInto(out *DevicesSdavObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdavObservation.
+func (in *DevicesSdavObservation) DeepCopy() *DevicesSdavObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdavObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdavParameters) DeepCopyInto(out *DevicesSdavParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdavParameters.
+func (in *DevicesSdavParameters) DeepCopy() *DevicesSdavParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdavParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdawInitParameters) DeepCopyInto(out *DevicesSdawInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdawInitParameters.
+func (in *DevicesSdawInitParameters) DeepCopy() *DevicesSdawInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdawInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdawObservation) DeepCopyInto(out *DevicesSdawObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdawObservation.
+func (in *DevicesSdawObservation) DeepCopy() *DevicesSdawObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdawObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdawParameters) DeepCopyInto(out *DevicesSdawParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdawParameters.
+func (in *DevicesSdawParameters) DeepCopy() *DevicesSdawParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdawParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaxInitParameters) DeepCopyInto(out *DevicesSdaxInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaxInitParameters.
+func (in *DevicesSdaxInitParameters) DeepCopy() *DevicesSdaxInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaxInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaxObservation) DeepCopyInto(out *DevicesSdaxObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaxObservation.
+func (in *DevicesSdaxObservation) DeepCopy() *DevicesSdaxObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaxObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdaxParameters) DeepCopyInto(out *DevicesSdaxParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdaxParameters.
+func (in *DevicesSdaxParameters) DeepCopy() *DevicesSdaxParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdaxParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdayInitParameters) DeepCopyInto(out *DevicesSdayInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdayInitParameters.
+func (in *DevicesSdayInitParameters) DeepCopy() *DevicesSdayInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdayInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdayObservation) DeepCopyInto(out *DevicesSdayObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdayObservation.
+func (in *DevicesSdayObservation) DeepCopy() *DevicesSdayObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdayObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdayParameters) DeepCopyInto(out *DevicesSdayParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdayParameters.
+func (in *DevicesSdayParameters) DeepCopy() *DevicesSdayParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdayParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdazInitParameters) DeepCopyInto(out *DevicesSdazInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdazInitParameters.
+func (in *DevicesSdazInitParameters) DeepCopy() *DevicesSdazInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdazInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdazObservation) DeepCopyInto(out *DevicesSdazObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdazObservation.
+func (in *DevicesSdazObservation) DeepCopy() *DevicesSdazObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdazObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdazParameters) DeepCopyInto(out *DevicesSdazParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdazParameters.
+func (in *DevicesSdazParameters) DeepCopy() *DevicesSdazParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdazParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *DevicesSdbInitParameters) DeepCopyInto(out *DevicesSdbInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
@@ -1882,6 +6307,906 @@ func (in *DevicesSdbParameters) DeepCopy() *DevicesSdbParameters {
 		return nil
 	}
 	out := new(DevicesSdbParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbaInitParameters) DeepCopyInto(out *DevicesSdbaInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbaInitParameters.
+func (in *DevicesSdbaInitParameters) DeepCopy() *DevicesSdbaInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbaInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbaObservation) DeepCopyInto(out *DevicesSdbaObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbaObservation.
+func (in *DevicesSdbaObservation) DeepCopy() *DevicesSdbaObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbaObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbaParameters) DeepCopyInto(out *DevicesSdbaParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbaParameters.
+func (in *DevicesSdbaParameters) DeepCopy() *DevicesSdbaParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbaParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbbInitParameters) DeepCopyInto(out *DevicesSdbbInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbbInitParameters.
+func (in *DevicesSdbbInitParameters) DeepCopy() *DevicesSdbbInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbbInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbbObservation) DeepCopyInto(out *DevicesSdbbObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbbObservation.
+func (in *DevicesSdbbObservation) DeepCopy() *DevicesSdbbObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbbObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbbParameters) DeepCopyInto(out *DevicesSdbbParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbbParameters.
+func (in *DevicesSdbbParameters) DeepCopy() *DevicesSdbbParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbbParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbcInitParameters) DeepCopyInto(out *DevicesSdbcInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbcInitParameters.
+func (in *DevicesSdbcInitParameters) DeepCopy() *DevicesSdbcInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbcInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbcObservation) DeepCopyInto(out *DevicesSdbcObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbcObservation.
+func (in *DevicesSdbcObservation) DeepCopy() *DevicesSdbcObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbcObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbcParameters) DeepCopyInto(out *DevicesSdbcParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbcParameters.
+func (in *DevicesSdbcParameters) DeepCopy() *DevicesSdbcParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbcParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbdInitParameters) DeepCopyInto(out *DevicesSdbdInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbdInitParameters.
+func (in *DevicesSdbdInitParameters) DeepCopy() *DevicesSdbdInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbdInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbdObservation) DeepCopyInto(out *DevicesSdbdObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbdObservation.
+func (in *DevicesSdbdObservation) DeepCopy() *DevicesSdbdObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbdObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbdParameters) DeepCopyInto(out *DevicesSdbdParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbdParameters.
+func (in *DevicesSdbdParameters) DeepCopy() *DevicesSdbdParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbdParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbeInitParameters) DeepCopyInto(out *DevicesSdbeInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbeInitParameters.
+func (in *DevicesSdbeInitParameters) DeepCopy() *DevicesSdbeInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbeInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbeObservation) DeepCopyInto(out *DevicesSdbeObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbeObservation.
+func (in *DevicesSdbeObservation) DeepCopy() *DevicesSdbeObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbeObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbeParameters) DeepCopyInto(out *DevicesSdbeParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbeParameters.
+func (in *DevicesSdbeParameters) DeepCopy() *DevicesSdbeParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbeParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbfInitParameters) DeepCopyInto(out *DevicesSdbfInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbfInitParameters.
+func (in *DevicesSdbfInitParameters) DeepCopy() *DevicesSdbfInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbfInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbfObservation) DeepCopyInto(out *DevicesSdbfObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbfObservation.
+func (in *DevicesSdbfObservation) DeepCopy() *DevicesSdbfObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbfObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbfParameters) DeepCopyInto(out *DevicesSdbfParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbfParameters.
+func (in *DevicesSdbfParameters) DeepCopy() *DevicesSdbfParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbfParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbgInitParameters) DeepCopyInto(out *DevicesSdbgInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbgInitParameters.
+func (in *DevicesSdbgInitParameters) DeepCopy() *DevicesSdbgInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbgInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbgObservation) DeepCopyInto(out *DevicesSdbgObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbgObservation.
+func (in *DevicesSdbgObservation) DeepCopy() *DevicesSdbgObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbgObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbgParameters) DeepCopyInto(out *DevicesSdbgParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbgParameters.
+func (in *DevicesSdbgParameters) DeepCopy() *DevicesSdbgParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbgParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbhInitParameters) DeepCopyInto(out *DevicesSdbhInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbhInitParameters.
+func (in *DevicesSdbhInitParameters) DeepCopy() *DevicesSdbhInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbhInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbhObservation) DeepCopyInto(out *DevicesSdbhObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbhObservation.
+func (in *DevicesSdbhObservation) DeepCopy() *DevicesSdbhObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbhObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbhParameters) DeepCopyInto(out *DevicesSdbhParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbhParameters.
+func (in *DevicesSdbhParameters) DeepCopy() *DevicesSdbhParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbhParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbiInitParameters) DeepCopyInto(out *DevicesSdbiInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbiInitParameters.
+func (in *DevicesSdbiInitParameters) DeepCopy() *DevicesSdbiInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbiInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbiObservation) DeepCopyInto(out *DevicesSdbiObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbiObservation.
+func (in *DevicesSdbiObservation) DeepCopy() *DevicesSdbiObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbiObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbiParameters) DeepCopyInto(out *DevicesSdbiParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbiParameters.
+func (in *DevicesSdbiParameters) DeepCopy() *DevicesSdbiParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbiParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbjInitParameters) DeepCopyInto(out *DevicesSdbjInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbjInitParameters.
+func (in *DevicesSdbjInitParameters) DeepCopy() *DevicesSdbjInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbjInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbjObservation) DeepCopyInto(out *DevicesSdbjObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbjObservation.
+func (in *DevicesSdbjObservation) DeepCopy() *DevicesSdbjObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbjObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbjParameters) DeepCopyInto(out *DevicesSdbjParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbjParameters.
+func (in *DevicesSdbjParameters) DeepCopy() *DevicesSdbjParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbjParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbkInitParameters) DeepCopyInto(out *DevicesSdbkInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbkInitParameters.
+func (in *DevicesSdbkInitParameters) DeepCopy() *DevicesSdbkInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbkInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbkObservation) DeepCopyInto(out *DevicesSdbkObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbkObservation.
+func (in *DevicesSdbkObservation) DeepCopy() *DevicesSdbkObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbkObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdbkParameters) DeepCopyInto(out *DevicesSdbkParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdbkParameters.
+func (in *DevicesSdbkParameters) DeepCopy() *DevicesSdbkParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdbkParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdblInitParameters) DeepCopyInto(out *DevicesSdblInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdblInitParameters.
+func (in *DevicesSdblInitParameters) DeepCopy() *DevicesSdblInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdblInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdblObservation) DeepCopyInto(out *DevicesSdblObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdblObservation.
+func (in *DevicesSdblObservation) DeepCopy() *DevicesSdblObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdblObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdblParameters) DeepCopyInto(out *DevicesSdblParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdblParameters.
+func (in *DevicesSdblParameters) DeepCopy() *DevicesSdblParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdblParameters)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -2452,6 +7777,1356 @@ func (in *DevicesSdhParameters) DeepCopy() *DevicesSdhParameters {
 		return nil
 	}
 	out := new(DevicesSdhParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdiInitParameters) DeepCopyInto(out *DevicesSdiInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdiInitParameters.
+func (in *DevicesSdiInitParameters) DeepCopy() *DevicesSdiInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdiInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdiObservation) DeepCopyInto(out *DevicesSdiObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdiObservation.
+func (in *DevicesSdiObservation) DeepCopy() *DevicesSdiObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdiObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdiParameters) DeepCopyInto(out *DevicesSdiParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdiParameters.
+func (in *DevicesSdiParameters) DeepCopy() *DevicesSdiParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdiParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdjInitParameters) DeepCopyInto(out *DevicesSdjInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdjInitParameters.
+func (in *DevicesSdjInitParameters) DeepCopy() *DevicesSdjInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdjInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdjObservation) DeepCopyInto(out *DevicesSdjObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdjObservation.
+func (in *DevicesSdjObservation) DeepCopy() *DevicesSdjObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdjObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdjParameters) DeepCopyInto(out *DevicesSdjParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdjParameters.
+func (in *DevicesSdjParameters) DeepCopy() *DevicesSdjParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdjParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdkInitParameters) DeepCopyInto(out *DevicesSdkInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdkInitParameters.
+func (in *DevicesSdkInitParameters) DeepCopy() *DevicesSdkInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdkInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdkObservation) DeepCopyInto(out *DevicesSdkObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdkObservation.
+func (in *DevicesSdkObservation) DeepCopy() *DevicesSdkObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdkObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdkParameters) DeepCopyInto(out *DevicesSdkParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdkParameters.
+func (in *DevicesSdkParameters) DeepCopy() *DevicesSdkParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdkParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdlInitParameters) DeepCopyInto(out *DevicesSdlInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdlInitParameters.
+func (in *DevicesSdlInitParameters) DeepCopy() *DevicesSdlInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdlInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdlObservation) DeepCopyInto(out *DevicesSdlObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdlObservation.
+func (in *DevicesSdlObservation) DeepCopy() *DevicesSdlObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdlObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdlParameters) DeepCopyInto(out *DevicesSdlParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdlParameters.
+func (in *DevicesSdlParameters) DeepCopy() *DevicesSdlParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdlParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdmInitParameters) DeepCopyInto(out *DevicesSdmInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdmInitParameters.
+func (in *DevicesSdmInitParameters) DeepCopy() *DevicesSdmInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdmInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdmObservation) DeepCopyInto(out *DevicesSdmObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdmObservation.
+func (in *DevicesSdmObservation) DeepCopy() *DevicesSdmObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdmObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdmParameters) DeepCopyInto(out *DevicesSdmParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdmParameters.
+func (in *DevicesSdmParameters) DeepCopy() *DevicesSdmParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdmParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdnInitParameters) DeepCopyInto(out *DevicesSdnInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdnInitParameters.
+func (in *DevicesSdnInitParameters) DeepCopy() *DevicesSdnInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdnInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdnObservation) DeepCopyInto(out *DevicesSdnObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdnObservation.
+func (in *DevicesSdnObservation) DeepCopy() *DevicesSdnObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdnObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdnParameters) DeepCopyInto(out *DevicesSdnParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdnParameters.
+func (in *DevicesSdnParameters) DeepCopy() *DevicesSdnParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdnParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdoInitParameters) DeepCopyInto(out *DevicesSdoInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdoInitParameters.
+func (in *DevicesSdoInitParameters) DeepCopy() *DevicesSdoInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdoInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdoObservation) DeepCopyInto(out *DevicesSdoObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdoObservation.
+func (in *DevicesSdoObservation) DeepCopy() *DevicesSdoObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdoObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdoParameters) DeepCopyInto(out *DevicesSdoParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdoParameters.
+func (in *DevicesSdoParameters) DeepCopy() *DevicesSdoParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdoParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdpInitParameters) DeepCopyInto(out *DevicesSdpInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdpInitParameters.
+func (in *DevicesSdpInitParameters) DeepCopy() *DevicesSdpInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdpInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdpObservation) DeepCopyInto(out *DevicesSdpObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdpObservation.
+func (in *DevicesSdpObservation) DeepCopy() *DevicesSdpObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdpObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdpParameters) DeepCopyInto(out *DevicesSdpParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdpParameters.
+func (in *DevicesSdpParameters) DeepCopy() *DevicesSdpParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdpParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdqInitParameters) DeepCopyInto(out *DevicesSdqInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdqInitParameters.
+func (in *DevicesSdqInitParameters) DeepCopy() *DevicesSdqInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdqInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdqObservation) DeepCopyInto(out *DevicesSdqObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdqObservation.
+func (in *DevicesSdqObservation) DeepCopy() *DevicesSdqObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdqObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdqParameters) DeepCopyInto(out *DevicesSdqParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdqParameters.
+func (in *DevicesSdqParameters) DeepCopy() *DevicesSdqParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdqParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdrInitParameters) DeepCopyInto(out *DevicesSdrInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdrInitParameters.
+func (in *DevicesSdrInitParameters) DeepCopy() *DevicesSdrInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdrInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdrObservation) DeepCopyInto(out *DevicesSdrObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdrObservation.
+func (in *DevicesSdrObservation) DeepCopy() *DevicesSdrObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdrObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdrParameters) DeepCopyInto(out *DevicesSdrParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdrParameters.
+func (in *DevicesSdrParameters) DeepCopy() *DevicesSdrParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdrParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdsInitParameters) DeepCopyInto(out *DevicesSdsInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdsInitParameters.
+func (in *DevicesSdsInitParameters) DeepCopy() *DevicesSdsInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdsInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdsObservation) DeepCopyInto(out *DevicesSdsObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdsObservation.
+func (in *DevicesSdsObservation) DeepCopy() *DevicesSdsObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdsObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdsParameters) DeepCopyInto(out *DevicesSdsParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdsParameters.
+func (in *DevicesSdsParameters) DeepCopy() *DevicesSdsParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdsParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdtInitParameters) DeepCopyInto(out *DevicesSdtInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdtInitParameters.
+func (in *DevicesSdtInitParameters) DeepCopy() *DevicesSdtInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdtInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdtObservation) DeepCopyInto(out *DevicesSdtObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdtObservation.
+func (in *DevicesSdtObservation) DeepCopy() *DevicesSdtObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdtObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdtParameters) DeepCopyInto(out *DevicesSdtParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdtParameters.
+func (in *DevicesSdtParameters) DeepCopy() *DevicesSdtParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdtParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSduInitParameters) DeepCopyInto(out *DevicesSduInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSduInitParameters.
+func (in *DevicesSduInitParameters) DeepCopy() *DevicesSduInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSduInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSduObservation) DeepCopyInto(out *DevicesSduObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSduObservation.
+func (in *DevicesSduObservation) DeepCopy() *DevicesSduObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSduObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSduParameters) DeepCopyInto(out *DevicesSduParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSduParameters.
+func (in *DevicesSduParameters) DeepCopy() *DevicesSduParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSduParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdvInitParameters) DeepCopyInto(out *DevicesSdvInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdvInitParameters.
+func (in *DevicesSdvInitParameters) DeepCopy() *DevicesSdvInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdvInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdvObservation) DeepCopyInto(out *DevicesSdvObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdvObservation.
+func (in *DevicesSdvObservation) DeepCopy() *DevicesSdvObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdvObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdvParameters) DeepCopyInto(out *DevicesSdvParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdvParameters.
+func (in *DevicesSdvParameters) DeepCopy() *DevicesSdvParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdvParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdwInitParameters) DeepCopyInto(out *DevicesSdwInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdwInitParameters.
+func (in *DevicesSdwInitParameters) DeepCopy() *DevicesSdwInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdwInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdwObservation) DeepCopyInto(out *DevicesSdwObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdwObservation.
+func (in *DevicesSdwObservation) DeepCopy() *DevicesSdwObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdwObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdwParameters) DeepCopyInto(out *DevicesSdwParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdwParameters.
+func (in *DevicesSdwParameters) DeepCopy() *DevicesSdwParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdwParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdxInitParameters) DeepCopyInto(out *DevicesSdxInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdxInitParameters.
+func (in *DevicesSdxInitParameters) DeepCopy() *DevicesSdxInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdxInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdxObservation) DeepCopyInto(out *DevicesSdxObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdxObservation.
+func (in *DevicesSdxObservation) DeepCopy() *DevicesSdxObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdxObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdxParameters) DeepCopyInto(out *DevicesSdxParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdxParameters.
+func (in *DevicesSdxParameters) DeepCopy() *DevicesSdxParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdxParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdyInitParameters) DeepCopyInto(out *DevicesSdyInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdyInitParameters.
+func (in *DevicesSdyInitParameters) DeepCopy() *DevicesSdyInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdyInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdyObservation) DeepCopyInto(out *DevicesSdyObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdyObservation.
+func (in *DevicesSdyObservation) DeepCopy() *DevicesSdyObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdyObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdyParameters) DeepCopyInto(out *DevicesSdyParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdyParameters.
+func (in *DevicesSdyParameters) DeepCopy() *DevicesSdyParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdyParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdzInitParameters) DeepCopyInto(out *DevicesSdzInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdzInitParameters.
+func (in *DevicesSdzInitParameters) DeepCopy() *DevicesSdzInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdzInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdzObservation) DeepCopyInto(out *DevicesSdzObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdzObservation.
+func (in *DevicesSdzObservation) DeepCopy() *DevicesSdzObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdzObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *DevicesSdzParameters) DeepCopyInto(out *DevicesSdzParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new DevicesSdzParameters.
+func (in *DevicesSdzParameters) DeepCopy() *DevicesSdzParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(DevicesSdzParameters)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -3561,6 +10236,243 @@ func (in *IPv4Parameters) DeepCopy() *IPv4Parameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6InitParameters) DeepCopyInto(out *IPv6InitParameters) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]RangeInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]SlaacInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6InitParameters.
+func (in *IPv6InitParameters) DeepCopy() *IPv6InitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6InitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6Observation) DeepCopyInto(out *IPv6Observation) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]RangeObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]SlaacObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6Observation.
+func (in *IPv6Observation) DeepCopy() *IPv6Observation {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6Observation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6Parameters) DeepCopyInto(out *IPv6Parameters) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]RangeParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]SlaacParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6Parameters.
+func (in *IPv6Parameters) DeepCopy() *IPv6Parameters {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6Parameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6RangeInitParameters) DeepCopyInto(out *IPv6RangeInitParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6RangeInitParameters.
+func (in *IPv6RangeInitParameters) DeepCopy() *IPv6RangeInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6RangeInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6RangeObservation) DeepCopyInto(out *IPv6RangeObservation) {
+	*out = *in
+	if in.AssignedRange != nil {
+		in, out := &in.AssignedRange, &out.AssignedRange
+		*out = new(string)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6RangeObservation.
+func (in *IPv6RangeObservation) DeepCopy() *IPv6RangeObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6RangeObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6RangeParameters) DeepCopyInto(out *IPv6RangeParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6RangeParameters.
+func (in *IPv6RangeParameters) DeepCopy() *IPv6RangeParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6RangeParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6SlaacInitParameters) DeepCopyInto(out *IPv6SlaacInitParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6SlaacInitParameters.
+func (in *IPv6SlaacInitParameters) DeepCopy() *IPv6SlaacInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6SlaacInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6SlaacObservation) DeepCopyInto(out *IPv6SlaacObservation) {
+	*out = *in
+	if in.Address != nil {
+		in, out := &in.Address, &out.Address
+		*out = new(string)
+		**out = **in
+	}
+	if in.AssignedRange != nil {
+		in, out := &in.AssignedRange, &out.AssignedRange
+		*out = new(string)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6SlaacObservation.
+func (in *IPv6SlaacObservation) DeepCopy() *IPv6SlaacObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6SlaacObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *IPv6SlaacParameters) DeepCopyInto(out *IPv6SlaacParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new IPv6SlaacParameters.
+func (in *IPv6SlaacParameters) DeepCopy() *IPv6SlaacParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(IPv6SlaacParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *Instance) DeepCopyInto(out *Instance) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
@@ -3634,6 +10546,11 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BootSize != nil {
+		in, out := &in.BootSize, &out.BootSize
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Booted != nil {
 		in, out := &in.Booted, &out.Booted
 		*out = new(bool)
@@ -3663,11 +10580,6 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Group != nil {
-		in, out := &in.Group, &out.Group
-		*out = new(string)
-		**out = **in
-	}
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]*string, len(*in))
@@ -3691,8 +10603,23 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.InterfaceGeneration != nil {
+		in, out := &in.InterfaceGeneration, &out.InterfaceGeneration
+		*out = new(string)
+		**out = **in
+	}
+	if in.Kernel != nil {
+		in, out := &in.Kernel, &out.Kernel
+		*out = new(string)
+		**out = **in
+	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
+		*out = new(string)
+		**out = **in
+	}
+	if in.MaintenancePolicy != nil {
+		in, out := &in.MaintenancePolicy, &out.MaintenancePolicy
 		*out = new(string)
 		**out = **in
 	}
@@ -3706,6 +10633,11 @@ func (in *InstanceInitParameters) DeepCopyInto(out *InstanceInitParameters) {
 	if in.MigrationType != nil {
 		in, out := &in.MigrationType, &out.MigrationType
 		*out = new(string)
+		**out = **in
+	}
+	if in.NetworkHelper != nil {
+		in, out := &in.NetworkHelper, &out.NetworkHelper
+		*out = new(bool)
 		**out = **in
 	}
 	if in.PlacementGroup != nil {
@@ -3841,6 +10773,13 @@ func (in *InstanceInterfaceInitParameters) DeepCopyInto(out *InstanceInterfaceIn
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]InterfaceIPv6InitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.IpamAddress != nil {
 		in, out := &in.IpamAddress, &out.IpamAddress
 		*out = new(string)
@@ -3909,6 +10848,13 @@ func (in *InstanceInterfaceObservation) DeepCopyInto(out *InstanceInterfaceObser
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]InterfaceIPv6Observation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.IpamAddress != nil {
 		in, out := &in.IpamAddress, &out.IpamAddress
 		*out = new(string)
@@ -3968,6 +10914,13 @@ func (in *InstanceInterfaceParameters) DeepCopyInto(out *InstanceInterfaceParame
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]InterfaceIPv4Parameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]InterfaceIPv6Parameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -4095,6 +11048,11 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BootSize != nil {
+		in, out := &in.BootSize, &out.BootSize
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Booted != nil {
 		in, out := &in.Booted, &out.Booted
 		*out = new(bool)
@@ -4133,11 +11091,6 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	if in.FirewallID != nil {
 		in, out := &in.FirewallID, &out.FirewallID
 		*out = new(float64)
-		**out = **in
-	}
-	if in.Group != nil {
-		in, out := &in.Group, &out.Group
-		*out = new(string)
 		**out = **in
 	}
 	if in.HasUserData != nil {
@@ -4188,6 +11141,16 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.InterfaceGeneration != nil {
+		in, out := &in.InterfaceGeneration, &out.InterfaceGeneration
+		*out = new(string)
+		**out = **in
+	}
+	if in.Kernel != nil {
+		in, out := &in.Kernel, &out.Kernel
+		*out = new(string)
+		**out = **in
+	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
 		*out = new(string)
@@ -4196,6 +11159,22 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	if in.LkeClusterID != nil {
 		in, out := &in.LkeClusterID, &out.LkeClusterID
 		*out = new(float64)
+		**out = **in
+	}
+	if in.Locks != nil {
+		in, out := &in.Locks, &out.Locks
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.MaintenancePolicy != nil {
+		in, out := &in.MaintenancePolicy, &out.MaintenancePolicy
+		*out = new(string)
 		**out = **in
 	}
 	if in.Metadata != nil {
@@ -4208,6 +11187,11 @@ func (in *InstanceObservation) DeepCopyInto(out *InstanceObservation) {
 	if in.MigrationType != nil {
 		in, out := &in.MigrationType, &out.MigrationType
 		*out = new(string)
+		**out = **in
+	}
+	if in.NetworkHelper != nil {
+		in, out := &in.NetworkHelper, &out.NetworkHelper
+		*out = new(bool)
 		**out = **in
 	}
 	if in.PlacementGroup != nil {
@@ -4355,6 +11339,11 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BootSize != nil {
+		in, out := &in.BootSize, &out.BootSize
+		*out = new(float64)
+		**out = **in
+	}
 	if in.Booted != nil {
 		in, out := &in.Booted, &out.Booted
 		*out = new(bool)
@@ -4384,11 +11373,6 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Group != nil {
-		in, out := &in.Group, &out.Group
-		*out = new(string)
-		**out = **in
-	}
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]*string, len(*in))
@@ -4412,8 +11396,23 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.InterfaceGeneration != nil {
+		in, out := &in.InterfaceGeneration, &out.InterfaceGeneration
+		*out = new(string)
+		**out = **in
+	}
+	if in.Kernel != nil {
+		in, out := &in.Kernel, &out.Kernel
+		*out = new(string)
+		**out = **in
+	}
 	if in.Label != nil {
 		in, out := &in.Label, &out.Label
+		*out = new(string)
+		**out = **in
+	}
+	if in.MaintenancePolicy != nil {
+		in, out := &in.MaintenancePolicy, &out.MaintenancePolicy
 		*out = new(string)
 		**out = **in
 	}
@@ -4427,6 +11426,11 @@ func (in *InstanceParameters) DeepCopyInto(out *InstanceParameters) {
 	if in.MigrationType != nil {
 		in, out := &in.MigrationType, &out.MigrationType
 		*out = new(string)
+		**out = **in
+	}
+	if in.NetworkHelper != nil {
+		in, out := &in.NetworkHelper, &out.NetworkHelper
+		*out = new(bool)
 		**out = **in
 	}
 	if in.PlacementGroup != nil {
@@ -4641,6 +11645,243 @@ func (in *InterfaceIPv4Parameters) DeepCopy() *InterfaceIPv4Parameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6InitParameters) DeepCopyInto(out *InterfaceIPv6InitParameters) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]IPv6RangeInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]IPv6SlaacInitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6InitParameters.
+func (in *InterfaceIPv6InitParameters) DeepCopy() *InterfaceIPv6InitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6InitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6Observation) DeepCopyInto(out *InterfaceIPv6Observation) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]IPv6RangeObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]IPv6SlaacObservation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6Observation.
+func (in *InterfaceIPv6Observation) DeepCopy() *InterfaceIPv6Observation {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6Observation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6Parameters) DeepCopyInto(out *InterfaceIPv6Parameters) {
+	*out = *in
+	if in.IsPublic != nil {
+		in, out := &in.IsPublic, &out.IsPublic
+		*out = new(bool)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = make([]IPv6RangeParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.Slaac != nil {
+		in, out := &in.Slaac, &out.Slaac
+		*out = make([]IPv6SlaacParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6Parameters.
+func (in *InterfaceIPv6Parameters) DeepCopy() *InterfaceIPv6Parameters {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6Parameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6RangeInitParameters) DeepCopyInto(out *InterfaceIPv6RangeInitParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6RangeInitParameters.
+func (in *InterfaceIPv6RangeInitParameters) DeepCopy() *InterfaceIPv6RangeInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6RangeInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6RangeObservation) DeepCopyInto(out *InterfaceIPv6RangeObservation) {
+	*out = *in
+	if in.AssignedRange != nil {
+		in, out := &in.AssignedRange, &out.AssignedRange
+		*out = new(string)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6RangeObservation.
+func (in *InterfaceIPv6RangeObservation) DeepCopy() *InterfaceIPv6RangeObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6RangeObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6RangeParameters) DeepCopyInto(out *InterfaceIPv6RangeParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6RangeParameters.
+func (in *InterfaceIPv6RangeParameters) DeepCopy() *InterfaceIPv6RangeParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6RangeParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6SlaacInitParameters) DeepCopyInto(out *InterfaceIPv6SlaacInitParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6SlaacInitParameters.
+func (in *InterfaceIPv6SlaacInitParameters) DeepCopy() *InterfaceIPv6SlaacInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6SlaacInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6SlaacObservation) DeepCopyInto(out *InterfaceIPv6SlaacObservation) {
+	*out = *in
+	if in.Address != nil {
+		in, out := &in.Address, &out.Address
+		*out = new(string)
+		**out = **in
+	}
+	if in.AssignedRange != nil {
+		in, out := &in.AssignedRange, &out.AssignedRange
+		*out = new(string)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6SlaacObservation.
+func (in *InterfaceIPv6SlaacObservation) DeepCopy() *InterfaceIPv6SlaacObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6SlaacObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *InterfaceIPv6SlaacParameters) DeepCopyInto(out *InterfaceIPv6SlaacParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new InterfaceIPv6SlaacParameters.
+func (in *InterfaceIPv6SlaacParameters) DeepCopy() *InterfaceIPv6SlaacParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(InterfaceIPv6SlaacParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *InterfaceInitParameters) DeepCopyInto(out *InterfaceInitParameters) {
 	*out = *in
 	if in.IPRanges != nil {
@@ -4657,6 +11898,13 @@ func (in *InterfaceInitParameters) DeepCopyInto(out *InterfaceInitParameters) {
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]IPv4InitParameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]IPv6InitParameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -4729,6 +11977,13 @@ func (in *InterfaceObservation) DeepCopyInto(out *InterfaceObservation) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]IPv6Observation, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
 	if in.IpamAddress != nil {
 		in, out := &in.IpamAddress, &out.IpamAddress
 		*out = new(string)
@@ -4788,6 +12043,13 @@ func (in *InterfaceParameters) DeepCopyInto(out *InterfaceParameters) {
 	if in.IPv4 != nil {
 		in, out := &in.IPv4, &out.IPv4
 		*out = make([]IPv4Parameters, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.IPv6 != nil {
+		in, out := &in.IPv6, &out.IPv6
+		*out = make([]IPv6Parameters, len(*in))
 		for i := range *in {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
@@ -4990,6 +12252,71 @@ func (in *PlacementGroupParameters) DeepCopy() *PlacementGroupParameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RangeInitParameters) DeepCopyInto(out *RangeInitParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RangeInitParameters.
+func (in *RangeInitParameters) DeepCopy() *RangeInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(RangeInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RangeObservation) DeepCopyInto(out *RangeObservation) {
+	*out = *in
+	if in.AssignedRange != nil {
+		in, out := &in.AssignedRange, &out.AssignedRange
+		*out = new(string)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RangeObservation.
+func (in *RangeObservation) DeepCopy() *RangeObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(RangeObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *RangeParameters) DeepCopyInto(out *RangeParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new RangeParameters.
+func (in *RangeParameters) DeepCopy() *RangeParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(RangeParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *ScheduleInitParameters) DeepCopyInto(out *ScheduleInitParameters) {
 	*out = *in
 }
@@ -5135,6 +12462,2346 @@ func (in *SdaParameters) DeepCopy() *SdaParameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaaInitParameters) DeepCopyInto(out *SdaaInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaaInitParameters.
+func (in *SdaaInitParameters) DeepCopy() *SdaaInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaaInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaaObservation) DeepCopyInto(out *SdaaObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaaObservation.
+func (in *SdaaObservation) DeepCopy() *SdaaObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaaObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaaParameters) DeepCopyInto(out *SdaaParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaaParameters.
+func (in *SdaaParameters) DeepCopy() *SdaaParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaaParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdabInitParameters) DeepCopyInto(out *SdabInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdabInitParameters.
+func (in *SdabInitParameters) DeepCopy() *SdabInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdabInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdabObservation) DeepCopyInto(out *SdabObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdabObservation.
+func (in *SdabObservation) DeepCopy() *SdabObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdabObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdabParameters) DeepCopyInto(out *SdabParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdabParameters.
+func (in *SdabParameters) DeepCopy() *SdabParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdabParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdacInitParameters) DeepCopyInto(out *SdacInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdacInitParameters.
+func (in *SdacInitParameters) DeepCopy() *SdacInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdacInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdacObservation) DeepCopyInto(out *SdacObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdacObservation.
+func (in *SdacObservation) DeepCopy() *SdacObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdacObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdacParameters) DeepCopyInto(out *SdacParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdacParameters.
+func (in *SdacParameters) DeepCopy() *SdacParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdacParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdadInitParameters) DeepCopyInto(out *SdadInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdadInitParameters.
+func (in *SdadInitParameters) DeepCopy() *SdadInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdadInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdadObservation) DeepCopyInto(out *SdadObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdadObservation.
+func (in *SdadObservation) DeepCopy() *SdadObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdadObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdadParameters) DeepCopyInto(out *SdadParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdadParameters.
+func (in *SdadParameters) DeepCopy() *SdadParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdadParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaeInitParameters) DeepCopyInto(out *SdaeInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaeInitParameters.
+func (in *SdaeInitParameters) DeepCopy() *SdaeInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaeInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaeObservation) DeepCopyInto(out *SdaeObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaeObservation.
+func (in *SdaeObservation) DeepCopy() *SdaeObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaeObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaeParameters) DeepCopyInto(out *SdaeParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaeParameters.
+func (in *SdaeParameters) DeepCopy() *SdaeParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaeParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdafInitParameters) DeepCopyInto(out *SdafInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdafInitParameters.
+func (in *SdafInitParameters) DeepCopy() *SdafInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdafInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdafObservation) DeepCopyInto(out *SdafObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdafObservation.
+func (in *SdafObservation) DeepCopy() *SdafObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdafObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdafParameters) DeepCopyInto(out *SdafParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdafParameters.
+func (in *SdafParameters) DeepCopy() *SdafParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdafParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdagInitParameters) DeepCopyInto(out *SdagInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdagInitParameters.
+func (in *SdagInitParameters) DeepCopy() *SdagInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdagInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdagObservation) DeepCopyInto(out *SdagObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdagObservation.
+func (in *SdagObservation) DeepCopy() *SdagObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdagObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdagParameters) DeepCopyInto(out *SdagParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdagParameters.
+func (in *SdagParameters) DeepCopy() *SdagParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdagParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdahInitParameters) DeepCopyInto(out *SdahInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdahInitParameters.
+func (in *SdahInitParameters) DeepCopy() *SdahInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdahInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdahObservation) DeepCopyInto(out *SdahObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdahObservation.
+func (in *SdahObservation) DeepCopy() *SdahObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdahObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdahParameters) DeepCopyInto(out *SdahParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdahParameters.
+func (in *SdahParameters) DeepCopy() *SdahParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdahParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaiInitParameters) DeepCopyInto(out *SdaiInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaiInitParameters.
+func (in *SdaiInitParameters) DeepCopy() *SdaiInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaiInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaiObservation) DeepCopyInto(out *SdaiObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaiObservation.
+func (in *SdaiObservation) DeepCopy() *SdaiObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaiObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaiParameters) DeepCopyInto(out *SdaiParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaiParameters.
+func (in *SdaiParameters) DeepCopy() *SdaiParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaiParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdajInitParameters) DeepCopyInto(out *SdajInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdajInitParameters.
+func (in *SdajInitParameters) DeepCopy() *SdajInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdajInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdajObservation) DeepCopyInto(out *SdajObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdajObservation.
+func (in *SdajObservation) DeepCopy() *SdajObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdajObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdajParameters) DeepCopyInto(out *SdajParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdajParameters.
+func (in *SdajParameters) DeepCopy() *SdajParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdajParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdakInitParameters) DeepCopyInto(out *SdakInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdakInitParameters.
+func (in *SdakInitParameters) DeepCopy() *SdakInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdakInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdakObservation) DeepCopyInto(out *SdakObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdakObservation.
+func (in *SdakObservation) DeepCopy() *SdakObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdakObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdakParameters) DeepCopyInto(out *SdakParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdakParameters.
+func (in *SdakParameters) DeepCopy() *SdakParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdakParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdalInitParameters) DeepCopyInto(out *SdalInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdalInitParameters.
+func (in *SdalInitParameters) DeepCopy() *SdalInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdalInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdalObservation) DeepCopyInto(out *SdalObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdalObservation.
+func (in *SdalObservation) DeepCopy() *SdalObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdalObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdalParameters) DeepCopyInto(out *SdalParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdalParameters.
+func (in *SdalParameters) DeepCopy() *SdalParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdalParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdamInitParameters) DeepCopyInto(out *SdamInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdamInitParameters.
+func (in *SdamInitParameters) DeepCopy() *SdamInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdamInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdamObservation) DeepCopyInto(out *SdamObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdamObservation.
+func (in *SdamObservation) DeepCopy() *SdamObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdamObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdamParameters) DeepCopyInto(out *SdamParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdamParameters.
+func (in *SdamParameters) DeepCopy() *SdamParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdamParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdanInitParameters) DeepCopyInto(out *SdanInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdanInitParameters.
+func (in *SdanInitParameters) DeepCopy() *SdanInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdanInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdanObservation) DeepCopyInto(out *SdanObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdanObservation.
+func (in *SdanObservation) DeepCopy() *SdanObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdanObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdanParameters) DeepCopyInto(out *SdanParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdanParameters.
+func (in *SdanParameters) DeepCopy() *SdanParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdanParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaoInitParameters) DeepCopyInto(out *SdaoInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaoInitParameters.
+func (in *SdaoInitParameters) DeepCopy() *SdaoInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaoInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaoObservation) DeepCopyInto(out *SdaoObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaoObservation.
+func (in *SdaoObservation) DeepCopy() *SdaoObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaoObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaoParameters) DeepCopyInto(out *SdaoParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaoParameters.
+func (in *SdaoParameters) DeepCopy() *SdaoParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaoParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdapInitParameters) DeepCopyInto(out *SdapInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdapInitParameters.
+func (in *SdapInitParameters) DeepCopy() *SdapInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdapInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdapObservation) DeepCopyInto(out *SdapObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdapObservation.
+func (in *SdapObservation) DeepCopy() *SdapObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdapObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdapParameters) DeepCopyInto(out *SdapParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdapParameters.
+func (in *SdapParameters) DeepCopy() *SdapParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdapParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaqInitParameters) DeepCopyInto(out *SdaqInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaqInitParameters.
+func (in *SdaqInitParameters) DeepCopy() *SdaqInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaqInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaqObservation) DeepCopyInto(out *SdaqObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaqObservation.
+func (in *SdaqObservation) DeepCopy() *SdaqObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaqObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaqParameters) DeepCopyInto(out *SdaqParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaqParameters.
+func (in *SdaqParameters) DeepCopy() *SdaqParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaqParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdarInitParameters) DeepCopyInto(out *SdarInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdarInitParameters.
+func (in *SdarInitParameters) DeepCopy() *SdarInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdarInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdarObservation) DeepCopyInto(out *SdarObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdarObservation.
+func (in *SdarObservation) DeepCopy() *SdarObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdarObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdarParameters) DeepCopyInto(out *SdarParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdarParameters.
+func (in *SdarParameters) DeepCopy() *SdarParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdarParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdasInitParameters) DeepCopyInto(out *SdasInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdasInitParameters.
+func (in *SdasInitParameters) DeepCopy() *SdasInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdasInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdasObservation) DeepCopyInto(out *SdasObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdasObservation.
+func (in *SdasObservation) DeepCopy() *SdasObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdasObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdasParameters) DeepCopyInto(out *SdasParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdasParameters.
+func (in *SdasParameters) DeepCopy() *SdasParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdasParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdatInitParameters) DeepCopyInto(out *SdatInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdatInitParameters.
+func (in *SdatInitParameters) DeepCopy() *SdatInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdatInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdatObservation) DeepCopyInto(out *SdatObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdatObservation.
+func (in *SdatObservation) DeepCopy() *SdatObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdatObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdatParameters) DeepCopyInto(out *SdatParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdatParameters.
+func (in *SdatParameters) DeepCopy() *SdatParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdatParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdauInitParameters) DeepCopyInto(out *SdauInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdauInitParameters.
+func (in *SdauInitParameters) DeepCopy() *SdauInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdauInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdauObservation) DeepCopyInto(out *SdauObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdauObservation.
+func (in *SdauObservation) DeepCopy() *SdauObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdauObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdauParameters) DeepCopyInto(out *SdauParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdauParameters.
+func (in *SdauParameters) DeepCopy() *SdauParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdauParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdavInitParameters) DeepCopyInto(out *SdavInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdavInitParameters.
+func (in *SdavInitParameters) DeepCopy() *SdavInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdavInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdavObservation) DeepCopyInto(out *SdavObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdavObservation.
+func (in *SdavObservation) DeepCopy() *SdavObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdavObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdavParameters) DeepCopyInto(out *SdavParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdavParameters.
+func (in *SdavParameters) DeepCopy() *SdavParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdavParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdawInitParameters) DeepCopyInto(out *SdawInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdawInitParameters.
+func (in *SdawInitParameters) DeepCopy() *SdawInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdawInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdawObservation) DeepCopyInto(out *SdawObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdawObservation.
+func (in *SdawObservation) DeepCopy() *SdawObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdawObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdawParameters) DeepCopyInto(out *SdawParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdawParameters.
+func (in *SdawParameters) DeepCopy() *SdawParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdawParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaxInitParameters) DeepCopyInto(out *SdaxInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaxInitParameters.
+func (in *SdaxInitParameters) DeepCopy() *SdaxInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaxInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaxObservation) DeepCopyInto(out *SdaxObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaxObservation.
+func (in *SdaxObservation) DeepCopy() *SdaxObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaxObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdaxParameters) DeepCopyInto(out *SdaxParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdaxParameters.
+func (in *SdaxParameters) DeepCopy() *SdaxParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdaxParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdayInitParameters) DeepCopyInto(out *SdayInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdayInitParameters.
+func (in *SdayInitParameters) DeepCopy() *SdayInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdayInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdayObservation) DeepCopyInto(out *SdayObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdayObservation.
+func (in *SdayObservation) DeepCopy() *SdayObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdayObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdayParameters) DeepCopyInto(out *SdayParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdayParameters.
+func (in *SdayParameters) DeepCopy() *SdayParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdayParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdazInitParameters) DeepCopyInto(out *SdazInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdazInitParameters.
+func (in *SdazInitParameters) DeepCopy() *SdazInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdazInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdazObservation) DeepCopyInto(out *SdazObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdazObservation.
+func (in *SdazObservation) DeepCopy() *SdazObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdazObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdazParameters) DeepCopyInto(out *SdazParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdazParameters.
+func (in *SdazParameters) DeepCopy() *SdazParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdazParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *SdbInitParameters) DeepCopyInto(out *SdbInitParameters) {
 	*out = *in
 	if in.DiskID != nil {
@@ -5220,6 +14887,1086 @@ func (in *SdbParameters) DeepCopy() *SdbParameters {
 		return nil
 	}
 	out := new(SdbParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbaInitParameters) DeepCopyInto(out *SdbaInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbaInitParameters.
+func (in *SdbaInitParameters) DeepCopy() *SdbaInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbaInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbaObservation) DeepCopyInto(out *SdbaObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbaObservation.
+func (in *SdbaObservation) DeepCopy() *SdbaObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbaObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbaParameters) DeepCopyInto(out *SdbaParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbaParameters.
+func (in *SdbaParameters) DeepCopy() *SdbaParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbaParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbbInitParameters) DeepCopyInto(out *SdbbInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbbInitParameters.
+func (in *SdbbInitParameters) DeepCopy() *SdbbInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbbInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbbObservation) DeepCopyInto(out *SdbbObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbbObservation.
+func (in *SdbbObservation) DeepCopy() *SdbbObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbbObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbbParameters) DeepCopyInto(out *SdbbParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbbParameters.
+func (in *SdbbParameters) DeepCopy() *SdbbParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbbParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbcInitParameters) DeepCopyInto(out *SdbcInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbcInitParameters.
+func (in *SdbcInitParameters) DeepCopy() *SdbcInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbcInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbcObservation) DeepCopyInto(out *SdbcObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbcObservation.
+func (in *SdbcObservation) DeepCopy() *SdbcObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbcObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbcParameters) DeepCopyInto(out *SdbcParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbcParameters.
+func (in *SdbcParameters) DeepCopy() *SdbcParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbcParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbdInitParameters) DeepCopyInto(out *SdbdInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbdInitParameters.
+func (in *SdbdInitParameters) DeepCopy() *SdbdInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbdInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbdObservation) DeepCopyInto(out *SdbdObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbdObservation.
+func (in *SdbdObservation) DeepCopy() *SdbdObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbdObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbdParameters) DeepCopyInto(out *SdbdParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbdParameters.
+func (in *SdbdParameters) DeepCopy() *SdbdParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbdParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbeInitParameters) DeepCopyInto(out *SdbeInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbeInitParameters.
+func (in *SdbeInitParameters) DeepCopy() *SdbeInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbeInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbeObservation) DeepCopyInto(out *SdbeObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbeObservation.
+func (in *SdbeObservation) DeepCopy() *SdbeObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbeObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbeParameters) DeepCopyInto(out *SdbeParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbeParameters.
+func (in *SdbeParameters) DeepCopy() *SdbeParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbeParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbfInitParameters) DeepCopyInto(out *SdbfInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbfInitParameters.
+func (in *SdbfInitParameters) DeepCopy() *SdbfInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbfInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbfObservation) DeepCopyInto(out *SdbfObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbfObservation.
+func (in *SdbfObservation) DeepCopy() *SdbfObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbfObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbfParameters) DeepCopyInto(out *SdbfParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbfParameters.
+func (in *SdbfParameters) DeepCopy() *SdbfParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbfParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbgInitParameters) DeepCopyInto(out *SdbgInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbgInitParameters.
+func (in *SdbgInitParameters) DeepCopy() *SdbgInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbgInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbgObservation) DeepCopyInto(out *SdbgObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbgObservation.
+func (in *SdbgObservation) DeepCopy() *SdbgObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbgObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbgParameters) DeepCopyInto(out *SdbgParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbgParameters.
+func (in *SdbgParameters) DeepCopy() *SdbgParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbgParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbhInitParameters) DeepCopyInto(out *SdbhInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbhInitParameters.
+func (in *SdbhInitParameters) DeepCopy() *SdbhInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbhInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbhObservation) DeepCopyInto(out *SdbhObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbhObservation.
+func (in *SdbhObservation) DeepCopy() *SdbhObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbhObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbhParameters) DeepCopyInto(out *SdbhParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbhParameters.
+func (in *SdbhParameters) DeepCopy() *SdbhParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbhParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbiInitParameters) DeepCopyInto(out *SdbiInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbiInitParameters.
+func (in *SdbiInitParameters) DeepCopy() *SdbiInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbiInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbiObservation) DeepCopyInto(out *SdbiObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbiObservation.
+func (in *SdbiObservation) DeepCopy() *SdbiObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbiObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbiParameters) DeepCopyInto(out *SdbiParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbiParameters.
+func (in *SdbiParameters) DeepCopy() *SdbiParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbiParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbjInitParameters) DeepCopyInto(out *SdbjInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbjInitParameters.
+func (in *SdbjInitParameters) DeepCopy() *SdbjInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbjInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbjObservation) DeepCopyInto(out *SdbjObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbjObservation.
+func (in *SdbjObservation) DeepCopy() *SdbjObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbjObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbjParameters) DeepCopyInto(out *SdbjParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbjParameters.
+func (in *SdbjParameters) DeepCopy() *SdbjParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbjParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbkInitParameters) DeepCopyInto(out *SdbkInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbkInitParameters.
+func (in *SdbkInitParameters) DeepCopy() *SdbkInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbkInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbkObservation) DeepCopyInto(out *SdbkObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbkObservation.
+func (in *SdbkObservation) DeepCopy() *SdbkObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbkObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdbkParameters) DeepCopyInto(out *SdbkParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdbkParameters.
+func (in *SdbkParameters) DeepCopy() *SdbkParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdbkParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdblInitParameters) DeepCopyInto(out *SdblInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdblInitParameters.
+func (in *SdblInitParameters) DeepCopy() *SdblInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdblInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdblObservation) DeepCopyInto(out *SdblObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdblObservation.
+func (in *SdblObservation) DeepCopy() *SdblObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdblObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdblParameters) DeepCopyInto(out *SdblParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdblParameters.
+func (in *SdblParameters) DeepCopy() *SdblParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdblParameters)
 	in.DeepCopyInto(out)
 	return out
 }
@@ -5765,6 +16512,1626 @@ func (in *SdhParameters) DeepCopy() *SdhParameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdiInitParameters) DeepCopyInto(out *SdiInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdiInitParameters.
+func (in *SdiInitParameters) DeepCopy() *SdiInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdiInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdiObservation) DeepCopyInto(out *SdiObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdiObservation.
+func (in *SdiObservation) DeepCopy() *SdiObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdiObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdiParameters) DeepCopyInto(out *SdiParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdiParameters.
+func (in *SdiParameters) DeepCopy() *SdiParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdiParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdjInitParameters) DeepCopyInto(out *SdjInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdjInitParameters.
+func (in *SdjInitParameters) DeepCopy() *SdjInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdjInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdjObservation) DeepCopyInto(out *SdjObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdjObservation.
+func (in *SdjObservation) DeepCopy() *SdjObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdjObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdjParameters) DeepCopyInto(out *SdjParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdjParameters.
+func (in *SdjParameters) DeepCopy() *SdjParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdjParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdkInitParameters) DeepCopyInto(out *SdkInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdkInitParameters.
+func (in *SdkInitParameters) DeepCopy() *SdkInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdkInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdkObservation) DeepCopyInto(out *SdkObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdkObservation.
+func (in *SdkObservation) DeepCopy() *SdkObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdkObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdkParameters) DeepCopyInto(out *SdkParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdkParameters.
+func (in *SdkParameters) DeepCopy() *SdkParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdkParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdlInitParameters) DeepCopyInto(out *SdlInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdlInitParameters.
+func (in *SdlInitParameters) DeepCopy() *SdlInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdlInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdlObservation) DeepCopyInto(out *SdlObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdlObservation.
+func (in *SdlObservation) DeepCopy() *SdlObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdlObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdlParameters) DeepCopyInto(out *SdlParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdlParameters.
+func (in *SdlParameters) DeepCopy() *SdlParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdlParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdmInitParameters) DeepCopyInto(out *SdmInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdmInitParameters.
+func (in *SdmInitParameters) DeepCopy() *SdmInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdmInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdmObservation) DeepCopyInto(out *SdmObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdmObservation.
+func (in *SdmObservation) DeepCopy() *SdmObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdmObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdmParameters) DeepCopyInto(out *SdmParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdmParameters.
+func (in *SdmParameters) DeepCopy() *SdmParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdmParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdnInitParameters) DeepCopyInto(out *SdnInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdnInitParameters.
+func (in *SdnInitParameters) DeepCopy() *SdnInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdnInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdnObservation) DeepCopyInto(out *SdnObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdnObservation.
+func (in *SdnObservation) DeepCopy() *SdnObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdnObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdnParameters) DeepCopyInto(out *SdnParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdnParameters.
+func (in *SdnParameters) DeepCopy() *SdnParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdnParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdoInitParameters) DeepCopyInto(out *SdoInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdoInitParameters.
+func (in *SdoInitParameters) DeepCopy() *SdoInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdoInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdoObservation) DeepCopyInto(out *SdoObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdoObservation.
+func (in *SdoObservation) DeepCopy() *SdoObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdoObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdoParameters) DeepCopyInto(out *SdoParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdoParameters.
+func (in *SdoParameters) DeepCopy() *SdoParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdoParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdpInitParameters) DeepCopyInto(out *SdpInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdpInitParameters.
+func (in *SdpInitParameters) DeepCopy() *SdpInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdpInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdpObservation) DeepCopyInto(out *SdpObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdpObservation.
+func (in *SdpObservation) DeepCopy() *SdpObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdpObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdpParameters) DeepCopyInto(out *SdpParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdpParameters.
+func (in *SdpParameters) DeepCopy() *SdpParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdpParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdqInitParameters) DeepCopyInto(out *SdqInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdqInitParameters.
+func (in *SdqInitParameters) DeepCopy() *SdqInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdqInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdqObservation) DeepCopyInto(out *SdqObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdqObservation.
+func (in *SdqObservation) DeepCopy() *SdqObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdqObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdqParameters) DeepCopyInto(out *SdqParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdqParameters.
+func (in *SdqParameters) DeepCopy() *SdqParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdqParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdrInitParameters) DeepCopyInto(out *SdrInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdrInitParameters.
+func (in *SdrInitParameters) DeepCopy() *SdrInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdrInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdrObservation) DeepCopyInto(out *SdrObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdrObservation.
+func (in *SdrObservation) DeepCopy() *SdrObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdrObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdrParameters) DeepCopyInto(out *SdrParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdrParameters.
+func (in *SdrParameters) DeepCopy() *SdrParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdrParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdsInitParameters) DeepCopyInto(out *SdsInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdsInitParameters.
+func (in *SdsInitParameters) DeepCopy() *SdsInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdsInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdsObservation) DeepCopyInto(out *SdsObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdsObservation.
+func (in *SdsObservation) DeepCopy() *SdsObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdsObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdsParameters) DeepCopyInto(out *SdsParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdsParameters.
+func (in *SdsParameters) DeepCopy() *SdsParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdsParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdtInitParameters) DeepCopyInto(out *SdtInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdtInitParameters.
+func (in *SdtInitParameters) DeepCopy() *SdtInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdtInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdtObservation) DeepCopyInto(out *SdtObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdtObservation.
+func (in *SdtObservation) DeepCopy() *SdtObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdtObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdtParameters) DeepCopyInto(out *SdtParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdtParameters.
+func (in *SdtParameters) DeepCopy() *SdtParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdtParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SduInitParameters) DeepCopyInto(out *SduInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SduInitParameters.
+func (in *SduInitParameters) DeepCopy() *SduInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SduInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SduObservation) DeepCopyInto(out *SduObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SduObservation.
+func (in *SduObservation) DeepCopy() *SduObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SduObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SduParameters) DeepCopyInto(out *SduParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SduParameters.
+func (in *SduParameters) DeepCopy() *SduParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SduParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdvInitParameters) DeepCopyInto(out *SdvInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdvInitParameters.
+func (in *SdvInitParameters) DeepCopy() *SdvInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdvInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdvObservation) DeepCopyInto(out *SdvObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdvObservation.
+func (in *SdvObservation) DeepCopy() *SdvObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdvObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdvParameters) DeepCopyInto(out *SdvParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdvParameters.
+func (in *SdvParameters) DeepCopy() *SdvParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdvParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdwInitParameters) DeepCopyInto(out *SdwInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdwInitParameters.
+func (in *SdwInitParameters) DeepCopy() *SdwInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdwInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdwObservation) DeepCopyInto(out *SdwObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdwObservation.
+func (in *SdwObservation) DeepCopy() *SdwObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdwObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdwParameters) DeepCopyInto(out *SdwParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdwParameters.
+func (in *SdwParameters) DeepCopy() *SdwParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdwParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdxInitParameters) DeepCopyInto(out *SdxInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdxInitParameters.
+func (in *SdxInitParameters) DeepCopy() *SdxInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdxInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdxObservation) DeepCopyInto(out *SdxObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdxObservation.
+func (in *SdxObservation) DeepCopy() *SdxObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdxObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdxParameters) DeepCopyInto(out *SdxParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdxParameters.
+func (in *SdxParameters) DeepCopy() *SdxParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdxParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdyInitParameters) DeepCopyInto(out *SdyInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdyInitParameters.
+func (in *SdyInitParameters) DeepCopy() *SdyInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdyInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdyObservation) DeepCopyInto(out *SdyObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdyObservation.
+func (in *SdyObservation) DeepCopy() *SdyObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdyObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdyParameters) DeepCopyInto(out *SdyParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdyParameters.
+func (in *SdyParameters) DeepCopy() *SdyParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdyParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdzInitParameters) DeepCopyInto(out *SdzInitParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdzInitParameters.
+func (in *SdzInitParameters) DeepCopy() *SdzInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdzInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdzObservation) DeepCopyInto(out *SdzObservation) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdzObservation.
+func (in *SdzObservation) DeepCopy() *SdzObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SdzObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SdzParameters) DeepCopyInto(out *SdzParameters) {
+	*out = *in
+	if in.DiskID != nil {
+		in, out := &in.DiskID, &out.DiskID
+		*out = new(float64)
+		**out = **in
+	}
+	if in.DiskLabel != nil {
+		in, out := &in.DiskLabel, &out.DiskLabel
+		*out = new(string)
+		**out = **in
+	}
+	if in.VolumeID != nil {
+		in, out := &in.VolumeID, &out.VolumeID
+		*out = new(float64)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SdzParameters.
+func (in *SdzParameters) DeepCopy() *SdzParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SdzParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *SharedIPs) DeepCopyInto(out *SharedIPs) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
@@ -5972,6 +18339,76 @@ func (in *SharedIPsStatus) DeepCopy() *SharedIPsStatus {
 		return nil
 	}
 	out := new(SharedIPsStatus)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SlaacInitParameters) DeepCopyInto(out *SlaacInitParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SlaacInitParameters.
+func (in *SlaacInitParameters) DeepCopy() *SlaacInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SlaacInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SlaacObservation) DeepCopyInto(out *SlaacObservation) {
+	*out = *in
+	if in.Address != nil {
+		in, out := &in.Address, &out.Address
+		*out = new(string)
+		**out = **in
+	}
+	if in.AssignedRange != nil {
+		in, out := &in.AssignedRange, &out.AssignedRange
+		*out = new(string)
+		**out = **in
+	}
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SlaacObservation.
+func (in *SlaacObservation) DeepCopy() *SlaacObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(SlaacObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *SlaacParameters) DeepCopyInto(out *SlaacParameters) {
+	*out = *in
+	if in.Range != nil {
+		in, out := &in.Range, &out.Range
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new SlaacParameters.
+func (in *SlaacParameters) DeepCopy() *SlaacParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(SlaacParameters)
 	in.DeepCopyInto(out)
 	return out
 }

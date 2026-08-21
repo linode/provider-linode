@@ -1,0 +1,15 @@
+apiVersion: reserved.linode.upbound.io/v1alpha1
+kind: IPAssignment
+metadata:
+  annotations:
+    meta.upbound.io/example-id: reserved/v1alpha1/ipassignment
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    address: ${linode_networking_ip.reserved.address}
+    linodeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    public: true

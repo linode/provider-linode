@@ -50,6 +50,11 @@ type FirewallInitParameters struct {
 	// The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property for an individual Firewall Rule.
 	InboundPolicy *string `json:"inboundPolicy,omitempty" tf:"inbound_policy,omitempty"`
 
+	// A list of IDs of Linode Interfaces this Firewall should govern network traffic for.
+	// The IDs of Linode interfaces to apply this firewall to.
+	// +listType=set
+	Interfaces []*float64 `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
+
 	// This Firewall's unique label.
 	// The label for the Firewall. For display purposes only. If no label is provided, a default will be assigned.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
@@ -98,6 +103,10 @@ type FirewallObservation struct {
 	// If true, the Firewall is inactive.
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
+	// The fingerprint of the current Firewall rules.
+	// The fingerprint of the current Firewall rules.
+	Fingerprint *string `json:"fingerprint,omitempty" tf:"fingerprint,omitempty"`
+
 	// The ID of the Firewall.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -107,6 +116,11 @@ type FirewallObservation struct {
 	// The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property of the Firewall Rule. (ACCEPT, DROP)
 	// The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property for an individual Firewall Rule.
 	InboundPolicy *string `json:"inboundPolicy,omitempty" tf:"inbound_policy,omitempty"`
+
+	// A list of IDs of Linode Interfaces this Firewall should govern network traffic for.
+	// The IDs of Linode interfaces to apply this firewall to.
+	// +listType=set
+	Interfaces []*float64 `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 
 	// This Firewall's unique label.
 	// The label for the Firewall. For display purposes only. If no label is provided, a default will be assigned.
@@ -140,6 +154,10 @@ type FirewallObservation struct {
 
 	// When this firewall was last updated
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
+
+	// The current version of the Firewall rules.
+	// The current version of the Firewall rules.
+	Version *float64 `json:"version,omitempty" tf:"version,omitempty"`
 }
 
 type FirewallParameters struct {
@@ -157,6 +175,12 @@ type FirewallParameters struct {
 	// The default behavior for inbound traffic. This setting can be overridden by updating the inbound.action property for an individual Firewall Rule.
 	// +kubebuilder:validation:Optional
 	InboundPolicy *string `json:"inboundPolicy,omitempty" tf:"inbound_policy,omitempty"`
+
+	// A list of IDs of Linode Interfaces this Firewall should govern network traffic for.
+	// The IDs of Linode interfaces to apply this firewall to.
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	Interfaces []*float64 `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 
 	// This Firewall's unique label.
 	// The label for the Firewall. For display purposes only. If no label is provided, a default will be assigned.
@@ -225,8 +249,8 @@ type InboundInitParameters struct {
 	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
 	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
 
-	// The network protocol this rule controls. (TCP, UDP, ICMP)
-	// The network protocol this rule controls.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 }
 
@@ -255,8 +279,8 @@ type InboundObservation struct {
 	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
 	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
 
-	// The network protocol this rule controls. (TCP, UDP, ICMP)
-	// The network protocol this rule controls.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 }
 
@@ -291,8 +315,8 @@ type InboundParameters struct {
 	// +kubebuilder:validation:Optional
 	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
 
-	// The network protocol this rule controls. (TCP, UDP, ICMP)
-	// The network protocol this rule controls.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
 }
@@ -322,8 +346,8 @@ type OutboundInitParameters struct {
 	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
 	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
 
-	// The network protocol this rule controls. (TCP, UDP, ICMP)
-	// The network protocol this rule controls.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 }
 
@@ -352,8 +376,8 @@ type OutboundObservation struct {
 	// A string representation of ports and/or port ranges (i.e. "443" or "80-90, 91").
 	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
 
-	// The network protocol this rule controls. (TCP, UDP, ICMP)
-	// The network protocol this rule controls.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 }
 
@@ -388,8 +412,8 @@ type OutboundParameters struct {
 	// +kubebuilder:validation:Optional
 	Ports *string `json:"ports,omitempty" tf:"ports,omitempty"`
 
-	// The network protocol this rule controls. (TCP, UDP, ICMP)
-	// The network protocol this rule controls.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
+	// The network protocol this rule controls. Accepted values are ALL, TCP, UDP, ICMP, IPENCAP, or a protocol number from 0 to 255.
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
 }

@@ -10,13 +10,7 @@ package v1alpha1
 func (tr *AccessControls) Hub() {}
 
 // Hub marks this type as a conversion hub.
-func (tr *MySQL) Hub() {}
-
-// Hub marks this type as a conversion hub.
 func (tr *MySQLv2) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *PostgreSQL) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *PostgreSQLv2) Hub() {}

@@ -15,12 +15,12 @@ import (
 
 type DiskInitParameters_2 struct {
 
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
+	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
 	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image.
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
-	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. (Requires image)
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
 	// +listType=set
 	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
@@ -50,8 +50,8 @@ type DiskInitParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
-	// The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)
-	// This sets the root user's password on a newly-created Linode Disk when deploying from an Image.
+	// The root user's password on a newly-created Linode Disk when deploying from an Image. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
+	// This sets the root user's password on a newly-created Linode Disk when deploying from an Image. When `image` is provided, at least one of `root_pass`, `authorized_keys`, or `authorized_users` must be specified.
 	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
 
 	// The size of the Disk in MB. NOTE: Resizing a disk will trigger a Linode reboot.
@@ -76,12 +76,12 @@ type DiskInitParameters_2 struct {
 
 type DiskObservation_2 struct {
 
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
+	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
 	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image.
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
-	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. (Requires image)
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
 	// +listType=set
 	AuthorizedUsers []*string `json:"authorizedUsers,omitempty" tf:"authorized_users,omitempty"`
@@ -91,7 +91,7 @@ type DiskObservation_2 struct {
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
 	// The disk encryption policy for this disk's parent instance. (enabled, disabled)
-	// The disk encryption policy for this disk's parent Linode. NOTE: Disk encryption may not currently be available to all users.
+	// The disk encryption policy for this disk's parent Linode.
 	DiskEncryption *string `json:"diskEncryption,omitempty" tf:"disk_encryption,omitempty"`
 
 	// The filesystem of this disk. (raw, swap, ext3, ext4, initrd)
@@ -131,13 +131,13 @@ type DiskObservation_2 struct {
 
 type DiskParameters_2 struct {
 
-	// A list of public SSH keys that will be automatically appended to the root user’s ~/.ssh/authorized_keys file when deploying from an Image. (Requires image)
+	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
 	// A list of public SSH keys that will be automatically appended to the root user's ~/.ssh/authorized_keys file when deploying from an Image.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	AuthorizedKeys []*string `json:"authorizedKeys,omitempty" tf:"authorized_keys,omitempty"`
 
-	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. (Requires image)
+	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root user's ~/.ssh/authorized_keys file. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
 	// A list of usernames. If the usernames have associated SSH keys, the keys will be appended to the root users ~/.ssh/authorized_keys file automatically when deploying from an Image.
 	// +kubebuilder:validation:Optional
 	// +listType=set
@@ -172,8 +172,8 @@ type DiskParameters_2 struct {
 	// +kubebuilder:validation:Optional
 	LinodeIDSelector *v1.Selector `json:"linodeIdSelector,omitempty" tf:"-"`
 
-	// The root user’s password on a newly-created Linode Disk when deploying from an Image. (Requires image)
-	// This sets the root user's password on a newly-created Linode Disk when deploying from an Image.
+	// The root user's password on a newly-created Linode Disk when deploying from an Image. When image is provided, at least one of root_pass, authorized_keys, or authorized_users must be specified. (Requires image)
+	// This sets the root user's password on a newly-created Linode Disk when deploying from an Image. When `image` is provided, at least one of `root_pass`, `authorized_keys`, or `authorized_users` must be specified.
 	// +kubebuilder:validation:Optional
 	RootPassSecretRef *v1.SecretKeySelector `json:"rootPassSecretRef,omitempty" tf:"-"`
 

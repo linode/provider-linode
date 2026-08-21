@@ -28,9 +28,6 @@ type DomainInitParameters struct {
 	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
 
-	// The group this Domain belongs to. This is for display purposes only.
-	Group *string `json:"group,omitempty" tf:"group,omitempty"`
-
 	// The IP addresses representing the master DNS for this Domain.
 	// +listType=set
 	MasterIps []*string `json:"masterIps,omitempty" tf:"master_ips,omitempty"`
@@ -72,9 +69,6 @@ type DomainObservation struct {
 
 	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
-
-	// The group this Domain belongs to. This is for display purposes only.
-	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -123,10 +117,6 @@ type DomainParameters struct {
 	// The amount of time in seconds that may pass before this Domain is no longer Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200 - any other value will be rounded to the nearest valid value.
 	// +kubebuilder:validation:Optional
 	ExpireSec *float64 `json:"expireSec,omitempty" tf:"expire_sec,omitempty"`
-
-	// The group this Domain belongs to. This is for display purposes only.
-	// +kubebuilder:validation:Optional
-	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
 	// The IP addresses representing the master DNS for this Domain.
 	// +kubebuilder:validation:Optional

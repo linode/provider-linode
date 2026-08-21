@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: clusters.lke.linode.upbound.io
 spec:
   group: lke.linode.upbound.io
@@ -73,6 +73,11 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  aplEnabled:
+                    description: |-
+                      Enables the App Platform Layer
+                      Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+                    type: boolean
                   controlPlane:
                     description: Defines settings for the Kubernetes Control Plane.
                     items:
@@ -111,6 +116,11 @@ spec:
                                 type: boolean
                             type: object
                           type: array
+                        auditLogsEnabled:
+                          description: |-
+                            Enables audit logs on the cluster's control plane.
+                            Enables audit logs on the cluster's control plane.
+                          type: boolean
                         highAvailability:
                           description: |-
                             Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
@@ -139,7 +149,7 @@ spec:
                   pool:
                     description: |-
                       Additional nested attributes:
-                      A node pool in the cluster.
+                      A node pool in the cluster. At least one pool is required for standard tier clusters.
                     items:
                       properties:
                         autoscaler:
@@ -164,36 +174,62 @@ spec:
                             The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
                             The number of nodes in the Node Pool.
                           type: number
+                        diskEncryption:
+                          description: |-
+                            The disk encryption policy for nodes in this pool. Must be enabled or disabled. If omitted, the account default encryption policy is applied. Changing this value will cause the pool to be replaced (deleted and recreated).
+                            The disk encryption policy for the nodes in this pool.
+                          type: string
+                        firewallId:
+                          description: |-
+                            The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+                            The ID of the Firewall to attach to nodes in this node pool.
+                          type: number
+                        k8sVersion:
+                          description: |-
+                            The k8s version of the nodes in this Node Pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+                            The desired Kubernetes version for this pool. This is only available for Enterprise clusters.
+                          type: string
+                        label:
+                          description: |-
+                            A label for the Node Pool. If not provided, it defaults to empty string.
+                            The label of the Node Pool.
+                          type: string
                         labels:
                           additionalProperties:
                             type: string
-                          description: Key-value pairs added as labels to nodes in
-                            the node pool. Labels help classify your nodes and to
-                            easily select subsets of objects.
+                          description: |-
+                            A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
+                            Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
                           type: object
                           x-kubernetes-map-type: granular
                         tags:
                           description: |-
-                            An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+                            A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
                             A set of tags applied to this node pool.
                           items:
                             type: string
                           type: array
                           x-kubernetes-list-type: set
                         taint:
-                          description: Kubernetes taints to add to node pool nodes.
-                            Taints help control how pods are scheduled onto nodes,
-                            specifically allowing them to repel certain pods.
+                          description: |-
+                            Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
+                            Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
                           items:
                             properties:
                               effect:
-                                description: The Kubernetes taint effect.
+                                description: |-
+                                  The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
+                                  The Kubernetes taint effect.
                                 type: string
                               key:
-                                description: The Kubernetes taint key.
+                                description: |-
+                                  The Kubernetes taint key.
+                                  The Kubernetes taint key.
                                 type: string
                               value:
-                                description: The Kubernetes taint value.
+                                description: |-
+                                  The Kubernetes taint value.
+                                  The Kubernetes taint value.
                                 type: string
                             type: object
                           type: array
@@ -202,6 +238,11 @@ spec:
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
                             A Linode Type for all of the nodes in the Node Pool.
                           type: string
+                        updateStrategy:
+                          description: |-
+                            The strategy for updating the Node Pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+                            The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+                          type: string
                       type: object
                     type: array
                   region:
@@ -209,6 +250,16 @@ spec:
                       This Kubernetes cluster's location.
                       This cluster's location.
                     type: string
+                  stackType:
+                    description: |-
+                      The networking stack type of the Kubernetes cluster.
+                      The networking stack type of the Kubernetes cluster.
+                    type: string
+                  subnetId:
+                    description: |-
+                      The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled). NOTE: This field may not be available for all users and is only accepted and populated when api_version is set to
+                      The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled).
+                    type: number
                   tags:
                     description: |-
                       An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
@@ -219,9 +270,14 @@ spec:
                     x-kubernetes-list-type: set
                   tier:
                     description: |-
-                      The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+                      The desired Kubernetes tier. NOTE: This field may not be available to all users and is only accepted and populated when api_version is set to
                       The desired Kubernetes tier.
                     type: string
+                  vpcId:
+                    description: |-
+                      The ID of the VPC to use for the Kubernetes cluster.
+                      The ID of the VPC to use for the Kubernetes cluster.
+                    type: number
                 type: object
               initProvider:
                 description: |-
@@ -236,6 +292,11 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  aplEnabled:
+                    description: |-
+                      Enables the App Platform Layer
+                      Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+                    type: boolean
                   controlPlane:
                     description: Defines settings for the Kubernetes Control Plane.
                     items:
@@ -274,6 +335,11 @@ spec:
                                 type: boolean
                             type: object
                           type: array
+                        auditLogsEnabled:
+                          description: |-
+                            Enables audit logs on the cluster's control plane.
+                            Enables audit logs on the cluster's control plane.
+                          type: boolean
                         highAvailability:
                           description: |-
                             Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
@@ -302,7 +368,7 @@ spec:
                   pool:
                     description: |-
                       Additional nested attributes:
-                      A node pool in the cluster.
+                      A node pool in the cluster. At least one pool is required for standard tier clusters.
                     items:
                       properties:
                         autoscaler:
@@ -327,36 +393,62 @@ spec:
                             The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.
                             The number of nodes in the Node Pool.
                           type: number
+                        diskEncryption:
+                          description: |-
+                            The disk encryption policy for nodes in this pool. Must be enabled or disabled. If omitted, the account default encryption policy is applied. Changing this value will cause the pool to be replaced (deleted and recreated).
+                            The disk encryption policy for the nodes in this pool.
+                          type: string
+                        firewallId:
+                          description: |-
+                            The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+                            The ID of the Firewall to attach to nodes in this node pool.
+                          type: number
+                        k8sVersion:
+                          description: |-
+                            The k8s version of the nodes in this Node Pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+                            The desired Kubernetes version for this pool. This is only available for Enterprise clusters.
+                          type: string
+                        label:
+                          description: |-
+                            A label for the Node Pool. If not provided, it defaults to empty string.
+                            The label of the Node Pool.
+                          type: string
                         labels:
                           additionalProperties:
                             type: string
-                          description: Key-value pairs added as labels to nodes in
-                            the node pool. Labels help classify your nodes and to
-                            easily select subsets of objects.
+                          description: |-
+                            A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
+                            Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
                           type: object
                           x-kubernetes-map-type: granular
                         tags:
                           description: |-
-                            An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+                            A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
                             A set of tags applied to this node pool.
                           items:
                             type: string
                           type: array
                           x-kubernetes-list-type: set
                         taint:
-                          description: Kubernetes taints to add to node pool nodes.
-                            Taints help control how pods are scheduled onto nodes,
-                            specifically allowing them to repel certain pods.
+                          description: |-
+                            Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
+                            Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
                           items:
                             properties:
                               effect:
-                                description: The Kubernetes taint effect.
+                                description: |-
+                                  The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
+                                  The Kubernetes taint effect.
                                 type: string
                               key:
-                                description: The Kubernetes taint key.
+                                description: |-
+                                  The Kubernetes taint key.
+                                  The Kubernetes taint key.
                                 type: string
                               value:
-                                description: The Kubernetes taint value.
+                                description: |-
+                                  The Kubernetes taint value.
+                                  The Kubernetes taint value.
                                 type: string
                             type: object
                           type: array
@@ -365,6 +457,11 @@ spec:
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
                             A Linode Type for all of the nodes in the Node Pool.
                           type: string
+                        updateStrategy:
+                          description: |-
+                            The strategy for updating the Node Pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+                            The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+                          type: string
                       type: object
                     type: array
                   region:
@@ -372,6 +469,16 @@ spec:
                       This Kubernetes cluster's location.
                       This cluster's location.
                     type: string
+                  stackType:
+                    description: |-
+                      The networking stack type of the Kubernetes cluster.
+                      The networking stack type of the Kubernetes cluster.
+                    type: string
+                  subnetId:
+                    description: |-
+                      The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled). NOTE: This field may not be available for all users and is only accepted and populated when api_version is set to
+                      The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled).
+                    type: number
                   tags:
                     description: |-
                       An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
@@ -382,9 +489,14 @@ spec:
                     x-kubernetes-list-type: set
                   tier:
                     description: |-
-                      The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+                      The desired Kubernetes tier. NOTE: This field may not be available to all users and is only accepted and populated when api_version is set to
                       The desired Kubernetes tier.
                     type: string
+                  vpcId:
+                    description: |-
+                      The ID of the VPC to use for the Kubernetes cluster.
+                      The ID of the VPC to use for the Kubernetes cluster.
+                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -562,10 +674,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.label)
                 || (has(self.initProvider) && has(self.initProvider.label))'
-            - message: spec.forProvider.pool is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.pool)
-                || (has(self.initProvider) && has(self.initProvider.pool))'
             - message: spec.forProvider.region is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
@@ -582,6 +690,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  aplEnabled:
+                    description: |-
+                      Enables the App Platform Layer
+                      Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+                    type: boolean
                   controlPlane:
                     description: Defines settings for the Kubernetes Control Plane.
                     items:
@@ -620,6 +733,11 @@ spec:
                                 type: boolean
                             type: object
                           type: array
+                        auditLogsEnabled:
+                          description: |-
+                            Enables audit logs on the cluster's control plane.
+                            Enables audit logs on the cluster's control plane.
+                          type: boolean
                         highAvailability:
                           description: |-
                             Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.
@@ -627,11 +745,6 @@ spec:
                           type: boolean
                       type: object
                     type: array
-                  dashboardUrl:
-                    description: |-
-                      The Kubernetes Dashboard access URL for this cluster. LKE Enterprise does not have a dashboard URL.
-                      The dashboard URL of the cluster.
-                    type: string
                   externalPoolTags:
                     description: |-
                       A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.
@@ -656,7 +769,7 @@ spec:
                   pool:
                     description: |-
                       Additional nested attributes:
-                      A node pool in the cluster.
+                      A node pool in the cluster. At least one pool is required for standard tier clusters.
                     items:
                       properties:
                         autoscaler:
@@ -683,20 +796,35 @@ spec:
                           type: number
                         diskEncryption:
                           description: |-
-                            The disk encryption policy for nodes in this pool.
-                            The disk encryption policy for the nodes in this pool. NOTE: Disk encryption may not currently be available to all users.
+                            The disk encryption policy for nodes in this pool. Must be enabled or disabled. If omitted, the account default encryption policy is applied. Changing this value will cause the pool to be replaced (deleted and recreated).
+                            The disk encryption policy for the nodes in this pool.
                           type: string
+                        firewallId:
+                          description: |-
+                            The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+                            The ID of the Firewall to attach to nodes in this node pool.
+                          type: number
                         id:
                           description: |-
                             The ID of the cluster.
                             The ID of the Node Pool.
                           type: number
+                        k8sVersion:
+                          description: |-
+                            The k8s version of the nodes in this Node Pool. For LKE enterprise only and may not currently available to all users even under v4beta.
+                            The desired Kubernetes version for this pool. This is only available for Enterprise clusters.
+                          type: string
+                        label:
+                          description: |-
+                            A label for the Node Pool. If not provided, it defaults to empty string.
+                            The label of the Node Pool.
+                          type: string
                         labels:
                           additionalProperties:
                             type: string
-                          description: Key-value pairs added as labels to nodes in
-                            the node pool. Labels help classify your nodes and to
-                            easily select subsets of objects.
+                          description: |-
+                            A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
+                            Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
                           type: object
                           x-kubernetes-map-type: granular
                         nodes:
@@ -716,26 +844,32 @@ spec:
                           type: array
                         tags:
                           description: |-
-                            An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+                            A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
                             A set of tags applied to this node pool.
                           items:
                             type: string
                           type: array
                           x-kubernetes-list-type: set
                         taint:
-                          description: Kubernetes taints to add to node pool nodes.
-                            Taints help control how pods are scheduled onto nodes,
-                            specifically allowing them to repel certain pods.
+                          description: |-
+                            Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
+                            Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
                           items:
                             properties:
                               effect:
-                                description: The Kubernetes taint effect.
+                                description: |-
+                                  The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
+                                  The Kubernetes taint effect.
                                 type: string
                               key:
-                                description: The Kubernetes taint key.
+                                description: |-
+                                  The Kubernetes taint key.
+                                  The Kubernetes taint key.
                                 type: string
                               value:
-                                description: The Kubernetes taint value.
+                                description: |-
+                                  The Kubernetes taint value.
+                                  The Kubernetes taint value.
                                 type: string
                             type: object
                           type: array
@@ -744,6 +878,11 @@ spec:
                             A Linode Type for all of the nodes in the Node Pool. See all node types here.
                             A Linode Type for all of the nodes in the Node Pool.
                           type: string
+                        updateStrategy:
+                          description: |-
+                            The strategy for updating the Node Pool k8s version. For LKE enterprise only and may not currently available to all users even under v4beta.
+                            The strategy for updating the node pool k8s version. For LKE enterprise only and may not currently available to all users.
+                          type: string
                       type: object
                     type: array
                   region:
@@ -751,11 +890,21 @@ spec:
                       This Kubernetes cluster's location.
                       This cluster's location.
                     type: string
+                  stackType:
+                    description: |-
+                      The networking stack type of the Kubernetes cluster.
+                      The networking stack type of the Kubernetes cluster.
+                    type: string
                   status:
                     description: |-
                       The status of the cluster.
                       The status of the cluster.
                     type: string
+                  subnetId:
+                    description: |-
+                      The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled). NOTE: This field may not be available for all users and is only accepted and populated when api_version is set to
+                      The ID of the VPC subnet to use for the Kubernetes cluster. This subnet must be dual stack (IPv4 and IPv6 should both be enabled).
+                    type: number
                   tags:
                     description: |-
                       An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
@@ -766,9 +915,14 @@ spec:
                     x-kubernetes-list-type: set
                   tier:
                     description: |-
-                      The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)
+                      The desired Kubernetes tier. NOTE: This field may not be available to all users and is only accepted and populated when api_version is set to
                       The desired Kubernetes tier.
                     type: string
+                  vpcId:
+                    description: |-
+                      The ID of the VPC to use for the Kubernetes cluster.
+                      The ID of the VPC to use for the Kubernetes cluster.
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

@@ -47,8 +47,13 @@ func (in *AccountSettingsInitParameters) DeepCopyInto(out *AccountSettingsInitPa
 		*out = new(bool)
 		**out = **in
 	}
-	if in.LongviewSubscription != nil {
-		in, out := &in.LongviewSubscription, &out.LongviewSubscription
+	if in.InterfacesForNewLinodes != nil {
+		in, out := &in.InterfacesForNewLinodes, &out.InterfacesForNewLinodes
+		*out = new(string)
+		**out = **in
+	}
+	if in.MaintenancePolicy != nil {
+		in, out := &in.MaintenancePolicy, &out.MaintenancePolicy
 		*out = new(string)
 		**out = **in
 	}
@@ -114,8 +119,18 @@ func (in *AccountSettingsObservation) DeepCopyInto(out *AccountSettingsObservati
 		*out = new(string)
 		**out = **in
 	}
+	if in.InterfacesForNewLinodes != nil {
+		in, out := &in.InterfacesForNewLinodes, &out.InterfacesForNewLinodes
+		*out = new(string)
+		**out = **in
+	}
 	if in.LongviewSubscription != nil {
 		in, out := &in.LongviewSubscription, &out.LongviewSubscription
+		*out = new(string)
+		**out = **in
+	}
+	if in.MaintenancePolicy != nil {
+		in, out := &in.MaintenancePolicy, &out.MaintenancePolicy
 		*out = new(string)
 		**out = **in
 	}
@@ -154,8 +169,13 @@ func (in *AccountSettingsParameters) DeepCopyInto(out *AccountSettingsParameters
 		*out = new(bool)
 		**out = **in
 	}
-	if in.LongviewSubscription != nil {
-		in, out := &in.LongviewSubscription, &out.LongviewSubscription
+	if in.InterfacesForNewLinodes != nil {
+		in, out := &in.InterfacesForNewLinodes, &out.InterfacesForNewLinodes
+		*out = new(string)
+		**out = **in
+	}
+	if in.MaintenancePolicy != nil {
+		in, out := &in.MaintenancePolicy, &out.MaintenancePolicy
 		*out = new(string)
 		**out = **in
 	}

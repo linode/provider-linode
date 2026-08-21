@@ -13,11 +13,46 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type DatabasesInitParameters struct {
+}
+
+type DatabasesObservation struct {
+
+	// The ID of the VPC Subnet.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// IPv4 range assigned to the database.
+	IPv4Range *string `json:"ipv4Range,omitempty" tf:"ipv4_range,omitempty"`
+
+	// A list of IPv6 ranges assigned to the database.
+	IPv6Ranges []IPv6RangesObservation `json:"ipv6Ranges,omitempty" tf:"ipv6_ranges,omitempty"`
+}
+
+type DatabasesParameters struct {
+}
+
+type IPv6RangesInitParameters struct {
+}
+
+type IPv6RangesObservation struct {
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type IPv6RangesParameters struct {
+}
+
 type InterfacesInitParameters struct {
 }
 
 type InterfacesObservation struct {
+
+	// Whether the Interface is actively in use.
 	Active *bool `json:"active,omitempty" tf:"active,omitempty"`
+
+	// ID of Linode Config that the interface is associated with. null for a Linode Interface.
+	ConfigID *float64 `json:"configId,omitempty" tf:"config_id,omitempty"`
 
 	// The ID of the VPC Subnet.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
@@ -34,10 +69,67 @@ type LinodesObservation struct {
 	// The ID of the VPC Subnet.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
+	// A list of networking interfaces objects.
 	Interfaces []InterfacesObservation `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 }
 
 type LinodesParameters struct {
+}
+
+type NodebalancersIPv6RangesInitParameters struct {
+}
+
+type NodebalancersIPv6RangesObservation struct {
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type NodebalancersIPv6RangesParameters struct {
+}
+
+type NodebalancersInitParameters struct {
+}
+
+type NodebalancersObservation struct {
+
+	// The ID of the VPC Subnet.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// IPv4 range assigned to the database.
+	IPv4Range *string `json:"ipv4Range,omitempty" tf:"ipv4_range,omitempty"`
+
+	// A list of IPv6 ranges assigned to the database.
+	IPv6Ranges []NodebalancersIPv6RangesObservation `json:"ipv6Ranges,omitempty" tf:"ipv6_ranges,omitempty"`
+}
+
+type NodebalancersParameters struct {
+}
+
+type SubnetIPv6InitParameters struct {
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	Range *string `json:"range,omitempty" tf:"range"`
+}
+
+type SubnetIPv6Observation struct {
+
+	// (Read-Only) The value of range computed by the API. This is necessary when needing to access the range for an implicit allocation.
+	// The IPv6 range assigned to this subnet.
+	AllocatedRange *string `json:"allocatedRange,omitempty" tf:"allocated_range,omitempty"`
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	Range *string `json:"range,omitempty" tf:"range,omitempty"`
+}
+
+type SubnetIPv6Parameters struct {
+
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If auto, a range with the default prefix will be allocated for this VPC.
+	// An existing IPv6 prefix owned by the current account or a forward slash (/) followed by a valid prefix length. If unspecified, a range with the default prefix will be allocated for this VPC.
+	// +kubebuilder:validation:Optional
+	Range *string `json:"range,omitempty" tf:"range"`
 }
 
 type SubnetInitParameters struct {
@@ -46,11 +138,14 @@ type SubnetInitParameters struct {
 	// The IPv4 range of this subnet in CIDR format.
 	IPv4 *string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
+	// The IPv6 ranges of this subnet.
+	IPv6 []SubnetIPv6InitParameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
 	// The label of the VPC. Only contains ASCII letters, digits and dashes.
 	// The label of the VPC subnet.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The id of the parent VPC for this VPC Subnet.
+	// The id of the parent VPC for this VPC subnet.
 	// The id of the parent VPC for this VPC Subnet
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/vpc/v1alpha1.VPC
 	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
@@ -70,6 +165,9 @@ type SubnetObservation struct {
 	// The date and time when the VPC Subnet was created.
 	Created *string `json:"created,omitempty" tf:"created,omitempty"`
 
+	// A list of Managed databases assigned to the VPC Subnet.
+	Databases []DatabasesObservation `json:"databases,omitempty" tf:"databases,omitempty"`
+
 	// The ID of the VPC Subnet.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -77,20 +175,30 @@ type SubnetObservation struct {
 	// The IPv4 range of this subnet in CIDR format.
 	IPv4 *string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
+	// The IPv6 ranges of this subnet.
+	IPv6 []SubnetIPv6Observation `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
 	// The label of the VPC. Only contains ASCII letters, digits and dashes.
 	// The label of the VPC subnet.
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// A list of Linode IDs that added to this subnet.
+	// A list of Linodes added to this subnet.
 	Linodes []LinodesObservation `json:"linodes,omitempty" tf:"linodes,omitempty"`
+
+	// A list of NodeBalancers assigned to the VPC Subnet.
+	Nodebalancers []NodebalancersObservation `json:"nodebalancers,omitempty" tf:"nodebalancers,omitempty"`
 
 	// The date and time when the VPC was last updated.
 	// The date and time when the VPC Subnet was updated.
 	Updated *string `json:"updated,omitempty" tf:"updated,omitempty"`
 
-	// The id of the parent VPC for this VPC Subnet.
+	// The id of the parent VPC for this VPC subnet.
 	// The id of the parent VPC for this VPC Subnet
 	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+
+	// The type of the parent VPC (regular or rdma).
+	// The type of the parent VPC ('regular' or 'rdma'). Omitted if the requesting account does not have access to the GPUDirect RDMA functionality.
+	VPCType *string `json:"vpcType,omitempty" tf:"vpc_type,omitempty"`
 }
 
 type SubnetParameters struct {
@@ -100,12 +208,16 @@ type SubnetParameters struct {
 	// +kubebuilder:validation:Optional
 	IPv4 *string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
+	// The IPv6 ranges of this subnet.
+	// +kubebuilder:validation:Optional
+	IPv6 []SubnetIPv6Parameters `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
+
 	// The label of the VPC. Only contains ASCII letters, digits and dashes.
 	// The label of the VPC subnet.
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// The id of the parent VPC for this VPC Subnet.
+	// The id of the parent VPC for this VPC subnet.
 	// The id of the parent VPC for this VPC Subnet
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/vpc/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
@@ -156,7 +268,6 @@ type SubnetStatus struct {
 type Subnet struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ipv4) || (has(self.initProvider) && has(self.initProvider.ipv4))",message="spec.forProvider.ipv4 is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.label) || (has(self.initProvider) && has(self.initProvider.label))",message="spec.forProvider.label is a required parameter"
 	Spec   SubnetSpec   `json:"spec"`
 	Status SubnetStatus `json:"status,omitempty"`

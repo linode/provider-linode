@@ -13,9 +13,30 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type AssignedEntityInitParameters struct {
+}
+
+type AssignedEntityObservation struct {
+
+	// The unique identifier of this IP address.
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// The label of the entity.
+	Label *string `json:"label,omitempty" tf:"label,omitempty"`
+
+	// The type of IP address. (ipv4, ipv6, etc.)
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+
+	// The URL of the entity.
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+}
+
+type AssignedEntityParameters struct {
+}
+
 type IPInitParameters struct {
 
-	// The ID of the Linode to which the IP address will be assigned. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.
+	// The ID of the Linode to allocate an IPv4 address for. Required when reserved is false or not set. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.
 	// The ID of the Linode to allocate an IPv4 address for. Required when reserved is false or not set.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
@@ -36,7 +57,7 @@ type IPInitParameters struct {
 	// The region for the reserved IPv4 address. Required when reserved is true and linode_id is not set.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Whether this IP address should be a reserved IP.
+	// Whether this IP address should be a reserved IP. Changing this value on an assigned IP triggers an in-place update (not replacement). Setting reserved = true converts an ephemeral IP to reserved. Setting reserved = false converts a reserved IP to ephemeral when the address is assigned.
 	// Whether the IPv4 address should be reserved.
 	Reserved *bool `json:"reserved,omitempty" tf:"reserved,omitempty"`
 
@@ -51,6 +72,10 @@ type IPObservation struct {
 	// The allocated IPv4 address.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.
+	// The entity this IP address has been assigned to. This is null if the address is not assigned to an entity.
+	AssignedEntity []AssignedEntityObservation `json:"assignedEntity,omitempty" tf:"assigned_entity,omitempty"`
+
 	// The default gateway for this address.
 	// The default gateway for this address.
 	Gateway *string `json:"gateway,omitempty" tf:"gateway,omitempty"`
@@ -58,7 +83,7 @@ type IPObservation struct {
 	// The unique identifier of this IP address.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The ID of the Linode to which the IP address will be assigned. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.
+	// The ID of the Linode to allocate an IPv4 address for. Required when reserved is false or not set. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.
 	// The ID of the Linode to allocate an IPv4 address for. Required when reserved is false or not set.
 	LinodeID *float64 `json:"linodeId,omitempty" tf:"linode_id,omitempty"`
 
@@ -78,7 +103,7 @@ type IPObservation struct {
 	// The region for the reserved IPv4 address. Required when reserved is true and linode_id is not set.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Whether this IP address should be a reserved IP.
+	// Whether this IP address should be a reserved IP. Changing this value on an assigned IP triggers an in-place update (not replacement). Setting reserved = true converts an ephemeral IP to reserved. Setting reserved = false converts a reserved IP to ephemeral when the address is assigned.
 	// Whether the IPv4 address should be reserved.
 	Reserved *bool `json:"reserved,omitempty" tf:"reserved,omitempty"`
 
@@ -86,18 +111,23 @@ type IPObservation struct {
 	// The mask that separates host bits from network bits for this address.
 	SubnetMask *string `json:"subnetMask,omitempty" tf:"subnet_mask,omitempty"`
 
+	// A set of tags associated with this IP address.
+	// A set of tags associated with this IP address.
+	// +listType=set
+	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
 	// The type of IP address. (ipv4, ipv6, etc.)
 	// The type of IP address (ipv4).
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.
 	// Contains information about the NAT 1:1 mapping of a public IP address to a VPC subnet.
-	VPCNAT11 map[string]string `json:"vpcNat11,omitempty" tf:"vpc_nat_1_1,omitempty"`
+	VPCNAT11 []VPCNAT11Observation `json:"vpcNat11,omitempty" tf:"vpc_nat_1_1,omitempty"`
 }
 
 type IPParameters struct {
 
-	// The ID of the Linode to which the IP address will be assigned. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.
+	// The ID of the Linode to allocate an IPv4 address for. Required when reserved is false or not set. Updating this field on an ephemeral IP will trigger a recreation. Conflicts with region.
 	// The ID of the Linode to allocate an IPv4 address for. Required when reserved is false or not set.
 	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/instance/v1alpha1.Instance
 	// +kubebuilder:validation:Optional
@@ -121,7 +151,7 @@ type IPParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Whether this IP address should be a reserved IP.
+	// Whether this IP address should be a reserved IP. Changing this value on an assigned IP triggers an in-place update (not replacement). Setting reserved = true converts an ephemeral IP to reserved. Setting reserved = false converts a reserved IP to ephemeral when the address is assigned.
 	// Whether the IPv4 address should be reserved.
 	// +kubebuilder:validation:Optional
 	Reserved *bool `json:"reserved,omitempty" tf:"reserved,omitempty"`
@@ -130,6 +160,24 @@ type IPParameters struct {
 	// The type of IP address (ipv4).
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type VPCNAT11InitParameters struct {
+}
+
+type VPCNAT11Observation struct {
+
+	// The IP address.
+	Address *string `json:"address,omitempty" tf:"address,omitempty"`
+
+	// The id of the VPC Subnet for this Interface.
+	SubnetID *float64 `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+
+	// The id of the VPC configured for this Interface.
+	VPCID *float64 `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+}
+
+type VPCNAT11Parameters struct {
 }
 
 // IPSpec defines the desired state of IP

@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: nodepools.lke.linode.upbound.io
 spec:
   group: lke.linode.upbound.io
@@ -167,10 +167,25 @@ spec:
                             type: string
                         type: object
                     type: object
+                  diskEncryption:
+                    description: |-
+                      The disk encryption policy for nodes in this pool.
+                      The disk encryption policy for nodes in this pool.
+                    type: string
+                  firewallId:
+                    description: |-
+                      The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+                      The ID of the Firewall to attach to nodes in this node pool.
+                    type: number
                   k8sVersion:
                     description: |-
                       The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
                       The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+                    type: string
+                  label:
+                    description: |-
+                      A label for the Node Pool. If not provided, it defaults to empty string.
+                      The label of the Node Pool.
                     type: string
                   labels:
                     additionalProperties:
@@ -334,10 +349,25 @@ spec:
                             type: string
                         type: object
                     type: object
+                  diskEncryption:
+                    description: |-
+                      The disk encryption policy for nodes in this pool.
+                      The disk encryption policy for nodes in this pool.
+                    type: string
+                  firewallId:
+                    description: |-
+                      The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+                      The ID of the Firewall to attach to nodes in this node pool.
+                    type: number
                   k8sVersion:
                     description: |-
                       The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
                       The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+                    type: string
+                  label:
+                    description: |-
+                      A label for the Node Pool. If not provided, it defaults to empty string.
+                      The label of the Node Pool.
                     type: string
                   labels:
                     additionalProperties:
@@ -594,8 +624,13 @@ spec:
                   diskEncryption:
                     description: |-
                       The disk encryption policy for nodes in this pool.
-                      The disk encryption policy for nodes in this pool. NOTE: Disk encryption may not currently be available to all users.
+                      The disk encryption policy for nodes in this pool.
                     type: string
+                  firewallId:
+                    description: |-
+                      The ID of the firewall to associate with this node pool. If not provided, default firewall will be associated.
+                      The ID of the Firewall to attach to nodes in this node pool.
+                    type: number
                   id:
                     description: The ID of the Node Pool within LKE Cluster.
                     type: string
@@ -603,6 +638,11 @@ spec:
                     description: |-
                       The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users even under v4beta.
                       The k8s version of the nodes in this node pool. For LKE enterprise only and may not currently available to all users.
+                    type: string
+                  label:
+                    description: |-
+                      A label for the Node Pool. If not provided, it defaults to empty string.
+                      The label of the Node Pool.
                     type: string
                   labels:
                     additionalProperties:

@@ -69,11 +69,6 @@ func (in *DomainInitParameters) DeepCopyInto(out *DomainInitParameters) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Group != nil {
-		in, out := &in.Group, &out.Group
-		*out = new(string)
-		**out = **in
-	}
 	if in.MasterIps != nil {
 		in, out := &in.MasterIps, &out.MasterIps
 		*out = make([]*string, len(*in))
@@ -199,11 +194,6 @@ func (in *DomainObservation) DeepCopyInto(out *DomainObservation) {
 		*out = new(float64)
 		**out = **in
 	}
-	if in.Group != nil {
-		in, out := &in.Group, &out.Group
-		*out = new(string)
-		**out = **in
-	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
 		*out = new(string)
@@ -300,11 +290,6 @@ func (in *DomainParameters) DeepCopyInto(out *DomainParameters) {
 	if in.ExpireSec != nil {
 		in, out := &in.ExpireSec, &out.ExpireSec
 		*out = new(float64)
-		**out = **in
-	}
-	if in.Group != nil {
-		in, out := &in.Group, &out.Group
-		*out = new(string)
 		**out = **in
 	}
 	if in.MasterIps != nil {

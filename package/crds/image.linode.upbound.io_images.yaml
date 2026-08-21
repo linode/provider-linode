@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.14.0
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: images.image.linode.upbound.io
 spec:
   group: image.linode.upbound.io
@@ -727,10 +727,65 @@ spec:
                       begin with private/ followed by the numeric identifier of the
                       private image, for example private/12345.
                     type: string
+                  imageSharing:
+                    description: |-
+                      Details about image sharing, including who the image is shared with and by. (Note: v4beta only and may not currently be available to all users.)
+                      Details about image sharing, including who the image is shared with and by.
+                    items:
+                      properties:
+                        sharedBy:
+                          description: Details about who the image is shared by.
+                          items:
+                            properties:
+                              sharegroupId:
+                                description: |-
+                                  The sharegroup_id from the im_ImageShare row.
+                                  The sharegroup_id from the im_ImageShare row.
+                                type: number
+                              sharegroupLabel:
+                                description: |-
+                                  The label from the associated im_ImageShareGroup row.
+                                  The label from the associated im_ImageShareGroup row.
+                                type: string
+                              sharegroupUuid:
+                                description: |-
+                                  The sharegroup_uuid from the im_ImageShare row.
+                                  The sharegroup_uuid from the im_ImageShare row.
+                                type: string
+                              sourceImageId:
+                                description: |-
+                                  The image id of the base image (will only be shown to producers, will be null for consumers).
+                                  The image id of the base image (will only be shown to producers, will be null for consumers).
+                                type: string
+                            type: object
+                          type: array
+                        sharedWith:
+                          description: Details about who the image is shared with.
+                          items:
+                            properties:
+                              sharegroupCount:
+                                description: |-
+                                  The number of sharegroups the private image is present in.
+                                  The number of sharegroups the private image is present in.
+                                type: number
+                              sharegroupListUrl:
+                                description: |-
+                                  The GET api url to view the sharegroups in which the image is shared.
+                                  The GET api url to view the sharegroups in which the image is shared.
+                                type: string
+                            type: object
+                          type: array
+                      type: object
+                    type: array
                   isPublic:
                     description: |-
                       True if the Image is public.
                       True if the Image is public.
+                    type: boolean
+                  isShared:
+                    description: |-
+                      True if the Image is shared. (Note: v4beta only and may not currently be available to all users.)
+                      True if the Image is shared.
                     type: boolean
                   label:
                     description: |-
