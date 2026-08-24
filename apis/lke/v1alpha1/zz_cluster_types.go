@@ -123,6 +123,10 @@ type AutoscalerParameters struct {
 
 type ClusterInitParameters struct {
 
+	// Enables the App Platform Layer
+	// Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+	AplEnabled *bool `json:"aplEnabled,omitempty" tf:"apl_enabled,omitempty"`
+
 	// Defines settings for the Kubernetes Control Plane.
 	ControlPlane []ControlPlaneInitParameters `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
 
@@ -162,6 +166,10 @@ type ClusterObservation struct {
 	// The endpoints for the Kubernetes API server.
 	// The API endpoints for the cluster.
 	APIEndpoints []*string `json:"apiEndpoints,omitempty" tf:"api_endpoints,omitempty"`
+
+	// Enables the App Platform Layer
+	// Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+	AplEnabled *bool `json:"aplEnabled,omitempty" tf:"apl_enabled,omitempty"`
 
 	// Defines settings for the Kubernetes Control Plane.
 	ControlPlane []ControlPlaneObservation `json:"controlPlane,omitempty" tf:"control_plane,omitempty"`
@@ -209,6 +217,11 @@ type ClusterObservation struct {
 }
 
 type ClusterParameters struct {
+
+	// Enables the App Platform Layer
+	// Enables the App Platform Layer for this cluster. Note: v4beta only and may not currently be available to all users.
+	// +kubebuilder:validation:Optional
+	AplEnabled *bool `json:"aplEnabled,omitempty" tf:"apl_enabled,omitempty"`
 
 	// Defines settings for the Kubernetes Control Plane.
 	// +kubebuilder:validation:Optional
@@ -311,15 +324,17 @@ type PoolInitParameters struct {
 	// The number of nodes in the Node Pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
 	// A set of tags applied to this node pool.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
 	Taint []TaintInitParameters `json:"taint,omitempty" tf:"taint,omitempty"`
 
@@ -345,6 +360,7 @@ type PoolObservation struct {
 	// The ID of the Node Pool.
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
 
+	// A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
@@ -352,11 +368,12 @@ type PoolObservation struct {
 	// The nodes in the node pool.
 	Nodes []NodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
 	// A set of tags applied to this node pool.
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
 	Taint []TaintObservation `json:"taint,omitempty" tf:"taint,omitempty"`
 
@@ -376,17 +393,19 @@ type PoolParameters struct {
 	// +kubebuilder:validation:Optional
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
+	// A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.
 	// Key-value pairs added as labels to nodes in the node pool. Labels help classify your nodes and to easily select subsets of objects.
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 
-	// An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.
+	// A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.
 	// A set of tags applied to this node pool.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.
 	// Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods.
 	// +kubebuilder:validation:Optional
 	Taint []TaintParameters `json:"taint,omitempty" tf:"taint,omitempty"`
@@ -399,38 +418,47 @@ type PoolParameters struct {
 
 type TaintInitParameters struct {
 
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
 	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
 
 	// The Kubernetes taint key.
+	// The Kubernetes taint key.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
+	// The Kubernetes taint value.
 	// The Kubernetes taint value.
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TaintObservation struct {
 
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
 	Effect *string `json:"effect,omitempty" tf:"effect,omitempty"`
 
 	// The Kubernetes taint key.
+	// The Kubernetes taint key.
 	Key *string `json:"key,omitempty" tf:"key,omitempty"`
 
+	// The Kubernetes taint value.
 	// The Kubernetes taint value.
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TaintParameters struct {
 
+	// The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.
 	// The Kubernetes taint effect.
 	// +kubebuilder:validation:Optional
 	Effect *string `json:"effect" tf:"effect,omitempty"`
 
 	// The Kubernetes taint key.
+	// The Kubernetes taint key.
 	// +kubebuilder:validation:Optional
 	Key *string `json:"key" tf:"key,omitempty"`
 
+	// The Kubernetes taint value.
 	// The Kubernetes taint value.
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`

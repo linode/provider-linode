@@ -24,6 +24,118 @@ type MySQLv2InitParameters struct {
 	// The number of Linode instance nodes deployed to the Managed Database.
 	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
 
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+	EngineConfigBinlogRetentionPeriod *float64 `json:"engineConfigBinlogRetentionPeriod,omitempty" tf:"engine_config_binlog_retention_period,omitempty"`
+
+	// The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".
+	// The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
+	EngineConfigMySQLConnectTimeout *float64 `json:"engineConfigMysqlConnectTimeout,omitempty" tf:"engine_config_mysql_connect_timeout,omitempty"`
+
+	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.
+	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+	EngineConfigMySQLDefaultTimeZone *string `json:"engineConfigMysqlDefaultTimeZone,omitempty" tf:"engine_config_mysql_default_time_zone,omitempty"`
+
+	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+	EngineConfigMySQLGroupConcatMaxLen *float64 `json:"engineConfigMysqlGroupConcatMaxLen,omitempty" tf:"engine_config_mysql_group_concat_max_len,omitempty"`
+
+	// The time, in seconds, before cached statistics expire.
+	// The time, in seconds, before cached statistics expire.
+	EngineConfigMySQLInformationSchemaStatsExpiry *float64 `json:"engineConfigMysqlInformationSchemaStatsExpiry,omitempty" tf:"engine_config_mysql_information_schema_stats_expiry,omitempty"`
+
+	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+	EngineConfigMySQLInnodbChangeBufferMaxSize *float64 `json:"engineConfigMysqlInnodbChangeBufferMaxSize,omitempty" tf:"engine_config_mysql_innodb_change_buffer_max_size,omitempty"`
+
+	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+	EngineConfigMySQLInnodbFlushNeighbors *float64 `json:"engineConfigMysqlInnodbFlushNeighbors,omitempty" tf:"engine_config_mysql_innodb_flush_neighbors,omitempty"`
+
+	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbFtMinTokenSize *float64 `json:"engineConfigMysqlInnodbFtMinTokenSize,omitempty" tf:"engine_config_mysql_innodb_ft_min_token_size,omitempty"`
+
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+	EngineConfigMySQLInnodbFtServerStopwordTable *string `json:"engineConfigMysqlInnodbFtServerStopwordTable,omitempty" tf:"engine_config_mysql_innodb_ft_server_stopword_table,omitempty"`
+
+	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+	EngineConfigMySQLInnodbLockWaitTimeout *float64 `json:"engineConfigMysqlInnodbLockWaitTimeout,omitempty" tf:"engine_config_mysql_innodb_lock_wait_timeout,omitempty"`
+
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	EngineConfigMySQLInnodbLogBufferSize *float64 `json:"engineConfigMysqlInnodbLogBufferSize,omitempty" tf:"engine_config_mysql_innodb_log_buffer_size,omitempty"`
+
+	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+	EngineConfigMySQLInnodbOnlineAlterLogMaxSize *float64 `json:"engineConfigMysqlInnodbOnlineAlterLogMaxSize,omitempty" tf:"engine_config_mysql_innodb_online_alter_log_max_size,omitempty"`
+
+	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbReadIoThreads *float64 `json:"engineConfigMysqlInnodbReadIoThreads,omitempty" tf:"engine_config_mysql_innodb_read_io_threads,omitempty"`
+
+	// When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+	// When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbRollbackOnTimeout *bool `json:"engineConfigMysqlInnodbRollbackOnTimeout,omitempty" tf:"engine_config_mysql_innodb_rollback_on_timeout,omitempty"`
+
+	// Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+	// Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+	EngineConfigMySQLInnodbThreadConcurrency *float64 `json:"engineConfigMysqlInnodbThreadConcurrency,omitempty" tf:"engine_config_mysql_innodb_thread_concurrency,omitempty"`
+
+	// The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbWriteIoThreads *float64 `json:"engineConfigMysqlInnodbWriteIoThreads,omitempty" tf:"engine_config_mysql_innodb_write_io_threads,omitempty"`
+
+	// The number of seconds the server waits for activity on an interactive connection before closing it.
+	// The number of seconds the server waits for activity on an interactive connection before closing it.
+	EngineConfigMySQLInteractiveTimeout *float64 `json:"engineConfigMysqlInteractiveTimeout,omitempty" tf:"engine_config_mysql_interactive_timeout,omitempty"`
+
+	// The storage engine for in-memory internal temporary tables.
+	// The storage engine for in-memory internal temporary tables.
+	EngineConfigMySQLInternalTmpMemStorageEngine *string `json:"engineConfigMysqlInternalTmpMemStorageEngine,omitempty" tf:"engine_config_mysql_internal_tmp_mem_storage_engine,omitempty"`
+
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	EngineConfigMySQLMaxAllowedPacket *float64 `json:"engineConfigMysqlMaxAllowedPacket,omitempty" tf:"engine_config_mysql_max_allowed_packet,omitempty"`
+
+	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+	EngineConfigMySQLMaxHeapTableSize *float64 `json:"engineConfigMysqlMaxHeapTableSize,omitempty" tf:"engine_config_mysql_max_heap_table_size,omitempty"`
+
+	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLNetBufferLength *float64 `json:"engineConfigMysqlNetBufferLength,omitempty" tf:"engine_config_mysql_net_buffer_length,omitempty"`
+
+	// The number of seconds to wait for more data from a connection before aborting the read.
+	// The number of seconds to wait for more data from a connection before aborting the read.
+	EngineConfigMySQLNetReadTimeout *float64 `json:"engineConfigMysqlNetReadTimeout,omitempty" tf:"engine_config_mysql_net_read_timeout,omitempty"`
+
+	// The number of seconds to wait for a block to be written to a connection before aborting the write.
+	// The number of seconds to wait for a block to be written to a connection before aborting the write.
+	EngineConfigMySQLNetWriteTimeout *float64 `json:"engineConfigMysqlNetWriteTimeout,omitempty" tf:"engine_config_mysql_net_write_timeout,omitempty"`
+
+	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)
+	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
+	EngineConfigMySQLSQLMode *string `json:"engineConfigMysqlSqlMode,omitempty" tf:"engine_config_mysql_sql_mode,omitempty"`
+
+	// Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)
+	// Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
+	EngineConfigMySQLSQLRequirePrimaryKey *bool `json:"engineConfigMysqlSqlRequirePrimaryKey,omitempty" tf:"engine_config_mysql_sql_require_primary_key,omitempty"`
+
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	EngineConfigMySQLSortBufferSize *float64 `json:"engineConfigMysqlSortBufferSize,omitempty" tf:"engine_config_mysql_sort_buffer_size,omitempty"`
+
+	// Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+	// Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+	EngineConfigMySQLTmpTableSize *float64 `json:"engineConfigMysqlTmpTableSize,omitempty" tf:"engine_config_mysql_tmp_table_size,omitempty"`
+
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	EngineConfigMySQLWaitTimeout *float64 `json:"engineConfigMysqlWaitTimeout,omitempty" tf:"engine_config_mysql_wait_timeout,omitempty"`
+
 	// The Managed Database engine in engine/version format. (e.g. mysql)
 	// The unique ID of the database engine and version to use. (e.g. mysql/8)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
@@ -77,6 +189,118 @@ type MySQLv2Observation struct {
 	// The Managed Database engine. (e.g. mysql)
 	// The Managed Database engine in engine/version format.
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
+
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+	EngineConfigBinlogRetentionPeriod *float64 `json:"engineConfigBinlogRetentionPeriod,omitempty" tf:"engine_config_binlog_retention_period,omitempty"`
+
+	// The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".
+	// The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
+	EngineConfigMySQLConnectTimeout *float64 `json:"engineConfigMysqlConnectTimeout,omitempty" tf:"engine_config_mysql_connect_timeout,omitempty"`
+
+	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.
+	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+	EngineConfigMySQLDefaultTimeZone *string `json:"engineConfigMysqlDefaultTimeZone,omitempty" tf:"engine_config_mysql_default_time_zone,omitempty"`
+
+	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+	EngineConfigMySQLGroupConcatMaxLen *float64 `json:"engineConfigMysqlGroupConcatMaxLen,omitempty" tf:"engine_config_mysql_group_concat_max_len,omitempty"`
+
+	// The time, in seconds, before cached statistics expire.
+	// The time, in seconds, before cached statistics expire.
+	EngineConfigMySQLInformationSchemaStatsExpiry *float64 `json:"engineConfigMysqlInformationSchemaStatsExpiry,omitempty" tf:"engine_config_mysql_information_schema_stats_expiry,omitempty"`
+
+	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+	EngineConfigMySQLInnodbChangeBufferMaxSize *float64 `json:"engineConfigMysqlInnodbChangeBufferMaxSize,omitempty" tf:"engine_config_mysql_innodb_change_buffer_max_size,omitempty"`
+
+	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+	EngineConfigMySQLInnodbFlushNeighbors *float64 `json:"engineConfigMysqlInnodbFlushNeighbors,omitempty" tf:"engine_config_mysql_innodb_flush_neighbors,omitempty"`
+
+	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbFtMinTokenSize *float64 `json:"engineConfigMysqlInnodbFtMinTokenSize,omitempty" tf:"engine_config_mysql_innodb_ft_min_token_size,omitempty"`
+
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+	EngineConfigMySQLInnodbFtServerStopwordTable *string `json:"engineConfigMysqlInnodbFtServerStopwordTable,omitempty" tf:"engine_config_mysql_innodb_ft_server_stopword_table,omitempty"`
+
+	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+	EngineConfigMySQLInnodbLockWaitTimeout *float64 `json:"engineConfigMysqlInnodbLockWaitTimeout,omitempty" tf:"engine_config_mysql_innodb_lock_wait_timeout,omitempty"`
+
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	EngineConfigMySQLInnodbLogBufferSize *float64 `json:"engineConfigMysqlInnodbLogBufferSize,omitempty" tf:"engine_config_mysql_innodb_log_buffer_size,omitempty"`
+
+	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+	EngineConfigMySQLInnodbOnlineAlterLogMaxSize *float64 `json:"engineConfigMysqlInnodbOnlineAlterLogMaxSize,omitempty" tf:"engine_config_mysql_innodb_online_alter_log_max_size,omitempty"`
+
+	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbReadIoThreads *float64 `json:"engineConfigMysqlInnodbReadIoThreads,omitempty" tf:"engine_config_mysql_innodb_read_io_threads,omitempty"`
+
+	// When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+	// When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbRollbackOnTimeout *bool `json:"engineConfigMysqlInnodbRollbackOnTimeout,omitempty" tf:"engine_config_mysql_innodb_rollback_on_timeout,omitempty"`
+
+	// Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+	// Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+	EngineConfigMySQLInnodbThreadConcurrency *float64 `json:"engineConfigMysqlInnodbThreadConcurrency,omitempty" tf:"engine_config_mysql_innodb_thread_concurrency,omitempty"`
+
+	// The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLInnodbWriteIoThreads *float64 `json:"engineConfigMysqlInnodbWriteIoThreads,omitempty" tf:"engine_config_mysql_innodb_write_io_threads,omitempty"`
+
+	// The number of seconds the server waits for activity on an interactive connection before closing it.
+	// The number of seconds the server waits for activity on an interactive connection before closing it.
+	EngineConfigMySQLInteractiveTimeout *float64 `json:"engineConfigMysqlInteractiveTimeout,omitempty" tf:"engine_config_mysql_interactive_timeout,omitempty"`
+
+	// The storage engine for in-memory internal temporary tables.
+	// The storage engine for in-memory internal temporary tables.
+	EngineConfigMySQLInternalTmpMemStorageEngine *string `json:"engineConfigMysqlInternalTmpMemStorageEngine,omitempty" tf:"engine_config_mysql_internal_tmp_mem_storage_engine,omitempty"`
+
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	EngineConfigMySQLMaxAllowedPacket *float64 `json:"engineConfigMysqlMaxAllowedPacket,omitempty" tf:"engine_config_mysql_max_allowed_packet,omitempty"`
+
+	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+	EngineConfigMySQLMaxHeapTableSize *float64 `json:"engineConfigMysqlMaxHeapTableSize,omitempty" tf:"engine_config_mysql_max_heap_table_size,omitempty"`
+
+	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+	EngineConfigMySQLNetBufferLength *float64 `json:"engineConfigMysqlNetBufferLength,omitempty" tf:"engine_config_mysql_net_buffer_length,omitempty"`
+
+	// The number of seconds to wait for more data from a connection before aborting the read.
+	// The number of seconds to wait for more data from a connection before aborting the read.
+	EngineConfigMySQLNetReadTimeout *float64 `json:"engineConfigMysqlNetReadTimeout,omitempty" tf:"engine_config_mysql_net_read_timeout,omitempty"`
+
+	// The number of seconds to wait for a block to be written to a connection before aborting the write.
+	// The number of seconds to wait for a block to be written to a connection before aborting the write.
+	EngineConfigMySQLNetWriteTimeout *float64 `json:"engineConfigMysqlNetWriteTimeout,omitempty" tf:"engine_config_mysql_net_write_timeout,omitempty"`
+
+	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)
+	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
+	EngineConfigMySQLSQLMode *string `json:"engineConfigMysqlSqlMode,omitempty" tf:"engine_config_mysql_sql_mode,omitempty"`
+
+	// Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)
+	// Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
+	EngineConfigMySQLSQLRequirePrimaryKey *bool `json:"engineConfigMysqlSqlRequirePrimaryKey,omitempty" tf:"engine_config_mysql_sql_require_primary_key,omitempty"`
+
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	EngineConfigMySQLSortBufferSize *float64 `json:"engineConfigMysqlSortBufferSize,omitempty" tf:"engine_config_mysql_sort_buffer_size,omitempty"`
+
+	// Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+	// Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+	EngineConfigMySQLTmpTableSize *float64 `json:"engineConfigMysqlTmpTableSize,omitempty" tf:"engine_config_mysql_tmp_table_size,omitempty"`
+
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	EngineConfigMySQLWaitTimeout *float64 `json:"engineConfigMysqlWaitTimeout,omitempty" tf:"engine_config_mysql_wait_timeout,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. mysql)
 	// The unique ID of the database engine and version to use. (e.g. mysql/8)
@@ -167,6 +391,146 @@ type MySQLv2Parameters struct {
 	// The number of Linode instance nodes deployed to the Managed Database.
 	// +kubebuilder:validation:Optional
 	ClusterSize *float64 `json:"clusterSize,omitempty" tf:"cluster_size,omitempty"`
+
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
+	// The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+	// +kubebuilder:validation:Optional
+	EngineConfigBinlogRetentionPeriod *float64 `json:"engineConfigBinlogRetentionPeriod,omitempty" tf:"engine_config_binlog_retention_period,omitempty"`
+
+	// The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".
+	// The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLConnectTimeout *float64 `json:"engineConfigMysqlConnectTimeout,omitempty" tf:"engine_config_mysql_connect_timeout,omitempty"`
+
+	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.
+	// Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLDefaultTimeZone *string `json:"engineConfigMysqlDefaultTimeZone,omitempty" tf:"engine_config_mysql_default_time_zone,omitempty"`
+
+	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+	// The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLGroupConcatMaxLen *float64 `json:"engineConfigMysqlGroupConcatMaxLen,omitempty" tf:"engine_config_mysql_group_concat_max_len,omitempty"`
+
+	// The time, in seconds, before cached statistics expire.
+	// The time, in seconds, before cached statistics expire.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInformationSchemaStatsExpiry *float64 `json:"engineConfigMysqlInformationSchemaStatsExpiry,omitempty" tf:"engine_config_mysql_information_schema_stats_expiry,omitempty"`
+
+	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+	// Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbChangeBufferMaxSize *float64 `json:"engineConfigMysqlInnodbChangeBufferMaxSize,omitempty" tf:"engine_config_mysql_innodb_change_buffer_max_size,omitempty"`
+
+	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+	// Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbFlushNeighbors *float64 `json:"engineConfigMysqlInnodbFlushNeighbors,omitempty" tf:"engine_config_mysql_innodb_flush_neighbors,omitempty"`
+
+	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	// Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbFtMinTokenSize *float64 `json:"engineConfigMysqlInnodbFtMinTokenSize,omitempty" tf:"engine_config_mysql_innodb_ft_min_token_size,omitempty"`
+
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.
+	// This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbFtServerStopwordTable *string `json:"engineConfigMysqlInnodbFtServerStopwordTable,omitempty" tf:"engine_config_mysql_innodb_ft_server_stopword_table,omitempty"`
+
+	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+	// The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbLockWaitTimeout *float64 `json:"engineConfigMysqlInnodbLockWaitTimeout,omitempty" tf:"engine_config_mysql_innodb_lock_wait_timeout,omitempty"`
+
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	// The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbLogBufferSize *float64 `json:"engineConfigMysqlInnodbLogBufferSize,omitempty" tf:"engine_config_mysql_innodb_log_buffer_size,omitempty"`
+
+	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+	// The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbOnlineAlterLogMaxSize *float64 `json:"engineConfigMysqlInnodbOnlineAlterLogMaxSize,omitempty" tf:"engine_config_mysql_innodb_online_alter_log_max_size,omitempty"`
+
+	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbReadIoThreads *float64 `json:"engineConfigMysqlInnodbReadIoThreads,omitempty" tf:"engine_config_mysql_innodb_read_io_threads,omitempty"`
+
+	// When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+	// When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbRollbackOnTimeout *bool `json:"engineConfigMysqlInnodbRollbackOnTimeout,omitempty" tf:"engine_config_mysql_innodb_rollback_on_timeout,omitempty"`
+
+	// Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+	// Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbThreadConcurrency *float64 `json:"engineConfigMysqlInnodbThreadConcurrency,omitempty" tf:"engine_config_mysql_innodb_thread_concurrency,omitempty"`
+
+	// The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInnodbWriteIoThreads *float64 `json:"engineConfigMysqlInnodbWriteIoThreads,omitempty" tf:"engine_config_mysql_innodb_write_io_threads,omitempty"`
+
+	// The number of seconds the server waits for activity on an interactive connection before closing it.
+	// The number of seconds the server waits for activity on an interactive connection before closing it.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInteractiveTimeout *float64 `json:"engineConfigMysqlInteractiveTimeout,omitempty" tf:"engine_config_mysql_interactive_timeout,omitempty"`
+
+	// The storage engine for in-memory internal temporary tables.
+	// The storage engine for in-memory internal temporary tables.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLInternalTmpMemStorageEngine *string `json:"engineConfigMysqlInternalTmpMemStorageEngine,omitempty" tf:"engine_config_mysql_internal_tmp_mem_storage_engine,omitempty"`
+
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	// Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLMaxAllowedPacket *float64 `json:"engineConfigMysqlMaxAllowedPacket,omitempty" tf:"engine_config_mysql_max_allowed_packet,omitempty"`
+
+	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+	// Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLMaxHeapTableSize *float64 `json:"engineConfigMysqlMaxHeapTableSize,omitempty" tf:"engine_config_mysql_max_heap_table_size,omitempty"`
+
+	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+	// Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLNetBufferLength *float64 `json:"engineConfigMysqlNetBufferLength,omitempty" tf:"engine_config_mysql_net_buffer_length,omitempty"`
+
+	// The number of seconds to wait for more data from a connection before aborting the read.
+	// The number of seconds to wait for more data from a connection before aborting the read.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLNetReadTimeout *float64 `json:"engineConfigMysqlNetReadTimeout,omitempty" tf:"engine_config_mysql_net_read_timeout,omitempty"`
+
+	// The number of seconds to wait for a block to be written to a connection before aborting the write.
+	// The number of seconds to wait for a block to be written to a connection before aborting the write.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLNetWriteTimeout *float64 `json:"engineConfigMysqlNetWriteTimeout,omitempty" tf:"engine_config_mysql_net_write_timeout,omitempty"`
+
+	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)
+	// Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLSQLMode *string `json:"engineConfigMysqlSqlMode,omitempty" tf:"engine_config_mysql_sql_mode,omitempty"`
+
+	// Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)
+	// Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLSQLRequirePrimaryKey *bool `json:"engineConfigMysqlSqlRequirePrimaryKey,omitempty" tf:"engine_config_mysql_sql_require_primary_key,omitempty"`
+
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	// Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLSortBufferSize *float64 `json:"engineConfigMysqlSortBufferSize,omitempty" tf:"engine_config_mysql_sort_buffer_size,omitempty"`
+
+	// Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+	// Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLTmpTableSize *float64 `json:"engineConfigMysqlTmpTableSize,omitempty" tf:"engine_config_mysql_tmp_table_size,omitempty"`
+
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	// The number of seconds the server waits for activity on a noninteractive connection before closing it.
+	// +kubebuilder:validation:Optional
+	EngineConfigMySQLWaitTimeout *float64 `json:"engineConfigMysqlWaitTimeout,omitempty" tf:"engine_config_mysql_wait_timeout,omitempty"`
 
 	// The Managed Database engine in engine/version format. (e.g. mysql)
 	// The unique ID of the database engine and version to use. (e.g. mysql/8)

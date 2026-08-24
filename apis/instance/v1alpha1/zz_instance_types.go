@@ -885,7 +885,7 @@ type InstanceObservation struct {
 	// +listType=set
 	IPv4 []*string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
-	// This Linode's IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/64) is included in this attribute.
+	// This Linode's IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/128) is included in this attribute.
 	// This Linode's IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.
 	IPv6 *string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 

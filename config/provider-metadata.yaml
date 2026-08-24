@@ -169,6 +169,42 @@ resources:
             - name: foobar
               manifest: |-
                 {
+                  "engine_config_binlog_retention_period": 3600,
+                  "engine_config_mysql_connect_timeout": 10,
+                  "engine_config_mysql_default_time_zone": "+00:00",
+                  "engine_config_mysql_group_concat_max_len": 4096,
+                  "engine_config_mysql_information_schema_stats_expiry": 3600,
+                  "engine_config_mysql_innodb_change_buffer_max_size": 25,
+                  "engine_config_mysql_innodb_flush_neighbors": 0,
+                  "engine_config_mysql_innodb_ft_min_token_size": 7,
+                  "engine_config_mysql_innodb_ft_server_stopword_table": "mysql/innodb_ft_default_stopword",
+                  "engine_config_mysql_innodb_lock_wait_timeout": 300,
+                  "engine_config_mysql_innodb_log_buffer_size": 16777216,
+                  "engine_config_mysql_innodb_online_alter_log_max_size": 268435456,
+                  "engine_config_mysql_innodb_read_io_threads": 4,
+                  "engine_config_mysql_innodb_rollback_on_timeout": true,
+                  "engine_config_mysql_innodb_thread_concurrency": 8,
+                  "engine_config_mysql_innodb_write_io_threads": 4,
+                  "engine_config_mysql_interactive_timeout": 300,
+                  "engine_config_mysql_internal_tmp_mem_storage_engine": "TempTable",
+                  "engine_config_mysql_max_allowed_packet": 67108864,
+                  "engine_config_mysql_max_heap_table_size": 16777216,
+                  "engine_config_mysql_net_buffer_length": 16384,
+                  "engine_config_mysql_net_read_timeout": 30,
+                  "engine_config_mysql_net_write_timeout": 30,
+                  "engine_config_mysql_sort_buffer_size": 262144,
+                  "engine_config_mysql_sql_mode": "TRADITIONAL,ANSI",
+                  "engine_config_mysql_sql_require_primary_key": false,
+                  "engine_config_mysql_tmp_table_size": 16777216,
+                  "engine_config_mysql_wait_timeout": 28800,
+                  "engine_id": "mysql/8",
+                  "label": "mydatabase",
+                  "region": "us-mia",
+                  "type": "g6-nanode-1"
+                }
+            - name: foobar
+              manifest: |-
+                {
                   "engine_id": "mysql/8",
                   "fork_source": 12345,
                   "label": "mydatabase",
@@ -182,6 +218,34 @@ resources:
             created: '- When this Managed Database was created.'
             encrypted: '- Whether the Managed Databases is encrypted.'
             engine: '- The Managed Database engine. (e.g. mysql)'
+            engine_config_binlog_retention_period: '- (Optional) The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.'
+            engine_config_mysql_connect_timeout: '- (Optional) The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".'
+            engine_config_mysql_default_time_zone: '- (Optional) Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.'
+            engine_config_mysql_group_concat_max_len: '- (Optional) The maximum permitted result length in bytes for the GROUP_CONCAT() function.'
+            engine_config_mysql_information_schema_stats_expiry: '- (Optional) The time, in seconds, before cached statistics expire.'
+            engine_config_mysql_innodb_change_buffer_max_size: '- (Optional) Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.'
+            engine_config_mysql_innodb_flush_neighbors: '- (Optional) Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.'
+            engine_config_mysql_innodb_ft_min_token_size: '- (Optional) Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_innodb_ft_server_stopword_table: '- (Optional) This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.'
+            engine_config_mysql_innodb_lock_wait_timeout: '- (Optional) The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.'
+            engine_config_mysql_innodb_log_buffer_size: '- (Optional) The size in bytes of the buffer that InnoDB uses to write to the log files on disk.'
+            engine_config_mysql_innodb_online_alter_log_max_size: '- (Optional) The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.'
+            engine_config_mysql_innodb_read_io_threads: '- (Optional) The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_innodb_rollback_on_timeout: '- (Optional) When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_innodb_thread_concurrency: '- (Optional) Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).'
+            engine_config_mysql_innodb_write_io_threads: '- (Optional) The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_interactive_timeout: '- (Optional) The number of seconds the server waits for activity on an interactive connection before closing it.'
+            engine_config_mysql_internal_tmp_mem_storage_engine: '- (Optional) The storage engine for in-memory internal temporary tables.'
+            engine_config_mysql_max_allowed_packet: '- (Optional) Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).'
+            engine_config_mysql_max_heap_table_size: '- (Optional) Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).'
+            engine_config_mysql_net_buffer_length: '- (Optional) Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.'
+            engine_config_mysql_net_read_timeout: '- (Optional) The number of seconds to wait for more data from a connection before aborting the read.'
+            engine_config_mysql_net_write_timeout: '- (Optional) The number of seconds to wait for a block to be written to a connection before aborting the write.'
+            engine_config_mysql_sort_buffer_size: '- (Optional) Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).'
+            engine_config_mysql_sql_mode: '- (Optional) Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)'
+            engine_config_mysql_sql_require_primary_key: '- (Optional) Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)'
+            engine_config_mysql_tmp_table_size: '- (Optional) Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).'
+            engine_config_mysql_wait_timeout: '- (Optional) The number of seconds the server waits for activity on a noninteractive connection before closing it.'
             engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. mysql)'
             fork_restore_time: '- (Optional) The database timestamp from which it was restored.'
             fork_source: '- (Optional) The ID of the database that was forked from.'
@@ -326,6 +390,61 @@ resources:
             - name: foobar
               manifest: |-
                 {
+                  "engine_config_pg_autovacuum_analyze_scale_factor": 0.1,
+                  "engine_config_pg_autovacuum_analyze_threshold": 50,
+                  "engine_config_pg_autovacuum_max_workers": 3,
+                  "engine_config_pg_autovacuum_naptime": 100,
+                  "engine_config_pg_autovacuum_vacuum_cost_delay": 20,
+                  "engine_config_pg_autovacuum_vacuum_cost_limit": 200,
+                  "engine_config_pg_autovacuum_vacuum_scale_factor": 0.2,
+                  "engine_config_pg_autovacuum_vacuum_threshold": 100,
+                  "engine_config_pg_bgwriter_delay": 1000,
+                  "engine_config_pg_bgwriter_flush_after": 512,
+                  "engine_config_pg_bgwriter_lru_maxpages": 100,
+                  "engine_config_pg_bgwriter_lru_multiplier": 2,
+                  "engine_config_pg_deadlock_timeout": 1000,
+                  "engine_config_pg_default_toast_compression": "pglz",
+                  "engine_config_pg_idle_in_transaction_session_timeout": 60000,
+                  "engine_config_pg_jit": true,
+                  "engine_config_pg_max_files_per_process": 1000,
+                  "engine_config_pg_max_locks_per_transaction": 64,
+                  "engine_config_pg_max_logical_replication_workers": 4,
+                  "engine_config_pg_max_parallel_workers": 8,
+                  "engine_config_pg_max_parallel_workers_per_gather": 2,
+                  "engine_config_pg_max_pred_locks_per_transaction": 128,
+                  "engine_config_pg_max_replication_slots": 8,
+                  "engine_config_pg_max_slot_wal_keep_size": 128,
+                  "engine_config_pg_max_stack_depth": 2097152,
+                  "engine_config_pg_max_standby_archive_delay": 60000,
+                  "engine_config_pg_max_standby_streaming_delay": 60000,
+                  "engine_config_pg_max_wal_senders": 20,
+                  "engine_config_pg_max_worker_processes": 8,
+                  "engine_config_pg_password_encryption": "scram-sha-256",
+                  "engine_config_pg_pg_partman_bgw_interval": 3600,
+                  "engine_config_pg_pg_partman_bgw_role": "myrolename",
+                  "engine_config_pg_pg_stat_monitor_pgsm_enable_query_plan": true,
+                  "engine_config_pg_pg_stat_monitor_pgsm_max_buckets": 5,
+                  "engine_config_pg_pg_stat_statements_track": "all",
+                  "engine_config_pg_stat_monitor_enable": true,
+                  "engine_config_pg_temp_file_limit": 100,
+                  "engine_config_pg_timezone": "Europe/Helsinki",
+                  "engine_config_pg_track_activity_query_size": 2048,
+                  "engine_config_pg_track_commit_timestamp": "on",
+                  "engine_config_pg_track_functions": "all",
+                  "engine_config_pg_track_io_timing": "on",
+                  "engine_config_pg_wal_sender_timeout": 60000,
+                  "engine_config_pg_wal_writer_delay": 200,
+                  "engine_config_pglookout_max_failover_replication_time_lag": 10000,
+                  "engine_config_shared_buffers_percentage": 25,
+                  "engine_config_work_mem": 400,
+                  "engine_id": "postgresql/16",
+                  "label": "mydatabase",
+                  "region": "us-mia",
+                  "type": "g6-nanode-1"
+                }
+            - name: foobar
+              manifest: |-
+                {
                   "engine_id": "postgresql/16",
                   "fork_source": 12345,
                   "label": "mydatabase",
@@ -339,6 +458,53 @@ resources:
             created: '- When this Managed Database was created.'
             encrypted: '- Whether the Managed Databases is encrypted.'
             engine: '- The Managed Database engine. (e.g. postgresql)'
+            engine_config_pg_autovacuum_analyze_scale_factor: '- (Optional) Specifies a fraction of the table size to add to autovacuum_analyze_threshold when deciding whether to trigger an ANALYZE. The default is 0.2 (20% of table size)'
+            engine_config_pg_autovacuum_analyze_threshold: '- (Optional) Specifies the minimum number of inserted, updated or deleted tuples needed to trigger an ANALYZE in any one table. The default is 50 tuples.'
+            engine_config_pg_autovacuum_max_workers: '- (Optional) Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time. The default is three. This parameter can only be set at server start.'
+            engine_config_pg_autovacuum_naptime: '- (Optional) Specifies the minimum delay between autovacuum runs on any given database. The delay is measured in seconds, and the default is one minute'
+            engine_config_pg_autovacuum_vacuum_cost_delay: '- (Optional) Specifies the cost delay value that will be used in automatic VACUUM operations. If -1 is specified, the regular vacuum_cost_delay value will be used. The default value is 20 milliseconds'
+            engine_config_pg_autovacuum_vacuum_cost_limit: '- (Optional) Specifies the cost limit value that will be used in automatic VACUUM operations. If -1 is specified (which is the default), the regular vacuum_cost_limit value will be used.'
+            engine_config_pg_autovacuum_vacuum_scale_factor: '- (Optional) Specifies a fraction of the table size to add to autovacuum_vacuum_threshold when deciding whether to trigger a VACUUM. The default is 0.2 (20% of table size)'
+            engine_config_pg_autovacuum_vacuum_threshold: '- (Optional) Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table. The default is 50 tuples.'
+            engine_config_pg_bgwriter_delay: '- (Optional) Specifies the delay between activity rounds for the background writer in milliseconds. Default is 200.'
+            engine_config_pg_bgwriter_flush_after: '- (Optional) Whenever more than bgwriter_flush_after bytes have been written by the background writer, attempt to force the OS to issue these writes to the underlying storage. Specified in kilobytes, default is 512. Setting of 0 disables forced writeback.'
+            engine_config_pg_bgwriter_lru_maxpages: '- (Optional) In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing. Default is 100.'
+            engine_config_pg_bgwriter_lru_multiplier: '- (Optional) The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round, (up to bgwriter_lru_maxpages). 1.0 represents a “just in time” policy of writing exactly the number of buffers predicted to be needed. Larger values provide some cushion against spikes in demand, while smaller values intentionally leave writes to be done by server processes. The default is 2.0.'
+            engine_config_pg_deadlock_timeout: '- (Optional) This is the amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.'
+            engine_config_pg_default_toast_compression: '- (Optional) Specifies the default TOAST compression method for values of compressible columns (the default is lz4).'
+            engine_config_pg_idle_in_transaction_session_timeout: '- (Optional) Time out sessions with open transactions after this number of milliseconds.'
+            engine_config_pg_jit: '- (Optional) Controls system-wide use of Just-in-Time Compilation (JIT).'
+            engine_config_pg_max_files_per_process: '- (Optional) PostgreSQL maximum number of files that can be open per process.'
+            engine_config_pg_max_locks_per_transaction: '- (Optional) PostgreSQL maximum locks per transaction.'
+            engine_config_pg_max_logical_replication_workers: '- (Optional) PostgreSQL maximum logical replication workers (taken from the pool of max_parallel_workers).'
+            engine_config_pg_max_parallel_workers: '- (Optional) Sets the maximum number of workers that the system can support for parallel queries.'
+            engine_config_pg_max_parallel_workers_per_gather: '- (Optional) Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.'
+            engine_config_pg_max_pred_locks_per_transaction: '- (Optional) PostgreSQL maximum predicate locks per transaction.'
+            engine_config_pg_max_replication_slots: '- (Optional) PostgreSQL maximum replication slots.'
+            engine_config_pg_max_slot_wal_keep_size: '- (Optional) PostgreSQL maximum WAL size (MB) reserved for replication slots. Default is -1 (unlimited). wal_keep_size minimum WAL size setting takes precedence over this.'
+            engine_config_pg_max_stack_depth: '- (Optional) Maximum depth of the stack in bytes.'
+            engine_config_pg_max_standby_archive_delay: '- (Optional) Max standby archive delay in milliseconds.'
+            engine_config_pg_max_standby_streaming_delay: '- (Optional) Max standby streaming delay in milliseconds.'
+            engine_config_pg_max_wal_senders: '- (Optional) PostgreSQL maximum WAL senders.'
+            engine_config_pg_max_worker_processes: '- (Optional) Sets the maximum number of background processes that the system can support.'
+            engine_config_pg_password_encryption: '- (Optional) Chooses the algorithm for encrypting passwords. (default md5)'
+            engine_config_pg_pg_partman_bgw_interval: '- (Optional) Sets the time interval to run pg_partman''s scheduled tasks.'
+            engine_config_pg_pg_partman_bgw_role: '- (Optional) Controls which role to use for pg_partman''s scheduled background tasks.'
+            engine_config_pg_pg_stat_monitor_pgsm_enable_query_plan: '- (Optional) Enables or disables query plan monitoring.'
+            engine_config_pg_pg_stat_monitor_pgsm_max_buckets: '- (Optional) Sets the maximum number of buckets.'
+            engine_config_pg_pg_stat_statements_track: '- (Optional) Controls which statements are counted. Specify top to track top-level statements (those issued directly by clients), all to also track nested statements (such as statements invoked within functions), or none to disable statement statistics collection. The default value is top.'
+            engine_config_pg_stat_monitor_enable: '- (Optional) Enable the pg_stat_monitor extension. Enabling this extension will cause the cluster to be restarted. When this extension is enabled, pg_stat_statements results for utility commands are unreliable. (default false)'
+            engine_config_pg_temp_file_limit: '- (Optional) PostgreSQL temporary file limit in KiB, -1 for unlimited.'
+            engine_config_pg_timezone: '- (Optional) PostgreSQL service timezone.'
+            engine_config_pg_track_activity_query_size: '- (Optional) Specifies the number of bytes reserved to track the currently executing command for each active session.'
+            engine_config_pg_track_commit_timestamp: '- (Optional) Record commit time of transactions.'
+            engine_config_pg_track_functions: '- (Optional) Enables tracking of function call counts and time used.'
+            engine_config_pg_track_io_timing: '- (Optional) Enables timing of database I/O calls. This parameter is off by default, because it will repeatedly query the operating system for the current time, which may cause significant overhead on some platforms.'
+            engine_config_pg_wal_sender_timeout: '- (Optional) Terminate replication connections that are inactive for longer than this amount of time, in milliseconds. Setting this value to zero disables the timeout.'
+            engine_config_pg_wal_writer_delay: '- (Optional) WAL flush interval in milliseconds. Note that setting this value to lower than the default 200ms may negatively impact performance.'
+            engine_config_pglookout_max_failover_replication_time_lag: '- (Optional) Number of seconds of master unavailability before triggering database failover to standby. (default 60)'
+            engine_config_shared_buffers_percentage: '- (Optional) Percentage of total RAM that the database server uses for shared memory buffers. Valid range is 20-60 (float), which corresponds to 20% - 60%. This setting adjusts the shared_buffers configuration value.'
+            engine_config_work_mem: '- (Optional) Sets the maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files, in MB. Default is 1MB + 0.075% of total RAM (up to 32MB).'
             engine_id: '- (Required) The Managed Database engine in engine/version format. (e.g. postgresql/16)'
             fork_restore_time: '- (Optional) The database timestamp from which it was restored.'
             fork_source: '- (Optional) The ID of the database that was forked from.'
@@ -794,7 +960,7 @@ resources:
             ipv4: '- (Optional) A set of reserved IPv4 addresses to assign to this Linode on creation.'
             ipv4.nat_1_1: '- (Optional) The public IP that will be used for the one-to-one NAT purpose. If this is any, the public IPv4 address assigned to this Linode is used on this interface and will be 1:1 NATted with the VPC IPv4 address.'
             ipv4.vpc: '- (Optional) The IP from the VPC subnet to use for this interface. A random address will be assigned if this is not specified in a VPC interface.'
-            ipv6: '- This Linode''s IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/64) is included in this attribute.'
+            ipv6: '- This Linode''s IPv6 SLAAC addresses. This address is specific to a Linode, and may not be shared.  The prefix (/128) is included in this attribute.'
             label: '- (Optional) The Linode''s label is for display purposes only. If no label is provided for a Linode, a default will be assigned.'
             lke_cluster_id: '- If applicable, the ID of the LKE cluster this instance is a part of.'
             metadata.0.user_data: '- (Optional) The base64-encoded user-defined data exposed to this instance through the Linode Metadata service. Refer to the base64encode(...) function for information on encoding content for this field.'
@@ -1240,7 +1406,7 @@ resources:
             - name: my-cluster
               manifest: |-
                 {
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
@@ -1256,7 +1422,7 @@ resources:
             - name: my-cluster
               manifest: |-
                 {
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
@@ -1297,12 +1463,40 @@ resources:
                       "high_availability": true
                     }
                   ],
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
                       "count": 1,
                       "type": "g6-standard-2"
+                    }
+                  ],
+                  "region": "us-central",
+                  "tags": [
+                    "prod"
+                  ]
+                }
+            - name: my-cluster
+              manifest: |-
+                {
+                  "k8s_version": "1.32",
+                  "label": "my-cluster",
+                  "pool": [
+                    {
+                      "count": 2,
+                      "labels": {
+                        "environment": "production",
+                        "role": "database"
+                      },
+                      "type": "g6-standard-2"
+                    },
+                    {
+                      "count": 3,
+                      "labels": {
+                        "environment": "production",
+                        "role": "application"
+                      },
+                      "type": "g6-standard-1"
                     }
                   ],
                   "region": "us-central",
@@ -1340,7 +1534,7 @@ resources:
                   "external_pool_tags": [
                     "${local.external_pool_tag}"
                   ],
-                  "k8s_version": "1.28",
+                  "k8s_version": "1.32",
                   "label": "my-cluster",
                   "pool": [
                     {
@@ -1365,24 +1559,31 @@ resources:
             addresses.ipv4: '- (Optional) A set of individual ipv4 addresses or CIDRs to ALLOW.'
             addresses.ipv6: '- (Optional) A set of individual ipv6 addresses or CIDRs to ALLOW.'
             api_endpoints: '- The endpoints for the Kubernetes API server.'
+            apl_enabled: '- Enables the App Platform Layer'
             autoscaler.max: '- (Required) The maximum number of nodes to autoscale to.'
             autoscaler.min: '- (Required) The minimum number of nodes to autoscale to.'
             control_plane.high_availability: '- (Optional) Defines whether High Availability is enabled for the cluster Control Plane. This is an irreversible change.'
             dashboard_url: '- The Kubernetes Dashboard access URL for this cluster. LKE Enterprise does not have a dashboard URL.'
             disk_encryption: '- The disk encryption policy for nodes in this pool.'
+            effect: '- (Required) The Kubernetes taint effect. Accepted values are NoSchedule, PreferNoSchedule, and NoExecute. For the descriptions of these values, see Kubernetes Taints and Tolerations.'
             external_pool_tags: '- (Optional) A set of node pool tags to ignore when planning and applying this cluster. This prevents externally managed node pools from being deleted or unintentionally updated on subsequent applies. See Externally Managed Node Pools for more details.'
             id: '- The ID of the cluster.'
             instance_id: '- The ID of the underlying Linode instance.'
             k8s_version: '- (Required) The desired Kubernetes version for this Kubernetes cluster in the format of major.minor (e.g. 1.21), and the latest supported patch version will be deployed.'
+            key: '- (Required) The Kubernetes taint key.'
             kubeconfig: '- The base64 encoded kubeconfig for the Kubernetes cluster.'
             label: '- (Required) This Kubernetes cluster''s unique label.'
             pool: '- Additional nested attributes:'
             pool.count: '- (Required; Optional with autoscaler) The number of nodes in the Node Pool. If undefined with an autoscaler the initial node count will equal the autoscaler minimum.'
+            pool.labels: '- (Optional) A map of key/value pairs to apply to all nodes in the pool. Labels are used to identify and organize Kubernetes resources within your cluster.'
+            pool.tags: '- (Optional) A set of tags applied to this node pool. Tags can be used to flag node pools as externally managed. See Externally Managed Node Pools for more details.'
+            pool.taint: '- (Optional) Kubernetes taints to add to node pool nodes. Taints help control how pods are scheduled onto nodes, specifically allowing them to repel certain pods. See Add Labels and Taints to your LKE Node Pools.'
             pool.type: '- (Required) A Linode Type for all of the nodes in the Node Pool. See all node types here.'
             region: '- (Required) This Kubernetes cluster''s location.'
             status: '- The status of the cluster.'
             tags: '- (Optional) An array of tags applied to the Kubernetes cluster. Tags are case-insensitive and are for organizational purposes only.'
             tier: '- (Optional) The desired Kubernetes tier. (Note: v4beta only and may not currently be available to all users.)'
+            value: '- (Required) The Kubernetes taint value.'
         importStatements: []
     linode_lke_node_pool:
         subCategory: ""
@@ -1427,7 +1628,7 @@ resources:
                       "external_pool_tags": [
                         "${local.external_pool_tag}"
                       ],
-                      "k8s_version": "1.28",
+                      "k8s_version": "1.32",
                       "label": "my-cluster",
                       "labels": {
                         "key": "value"
@@ -1525,6 +1726,7 @@ resources:
               manifest: |-
                 {
                   "client_conn_throttle": 20,
+                  "client_udp_sess_throttle": 10,
                   "label": "mynodebalancer",
                   "region": "us-east",
                   "tags": [
@@ -1534,6 +1736,7 @@ resources:
         argumentDocs:
             action: '- Controls whether traffic is accepted or dropped by this rule. Overrides the Firewall’s inbound_policy if this is an inbound rule, or the outbound_policy if this is an outbound rule.'
             client_conn_throttle: '- (Optional) Throttle connections per second (0-20). Set to 0 (default) to disable throttling.'
+            client_udp_sess_throttle: '- Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.'
             created: '- When this NodeBalancer was created'
             hostname: '- This NodeBalancer''s hostname, ending with .nodebalancer.linode.com'
             id: '- (Required) The Firewall''s ID.'
@@ -1569,7 +1772,8 @@ resources:
                   "nodebalancer_id": "${linode_nodebalancer.foobar.id}",
                   "port": 8088,
                   "protocol": "http",
-                  "stickiness": "http_cookie"
+                  "stickiness": "http_cookie",
+                  "udp_check_port": 12345
                 }
               references:
                 nodebalancer_id: linode_nodebalancer.foobar.id
@@ -1599,6 +1803,8 @@ resources:
             ssl_fingerprint: '- The read-only fingerprint automatically derived from the SSL certificate assigned to this NodeBalancerConfig. Please refer to this field to verify that the appropriate certificate is assigned to your NodeBalancerConfig.'
             ssl_key: '- (Optional) The private key corresponding to this port''s certificate. This is not returned. If set, this field will come back as <REDACTED>. Please use the ssl_commonname and ssl_fingerprint to identify the certificate.'
             stickiness: '- (Optional) Controls how session stickiness is handled on this port. (none, table, http_cookie)'
+            udp_check_port: '- (Optional) Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.'
+            udp_session_timeout: '- The read-only idle time in seconds after which a session that hasn’t received packets is destroyed.'
             up: '- The number of backends considered to be ''UP'' and healthy, and that are serving requests.'
         importStatements: []
     linode_nodebalancer_node:
@@ -2187,7 +2393,7 @@ resources:
                   "source_volume_id": 12345
                 }
         argumentDocs:
-            encryption: '- (Optional) Whether Block Storage Disk Encryption is enabled or disabled on this Volume. Note: Block Storage Disk Encryption is not currently available to all users.'
+            encryption: '- (Optional) Whether Block Storage Disk Encryption is enabled or disabled on this Volume.'
             filesystem_path: '- The full filesystem path for the Volume based on the Volume''s label. The path is "/dev/disk/by-id/scsi-0Linode_Volume_" + the Volume label'
             label: '- (Required) The label of the Linode Volume'
             linode_id: '- (Optional) The ID of a Linode Instance where the Volume should be attached.'

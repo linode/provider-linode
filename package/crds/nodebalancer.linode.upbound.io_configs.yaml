@@ -256,6 +256,11 @@ spec:
                       Controls how session stickiness is handled on this port. (none, table, http_cookie)
                       Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
                     type: string
+                  udpCheckPort:
+                    description: |-
+                      Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.
+                      Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic.
+                    type: number
                 type: object
               initProvider:
                 description: |-
@@ -453,6 +458,11 @@ spec:
                       Controls how session stickiness is handled on this port. (none, table, http_cookie)
                       Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
                     type: string
+                  udpCheckPort:
+                    description: |-
+                      Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.
+                      Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic.
+                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -726,6 +736,16 @@ spec:
                       Controls how session stickiness is handled on this port. (none, table, http_cookie)
                       Controls how session stickiness is handled on this port: 'none', 'table', 'http_cookie'
                     type: string
+                  udpCheckPort:
+                    description: |-
+                      Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic. Defaults to 80.
+                      Specifies the port on the backend node used for active health checks, which may differ from the port serving traffic.
+                    type: number
+                  udpSessionTimeout:
+                    description: |-
+                      The read-only idle time in seconds after which a session that hasn’t received packets is destroyed.
+                      The read-only idle time in seconds after which a session that hasn’t received packets is destroyed.
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

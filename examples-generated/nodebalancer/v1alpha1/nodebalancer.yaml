@@ -9,6 +9,7 @@ metadata:
 spec:
   forProvider:
     clientConnThrottle: 20
+    clientUdpSessThrottle: 10
     label: mynodebalancer
     region: us-east
     tags:
