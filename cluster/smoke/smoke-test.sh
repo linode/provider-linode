@@ -94,10 +94,10 @@ echo "Creating Linode provider credentials secret..."
 	-o yaml <<<"{\"token\":\"${LINODE_API_TOKEN}\"}" | "${KUBECTL}" apply -f -
 
 echo "Creating root password secret..."
-"${KUBECTL}" -n "${CROSSPLANE_NAMESPACE}" create secret generic "${ROOT_PASSWORD_SECRET_NAME}" \
+printf '%s' "${ROOT_PASSWORD}" | "${KUBECTL}" -n "${CROSSPLANE_NAMESPACE}" create secret generic "${ROOT_PASSWORD_SECRET_NAME}" \
 	--from-file=password=/dev/stdin \
 	--dry-run=client \
-	-o yaml <<<"${ROOT_PASSWORD}" | "${KUBECTL}" apply -f -
+	-o yaml | "${KUBECTL}" apply -f -
 
 echo "Creating ProviderConfig and Instance manifests..."
 cat <<EOF | "${KUBECTL}" apply -f -
