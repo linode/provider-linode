@@ -78,6 +78,11 @@ spec:
                       Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
                       Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
                     type: number
+                  clientUdpSessThrottle:
+                    description: |-
+                      Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+                      Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+                    type: number
                   firewallId:
                     description: |-
                       The Firewall's ID.
@@ -119,6 +124,11 @@ spec:
                     description: |-
                       Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
                       Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
+                    type: number
+                  clientUdpSessThrottle:
+                    description: |-
+                      Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+                      Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
                     type: number
                   firewallId:
                     description: |-
@@ -320,6 +330,11 @@ spec:
                     description: |-
                       Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
                       Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
+                    type: number
+                  clientUdpSessThrottle:
+                    description: |-
+                      Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+                      Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
                     type: number
                   created:
                     description: |-

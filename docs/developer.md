@@ -63,7 +63,7 @@ type: Opaque
 11. Create a manifest for your resource, or use the generated example depending on what you are testing. `k apply` the new resource, the ProviderConfig, and the linode API token secret. Test that it works!
 
 ### Upgrading to a new terraform provider:
-1. Review the terraform-provider-linode release notes, and verify if there are is any migration from sdk->plugin framework. k ge
+1. Review the terraform-provider-linode release notes, and verify whether there are any migrations from SDKv2 to the plugin framework.
     a. If there's a migration, update the list in `config/externalname.go`
     b. If there's a new resource follow steps under Add a new resource
 

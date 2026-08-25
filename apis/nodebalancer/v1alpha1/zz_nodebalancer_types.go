@@ -86,6 +86,10 @@ type NodebalancerInitParameters struct {
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
 
+	// Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+	// Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+	ClientUDPSessThrottle *float64 `json:"clientUdpSessThrottle,omitempty" tf:"client_udp_sess_throttle,omitempty"`
+
 	// The Firewall's ID.
 	// ID for the firewall you'd like to use with this NodeBalancer.
 	FirewallID *float64 `json:"firewallId,omitempty" tf:"firewall_id,omitempty"`
@@ -109,6 +113,10 @@ type NodebalancerObservation struct {
 	// Throttle connections per second (0-20). Set to 0 (default) to disable throttling.
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+
+	// Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+	// Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+	ClientUDPSessThrottle *float64 `json:"clientUdpSessThrottle,omitempty" tf:"client_udp_sess_throttle,omitempty"`
 
 	// When this NodeBalancer was created
 	// When this NodeBalancer was created.
@@ -163,6 +171,11 @@ type NodebalancerParameters struct {
 	// Throttle connections per second (0-20). Set to 0 (zero) to disable throttling.
 	// +kubebuilder:validation:Optional
 	ClientConnThrottle *float64 `json:"clientConnThrottle,omitempty" tf:"client_conn_throttle,omitempty"`
+
+	// Throttle UDP sessions per second (0-20). Set to 0 (default) to disable throttling.
+	// Throttle UDP sessions per second (0-20). Set to 0 (zero) to disable throttling.
+	// +kubebuilder:validation:Optional
+	ClientUDPSessThrottle *float64 `json:"clientUdpSessThrottle,omitempty" tf:"client_udp_sess_throttle,omitempty"`
 
 	// The Firewall's ID.
 	// ID for the firewall you'd like to use with this NodeBalancer.

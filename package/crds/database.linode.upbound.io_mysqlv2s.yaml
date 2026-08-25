@@ -86,6 +86,146 @@ spec:
                       The number of Linode Instance nodes deployed to the Managed Database. (default 1)
                       The number of Linode instance nodes deployed to the Managed Database.
                     type: number
+                  engineConfigBinlogRetentionPeriod:
+                    description: |-
+                      The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
+                      The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+                    type: number
+                  engineConfigMysqlConnectTimeout:
+                    description: |-
+                      The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".
+                      The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
+                    type: number
+                  engineConfigMysqlDefaultTimeZone:
+                    description: |-
+                      Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.
+                      Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+                    type: string
+                  engineConfigMysqlGroupConcatMaxLen:
+                    description: |-
+                      The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+                      The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+                    type: number
+                  engineConfigMysqlInformationSchemaStatsExpiry:
+                    description: |-
+                      The time, in seconds, before cached statistics expire.
+                      The time, in seconds, before cached statistics expire.
+                    type: number
+                  engineConfigMysqlInnodbChangeBufferMaxSize:
+                    description: |-
+                      Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+                      Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+                    type: number
+                  engineConfigMysqlInnodbFlushNeighbors:
+                    description: |-
+                      Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+                      Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+                    type: number
+                  engineConfigMysqlInnodbFtMinTokenSize:
+                    description: |-
+                      Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+                      Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInnodbFtServerStopwordTable:
+                    description: |-
+                      This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.
+                      This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+                    type: string
+                  engineConfigMysqlInnodbLockWaitTimeout:
+                    description: |-
+                      The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+                      The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+                    type: number
+                  engineConfigMysqlInnodbLogBufferSize:
+                    description: |-
+                      The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+                      The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+                    type: number
+                  engineConfigMysqlInnodbOnlineAlterLogMaxSize:
+                    description: |-
+                      The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+                      The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+                    type: number
+                  engineConfigMysqlInnodbReadIoThreads:
+                    description: |-
+                      The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                      The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInnodbRollbackOnTimeout:
+                    description: |-
+                      When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+                      When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+                    type: boolean
+                  engineConfigMysqlInnodbThreadConcurrency:
+                    description: |-
+                      Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+                      Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+                    type: number
+                  engineConfigMysqlInnodbWriteIoThreads:
+                    description: |-
+                      The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                      The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInteractiveTimeout:
+                    description: |-
+                      The number of seconds the server waits for activity on an interactive connection before closing it.
+                      The number of seconds the server waits for activity on an interactive connection before closing it.
+                    type: number
+                  engineConfigMysqlInternalTmpMemStorageEngine:
+                    description: |-
+                      The storage engine for in-memory internal temporary tables.
+                      The storage engine for in-memory internal temporary tables.
+                    type: string
+                  engineConfigMysqlMaxAllowedPacket:
+                    description: |-
+                      Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+                      Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+                    type: number
+                  engineConfigMysqlMaxHeapTableSize:
+                    description: |-
+                      Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+                      Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+                    type: number
+                  engineConfigMysqlNetBufferLength:
+                    description: |-
+                      Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+                      Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlNetReadTimeout:
+                    description: |-
+                      The number of seconds to wait for more data from a connection before aborting the read.
+                      The number of seconds to wait for more data from a connection before aborting the read.
+                    type: number
+                  engineConfigMysqlNetWriteTimeout:
+                    description: |-
+                      The number of seconds to wait for a block to be written to a connection before aborting the write.
+                      The number of seconds to wait for a block to be written to a connection before aborting the write.
+                    type: number
+                  engineConfigMysqlSortBufferSize:
+                    description: |-
+                      Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+                      Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+                    type: number
+                  engineConfigMysqlSqlMode:
+                    description: |-
+                      Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)
+                      Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
+                    type: string
+                  engineConfigMysqlSqlRequirePrimaryKey:
+                    description: |-
+                      Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)
+                      Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
+                    type: boolean
+                  engineConfigMysqlTmpTableSize:
+                    description: |-
+                      Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+                      Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+                    type: number
+                  engineConfigMysqlWaitTimeout:
+                    description: |-
+                      The number of seconds the server waits for activity on a noninteractive connection before closing it.
+                      The number of seconds the server waits for activity on a noninteractive connection before closing it.
+                    type: number
                   engineId:
                     description: |-
                       The Managed Database engine in engine/version format. (e.g. mysql)
@@ -168,6 +308,146 @@ spec:
                     description: |-
                       The number of Linode Instance nodes deployed to the Managed Database. (default 1)
                       The number of Linode instance nodes deployed to the Managed Database.
+                    type: number
+                  engineConfigBinlogRetentionPeriod:
+                    description: |-
+                      The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
+                      The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+                    type: number
+                  engineConfigMysqlConnectTimeout:
+                    description: |-
+                      The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".
+                      The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
+                    type: number
+                  engineConfigMysqlDefaultTimeZone:
+                    description: |-
+                      Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.
+                      Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+                    type: string
+                  engineConfigMysqlGroupConcatMaxLen:
+                    description: |-
+                      The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+                      The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+                    type: number
+                  engineConfigMysqlInformationSchemaStatsExpiry:
+                    description: |-
+                      The time, in seconds, before cached statistics expire.
+                      The time, in seconds, before cached statistics expire.
+                    type: number
+                  engineConfigMysqlInnodbChangeBufferMaxSize:
+                    description: |-
+                      Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+                      Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+                    type: number
+                  engineConfigMysqlInnodbFlushNeighbors:
+                    description: |-
+                      Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+                      Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+                    type: number
+                  engineConfigMysqlInnodbFtMinTokenSize:
+                    description: |-
+                      Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+                      Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInnodbFtServerStopwordTable:
+                    description: |-
+                      This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.
+                      This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+                    type: string
+                  engineConfigMysqlInnodbLockWaitTimeout:
+                    description: |-
+                      The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+                      The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+                    type: number
+                  engineConfigMysqlInnodbLogBufferSize:
+                    description: |-
+                      The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+                      The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+                    type: number
+                  engineConfigMysqlInnodbOnlineAlterLogMaxSize:
+                    description: |-
+                      The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+                      The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+                    type: number
+                  engineConfigMysqlInnodbReadIoThreads:
+                    description: |-
+                      The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                      The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInnodbRollbackOnTimeout:
+                    description: |-
+                      When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+                      When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+                    type: boolean
+                  engineConfigMysqlInnodbThreadConcurrency:
+                    description: |-
+                      Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+                      Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+                    type: number
+                  engineConfigMysqlInnodbWriteIoThreads:
+                    description: |-
+                      The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                      The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInteractiveTimeout:
+                    description: |-
+                      The number of seconds the server waits for activity on an interactive connection before closing it.
+                      The number of seconds the server waits for activity on an interactive connection before closing it.
+                    type: number
+                  engineConfigMysqlInternalTmpMemStorageEngine:
+                    description: |-
+                      The storage engine for in-memory internal temporary tables.
+                      The storage engine for in-memory internal temporary tables.
+                    type: string
+                  engineConfigMysqlMaxAllowedPacket:
+                    description: |-
+                      Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+                      Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+                    type: number
+                  engineConfigMysqlMaxHeapTableSize:
+                    description: |-
+                      Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+                      Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+                    type: number
+                  engineConfigMysqlNetBufferLength:
+                    description: |-
+                      Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+                      Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlNetReadTimeout:
+                    description: |-
+                      The number of seconds to wait for more data from a connection before aborting the read.
+                      The number of seconds to wait for more data from a connection before aborting the read.
+                    type: number
+                  engineConfigMysqlNetWriteTimeout:
+                    description: |-
+                      The number of seconds to wait for a block to be written to a connection before aborting the write.
+                      The number of seconds to wait for a block to be written to a connection before aborting the write.
+                    type: number
+                  engineConfigMysqlSortBufferSize:
+                    description: |-
+                      Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+                      Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+                    type: number
+                  engineConfigMysqlSqlMode:
+                    description: |-
+                      Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)
+                      Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
+                    type: string
+                  engineConfigMysqlSqlRequirePrimaryKey:
+                    description: |-
+                      Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)
+                      Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
+                    type: boolean
+                  engineConfigMysqlTmpTableSize:
+                    description: |-
+                      Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+                      Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+                    type: number
+                  engineConfigMysqlWaitTimeout:
+                    description: |-
+                      The number of seconds the server waits for activity on a noninteractive connection before closing it.
+                      The number of seconds the server waits for activity on a noninteractive connection before closing it.
                     type: number
                   engineId:
                     description: |-
@@ -443,6 +723,146 @@ spec:
                       The Managed Database engine. (e.g. mysql)
                       The Managed Database engine in engine/version format.
                     type: string
+                  engineConfigBinlogRetentionPeriod:
+                    description: |-
+                      The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default, for example if using the MySQL Debezium Kafka connector.
+                      The minimum amount of time in seconds to keep binlog entries before deletion. This may be extended for services that require binlog entries for longer than the default for example if using the MySQL Debezium Kafka connector.
+                    type: number
+                  engineConfigMysqlConnectTimeout:
+                    description: |-
+                      The number of seconds that the mysqld server waits for a connect packet before responding with "Bad handshake".
+                      The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.
+                    type: number
+                  engineConfigMysqlDefaultTimeZone:
+                    description: |-
+                      Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or SYSTEM to use the MySQL server default.
+                      Default server time zone as an offset from UTC (from -12:00 to +12:00), a time zone name, or 'SYSTEM' to use the MySQL server default.
+                    type: string
+                  engineConfigMysqlGroupConcatMaxLen:
+                    description: |-
+                      The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+                      The maximum permitted result length in bytes for the GROUP_CONCAT() function.
+                    type: number
+                  engineConfigMysqlInformationSchemaStatsExpiry:
+                    description: |-
+                      The time, in seconds, before cached statistics expire.
+                      The time, in seconds, before cached statistics expire.
+                    type: number
+                  engineConfigMysqlInnodbChangeBufferMaxSize:
+                    description: |-
+                      Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+                      Maximum size for the InnoDB change buffer, as a percentage of the total size of the buffer pool. Default is 25.
+                    type: number
+                  engineConfigMysqlInnodbFlushNeighbors:
+                    description: |-
+                      Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+                      Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent (default is 1): 0 - dirty pages in the same extent are not flushed, 1 - flush contiguous dirty pages in the same extent, 2 - flush dirty pages in the same extent.
+                    type: number
+                  engineConfigMysqlInnodbFtMinTokenSize:
+                    description: |-
+                      Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+                      Minimum length of words that are stored in an InnoDB FULLTEXT index. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInnodbFtServerStopwordTable:
+                    description: |-
+                      This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables. This field is nullable.
+                      This option is used to specify your own InnoDB FULLTEXT index stopword list for all InnoDB tables.
+                    type: string
+                  engineConfigMysqlInnodbLockWaitTimeout:
+                    description: |-
+                      The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+                      The length of time in seconds an InnoDB transaction waits for a row lock before giving up. Default is 120.
+                    type: number
+                  engineConfigMysqlInnodbLogBufferSize:
+                    description: |-
+                      The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+                      The size in bytes of the buffer that InnoDB uses to write to the log files on disk.
+                    type: number
+                  engineConfigMysqlInnodbOnlineAlterLogMaxSize:
+                    description: |-
+                      The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+                      The upper limit in bytes on the size of the temporary log files used during online DDL operations for InnoDB tables.
+                    type: number
+                  engineConfigMysqlInnodbReadIoThreads:
+                    description: |-
+                      The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                      The number of I/O threads for read operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInnodbRollbackOnTimeout:
+                    description: |-
+                      When enabled, a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+                      When enabled a transaction timeout causes InnoDB to abort and roll back the entire transaction. Changing this parameter will lead to a restart of the MySQL service.
+                    type: boolean
+                  engineConfigMysqlInnodbThreadConcurrency:
+                    description: |-
+                      Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+                      Defines the maximum number of threads permitted inside of InnoDB. Default is 0 (infinite concurrency - no limit).
+                    type: number
+                  engineConfigMysqlInnodbWriteIoThreads:
+                    description: |-
+                      The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                      The number of I/O threads for write operations in InnoDB. Default is 4. Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlInteractiveTimeout:
+                    description: |-
+                      The number of seconds the server waits for activity on an interactive connection before closing it.
+                      The number of seconds the server waits for activity on an interactive connection before closing it.
+                    type: number
+                  engineConfigMysqlInternalTmpMemStorageEngine:
+                    description: |-
+                      The storage engine for in-memory internal temporary tables.
+                      The storage engine for in-memory internal temporary tables.
+                    type: string
+                  engineConfigMysqlMaxAllowedPacket:
+                    description: |-
+                      Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+                      Size of the largest message in bytes that can be received by the server. Default is 67108864 (64M).
+                    type: number
+                  engineConfigMysqlMaxHeapTableSize:
+                    description: |-
+                      Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+                      Limits the size of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).
+                    type: number
+                  engineConfigMysqlNetBufferLength:
+                    description: |-
+                      Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+                      Start sizes of connection buffer and result buffer. Default is 16384 (16K). Changing this parameter will lead to a restart of the MySQL service.
+                    type: number
+                  engineConfigMysqlNetReadTimeout:
+                    description: |-
+                      The number of seconds to wait for more data from a connection before aborting the read.
+                      The number of seconds to wait for more data from a connection before aborting the read.
+                    type: number
+                  engineConfigMysqlNetWriteTimeout:
+                    description: |-
+                      The number of seconds to wait for a block to be written to a connection before aborting the write.
+                      The number of seconds to wait for a block to be written to a connection before aborting the write.
+                    type: number
+                  engineConfigMysqlSortBufferSize:
+                    description: |-
+                      Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+                      Sort buffer size in bytes for ORDER BY optimization. Default is 262144 (256K).
+                    type: number
+                  engineConfigMysqlSqlMode:
+                    description: |-
+                      Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned. (default ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES)
+                      Global SQL mode. Set to empty to use MySQL server defaults. When creating a new service and not setting this field Aiven default SQL mode (strict, SQL standard compliant) will be assigned.
+                    type: string
+                  engineConfigMysqlSqlRequirePrimaryKey:
+                    description: |-
+                      Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them. (default true)
+                      Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.
+                    type: boolean
+                  engineConfigMysqlTmpTableSize:
+                    description: |-
+                      Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+                      Limits the size of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).
+                    type: number
+                  engineConfigMysqlWaitTimeout:
+                    description: |-
+                      The number of seconds the server waits for activity on a noninteractive connection before closing it.
+                      The number of seconds the server waits for activity on a noninteractive connection before closing it.
+                    type: number
                   engineId:
                     description: |-
                       The Managed Database engine in engine/version format. (e.g. mysql)

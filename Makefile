@@ -4,14 +4,14 @@
 PROJECT_NAME := provider-linode
 PROJECT_REPO := github.com/linode/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION := 1.5.5
+export TERRAFORM_VERSION := 1.15.9
 export TERRAFORM_PROVIDER_SOURCE := linode/linode
-export TERRAFORM_PROVIDER_VERSION := 2.37.0
+export TERRAFORM_PROVIDER_VERSION := 2.41.2
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-linode
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-linode_v$(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_PROVIDER_REPO := https://github.com/linode/terraform-provider-linode
 export TERRAFORM_DOCS_PATH := docs/resources
-export CROSSPLANE_VERSION := 1.16
+export CROSSPLANE_VERSION := 1.20.12
 
 PLATFORMS ?= linux_amd64 linux_arm64
 
@@ -44,7 +44,7 @@ GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 # correctly.
 export GOPRIVATE = github.com/upbound/*
 
-GO_REQUIRED_VERSION ?= 1.21
+GO_REQUIRED_VERSION ?= 1.25
 # GOLANGCILINT_VERSION is inherited from build submodule by default.
 # Uncomment below if you need to override the version.
 GOLANGCILINT_VERSION ?= 2.11.4
@@ -58,10 +58,10 @@ GO_SUBDIRS += cmd internal apis
 # ====================================================================================
 # Setup Kubernetes tools
 
-KIND_VERSION = v0.20.0
-UP_VERSION = v0.28.0
+KIND_VERSION = v0.32.0
+UP_VERSION = v0.53.2
 UP_CHANNEL = stable
-UPTEST_VERSION = v0.6.1
+UPTEST_VERSION = v0.13.1
 
 export UP_VERSION := $(UP_VERSION)
 export UP_CHANNEL := $(UP_CHANNEL)
@@ -144,7 +144,7 @@ TERRAFORM_PROVIDER_SCHEMA := config/schema.json
 $(TERRAFORM):
 	@$(INFO) installing terraform $(HOSTOS)-$(HOSTARCH)
 	@mkdir -p $(TOOLS_HOST_DIR)/tmp-terraform
-	@curl -fsSL https://github.com/upbound/terraform/releases/download/v$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_$(SAFEHOST_PLATFORM).zip -o $(TOOLS_HOST_DIR)/tmp-terraform/terraform.zip
+	@curl -fsSL https://releases.hashicorp.com/terraform/$(TERRAFORM_VERSION)/terraform_$(TERRAFORM_VERSION)_$(SAFEHOST_PLATFORM).zip -o $(TOOLS_HOST_DIR)/tmp-terraform/terraform.zip
 	@unzip $(TOOLS_HOST_DIR)/tmp-terraform/terraform.zip -d $(TOOLS_HOST_DIR)/tmp-terraform
 	@mv $(TOOLS_HOST_DIR)/tmp-terraform/terraform $(TERRAFORM)
 	@rm -fr $(TOOLS_HOST_DIR)/tmp-terraform
@@ -194,6 +194,11 @@ local-deploy: build controlplane.up local.xpkg.deploy.provider.$(PROJECT_NAME)
 
 e2e: local-deploy uptest
 
+smoke-test: local-deploy $(KUBECTL)
+	@$(INFO) running smoke test
+	@KUBECTL=$(KUBECTL) CROSSPLANE_NAMESPACE=$(CROSSPLANE_NAMESPACE) bash ./cluster/smoke/smoke-test.sh
+	@$(OK) running smoke test
+
 # TODO: please move this to the common build submodule
 # once the use cases mature
 crddiff: $(UPTEST)
@@ -223,7 +228,7 @@ schema-version-diff:
 	./scripts/version_diff.py config/generated.lst "$(WORK_DIR)/schema.json.$${PREV_PROVIDER_VERSION}" config/schema.json
 	@$(OK) Checking for native state schema version changes
 
-.PHONY: uptest e2e crddiff schema-version-diff
+.PHONY: uptest e2e smoke-test crddiff schema-version-diff
 
 # ====================================================================================
 # Special Targets
@@ -233,6 +238,7 @@ Crossplane Targets:
     cobertura             Generate a coverage report for cobertura applying exclusions on generated files.
     submodules            Update the submodules, such as the common build scripts.
     run                   Run crossplane locally, out-of-cluster. Useful for development.
+    smoke-test            Create a Linode Instance and wait until it becomes Ready.
 
 endef
 # The reason CROSSPLANE_MAKE_HELP is used instead of CROSSPLANE_HELP is because the crossplane
