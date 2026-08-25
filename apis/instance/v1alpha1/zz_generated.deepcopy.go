@@ -4902,6 +4902,16 @@ func (in *PlacementGroupInitParameters) DeepCopyInto(out *PlacementGroupInitPara
 		*out = new(float64)
 		**out = **in
 	}
+	if in.IDRef != nil {
+		in, out := &in.IDRef, &out.IDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.IDSelector != nil {
+		in, out := &in.IDSelector, &out.IDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.PlacementGroupPolicy != nil {
 		in, out := &in.PlacementGroupPolicy, &out.PlacementGroupPolicy
 		*out = new(string)
@@ -4971,6 +4981,16 @@ func (in *PlacementGroupParameters) DeepCopyInto(out *PlacementGroupParameters) 
 		in, out := &in.ID, &out.ID
 		*out = new(float64)
 		**out = **in
+	}
+	if in.IDRef != nil {
+		in, out := &in.IDRef, &out.IDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.IDSelector != nil {
+		in, out := &in.IDSelector, &out.IDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.PlacementGroupPolicy != nil {
 		in, out := &in.PlacementGroupPolicy, &out.PlacementGroupPolicy

@@ -1307,7 +1307,16 @@ type PlacementGroupInitParameters struct {
 
 	// The ID of the Placement Group to assign this Linode to.
 	// The ID of the Placement Group to assign this Linode to.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/placementgroup/v1alpha1.PlacementGroup
 	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a PlacementGroup in placementgroup to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a PlacementGroup in placementgroup to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// Whether the Placement Group enforces strict compliance.
 	// Whether compliance is strictly enforced by this Placement Group.
@@ -1341,8 +1350,17 @@ type PlacementGroupParameters struct {
 
 	// The ID of the Placement Group to assign this Linode to.
 	// The ID of the Placement Group to assign this Linode to.
+	// +crossplane:generate:reference:type=github.com/linode/provider-linode/apis/placementgroup/v1alpha1.PlacementGroup
 	// +kubebuilder:validation:Optional
-	ID *float64 `json:"id" tf:"id,omitempty"`
+	ID *float64 `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a PlacementGroup in placementgroup to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v1.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a PlacementGroup in placementgroup to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v1.Selector `json:"idSelector,omitempty" tf:"-"`
 
 	// Whether the Placement Group enforces strict compliance.
 	// Whether compliance is strictly enforced by this Placement Group.
