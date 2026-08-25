@@ -18,5 +18,8 @@ func Configure(p *config.Provider) {
 			Type: "github.com/linode/provider-linode/apis/stackscript/v1alpha1.Stackscript",
 		}
 
+		r.References["placement_group.id"] = config.Reference{
+			Type: "github.com/linode/provider-linode/apis/placementgroup/v1alpha1.PlacementGroup",
+		}
 	})
 }

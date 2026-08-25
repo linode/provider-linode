@@ -8,6 +8,7 @@ package v1alpha1
 import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
+	v1alpha12 "github.com/linode/provider-linode/apis/placementgroup/v1alpha1"
 	v1alpha11 "github.com/linode/provider-linode/apis/rdns/v1alpha1"
 	v1alpha1 "github.com/linode/provider-linode/apis/stackscript/v1alpha1"
 	errors "github.com/pkg/errors"
@@ -531,6 +532,24 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 	var rsp reference.ResolutionResponse
 	var err error
 
+	for i3 := 0; i3 < len(mg.Spec.ForProvider.PlacementGroup); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.PlacementGroup[i3].ID),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.ForProvider.PlacementGroup[i3].IDRef,
+			Selector:     mg.Spec.ForProvider.PlacementGroup[i3].IDSelector,
+			To: reference.To{
+				List:    &v1alpha12.PlacementGroupList{},
+				Managed: &v1alpha12.PlacementGroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.PlacementGroup[i3].ID")
+		}
+		mg.Spec.ForProvider.PlacementGroup[i3].ID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.PlacementGroup[i3].IDRef = rsp.ResolvedReference
+
+	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.ForProvider.StackscriptID),
 		Extract:      reference.ExternalName(),
@@ -547,6 +566,24 @@ func (mg *Instance) ResolveReferences(ctx context.Context, c client.Reader) erro
 	mg.Spec.ForProvider.StackscriptID = reference.ToFloatPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.StackscriptIDRef = rsp.ResolvedReference
 
+	for i3 := 0; i3 < len(mg.Spec.InitProvider.PlacementGroup); i3++ {
+		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+			CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.PlacementGroup[i3].ID),
+			Extract:      reference.ExternalName(),
+			Reference:    mg.Spec.InitProvider.PlacementGroup[i3].IDRef,
+			Selector:     mg.Spec.InitProvider.PlacementGroup[i3].IDSelector,
+			To: reference.To{
+				List:    &v1alpha12.PlacementGroupList{},
+				Managed: &v1alpha12.PlacementGroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.PlacementGroup[i3].ID")
+		}
+		mg.Spec.InitProvider.PlacementGroup[i3].ID = reference.ToFloatPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.PlacementGroup[i3].IDRef = rsp.ResolvedReference
+
+	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromFloatPtrValue(mg.Spec.InitProvider.StackscriptID),
 		Extract:      reference.ExternalName(),
