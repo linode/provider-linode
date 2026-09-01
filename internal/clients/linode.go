@@ -42,7 +42,7 @@ const (
 
 const (
 	keyToken   = "token"
-	keyURL     = "api_url"
+	keyURL     = "url"
 	keyVersion = "api_version"
 )
 
