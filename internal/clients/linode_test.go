@@ -133,3 +133,35 @@ func TestPrepareTerraformProviderConfiguration_ZeroValuesOmitted(t *testing.T) {
 		}
 	})
 }
+
+func TestPrepareTerraformProviderConfiguration_EventPoll(t *testing.T) {
+	t.Parallel()
+	tcs := []struct {
+		name       string
+		eventPoll  int
+		retryDelay int
+	}{
+		{name: "poll without retry override", eventPoll: 15000},
+		{name: "independent poll and retry", eventPoll: 15000, retryDelay: 2000},
+		{name: "retry without poll override", retryDelay: 2000},
+	}
+	for _, tc := range tcs {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+			config := prepareTerraformProviderConfiguration(nil, v1beta1.ProviderConfiguration{
+				EventPollms:     tc.eventPoll,
+				MaxRetryDelayms: tc.retryDelay,
+			})
+			if tc.eventPoll > 0 {
+				assert.Equal(t, tc.eventPoll, config["event_poll_ms"], "key %q", "event_poll_ms")
+			} else {
+				assert.NotContains(t, config, "event_poll_ms")
+			}
+			if tc.retryDelay > 0 {
+				assert.Equal(t, tc.retryDelay, config["max_retry_delay_ms"], "key %q", "max_retry_delay_ms")
+			} else {
+				assert.NotContains(t, config, "max_retry_delay_ms")
+			}
+		})
+	}
+}
