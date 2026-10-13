@@ -90,7 +90,7 @@ func prepareTerraformProviderConfiguration(creds map[string]string, pc v1beta1.P
 	}
 
 	if pc.EventPollms > 0 {
-		config["event_poll_ms"] = pc.MaxRetryDelayms
+		config["event_poll_ms"] = pc.EventPollms
 	}
 
 	if pc.LKEEventPollms > 0 {
